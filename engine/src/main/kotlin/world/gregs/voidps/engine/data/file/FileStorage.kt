@@ -154,7 +154,7 @@ class FileStorage(
                 while (nextSection()) {
                     val id = section().toInt()
                     val (offer, price) = readOffer(id)
-                    offers.add(id, item, price, sell)
+                    offers.add(id, item, price, sell, offer.lastActive)
                     tree.getOrPut(price) { mutableListOf() }.add(offer)
                 }
             }

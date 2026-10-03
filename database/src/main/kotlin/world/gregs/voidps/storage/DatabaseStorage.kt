@@ -99,7 +99,7 @@ class DatabaseStorage : Storage {
             val lastActive = row[ActiveOffersTable.lastActive]
             val sell = row[ActiveOffersTable.sell]
             val offer = OpenOffer(id = id, remaining = remaining, coins = coins, account = name, lastActive = lastActive)
-            offers.add(id, item, price, sell)
+            offers.add(id, item, price, sell, lastActive)
             (if (sell) sellByItem else buyByItem).getOrPut(item) { TreeMap() }.getOrPut(price) { mutableListOf() }.add(offer)
         }
         val maxId = OffersTable.id.max()
