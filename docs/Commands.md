@@ -20,7 +20,6 @@ The help command explains a command and it's format in more detail for example `
 
 <img width="418" height="178" alt="image" src="https://github.com/user-attachments/assets/807b4465-27b5-4b93-a6b3-a5e52d9ab13a" />
 
-
 # Item
 
 The item command allows [Admins](player-rights#modifying-rights) to spawn any item into their inventory.

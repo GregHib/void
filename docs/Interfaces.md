@@ -2,20 +2,21 @@ Interfaces are used to display information to a player, whether that's a picture
 
 ## Component types
 
-| Name | Description |
-|---|---|
-| Container | Parent to a group of child components. |
-| Rectangle | Filled or just the outline. |
-| Text | Line or paragraph of text. |
-| Sprite | Image, picture or icon. |
-| Model | Rendered model of a character, object or item. |
-| Line | Thin or thick with a colour. |
+|   Name    |                  Description                   |
+|-----------|------------------------------------------------|
+| Container | Parent to a group of child components.         |
+| Rectangle | Filled or just the outline.                    |
+| Text      | Line or paragraph of text.                     |
+| Sprite    | Image, picture or icon.                        |
+| Model     | Rendered model of a character, object or item. |
+| Line      | Thin or thick with a colour.                   |
 
 Due to the nested nature of containers, interfaces can be inserted into one another to create a hierarchy. The majority of interfaces are used inside one another, one that are not we will refer to as full-screen interfaces.
 
 ![Screenshot 2024-02-16 175117](https://github.com/GregHib/void/assets/5911414/df6e3a45-1bd3-403e-b716-df28430bde84)
 
 ## Fullscreen
+
 Full-screen interfaces as the name suggests, take up the entire client screen, there can only be one full screen interface displayed at a time.
 
 Examples of fullscreen interfaces would be:
@@ -43,7 +44,6 @@ The main game screen is used primarily for displaying large interfaces which blo
 
 ![Screenshot 2024-02-17 172526](https://github.com/GregHib/void/assets/5911414/6dd25bed-91a7-497d-8b89-9691f9b5a09f)
 
-
 #### Overlays
 
 Overlays are smaller interfaces for displaying contextual information during activities and minigames.
@@ -63,7 +63,6 @@ The chat screen is where communication and input interfaces are displayed
 * Text input
 
 ![Screenshot 2024-02-17 173310](https://github.com/GregHib/void/assets/5911414/64a24cfc-9ef5-4b2d-a404-e9d443fe30af)
-
 
 ### Tabs & Side interfaces (Orange)
 
@@ -142,6 +141,7 @@ interfaceOpen("price_checker") {
 ## Closing
 
 Closing an specific interface can be done, however it's normally done by type
+
 ```kotlin
 player.close("price_checker")
 ```
@@ -153,6 +153,7 @@ player.closeInterfaces() // Both menu and dialogues
 ```
 
 Code can also be executed on closing an interface
+
 ```kotlin
 interfaceClose("price_checker") {
   // ...
@@ -181,3 +182,4 @@ player.interfaces.sendVisibility("price_checker", "limit", false)
 // Interface, component, item slot range
 player.interfaceOptions.unlockAll("price_checker", "items", 0 until 28)
 ```
+

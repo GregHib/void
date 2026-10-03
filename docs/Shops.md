@@ -1,6 +1,7 @@
 ## Adding default shops
 
 Find the shop in various `*.shops.toml` files, or add it if you know the inventory id
+
 ```toml
 [bobs_brilliant_axes]
 id = 1
@@ -16,6 +17,7 @@ defaults = [
 ```
 
 Add the shopkeeper to a `*.npcs.toml` file
+
 ```toml
 [bob]
 id = 519
@@ -23,6 +25,7 @@ categories = ["human"]
 shop = "bobs_brilliant_axes"
 examine = "An expert on axes."
 ```
+
 > `shop =` needs to be set to the inventory string id for shops to open automatically when clicking the "Trade" option
 
 Spawn the shopkeeper in the right place in a `*.npc-spawns.toml` file
@@ -55,3 +58,4 @@ defaults = [
     # etc...
 ]
 ```
+

@@ -3,10 +3,10 @@ Timers are used in situations where *something* must occur at the start, during 
 
 There are two types of [Timers](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/timer/Timers.kt):
 
-| Timer type | Applies to | Stops counting down |
-|---|---|---|
-| Soft | Player, NPC | Never |
-| Regular | Player | When busy (delayed or interface open) |
+| Timer type | Applies to  |          Stops counting down          |
+|------------|-------------|---------------------------------------|
+| Soft       | Player, NPC | Never                                 |
+| Regular    | Player      | When busy (delayed or interface open) |
 
 > [!WARNING]
 > NPC's are limited to one soft timer at a time, Player's have no such limits.
@@ -40,6 +40,7 @@ combatStart { target ->
 ```
 
 ## Timer
+
 In this example a player starts an `overload` timer which boosts their levels every 15 seconds for 5 minutes in exchange for 500 hitpoints which are returned after the effect wears off.
 
 ```kotlin
@@ -89,6 +90,7 @@ timerStop("overload") { player: Player ->
 ```
 
 It can be triggered using `timers.start()`
+
 ```kotlin
 // When an overload potion is consumed
 consume("overload_#") { player: Player ->
@@ -96,10 +98,12 @@ consume("overload_#") { player: Player ->
     player["overload_refreshes_remaining"] = 20 // Repeat for 5 minutes
 }
 ```
+
 > [!NOTE]
 > As the overload effect is a regular timer it's effects can be prolonged by keeping a menu open when not in combat. This also applies to other effects such as poison.
 
 ### Restarting
+
 If a timer should persist after a player logs out, it must be restarted once they log back in
 
 ```kotlin
@@ -111,6 +115,7 @@ playerSpawn {
 ```
 
 This will call `timerStart` again, but the `restart` allows code that should only be executed on the initial start to do so.
+
 ```kotlin
 timerStart("overload") { player: Player ->
     if (restart) {
@@ -123,12 +128,15 @@ timerStart("overload") { player: Player ->
 }
 
 ```
+
 ### Checking for a timer
 
 You can check if a timer is currently active using the `contains(name)` method.
+
 ```kotlin
 if (player.timers.contains("overload")) {
     player.message("You may only use this potion every five minutes.")
     return
 }
 ```
+

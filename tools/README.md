@@ -5,14 +5,17 @@ A simple app for reading void's cache and config information in a searchable way
 Note: Takes a minute to load everything on startup.
 
 ### Run
+
 `gradle tools:app:run`
 
 ### Build
+
 `gradle tools:app:packageReleaseUberJarForCurrentOS`
 
 Artefacts will be produced in `build\compose\jars\`
 
 ## TODOs
+
 - [] Loading screen
 - [] Filter nested arrays
 - [x] Scrollbars
@@ -22,3 +25,4 @@ Artefacts will be produced in `build\compose\jars\`
 - [] Reverse lookup support e.g. all npcs with render emote X
 - [] Column size adjusting
 - [] Support non-definition types like Tables/Rows/Books
+
