@@ -88,6 +88,8 @@ class LoginServer(
         val password: String = rsa.readString()
         val xtea = decryptXtea(packet, isaacKeys)
         val username = xtea.readString()
+        xtea.readUByte() // social login
+        val displayMode = xtea.readUByte().toInt()
         if (!validate(write, username, password)) {
             return
         }
@@ -97,8 +99,6 @@ class LoginServer(
             read.cancel()
         }
         val passwordHash = passwordManager.encrypt(username, password)
-        xtea.readUByte() // social login
-        val displayMode = xtea.readUByte().toInt()
         login(read, client, username, passwordHash, displayMode)
     }
 
@@ -117,6 +117,7 @@ class LoginServer(
             return false
         }
         if (online.size >= loginLimit) {
+            online.remove(username)
             write.finish(Response.WORLD_FULL)
             return false
         }
