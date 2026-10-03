@@ -16,6 +16,8 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
+    private val lock = Any()
+    @Volatile
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
     private var disconnecting: (suspend () -> Unit)? = null
@@ -78,16 +80,19 @@ open class Client(
 
     /**
      * Writes to the channel, disconnecting if the connection has been closed
+     * Locked so frames and [cipherOut] aren't interleaved by threads sending at the same time
      */
     private inline fun write(crossinline block: suspend ByteWriteChannel.() -> Unit) {
-        try {
-            runBlocking {
-                block.invoke(write)
-            }
-        } catch (e: IOException) {
-            logger.debug { "Client write failed $address: ${e.message}" }
-            runBlocking {
-                disconnect()
+        synchronized(lock) {
+            try {
+                runBlocking {
+                    block.invoke(write)
+                }
+            } catch (e: IOException) {
+                logger.debug { "Client write failed $address: ${e.message}" }
+                runBlocking {
+                    disconnect()
+                }
             }
         }
     }
