@@ -140,6 +140,7 @@ internal class PlayerUpdateGpiSimulationTest : KoinMock() {
         val updates = viewport.playerUpdates
         task.processLocals(viewer, sync, updates, viewport.players, viewport, true)
         task.processLocals(viewer, sync, updates, viewport.players, viewport, false)
+        task.snapshot()
         task.processGlobals(viewer, sync, updates, viewport.players, viewport, true)
         task.processGlobals(viewer, sync, updates, viewport.players, viewport, false)
         decoder.decode(sync.toArray())
