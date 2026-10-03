@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
 import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
@@ -43,15 +44,18 @@ class MapDefinitions(
             if (objectsFile.exists() && collisionsFile.exists() && !configFiles.cacheUpdate) {
                 val start = System.currentTimeMillis()
                 val zones = collisions.load(collisionsFile)
-                GameObjects.load(objectsFile)
-                logger.info { "Loaded all maps $zones zones ${GameObjects.size} ${"object".plural(GameObjects.size)} in ${System.currentTimeMillis() - start}ms" }
-            } else {
-                loadCache(xteas)
-                val start = System.currentTimeMillis()
-                collisions.save(collisionsFile)
-                GameObjects.save(objectsFile)
-                logger.info { "Cached maps in ${System.currentTimeMillis() - start}ms" }
+                if (zones >= 0) {
+                    GameObjects.load(objectsFile)
+                    logger.info { "Loaded all maps $zones zones ${GameObjects.size} ${"object".plural(GameObjects.size)} in ${System.currentTimeMillis() - start}ms" }
+                    return this
+                }
+                Collisions.clear()
             }
+            loadCache(xteas)
+            val start = System.currentTimeMillis()
+            collisions.save(collisionsFile)
+            GameObjects.save(objectsFile)
+            logger.info { "Cached maps in ${System.currentTimeMillis() - start}ms" }
             return this
         } catch (e: ArrayIndexOutOfBoundsException) {
             logger.error(e) { "Error loading map definition; do you have the latest cache?" }
