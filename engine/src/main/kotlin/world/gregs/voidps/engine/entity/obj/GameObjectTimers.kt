@@ -12,11 +12,17 @@ class GameObjectTimers : Runnable {
     private val timers: MutableList<Timer> = mutableListOf()
 
     override fun run() {
+        // Callbacks may add or cancel timers so they're invoked after the list has finished being modified
+        val expired = mutableListOf<Timer>()
         timers.removeIf { timer ->
-            if (--timer.ticks == 0) {
-                timer.block.invoke()
+            val done = --timer.ticks <= 0
+            if (timer.ticks == 0) {
+                expired.add(timer)
             }
-            timer.ticks <= 0
+            done
+        }
+        for (timer in expired) {
+            timer.block.invoke()
         }
     }
 
