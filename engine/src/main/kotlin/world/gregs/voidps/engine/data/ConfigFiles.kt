@@ -64,7 +64,9 @@ private fun walkPath(
         for (path in stream) {
             val name = path.name
             if (!name.endsWith(".toml")) {
-                walkPath(map, path, lastUpdated, invalidatedExtensions)
+                if (Files.isDirectory(path)) {
+                    walkPath(map, path, lastUpdated, invalidatedExtensions)
+                }
                 continue
             }
             val extension = name.substringAfter('.')
