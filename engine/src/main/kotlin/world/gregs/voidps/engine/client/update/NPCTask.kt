@@ -85,13 +85,16 @@ class NPCTask(
     }
 
     private fun healthRegen(character: NPC) {
+        if (character.levels.get(Skill.Constitution) >= character.levels.getMax(Skill.Constitution)) {
+            if (character.regenCounter < character.def.regenRate) {
+                character.regenCounter++
+            }
+            return
+        }
         if (character.hasClock("under_attack")) {
             return
         }
         if (character.regenCounter++ < character.def.regenRate) {
-            return
-        }
-        if (character.levels.get(Skill.Constitution) >= character.levels.getMax(Skill.Constitution)) {
             return
         }
         character.levels.restore(Skill.Constitution, 10)
