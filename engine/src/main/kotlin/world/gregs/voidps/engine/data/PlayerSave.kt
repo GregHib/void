@@ -274,6 +274,7 @@ data class PlayerSave(
                                 if (peek == '.') {
                                     int = ((int + double()) * 10.0).toInt()
                                 }
+                                require(index < experience.size) { "Too many experience values, expected ${experience.size} ${exception()}" }
                                 experience[index++] = int
                             }
                         }
@@ -284,6 +285,7 @@ data class PlayerSave(
                         "levels" -> {
                             var index = 0
                             while (nextElement()) {
+                                require(index < levels.size) { "Too many level values, expected ${levels.size} ${exception()}" }
                                 levels[index++] = int()
                             }
                         }
@@ -291,12 +293,14 @@ data class PlayerSave(
                         "looks" -> {
                             var index = 0
                             while (nextElement()) {
+                                require(index < looks.size) { "Too many look values, expected ${looks.size} ${exception()}" }
                                 looks[index++] = int()
                             }
                         }
                         "colours" -> {
                             var index = 0
                             while (nextElement()) {
+                                require(index < colours.size) { "Too many colour values, expected ${colours.size} ${exception()}" }
                                 colours[index++] = int()
                             }
                         }
@@ -391,6 +395,7 @@ data class PlayerSave(
                                                     else -> throw IllegalArgumentException("Unexpected exchange offer key: '$key' ${exception()}")
                                                 }
                                             }
+                                            require(index < offers.size) { "Too many exchange offer values, expected ${offers.size} ${exception()}" }
                                             offers[index++] = ExchangeOffer(id = id, item = item, amount = amount, price = price, state = state, completed = completed, coins = coins)
                                         }
                                     }
