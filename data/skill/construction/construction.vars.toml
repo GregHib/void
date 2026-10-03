@@ -51,3 +51,12 @@ persist = true
 [house_treasure]
 format = "int"
 persist = true
+
+# Pet items stored in the menagerie pet house
+[house_pets]
+persist = true
+
+# Coins the owner keeps in their games room prize chest
+[house_prize_money]
+format = "int"
+persist = true

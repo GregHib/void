@@ -4288,3 +4288,18 @@ product = "rune_kiteshield"
 materials = ["plank", "bolt_of_cloth"]
 level = 38 # guessed
 product = "banner"
+
+# Most coins each games room prize chest can hold
+# https://oldschool.runescape.wiki/w/Games_room
+[house_prize_chests]
+row_id = "obj"
+capacity = "int"
+
+[.oak_prize_chest]
+capacity = 20000
+
+[.teak_prize_chest]
+capacity = 50000
+
+[.mahogany_prize_chest]
+capacity = 100000
