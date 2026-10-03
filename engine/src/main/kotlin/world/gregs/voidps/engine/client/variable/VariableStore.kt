@@ -23,14 +23,16 @@ interface VariableStore {
 
     fun inc(key: String, amount: Int = 1, refresh: Boolean = true, max: Int = Int.MAX_VALUE): Int {
         val value: Int = variables.get(key, 0)
-        variables.set(key, (value + amount).coerceAtMost(max), refresh)
-        return value + amount
+        val result = (value + amount).coerceAtMost(max)
+        variables.set(key, result, refresh)
+        return result
     }
 
     fun dec(key: String, amount: Int = 1, refresh: Boolean = true, min: Int = 0): Int {
         val value: Int = variables.get(key, 0)
-        variables.set(key, (value - amount).coerceAtLeast(min), refresh)
-        return value - amount
+        val result = (value - amount).coerceAtLeast(min)
+        variables.set(key, result, refresh)
+        return result
     }
 
     operator fun set(key: String, refresh: Boolean, value: Any) = variables.set(key, value, refresh)

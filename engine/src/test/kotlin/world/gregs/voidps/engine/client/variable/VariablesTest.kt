@@ -244,6 +244,26 @@ internal class VariablesTest {
         assertEquals(arrayListOf("Third") to null, calls.first())
     }
 
+    @Test
+    fun `Increment returns clamped value`() {
+        val store = object : VariableStore {
+            override val variables = this@VariablesTest.variables
+        }
+        map[KEY] = 8
+        assertEquals(10, store.inc(KEY, 5, max = 10))
+        assertEquals(10, map[KEY])
+    }
+
+    @Test
+    fun `Decrement returns clamped value`() {
+        val store = object : VariableStore {
+            override val variables = this@VariablesTest.variables
+        }
+        map[KEY] = 3
+        assertEquals(1, store.dec(KEY, 5, min = 1))
+        assertEquals(1, map[KEY])
+    }
+
     companion object {
         private const val KEY = "key"
     }
