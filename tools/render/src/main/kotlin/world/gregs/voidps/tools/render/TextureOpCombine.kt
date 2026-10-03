@@ -12,7 +12,9 @@ internal class TextureOpCombine : TextureOp(2, false) {
             if (i_1_ == 0) {
                 anInt9226 = packet!!.readUnsignedByte()
                 break
-            } else if (i_1_ != 1) break
+            } else if (i_1_ != 1) {
+                break
+            }
             this.aBoolean7045 = packet!!.readUnsignedByte() == 1
         } while (false)
     }
@@ -63,19 +65,29 @@ internal class TextureOpCombine : TextureOp(2, false) {
                                                                                         if (i_14_ != 10) {
                                                                                             if (i_14_ != 11) {
                                                                                                 if (i_14_ != 12) break@while_168_
-                                                                                            } else break@while_166_
+                                                                                            } else {
+                                                                                                break@while_166_
+                                                                                            }
                                                                                             break@while_167_
                                                                                         }
-                                                                                    } else break@while_164_
+                                                                                    } else {
+                                                                                        break@while_164_
+                                                                                    }
                                                                                     break@while_165_
                                                                                 }
-                                                                            } else break@while_162_
+                                                                            } else {
+                                                                                break@while_162_
+                                                                            }
                                                                             break@while_163_
                                                                         }
-                                                                    } else break@while_160_
+                                                                    } else {
+                                                                        break@while_160_
+                                                                    }
                                                                     break@while_161_
                                                                 }
-                                                            } else break
+                                                            } else {
+                                                                break
+                                                            }
                                                             break@while_159_
                                                         }
                                                         i_14_ = 0
@@ -251,19 +263,29 @@ internal class TextureOpCombine : TextureOp(2, false) {
                                                                                         if (i_54_ != 10) {
                                                                                             if (i_54_ != 11) {
                                                                                                 if (i_54_ != 12) break@while_178_
-                                                                                            } else break@while_176_
+                                                                                            } else {
+                                                                                                break@while_176_
+                                                                                            }
                                                                                             break@while_177_
                                                                                         }
-                                                                                    } else break@while_174_
+                                                                                    } else {
+                                                                                        break@while_174_
+                                                                                    }
                                                                                     break@while_175_
                                                                                 }
-                                                                            } else break@while_172_
+                                                                            } else {
+                                                                                break@while_172_
+                                                                            }
                                                                             break@while_173_
                                                                         }
-                                                                    } else break@while_170_
+                                                                    } else {
+                                                                        break@while_170_
+                                                                    }
                                                                     break@while_171_
                                                                 }
-                                                            } else break
+                                                            } else {
+                                                                break
+                                                            }
                                                             break@while_169_
                                                         }
                                                         i_54_ = 0

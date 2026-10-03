@@ -1,11 +1,11 @@
 package world.gregs.voidps.tools.model
 
 import content.bot.chat.BotChatModel
-import content.bot.chat.tag.ChatEntityTagger
 import content.bot.chat.model.IntentTrainer
-import content.bot.chat.process.Normaliser
-import content.bot.chat.tag.ChatEntityType
 import content.bot.chat.process.ChatProcessor
+import content.bot.chat.process.Normaliser
+import content.bot.chat.tag.ChatEntityTagger
+import content.bot.chat.tag.ChatEntityType
 import kotlin.random.Random
 
 /**

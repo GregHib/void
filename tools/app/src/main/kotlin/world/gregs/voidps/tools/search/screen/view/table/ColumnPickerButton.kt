@@ -88,8 +88,10 @@ fun ColumnPickerButton(allFields: List<String>, visibleColumns: List<String>, on
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Checkbox(
-                            checked, { onToggle(field, it) }, modifier = Modifier.size(16.dp),
-                            colors = CheckboxDefaults.colors(checkedColor = AccentBlue, uncheckedColor = TextMuted, checkmarkColor = Color.White)
+                            checked,
+                            { onToggle(field, it) },
+                            modifier = Modifier.size(16.dp),
+                            colors = CheckboxDefaults.colors(checkedColor = AccentBlue, uncheckedColor = TextMuted, checkmarkColor = Color.White),
                         )
                         Spacer(Modifier.width(8.dp))
                         Text(field, fontSize = 12.sp, color = if (checked) TextPrimary else TextSecond, fontFamily = FontFamily.Monospace)

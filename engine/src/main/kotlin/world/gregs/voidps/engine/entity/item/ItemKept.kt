@@ -27,7 +27,9 @@ enum class ItemKept {
     /**
      * Disappears regardless of if kept on death
      */
-    Vanish;
+    Vanish,
+
+    ;
 
     companion object {
         private val map = mapOf(

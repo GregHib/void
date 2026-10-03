@@ -4,14 +4,12 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
-import world.gregs.voidps.engine.entity.character.mode.ModeType
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC

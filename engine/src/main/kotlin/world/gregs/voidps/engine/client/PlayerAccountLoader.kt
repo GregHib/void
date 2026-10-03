@@ -38,7 +38,7 @@ class PlayerAccountLoader(
 
     var update: Boolean = false
 
-    override fun used(username: String) =  accountDefinitions.get(username) != null
+    override fun used(username: String) = accountDefinitions.get(username) != null
 
     override fun exists(username: String): Boolean = storage.exists(username)
 

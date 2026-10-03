@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:property-naming")
+
 package world.gregs.voidps.tools.icon
 
 import world.gregs.voidps.tools.render.TextureOpVerticalGradient

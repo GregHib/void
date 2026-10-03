@@ -15,6 +15,7 @@ class DynamicZones(
     private val definitions: MapDefinitions,
 ) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
+
     // All dynamic regions
     private val regions = IntOpenHashSet()
 

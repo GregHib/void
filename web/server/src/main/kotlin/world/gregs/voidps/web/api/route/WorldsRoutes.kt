@@ -9,7 +9,6 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.RoutingCall
 import io.ktor.server.routing.get
-import kotlinx.serialization.builtins.ListSerializer
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.World

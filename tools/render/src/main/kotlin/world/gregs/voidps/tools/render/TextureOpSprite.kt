@@ -23,9 +23,7 @@ internal open class TextureOpSprite : TextureOp(0, false) {
         if (i == 0) anInt9243 = packet!!.readUnsignedShort()
     }
 
-    override fun method3037(): Int {
-        return anInt9243
-    }
+    override fun method3037(): Int = anInt9243
 
     override fun method3046() {
         super.method3046()
@@ -64,8 +62,6 @@ internal open class TextureOpSprite : TextureOp(0, false) {
     }
 
     companion object {
-        fun method1166(i: Int, i_12_: Int): Int {
-            return i and i_12_
-        }
+        fun method1166(i: Int, i_12_: Int): Int = i and i_12_
     }
 }

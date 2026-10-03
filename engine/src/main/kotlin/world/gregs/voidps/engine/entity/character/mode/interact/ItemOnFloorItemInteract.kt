@@ -14,7 +14,7 @@ data class ItemOnFloorItemInteract(
     val slot: Int,
     val id: String,
     val player: Player,
-    val approachRange: Int?
+    val approachRange: Int?,
 ) : Interact(player, target, approachRange = approachRange) {
     override fun hasOperate() = Operation.itemOnFloorItem.containsKey("${item.id}:*") || Operation.itemOnFloorItem.containsKey("${item.id}:${target.id}") || Operation.itemOnFloorItem.containsKey("*:${target.id}")
 
@@ -30,14 +30,11 @@ data class ItemOnFloorItemInteract(
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemOnFloorItemInteract) -> Unit>>) {
         Script.launch {
-            for (block in map["${item.id}:${target.id}"] ?: map["${item.id}:*"]  ?: map["*:${target.id}"] ?: return@launch) {
+            for (block in map["${item.id}:${target.id}"] ?: map["${item.id}:*"] ?: map["*:${target.id}"] ?: return@launch) {
                 block(player, this@ItemOnFloorItemInteract)
             }
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - ${item.id}:${target.id} target=$target, item=$item, slot=$slot, interface='$id', approachRange=$approachRange"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - ${item.id}:${target.id} target=$target, item=$item, slot=$slot, interface='$id', approachRange=$approachRange"
 }

@@ -24,6 +24,31 @@ kotlin {
     }
 }
 
+spotless {
+    // Nested modules (e.g. tools:app inside tools) check their own files
+    val nested = subprojects.map { "${it.projectDir.relativeTo(projectDir).invariantSeparatorsPath}/**" }
+    kotlin {
+        target("**/*.kt", "**/*.kts")
+        targetExclude(listOf("temp/**", "**/build/**", "**/out/**") + nested)
+        val rules = mutableMapOf<String, Any>(
+            "ktlint_code_style" to "intellij_idea",
+            "ktlint_standard_no-wildcard-imports" to "disabled",
+            "ktlint_standard_package-name" to "disabled",
+            "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+        )
+        if (path == ":tools:render") {
+            // Ported client renderer which keeps its original obfuscated names
+            rules["ktlint_standard_property-naming"] = "disabled"
+            rules["ktlint_standard_function-naming"] = "disabled"
+            rules["ktlint_standard_class-naming"] = "disabled"
+        }
+        ktlint().editorConfigOverride(rules)
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+    }
+}
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))

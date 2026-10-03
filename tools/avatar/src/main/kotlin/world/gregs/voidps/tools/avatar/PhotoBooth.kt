@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.tools.render.AnimationFrameSet
-import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import world.gregs.voidps.tools.render.BillboardType
 import world.gregs.voidps.tools.render.Js5TextureSource
+import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO

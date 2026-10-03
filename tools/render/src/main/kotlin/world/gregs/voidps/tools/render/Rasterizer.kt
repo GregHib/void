@@ -66,18 +66,30 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                 val f_28_ = 1.0f / f
                 if (f_28_ < aFloatArray1677!![i]) {
                     var i_29_ = (f_4_ * f_28_ * anInt1693.toFloat()).toInt()
-                    if (aBoolean1694) i_29_ = i_29_ and anInt1690
-                    else if (i_29_ < 0) i_29_ = 0
-                    else if (i_29_ > anInt1690) i_29_ = anInt1690
+                    if (aBoolean1694) {
+                        i_29_ = i_29_ and anInt1690
+                    } else if (i_29_ < 0) {
+                        i_29_ = 0
+                    } else if (i_29_ > anInt1690) {
+                        i_29_ = anInt1690
+                    }
                     var i_30_ = (f_6_ * f_28_ * anInt1693.toFloat()).toInt()
-                    if (aBoolean1694) i_30_ = i_30_ and anInt1690
-                    else if (i_30_ < 0) i_30_ = 0
-                    else if (i_30_ > anInt1690) i_30_ = anInt1690
+                    if (aBoolean1694) {
+                        i_30_ = i_30_ and anInt1690
+                    } else if (i_30_ < 0) {
+                        i_30_ = 0
+                    } else if (i_30_ > anInt1690) {
+                        i_30_ = anInt1690
+                    }
                     val i_31_ = anIntArray1698!![i_30_ * anInt1693 + i_29_]
                     var i_32_ = 255
-                    if (anInt1683 == 2) i_32_ = i_31_ shr 24 and 0xff
-                    else if (anInt1683 == 1) i_32_ = if (i_31_ == 0) 0 else 255
-                    else i_32_ = f_10_.toInt()
+                    if (anInt1683 == 2) {
+                        i_32_ = i_31_ shr 24 and 0xff
+                    } else if (anInt1683 == 1) {
+                        i_32_ = if (i_31_ == 0) 0 else 255
+                    } else {
+                        i_32_ = f_10_.toInt()
+                    }
                     if (i_32_ != 0) {
                         if (i_32_ == 255) {
                             var i_38_ = (0xffffff.inv() or ((f_12_ * (i_31_ shr 16 and 0xff).toFloat()).toInt() shl 8 and 0xff0000) or ((f_14_ * (i_31_ shr 8 and 0xff).toFloat()).toInt() and 0xff00) or ((f_16_ * (i_31_ and 0xff).toFloat()).toInt() shr 8))
@@ -950,7 +962,6 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     } while (--i_169_ > 0)
                 }
             }
-        
         }
     }
 
@@ -981,14 +992,23 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
             val f_331_ = f_320_ - f_319_
             val f_332_ = f_321_ - f_319_
             val f_333_: Float
-            if (f_315_ != f_314_) f_333_ = (f_318_ - f_317_) / (f_315_ - f_314_)
-            else f_333_ = 0.0f
+            if (f_315_ != f_314_) {
+                f_333_ = (f_318_ - f_317_) / (f_315_ - f_314_)
+            } else {
+                f_333_ = 0.0f
+            }
             val f_334_: Float
-            if (f_314_ != f) f_334_ = f_325_ / f_326_
-            else f_334_ = 0.0f
+            if (f_314_ != f) {
+                f_334_ = f_325_ / f_326_
+            } else {
+                f_334_ = 0.0f
+            }
             val f_335_: Float
-            if (f_315_ != f) f_335_ = f_327_ / f_328_
-            else f_335_ = 0.0f
+            if (f_315_ != f) {
+                f_335_ = f_327_ / f_328_
+            } else {
+                f_335_ = 0.0f
+            }
             val f_336_ = f_325_ * f_328_ - f_327_ * f_326_
             if (f_336_ != 0.0f) {
                 val f_337_ = (f_329_ * f_328_ - f_330_ * f_326_) / f_336_
@@ -1385,7 +1405,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f_348_.toInt().toFloat(),
                     JavaBillboardFace.method206(i, i_357_ or (i_358_ shl 24), 255),
                     JavaBillboardFace.method206(i_355_, i_357_ or (i_359_ shl 24), 255),
-                    JavaBillboardFace.method206(i_356_, i_357_ or (i_360_ shl 24), 255)
+                    JavaBillboardFace.method206(i_356_, i_357_ or (i_360_ shl 24), 255),
                 )
                 return
             }
@@ -2540,14 +2560,23 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
             val f_489_ = ((i_477_ and 0xff) - (i and 0xff)).toFloat()
             val f_490_ = ((i_478_ and 0xff) - (i and 0xff)).toFloat()
             val f_491_: Float
-            if (f_470_ != f_469_) f_491_ = (f_473_ - f_472_) / (f_470_ - f_469_)
-            else f_491_ = 0.0f
+            if (f_470_ != f_469_) {
+                f_491_ = (f_473_ - f_472_) / (f_470_ - f_469_)
+            } else {
+                f_491_ = 0.0f
+            }
             val f_492_: Float
-            if (f_469_ != f) f_492_ = f_479_ / f_480_
-            else f_492_ = 0.0f
+            if (f_469_ != f) {
+                f_492_ = f_479_ / f_480_
+            } else {
+                f_492_ = 0.0f
+            }
             val f_493_: Float
-            if (f_470_ != f) f_493_ = f_481_ / f_482_
-            else f_493_ = 0.0f
+            if (f_470_ != f) {
+                f_493_ = f_481_ / f_482_
+            } else {
+                f_493_ = 0.0f
+            }
             val f_494_ = f_479_ * f_482_ - f_481_ * f_480_
             if (f_494_ != 0.0f) {
                 val f_495_ = (f_483_ * f_482_ - f_484_ * f_480_) / f_494_

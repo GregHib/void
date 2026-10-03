@@ -33,7 +33,7 @@ object ObjectUsageFinder {
     val set = setOf(
         19260,
         19261,
-        19264
+        19264,
     )
 
     private fun matches(obj: MapObject, def: ObjectDefinitionFull) = set.contains(obj.id)

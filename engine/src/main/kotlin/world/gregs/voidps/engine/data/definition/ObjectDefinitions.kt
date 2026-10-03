@@ -61,7 +61,7 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                                 "clone" -> {
                                     val name = string()
                                     val obj = refs.getInt(name)
-                                    require(obj >= 0) { "Cannot find object to clone with id '$name' in ${path}. Make sure it's in the same file." }
+                                    require(obj >= 0) { "Cannot find object to clone with id '$name' in $path. Make sure it's in the same file." }
                                     val definition = definitions[obj]
                                     params.putAll(definition.params ?: continue)
                                 }

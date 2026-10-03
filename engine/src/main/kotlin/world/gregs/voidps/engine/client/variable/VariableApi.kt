@@ -43,7 +43,6 @@ interface VariableApi {
         varbitsRemoved[key] = handler
     }
 
-
     companion object : AutoCloseable {
         private val setVar = Object2ObjectOpenHashMap<String, MutableList<(Player, String, Any?, Any?) -> Unit>>(500)
         private val setVarNpc = Object2ObjectOpenHashMap<String, MutableList<(NPC, String, Any?, Any?) -> Unit>>(2)

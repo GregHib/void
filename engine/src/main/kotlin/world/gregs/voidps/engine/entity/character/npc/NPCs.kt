@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterIndexMap
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.mode.DefaultMode
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -21,7 +21,8 @@ import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-object NPCs : Runnable,
+object NPCs :
+    Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {
     private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)

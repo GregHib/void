@@ -61,7 +61,9 @@ object AdventurersLog {
                             div {
                                 style = "display:flex;justify-content:flex-start"
                                 ui.button(
-                                    "← Overview", variant = ButtonVariant.Secondary, size = ButtonSize.Small,
+                                    "← Overview",
+                                    variant = ButtonVariant.Secondary,
+                                    size = ButtonSize.Small,
                                     onClick = "backToOverview()",
                                 )
                             }
@@ -484,8 +486,11 @@ object AdventurersLog {
         ui.panel(title = "Find a log") {
             style = "display:flex;flex-direction:column;gap:var(--space-5)"
             ui.textInput(
-                "log-search", "Account name", model = "query",
-                placeholder = "Search adventurers", icon = Icons.SEARCH,
+                "log-search",
+                "Account name",
+                model = "query",
+                placeholder = "Search adventurers",
+                icon = Icons.SEARCH,
             )
             div {
                 style = "display:flex;flex-direction:column;gap:1px;background:var(--border-panel);" +
@@ -545,7 +550,8 @@ object AdventurersLog {
 
             ui.panel(title = "Players", action = eyebrowText("overviewPlayers.length + ' logged'"), padded = false) {
                 tableScroll(
-                    Column("Player", "minmax(0,1fr)"), Column("Mode", "120px", "right"),
+                    Column("Player", "minmax(0,1fr)"),
+                    Column("Mode", "120px", "right"),
                     Column("Total level", "120px", "right"),
                 ) {
                     unsafe {

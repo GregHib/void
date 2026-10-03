@@ -187,7 +187,6 @@ fun commandSuggestion(name: String, vararg alternatives: String) {
 
 fun command(vararg args: CommandArgument, desc: String = "", handler: suspend Player.(List<String>) -> Unit) = CommandSignature(args.toList(), desc, handler)
 
-
 fun playerCommands(name: String, vararg signatures: CommandSignature) {
     Commands.register(name, signatures.toList())
 }

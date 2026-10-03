@@ -226,7 +226,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     map = map,
                                     params = params,
                                     stringId = stringId,
-                                )
+                                ),
                             )
                         } else {
                             definitions[id].params = params
@@ -254,5 +254,4 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     override fun empty() = EnumDefinition.EMPTY
-
 }

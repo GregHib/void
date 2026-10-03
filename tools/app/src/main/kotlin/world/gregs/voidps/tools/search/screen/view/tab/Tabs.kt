@@ -53,7 +53,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         Settings.load()
         Settings.rebase("${file.absolutePath}/")
         loadConfig = true
-        configFiles(path, "${path}/.temp/modified.dat", cachePath)
+        configFiles(path, "$path/.temp/modified.dat", cachePath)
     } else {
         Settings.load()
         Settings.rebase("${file.parentFile.parent}/")
@@ -69,7 +69,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             fieldLinks = listOf(
                 FieldLink("noteId", Tabs.ITEMS),
                 FieldLink("lendId", Tabs.ITEMS),
-            )
+            ),
         ) {
             ItemDefinitions.init(ItemDecoder().load(cache))
             if (loadConfig) {
@@ -91,7 +91,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("varbit", Tabs.VARS),
                 FieldLink("varp", Tabs.VARS),
                 FieldLink("stackIds", Tabs.ITEMS),
-            )
+            ),
         ) {
             NPCDefinitions.init(NPCDecoder(true).load(cache))
             if (loadConfig) {
@@ -107,7 +107,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("transforms", Tabs.OBJS),
                 FieldLink("varbit", Tabs.VARS),
                 FieldLink("varp", Tabs.VARS),
-            )
+            ),
         ) {
             ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
             if (loadConfig) {
@@ -123,7 +123,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("leftHandItem", Tabs.ITEMS),
                 FieldLink("rightHandItem", Tabs.ITEMS),
                 FieldLink("sounds", Tabs.SOUNDS),
-            )
+            ),
         ) {
             AnimationDefinitions.init(AnimationDecoder().load(cache))
             if (loadConfig) {
@@ -155,7 +155,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("anInt3293", Tabs.ANIMS),
                 FieldLink("anInt3298", Tabs.ANIMS),
                 FieldLink("anInt3305", Tabs.ANIMS),
-            )
+            ),
         ) {
             val definitions = RenderAnimationDecoder().load(cache)
             if (loadConfig) {
@@ -174,8 +174,8 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             clazz = GraphicDefinition::class.java,
             defaultColumns = listOf("id", "stringId"),
             fieldLinks = listOf(
-                FieldLink("animationId", Tabs.ANIMS)
-            )
+                FieldLink("animationId", Tabs.ANIMS),
+            ),
         ) {
             GraphicDefinitions.init(GraphicDecoder().load(cache))
             if (loadConfig) {
@@ -186,7 +186,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.SOUNDS,
             clazz = SoundDefinition::class.java,
-            defaultColumns = listOf("id", "stringId")
+            defaultColumns = listOf("id", "stringId"),
         ) {
             if (loadConfig) {
                 SoundDefinitions().load(files.list(Settings["definitions.sounds"])).definitions.toList()
@@ -200,20 +200,21 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             defaultColumns = listOf("id", "stringId", "type"),
             fieldLinks = listOf(
                 FieldLink(
-                    "components", Tabs.COMPONENTS,
+                    "components",
+                    Tabs.COMPONENTS,
                     targetFilters = listOf(
                         "id" to "\$self",
                         "parent" to "id",
                     ),
                     resolveByFields = listOf("parent"),
-                )
+                ),
             ),
         ) {
             InterfaceDefinitions.init(InterfaceDecoder().load(cache))
             if (loadConfig) {
                 InterfaceDefinitions.load(
                     files.list(Settings["definitions.interfaces"]),
-                    files.find(Settings["definitions.interfaces.types"])
+                    files.find(Settings["definitions.interfaces.types"]),
                 )
             }
             InterfaceDefinitions.definitions.map {
@@ -225,7 +226,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                     resizable = it.resizable,
                     permanent = it.permanent,
                     stringId = it.stringId,
-                    params = it.params
+                    params = it.params,
                 )
             }
         },
@@ -240,7 +241,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("clientVarc", Tabs.VARS),
                 FieldLink("inventories", Tabs.INVS),
             ),
-            dependsOn = listOf(Tabs.IFACES)
+            dependsOn = listOf(Tabs.IFACES),
         ) {
             decodeFull(cache, InterfaceDecoderFull(), InterfaceDefinitions).flatMap { iface ->
                 val def = InterfaceDefinitions.getOrNull(iface.id)
@@ -255,7 +256,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             label = Tabs.ENUMS,
             clazz = EnumDefinition::class.java,
             defaultColumns = listOf("id", "stringId", "keyType", "valueType", "map"),
-            dependsOn = listOf(Tabs.ITEMS, Tabs.IFACES, Tabs.INVS, Tabs.NPCS, Tabs.OBJS, Tabs.STRUCTS)
+            dependsOn = listOf(Tabs.ITEMS, Tabs.IFACES, Tabs.INVS, Tabs.NPCS, Tabs.OBJS, Tabs.STRUCTS),
         ) {
             EnumDefinitions.init(EnumDecoder().load(cache))
             if (loadConfig) {
@@ -298,13 +299,13 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             clazz = InventoryDefinition::class.java,
             defaultColumns = listOf("id", "stringId"),
             dependsOn = listOf(Tabs.ITEMS),
-            fieldLinks = listOf(FieldLink("ids", Tabs.ITEMS))
+            fieldLinks = listOf(FieldLink("ids", Tabs.ITEMS)),
         ) {
             InventoryDefinitions.init(InventoryDecoder().load(cache))
             if (loadConfig) {
                 InventoryDefinitions.load(
                     files.list(Settings["definitions.inventories"]),
-                    files.list(Settings["definitions.shops"])
+                    files.list(Settings["definitions.shops"]),
                 )
             }
             InventoryDefinitions.definitions.toList()
@@ -353,7 +354,8 @@ data class InterfaceWrapper(
     var permanent: Boolean = true,
     override var stringId: String = "",
     override var params: Map<Int, Any>? = null,
-) : Definition, Parameterized
+) : Definition,
+    Parameterized
 
 data class VariableWrapper(
     override var id: Int,
@@ -365,4 +367,5 @@ data class VariableWrapper(
     val transmit: Boolean,
     override var stringId: String,
     override var params: Map<Int, Any>? = null,
-) : Definition, Parameterized
+) : Definition,
+    Parameterized

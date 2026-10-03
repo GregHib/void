@@ -29,6 +29,7 @@ object HintType {
     const val NORTH = 6
     const val PLAYER = 10
 }
+
 /**
  * Send system update timer
  * @param type of hint (0=clear, 1=npc, 2=tile_centre, 3=tile_west, 4=tile_east, 5=tile_south, 6=tile_north, 10=player)

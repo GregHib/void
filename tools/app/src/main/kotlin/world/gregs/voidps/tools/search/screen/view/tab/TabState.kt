@@ -5,8 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.tools.search.screen.view.table.filter.FieldFilter
 import world.gregs.voidps.tools.search.screen.view.detail.FieldLink
+import world.gregs.voidps.tools.search.screen.view.table.filter.FieldFilter
 
 class TabState(
     val label: String,

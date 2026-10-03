@@ -67,9 +67,11 @@ fun InlineDetailRow(
                 faded -> TextMuted
                 else -> TextSecond
             },
-            modifier = if (canLink)
+            modifier = if (canLink) {
                 Modifier.clickable { onNavigate(link!!.targetTabLabel, resolveNavigationFilters(link, rawInt!!, item)) }
-            else Modifier,
+            } else {
+                Modifier
+            },
         )
 
         // Subtle separator
@@ -79,9 +81,9 @@ fun InlineDetailRow(
                 .height(1.dp)
                 .background(
                     Brush.horizontalGradient(
-                        listOf(BorderColor.copy(alpha = 0.5f), Color.Transparent)
-                    )
-                )
+                        listOf(BorderColor.copy(alpha = 0.5f), Color.Transparent),
+                    ),
+                ),
         )
 
         // Value — right aligned so values form a ragged-right column naturally
@@ -106,9 +108,9 @@ fun InlineValue(
             Modifier
                 .background(
                     if (raw) SuccessGreen.copy(alpha = 0.15f) else TextMuted.copy(alpha = 0.1f),
-                    RoundedCornerShape(3.dp)
+                    RoundedCornerShape(3.dp),
                 )
-                .padding(horizontal = 6.dp, vertical = 1.dp)
+                .padding(horizontal = 6.dp, vertical = 1.dp),
         ) {
             Text(raw.toString(), fontSize = 11.sp, color = if (raw) SuccessGreen else TextMuted)
         }
@@ -117,7 +119,7 @@ fun InlineValue(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) }
+                modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) },
             ) {
                 if (resolved != null) {
                     Text(resolved, fontSize = 11.sp, color = TextSecond)
@@ -146,7 +148,7 @@ private fun smallArray(raw: Iterable<Number>) {
             Box(
                 Modifier
                     .background(TagBg, RoundedCornerShape(3.dp))
-                    .padding(horizontal = 4.dp, vertical = 1.dp)
+                    .padding(horizontal = 4.dp, vertical = 1.dp),
             ) {
                 Text(v.toString(), fontSize = 11.sp, color = TagText, fontFamily = FontFamily.Monospace)
             }

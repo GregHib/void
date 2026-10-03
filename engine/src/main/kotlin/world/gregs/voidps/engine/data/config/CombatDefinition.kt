@@ -138,6 +138,7 @@ data class CombatDefinition(
          * Entities south-west tile
          */
         Tile,
+
         /**
          * Entities size-centered tile (different from size/2)
          */

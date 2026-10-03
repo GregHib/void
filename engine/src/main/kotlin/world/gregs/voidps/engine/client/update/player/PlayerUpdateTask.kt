@@ -312,9 +312,9 @@ class PlayerUpdateTask {
      * @return true when within [Viewport.radius] and packet has enough room
      */
     private fun add(player: Player, client: Player, viewport: Viewport, updates: Writer, sync: Writer): Boolean = player.client?.disconnected != true &&
-            player.tile.within(client.tile, viewport.radius) &&
-            updates.position() < MAX_UPDATE_SIZE &&
-            sync.position() < MAX_SYNC_SIZE
+        player.tile.within(client.tile, viewport.radius) &&
+        updates.position() < MAX_UPDATE_SIZE &&
+        sync.position() < MAX_SYNC_SIZE
 
     fun writeSkip(sync: Writer, skip: Int) {
         sync.writeBits(1, 0)

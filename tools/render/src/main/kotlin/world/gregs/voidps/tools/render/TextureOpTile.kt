@@ -13,7 +13,9 @@ internal class TextureOpTile : TextureOp(1, false) {
             if (i_2_ > 0) {
                 val i_4_ = i % i_2_
                 is_3_ = this.method3039(TextureOpKaleidoscope.anInt6212 * i_4_ / i_2_, 0)!!
-            } else is_3_ = this.method3039(0, 0)!!
+            } else {
+                is_3_ = this.method3039(0, 0)!!
+            }
             val is_5_ = is_3_[0]
             val is_6_ = is_3_[1]
             val is_7_ = is_3_[2]
@@ -23,8 +25,9 @@ internal class TextureOpTile : TextureOp(1, false) {
             var i_11_ = 0
             while ((i_11_ < TextureOpPolarDistortion.anInt9139)) {
                 val i_12_: Int
-                if (i_1_ <= 0) i_12_ = 0
-                else {
+                if (i_1_ <= 0) {
+                    i_12_ = 0
+                } else {
                     val i_13_ = i_11_ % i_1_
                     i_12_ = TextureOpPolarDistortion.anInt9139 * i_13_ / i_1_
                 }
@@ -46,11 +49,14 @@ internal class TextureOpTile : TextureOp(1, false) {
             if (i_18_ > 0) {
                 val i_20_ = i % i_18_
                 is_19_ = this.method3048(i_20_ * TextureOpKaleidoscope.anInt6212 / i_18_, 0)!!
-            } else is_19_ = this.method3048(0, 0)!!
+            } else {
+                is_19_ = this.method3048(0, 0)!!
+            }
             var i_21_ = 0
             while (TextureOpPolarDistortion.anInt9139 > i_21_) {
-                if (i_17_ <= 0) `is`!![i_21_] = is_19_[0]
-                else {
+                if (i_17_ <= 0) {
+                    `is`!![i_21_] = is_19_[0]
+                } else {
                     val i_22_ = i_21_ % i_17_
                     `is`!![i_21_] = is_19_[TextureOpPolarDistortion.anInt9139 * i_22_ / i_17_]
                 }
@@ -66,7 +72,9 @@ internal class TextureOpTile : TextureOp(1, false) {
             if (i_15_ == 0) {
                 anInt9405 = packet!!.readUnsignedByte()
                 break
-            } else if (i_15_ != 1) break
+            } else if (i_15_ != 1) {
+                break
+            }
             anInt9410 = packet!!.readUnsignedByte()
         } while (false)
     }

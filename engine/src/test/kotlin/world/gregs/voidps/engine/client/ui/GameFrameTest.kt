@@ -12,15 +12,18 @@ internal class GameFrameTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         interfaces = Interfaces(player, open)
-        InterfaceDefinitions.set(arrayOf(
-            InterfaceDefinition(),
-            InterfaceDefinition(id = -1, type = "root"),
-            InterfaceDefinition(type = "root"),
-        ), mapOf(
-            "" to 0,
-            "toplevel_full" to 1,
-            "toplevel" to 2,
-        ), mapOf()
+        InterfaceDefinitions.set(
+            arrayOf(
+                InterfaceDefinition(),
+                InterfaceDefinition(id = -1, type = "root"),
+                InterfaceDefinition(type = "root"),
+            ),
+            mapOf(
+                "" to 0,
+                "toplevel_full" to 1,
+                "toplevel" to 2,
+            ),
+            mapOf(),
         )
     }
 

@@ -46,7 +46,7 @@ object ImportPetTranscript {
         fun print(petKey: String, index: Int) {
             val suffix = when (kind) {
                 "overhead" -> "overhead_$index"
-                else -> "${index}"
+                else -> "$index"
             }
             println("[.${petKey}_$suffix]")
             println("pet = \"$petKey\"")
@@ -149,14 +149,12 @@ object ImportPetTranscript {
         return "$role: ${escape(text)}"
     }
 
-    private fun stripWiki(s: String): String =
-        s.replace(Regex("""\[\[[^|\]]*\|([^\]]+)\]\]"""), "$1")
-            .replace(Regex("""\[\[([^\]]+)\]\]"""), "$1")
-            .replace(Regex("""'''([^']+)'''"""), "$1")
-            .replace(Regex("""''([^']+)''"""), "$1")
-            .replace(Regex("<[^>]+>"), "")
-            .trim()
+    private fun stripWiki(s: String): String = s.replace(Regex("""\[\[[^|\]]*\|([^\]]+)\]\]"""), "$1")
+        .replace(Regex("""\[\[([^\]]+)\]\]"""), "$1")
+        .replace(Regex("""'''([^']+)'''"""), "$1")
+        .replace(Regex("""''([^']+)''"""), "$1")
+        .replace(Regex("<[^>]+>"), "")
+        .trim()
 
-    private fun escape(s: String): String =
-        s.replace("\\", "\\\\").replace("\"", "\\\"")
+    private fun escape(s: String): String = s.replace("\\", "\\\\").replace("\"", "\\\"")
 }

@@ -112,8 +112,7 @@ class CombatMovement(
         }
     }
 
-    override fun shouldQueueStepOut(): Boolean =
-        target.mode !is CombatMovement && target.mode !is Interact
+    override fun shouldQueueStepOut(): Boolean = target.mode !is CombatMovement && target.mode !is Interact
 
     private fun attack(): Boolean {
         if (inAttackRange()) {
@@ -138,7 +137,9 @@ class CombatMovement(
             val def = character.transformDef
             val combatDefinition = get<CombatDefinitions>().get(def["combat_def", character.transformId])
             def["attack_range", combatDefinition.attackRange]
-        } else 1
+        } else {
+            1
+        }
         return character["attack_range", default]
     }
 

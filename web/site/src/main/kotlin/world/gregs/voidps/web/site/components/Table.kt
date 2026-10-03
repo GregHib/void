@@ -66,8 +66,7 @@ fun FlowContent.tableScroll(columnWidths: List<String>, content: DIV.() -> Unit)
 }
 
 /** A fixed `Npx` track contributes its own width; a flexible one (`fr`/`minmax`/`auto`) gets a flat estimate — exact precision doesn't matter, only that every row and the header agree on the same total. */
-private fun columnMinPx(token: String): Int =
-    Regex("^(\\d+)px$").matchEntire(token.trim())?.groupValues?.get(1)?.toInt() ?: 180
+private fun columnMinPx(token: String): Int = Regex("^(\\d+)px$").matchEntire(token.trim())?.groupValues?.get(1)?.toInt() ?: 180
 
 /** The same width computation [tableScroll] uses, exposed for tables that build their own bespoke header/scroll wrapper instead of using [tableScroll] directly (see `worldList`). */
 fun tableMinWidth(columnWidths: List<String>): Int = columnWidths.sumOf(::columnMinPx)

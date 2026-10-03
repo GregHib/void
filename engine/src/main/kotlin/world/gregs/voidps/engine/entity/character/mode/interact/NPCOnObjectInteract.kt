@@ -10,7 +10,7 @@ data class NPCOnObjectInteract(
     override val target: GameObject,
     override val option: String,
     val npc: NPC,
-    var approachRange: Int? = null
+    var approachRange: Int? = null,
 ) : InteractOption(npc, target, approachRange = approachRange) {
     override fun hasOperate() = Operation.npcObject.containsKey("$option:${npc.id}") || Operation.npcObject.containsKey("$option:*")
 

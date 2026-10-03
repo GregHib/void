@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.model
 
 import content.bot.chat.BotChatModel
-import content.bot.chat.tag.ChatEntityTagger
 import content.bot.chat.process.Normaliser
+import content.bot.chat.tag.ChatEntityTagger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder

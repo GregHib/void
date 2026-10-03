@@ -109,5 +109,4 @@ class MapDefinitions(
         MapTileDecoder.loadTiles(data, settings)
         return settings
     }
-
 }

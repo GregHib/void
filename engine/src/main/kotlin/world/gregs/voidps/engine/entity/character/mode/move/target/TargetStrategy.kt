@@ -40,22 +40,20 @@ interface TargetStrategy {
 
     fun nearest(source: Character): Tile = Distance.nearest(tile, width, height, source.tile)
 
-    fun reached(character: Character): Boolean {
-        return ReachStrategy.reached(
-            flags = Collisions.map,
-            srcX = character.tile.x,
-            srcZ = character.tile.y,
-            level = character.tile.level,
-            srcSize = character.size,
-            destX = tile.x,
-            destZ = tile.y,
-            destWidth = sizeX,
-            destHeight = sizeY,
-            objRot = rotation,
-            objShape = shape,
-            blockAccessFlags = bitMask,
-        )
-    }
+    fun reached(character: Character): Boolean = ReachStrategy.reached(
+        flags = Collisions.map,
+        srcX = character.tile.x,
+        srcZ = character.tile.y,
+        level = character.tile.level,
+        srcSize = character.size,
+        destX = tile.x,
+        destZ = tile.y,
+        destWidth = sizeX,
+        destHeight = sizeY,
+        objRot = rotation,
+        objShape = shape,
+        blockAccessFlags = bitMask,
+    )
 
     companion object {
         fun noRun(character: Character) = character is Player && (character.equipped(EquipSlot.Weapon).id == "stone_bowl" || character.equipped(EquipSlot.Hat).id.contains("bedsheet"))

@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.timer
 
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.GameLoop
 import java.util.*
 
 class TimerQueue(

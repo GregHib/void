@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerRights
 data class Command(
     val name: String,
     val rights: PlayerRights = PlayerRights.None,
-    val signatures: List<CommandSignature> = emptyList()
+    val signatures: List<CommandSignature> = emptyList(),
 ) {
     /**
      * Find the signature which closest matches the given [input] arguments
@@ -23,7 +23,5 @@ data class Command(
     /**
      * Find the first valid signature
      */
-    fun first(input: List<String>): CommandSignature? {
-        return signatures.firstOrNull { it.valid(input) != null }
-    }
+    fun first(input: List<String>): CommandSignature? = signatures.firstOrNull { it.valid(input) != null }
 }

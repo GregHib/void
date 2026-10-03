@@ -43,8 +43,12 @@ object Hiscores {
                     div {
                         style = "display:flex;align-items:flex-end;gap:var(--space-4)"
                         ui.textInput(
-                            "hs-search", "Find a player", model = "query", placeholder = "Name",
-                            icon = Icons.SEARCH, onEnter = "search()",
+                            "hs-search",
+                            "Find a player",
+                            model = "query",
+                            placeholder = "Name",
+                            icon = Icons.SEARCH,
+                            onEnter = "search()",
                         )
                         ui.button("Search", size = ButtonSize.Medium, onClick = "search()")
                     }
@@ -100,12 +104,18 @@ object Hiscores {
             div {
                 style = "display:flex;gap:var(--space-4)"
                 ui.button(
-                    "← Previous", variant = ButtonVariant.Secondary, size = ButtonSize.Small,
-                    onClick = "prevPage('$key')", disabledExpression = "$pagerExpr.prevDisabled",
+                    "← Previous",
+                    variant = ButtonVariant.Secondary,
+                    size = ButtonSize.Small,
+                    onClick = "prevPage('$key')",
+                    disabledExpression = "$pagerExpr.prevDisabled",
                 )
                 ui.button(
-                    "Next →", variant = ButtonVariant.Secondary, size = ButtonSize.Small,
-                    onClick = "nextPage('$key')", disabledExpression = "$pagerExpr.nextDisabled",
+                    "Next →",
+                    variant = ButtonVariant.Secondary,
+                    size = ButtonSize.Small,
+                    onClick = "nextPage('$key')",
+                    disabledExpression = "$pagerExpr.nextDisabled",
                 )
             }
         }
@@ -205,9 +215,9 @@ object Hiscores {
             for ((id, name, group) in groups) {
                 button {
                     xShow("bossGroup === '$group'")
-                    onClick("navigate({ boss: '${id}', kcPage: 0, timePage: 0, view: 'bosses' })")
+                    onClick("navigate({ boss: '$id', kcPage: 0, timePage: 0, view: 'bosses' })")
                     xToggleStyle(
-                        condition = "boss === '${id}'",
+                        condition = "boss === '$id'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
@@ -286,8 +296,10 @@ object Hiscores {
                 modeFilterRow()
                 ui.panel(title = "Overall", action = eyebrowText("overallEyebrow"), padded = false) {
                     tableScroll(
-                        Column("Rank", "76px"), Column("Player", "minmax(0,1fr)"),
-                        Column("Total lvl", "130px", "right"), Column("Total xp", "170px", "right"),
+                        Column("Rank", "76px"),
+                        Column("Player", "minmax(0,1fr)"),
+                        Column("Total lvl", "130px", "right"),
+                        Column("Total xp", "170px", "right"),
                     ) {
                         unsafe {
                             raw(
@@ -323,8 +335,10 @@ object Hiscores {
 
             ui.panel(title = "Skill leaderboard", action = eyebrowText("skillEyebrow"), padded = false) {
                 tableScroll(
-                    Column("Rank", "76px"), Column("Player", "minmax(0,1fr)"),
-                    Column("Level", "100px", "right"), Column("Xp", "170px", "right"),
+                    Column("Rank", "76px"),
+                    Column("Player", "minmax(0,1fr)"),
+                    Column("Level", "100px", "right"),
+                    Column("Xp", "170px", "right"),
                 ) {
                     unsafe {
                         raw(
@@ -397,8 +411,12 @@ object Hiscores {
                 xShow("compareReady")
                 ui.panel(title = "Skill by skill", action = eyebrowText("compareEyebrow"), padded = false) {
                     tableScroll(
-                        Column("Skill", "minmax(0,1.1fr)"), Column("Lvl", "70px", "right"), Column("Xp", "130px", "right"),
-                        Column("Ahead by", "190px", "center"), Column("Xp", "130px"), Column("Lvl", "70px"),
+                        Column("Skill", "minmax(0,1.1fr)"),
+                        Column("Lvl", "70px", "right"),
+                        Column("Xp", "130px", "right"),
+                        Column("Ahead by", "190px", "center"),
+                        Column("Xp", "130px"),
+                        Column("Lvl", "70px"),
                     ) {
                         unsafe {
                             raw(
@@ -501,8 +519,10 @@ object Hiscores {
                 ui.panel(title = "Fastest kills", action = eyebrowText("bossName"), padded = false) {
                     teamChipsRow()
                     tableScroll(
-                        Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"),
-                        Column("Team", "90px", "right"), Column("Time", "110px", "right"),
+                        Column("Rank", "56px"),
+                        Column("Player", "minmax(0,1fr)"),
+                        Column("Team", "90px", "right"),
+                        Column("Time", "110px", "right"),
                     ) {
                         unsafe {
                             raw(
@@ -589,8 +609,12 @@ object Hiscores {
 
                 ui.panel(title = "Fastest floor times", action = eyebrowText("floorEyebrow"), padded = false) {
                     tableScroll(
-                        Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"), Column("Size", "90px"),
-                        Column("Complexity", "110px", "right"), Column("Party", "90px", "right"), Column("Time", "110px", "right"),
+                        Column("Rank", "56px"),
+                        Column("Player", "minmax(0,1fr)"),
+                        Column("Size", "90px"),
+                        Column("Complexity", "110px", "right"),
+                        Column("Party", "90px", "right"),
+                        Column("Time", "110px", "right"),
                     ) {
                         unsafe {
                             raw(
@@ -651,8 +675,10 @@ object Hiscores {
                 div {
                     xShow("searchSorted.length")
                     tableScroll(
-                        Column("Rank", "76px"), Column("Player", "minmax(0,1fr)"),
-                        Column("Total lvl", "130px", "right"), Column("Total xp", "170px", "right"),
+                        Column("Rank", "76px"),
+                        Column("Player", "minmax(0,1fr)"),
+                        Column("Total lvl", "130px", "right"),
+                        Column("Total xp", "170px", "right"),
                     ) {
                         unsafe {
                             raw(
@@ -766,8 +792,10 @@ object Hiscores {
 
             ui.panel(title = "Boss log", padded = false) {
                 tableScroll(
-                    Column("Boss", "minmax(0,1fr)"), Column("Rank", "120px", "right"),
-                    Column("Kc", "110px", "right"), Column("Best time", "110px", "right"),
+                    Column("Boss", "minmax(0,1fr)"),
+                    Column("Rank", "120px", "right"),
+                    Column("Kc", "110px", "right"),
+                    Column("Best time", "110px", "right"),
                 ) {
                     unsafe {
                         raw(
