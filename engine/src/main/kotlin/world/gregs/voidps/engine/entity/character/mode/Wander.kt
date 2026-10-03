@@ -18,6 +18,7 @@ class Wander(
     private val stuckLimit: Int = npc.def["stuck_limit", 500],
 ) : Movement(npc) {
 
+    private val range: Int = Tables.intOrNull("npc_ranges.${npc.id}.wander_range") ?: 5
     private var stuckCounter = 0
     private var lastTile = Tile.EMPTY
 
@@ -33,7 +34,6 @@ class Wander(
             super.tick()
             return
         }
-        val range: Int = Tables.intOrNull("npc_ranges.${npc.id}.wander_range") ?: 5
         if (range <= 0) {
             npc.mode = EmptyMode
             return
