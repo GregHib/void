@@ -47,7 +47,7 @@ class LoginServer(
                 write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
                 return@withTimeoutOrNull null
             }
-            val size = read.readShort().toInt()
+            val size = read.readShort().toInt() and 0xffff
             read.readPacket(size)
         }
         if (packet == null) {
