@@ -66,6 +66,10 @@ examine = "Scary lighting apparatus."
 id = 211
 examine = "It's amazing what bees produce!"
 
+[barrel]
+id = 362
+examine = "A wooden barrel for storage."
+
 [potato]
 id = 312
 examine = "Potato-licious!"
@@ -125,6 +129,18 @@ examine = "Now he's just too thin."
 [corpse_8]
 id = 667
 examine = "He hasn't eaten in a long time."
+
+[standing_torch]
+id = 724
+examine = "A crude torch stuck in the ground."
+
+[cannonballs]
+id = 822
+examine = "Big heavy metal balls."
+
+[spearwall_row2]
+id = 849
+examine = "Rows of sharp pointy spears."
 
 [flagpole]
 id = 860

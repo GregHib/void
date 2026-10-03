@@ -1,3 +1,7 @@
+[stool_bamboo]
+id = 1113
+examine = "Park it here..."
+
 [snake_vine_full]
 id = 2575
 examine = "A marshy jungle vine."
