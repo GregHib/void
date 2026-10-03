@@ -204,7 +204,11 @@ class ConfigReader(
         while (isDigit() || byte == UNDERSCORE) {
             if (byte != UNDERSCORE) {
                 val digit = byte - ZERO
-                value = value * 10 + digit
+                try {
+                    value = Math.addExact(Math.multiplyExact(value, 10), digit)
+                } catch (e: ArithmeticException) {
+                    throw IllegalArgumentException("Number is too large for an int. ${exception()}", e)
+                }
             }
             byte = input.read()
         }
@@ -230,7 +234,11 @@ class ConfigReader(
         while (isDigit() || byte == UNDERSCORE) {
             if (byte != UNDERSCORE) {
                 val digit = byte - ZERO
-                value = value * 10 + digit
+                try {
+                    value = Math.addExact(Math.multiplyExact(value, 10L), digit.toLong())
+                } catch (e: ArithmeticException) {
+                    throw IllegalArgumentException("Number is too large for a long. ${exception()}", e)
+                }
             }
             byte = input.read()
         }
