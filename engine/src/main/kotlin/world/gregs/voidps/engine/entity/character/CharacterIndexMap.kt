@@ -11,7 +11,7 @@ class CharacterIndexMap(size: Int) {
     /**
      * Table mapping tiles to sets
      */
-    private val table = Int2ObjectOpenHashMap<MutableSet<Int>>(size)
+    private val table = Int2ObjectOpenHashMap<IntOpenHashSet>(size)
 
     /**
      * Which tile set the index is currently in
@@ -31,7 +31,12 @@ class CharacterIndexMap(size: Int) {
         if (existing != INVALID) {
             remove(existing, index)
         }
-        table.getOrPut(id) { IntOpenHashSet() }.add(index)
+        var set = table.get(id)
+        if (set == null) {
+            set = IntOpenHashSet()
+            table.put(id, set)
+        }
+        set.add(index)
         current[index] = id
     }
 
@@ -53,8 +58,9 @@ class CharacterIndexMap(size: Int) {
 
     fun onEach(id: Int, action: (Int) -> Unit) {
         val set = table.get(id) ?: return
-        for (index in set) {
-            action(index)
+        val iterator = set.iterator()
+        while (iterator.hasNext()) {
+            action(iterator.nextInt())
         }
     }
 
