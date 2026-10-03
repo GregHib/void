@@ -24,6 +24,7 @@ open class Client(
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
     private var disconnecting: (suspend () -> Unit)? = null
+    @Volatile
     private var state: ClientState = ClientState.Connected
 
     fun onDisconnected(block: () -> Unit) {
@@ -52,10 +53,12 @@ open class Client(
     }
 
     suspend fun exit() {
-        if (state != ClientState.Connected) {
-            return
+        synchronized(lock) {
+            if (state != ClientState.Connected) {
+                return
+            }
+            state = ClientState.Disconnecting
         }
-        state = ClientState.Disconnecting
         disconnecting?.invoke()
         state = ClientState.Disconnected
     }
