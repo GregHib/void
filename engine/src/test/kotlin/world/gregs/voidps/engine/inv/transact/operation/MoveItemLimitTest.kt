@@ -1,13 +1,13 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
-import world.gregs.voidps.engine.inv.InventoryApi
-import world.gregs.voidps.engine.entity.character.player.Player
-import io.mockk.verify
-import io.mockk.unmockkObject
-import io.mockk.mockkObject
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.InventoryApi
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError

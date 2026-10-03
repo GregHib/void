@@ -19,6 +19,7 @@ open class Client(
 
     private val logger = InlineLogger()
     private val lock = Any()
+
     @Volatile
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
