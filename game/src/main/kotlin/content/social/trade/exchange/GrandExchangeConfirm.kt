@@ -45,8 +45,9 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
                         var removed = removeToLimit("coins", total)
                         if (removed < total && Settings["grandExchange.useBankCoins", false]) {
                             val txn = link(bank)
-                            removed += txn.removeToLimit("coins", total - removed)
-                            fromBank = true
+                            val bankRemoved = txn.removeToLimit("coins", total - removed)
+                            removed += bankRemoved
+                            fromBank = bankRemoved > 0
                         }
                         if (removed < total) {
                             error = TransactionError.Deficient(total - removed)
