@@ -362,7 +362,8 @@ internal class DuelTest : WorldTest() {
     fun `No movement duels forfeit by clicking the trapdoor from range`() {
         val (winner, loser) = fight(staked = false, rules = listOf("no_movement"))
         val start = loser.tile
-        val trapdoor = createObject("duel_arena_forfeit_trapdoor", start.addX(5))
+        // Trapdoors sit outside the arena so the frozen player can be further than the default approach range
+        val trapdoor = createObject("duel_arena_forfeit_trapdoor", start.addX(12))
         loser.objectOption(trapdoor, "Forfeit")
         tick()
         assertEquals(start, loser.tile)
