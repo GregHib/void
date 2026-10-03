@@ -271,7 +271,7 @@ class BotCommands(
         World.queue("bot_clear") {
             runBlocking {
                 var removed = 0
-                for (bot in manager.bots) {
+                for (bot in manager.bots.toList()) {
                     if (bot.player.client != null && bot.player.client !is DummyClient) {
                         continue
                     }
