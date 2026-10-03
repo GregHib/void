@@ -15,6 +15,7 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.IsaacCipher
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.LoginAttempts
 import world.gregs.voidps.network.login.PasswordManager
 import world.gregs.voidps.network.login.protocol.*
 import java.math.BigInteger
@@ -32,6 +33,7 @@ class LoginServer(
     private val private: BigInteger,
     private val accounts: AccountLoader,
     private val passwordManager: PasswordManager = PasswordManager(accounts),
+    private val attempts: LoginAttempts = LoginAttempts(),
 ) : Server {
 
     internal val online: MutableSet<String> = ConcurrentHashMap.newKeySet()
@@ -96,7 +98,7 @@ class LoginServer(
         val username = xtea.readString()
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
-        if (!validate(write, username, password)) {
+        if (!validate(write, username, password, hostname)) {
             return
         }
         val client = createClient(write, isaacKeys, hostname)
@@ -108,12 +110,20 @@ class LoginServer(
         login(read, client, username, passwordHash, displayMode)
     }
 
-    suspend fun validate(write: ByteWriteChannel, username: String, password: String): Boolean {
+    suspend fun validate(write: ByteWriteChannel, username: String, password: String, hostname: String): Boolean {
+        if (attempts.blocked(username, hostname)) {
+            write.finish(Response.LOGIN_ATTEMPTS_EXCEEDED)
+            return false
+        }
         val response = passwordManager.validate(username, password)
+        if (response == Response.INVALID_CREDENTIALS) {
+            attempts.failed(username, hostname)
+        }
         if (response != Response.SUCCESS) {
             write.finish(response)
             return false
         }
+        attempts.succeeded(username)
         if (username.length > 12) {
             write.finish(Response.INVALID_CREDENTIALS)
             return false
