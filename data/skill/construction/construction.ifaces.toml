@@ -233,3 +233,56 @@ id = 62
 
 [.close]
 id = 63
+
+# Lectern tablet making, components are named after the tablets
+[teleport_tablets]
+id = 400
+type = "main_screen"
+
+[.ardougne_teleport]
+id = 2
+
+[.bones_to_bananas]
+id = 3
+
+[.bones_to_peaches]
+id = 4
+
+[.camelot_teleport]
+id = 5
+
+[.enchant_diamond]
+id = 6
+
+[.enchant_dragonstn]
+id = 7
+
+[.enchant_emerald]
+id = 8
+
+[.enchant_onyx]
+id = 9
+
+[.enchant_ruby]
+id = 10
+
+[.enchant_sapphire]
+id = 11
+
+[.falador_teleport]
+id = 12
+
+[.lumbridge_teleport]
+id = 13
+
+[.teleport_to_house]
+id = 14
+
+[.varrock_teleport]
+id = 15
+
+[.watchtower_teleport]
+id = 16
+
+[.close]
+id = 17
