@@ -254,7 +254,7 @@ open class Movement(
             character.tile = character.tile.add(delta)
             val to = character.tile
             character.visuals.moved = true
-            if (Settings["world.players.collision", false] && !character.contains("dead")) {
+            if (playerCollision && !character.contains("dead")) {
                 move(character, from, to)
             }
             if (character is Player) {
@@ -275,6 +275,8 @@ open class Movement(
                 Moved.npc(character, from)
             }
         }
+
+        private val playerCollision by Settings.bool("world.players.collision", false)
 
         private fun Player.original(tile: Tile): Tile {
             if (!Instances.reserved(tile.region)) {

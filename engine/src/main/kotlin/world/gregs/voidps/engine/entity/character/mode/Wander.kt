@@ -49,8 +49,10 @@ class Wander(
     }
 
     companion object {
+        private val randomWalk by Settings.bool("world.npcs.randomWalk", false)
+
         fun wanders(npc: NPC): Boolean {
-            if (!Settings["world.npcs.randomWalk", false]) {
+            if (!randomWalk) {
                 return false
             }
             val def = npc.transformDef
