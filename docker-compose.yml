@@ -32,8 +32,12 @@ services:
       POSTGRES_DB: game
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
     networks:
       - internal_network
+volumes:
+  db_data:
 networks:
   internal_network:
     driver: bridge
