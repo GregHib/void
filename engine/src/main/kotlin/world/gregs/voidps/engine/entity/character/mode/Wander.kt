@@ -31,7 +31,9 @@ class Wander(
         }
         lastTile = npc.tile
         if (random.nextInt(8) != 0) {
-            super.tick()
+            if (character.steps.isNotEmpty() || npc.suspension != null) {
+                super.tick()
+            }
             return
         }
         if (range <= 0) {
