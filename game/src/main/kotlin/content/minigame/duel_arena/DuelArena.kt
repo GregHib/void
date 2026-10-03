@@ -35,16 +35,22 @@ class DuelArena : Script {
 
         // Stakes and winnings left behind by a crash or a full inventory
         playerSpawn {
-            if (inventories.contains("_dueloffer")) {
+            var returned = false
+            if (inventories.contains("_dueloffer") && !otherStake.isEmpty()) {
                 otherStake.clear()
+                returned = true
             }
-            if (inventories.contains("dueloffer")) {
+            if (inventories.contains("dueloffer") && !stake.isEmpty()) {
                 returnItems(stake)
+                returned = true
             }
-            if (inventories.contains("duelwinnings")) {
+            if (inventories.contains("duelwinnings") && !winnings.isEmpty()) {
                 returnItems(winnings)
+                returned = true
             }
-            save(this)
+            if (returned) {
+                save(this)
+            }
         }
     }
 
