@@ -2,7 +2,9 @@ package world.gregs.voidps.network.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import kotlinx.io.IOException
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeShort
@@ -79,15 +81,20 @@ open class Client(
     }
 
     /**
-     * Writes to the channel, disconnecting if the connection has been closed
+     * Writes to the channel, disconnecting if the connection has been closed or stopped reading
      * Locked so frames and [cipherOut] aren't interleaved by threads sending at the same time
      */
     private inline fun write(crossinline block: suspend ByteWriteChannel.() -> Unit) {
         synchronized(lock) {
             try {
                 runBlocking {
-                    block.invoke(write)
+                    withTimeout(WRITE_TIMEOUT_MS) {
+                        block.invoke(write)
+                    }
                 }
+            } catch (e: TimeoutCancellationException) {
+                logger.debug { "Client write timed out $address" }
+                abort(e)
             } catch (e: IOException) {
                 logger.debug { "Client write failed $address: ${e.message}" }
                 runBlocking {
@@ -95,6 +102,18 @@ open class Client(
                 }
             }
         }
+    }
+
+    /**
+     * Close without flushing as the client isn't reading
+     */
+    private fun abort(cause: Throwable) {
+        if (disconnected) {
+            return
+        }
+        disconnected = true
+        write.cancel(cause)
+        disconnect?.invoke()
     }
 
     private suspend fun ByteWriteChannel.header(opcode: Int, type: Int, size: Int, cipher: IsaacCipher?) {
@@ -123,6 +142,7 @@ open class Client(
         const val FIXED = 0
         const val BYTE = -1
         const val SHORT = -2
+        private const val WRITE_TIMEOUT_MS = 2_000L
 
         fun smart(value: Int) = if (value >= 128) 2 else 1
 
