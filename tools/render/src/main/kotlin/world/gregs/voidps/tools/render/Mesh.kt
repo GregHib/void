@@ -274,8 +274,11 @@ class Mesh {
         val complexMappingCountPtr = ptr
         ptr += 6 * complexMappingCount
         var texSpaceScaleSize = 6
-        if (this.version == 14) texSpaceScaleSize = 7
-        else if (this.version >= 15) texSpaceScaleSize = 9
+        if (this.version == 14) {
+            texSpaceScaleSize = 7
+        } else if (this.version >= 15) {
+            texSpaceScaleSize = 9
+        }
         val texSpaceScalePtr = ptr
         ptr += texSpaceScaleSize * complexMappingCount
         val texSpaceRotationPtr = ptr
@@ -306,8 +309,11 @@ class Mesh {
         }
         if (hasFlatShading) this.shadingType = ByteArray(this.faceCount)
         if (faceAlphaFlag == 1) this.faceAlpha = ByteArray(this.faceCount)
-        if (priorityFlag == 255) this.facePriority = ByteArray(this.faceCount)
-        else this.globalPriority = priorityFlag.toByte()
+        if (priorityFlag == 255) {
+            this.facePriority = ByteArray(this.faceCount)
+        } else {
+            this.globalPriority = priorityFlag.toByte()
+        }
         this.faceC = ShortArray(this.faceCount)
         this.vertexY = IntArray(this.vertexCount)
         this.faceA = ShortArray(this.faceCount)
@@ -356,8 +362,11 @@ class Mesh {
             if (faceGroupFlag == 1) this.faceLabel!![i] = packet5.readUnsignedByte()
             if (faceTextureFlag == 1) this.faceTexture!![i] = (packet6.readUnsignedShort() + -1).toShort()
             if (this.faceTexSpace != null) {
-                if (this.faceTexture!![i].toInt() == -1) this.faceTexSpace!![i] = (-1).toByte()
-                else this.faceTexSpace!![i] = (-1 + packet7.readUnsignedByte()).toByte()
+                if (this.faceTexture!![i].toInt() == -1) {
+                    this.faceTexSpace!![i] = (-1).toByte()
+                } else {
+                    this.faceTexSpace!![i] = (-1 + packet7.readUnsignedByte()).toByte()
+                }
             }
         }
         packet1.pos = faceDataSizePtr
@@ -437,8 +446,11 @@ class Mesh {
                     this.texSpaceScaleZ!![i] = packet3.readMedium()
                 } else {
                     this.texSpaceScaleX!![i] = packet3.readUnsignedShort()
-                    if (this.version >= 14) this.texSpaceScaleY!![i] = packet3.readMedium()
-                    else this.texSpaceScaleY!![i] = packet3.readUnsignedShort()
+                    if (this.version >= 14) {
+                        this.texSpaceScaleY!![i] = packet3.readMedium()
+                    } else {
+                        this.texSpaceScaleY!![i] = packet3.readUnsignedShort()
+                    }
                     this.texSpaceScaleZ!![i] = packet3.readUnsignedShort()
                 }
                 this.texRotation!![i] = packet4.readByte()
@@ -455,8 +467,11 @@ class Mesh {
                     this.texSpaceScaleZ!![i] = packet3.readMedium()
                 } else {
                     this.texSpaceScaleX!![i] = packet3.readUnsignedShort()
-                    if (this.version < 14) this.texSpaceScaleY!![i] = packet3.readUnsignedShort()
-                    else this.texSpaceScaleY!![i] = packet3.readMedium()
+                    if (this.version < 14) {
+                        this.texSpaceScaleY!![i] = packet3.readUnsignedShort()
+                    } else {
+                        this.texSpaceScaleY!![i] = packet3.readMedium()
+                    }
                     this.texSpaceScaleZ!![i] = packet3.readUnsignedShort()
                 }
                 this.texRotation!![i] = packet4.readByte()
@@ -471,8 +486,11 @@ class Mesh {
                 this.texSpaceDefC!![i] = packet2.readUnsignedShort().toShort()
                 if (this.version < 15) {
                     this.texSpaceScaleX!![i] = packet3.readUnsignedShort()
-                    if (this.version < 14) this.texSpaceScaleY!![i] = packet3.readUnsignedShort()
-                    else this.texSpaceScaleY!![i] = packet3.readMedium()
+                    if (this.version < 14) {
+                        this.texSpaceScaleY!![i] = packet3.readUnsignedShort()
+                    } else {
+                        this.texSpaceScaleY!![i] = packet3.readMedium()
+                    }
                     this.texSpaceScaleZ!![i] = packet3.readUnsignedShort()
                 } else {
                     this.texSpaceScaleX!![i] = packet3.readMedium()
@@ -494,8 +512,11 @@ class Mesh {
                     val type = packet1.readUnsignedShort()
                     val face = packet1.readUnsignedShort()
                     val priority: Byte
-                    if (priorityFlag != 255) priority = priorityFlag.toByte()
-                    else priority = this.facePriority!![face]
+                    if (priorityFlag != 255) {
+                        priority = priorityFlag.toByte()
+                    } else {
+                        priority = this.facePriority!![face]
+                    }
                     this.emitters!![i] = (ModelParticleEmitter(type, this.faceA!![face].toInt(), this.faceB!![face].toInt(), this.faceC!![face].toInt(), priority))
                     i++
                 }
@@ -602,8 +623,11 @@ class Mesh {
         i_66_ += i_63_
         val i_79_ = i_66_
         this.faceColour = ShortArray(this.faceCount)
-        if (i_58_ == 255) this.facePriority = ByteArray(this.faceCount)
-        else this.globalPriority = i_58_.toByte()
+        if (i_58_ == 255) {
+            this.facePriority = ByteArray(this.faceCount)
+        } else {
+            this.globalPriority = i_58_.toByte()
+        }
         if (i_61_ == 1) this.vertexLabel = IntArray(this.vertexCount)
         if (i_59_ == 1) this.faceAlpha = ByteArray(this.faceCount)
         this.faceA = ShortArray(this.faceCount)
@@ -661,7 +685,9 @@ class Mesh {
                 if ((0x1 and i_89_) == 1) {
                     this.shadingType!![i_88_] = 1.toByte()
                     bool = true
-                } else this.shadingType!![i_88_] = 0.toByte()
+                } else {
+                    this.shadingType!![i_88_] = 0.toByte()
+                }
                 if ((i_89_ and 0x2) == 2) {
                     this.faceTexSpace!![i_88_] = (i_89_ shr 2).toByte()
                     this.faceTexture!![i_88_] = this.faceColour!![i_88_]
@@ -742,8 +768,11 @@ class Mesh {
             for (i_99_ in 0..<this.faceCount) {
                 val i_100_ = this.faceTexSpace!![i_99_].toInt() and 0xff
                 if (i_100_ != 255) {
-                    if (((0xffff and this.texSpaceDefA!![i_100_].toInt()) != this.faceA!![i_99_].toInt()) || (this.faceB!![i_99_].toInt() != (0xffff and this.texSpaceDefB!![i_100_].toInt())) || ((0xffff and this.texSpaceDefC!![i_100_].toInt()) != this.faceC!![i_99_].toInt())) bool_98_ = true
-                    else this.faceTexSpace!![i_99_] = (-1).toByte()
+                    if (((0xffff and this.texSpaceDefA!![i_100_].toInt()) != this.faceA!![i_99_].toInt()) || (this.faceB!![i_99_].toInt() != (0xffff and this.texSpaceDefB!![i_100_].toInt())) || ((0xffff and this.texSpaceDefC!![i_100_].toInt()) != this.faceC!![i_99_].toInt())) {
+                        bool_98_ = true
+                    } else {
+                        this.faceTexSpace!![i_99_] = (-1).toByte()
+                    }
                 }
             }
             if (!bool_98_) this.faceTexSpace = null
@@ -757,8 +786,11 @@ class Mesh {
         this.globalPriority = 0.toByte()
         this.maxVertex = 0
         this.texSpaceCount = 0
-        if (`is`[`is`.size + -1].toInt() == -1 && `is`[-2 + `is`.size].toInt() == -1) method1106(`is`)
-        else method1103(`is`)
+        if (`is`[`is`.size + -1].toInt() == -1 && `is`[-2 + `is`.size].toInt() == -1) {
+            method1106(`is`)
+        } else {
+            method1103(`is`)
+        }
     }
 
     /**
@@ -917,9 +949,7 @@ class Mesh {
 
     companion object {
 
-        fun method1436(i_3_: Int): Boolean {
-            return i_3_ == (i_3_ and -i_3_)
-        }
+        fun method1436(i_3_: Int): Boolean = i_3_ == (i_3_ and -i_3_)
 
         var anIntArray1204: IntArray
         var anIntArray1207: IntArray = IntArray(16384)

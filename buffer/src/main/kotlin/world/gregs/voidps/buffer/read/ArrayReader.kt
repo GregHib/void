@@ -3,7 +3,7 @@ package world.gregs.voidps.buffer.read
 import java.nio.ByteBuffer
 
 class ArrayReader(
-    array: ByteArray = ByteArray(0)
+    array: ByteArray = ByteArray(0),
 ) : Reader {
     var array: ByteArray = array
         private set
@@ -125,9 +125,9 @@ class ArrayReader(
             bitOffset = 8
         }
         value += if (bitCount == bitOffset) {
-           array[bytePos].toInt() and BIT_MASKS[bitOffset]
+            array[bytePos].toInt() and BIT_MASKS[bitOffset]
         } else {
-           array[bytePos].toInt() shr bitOffset - bitCount and BIT_MASKS[bitCount]
+            array[bytePos].toInt() shr bitOffset - bitCount and BIT_MASKS[bitCount]
         }
         return value
     }

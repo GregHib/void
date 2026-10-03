@@ -44,10 +44,14 @@ class MapView : JPanel() {
     private var offsetYd = 0.0
     var offsetX: Int
         get() = offsetXd.toInt()
-        set(value) { offsetXd = value.toDouble() }
+        set(value) {
+            offsetXd = value.toDouble()
+        }
     var offsetY: Int
         get() = offsetYd.toInt()
-        set(value) { offsetYd = value.toDouble() }
+        set(value) {
+            offsetYd = value.toDouble()
+        }
     var level = 0
         private set
 

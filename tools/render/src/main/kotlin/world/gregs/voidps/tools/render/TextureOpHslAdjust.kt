@@ -31,11 +31,11 @@ internal class TextureOpHslAdjust : TextureOp(1, false) {
                 anInt9401 += anInt9390
                 anInt9400 += anInt9402
                 anInt9389 += anInt9398
-                while ( /**/anInt9400 < 0) {
+                while (anInt9400 < 0) {
                     anInt9400 += 4096
                 }
                 if (anInt9401 < 0) anInt9401 = 0
-                while ( /**/anInt9400 > 4096) {
+                while (anInt9400 > 4096) {
                     anInt9400 -= 4096
                 }
                 if (anInt9389 < 0) anInt9389 = 0
@@ -62,13 +62,22 @@ internal class TextureOpHslAdjust : TextureOp(1, false) {
             val i_23_ = (i_20_ + -i shl 12) / i_22_
             val i_24_ = (i_20_ + -i_17_ shl 12) / i_22_
             val i_25_ = (-i_19_ + i_20_ shl 12) / i_22_
-            if (i == i_20_) anInt9400 = (if (i_17_ != i_21_) 4096 + -i_24_ else i_25_ + 20480)
-            else if (i_17_ != i_20_) anInt9400 = if (i != i_21_) -i_23_ + 20480 else 12288 - -i_24_
-            else anInt9400 = (if (i_21_ == i_19_) 4096 + i_23_ else -i_25_ + 12288)
+            if (i == i_20_) {
+                anInt9400 = (if (i_17_ != i_21_) 4096 + -i_24_ else i_25_ + 20480)
+            } else if (i_17_ != i_20_) {
+                anInt9400 = if (i != i_21_) -i_23_ + 20480 else 12288 - -i_24_
+            } else {
+                anInt9400 = (if (i_21_ == i_19_) 4096 + i_23_ else -i_25_ + 12288)
+            }
             anInt9400 /= 6
-        } else anInt9400 = 0
-        if (anInt9389 > 0 && anInt9389 < 4096) anInt9401 = (i_22_ shl 12) / (if (anInt9389 > 2048) 8192 - anInt9389 * 2 else anInt9389 * 2)
-        else anInt9401 = 0
+        } else {
+            anInt9400 = 0
+        }
+        if (anInt9389 > 0 && anInt9389 < 4096) {
+            anInt9401 = (i_22_ shl 12) / (if (anInt9389 > 2048) 8192 - anInt9389 * 2 else anInt9389 * 2)
+        } else {
+            anInt9401 = 0
+        }
     }
 
     private fun method3130(i: Int, i_26_: Int, i_28_: Int) {
@@ -105,10 +114,14 @@ internal class TextureOpHslAdjust : TextureOp(1, false) {
                                         if (i_38_ != 3) {
                                             if (i_38_ != 4) {
                                                 if (i_38_ != 5) break@while_208_
-                                            } else break@while_206_
+                                            } else {
+                                                break@while_206_
+                                            }
                                             break@while_207_
                                         }
-                                    } else break
+                                    } else {
+                                        break
+                                    }
                                     break@while_205_
                                 }
                                 anInt9392 = i_31_

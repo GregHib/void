@@ -16,8 +16,7 @@ data class SitePage(val id: String, val label: String, val href: String)
  * marker for [assetPrefix] keeps the link relative, so it survives being served from any subpath.
  * Anything else (a plain relative path, or an external `http(s)://` link) passes through as-is.
  */
-private fun siteHref(href: String, assetPrefix: String): String =
-    if (href.startsWith("/")) "$assetPrefix${href.removePrefix("/")}" else href
+private fun siteHref(href: String, assetPrefix: String): String = if (href.startsWith("/")) "$assetPrefix${href.removePrefix("/")}" else href
 
 /**
  * The site's fixed top bar: mark + wordmark, a page-to-page nav (plain links, since each page is

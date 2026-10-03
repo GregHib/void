@@ -28,11 +28,11 @@ class DatabaseStorage : Storage {
         AccountsTable
             .leftJoin(display) {
                 AccountsTable.id eq display[VariablesTable.playerId] and
-                        (display[VariablesTable.name] eq stringLiteral("display_name"))
+                    (display[VariablesTable.name] eq stringLiteral("display_name"))
             }
             .leftJoin(history) {
                 AccountsTable.id eq history[VariablesTable.playerId] and
-                        (history[VariablesTable.name] eq stringLiteral("name_history"))
+                    (history[VariablesTable.name] eq stringLiteral("name_history"))
             }
             .select(
                 AccountsTable.name,

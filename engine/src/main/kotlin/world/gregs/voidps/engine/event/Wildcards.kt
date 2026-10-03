@@ -60,15 +60,13 @@ object Wildcards {
         map(type)[key] = values.split(",")
     }
 
-    private fun fingerprint(type: Wildcard): Int {
-        return when (type) {
-            Wildcard.Npc -> NPCDefinitions.ids.keys.hashCode()
-            Wildcard.Object -> ObjectDefinitions.ids.keys.hashCode()
-            Wildcard.Interface -> InterfaceDefinitions.ids.keys.hashCode()
-            Wildcard.Component -> InterfaceDefinitions.componentIds.keys.hashCode()
-            Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
-            Wildcard.Variables -> VariableDefinitions.definitions.keys.hashCode()
-        }
+    private fun fingerprint(type: Wildcard): Int = when (type) {
+        Wildcard.Npc -> NPCDefinitions.ids.keys.hashCode()
+        Wildcard.Object -> ObjectDefinitions.ids.keys.hashCode()
+        Wildcard.Interface -> InterfaceDefinitions.ids.keys.hashCode()
+        Wildcard.Component -> InterfaceDefinitions.componentIds.keys.hashCode()
+        Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
+        Wildcard.Variables -> VariableDefinitions.definitions.keys.hashCode()
     }
 
     fun get(key: String, type: Wildcard): Set<String> {

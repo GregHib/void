@@ -9,5 +9,4 @@ internal abstract class FrameBuffer : Node() {
     var anInt6920: Int = 0
 
     abstract fun method3008(canvas: Canvas?, i: Int, i_2_: Int)
-
 }

@@ -171,14 +171,14 @@ interface Teleport {
                 player.steps.clear()
                 player.exp(Skill.Magic, xp)
                 if (sound) {
-                    player.sound("teleport_${type}")
+                    player.sound("teleport_$type")
                 }
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
                 val tile = destination.invoke(player) ?: return@strongQueue
                 player.tele(tile, clearInterfaces = clearInterfaces)
                 if (sound) {
-                    player.sound("teleport_land_${type}")
+                    player.sound("teleport_land_$type")
                 }
                 player.gfx("teleport_land_$type")
                 val delay = player.anim("teleport_land_$type")

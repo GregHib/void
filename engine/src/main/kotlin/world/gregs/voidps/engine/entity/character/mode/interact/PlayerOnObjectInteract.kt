@@ -37,8 +37,5 @@ data class PlayerOnObjectInteract(
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - $option:${target.def(player).stringId} target=$target"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - $option:${target.def(player).stringId} target=$target"
 }

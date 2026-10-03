@@ -14,8 +14,12 @@ import kotlinx.html.unsafe
 fun Ui.floorTimesPanel(rows: String, eyebrow: String) {
     panel(title = "Dungeoneering floors", action = eyebrowText(eyebrow), padded = false) {
         tableScroll(
-            Column("Floor", "minmax(0,1fr)"), Column("Size", "90px"), Column("Complexity", "110px", "right"),
-            Column("Party", "90px", "right"), Column("Time", "100px", "right"), Column("Rank", "80px", "right"),
+            Column("Floor", "minmax(0,1fr)"),
+            Column("Size", "90px"),
+            Column("Complexity", "110px", "right"),
+            Column("Party", "90px", "right"),
+            Column("Time", "100px", "right"),
+            Column("Rank", "80px", "right"),
         ) {
             unsafe {
                 raw(

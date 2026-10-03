@@ -3,9 +3,9 @@ package world.gregs.voidps.tools.icon
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
-import world.gregs.voidps.tools.render.TextureOpColorGradient
 import world.gregs.voidps.tools.render.Mesh
 import world.gregs.voidps.tools.render.Sprite
+import world.gregs.voidps.tools.render.TextureOpColorGradient
 import world.gregs.voidps.tools.render.Toolkit
 
 /**

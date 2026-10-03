@@ -27,7 +27,7 @@ object Website {
     private fun FlowContent.eyebrow(text: String) {
         span {
             style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                    "text-transform:uppercase;color:var(--gold-300)"
+                "text-transform:uppercase;color:var(--gold-300)"
             +text
         }
     }
@@ -41,22 +41,22 @@ object Website {
 
         section {
             style = "position:relative;min-height:520px;display:flex;align-items:flex-end;" +
-                    "border-bottom:1px solid var(--border-panel);overflow:hidden"
+                "border-bottom:1px solid var(--border-panel);overflow:hidden"
             img(src = "images/repository-bg.png", alt = "") {
                 style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
             }
             div { style = "position:absolute;inset:0;background:var(--scrim-bottom)" }
             div {
                 style = "position:relative;max-width:var(--container-wide);margin:0 auto;width:100%;" +
-                        "padding:var(--space-12) var(--space-8) var(--space-11);display:flex;" +
-                        "flex-direction:column;gap:var(--space-7)"
+                    "padding:var(--space-12) var(--space-8) var(--space-11);display:flex;" +
+                    "flex-direction:column;gap:var(--space-7)"
                 h1 {
                     style = "margin:0;max-width:760px;font:var(--type-hero);color:var(--parch-50)"
                     +"RuneScape Revived"
                 }
                 p {
                     style = "margin:0;max-width:620px;font:var(--weight-regular) var(--text-xl)/1.5 var(--font-ui);" +
-                            "color:var(--parch-200)"
+                        "color:var(--parch-200)"
                     +("Rediscover 2011 RuneScape with modern server emulation at your fingertips.")
                 }
                 div {
@@ -66,7 +66,7 @@ object Website {
                         size = ButtonSize.Large,
                         glow = true,
                         icon = Icons.PLAY,
-                        onClick = "window.location = 'play.html'"
+                        onClick = "window.location = 'play.html'",
                     )
                     ui.button(
                         "Run your own world",
@@ -88,7 +88,7 @@ object Website {
             div {
                 attributes["class"] = "home-what-grid"
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                        "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
+                    "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
                 div {
                     style = "display:flex;flex-direction:column;gap:var(--space-6)"
                     eyebrow("What is Void?")
@@ -98,19 +98,23 @@ object Website {
                     }
                     p {
                         style = "margin:0;max-width:540px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
-                        +("Void lets you play RuneScape exactly as it was in 2011, recreated from scratch to " +
+                        +(
+                            "Void lets you play RuneScape exactly as it was in 2011, recreated from scratch to " +
                                 "run on your computer or host for others. Free, open-source, and made for " +
-                                "everyone.")
+                                "everyone."
+                            )
                     }
                     p {
                         style = "margin:0;max-width:540px;font:var(--type-body);color:var(--text-faint)"
-                        +("Tweak settings, write your own content, or just log in and experience - Void " +
-                                "is built to be easy whichever way you want to play.")
+                        +(
+                            "Tweak settings, write your own content, or just log in and experience - Void " +
+                                "is built to be easy whichever way you want to play."
+                            )
                     }
                 }
                 div {
                     style = "border:1px solid var(--border-gold);border-radius:var(--radius-md);overflow:hidden;" +
-                            "box-shadow:var(--bevel-up),var(--shadow-md)"
+                        "box-shadow:var(--bevel-up),var(--shadow-md)"
                     img(src = "images/content/world.png", alt = "") {
                         style = "width:100%;aspect-ratio:4/3;object-fit:cover;display:block"
                     }
@@ -122,7 +126,7 @@ object Website {
             style = "background:var(--surface-inset);border-bottom:1px solid var(--border-panel)"
             div {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                        "display:flex;flex-direction:column;gap:var(--space-9)"
+                    "display:flex;flex-direction:column;gap:var(--space-9)"
                 div {
                     style = "display:flex;flex-direction:column;gap:var(--space-5);max-width:640px"
                     h2 {
@@ -143,16 +147,16 @@ object Website {
                     for ((image, title, body) in shots) {
                         figure {
                             style = "margin:0;min-width:0;display:flex;flex-direction:column;background:var(--surface-panel);" +
-                                    "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
-                                    "box-shadow:var(--bevel-up),var(--shadow-sm);overflow:hidden"
+                                "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
+                                "box-shadow:var(--bevel-up),var(--shadow-sm);overflow:hidden"
                             div {
                                 attributes["role"] = "img"
                                 style = "aspect-ratio:16/10;background-color:var(--umber-950);" +
-                                        "background-image:url($image);background-size:cover;background-position:center"
+                                    "background-image:url($image);background-size:cover;background-position:center"
                             }
                             figcaption {
                                 style = "display:flex;flex-direction:column;gap:var(--space-3);" +
-                                        "padding:var(--space-6) var(--space-7);border-top:1px solid var(--border-panel)"
+                                    "padding:var(--space-6) var(--space-7);border-top:1px solid var(--border-panel)"
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-base)/1.3 var(--font-ui);color:var(--parch-50)"
                                     +title
@@ -172,7 +176,7 @@ object Website {
             style = "border-bottom:1px solid var(--border-panel)"
             div {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                        "display:flex;flex-direction:column;gap:var(--space-11)"
+                    "display:flex;flex-direction:column;gap:var(--space-11)"
                 div {
                     attributes["class"] = "home-run-grid"
                     style = "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
@@ -189,10 +193,10 @@ object Website {
                     }
                     div {
                         style = "background:var(--umber-950);border:1px solid var(--border-subtle);" +
-                                "border-radius:var(--radius-md);box-shadow:var(--bevel-down),var(--shadow-md);overflow:hidden"
+                            "border-radius:var(--radius-md);box-shadow:var(--bevel-down),var(--shadow-md);overflow:hidden"
                         div {
                             style = "display:flex;align-items:center;gap:var(--space-4);height:34px;" +
-                                    "padding:0 var(--space-6);background:var(--umber-900);border-bottom:1px solid var(--border-panel)"
+                                "padding:0 var(--space-6);background:var(--umber-900);border-bottom:1px solid var(--border-panel)"
                             span { style = "width:7px;height:7px;border-radius:50%;background:var(--moss-500)" }
                             span {
                                 style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);letter-spacing:var(--tracking-wide)"
@@ -201,11 +205,31 @@ object Website {
                         }
                         div {
                             style = "padding:var(--space-7);font:var(--type-code);line-height:2;color:var(--parch-100);overflow-x:auto"
-                            div { span { style = "color:var(--gold-400)"; +"$ " }; +"./gradlew run" }
-                            div { style = "color:var(--text-faint)"; +"[Main] - loading cache 634" }
-                            div { style = "color:var(--text-faint)"; +"[Main] - 20,000 npc spawns" }
-                            div { span { style = "color:var(--moss-500)"; +"[Main] - Void loaded in 4213ms" } }
-                            div { style = "color:var(--text-faint)"; +"[Web] - listening on :8080/play" }
+                            div {
+                                span {
+                                    style = "color:var(--gold-400)"
+                                    +"$ "
+                                }
+                                +"./gradlew run"
+                            }
+                            div {
+                                style = "color:var(--text-faint)"
+                                +"[Main] - loading cache 634"
+                            }
+                            div {
+                                style = "color:var(--text-faint)"
+                                +"[Main] - 20,000 npc spawns"
+                            }
+                            div {
+                                span {
+                                    style = "color:var(--moss-500)"
+                                    +"[Main] - Void loaded in 4213ms"
+                                }
+                            }
+                            div {
+                                style = "color:var(--text-faint)"
+                                +"[Web] - listening on :8080/play"
+                            }
                         }
                     }
                 }
@@ -277,14 +301,14 @@ object Website {
             style = "background:var(--surface-inset);border-bottom:1px solid var(--border-panel)"
             div {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                        "display:flex;flex-direction:column;gap:var(--space-10)"
+                    "display:flex;flex-direction:column;gap:var(--space-10)"
                 div {
                     attributes["class"] = "home-content-row"
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));" +
-                            "gap:var(--space-10);align-items:center"
+                        "gap:var(--space-10);align-items:center"
                     div {
                         style = "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
-                                "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
+                            "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
                         img(src = "images/content/config.png", alt = "") {
                             style = "width:100%;aspect-ratio:16/10;object-fit:cover;display:block"
                         }
@@ -305,7 +329,7 @@ object Website {
                 div {
                     attributes["class"] = "home-content-row"
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));" +
-                            "gap:var(--space-10);align-items:center"
+                        "gap:var(--space-10);align-items:center"
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
                         eyebrow("Bots")
@@ -315,13 +339,15 @@ object Website {
                         }
                         p {
                             style = "margin:0;max-width:480px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
-                            +("Intelligent player bots train, fight and move through the world, so a " +
-                                    "single-player server still looks and behaves like a live one.")
+                            +(
+                                "Intelligent player bots train, fight and move through the world, so a " +
+                                    "single-player server still looks and behaves like a live one."
+                                )
                         }
                     }
                     div {
                         style = "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
-                                "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
+                            "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
                         img(src = "images/content/pvp.png", alt = "") {
                             style = "width:100%;aspect-ratio:16/10;object-fit:cover;display:block"
                         }
@@ -334,7 +360,7 @@ object Website {
             style = "border-bottom:1px solid var(--border-panel)"
             div {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                        "display:flex;flex-direction:column;gap:var(--space-10)"
+                    "display:flex;flex-direction:column;gap:var(--space-10)"
                 div {
                     attributes["class"] = "home-bug-grid"
                     style = "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
@@ -375,8 +401,8 @@ object Website {
                             for (name in thanks) {
                                 span {
                                     style = "font:var(--type-body-sm);color:var(--parch-200);background:var(--surface-panel);" +
-                                            "border:1px solid var(--border-panel);border-radius:var(--radius-pill);" +
-                                            "box-shadow:var(--bevel-up);padding:6px 14px"
+                                        "border:1px solid var(--border-panel);border-radius:var(--radius-pill);" +
+                                        "box-shadow:var(--bevel-up);padding:6px 14px"
                                     +name
                                 }
                             }
@@ -389,11 +415,13 @@ object Website {
                         style = "display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-4) var(--space-2)"
                         p {
                             style = "margin:0;font:var(--type-body);color:var(--text-muted);max-width:760px"
-                            +("This project was crafted by hand over 5+ years with care and attention to be open and " +
+                            +(
+                                "This project was crafted by hand over 5+ years with care and attention to be open and " +
                                     "accessible. AI-assisted contributions are welcome but held to the same high standard " +
                                     "as any other submission: keep changes small and focused, ensure they are well tested, " +
                                     "with minimal comments, and make sure the code style follows that of the " +
-                                    "surrounding codebase. Overly large, low-effort or bulk-generated PRs will not be accepted.")
+                                    "surrounding codebase. Overly large, low-effort or bulk-generated PRs will not be accepted."
+                                )
                         }
                     }
                 }

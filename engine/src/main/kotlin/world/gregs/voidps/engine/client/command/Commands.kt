@@ -56,12 +56,8 @@ open class Commands {
      * If no command found return null but give [suggestions] or nearest match.
      */
     fun find(player: Player, commandName: String): Command? {
-        val metadata = commands[commandName]
+        val metadata = commands[commandName] ?: aliases[commandName]?.let { commands[it] }
         if (metadata == null) {
-            val alias = aliases[commandName]
-            if (alias != null) {
-                return commands[alias]
-            }
             val suggestion = suggestions[commandName]
             if (suggestion != null) {
                 player.message("Unknown command: $commandName. Did you mean '$suggestion'?", ChatType.Console)
@@ -190,7 +186,6 @@ fun commandSuggestion(name: String, vararg alternatives: String) {
 }
 
 fun command(vararg args: CommandArgument, desc: String = "", handler: suspend Player.(List<String>) -> Unit) = CommandSignature(args.toList(), desc, handler)
-
 
 fun playerCommands(name: String, vararg signatures: CommandSignature) {
     Commands.register(name, signatures.toList())

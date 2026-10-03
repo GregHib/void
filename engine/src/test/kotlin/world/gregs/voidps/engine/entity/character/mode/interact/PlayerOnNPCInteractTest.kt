@@ -30,6 +30,5 @@ class PlayerOnNPCInteractTest : OnInteractTest() {
         }
     }
 
-    override fun interact() = PlayerOnNPCInteract(NPC("npc", def = NPCDefinition(0, stringId = "npc")),"option", Player())
-
+    override fun interact() = PlayerOnNPCInteract(NPC("npc", def = NPCDefinition(0, stringId = "npc")), "option", Player())
 }

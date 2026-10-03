@@ -77,8 +77,11 @@ internal class TextureOp37 : TextureOp(0, true) {
             for (i in 0..255) {
                 var l = i.toLong()
                 for (i_24_ in 0..7) {
-                    if ((0x1L and l) == 1L) l = 0x3693a86a2878f0bdL.inv() xor (l ushr 1)
-                    else l = l ushr 1
+                    if ((0x1L and l) == 1L) {
+                        l = 0x3693a86a2878f0bdL.inv() xor (l ushr 1)
+                    } else {
+                        l = l ushr 1
+                    }
                 }
                 crc64table[i] = l
             }

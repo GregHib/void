@@ -49,7 +49,9 @@ class MonochromeImageCache(i: Int, i_16_: Int, i_17_: Int) {
                     monochromeImageCacheEntry_15_.unlink()
                 }
                 aMonochromeImageCacheEntryArray2563!![i_14_] = class348_sub6
-            } else this.aBoolean2570 = false
+            } else {
+                this.aBoolean2570 = false
+            }
             aLinkedList_2561!!.method2001(class348_sub6)
             return (anIntArrayArray2564!![class348_sub6.anInt6636])
         }

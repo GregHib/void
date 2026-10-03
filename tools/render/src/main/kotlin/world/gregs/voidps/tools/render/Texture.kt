@@ -43,8 +43,11 @@ internal class Texture(packet: Packet) : SecondaryNode() {
             }
             if (bool) i_3_ = i_4_
             val is_10_: IntArray
-            if (aTextureOp_9527.aBoolean7045) is_10_ = aTextureOp_9527.method3042(i_4_)!!
-            else is_10_ = (aTextureOp_9527.method3047(i_4_)!![0])
+            if (aTextureOp_9527.aBoolean7045) {
+                is_10_ = aTextureOp_9527.method3042(i_4_)!!
+            } else {
+                is_10_ = (aTextureOp_9527.method3047(i_4_)!![0])
+            }
             for (i_11_ in i - 1 downTo 0) {
                 var i_12_ = is_7_[i_11_] shr 4
                 if (i_12_ > 255) i_12_ = 255
@@ -59,8 +62,9 @@ internal class Texture(packet: Packet) : SecondaryNode() {
                 i_12_ = anIntArray10266[i_12_]
                 i_14_ = anIntArray10266[i_14_]
                 var i_15_: Int
-                if (i_12_ == 0 && i_13_ == 0 && i_14_ == 0) i_15_ = 0
-                else {
+                if (i_12_ == 0 && i_13_ == 0 && i_14_ == 0) {
+                    i_15_ = 0
+                } else {
                     i_15_ = is_10_[i_11_] shr 4
                     if (i_15_ > 255) i_15_ = 255
                     if (i_15_ < 0) i_15_ = 0
@@ -85,7 +89,7 @@ internal class Texture(packet: Packet) : SecondaryNode() {
             i_17_++
         }
         var i_19_ = 0
-        while ( /**/i_19_ < anIntArray9523.size) {
+        while (i_19_ < anIntArray9523.size) {
             if (!var_textureSource!!.method4(anIntArray9523[i_19_])) return false
             i_19_++
         }
@@ -191,7 +195,6 @@ internal class Texture(packet: Packet) : SecondaryNode() {
 
     companion object {
         var aDouble8713: Double = -1.0
-
 
         fun method3232(d: Double) {
             if (d != aDouble8713) {

@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.map.obj
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -11,9 +14,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
 
 class MapObjectsRotatedDecoderTest {
 
@@ -174,7 +174,7 @@ class MapObjectsRotatedDecoderTest {
         Pair(Tile(3, 4), Tile(3, 4)),
         Pair(Tile(7, 7), Tile(7, 7)),
         Pair(Tile(0, 7), Tile(0, 7)),
-        Pair(Tile(7, 0), Tile(7, 0))
+        Pair(Tile(7, 0), Tile(7, 0)),
     ).map { (tile, expected) ->
         dynamicTest("Rotate $tile") {
             val result = rotate(tile.x, tile.y, 1, 1, 0, 0)
@@ -254,7 +254,7 @@ class MapObjectsRotatedDecoderTest {
         Triple(3, 0, Tile(0, 0)),
         Triple(0, 1, Tile(0, 6)),
         Triple(0, 2, Tile(6, 7)),
-        Triple(0, 3, Tile(7, 0))
+        Triple(0, 3, Tile(7, 0)),
     ).map { (originalRot, zoneRot, expected) ->
         dynamicTest("2x1 object rotate obj $originalRot zone rot $zoneRot") {
             val result = rotate(0, 0, 2, 1, originalRot, zoneRot)

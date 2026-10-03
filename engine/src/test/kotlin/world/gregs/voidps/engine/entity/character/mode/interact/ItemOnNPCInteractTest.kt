@@ -28,5 +28,4 @@ class ItemOnNPCInteractTest : OnInteractTest() {
     }
 
     override fun interact() = ItemOnNPCInteract(NPC("npc", def = NPCDefinition(0, stringId = "npc")), Item("item"), 0, "id", Player())
-
 }

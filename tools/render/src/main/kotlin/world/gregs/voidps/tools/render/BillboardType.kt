@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.render
 
-import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
 
 /* Class189 */
 
@@ -22,12 +22,20 @@ class BillboardType {
             this.anInt2526 = 1 + packet.readUnsignedShort()
             this.anInt2530 = packet.readUnsignedShort() - -1
         } else if (i != 3) {
-            if (i == 4) this.anInt2534 = packet.readUnsignedByte()
-            else if (i != 5) {
-                if (i == 6) this.aBoolean2522 = true
-                else if (i == 7) this.aBoolean2531 = true
-            } else this.anInt2533 = packet.readUnsignedByte()
-        } else packet.readByte()
+            if (i == 4) {
+                this.anInt2534 = packet.readUnsignedByte()
+            } else if (i != 5) {
+                if (i == 6) {
+                    this.aBoolean2522 = true
+                } else if (i == 7) {
+                    this.aBoolean2531 = true
+                }
+            } else {
+                this.anInt2533 = packet.readUnsignedByte()
+            }
+        } else {
+            packet.readByte()
+        }
     }
 
     fun method1419(packet: Packet) {

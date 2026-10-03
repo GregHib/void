@@ -2,8 +2,8 @@ package world.gregs.voidps.tools.render
 
 import java.awt.Canvas
 import kotlin.math.floor
-import kotlin.math.sqrt
 import kotlin.math.pow
+import kotlin.math.sqrt
 
 /* ha_Sub1 */
 
@@ -69,11 +69,17 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         i_242_ -= i
         i_243_ -= i_241_
         if (i_243_ == 0) {
-            if (i_242_ >= 0) U(i, i_241_, i_242_ + 1, i_244_, i_245_)
-            else U(i + i_242_, i_241_, -i_242_ + 1, i_244_, i_245_)
+            if (i_242_ >= 0) {
+                U(i, i_241_, i_242_ + 1, i_244_, i_245_)
+            } else {
+                U(i + i_242_, i_241_, -i_242_ + 1, i_244_, i_245_)
+            }
         } else if (i_242_ == 0) {
-            if (i_243_ >= 0) P(i, i_241_, i_243_ + 1, i_244_, i_245_)
-            else P(i, i_241_ + i_243_, -i_243_ + 1, i_244_, i_245_)
+            if (i_243_ >= 0) {
+                P(i, i_241_, i_243_ + 1, i_244_, i_245_)
+            } else {
+                P(i, i_241_ + i_243_, -i_243_ + 1, i_244_, i_245_)
+            }
         } else {
             if (i_242_ + i_243_ < 0) {
                 i += i_242_
@@ -94,7 +100,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_242_ >= this.anInt7507) i_242_ = this.anInt7507 - 1
                 val i_247_ = i_244_ ushr 24
                 if (i_245_ == 0 || i_245_ == 1 && i_247_ == 255) {
-                    while ( /**/i <= i_242_) {
+                    while (i <= i_242_) {
                         val i_248_ = i_241_ shr 16
                         if (i_248_ >= this.anInt7476 && i_248_ < this.anInt7503) this.anIntArray7483!![i + i_248_ * this.anInt7477] = i_244_
                         i_241_ += i_246_
@@ -105,7 +111,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_245_ == 1) {
                     i_244_ = (((i_244_ and 0xff00ff) * i_247_ shr 8 and 0xff00ff) + ((i_244_ and 0xff00) * i_247_ shr 8 and 0xff00) + (i_247_ shl 24))
                     val i_249_ = 256 - i_247_
-                    while ( /**/i <= i_242_) {
+                    while (i <= i_242_) {
                         val i_250_ = i_241_ shr 16
                         if (i_250_ >= this.anInt7476 && i_250_ < this.anInt7503) {
                             val i_251_ = i + i_250_ * this.anInt7477
@@ -119,7 +125,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     return
                 }
                 if (i_245_ == 2) {
-                    while ( /**/i <= i_242_) {
+                    while (i <= i_242_) {
                         val i_253_ = i_241_ shr 16
                         if (i_253_ >= this.anInt7476 && i_253_ < this.anInt7503) {
                             val i_254_ = i + i_253_ * this.anInt7477
@@ -148,7 +154,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             if (i_243_ >= this.anInt7503) i_243_ = this.anInt7503 - 1
             val i_259_ = i_244_ ushr 24
             if (i_245_ == 0 || i_245_ == 1 && i_259_ == 255) {
-                while ( /**/i_241_ <= i_243_) {
+                while (i_241_ <= i_243_) {
                     val i_260_ = i shr 16
                     if (i_260_ >= this.anInt7496 && i_260_ < this.anInt7507) this.anIntArray7483!![i_260_ + i_241_ * this.anInt7477] = i_244_
                     i += i_258_
@@ -157,7 +163,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             } else if (i_245_ == 1) {
                 i_244_ = (((i_244_ and 0xff00ff) * i_259_ shr 8 and 0xff00ff) + ((i_244_ and 0xff00) * i_259_ shr 8 and 0xff00) + (i_259_ shl 24))
                 val i_261_ = 256 - i_259_
-                while ( /**/i_241_ <= i_243_) {
+                while (i_241_ <= i_243_) {
                     val i_262_ = i shr 16
                     if (i_262_ >= this.anInt7496 && i_262_ < this.anInt7507) {
                         val i_263_ = i_262_ + i_241_ * this.anInt7477
@@ -169,7 +175,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     i_241_++
                 }
             } else if (i_245_ == 2) {
-                while ( /**/i_241_ <= i_243_) {
+                while (i_241_ <= i_243_) {
                     val i_265_ = i shr 16
                     if (i_265_ >= this.anInt7496 && i_265_ < this.anInt7507) {
                         val i_266_ = i_265_ + i_241_ * this.anInt7477
@@ -182,7 +188,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     i += i_258_
                     i_241_++
                 }
-            } else throw IllegalArgumentException()
+            } else {
+                throw IllegalArgumentException()
+            }
         }
     }
     fun U(i: Int, i_186_: Int, i_187_: Int, i_188_: Int, i_189_: Int) {
@@ -215,7 +223,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     i_197_ = (i_199_ and 0x1000100) + (i_198_ - i_199_ and 0x10000)
                     this.anIntArray7483!![i_190_ + i_196_] = i_198_ - i_197_ or i_197_ - (i_197_ ushr 8)
                 }
-            } else throw IllegalArgumentException()
+            } else {
+                throw IllegalArgumentException()
+            }
         }
     }
     fun P(i: Int, i_71_: Int, i_72_: Int, i_73_: Int, i_74_: Int) {
@@ -250,7 +260,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     i_84_ = (i_86_ and 0x1000100) + (i_85_ - i_86_ and 0x10000)
                     this.anIntArray7483!![i_83_] = i_85_ - i_84_ or i_84_ - (i_84_ ushr 8)
                 }
-            } else throw IllegalArgumentException()
+            } else {
+                throw IllegalArgumentException()
+            }
         }
     }
 
@@ -276,18 +288,14 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         }
     }
 
-    override fun i(): Int {
-        return this.anInt7482
-    }
+    override fun i(): Int = this.anInt7482
 
     override fun method3705(): Matrix? {
         val javaThreadResource = threadResource(Thread.currentThread())
         return javaThreadResource!!.aClass101_Sub1_2209
     }
 
-    fun method3714(i: Int): Boolean {
-        return this.textureSource!!.getMetrics(i)!!.aBoolean217 || this.textureSource!!.getMetrics(i)!!.aBoolean215
-    }
+    fun method3714(i: Int): Boolean = this.textureSource!!.getMetrics(i)!!.aBoolean217 || this.textureSource!!.getMetrics(i)!!.aBoolean215
 
     override fun setCamera(matrix: Matrix?) {
         this.aClass101_Sub1_7492 = matrix as Matrix_Sub1
@@ -347,9 +355,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         }
     }
 
-    fun method3716(): Boolean {
-        return aBoolean7470
-    }
+    fun method3716(): Boolean = aBoolean7470
 
     private fun method3717() {
         for (i in 0..<this.anInt7485) aJavaThreadResourceArray7480!![i]!!.method1292()
@@ -369,7 +375,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         if (frameBuffer == null) {
             frameBuffer = method1035(i_232_, canvas, i)
             aIterableHashTable_7467!!.put(canvas.hashCode().toLong(), frameBuffer)
-        } else if (frameBuffer.anInt6917 != i || frameBuffer.anInt6920 != i_232_) method3669(canvas, i, i_232_)
+        } else if (frameBuffer.anInt6917 != i || frameBuffer.anInt6920 != i_232_) {
+            method3669(canvas, i, i_232_)
+        }
     }
 
     fun method3631(i: Int) {
@@ -463,7 +471,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     }
                     i_340_ += i_339_
                 }
-            } else throw IllegalArgumentException()
+            } else {
+                throw IllegalArgumentException()
+            }
         }
     }
     override fun method3652() {
@@ -501,9 +511,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         return cachedTexture!!.method2997()
     }
 
-    override fun method3654(): Matrix {
-        return Matrix_Sub1()
-    }
+    override fun method3654(): Matrix = Matrix_Sub1()
 
     override fun la() {
         this.anInt7496 = 0
@@ -513,9 +521,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         method3713()
     }
 
-    override fun createModel(mesh: Mesh, functionMask: Int, featureMask: Int, ambient: Int, contrast: Int): Model {
-        return JavaModel(this, mesh, functionMask, ambient, contrast, featureMask)
-    }
+    override fun createModel(mesh: Mesh, functionMask: Int, featureMask: Int, ambient: Int, contrast: Int): Model = JavaModel(this, mesh, functionMask, ambient, contrast, featureMask)
 
     fun method3677(canvas: Canvas?) {
         if (canvas == null) {
@@ -562,7 +568,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         val i_460_ = i_450_ ushr 24
         if (i_451_ == 0 || i_451_ == 1 && i_460_ == 255) {
             while (i_454_ < i_447_) {
-                while ( /**/i_459_ <= i_455_ || i_458_ <= i_455_) {
+                while (i_459_ <= i_455_ || i_458_ <= i_455_) {
                     i_458_ += i_456_ + i_456_
                     i_459_ += i_456_++ + i_456_
                 }
@@ -585,7 +591,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             i_458_ = i_459_ - i_456_
             i_459_ -= i_457_
             while (i_454_ < i_453_) {
-                while ( /**/i_459_ > i_455_ && i_458_ > i_455_) {
+                while (i_459_ > i_455_ && i_458_ > i_455_) {
                     i_459_ -= i_456_-- + i_456_
                     i_458_ -= i_456_ + i_456_
                 }
@@ -606,7 +612,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             i_450_ = (((i_450_ and 0xff00ff) * i_460_ shr 8 and 0xff00ff) + ((i_450_ and 0xff00) * i_460_ shr 8 and 0xff00) + (i_460_ shl 24))
             val i_469_ = 256 - i_460_
             while (i_454_ < i_447_) {
-                while ( /**/i_459_ <= i_455_ || i_458_ <= i_455_) {
+                while (i_459_ <= i_455_ || i_458_ <= i_455_) {
                     i_458_ += i_456_ + i_456_
                     i_459_ += i_456_++ + i_456_
                 }
@@ -633,7 +639,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             i_458_ = i_459_ - i_456_
             i_459_ -= i_457_
             while (i_454_ < i_453_) {
-                while ( /**/i_459_ > i_455_ && i_458_ > i_455_) {
+                while (i_459_ > i_455_ && i_458_ > i_455_) {
                     i_459_ -= i_456_-- + i_456_
                     i_458_ -= i_456_ + i_456_
                 }
@@ -656,7 +662,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             }
         } else if (i_451_ == 2) {
             while (i_454_ < i_447_) {
-                while ( /**/i_459_ <= i_455_ || i_458_ <= i_455_) {
+                while (i_459_ <= i_455_ || i_458_ <= i_455_) {
                     i_458_ += i_456_ + i_456_
                     i_459_ += i_456_++ + i_456_
                 }
@@ -685,7 +691,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             i_458_ = i_459_ - i_456_
             i_459_ -= i_457_
             while (i_454_ < i_453_) {
-                while ( /**/i_459_ > i_455_ && i_458_ > i_455_) {
+                while (i_459_ > i_455_ && i_458_ > i_455_) {
                     i_459_ -= i_456_-- + i_456_
                     i_458_ -= i_456_ + i_456_
                 }
@@ -708,7 +714,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 i_459_ += i_457_ + i_457_
                 i_458_ += i_457_++ + i_457_
             }
-        } else throw IllegalArgumentException()
+        } else {
+            throw IllegalArgumentException()
+        }
     }
     fun method3720(i: Int, i_377_: Int, i_378_: Int, i_379_: Int, i_380_: Int, i_381_: Int, i_382_: Int, i_383_: Int, i_384_: Int, i_385_: Int) {
         if (i_379_ != 0 && i_380_ != 0) {
@@ -726,7 +734,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                     aSprite_7513 = sprite
                 }
                 (aSprite_7513 as Sprite_Sub3).method996(i - i_379_, i_377_ - i_380_, i_378_, i_379_ shl 1, i_380_ shl 1, i_384_, i_383_, i_385_, 1)
-            } else method3723(i, i_377_, i_378_, i_379_, i_383_, i_385_)
+            } else {
+                method3723(i, i_377_, i_378_, i_379_, i_383_, i_385_)
+            }
         }
     }
 
@@ -746,9 +756,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         this.anInt7479 = (f_576_ * 65535.0f / f_577_).toInt()
     }
 
-    fun method3725(i: Int): Boolean {
-        return this.textureSource!!.method4(i)
-    }
+    fun method3725(i: Int): Boolean = this.textureSource!!.method4(i)
 
     init {
         aIterableHashTable_7467 = IterableHashTable(4)
@@ -781,9 +789,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         }
     }
 
-    override fun XA(): Int {
-        return this.anInt7494
-    }
+    override fun XA(): Int = this.anInt7494
 
     override fun method3711(`is`: IntArray, i: Int, i_422_: Int, i_423_: Int, i_424_: Int): Sprite {
         var bool_425_ = false
@@ -805,19 +811,18 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         aJavaThreadResourceArray7480!![i]!!.method1291(Thread.currentThread())
     }
 
-    fun method3726(i: Int): Int {
-        return this.textureSource!!.getMetrics(i)!!.alphaBlendMode
-    }
+    fun method3726(i: Int): Int = this.textureSource!!.getMetrics(i)!!.alphaBlendMode
 
-    fun method3727(i: Int): Boolean {
-        return aBoolean7489 || this.textureSource!!.getMetrics(i)!!.small
-    }
+    fun method3727(i: Int): Boolean = aBoolean7489 || this.textureSource!!.getMetrics(i)!!.small
 
     companion object {
         /** Class239_Sub25.method1827 */
         fun method1827() {
-            if (Rasterizer.HSV_TO_RGB == null) Rasterizer.HSV_TO_RGB = IntArray(65536)
-            else return
+            if (Rasterizer.HSV_TO_RGB == null) {
+                Rasterizer.HSV_TO_RGB = IntArray(65536)
+            } else {
+                return
+            }
             val d = 0.7 + (0.03 * Math.random() - 0.015)
             var i_5_ = 0
             for (i_6_ in 0..511) {
@@ -877,7 +882,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             method1827()
             MonochromeImageCacheEntry.method2770()
         }
-
 
         fun method1035(i_16_: Int, canvas: Canvas?, i_17_: Int): FrameBuffer? {
             try {

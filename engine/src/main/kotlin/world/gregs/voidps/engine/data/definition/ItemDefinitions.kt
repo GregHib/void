@@ -75,16 +75,16 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "equip_req" -> {
                                     var i = 1
                                     while (nextEntry()) {
-                                        params[Params.id("equip_skill_${i}")] = Skill.of(key().toSentenceCase())!!.ordinal
-                                        params[Params.id("equip_level_${i}")] = int()
+                                        params[Params.id("equip_skill_$i")] = Skill.of(key().toSentenceCase())!!.ordinal
+                                        params[Params.id("equip_level_$i")] = int()
                                         i++
                                     }
                                 }
                                 "skill_req" -> {
                                     var i = 1
                                     while (nextEntry()) {
-                                        params[Params.id("use_skill_${i}")] = Skill.of(key().toSentenceCase())!!.ordinal
-                                        params[Params.id("use_level_${i}")] = int()
+                                        params[Params.id("use_skill_$i")] = Skill.of(key().toSentenceCase())!!.ordinal
+                                        params[Params.id("use_level_$i")] = int()
                                         i++
                                     }
                                 }

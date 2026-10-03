@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -47,7 +46,6 @@ import world.gregs.voidps.tools.search.screen.view.table.filter.FieldFilter
 import world.gregs.voidps.tools.search.screen.view.table.filter.MatchMode
 import world.gregs.voidps.tools.search.screen.view.table.filter.ModeChip
 import world.gregs.voidps.tools.search.screen.view.table.filter.SearchField
-
 
 @Composable
 fun RowScope.ColumnHeader(
@@ -83,10 +81,11 @@ fun RowScope.ColumnHeader(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
-                fieldName, fontSize = 11.sp,
+                fieldName,
+                fontSize = 11.sp,
                 color = if (hasFilter) AccentBlue else TextSecond,
                 fontWeight = if (hasFilter) FontWeight.Medium else FontWeight.Normal,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
             if (hasFilter) Box(Modifier.size(6.dp).background(AccentBlue, RoundedCornerShape(3.dp)))
             Icon(painterResource(Res.drawable.arrow_drop_down), null, tint = if (hasFilter) AccentBlue else TextMuted, modifier = Modifier.size(14.dp))
@@ -143,8 +142,11 @@ fun RowScope.ColumnHeader(
                     SearchField(
                         value = filter?.value ?: "",
                         onValueChange = { v ->
-                            if (v.isEmpty()) onFilterChange(null)
-                            else onFilterChange(FieldFilter(fieldName, v, currentMode))
+                            if (v.isEmpty()) {
+                                onFilterChange(null)
+                            } else {
+                                onFilterChange(FieldFilter(fieldName, v, currentMode))
+                            }
                         },
                         placeholder = "filter…",
                         modifier = Modifier.fillMaxWidth(),
@@ -154,10 +156,13 @@ fun RowScope.ColumnHeader(
                 if (hasFilter) {
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        "clear filter", fontSize = 10.sp, color = AccentBlue,
-                        modifier = Modifier.clickable { onFilterChange(null) })
+                        "clear filter",
+                        fontSize = 10.sp,
+                        color = AccentBlue,
+                        modifier = Modifier.clickable { onFilterChange(null) },
+                    )
                 }
-                val isSorted = state.sortField == fieldName   // pass state into ColumnHeader
+                val isSorted = state.sortField == fieldName // pass state into ColumnHeader
                 HorizontalDivider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(vertical = 6.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                     ModeChip(
@@ -166,7 +171,7 @@ fun RowScope.ColumnHeader(
                         onClick = {
                             state.sortField = fieldName
                             state.sortAscending = true
-                        }
+                        },
                     )
                     ModeChip(
                         label = "↓ desc",
@@ -174,7 +179,7 @@ fun RowScope.ColumnHeader(
                         onClick = {
                             state.sortField = fieldName
                             state.sortAscending = false
-                        }
+                        },
                     )
                     if (isSorted) {
                         ModeChip(label = "clear", selected = false, onClick = { state.sortField = null })

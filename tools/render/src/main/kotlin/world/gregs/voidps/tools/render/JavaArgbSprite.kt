@@ -20,10 +20,6 @@ internal class JavaArgbSprite : Sprite_Sub3 {
             i += i_1_
         }
     }
-    override fun method964(i: Int, i_148_: Int, i_149_: Int, i_150_: Int, i_151_: Int) {
-        throw IllegalStateException()
-    }
-    override fun method996(i: Int, i_444_: Int, i_445_: Int, i_446_: Int, i_447_: Int, i_448_: Int, i_449_: Int, i_450_: Int, i_451_: Int) {
-        throw IllegalStateException()
-    }
+    override fun method964(i: Int, i_148_: Int, i_149_: Int, i_150_: Int, i_151_: Int): Unit = throw IllegalStateException()
+    override fun method996(i: Int, i_444_: Int, i_445_: Int, i_446_: Int, i_447_: Int, i_448_: Int, i_449_: Int, i_450_: Int, i_451_: Int): Unit = throw IllegalStateException()
 }

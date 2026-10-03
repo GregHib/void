@@ -385,7 +385,13 @@ class HiscoresService(
         val skillRows = Skill.all.map { skill ->
             val aXp = a.skillXp(skill)
             val bXp = b.skillXp(skill)
-            val leader = if (aXp == bXp) "tie" else if (aXp > bXp) "a" else "b"
+            val leader = if (aXp == bXp) {
+                "tie"
+            } else if (aXp > bXp) {
+                "a"
+            } else {
+                "b"
+            }
             CompareSkillRow(
                 skill = skill.id(),
                 skillName = skill.name,
@@ -398,7 +404,13 @@ class HiscoresService(
         val bossRows = bosses.map { (bossId, bossName) ->
             val aKc = a.bossKills(bossId)
             val bKc = b.bossKills(bossId)
-            val leader = if (aKc == bKc) "tie" else if (aKc > bKc) "a" else "b"
+            val leader = if (aKc == bKc) {
+                "tie"
+            } else if (aKc > bKc) {
+                "a"
+            } else {
+                "b"
+            }
             CompareBossRow(boss = bossId, bossName = bossName, aKills = aKc, bKills = bKc, leader = leader, differenceKills = abs(aKc - bKc))
         }
         val floorRows = (profileA.floors.keys + profileB.floors.keys).sorted().map { floor ->
@@ -452,10 +464,9 @@ class HiscoresService(
         )
     }
 
-    private fun rankOverall(accounts: List<PlayerSave>): List<Pair<PlayerSave, Int>> =
-        accounts
-            .sortedWith(compareByDescending<PlayerSave> { it.totalXp() }.thenByDescending { it.totalLevel() }.thenBy { it.displayName().lowercase() })
-            .mapIndexed { index, save -> save to index + 1 }
+    private fun rankOverall(accounts: List<PlayerSave>): List<Pair<PlayerSave, Int>> = accounts
+        .sortedWith(compareByDescending<PlayerSave> { it.totalXp() }.thenByDescending { it.totalLevel() }.thenBy { it.displayName().lowercase() })
+        .mapIndexed { index, save -> save to index + 1 }
 
     private fun filterByModeAndName(ranked: List<Pair<PlayerSave, Int>>, mode: String?, query: String?): List<Pair<PlayerSave, Int>> {
         val q = query?.trim()?.lowercase()
@@ -477,6 +488,7 @@ class HiscoresService(
         const val REFRESH_MS = 1_200_000L
         const val MAXIMUM_TRACKED_XP = 200_000_000L
         val MODES = listOf("main", "skiller", "pure")
+
         /** A dungeoneering party can't exceed 5, other bosses record 5 or more as a "mass" team. */
         val TEAM_SIZES = listOf(1, 2, 3, 4, 5)
         private val TEAM_SUFFIXES = listOf(2 to "_duo", 3 to "_trio", 4 to "_quad", 5 to "_mass")

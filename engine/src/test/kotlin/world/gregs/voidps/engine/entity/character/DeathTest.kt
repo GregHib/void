@@ -27,7 +27,6 @@ class DeathTest {
         }
 
         override val apis = listOf(Death)
-
     }
 
     @Nested
@@ -49,7 +48,5 @@ class DeathTest {
         }
 
         override val apis = listOf(Death)
-
     }
-
 }

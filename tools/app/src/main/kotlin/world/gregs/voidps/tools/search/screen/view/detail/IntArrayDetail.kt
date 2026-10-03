@@ -28,7 +28,6 @@ import world.gregs.voidps.tools.search.LinkColor
 import world.gregs.voidps.tools.search.TagBg
 import world.gregs.voidps.tools.search.TagText
 import world.gregs.voidps.tools.search.TextSecond
-import world.gregs.voidps.tools.search.WarnAmber
 import world.gregs.voidps.tools.search.screen.view.resolveDisplayName
 import world.gregs.voidps.tools.search.screen.view.resolveNavigationFilters
 
@@ -53,7 +52,7 @@ fun IntArrayDetail(
                         .background(if (canLink) LinkColor.copy(alpha = 0.1f) else TagBg, RoundedCornerShape(3.dp))
                         .border(0.5.dp, if (canLink) LinkColor.copy(alpha = 0.4f) else BorderColor, RoundedCornerShape(3.dp))
                         .then(if (canLink) Modifier.clickable { onNavigate(linkTargetTab, resolveNavigationFilters(link, v, sourceDef)) } else Modifier)
-                        .padding(horizontal = 5.dp, vertical = 1.dp)
+                        .padding(horizontal = 5.dp, vertical = 1.dp),
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,

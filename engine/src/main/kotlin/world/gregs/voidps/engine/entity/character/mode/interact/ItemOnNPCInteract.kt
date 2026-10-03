@@ -35,8 +35,5 @@ data class ItemOnNPCInteract(
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - ${item.id}:${target.def(player).stringId} target=$target, item=$item, slot=$slot, interface='$id'"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - ${item.id}:${target.def(player).stringId} target=$target, item=$item, slot=$slot, interface='$id'"
 }

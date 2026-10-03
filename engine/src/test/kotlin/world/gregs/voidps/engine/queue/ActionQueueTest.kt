@@ -136,10 +136,12 @@ internal class ActionQueueTest {
     @Test
     fun `Logout executes long actions immediately`() {
         var executed = false
-        queue.add(Action<Player>("long", 5, ActionPriority.Long) {
-            delay(4)
-            executed = true
-        })
+        queue.add(
+            Action<Player>("long", 5, ActionPriority.Long) {
+                delay(4)
+                executed = true
+            },
+        )
 
         queue.logout()
 
@@ -150,13 +152,15 @@ internal class ActionQueueTest {
     @Test
     fun `Logout resumes a Custom suspension whose predicate is ready`() {
         var pastAwait = false
-        queue.add(Action<Player>("long", 1, ActionPriority.Long) {
-            suspendCancellableCoroutine { cont ->
-                suspension = Suspension.Custom(cont) { true }
-            }
-            suspension = null
-            pastAwait = true
-        })
+        queue.add(
+            Action<Player>("long", 1, ActionPriority.Long) {
+                suspendCancellableCoroutine { cont ->
+                    suspension = Suspension.Custom(cont) { true }
+                }
+                suspension = null
+                pastAwait = true
+            },
+        )
 
         queue.logout()
 

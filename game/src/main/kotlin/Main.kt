@@ -33,6 +33,7 @@ import java.nio.file.Paths
 import java.util.*
 import kotlin.concurrent.thread
 import kotlin.io.path.exists
+import kotlin.system.exitProcess
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -64,6 +65,7 @@ object Main {
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
+            exitProcess(1)
         }
 
         // Web server

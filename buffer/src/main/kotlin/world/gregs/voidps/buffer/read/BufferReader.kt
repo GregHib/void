@@ -12,9 +12,7 @@ class BufferReader(
     override val remaining: Int
         get() = buffer.remaining()
 
-    override fun peek(): Int {
-        return buffer.get(buffer.position()).toInt()
-    }
+    override fun peek(): Int = buffer.get(buffer.position()).toInt()
 
     private var bitIndex = 0
 

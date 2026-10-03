@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.event.Wildcards
  */
 interface Operation {
 
-
     /*
         Player operations
      */

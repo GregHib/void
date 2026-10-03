@@ -39,4 +39,3 @@ tasks.register<JavaExec>("botChatConsole") {
     workingDir = rootDir
     standardInput = System.`in`
 }
-

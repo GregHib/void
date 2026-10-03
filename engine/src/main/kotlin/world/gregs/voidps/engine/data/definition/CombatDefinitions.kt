@@ -6,8 +6,8 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatAttack
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
-import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
+import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 
@@ -42,7 +42,7 @@ class CombatDefinitions {
             for ((definition, attack, clone) in attackClones) {
                 val original = definition.attacks[attack]!!
                 val (id, att) = clone.split(".")
-                val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.${attack}'.")
+                val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.$attack'.")
                 (definition.attacks as MutableMap<String, CombatAttack>)[attack] = override(original, clone)
             }
             for ((name, clone) in definitionClones) {
@@ -224,7 +224,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.drains(list: MutableList<CombatDefinition.Drain>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -234,7 +234,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.drain(drainSkills: MutableList<CombatDefinition.Drain>) {
         if (peek != '{') {
-            throw IllegalArgumentException("Expected { skill = \"\", amount = 2 } found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Expected { skill = \"\", amount = 2 } found literal '$peek'. ${exception()}")
         }
         var skill = ""
         var min = 0
@@ -258,7 +258,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.projectiles(list: MutableList<Projectile>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -271,7 +271,7 @@ class CombatDefinitions {
             list.add(Projectile(string()))
             return
         } else if (peek != '{') {
-            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Map expected but found literal '$peek'. ${exception()}")
         }
         var id = ""
         var delay: Int? = null
@@ -298,7 +298,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.hits(list: MutableList<CombatHit>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -308,7 +308,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.hit(list: MutableList<CombatHit>) {
         if (peek != '{') {
-            throw IllegalArgumentException("Expected { offense = \"\", max = 100 } found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Expected { offense = \"\", max = 100 } found literal '$peek'. ${exception()}")
         }
         var offense = ""
         var defence: String? = null
@@ -342,7 +342,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.sounds(list: MutableList<CombatDefinition.CombatSound>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -355,7 +355,7 @@ class CombatDefinitions {
             list.add(CombatDefinition.CombatSound(string()))
             return
         } else if (peek != '{') {
-            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Map expected but found literal '$peek'. ${exception()}")
         }
         var id = ""
         var delay = 0
@@ -382,7 +382,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -395,7 +395,7 @@ class CombatDefinitions {
             list.add(CombatDefinition.CombatGfx(string()))
             return
         } else if (peek != '{') {
-            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Map expected but found literal '$peek'. ${exception()}")
         }
         var id = ""
         var delay: Int? = null
@@ -461,5 +461,4 @@ class CombatDefinitions {
         defendSound = original.defendSound ?: clone.defendSound,
         deathSound = original.deathSound ?: clone.deathSound,
     )
-
 }

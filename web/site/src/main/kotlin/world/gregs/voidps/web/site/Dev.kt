@@ -151,8 +151,13 @@ object Dev {
         head = { script(src = "../js/dev.js") {} },
     ) {
         ui.siteHeader(
-            pages, active = "dashboard", assetPrefix = "../",
-            panelTag = "DEV PANEL", worldLabel = WORLD_LABEL, liveModel = "live", devPanelHref = pages.first().href,
+            pages,
+            active = "dashboard",
+            assetPrefix = "../",
+            panelTag = "DEV PANEL",
+            worldLabel = WORLD_LABEL,
+            liveModel = "live",
+            devPanelHref = pages.first().href,
         )
 
         main {
@@ -516,8 +521,13 @@ object Dev {
         head = { script(src = "../js/dev.js") {} },
     ) {
         ui.siteHeader(
-            pages, active = "players", assetPrefix = "../",
-            panelTag = "DEV PANEL", worldLabel = WORLD_LABEL, liveModel = null, devPanelHref = pages.first().href,
+            pages,
+            active = "players",
+            assetPrefix = "../",
+            panelTag = "DEV PANEL",
+            worldLabel = WORLD_LABEL,
+            liveModel = null,
+            devPanelHref = pages.first().href,
         )
 
         main {
@@ -530,9 +540,13 @@ object Dev {
                 attributes["@input.debounce.250ms"] = "search()"
                 attributes["@keyup.enter"] = "searchEnter()"
                 ui.textInput(
-                    "dev-player-search", "Look up player", model = "query",
+                    "dev-player-search",
+                    "Look up player",
+                    model = "query",
                     hint = "Press enter to jump straight to the top match.",
-                    placeholder = "name…", mono = true, icon = Icons.SEARCH,
+                    placeholder = "name…",
+                    mono = true,
+                    icon = Icons.SEARCH,
                 )
                 ui.panel(
                     title = "Results",
@@ -598,8 +612,12 @@ object Dev {
                 ui.tabs(
                     model = "ptab",
                     items = listOf(
-                        TabItem("skills", "Skills"), TabItem("gear", "Gear"), TabItem("variables", "Variables"),
-                        TabItem("activity", "Activity"), TabItem("chat", "Chat"), TabItem("moderation", "Moderation"),
+                        TabItem("skills", "Skills"),
+                        TabItem("gear", "Gear"),
+                        TabItem("variables", "Variables"),
+                        TabItem("activity", "Activity"),
+                        TabItem("chat", "Chat"),
+                        TabItem("moderation", "Moderation"),
                     ),
                 )
 
@@ -700,10 +718,14 @@ object Dev {
                                 "padding:var(--space-6);border-bottom:1px solid var(--border-subtle);background:var(--surface-inset)"
                             ui.textInput("dev-var-filter", "Filter by name", model = "varFilter", placeholder = "varbit, slayer, config…", mono = true)
                             ui.select(
-                                "dev-var-scope", "Scope", model = "varScope",
+                                "dev-var-scope",
+                                "Scope",
+                                model = "varScope",
                                 options = listOf(
-                                    "All scopes" to "All scopes", "Account" to "Account",
-                                    "Session" to "Session", "World" to "World",
+                                    "All scopes" to "All scopes",
+                                    "Account" to "Account",
+                                    "Session" to "Session",
+                                    "World" to "World",
                                 ),
                             )
                             ui.button("Reset", variant = ButtonVariant.Secondary, size = ButtonSize.Small, onClick = "resetVarFilter()")
@@ -807,14 +829,20 @@ object Dev {
                         div {
                             style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-6)"
                             ui.select(
-                                "dev-mod-reason", "Reason", model = "modReason",
+                                "dev-mod-reason",
+                                "Reason",
+                                model = "modReason",
                                 options = listOf(
-                                    "Offensive language" to "Offensive language", "Botting / macroing" to "Botting / macroing",
-                                    "Scamming" to "Scamming", "Other" to "Other",
+                                    "Offensive language" to "Offensive language",
+                                    "Botting / macroing" to "Botting / macroing",
+                                    "Scamming" to "Scamming",
+                                    "Other" to "Other",
                                 ),
                             )
                             ui.select(
-                                "dev-mod-duration", "Duration", model = "modDuration",
+                                "dev-mod-duration",
+                                "Duration",
+                                model = "modDuration",
                                 options = listOf("24 hours" to "24 hours", "48 hours" to "48 hours", "7 days" to "7 days", "Permanent" to "Permanent"),
                             )
                             ui.textInput("dev-mod-note", "Staff note", model = "modNote", placeholder = "visible to staff only")

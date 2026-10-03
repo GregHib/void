@@ -257,15 +257,30 @@ class ExchangeService(
         const val REFRESH_MS = 300_000L
         private val RUNECRAFTING = Category.name(Category.RUNECRAFTING)
         private val WEAPON_CATEGORIES = setOf(
-            Category.MAGIC_WEAPON, Category.RANGE_WEAPON, Category.THROWABLE, Category.ARROW, Category.BOLT,
-            Category.MELEE_WEAPON_LOW, Category.MELEE_WEAPON_MID, Category.MELEE_WEAPON_HIGH,
+            Category.MAGIC_WEAPON,
+            Category.RANGE_WEAPON,
+            Category.THROWABLE,
+            Category.ARROW,
+            Category.BOLT,
+            Category.MELEE_WEAPON_LOW,
+            Category.MELEE_WEAPON_MID,
+            Category.MELEE_WEAPON_HIGH,
         ).map { Category.name(it) }.toSet()
         private val ARMOUR_CATEGORIES = setOf(
-            Category.MAGIC_ARMOUR, Category.RANGE_ARMOUR, Category.PRAYER_ARMOUR, Category.JEWELLERY,
-            Category.MELEE_ARMOUR_LOW, Category.MELEE_ARMOUR_MID, Category.MELEE_ARMOUR_HIGH,
+            Category.MAGIC_ARMOUR,
+            Category.RANGE_ARMOUR,
+            Category.PRAYER_ARMOUR,
+            Category.JEWELLERY,
+            Category.MELEE_ARMOUR_LOW,
+            Category.MELEE_ARMOUR_MID,
+            Category.MELEE_ARMOUR_HIGH,
         ).map { Category.name(it) }.toSet()
         private val CONSUMABLE_CATEGORIES = setOf(
-            Category.POTION, Category.EDIBLE, Category.UNCOOKED_FOOD, Category.PRAYER_CONSUMABLE, Category.HERBLORE,
+            Category.POTION,
+            Category.EDIBLE,
+            Category.UNCOOKED_FOOD,
+            Category.PRAYER_CONSUMABLE,
+            Category.HERBLORE,
         ).map { Category.name(it) }.toSet()
         private val RESOURCE_CATEGORIES = setOf(
             Category.MINING_SMELTING, Category.SEED, Category.LOG, Category.FLETCHING, Category.CRAFTING,
@@ -281,7 +296,8 @@ enum class ExchangeCategory(val id: String, val displayName: String, val code: S
     Runes("runes", "Runes", "RUN"),
     Consumables("consumables", "Consumables", "PTN"),
     Resources("resources", "Resources", "RES"),
-    Misc("misc", "Misc", "MSC");
+    Misc("misc", "Misc", "MSC"),
+    ;
 
     companion object {
         fun of(id: String): ExchangeCategory = entries.firstOrNull { it.id == id } ?: Misc

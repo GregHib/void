@@ -71,7 +71,6 @@ data class NPC(
     val transformed: Boolean
         get() = transformId != id
 
-
     init {
         if (index != -1) {
             visuals.hits.self = -index

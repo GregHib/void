@@ -22,7 +22,9 @@ class LruHashTable(private var anInt3891: Int) {
                 class348_sub42_0_!!.unlink()
                 class348_sub42_0_.unlink2()
             }
-        } else anInt3891--
+        } else {
+            anInt3891--
+        }
         aIterableHashTable_3888.put(l, secondaryNode)
         aQueue_3889!!.add(secondaryNode!!)
     }

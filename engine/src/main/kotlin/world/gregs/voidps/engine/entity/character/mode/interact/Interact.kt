@@ -138,12 +138,10 @@ open class Interact(
     /**
      * Target hasn't been removed or replaced before interacting
      */
-    private fun exists(target: Entity): Boolean {
-        return when (target) {
-            is NPC -> !target.hide
-            is GameObject -> GameObjects.contains(target)
-            else -> true
-        }
+    private fun exists(target: Entity): Boolean = when (target) {
+        is NPC -> !target.hide
+        is GameObject -> GameObjects.contains(target)
+        else -> true
     }
 
     /**

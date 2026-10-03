@@ -34,7 +34,6 @@ interface TimerApi {
         playerStop.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
-
     /**
      * [timer] started for an npc
      * @return ticks until start or [Timer.CANCEL]
@@ -62,7 +61,6 @@ interface TimerApi {
         Script.checkLoading()
         npcStop.getOrPut(timer) { mutableListOf() }.add(handler)
     }
-
 
     /**
      * World [timer] started

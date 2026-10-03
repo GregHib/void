@@ -32,7 +32,6 @@ class DespawnTest {
         }
 
         override val apis = listOf(Despawn)
-
     }
 
     @Nested
@@ -57,11 +56,12 @@ class DespawnTest {
         }
 
         override val apis = listOf(Despawn)
-
     }
 
     @Nested
-    inner class ObjectDespawnTest : KoinMock(), ScriptTest {
+    inner class ObjectDespawnTest :
+        KoinMock(),
+        ScriptTest {
         override val checks = listOf(
             listOf("obj"),
             listOf("*"),
@@ -87,7 +87,6 @@ class DespawnTest {
         }
 
         override val apis = listOf(Despawn)
-
     }
 
     @Nested
@@ -112,7 +111,6 @@ class DespawnTest {
         }
 
         override val apis = listOf(Despawn)
-
     }
 
     @Nested
@@ -131,6 +129,5 @@ class DespawnTest {
         }
 
         override val apis = listOf(Despawn)
-
     }
 }
