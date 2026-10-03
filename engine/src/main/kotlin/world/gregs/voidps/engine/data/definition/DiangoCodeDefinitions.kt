@@ -36,8 +36,8 @@ class DiangoCodeDefinitions {
                                 }
                             }
                         }
-                        definitions[stringId] = DiangoCodeDefinition(variable, items)
                     }
+                    definitions[stringId] = DiangoCodeDefinition(variable, items)
                 }
             }
             this.definitions = definitions
