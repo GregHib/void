@@ -86,7 +86,12 @@ class DuelFight : Script {
             true
         }
 
-        objectOperate("Forfeit", "duel_arena_forfeit_trapdoor", arrive = false) {
+        // No Movement duels can't reach the trapdoor so clicking it from anywhere brings up the prompt
+        objectApproach("Forfeit", "duel_arena_forfeit_trapdoor") {
+            val duel = duel
+            if (duel?.active != true || !duel.hasRule("no_movement")) {
+                approachRange(-1)
+            }
             forfeitDuel()
         }
     }
