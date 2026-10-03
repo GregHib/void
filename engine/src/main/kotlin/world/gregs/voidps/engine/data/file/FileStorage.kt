@@ -84,7 +84,7 @@ class FileStorage(
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
         if (file.exists()) {
             Config.fileReader(file) {
-                assert(key() == "counter")
+                check(key() == "counter") { "Expected 'counter' in grand exchange offers file." }
                 offers.counter = int()
             }
         }
@@ -198,11 +198,11 @@ class FileStorage(
         Config.fileReader(file) {
             while (nextPair()) {
                 val id = key().toInt()
-                assert(nextElement())
+                check(nextElement()) { "Missing claim amount for $id." }
                 val amount = int()
-                assert(nextElement())
+                check(nextElement()) { "Missing claim price for $id." }
                 val coins = int()
-                assert(!nextElement())
+                check(!nextElement()) { "Unexpected extra claim value for $id." }
                 claims[id] = Claim(amount = amount, price = coins)
             }
         }
@@ -229,7 +229,7 @@ class FileStorage(
     override fun priceHistory(): Map<String, PriceHistory> {
         val directory = directory.resolve(Settings["storage.grand.exchange.history.path"])
         val history = mutableMapOf<String, PriceHistory>()
-        for (file in directory.listFiles() ?: return emptyMap()) {
+        for (file in directory.listFiles { it.isFile } ?: return emptyMap()) {
             Config.fileReader(file) {
                 val priceHistory = PriceHistory()
                 while (nextSection()) {
