@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.file.FileProvider
 import world.gregs.voidps.network.file.prefetchKeys
@@ -25,8 +26,11 @@ class FileServer(
     val logger = InlineLogger()
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        synchronise(read, write)
-        if (acknowledge(read, write)) {
+        val acknowledged = withTimeoutOrNull(GameServer.HANDSHAKE_TIMEOUT_MS) {
+            synchronise(read, write)
+            acknowledge(read, write)
+        }
+        if (acknowledged == true) {
             logger.trace { "Client synchronisation complete: $hostname" }
             readRequests(read, write, hostname)
         }

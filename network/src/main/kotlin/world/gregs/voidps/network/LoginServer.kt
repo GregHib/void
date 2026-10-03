@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.io.Source
 import kotlinx.io.readByteArray
 import kotlinx.io.readUByte
@@ -37,14 +38,19 @@ class LoginServer(
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         write.respond(Response.DATA_CHANGE)
-        val opcode = read.readByte().toInt()
-        if (opcode != Request.LOGIN && opcode != Request.RECONNECT) {
-            logger.trace { "Invalid request id: $opcode" }
-            write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
+        val packet = withTimeoutOrNull(GameServer.HANDSHAKE_TIMEOUT_MS) {
+            val opcode = read.readByte().toInt()
+            if (opcode != Request.LOGIN && opcode != Request.RECONNECT) {
+                logger.trace { "Invalid request id: $opcode" }
+                write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
+                return@withTimeoutOrNull null
+            }
+            val size = read.readShort().toInt()
+            read.readPacket(size)
+        }
+        if (packet == null) {
             return
         }
-        val size = read.readShort().toInt()
-        val packet = read.readPacket(size)
         checkClientVersion(read, packet, write, hostname)
     }
 
@@ -157,7 +163,12 @@ class LoginServer(
     private suspend fun readPackets(client: Client, instructions: SendChannel<Instruction>, read: ByteReadChannel) {
         while (!client.disconnected) {
             val cipher = client.cipherIn.nextInt()
-            val opcode = (read.readUByte() - cipher) and 0xff // Exhausted due to client termination. Something not written correctly I would guess.
+            val next = withTimeoutOrNull(IDLE_TIMEOUT_MS) { read.readUByte() }
+            if (next == null) {
+                logger.debug { "Client timed out: ${client.address}" }
+                return
+            }
+            val opcode = (next - cipher) and 0xff // Exhausted due to client termination. Something not written correctly I would guess.
             val decoder = protocol[opcode]
             if (decoder == null) {
                 logger.error { "No decoder for message opcode $opcode" }
@@ -175,6 +186,9 @@ class LoginServer(
 
     companion object {
         private val logger = InlineLogger()
+
+        // Clients ping regularly when idle
+        private const val IDLE_TIMEOUT_MS = 60_000L
 
         fun load(properties: Properties, protocol: Array<Decoder?>, loader: AccountLoader): LoginServer {
             val gameModulus = BigInteger(properties.getProperty("security.game.modulus"), 16)
