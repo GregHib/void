@@ -95,7 +95,7 @@ class LoginServer(
         }
         val client = createClient(write, isaacKeys, hostname)
         client.onDisconnected {
-            online.remove(username)
+            online.remove(username.lowercase())
             read.cancel()
         }
         val passwordHash = passwordManager.encrypt(username, password)
@@ -112,12 +112,13 @@ class LoginServer(
             write.finish(Response.INVALID_CREDENTIALS)
             return false
         }
-        if (!online.add(username)) {
+        val name = username.lowercase()
+        if (!online.add(name)) {
             write.finish(Response.ACCOUNT_ONLINE)
             return false
         }
         if (online.size >= loginLimit) {
-            online.remove(username)
+            online.remove(name)
             write.finish(Response.WORLD_FULL)
             return false
         }
