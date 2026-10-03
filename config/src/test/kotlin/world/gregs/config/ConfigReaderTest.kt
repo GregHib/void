@@ -175,6 +175,27 @@ internal class ConfigReaderTest {
     }
 
     @Test
+    fun `Over-long strings report the line instead of overflowing`() {
+        val long = "a".repeat(11)
+        Config.stringReader("\"$long\"", maxStringLength = 10) {
+            val error = assertThrows<IllegalArgumentException> { string() }
+            assertTrue(error.message!!.contains("line=1"))
+        }
+        Config.stringReader("'$long'", maxStringLength = 10) {
+            assertThrows<IllegalArgumentException> { string() }
+        }
+        Config.stringReader("[$long]", maxStringLength = 10) {
+            assertThrows<IllegalArgumentException> { section() }
+        }
+        Config.stringReader("$long = 1", maxStringLength = 10) {
+            assertThrows<IllegalArgumentException> { key() }
+        }
+        Config.stringReader("\"${"a".repeat(10)}\"", maxStringLength = 10) {
+            assertEquals("a".repeat(10), string())
+        }
+    }
+
+    @Test
     fun `Read double`() {
         Config.stringReader("12.34") {
             assertEquals(12.34, double())
