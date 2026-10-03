@@ -32,7 +32,7 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
             val price: Int? = get("grand_exchange_price")
             if (slot == null || itemId == null || amount == null || price == null) {
                 logger.warn { "Incomplete GE offer $name slot=$slot item=$itemId amount=$amount price=$price" }
-                message("Your offer is incomplete, please start it again.")
+                message("Your offer is incomplete, please try again.")
                 return@interfaceOption
             }
             if (amount < 1 || price < 0) {

@@ -197,7 +197,6 @@ class LoginServer(
     companion object {
         private val logger = InlineLogger()
 
-        // Clients ping regularly when idle
         private const val IDLE_TIMEOUT_MS = 60_000L
 
         fun load(properties: Properties, protocol: Array<Decoder?>, loader: AccountLoader): LoginServer {
