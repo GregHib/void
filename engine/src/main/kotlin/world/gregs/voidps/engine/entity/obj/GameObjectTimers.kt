@@ -12,7 +12,6 @@ class GameObjectTimers : Runnable {
     private val timers: MutableList<Timer> = mutableListOf()
 
     override fun run() {
-        // Callbacks may add or cancel timers so they're invoked after the list has finished being modified
         val expired = mutableListOf<Timer>()
         timers.removeIf { timer ->
             val done = --timer.ticks <= 0

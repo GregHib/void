@@ -114,7 +114,6 @@ class FileStorage(
     override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
-        // Stage everything first so a failure part way through leaves the previous offers untouched
         val buyStaged = stage(buy) { saveOffers(it, offers.buyByItem) }
         val sellStaged = stage(sell) { saveOffers(it, offers.sellByItem) }
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])

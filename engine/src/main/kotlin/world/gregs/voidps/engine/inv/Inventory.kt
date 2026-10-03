@@ -85,7 +85,6 @@ class Inventory(
 
     fun transaction(block: Transaction.() -> Unit): Boolean {
         if (transaction.state.hasSaved()) {
-            // Nested transactions join the active one as starting would discard its saved state
             block.invoke(transaction)
             return !transaction.failed
         }

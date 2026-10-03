@@ -87,7 +87,6 @@ class ActionQueue<C : Character>(
     }
 
     fun clear(name: String): Boolean {
-        // Non short-circuiting so same-named actions in every queue are cleared
         val normal = queue.clear(name)
         val weak = weakQueue.clear(name)
         val engine = engineQueue.clear(name)
