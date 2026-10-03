@@ -85,7 +85,13 @@ class Inventory(
 
     fun transaction(block: Transaction.() -> Unit): Boolean {
         transaction.start()
-        block.invoke(transaction)
+        try {
+            block.invoke(transaction)
+        } catch (e: Exception) {
+            // Revert so linked inventories aren't left mid-transaction
+            transaction.revert()
+            throw e
+        }
         return transaction.commit()
     }
 

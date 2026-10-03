@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryApi
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -124,5 +125,22 @@ class TransactionTest : TransactionOperationTest() {
         transaction3.error = TransactionError.Invalid
         assertTrue(transaction.failed)
         assertFalse(transaction.commit())
+    }
+
+    @Test
+    fun `Exception in transaction reverts linked inventories`() {
+        val inventory = Inventory.debug(1)
+        val inventory2 = Inventory.debug(1)
+        assertFailsWith<IllegalStateException> {
+            inventory.transaction {
+                set(0, Item("item", 1))
+                link(inventory2).set(0, Item("item", 1))
+                throw IllegalStateException()
+            }
+        }
+        assertTrue(inventory[0].isEmpty())
+        assertTrue(inventory2[0].isEmpty())
+        assertFalse(inventory.transaction.state.hasSaved())
+        assertFalse(inventory2.transaction.state.hasSaved())
     }
 }
