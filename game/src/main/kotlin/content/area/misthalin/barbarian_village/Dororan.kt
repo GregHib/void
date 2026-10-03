@@ -82,7 +82,7 @@ class Dororan : Script {
                                     npc<Happy>("'With beauty blessed.'")
                                     choice {
                                         option("Engrave the bracelet.") {
-                                            if (levels.get(Skill.Crafting) < 72) {
+                                            if (levels.get(Skill.Crafting) < 42) {
                                                 item("ruby_bracelet", "you need a Crafting level of at least 42 to engrave the ruby bracelet.")
                                                 npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                                 return@option
@@ -112,7 +112,7 @@ class Dororan : Script {
                             npc<Happy>("There's not much room...how about just 'Gudrun'?")
                             choice {
                                 option("Engrave the necklace.") {
-                                    if (levels.get(Skill.Crafting) < 42) {
+                                    if (levels.get(Skill.Crafting) < 72) {
                                         item("dragonstone_necklace", "you need a Crafting level of at least 72 to engrave the dragonstone necklace.")
                                         npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                         return@option
