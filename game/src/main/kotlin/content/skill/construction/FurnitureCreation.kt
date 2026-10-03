@@ -13,15 +13,18 @@ import content.skill.construction.House.Companion.houseFurniture
 import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.houseStairs
 import content.skill.construction.House.Companion.inOwnHouse
+import content.skill.construction.House.Companion.ladders
 import content.skill.construction.House.Companion.loadHouse
 import content.skill.construction.House.Companion.placeFurniture
 import content.skill.construction.House.Companion.removeHouseFurniture
 import content.skill.construction.House.Companion.removeHouseStairs
+import content.skill.construction.House.Companion.removeLadder
 import content.skill.construction.House.Companion.roomAbove
 import content.skill.construction.House.Companion.roomBelow
 import content.skill.construction.House.Companion.roomLevel
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.stairsDown
+import content.skill.construction.House.Companion.trapdoors
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -143,12 +146,18 @@ class FurnitureCreation : Script {
             }
             choice("Really remove it?") {
                 option("Yes") {
-                    if (!GameObjects.contains(target) || houseFurniture(position, hotspot) == null) {
+                    val furniture = houseFurniture(position, hotspot)
+                    if (!GameObjects.contains(target) || furniture == null) {
                         return@option
                     }
-                    if (houseFurniture(position, hotspot) == houseStairs(position)) {
+                    if (furniture == houseStairs(position)) {
                         // Staircases are removed from both floors
                         removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
+                        removeHouseFurniture(position, hotspot)
+                        loadHouse(base, buildMode = true)
+                    } else if (furniture in trapdoors || furniture in ladders) {
+                        // Trapdoors and ladders are removed from both floors
+                        removeLadder(position, furniture)
                         removeHouseFurniture(position, hotspot)
                         loadHouse(base, buildMode = true)
                     } else {
@@ -287,8 +296,8 @@ class FurnitureCreation : Script {
             connectStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
             // Stairs leading down change the rooms template
             loadHouse(base, buildMode = true)
-        } else if (furniture == "dungeon_entrance" && connectStairs(roomBelow(position))) {
-            // The entrance leads down to stairs in the dungeon room below
+        } else if ((furniture == "dungeon_entrance" || furniture in trapdoors) && connectStairs(roomBelow(position))) {
+            // The entrance leads down to stairs and trapdoors to the ladder in the dungeon room below
             loadHouse(base, buildMode = true)
         } else {
             placeFurniture(target.tile.zone, hotspot, furniture)

@@ -7,16 +7,12 @@ import content.quest.joinInstance
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
 import content.skill.construction.House.Companion.hasHouse
-import content.skill.construction.House.Companion.houseFurnitureIds
-import content.skill.construction.House.Companion.houseFurnitureRooms
 import content.skill.construction.House.Companion.houseLoading
-import content.skill.construction.House.Companion.houseRoomIds
-import content.skill.construction.House.Companion.houseRoomPositions
+import content.skill.construction.House.Companion.houseSpawn
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
 import content.skill.construction.House.Companion.loadHouse
 import content.skill.construction.House.Companion.newHouse
-import content.skill.construction.House.Companion.roomZone
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -28,7 +24,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
@@ -156,16 +151,6 @@ class HousePortal : Script {
     private fun Player.arrival(owner: Player, instance: Region): Tile {
         setInstanceLogout(Tables.tile("house_locations.${owner["house_location", ""]}.exit"))
         set("house_owner", owner.accountName)
-        val base = instance.tile.zone
-        val portal = owner.houseFurnitureIds.indexOf("exit_portal")
-        if (portal != -1) {
-            val zone = roomZone(base, owner.houseFurnitureRooms[portal])
-            val obj = zone.toCuboid().firstNotNullOfOrNull { GameObjects.findOrNull(it, "exit_portal") }
-            if (obj != null) {
-                return obj.tile.add(0, -1)
-            }
-        }
-        val garden = owner.houseRoomIds.indexOf("garden").coerceAtLeast(0)
-        return roomZone(base, owner.houseRoomPositions[garden]).tile.add(3, 3)
+        return owner.houseSpawn(instance.tile.zone)
     }
 }

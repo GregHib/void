@@ -46,3 +46,8 @@ persist = true
 [house_portal_3]
 format = "int"
 persist = true
+
+# Coins the owner keeps in their treasure room chests
+[house_treasure]
+format = "int"
+persist = true
