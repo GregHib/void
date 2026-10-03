@@ -9,6 +9,7 @@ dependencies {
     implementation(project(":types"))
     implementation(project(":tools:avatar"))
     implementation(libs.ktor.websockets)
+    implementation(libs.ktor.network)
     implementation(libs.ktor.cio)
     implementation(libs.ktor.server.html)
     implementation(libs.bundles.ktor.api)
