@@ -1,7 +1,6 @@
 package content.entity.player.equip
 
 import content.entity.combat.Target
-import content.entity.combat.dead
 import content.entity.combat.hit.hit
 import content.entity.combat.target
 import content.entity.player.dialogue.type.statement

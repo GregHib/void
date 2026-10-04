@@ -33,11 +33,11 @@ class Energy : Script {
         }
 
         moved {
-            if (visuals.runStep == -1 || get("last_energy_drain", -1) == GameLoop.tick || get("magic_carpet", false) || !Settings["players.energy.drain", true]) {
+            if (visuals.runStep == -1 || get("last_energy_drain", -1) == GameLoop.tick || get("magic_carpet", false) || !energyDrain) {
                 return@moved
             }
             set("last_energy_drain", GameLoop.tick)
-            if (visuals.runStep != -1 && !get("god_mode", false) && !Settings["world.players.infiniteRunEnergy", false]) {
+            if (visuals.runStep != -1 && !get("god_mode", false) && !infiniteRunEnergy) {
                 runEnergy -= getDrainAmount(this)
                 walkWhenOutOfEnergy(this)
             }
@@ -80,5 +80,10 @@ class Energy : Script {
             player["movement"] = "walk"
             player.running = false
         }
+    }
+
+    private companion object {
+        val energyDrain by Settings.bool("players.energy.drain", true)
+        val infiniteRunEnergy by Settings.bool("world.players.infiniteRunEnergy", false)
     }
 }

@@ -19,7 +19,7 @@ class Face(
     }
 
     override fun tick() {
-        if (target["dead", false]) {
+        if (target.dead) {
             character.mode = EmptyMode
             return
         }

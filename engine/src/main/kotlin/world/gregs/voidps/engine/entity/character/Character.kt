@@ -63,6 +63,8 @@ interface Character :
      */
     var delay: Int
 
+    var dead: Boolean
+
     val delayed: Boolean
         get() = delay != 0
 

@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge.blood_pact
 
-import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry

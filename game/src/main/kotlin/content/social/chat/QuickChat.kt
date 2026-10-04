@@ -62,9 +62,10 @@ class QuickChat(
                             }
                         }
                     } else {
-                        val nearby = Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }
-                        nearby.forEach { other ->
-                            other.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
+                        Players.forEachNear(player.tile, VIEW_RADIUS) { other ->
+                            if (!other.ignores(player)) {
+                                other.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
+                            }
                         }
                         BotChat.heard(player, text, file)
                     }

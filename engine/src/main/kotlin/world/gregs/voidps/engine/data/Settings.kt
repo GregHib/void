@@ -12,18 +12,23 @@ open class Settings {
 
     protected val properties = Properties()
 
+    private val cached = mutableListOf<CachedSetting<*>>()
+
     fun load(stream: InputStream): Properties {
         properties.load(stream)
+        refreshCached()
         return properties
     }
 
     fun load(map: Map<String, String>): Properties {
         properties.putAll(map)
+        refreshCached()
         return properties
     }
 
     fun load(properties: Properties): Properties {
         this.properties.putAll(properties)
+        refreshCached()
         return this.properties
     }
 
@@ -41,16 +46,37 @@ open class Settings {
 
     operator fun get(name: String, default: Boolean): Boolean = getOrNull(name)?.toBooleanStrictOrNull() ?: default
 
+    fun bool(name: String, default: Boolean): CachedSetting<Boolean> = cache(name, default) { it.toBooleanStrictOrNull() }
+
+    fun int(name: String, default: Int): CachedSetting<Int> = cache(name, default) { it.toIntOrNull() }
+
+    fun double(name: String, default: Double): CachedSetting<Double> = cache(name, default) { it.toDoubleOrNull() }
+
+    private fun <T> cache(name: String, default: T, parse: (String) -> T?): CachedSetting<T> {
+        val setting = CachedSetting(name, default, parse)
+        setting.refresh(this)
+        cached.add(setting)
+        return setting
+    }
+
+    private fun refreshCached() {
+        for (setting in cached) {
+            setting.refresh(this)
+        }
+    }
+
     fun rebase(base: String) {
         for ((key, value) in properties) {
             if (value is String) {
                 properties[key] = value.replace("./", base)
             }
         }
+        refreshCached()
     }
 
     fun clear() {
         properties.clear()
+        refreshCached()
     }
 
     companion object : Settings() {
