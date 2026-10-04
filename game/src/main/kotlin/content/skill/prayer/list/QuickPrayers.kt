@@ -9,6 +9,7 @@ import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
+import content.skill.prayer.prayersBlocked
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -50,6 +51,11 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
         }
 
         interfaceOption("Turn Quick Prayers On", "prayer_orb:orb") {
+            if (prayersBlocked()) {
+                message("Prayers don't seem to work here.")
+                set(USING_QUICK_PRAYERS, false)
+                return@interfaceOption
+            }
             if (levels.get(Skill.Prayer) == 0) {
                 message("You've run out of prayer points.")
                 set(USING_QUICK_PRAYERS, false)
@@ -93,6 +99,10 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
      */
 
     fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
+        if (!quick && prayersBlocked()) {
+            message("Prayers don't seem to work here.")
+            return
+        }
         val curses = isCurses()
         val definition = if (curses) definitions.getCurse(index) else definitions.getPrayer(index)
         val name = definition.stringId

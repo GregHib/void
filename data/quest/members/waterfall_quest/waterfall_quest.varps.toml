@@ -3,4 +3,4 @@ id = 65
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, started = 1, found_hudon = 2, read_book = 3, found_pebble = 4, found_amulet = 5, found_urn = 6, entered_dungeon = 7, restored_amulet = 8, completed = 10 }

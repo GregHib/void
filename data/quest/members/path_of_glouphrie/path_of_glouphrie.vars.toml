@@ -1,0 +1,4 @@
+[golrie_device_explained]
+persist = true
+format = "boolean"
+default = false

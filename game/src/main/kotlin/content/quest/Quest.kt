@@ -36,6 +36,7 @@ val quests = setOf(
     "tears_of_guthix",
     "the_golem",
     "zogre_flesh_eaters",
+    "waterfall_quest",
     // mini-quests
     "enter_the_abyss",
 )
