@@ -1,0 +1,154 @@
+# https://runescape.wiki/w/Pest_Control
+[pest_control_landers]
+combat = "int"
+boat = "tile"
+exit = "tile"
+points = "int"
+tier = "int"
+portal_hitpoints = "int"
+
+[.novice]
+combat = 40
+boat = { x = 2661, y = 2639 }
+exit = { x = 2657, y = 2639 }
+points = 3
+tier = 0
+portal_hitpoints = 2000
+
+[.intermediate]
+combat = 70
+boat = { x = 2640, y = 2644 }
+exit = { x = 2644, y = 2644 }
+points = 4
+tier = 1
+portal_hitpoints = 2500
+
+[.veteran]
+combat = 100
+boat = { x = 2634, y = 2653 }
+exit = { x = 2638, y = 2653 }
+points = 5
+tier = 2
+portal_hitpoints = 2500
+
+# Spawn positions on the original island (region 10536), offset into each game's instance
+[pest_control_portals]
+shielded = "npc"
+portal = "npc"
+tile = "tile"
+name = "string"
+
+[.purple]
+shielded = "portal_shield_purple"
+portal = "portal_purple"
+tile = { x = 2628, y = 2591 }
+name = "purple, western"
+
+[.blue]
+shielded = "portal_shield_blue"
+portal = "portal_blue"
+tile = { x = 2680, y = 2588 }
+name = "blue, eastern"
+
+[.yellow]
+shielded = "portal_shield_yellow"
+portal = "portal_yellow"
+tile = { x = 2669, y = 2570 }
+name = "yellow, south-eastern"
+
+[.red]
+shielded = "portal_shield_red"
+portal = "portal_red"
+tile = { x = 2645, y = 2569 }
+name = "red, south-western"
+
+# Monster tiers from weakest to strongest; novice uses tiers 1-3, intermediate 2-4 and veteran 3-5
+[pest_control_monsters]
+tiers = "list<npc>"
+
+[.splatter]
+tiers = ["splatter_level_22", "splatter_level_33", "splatter_level_44", "splatter_level_54", "splatter_level_65"]
+
+[.shifter]
+tiers = ["shifter_level_38", "shifter_level_57", "shifter_level_76", "shifter_level_90", "shifter_level_104"]
+
+[.ravager]
+tiers = ["ravager_level_36", "ravager_level_53", "ravager_level_71", "ravager_level_89", "ravager_level_106"]
+
+[.spinner]
+tiers = ["spinner_level_36", "spinner_level_55", "spinner_level_74", "spinner_level_88", "spinner_level_92"]
+
+[.torcher]
+tiers = ["torcher_level_33", "torcher_level_49", "torcher_level_66", "torcher_level_79", "torcher_level_91"]
+
+[.defiler]
+tiers = ["defiler_level_33", "defiler_level_50", "defiler_level_66", "defiler_level_80", "defiler_level_97"]
+
+[.brawler]
+tiers = ["brawler_level_51", "brawler_level_76", "brawler_level_101", "brawler_level_129", "brawler_level_158"]
+
+# Void Knight Commendation point rewards
+[pest_control_equipment]
+item = "item"
+points = "int"
+
+[.top]
+item = "void_knight_top"
+points = 250
+
+[.robe]
+item = "void_knight_robe"
+points = 250
+
+[.gloves]
+item = "void_knight_gloves"
+points = 150
+
+[.mace]
+item = "void_knight_mace"
+points = 250
+
+[.mage_helm]
+item = "void_mage_helm"
+points = 200
+
+[.ranger_helm]
+item = "void_ranger_helm"
+points = 200
+
+[.melee_helm]
+item = "void_melee_helm"
+points = 200
+
+[.seal]
+item = "void_seal_8_8"
+points = 10
+
+# Pack contents from 2009scape's Pest Control implementation
+[pest_control_packs]
+points = "int"
+skill = "string"
+items = "list<item>"
+item_amount = "list<int>"
+total = "list<int>"
+
+[.herb]
+points = 30
+skill = "Herblore"
+items = ["grimy_harralander_noted", "grimy_ranarr_noted", "grimy_toadflax_noted", "grimy_irit_noted", "grimy_avantoe_noted", "grimy_kwuarm_noted", "grimy_guam_noted", "grimy_marrentill_noted"]
+item_amount = [1, 5]
+total = [13, 18]
+
+[.mineral]
+points = 15
+skill = "Mining"
+items = ["coal_noted", "iron_ore_noted"]
+item_amount = [16, 25]
+total = [38, 43]
+
+[.seed]
+points = 15
+skill = "Farming"
+items = ["sweetcorn_seed", "tomato_seed", "limpwurt_seed"]
+item_amount = [1, 5]
+total = [13, 18]

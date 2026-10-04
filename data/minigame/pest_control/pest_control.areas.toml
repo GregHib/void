@@ -3,3 +3,15 @@ x = [2624, 2687]
 y = [2560, 2623]
 level = 0
 tags = ["multi_combat", "no_cannon"]
+
+[novice_lander]
+x = [2660, 2663]
+y = [2638, 2643]
+
+[intermediate_lander]
+x = [2638, 2641]
+y = [2642, 2647]
+
+[veteran_lander]
+x = [2632, 2635]
+y = [2649, 2654]

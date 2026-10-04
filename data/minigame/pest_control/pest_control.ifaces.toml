@@ -1,9 +1,44 @@
 [pest_control_rewards]
 id = 267
 
+# Component ids from 2009scape's Pest Control implementation; unverified against the 634 cache.
 [pest_control_waiting]
 id = 407
+type = "game_screen_overlay"
+
+[.lander]
+id = 3
+
+[.departure]
+id = 13
+
+[.players_ready]
+id = 14
+
+[.points]
+id = 16
 
 [pest_control_playing]
 id = 408
+type = "game_screen_overlay"
 
+[.time]
+id = 0
+
+[.knight_health]
+id = 1
+
+[.damage]
+id = 11
+
+[.purple_health]
+id = 13
+
+[.blue_health]
+id = 14
+
+[.yellow_health]
+id = 15
+
+[.red_health]
+id = 16

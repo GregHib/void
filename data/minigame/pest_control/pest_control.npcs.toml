@@ -41,6 +41,7 @@ examine = "A squire of balance."
 [squire_rangeshop_pest_control]
 id = 3796
 examine = "A squire of balance."
+shop = "void_knight_archery_store"
 
 [squire_blacksmith_pest_control]
 id = 3797
@@ -49,10 +50,12 @@ examine = "A squire of balance."
 [squire_runeshop_pest_control]
 id = 3798
 examine = "A squire of balance."
+shop = "void_knight_magic_store"
 
 [squire_storemaster_pest_control]
 id = 3799
 examine = "A squire of balance."
+shop = "void_knight_general_store"
 
 [squire_ship_island_pest_control]
 id = 3800
@@ -347,6 +350,7 @@ clone = "defiler_level_97"
 
 [portal_shield_purple]
 id = 6142
+hitpoints = 2500 # Guessed
 def = 120
 mage = 0
 immune_poison = true
@@ -366,6 +370,7 @@ clone = "portal_shield_purple"
 
 [portal_purple]
 id = 6150
+hitpoints = 2500 # Guessed
 def = 120
 mage = 0
 immune_poison = true
@@ -768,6 +773,7 @@ examine = "Burn baby, burn!"
 
 [void_knight]
 id = 3782
+hitpoints = 2000 # Guessed
 def = 50
 mage = 50
 examine = "A powerful knight of balance."

@@ -9,3 +9,25 @@ examine = "Handy for boarding the ship."
 [pest_control_gangplank_enter]
 id = 14306
 examine = "Handy for boarding the ship."
+
+# Lander object ids from 2009scape's Pest Control implementation; unverified against the 634 cache.
+[novice_lander_gangplank]
+id = 14315
+examine = "Handy for boarding the lander."
+
+[intermediate_lander_gangplank]
+id = 25631
+examine = "Handy for boarding the lander."
+
+[veteran_lander_gangplank]
+id = 25632
+examine = "Handy for boarding the lander."
+
+[novice_lander_ladder]
+id = 14314
+
+[intermediate_lander_ladder]
+id = 25629
+
+[veteran_lander_ladder]
+id = 25630
