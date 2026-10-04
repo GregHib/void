@@ -71,6 +71,23 @@ class Stiles : Script {
         objectOperate("Squeeze-through", "mcgrubor_wood_railing") { (target) ->
             climbStile(target, Direction.WEST, "railing_squeeze")
         }
+        objectApproach("Squeeze-through", "tree_gnome_village_loose_railing") { (target) ->
+            approachRange(1)
+            squeezeVillageRailing(target)
+        }
+        objectOperate("Squeeze-through", "tree_gnome_village_loose_railing") { (target) -> squeezeVillageRailing(target) }
+    }
+
+    private suspend fun Player.squeezeVillageRailing(target: GameObject) {
+        val entering = tile.y < target.tile.y
+        val start = if (entering) target.tile.addY(-1) else target.tile
+        val end = if (entering) target.tile else target.tile.addY(-1)
+        val direction = if (entering) Direction.NORTH else Direction.SOUTH
+        walkOverDelay(start)
+        face(direction)
+        delay()
+        anim("railing_squeeze")
+        exactMoveDelay(end, 30, direction = direction)
     }
 
     suspend fun Player.climbStile(target: GameObject, rotation: Direction, anim: String = "rocks_pile_climb") {

@@ -68,6 +68,10 @@ tile = { x = 2613, y = 3385 }
 [.fishing_guild_bank]
 tile = { x = 2585, y = 3421 }
 
+[.baxtorian_falls]
+tile = { x = 2522, y = 3497 }
+aka = ["baxtorian", "waterfall"]
+
 [.ardougne_east]
 tile = { x = 2662, y = 3304 }
 aka = ["ardy", "ardougne", "east_ardy", "east_ardougne"]
@@ -103,6 +107,18 @@ tile = { x = 3474, y = 3475 }
 [.tree_gnome_stronghold]
 tile = { x = 2466, y = 3450 }
 aka = ["gnome_stronghold", "stronghold"]
+
+[.tree_gnome_village]
+tile = { x = 2542, y = 3168 }
+aka = ["gnome_village", "tgv"]
+
+[.tree_gnome_village_maze_entrance]
+tile = { x = 2504, y = 3190 }
+aka = ["tgv_maze_entrance"]
+
+[.tree_gnome_village_maze_exit]
+tile = { x = 2515, y = 3159 }
+aka = ["tgv_maze_exit"]
 
 [.god_wars_dungeon]
 aka = ["gwd", "god_wars"]

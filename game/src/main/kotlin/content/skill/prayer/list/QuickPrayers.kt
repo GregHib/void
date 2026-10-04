@@ -9,6 +9,7 @@ import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
+import content.skill.prayer.prayersBlocked
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -50,9 +51,8 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
         }
 
         interfaceOption("Turn Quick Prayers On", "prayer_orb:orb") {
-            val blocked: String? = get("no_prayer_message")
-            if (blocked != null) {
-                message(blocked)
+            if (prayersBlocked()) {
+                message("Prayers don't seem to work here.")
                 set(USING_QUICK_PRAYERS, false)
                 return@interfaceOption
             }
@@ -99,6 +99,10 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
      */
 
     fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
+        if (!quick && prayersBlocked()) {
+            message("Prayers don't seem to work here.")
+            return
+        }
         val curses = isCurses()
         val definition = if (curses) definitions.getCurse(index) else definitions.getPrayer(index)
         val name = definition.stringId
@@ -106,11 +110,6 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
         if (activated) {
             removeVarbit(listKey, name)
         } else {
-            val blocked: String? = get("no_prayer_message")
-            if (!quick && blocked != null) {
-                message(blocked)
-                return
-            }
             if (!quick && !has(Skill.Prayer, 1)) {
                 message("You need to recharge your Prayer at an altar.")
                 return

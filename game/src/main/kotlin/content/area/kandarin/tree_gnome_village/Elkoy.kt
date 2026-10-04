@@ -1,65 +1,56 @@
 package content.area.kandarin.tree_gnome_village
 
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class Elkoy : Script {
 
     init {
-        // https://runescape.wiki/w/Transcript:Elkoy (After Tree Gnome Village)
-        npcOperate("Talk-to", "elkoy_tree_gnome_village_4") { (target) ->
-            val outside = target.outsideMaze()
+        npcOperate("Talk-to", "elkoy_tree_gnome_village*") { (target) ->
+            val outside = target.id == "elkoy_tree_gnome_village" || target.id == "elkoy_tree_gnome_village_3"
             player<Happy>("Hello Elkoy.")
-            if (outside) {
-                npc<Happy>("Hi there, I hope life is treating you well. Would you like me to show you the way to the village?")
+            if (get("tree_gnome_village", "unstarted") != "completed") {
+                player<Idle>("Hello there.")
+                npc<Idle>(if (outside) "Hello, welcome to our maze. I'm Elkoy the tree gnome." else "Hello, welcome to our village. I'm Elkoy the tree gnome.")
+                player<Idle>(if (outside) "I haven't heard of your sort." else "I haven't heard of your sort before.")
+                npc<Idle>("There's not many of us left. Once you could find tree gnomes anywhere in the world, now we hide in small groups to avoid capture.")
+                player<Idle>("Capture by whom?")
+                npc<Idle>("Tree gnomes have been hunted for so called 'fun' since as long as I can remember.")
+                npc<Idle>("Our main threat nowadays are General Khazard's troops. They know no mercy, but are also very dense. They'll never find their way through our maze.")
+                npc<Idle>("Have fun.")
             } else {
-                npc<Happy>("Hi there, I hope life is treating you well. Would you like me to show you the way out of the village?")
-            }
-            choice {
-                option<Neutral>("Yes please.") {
-                    npc<Neutral>("Ok then, follow me.")
-                    escort(outside)
-                    if (outside) {
-                        npc<Neutral>("Here we are. Feel free to have a look around.")
-                    } else {
-                        npc<Neutral>("Here we are. Have a safe journey.")
+                player<Idle>("Hello Elkoy.")
+                npc<Idle>(if (outside) "Hi there, I hope life is treating you well. Would you like me to show you the way to the village?" else "Hi there, I hope life is treating you well. Would you like me to show you the way out of the village?")
+                choice {
+                    option("Yes please.") {
+                        player<Idle>("Yes please.")
+                        guide(outside)
                     }
-                }
-                option<Neutral>("No thanks Elkoy.") {
-                    npc<Neutral>("Ok then, take care.")
+                    option(if (outside) "No thanks Elkoy." else "Not now, thanks.") {
+                        player<Idle>(if (outside) "No thanks Elkoy." else "Not now, thanks.")
+                        if (outside) npc<Idle>("Ok then, take care.")
+                    }
                 }
             }
         }
 
-        // https://runescape.wiki/w/Transcript:Elkoy (Follow option)
-        npcOperate("Follow", "elkoy_tree_gnome_village_4") { (target) ->
-            escort(target.outsideMaze())
+        npcOperate("Follow", "elkoy_tree_gnome_village*") { (target) ->
+            if (questStage("tree_gnome_village") == 0) return@npcOperate
+            escort(target.id == "elkoy_tree_gnome_village" || target.id == "elkoy_tree_gnome_village_3")
         }
     }
 
-    private fun NPC.outsideMaze() = tile.y > 3177
-
-    // Tiles and timing from 2009scape (TreeGnomeVillage.kt, ElkoyDialogue.travelCutscene)
-    private suspend fun Player.escort(toVillage: Boolean) {
-        statement("Elkoy escorts you through the maze...", clickToContinue = false)
-        open("fade_out")
-        delay(2)
-        if (toVillage) {
-            tele(2515, 3159)
-        } else {
-            tele(2504, 3192)
-        }
-        open("fade_in")
-        closeDialogue()
+    private suspend fun Player.guide(outside: Boolean) {
+        message("Elkoy guides you through the maze.")
+        if (outside) tele(2515, 3160) else tele(2504, 3190)
+        npc<Idle>(if (outside) "Here we are. Feel free to have a look around." else "Here we are. Have a safe journey.")
     }
 }

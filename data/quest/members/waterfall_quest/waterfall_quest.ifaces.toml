@@ -1,0 +1,10 @@
+[glarials_tombstone_inscription]
+id = 221
+type = "main_screen"
+
+[.line0]
+id = "2-13"
+
+[.close]
+id = 14
+options = { Close = 0 }

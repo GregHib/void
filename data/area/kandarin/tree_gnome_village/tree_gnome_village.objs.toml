@@ -5,3 +5,6 @@ examine = "Keeps the neighbours out!"
 [hedgecorner]
 id = 1117
 examine = "Keeps the neighbours out!"
+
+[tree_gnome_village_loose_railing]
+id = 2186

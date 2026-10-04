@@ -1,0 +1,35 @@
+[planted_flowers_pastel]
+id = 2980
+examine = "Some beautiful flowers."
+
+[planted_red_flowers]
+id = 2981
+examine = "Some beautiful flowers."
+
+[planted_blue_flowers]
+id = 2982
+examine = "Some beautiful flowers."
+
+[planted_yellow_flowers]
+id = 2983
+examine = "Some beautiful flowers."
+
+[planted_purple_flowers]
+id = 2984
+examine = "Some beautiful flowers."
+
+[planted_orange_flowers]
+id = 2985
+examine = "Some beautiful flowers."
+
+[planted_flowers_mixed]
+id = 2986
+examine = "Some beautiful flowers."
+
+[planted_white_flowers]
+id = 2987
+examine = "Some beautiful flowers."
+
+[planted_black_flowers]
+id = 2988
+examine = "Some beautiful flowers."
