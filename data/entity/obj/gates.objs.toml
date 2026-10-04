@@ -71,6 +71,7 @@ examine = "Solid bars of iron."
 
 [gate_33_closed]
 id = 1991
+door = false
 examine = "Solid bars of iron."
 
 [gate_18_opened]

@@ -1,0 +1,14 @@
+[waterfall_pillars]
+persist = true
+format = "int"
+default = 0
+
+[waterfall_golrie_freed]
+persist = true
+format = "boolean"
+default = false
+
+[waterfall_golrie_key_given]
+persist = true
+format = "boolean"
+default = false
