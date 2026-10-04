@@ -109,6 +109,6 @@ class Steps(
         private const val MAX_STEPS = 25
         private const val SINGLE_STEP = 1
 
-        fun smartPathing(character: Character) = character is Player || ((character as? NPC)?.ownerIndex ?: -1) != -1
+        fun smartPathing(character: Character) = character is Player || (character as? NPC)?.id?.endsWith("_familiar") == true
     }
 }
