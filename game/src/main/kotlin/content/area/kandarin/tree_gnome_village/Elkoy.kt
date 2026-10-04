@@ -44,7 +44,7 @@ class Elkoy : Script {
 
         npcOperate("Follow", "elkoy_tree_gnome_village*") { (target) ->
             if (questStage("tree_gnome_village") == 0) return@npcOperate
-            escort(target.id == "elkoy_tree_gnome_village" || target.id == "elkoy_tree_gnome_village_3")
+            guide(target.id == "elkoy_tree_gnome_village" || target.id == "elkoy_tree_gnome_village_3")
         }
     }
 
