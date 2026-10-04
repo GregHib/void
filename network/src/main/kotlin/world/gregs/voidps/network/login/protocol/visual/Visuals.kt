@@ -30,23 +30,10 @@ abstract class Visuals {
     fun flagged(mask: Int): Boolean = flag and mask != 0
 
     open fun reset() {
-        if (flag == 0 && !moved && !tele && walkStep == -1 && runStep == -1) {
-            return
-        }
         walkStep = -1
         runStep = -1
         moved = false
         tele = false
-        flag = 0
-        animation.clear()
-        primaryGraphic.clear()
-        exactMovement.clear()
-        colourOverlay.clear()
-        hits.clear()
-        face.clear()
-        watch.clear()
-        say.clear()
-        timeBar.clear()
-        secondaryGraphic.clear()
+        this.flag = 0
     }
 }
