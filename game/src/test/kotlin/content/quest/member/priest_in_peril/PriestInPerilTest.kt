@@ -2,7 +2,6 @@ package content.quest.member.priest_in_peril
 
 import FakeRandom
 import WorldTest
-import content.entity.combat.dead
 import content.quest.quest
 import dialogueOption
 import floorItemOption

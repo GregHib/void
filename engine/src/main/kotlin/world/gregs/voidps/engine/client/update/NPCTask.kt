@@ -75,7 +75,7 @@ class NPCTask(
     private fun reset(npc: NPC) {
         npc.clearAnim()
         npc.hide = false
-        npc.clear("dead")
+        npc.dead = false
         npc.mode = EmptyMode
         npc.levels.clear()
         val respawn = npc.get<Tile>("respawn_tile") ?: return

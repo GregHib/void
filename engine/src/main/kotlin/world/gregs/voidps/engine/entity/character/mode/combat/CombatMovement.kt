@@ -52,7 +52,7 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
-        if (target["dead", false]) {
+        if (target.dead) {
             character.mode = EmptyMode
             return
         }

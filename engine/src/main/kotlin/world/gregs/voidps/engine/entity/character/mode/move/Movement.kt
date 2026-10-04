@@ -252,7 +252,7 @@ open class Movement(
             character.tile = character.tile.add(delta)
             val to = character.tile
             character.visuals.moved = true
-            if (playerCollision && !character.contains("dead")) {
+            if (playerCollision && !character.dead) {
                 move(character, from, to)
             }
             if (character is Player) {

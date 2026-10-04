@@ -3,7 +3,6 @@ package content.skill.ranged.weapon
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.Target
 import content.entity.combat.attacker
-import content.entity.combat.dead
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
 import content.entity.player.bank.bank

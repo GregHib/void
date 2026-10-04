@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge.catacomb
 
-import content.entity.combat.dead
 import content.entity.combat.hit.directHit
 import content.entity.combat.inCombat
 import content.entity.combat.killer

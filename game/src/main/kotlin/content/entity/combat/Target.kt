@@ -239,13 +239,3 @@ var Character.damageDealers: MutableMap<Character, Int>
 
 val Character.killer: Character?
     get() = damageDealers.maxByOrNull { it.value }?.key
-
-var Character.dead: Boolean
-    get() = get("dead", false)
-    set(value) {
-        if (value) {
-            set("dead", true)
-        } else {
-            clear("dead")
-        }
-    }
