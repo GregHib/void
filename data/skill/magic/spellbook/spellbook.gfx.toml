@@ -11,7 +11,7 @@ id = 143
 height = 10
 delay = 48
 curve = 16
-time_offset = 42
+time_offset = 21
 multiplier = 1
 
 [tele_grab_impact]
