@@ -12,7 +12,7 @@ data class PlayerOnObjectInteract(
     override val option: String,
     val player: Player,
     var approachRange: Int? = null,
-) : InteractOption(player, target, approachRange = approachRange) {
+) : InteractOption(player, target, approachRange = approachRange ?: Approachable.objectRange(option, target.def(player).stringId)) {
     override fun hasOperate() = Operation.playerObject.containsKey("$option:${target.def(player).stringId}") || Operation.playerObject.containsKey("$option:*")
 
     override fun hasApproach() = Approachable.playerObject.containsKey("$option:${target.def(player).stringId}") || Approachable.playerObject.containsKey("$option:*")
