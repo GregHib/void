@@ -4,7 +4,6 @@ import content.bot.Bot
 import content.bot.BotMetrics
 import content.entity.combat.Target
 import content.entity.combat.attacker
-import content.entity.combat.dead
 import content.entity.combat.underAttack
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.entity.character.player.Player

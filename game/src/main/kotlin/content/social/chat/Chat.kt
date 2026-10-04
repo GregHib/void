@@ -81,8 +81,10 @@ class Chat(val huffman: Huffman) : Script {
                             }
                         }
                     } else {
-                        Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-                            it.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
+                        Players.forEachNear(player.tile, VIEW_RADIUS) {
+                            if (!it.ignores(player)) {
+                                it.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
+                            }
                         }
                         BotChat.heard(player, text)
                     }

@@ -21,9 +21,29 @@ object Collisions {
     fun deallocateIfPresent(absoluteX: Int, absoluteZ: Int, level: Int) = map.deallocateIfPresent(absoluteX, absoluteZ, level)
     fun isZoneAllocated(absoluteX: Int, absoluteZ: Int, level: Int) = map.isZoneAllocated(absoluteX, absoluteZ, level)
 
+    /**
+     * Moves [mask] from one tile to another, with a single zone lookup.
+     */
+    fun move(fromX: Int, fromY: Int, fromLevel: Int, toX: Int, toY: Int, toLevel: Int, mask: Int) {
+        val fromZone = zoneIndex(fromX, fromY, fromLevel)
+        val toZone = zoneIndex(toX, toY, toLevel)
+        val from = map.flags[fromZone]
+        if (from != null) {
+            val index = tileIndex(fromX, fromY)
+            from[index] = from[index] and mask.inv()
+        }
+        val to = if (toZone == fromZone && from != null) from else map.allocateIfAbsent(toX, toY, toLevel)
+        val index = tileIndex(toX, toY)
+        to[index] = to[index] or mask
+    }
+
     fun clear() {
         map.flags.fill(null)
     }
+
+    private fun tileIndex(x: Int, y: Int): Int = (x and 0x7) or ((y and 0x7) shl 3)
+
+    private fun zoneIndex(x: Int, y: Int, level: Int): Int = ((x shr 3) and 0x7FF) or (((y shr 3) and 0x7FF) shl 11) or ((level and 0x3) shl 22)
 }
 
 fun Collisions.check(x: Int, y: Int, level: Int, flag: Int): Boolean = get(x, y, level) and flag != 0

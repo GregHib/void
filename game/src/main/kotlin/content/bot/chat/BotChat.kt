@@ -72,7 +72,12 @@ class BotChat(
                 return
             }
             val processor = chatProcessor ?: return
-            val bots = Players.filter { it.isBot && it.tile.within(speaker.tile, VIEW_RADIUS) && !it.ignores(speaker) }
+            val bots = mutableListOf<Player>()
+            Players.forEachNear(speaker.tile, VIEW_RADIUS) {
+                if (it.isBot && !it.ignores(speaker)) {
+                    bots.add(it)
+                }
+            }
             if (bots.isEmpty()) {
                 return
             }

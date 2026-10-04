@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.Client
 
 class PlayerVariables(
-    player: Player,
+    private val player: Player,
     data: MutableMap<String, Any>,
     val temp: MutableMap<String, Any> = mutableMapOf(),
 ) : Variables(player, data) {
@@ -19,7 +19,26 @@ class PlayerVariables(
             clear(key, refresh)
             return
         }
-        super.set(key, value, refresh)
+        val map = if (variable.persist) data else temp
+        val previous = map[key]
+        if (previous == value) {
+            return
+        }
+        map[key] = value
+        if (refresh && variable != null && variable.transmit) {
+            send(key)
+        }
+        VariableApi.set(player, key, previous, value)
+    }
+
+    override fun clear(key: String, refresh: Boolean): Any? {
+        val variable = VariableDefinitions.get(key)
+        val removed = (if (variable.persist) data else temp).remove(key) ?: return null
+        if (refresh && variable != null && variable.transmit) {
+            send(key)
+        }
+        VariableApi.set(player, key, removed, null)
+        return removed
     }
 
     override fun send(key: String) {

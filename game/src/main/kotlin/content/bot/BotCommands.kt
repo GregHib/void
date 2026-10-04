@@ -9,7 +9,6 @@ import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.combat.ClanWarsBotContext
 import content.bot.combat.CombatBotContext
 import content.bot.combat.CombatTier
-import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttack
@@ -271,7 +270,7 @@ class BotCommands(
         World.queue("bot_clear") {
             runBlocking {
                 var removed = 0
-                for (bot in manager.bots) {
+                for (bot in manager.bots.toList()) {
                     if (bot.player.client != null && bot.player.client !is DummyClient) {
                         continue
                     }

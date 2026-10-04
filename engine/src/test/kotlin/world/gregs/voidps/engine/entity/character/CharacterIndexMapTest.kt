@@ -191,4 +191,75 @@ class CharacterIndexMapTest {
 
         assertEquals(setOf(3, 2), collected)
     }
+
+    @Test
+    fun `Adding to another zone moves character`() {
+        val map = CharacterIndexMap(size = 10)
+        val other = 43
+
+        map.add(zone, 1)
+        map.add(zone, 2)
+        map.add(other, 1)
+
+        assertEquals(setOf(2), collect(map, zone))
+        assertEquals(setOf(1), collect(map, other))
+    }
+
+    @Test
+    fun `Removing last character empties zone`() {
+        val map = CharacterIndexMap(size = 10)
+
+        map.add(zone, 1)
+        map.remove(zone, 1)
+        map.add(zone, 2)
+
+        assertEquals(setOf(2), collect(map, zone))
+    }
+
+    @Test
+    fun `Removing from wrong zone is ignored`() {
+        val map = CharacterIndexMap(size = 10)
+        val other = 43
+
+        map.add(zone, 1)
+        map.add(other, 2)
+        map.remove(other, 1)
+
+        assertEquals(setOf(1), collect(map, zone))
+        assertEquals(setOf(2), collect(map, other))
+    }
+
+    @Test
+    fun `Remove current character while iterating`() {
+        val map = CharacterIndexMap(size = 10)
+
+        map.add(zone, 1)
+        map.add(zone, 2)
+        map.add(zone, 3)
+
+        val visited = mutableSetOf<Int>()
+        map.onEach(zone) {
+            visited.add(it)
+            map.remove(zone, it)
+        }
+
+        assertEquals(setOf(1, 2, 3), visited)
+        assertTrue(collect(map, zone).isEmpty())
+    }
+
+    @Test
+    fun `Negative indices are ignored`() {
+        val map = CharacterIndexMap(size = 10)
+
+        map.add(zone, -1)
+        map.remove(zone, -1)
+
+        assertTrue(collect(map, zone).isEmpty())
+    }
+
+    private fun collect(map: CharacterIndexMap, id: Int): Set<Int> {
+        val collected = mutableSetOf<Int>()
+        map.onEach(id) { collected.add(it) }
+        return collected
+    }
 }
