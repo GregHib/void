@@ -18,6 +18,7 @@ class Wander(
     private val stuckLimit: Int = npc.def["stuck_limit", 500],
 ) : Movement(npc) {
 
+    private val range: Int = Tables.intOrNull("npc_ranges.${npc.id}.wander_range") ?: 5
     private var stuckCounter = 0
     private var lastTile = Tile.EMPTY
 
@@ -30,10 +31,11 @@ class Wander(
         }
         lastTile = npc.tile
         if (random.nextInt(8) != 0) {
-            super.tick()
+            if (character.steps.isNotEmpty() || npc.suspension != null) {
+                super.tick()
+            }
             return
         }
-        val range: Int = Tables.intOrNull("npc_ranges.${npc.id}.wander_range") ?: 5
         if (range <= 0) {
             npc.mode = EmptyMode
             return
@@ -47,8 +49,10 @@ class Wander(
     }
 
     companion object {
+        private val randomWalk by Settings.bool("world.npcs.randomWalk", false)
+
         fun wanders(npc: NPC): Boolean {
-            if (!Settings["world.npcs.randomWalk", false]) {
+            if (!randomWalk) {
                 return false
             }
             val def = npc.transformDef

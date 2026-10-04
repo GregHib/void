@@ -7,7 +7,6 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
 import content.entity.combat.attacker
-import content.entity.combat.dead
 import content.entity.combat.underAttack
 import content.skill.melee.weapon.fightStyle
 import world.gregs.voidps.engine.client.variable.start

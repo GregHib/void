@@ -96,6 +96,7 @@ class Player(
 
     override var suspension: Suspension? = null
     override var delay: Int = 0
+    override var dead: Boolean = false
 
     override var queue: ActionQueue<*> = ActionQueue(this)
 

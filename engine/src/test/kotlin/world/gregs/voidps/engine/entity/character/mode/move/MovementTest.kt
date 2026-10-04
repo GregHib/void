@@ -10,8 +10,10 @@ import org.junit.jupiter.api.TestFactory
 import org.koin.test.mock.declareMock
 import org.rsmod.game.pathfinder.*
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
@@ -22,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Direction
@@ -52,6 +55,35 @@ internal class MovementTest : KoinMock() {
             every { canTravel(any(), any(), any(), any(), any(), any(), any(), any()) } returns true
         }
         declareMock<LineValidator> {
+        }
+    }
+
+    @Test
+    fun `Large npc moving keeps collision on overlapping tiles`() {
+        Settings.load(mapOf("world.players.collision" to "true"))
+        try {
+            val npc = NPC(tile = Tile(3200, 3200), def = NPCDefinition(size = 2))
+            for (x in 3200..3202) {
+                for (y in 3200..3201) {
+                    Collisions[x, y, 0] = 0
+                }
+            }
+            for (x in 3200..3201) {
+                for (y in 3200..3201) {
+                    Collisions.add(x, y, 0, npc.collisionFlag)
+                }
+            }
+
+            Movement.move(npc, Direction.EAST.delta)
+
+            for (y in 3200..3201) {
+                assertEquals(0, Collisions[3200, y, 0])
+                assertEquals(npc.collisionFlag, Collisions[3201, y, 0])
+                assertEquals(npc.collisionFlag, Collisions[3202, y, 0])
+            }
+        } finally {
+            Settings.clear()
+            Collisions.clear()
         }
     }
 

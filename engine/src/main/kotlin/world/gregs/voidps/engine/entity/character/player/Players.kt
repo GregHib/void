@@ -57,6 +57,26 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
 
     fun indexed(index: Int): Player? = indexArray.getOrNull(index)
 
+    /**
+     * Calls [action] for every player on the same level within [radius] tiles of [tile], searching only nearby zones
+     */
+    fun forEachNear(tile: Tile, radius: Int, action: (Player) -> Unit) {
+        val minX = (tile.x - radius).coerceAtLeast(0) shr 3
+        val minY = (tile.y - radius).coerceAtLeast(0) shr 3
+        val maxX = (tile.x + radius) shr 3
+        val maxY = (tile.y + radius) shr 3
+        for (x in minX..maxX) {
+            for (y in minY..maxY) {
+                map.onEach(Zone(x, y, tile.level).id) { index ->
+                    val player = indexed(index) ?: return@onEach
+                    if (player.tile.within(tile, radius)) {
+                        action(player)
+                    }
+                }
+            }
+        }
+    }
+
     override fun at(tile: Tile): List<Player> {
         val list = mutableListOf<Player>()
         map.onEach(tile.zone.id) { index ->

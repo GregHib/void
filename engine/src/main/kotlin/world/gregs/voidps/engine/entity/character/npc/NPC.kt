@@ -80,6 +80,9 @@ data class NPC(
     var lifecycle: Int = 0
 
     override val size = def.size
+
+    val crawls: Boolean = def["crawl", false]
+
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop(value)
@@ -91,6 +94,7 @@ data class NPC(
     override var softTimers: Timers = TimerSlot(this)
     override var suspension: Suspension? = null
     override var delay: Int = 0
+    override var dead: Boolean = false
     override var variables: Variables = Variables(this)
     override val steps: Steps = Steps(this)
     override var walkTrigger: (() -> Unit)? = null

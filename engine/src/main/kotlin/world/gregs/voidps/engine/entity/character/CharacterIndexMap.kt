@@ -1,60 +1,92 @@
 package world.gregs.voidps.engine.entity.character
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 
 /**
  * Spatial index for grouping character indices by [world.gregs.voidps.type.Zone] or [world.gregs.voidps.type.Region]
  * i.e. Map<Zone, List<Index>>
+ * Each group is a doubly linked list through [next] and [previous] so moving between groups doesn't allocate.
  */
 class CharacterIndexMap(size: Int) {
     /**
-     * Table mapping tiles to sets
+     * First index in each group
      */
-    private val table = Int2ObjectOpenHashMap<MutableSet<Int>>(size)
+    private val heads = Int2IntOpenHashMap(size).apply { defaultReturnValue(INVALID) }
+    private val next = IntArray(size) { INVALID }
+    private val previous = IntArray(size) { INVALID }
 
     /**
-     * Which tile set the index is currently in
-     * Used for moving a character between tiles
+     * Which group the index is currently in
+     * Used for moving a character between groups and ignoring repeated adds and removes
      */
     private val current = IntArray(size) { INVALID }
 
     /**
-     * Insert [index] into the set [id]
-     * Removes from the current set if already present
+     * Insert [index] into the group [id]
+     * Removes from the current group if already present
      */
     fun add(id: Int, index: Int) {
         if (index < 0) {
             return
         }
         val existing = current[index]
-        if (existing != INVALID) {
-            remove(existing, index)
+        if (existing == id) {
+            return
         }
-        table.getOrPut(id) { IntOpenHashSet() }.add(index)
+        if (existing != INVALID) {
+            unlink(existing, index)
+        }
+        val head = heads.get(id)
+        next[index] = head
+        previous[index] = INVALID
+        if (head != INVALID) {
+            previous[head] = index
+        }
+        heads.put(id, index)
         current[index] = id
     }
 
     /**
-     * Removes [index] from set [id]
+     * Removes [index] from group [id]
      */
     fun remove(id: Int, index: Int) {
-        val set = table.get(id) ?: return
-        if (set.remove(index) && set.isEmpty()) {
-            table.remove(id)
+        if (index < 0 || current[index] != id) {
+            return
         }
+        unlink(id, index)
+    }
+
+    private fun unlink(id: Int, index: Int) {
+        val before = previous[index]
+        val after = next[index]
+        if (before != INVALID) {
+            next[before] = after
+        } else if (after != INVALID) {
+            heads.put(id, after)
+        } else {
+            heads.remove(id)
+        }
+        if (after != INVALID) {
+            previous[after] = before
+        }
+        next[index] = INVALID
+        previous[index] = INVALID
         current[index] = INVALID
     }
 
     fun clear() {
-        table.clear()
+        heads.clear()
+        next.fill(INVALID)
+        previous.fill(INVALID)
         current.fill(INVALID)
     }
 
     fun onEach(id: Int, action: (Int) -> Unit) {
-        val set = table.get(id) ?: return
-        for (index in set) {
+        var index = heads.get(id)
+        while (index != INVALID) {
+            val following = next[index]
             action(index)
+            index = following
         }
     }
 

@@ -6,7 +6,6 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
-import content.entity.combat.dead
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

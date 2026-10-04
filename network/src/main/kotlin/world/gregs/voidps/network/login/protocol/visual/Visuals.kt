@@ -34,16 +34,6 @@ abstract class Visuals {
         runStep = -1
         moved = false
         tele = false
-        flag = 0
-        animation.clear()
-        primaryGraphic.clear()
-        exactMovement.clear()
-        colourOverlay.clear()
-        hits.clear()
-        face.clear()
-        watch.clear()
-        say.clear()
-        timeBar.clear()
-        secondaryGraphic.clear()
+        this.flag = 0
     }
 }

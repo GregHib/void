@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.update.player
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.login.protocol.encode.updatePlayers
@@ -23,6 +24,7 @@ import world.gregs.voidps.network.login.protocol.visual.encode.player.PlayerSeco
 import world.gregs.voidps.network.login.protocol.visual.encode.player.PlayerTimeBarEncoder
 import world.gregs.voidps.network.login.protocol.visual.encode.player.TemporaryMoveTypeEncoder
 import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Tile
 import kotlin.math.abs
 
 class PlayerUpdateTask {
@@ -41,6 +43,18 @@ class PlayerUpdateTask {
     private val temporaryMoveTypeEncoder = TemporaryMoveTypeEncoder()
 
     private val initialFlag = VisualMask.PLAYER_FACE_MASK + VisualMask.MOVEMENT_TYPE_MASK + VisualMask.PLAYER_ANIMATION_MASK + VisualMask.APPEARANCE_MASK + VisualMask.TEMPORARY_MOVEMENT_TYPE_MASK
+
+    private val tiles = IntArray(MAX_PLAYERS) { ABSENT }
+
+    /**
+     * Records every player's tile so [processGlobals] doesn't have to load each far away player
+     */
+    fun snapshot() {
+        for (index in tiles.indices) {
+            val player = Players.indexed(index)
+            tiles[index] = if (player == null || player.client?.disconnected == true) ABSENT else player.tile.id
+        }
+    }
 
     fun run(player: Player) {
         val client = player.client ?: return
@@ -261,7 +275,10 @@ class PlayerUpdateTask {
     ) {
         var skip = -1
         var index: Int
+        var tile: Int
         var player: Player?
+        val clientTile = client.tile
+        val radius = viewport.radius
         sync.startBitAccess()
         for (i in 0 until set.globalCount) {
             index = set.globals[i]
@@ -270,14 +287,15 @@ class PlayerUpdateTask {
                 continue
             }
 
-            player = Players.indexed(index)
             viewport.setIdle(index)
-            if (player == null) {
+            tile = tiles[index]
+            if (tile == ABSENT || !Tile(tile).within(clientTile, radius) || updates.position() >= MAX_UPDATE_SIZE || sync.position() >= MAX_SYNC_SIZE) {
                 skip++
                 continue
             }
 
-            if (!add(player, client, viewport, updates, sync)) {
+            player = Players.indexed(index)
+            if (player == null) {
                 skip++
                 continue
             }
@@ -305,15 +323,6 @@ class PlayerUpdateTask {
         }
         sync.stopBitAccess()
     }
-
-    /**
-     * Check if a local [player] should be added to the local players list
-     * @return true when within [Viewport.radius] and packet has enough room
-     */
-    private fun add(player: Player, client: Player, viewport: Viewport, updates: Writer, sync: Writer): Boolean = player.client?.disconnected != true &&
-        player.tile.within(client.tile, viewport.radius) &&
-        updates.position() < MAX_UPDATE_SIZE &&
-        sync.position() < MAX_SYNC_SIZE
 
     fun writeSkip(sync: Writer, skip: Int) {
         sync.writeBits(1, 0)
@@ -346,7 +355,6 @@ class PlayerUpdateTask {
             RegionChange.Height -> sync.writeBits(2, delta.level)
             RegionChange.Local -> sync.writeBits(5, (getWalkIndex(delta) and 0x7) or (delta.level shl 3))
             RegionChange.Global -> sync.writeBits(18, (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.level shl 16))
-            else -> return false
         }
         return true
     }
@@ -395,6 +403,7 @@ class PlayerUpdateTask {
 
     companion object {
 
+        private const val ABSENT = -1
         private const val MAX_PACKET_SIZE = 7500
         private const val MAX_SYNC_SIZE = 2500
         private const val MAX_UPDATE_SIZE = MAX_PACKET_SIZE - MAX_SYNC_SIZE - 100

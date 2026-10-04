@@ -36,6 +36,38 @@ internal class CollisionsTest {
         assertEquals(false, Collisions.isZoneAllocated(3, 3, 0))
     }
 
+    @Test
+    fun `Move flag within a zone`() {
+        set(1, 1, 0, CollisionFlag.BLOCK_NPCS or CollisionFlag.FLOOR)
+        set(2, 1, 0, 0)
+
+        Collisions.move(1, 1, 0, 2, 1, 0, CollisionFlag.BLOCK_NPCS)
+
+        assertEquals(CollisionFlag.FLOOR, 1, 1, 0)
+        assertEquals(CollisionFlag.BLOCK_NPCS, 2, 1, 0)
+    }
+
+    @Test
+    fun `Move flag into another zone`() {
+        set(7, 7, 0, CollisionFlag.BLOCK_NPCS)
+        set(8, 8, 1, 0)
+
+        Collisions.move(7, 7, 0, 8, 8, 1, CollisionFlag.BLOCK_NPCS)
+
+        assertEquals(0, 7, 7, 0)
+        assertEquals(CollisionFlag.BLOCK_NPCS, 8, 8, 1)
+    }
+
+    @Test
+    fun `Moving from an unallocated zone leaves it unallocated`() {
+        set(8, 0, 0, 0)
+
+        Collisions.move(7, 0, 0, 8, 0, 0, CollisionFlag.BLOCK_NPCS)
+
+        assertEquals(false, Collisions.isZoneAllocated(7, 0, 0))
+        assertEquals(CollisionFlag.BLOCK_NPCS, 8, 0, 0)
+    }
+
     private fun print(zone: Zone) {
         val data = Collisions.allocateIfAbsent(zone.tile.x, zone.tile.y, zone.level)
         for (y in 7 downTo 0) {

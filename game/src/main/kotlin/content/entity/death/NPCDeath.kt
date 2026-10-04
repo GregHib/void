@@ -5,7 +5,6 @@ import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeon
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.attackers
 import content.entity.combat.damageDealers
-import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable

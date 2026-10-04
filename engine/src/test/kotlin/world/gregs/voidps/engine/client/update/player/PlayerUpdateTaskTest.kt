@@ -322,6 +322,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { entities.globalCount } returns 1
         every { entities.globals } returns intArrayOf(1)
         // When
+        task.snapshot()
         task.processGlobals(player, sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
