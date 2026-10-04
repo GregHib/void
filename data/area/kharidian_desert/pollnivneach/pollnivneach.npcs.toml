@@ -31,6 +31,10 @@ examine = "Tough-looking."
 
 [cowardly_bandit_pollnivneach]
 id = 1886
+hitpoints = 300
+att = 59
+str = 70
+def = 30
 examine = "Probably the weakest bandit in the world ....ever."
 
 [villager_pollnivneach]
@@ -116,6 +120,10 @@ id = 1878
 
 [bandit_pollnivneach_3]
 id = 1880
+hitpoints = 300
+att = 59
+str = 70
+def = 30
 examine = "Tough-looking."
 
 [bandit_pollnivneach_4]
@@ -132,26 +140,38 @@ examine = "Tough-looking."
 
 [villager_pollnivneach_4]
 id = 1888
+hitpoints = 70
+def = 4
 examine = "An old male villager."
 
 [villager_pollnivneach_5]
 id = 1889
+hitpoints = 70
+def = 4
 examine = "An old male villager."
 
 [villager_pollnivneach_6]
 id = 1890
+hitpoints = 70
+def = 4
 examine = "An old male villager."
 
 [villager_pollnivneach_2_2]
 id = 1892
+hitpoints = 70
+def = 4
 examine = "Male desert villager."
 
 [villager_pollnivneach_2_3]
 id = 1893
+hitpoints = 70
+def = 4
 examine = "Male desert villager."
 
 [villager_pollnivneach_2_4]
 id = 1894
+hitpoints = 70
+def = 4
 examine = "Male desert villager."
 
 [villager_pollnivneach_3]
@@ -160,14 +180,20 @@ examine = "Female desert villager."
 
 [villager_pollnivneach_3_2]
 id = 1896
+hitpoints = 70
+def = 4
 examine = "Male desert villager."
 
 [villager_pollnivneach_3_3]
 id = 1897
+hitpoints = 70
+def = 4
 examine = "Female desert villager."
 
 [villager_pollnivneach_3_4]
 id = 1898
+hitpoints = 70
+def = 4
 examine = "Female desert villager."
 
 [menaphite_leader_pollnivneach_2]
@@ -204,6 +230,10 @@ examine = "Tough-looking."
 
 [bandit_pollnivneach_2_3]
 id = 6388
+hitpoints = 300
+att = 40
+str = 50
+def = 20
 
 [sumona_2]
 id = 7780

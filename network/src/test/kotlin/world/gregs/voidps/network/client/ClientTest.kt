@@ -56,6 +56,22 @@ internal class ClientTest {
     }
 
     @Test
+    fun `Write to a client which stopped reading times out and disconnects`() {
+        val channel = ByteChannel(false)
+        val client = Client(channel, IsaacCipher(IntArray(4)), null, "127.0.0.1")
+        var disconnected = false
+        client.onDisconnected {
+            disconnected = true
+        }
+
+        client.send(1) { writeFully(ByteArray(4_000_000)) }
+        client.flush()
+
+        assertTrue(client.disconnected)
+        assertTrue(disconnected)
+    }
+
+    @Test
     fun `Disconnect callback only runs once`() = runTest {
         val client = client()
         var count = 0

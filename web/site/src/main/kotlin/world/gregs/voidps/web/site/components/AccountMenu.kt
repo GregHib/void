@@ -107,7 +107,10 @@ private fun kotlinx.html.DIV.accountMenuItem(iconPath: String, label: String, hr
         style = "display:flex;align-items:center;gap:10px;padding:var(--space-4) 10px;border-radius:var(--radius-xs);" +
             "color:var(--text-body);text-decoration:none;font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
             "transition:background var(--dur-fast) var(--ease-standard)"
-        span { style = "color:var(--text-faint);display:inline-flex"; icon(iconPath, size = 15) }
+        span {
+            style = "color:var(--text-faint);display:inline-flex"
+            icon(iconPath, size = 15)
+        }
         +label
     }
 }

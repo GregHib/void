@@ -57,7 +57,9 @@ internal class TextureOpCurve : TextureOp(1, true) {
                         i_2_++
                     }
                     break@while_158_
-                } else if (i_2_ != 1) break
+                } else if (i_2_ != 1) {
+                    break
+                }
                 i_2_ = 0
                 while (i_2_ < 257) {
                     val i_20_ = i_2_ shl 4

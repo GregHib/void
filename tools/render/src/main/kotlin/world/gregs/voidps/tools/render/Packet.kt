@@ -37,13 +37,9 @@ open class Packet(var aByteArray7154: ByteArray) : Node() {
         return method3546(this.aByteArray7154, i_70_, i_69_)
     }
 
-    fun readUnsignedByte(): Int {
-        return ((this.aByteArray7154[this.pos++]).toInt() and 0xff)
-    }
+    fun readUnsignedByte(): Int = ((this.aByteArray7154[this.pos++]).toInt() and 0xff)
 
-    fun readByte(): Byte {
-        return (this.aByteArray7154[this.pos++])
-    }
+    fun readByte(): Byte = (this.aByteArray7154[this.pos++])
 
     fun readInt(): Int {
         this.pos += 4

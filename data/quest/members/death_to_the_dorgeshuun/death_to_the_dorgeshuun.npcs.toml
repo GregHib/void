@@ -1,0 +1,103 @@
+[guard_death_to_the_dorgeshuun]
+id = 4301
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[guard_death_to_the_dorgeshuun_2]
+id = 4302
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[guard_death_to_the_dorgeshuun_3]
+id = 4303
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[guard_death_to_the_dorgeshuun_4]
+id = 4304
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[guard_death_to_the_dorgeshuun_5]
+id = 4305
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[guard_death_to_the_dorgeshuun_6]
+id = 4306
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[ham_member_death_to_the_dorgeshuun]
+id = 4327
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+
+[sigmund_death_to_the_dorgeshuun]
+id = 4332
+hitpoints = 600
+att = 45
+str = 45
+def = 24
+examine = "What is he plotting this time?"
+
+[sigmund_death_to_the_dorgeshuun_2]
+id = 4333
+hitpoints = 600
+att = 45
+str = 45
+def = 24
+examine = "What is he plotting this time?"
+
+[sigmund_death_to_the_dorgeshuun_3]
+id = 4334
+hitpoints = 600
+att = 45
+str = 45
+def = 24
+examine = "What is he plotting this time?"
+
+[sigmund_death_to_the_dorgeshuun_4]
+id = 4335
+hitpoints = 600
+att = 45
+str = 45
+def = 24
+examine = "What is he plotting this time?"
+
+[guard_death_to_the_dorgeshuun_7]
+id = 4336
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[zanik_death_to_the_dorgeshuun]
+id = 4342
+hitpoints = 300
+att = 35
+str = 20
+def = 30
+range = 55
+examine = "The Chosen Commander."

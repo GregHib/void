@@ -16,7 +16,6 @@ hitpoints = 2000
 att = 160
 str = 100
 def = 160
-attack_speed = 3
 style = "crush"
 max_hit_melee = 280
 xp_bonus = 1.5
@@ -75,3 +74,11 @@ style = "slash"
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "Very mysterious looking..."
+
+[dessous]
+id = 1915
+hitpoints = 2000
+att = 99
+str = 99
+def = 99
+examine = "Vampire warrior of Zamorak."

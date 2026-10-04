@@ -24,6 +24,10 @@ dialogue = "ogre"
 
 [ogre_guard_jiggig_2]
 id = 2043
+hitpoints = 750
+att = 80
+str = 20
+def = 100
 dialogue = "ogre"
 
 [zogre_jiggig]
@@ -32,7 +36,6 @@ hitpoints = 710
 att = 20
 str = 36
 def = 35
-attack_speed = 6
 style = "crush"
 max_hit_melee = 50
 hunt_mode = "cowardly"
@@ -52,7 +55,6 @@ hitpoints = 710
 att = 20
 str = 36
 def = 35
-attack_speed = 6
 style = "crush"
 max_hit_melee = 50
 hunt_mode = "cowardly"

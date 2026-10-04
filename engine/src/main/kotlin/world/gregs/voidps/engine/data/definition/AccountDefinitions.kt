@@ -40,6 +40,10 @@ class AccountDefinitions(
     fun update(accountName: String, newName: String, previousDisplayName: String) {
         val definition = definitions.remove(previousDisplayName.lowercase()) ?: return
         definitions[newName.lowercase()] = definition
+        clans.remove(previousDisplayName.lowercase())?.let {
+            it.ownerDisplayName = newName
+            clans[newName.lowercase()] = it
+        }
         definition.displayName = newName
         definition.previousName = previousDisplayName
         displayNames[accountName.lowercase()] = newName

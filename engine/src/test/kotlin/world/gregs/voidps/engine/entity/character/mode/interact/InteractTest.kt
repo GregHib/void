@@ -108,7 +108,6 @@ internal class InteractTest : KoinMock() {
                     }
                 }
             }
-
         }
         player.mode = interact
     }

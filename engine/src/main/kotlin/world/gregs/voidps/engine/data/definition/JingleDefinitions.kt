@@ -26,6 +26,7 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
                                 else -> throw IllegalArgumentException("Unknown jingle key: $key")
                             }
                         }
+                        require(id != -1) { "Missing id for jingle '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id] = JingleDefinition(id = id, stringId = stringId)
                     }

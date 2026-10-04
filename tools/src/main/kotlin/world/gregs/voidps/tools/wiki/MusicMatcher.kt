@@ -148,5 +148,4 @@ object MusicMatcher {
 
         return bestScore
     }
-
 }

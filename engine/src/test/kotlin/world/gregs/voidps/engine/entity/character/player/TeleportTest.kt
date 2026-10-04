@@ -10,9 +10,9 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.ScriptTest
-import world.gregs.voidps.engine.script
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.script
 import world.gregs.voidps.engine.script.KoinMock
 import kotlin.test.assertEquals
 
@@ -37,7 +37,6 @@ class TeleportTest {
         }
 
         override val apis = listOf(Teleport)
-
     }
 
     @Nested
@@ -90,15 +89,18 @@ class TeleportTest {
         }
 
         override fun invoke(args: List<String>) {
-            Teleport.land(Player(), "tele")
+            runTest {
+                Teleport.land(Player(), "tele")
+            }
         }
 
         override val apis = listOf(Teleport)
-
     }
 
     @Nested
-    inner class ObjTeleportTakeOffTest : KoinMock(), ScriptTest {
+    inner class ObjTeleportTakeOffTest :
+        KoinMock(),
+        ScriptTest {
         override val checks = listOf(
             listOf("option", "obj"),
             listOf("option", "*"),
@@ -128,12 +130,12 @@ class TeleportTest {
         }
 
         override val apis = listOf(Teleport)
-
     }
 
-
     @Nested
-    inner class ObjTeleportLandTest : KoinMock(), ScriptTest {
+    inner class ObjTeleportLandTest :
+        KoinMock(),
+        ScriptTest {
         override val checks = listOf(
             listOf("option", "obj"),
             listOf("option", "*"),
@@ -163,7 +165,5 @@ class TeleportTest {
         }
 
         override val apis = listOf(Teleport)
-
     }
-
 }

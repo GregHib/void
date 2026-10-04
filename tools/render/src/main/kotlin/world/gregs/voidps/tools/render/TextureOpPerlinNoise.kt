@@ -32,10 +32,14 @@ internal class TextureOpPerlinNoise : TextureOp(0, true) {
                                                     if (i_1_ == 6) break@while_150_
                                                     break@while_151_
                                                 }
-                                            } else break@while_148_
+                                            } else {
+                                                break@while_148_
+                                            }
                                             break@while_149_
                                         }
-                                    } else break
+                                    } else {
+                                        break
+                                    }
                                     break@while_147_
                                 }
                                 this.anInt9150 = packet!!.readUnsignedByte()
@@ -76,7 +80,7 @@ internal class TextureOpPerlinNoise : TextureOp(0, true) {
         aByteArray9152 = Toolkit.method3664(this.anInt9156)!!
         method3067()
         var i_3_ = this.anInt9150 + -1
-        while ( /**/i_3_ >= 1) {
+        while (i_3_ >= 1) {
             val i_4_ = aShortArray9159!![i_3_]
             if (i_4_ > 8) break
             if (i_4_ < -8) break
@@ -210,19 +214,31 @@ internal class TextureOpPerlinNoise : TextureOp(0, true) {
         var i_64_ = 0x3 and aByteArray9152[i_59_ + i_60_].toInt()
         val i_65_ = anIntArray2631[i_57_]
         var i_66_: Int
-        if (i_64_ > 1) i_66_ = if (i_64_ == 2) i_57_ - i_55_ else -i_55_ + -i_57_
-        else i_66_ = if (i_64_ != 0) i_55_ - i_57_ else i_57_ + i_55_
+        if (i_64_ > 1) {
+            i_66_ = if (i_64_ == 2) i_57_ - i_55_ else -i_55_ + -i_57_
+        } else {
+            i_66_ = if (i_64_ != 0) i_55_ - i_57_ else i_57_ + i_55_
+        }
         i_64_ = 0x3 and aByteArray9152[i_59_ + i_61_].toInt()
         var i_67_: Int
-        if (i_64_ <= 1) i_67_ = if (i_64_ == 0) i_62_ + i_55_ else i_55_ + -i_62_
-        else i_67_ = if (i_64_ != 2) -i_55_ + -i_62_ else -i_55_ + i_62_
+        if (i_64_ <= 1) {
+            i_67_ = if (i_64_ == 0) i_62_ + i_55_ else i_55_ + -i_62_
+        } else {
+            i_67_ = if (i_64_ != 2) -i_55_ + -i_62_ else -i_55_ + i_62_
+        }
         i_64_ = aByteArray9152[i + i_60_].toInt() and 0x3
         val i_68_ = i_66_ - -(i_65_ * (i_67_ + -i_66_) shr 12)
-        if (i_64_ > 1) i_66_ = if (i_64_ == 2) -i_63_ + i_57_ else -i_57_ - i_63_
-        else i_66_ = if (i_64_ != 0) -i_57_ + i_63_ else i_57_ - -i_63_
+        if (i_64_ > 1) {
+            i_66_ = if (i_64_ == 2) -i_63_ + i_57_ else -i_57_ - i_63_
+        } else {
+            i_66_ = if (i_64_ != 0) -i_57_ + i_63_ else i_57_ - -i_63_
+        }
         i_64_ = 0x3 and aByteArray9152[i + i_61_].toInt()
-        if (i_64_ > 1) i_67_ = if (i_64_ == 2) -i_63_ + i_62_ else -i_62_ - i_63_
-        else i_67_ = if (i_64_ == 0) i_62_ - -i_63_ else i_63_ + -i_62_
+        if (i_64_ > 1) {
+            i_67_ = if (i_64_ == 2) -i_63_ + i_62_ else -i_62_ - i_63_
+        } else {
+            i_67_ = if (i_64_ == 0) i_62_ - -i_63_ else i_63_ + -i_62_
+        }
         val i_69_ = ((-i_66_ + i_67_) * i_65_ shr 12) + i_66_
         return i_68_ - -(i_58_ * (-i_68_ + i_69_) shr 12)
     }

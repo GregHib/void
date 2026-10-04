@@ -110,3 +110,27 @@ drop_table = "empty"
 id = 5371
 clone = "stronghold_ghost_hair"
 drop_table = "empty"
+
+[ghost_level_76]
+id = 5372
+hitpoints = 750
+att = 63
+str = 63
+def = 68
+examine = "Eeek! A ghost!"
+
+[ghost_level_76_2]
+id = 5373
+hitpoints = 750
+att = 63
+str = 63
+def = 68
+examine = "Eeek! A ghost!"
+
+[ghost_level_76_3]
+id = 5374
+hitpoints = 750
+att = 63
+str = 63
+def = 68
+examine = "Eeek! A ghost!"

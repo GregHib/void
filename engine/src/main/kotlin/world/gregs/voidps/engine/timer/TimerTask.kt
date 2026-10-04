@@ -25,5 +25,4 @@ data class TimerTask(
     }
 
     override fun compareTo(other: TimerTask): Int = nextTick.compareTo(other.nextTick)
-
 }

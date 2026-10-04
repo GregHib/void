@@ -54,9 +54,7 @@ internal class TextureOpTexture : TextureOp(0, false) {
         if (i == 0) anInt9380 = packet!!.readUnsignedShort()
     }
 
-    override fun method3043(): Int {
-        return anInt9380
-    }
+    override fun method3043(): Int = anInt9380
 
     companion object {
         var aTextureSource6247: TextureSource? = null

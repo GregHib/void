@@ -39,3 +39,8 @@ examine = "Doesn't look like the bar's open anymore."
 [ahoy_ghost_villager]
 id = 1697
 examine = "A spooky ghost villager."
+
+[undead_cow_2]
+id = 5211
+hitpoints = 80
+examine = "It's an undead cow."

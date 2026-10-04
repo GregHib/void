@@ -29,15 +29,18 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
 
     override fun load(definitions: InventoryDefinitions) {
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!
-        ItemDefinitions.set(Array(8) { ItemDefinition(it) }, mapOf(
-            "bronze_pickaxe" to 1,
-            "bronze_hatchet" to 2,
-            "iron_hatchet" to 3,
-            "steel_hatchet" to 4,
-            "iron_battleaxe" to 5,
-            "steel_battleaxe" to 6,
-            "mithril_battleaxe" to 7,
-        ))
+        ItemDefinitions.set(
+            Array(8) { ItemDefinition(it) },
+            mapOf(
+                "bronze_pickaxe" to 1,
+                "bronze_hatchet" to 2,
+                "iron_hatchet" to 3,
+                "steel_hatchet" to 4,
+                "iron_battleaxe" to 5,
+                "steel_battleaxe" to 6,
+                "mithril_battleaxe" to 7,
+            ),
+        )
         definitions.load(emptyList(), listOf(uri.path))
     }
 }

@@ -34,7 +34,6 @@ hitpoints = 260
 att = 25
 str = 18
 def = 25
-attack_speed = 6
 style = "crush"
 max_hit_melee = 30
 slayer_xp = 26.0
@@ -91,3 +90,19 @@ id = 6480
 
 [grubfoot_goblin_mines_2]
 id = 6479
+
+[cave_goblin_miner_7]
+id = 2077
+hitpoints = 100
+att = 10
+str = 12
+def = 7
+examine = "This one is slacking off."
+
+[cave_goblin_miner_8]
+id = 2078
+hitpoints = 100
+att = 10
+str = 12
+def = 7
+examine = "This one is slacking off."

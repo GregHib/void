@@ -1,7 +1,11 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
+import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
@@ -364,5 +368,35 @@ internal class MoveItemTest : TransactionOperationTest() {
 
         assertErrorFull(2)
         assertEquals(4, inventory[0].amount)
+    }
+
+    @Test
+    fun `Move charged item from index to stackable target keeps charges`() {
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
+        transaction(stackRule = NeverStack) {
+            set(0, Item("item", 7))
+        }
+        val target = inventory(2, stackRule = AlwaysStack)
+        transaction.move(0, target)
+        assertTrue(transaction.commit())
+
+        assertEquals(7, target[0].value)
+        assertTrue(inventory[0].isEmpty())
+    }
+
+    @Test
+    fun `Move single item from index merges with existing stack`() {
+        transaction(stackRule = AlwaysStack) {
+            add("item", 1)
+        }
+        val target = inventory(2, stackRule = AlwaysStack) {
+            add("item", 2)
+        }
+        transaction.move(0, target)
+        assertTrue(transaction.commit())
+
+        assertEquals(3, target[0].amount)
+        assertTrue(target[1].isEmpty())
+        assertTrue(inventory[0].isEmpty())
     }
 }

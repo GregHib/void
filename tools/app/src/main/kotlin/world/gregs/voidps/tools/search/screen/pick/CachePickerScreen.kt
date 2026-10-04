@@ -67,7 +67,7 @@ fun CachePickerScreen(
                     Modifier
                         .background(BgCard, RoundedCornerShape(6.dp))
                         .border(0.5.dp, BorderColor, RoundedCornerShape(6.dp))
-                        .padding(horizontal = 12.dp, vertical = 6.dp)
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
                 ) {
                     Text(initialPath, fontSize = 11.sp, color = TextMuted, fontFamily = FontFamily.Monospace)
                 }
@@ -100,7 +100,9 @@ fun CachePickerScreen(
             ) {
                 Text(
                     if (initialPath != null) "Change directory" else "Load cache directory",
-                    fontSize = 13.sp, color = Color.White, fontWeight = FontWeight.Medium,
+                    fontSize = 13.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Medium,
                 )
             }
         }

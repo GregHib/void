@@ -136,6 +136,10 @@ examine = "Firstborn of the legendary dagannoth kings."
 
 [suspicious_water]
 id = 2891
+hitpoints = 1000
+att = 10
+str = 10
+def = 10
 
 [spinolyp]
 id = 2892
@@ -153,6 +157,10 @@ examine = "A sneaky, spiny, subterranean sea-dwelling scamp."
 
 [suspicious_water_2]
 id = 2893
+hitpoints = 1000
+att = 10
+str = 10
+def = 10
 
 [spinolyp_2]
 id = 2894
@@ -160,6 +168,10 @@ clone = "spinolyp"
 
 [suspicious_water_3]
 id = 2895
+hitpoints = 1000
+att = 10
+str = 10
+def = 10
 
 [spinolyp_3]
 id = 2896

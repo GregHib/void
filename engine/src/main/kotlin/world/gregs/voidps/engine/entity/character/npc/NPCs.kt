@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterIndexMap
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.mode.DefaultMode
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -21,7 +21,8 @@ import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-object NPCs : Runnable,
+object NPCs :
+    Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {
     private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
@@ -42,8 +43,8 @@ object NPCs : Runnable,
         while (i < removeIndex) {
             val index = removeQueue[i]
             removeQueue[i++] = -1
-            size--
             val npc = indexArray[index] ?: continue
+            size--
             indexArray[index] = null
             regionMap.remove(npc.tile.regionLevel.id, npc.index)
             zoneMap.remove(npc.tile.zone.id, npc.index)

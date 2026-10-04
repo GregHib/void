@@ -1,0 +1,719 @@
+[revenant_imp]
+id = 6604
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_goblin]
+id = 6605
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_hobgoblin]
+id = 6608
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_ork]
+id = 6610
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight]
+id = 6611
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_ork_2]
+id = 6615
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_goblin_2]
+id = 6616
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_ork_3]
+id = 6618
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_2]
+id = 6619
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_pyrefiend]
+id = 6622
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_ork_4]
+id = 6624
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_ork_5]
+id = 6626
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_3]
+id = 6627
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_ork_6]
+id = 6629
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_4]
+id = 6630
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_pyrefiend_2]
+id = 6631
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_ork_7]
+id = 6633
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_5]
+id = 6634
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_imp_2]
+id = 6635
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_goblin_3]
+id = 6636
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_pyrefiend_3]
+id = 6641
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_hobgoblin_2]
+id = 6642
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_cyclops]
+id = 6645
+hitpoints = 1100
+att = 60
+str = 73
+def = 49
+mage = 65
+range = 70
+examine = "The ghost of a cyclops slain during the god wars."
+
+[revenant_hellhound]
+id = 6646
+hitpoints = 800
+att = 76
+str = 80
+def = 80
+mage = 104
+range = 80
+examine = "The essence of a hellhound slain during the god wars."
+
+[revenant_demon]
+id = 6647
+hitpoints = 800
+att = 83
+str = 76
+def = 80
+mage = 120
+range = 80
+examine = "The essence of a demon slain during the god wars."
+
+[revenant_ork_8]
+id = 6648
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_dark_beast]
+id = 6649
+hitpoints = 1400
+att = 93
+str = 110
+def = 80
+mage = 130
+range = 135
+examine = "The ghost of a dark beast slain during the god wars."
+
+[revenant_knight_6]
+id = 6650
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_ork_9]
+id = 6653
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_7]
+id = 6654
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_imp_3]
+id = 6655
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_goblin_4]
+id = 6656
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_pyrefiend_4]
+id = 6660
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_hobgoblin_3]
+id = 6661
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_ork_10]
+id = 6664
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_8]
+id = 6665
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_imp_4]
+id = 6666
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_pyrefiend_5]
+id = 6668
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_ork_11]
+id = 6670
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_ork_12]
+id = 6672
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_9]
+id = 6673
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_knight_10]
+id = 6676
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_imp_5]
+id = 6677
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_goblin_5]
+id = 6678
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_pyrefiend_6]
+id = 6683
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_hobgoblin_4]
+id = 6684
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_cyclops_2]
+id = 6687
+hitpoints = 1100
+att = 60
+str = 73
+def = 49
+mage = 65
+range = 70
+examine = "The ghost of a cyclops slain during the god wars."
+
+[revenant_hellhound_2]
+id = 6688
+hitpoints = 800
+att = 76
+str = 80
+def = 80
+mage = 104
+range = 80
+examine = "The essence of a hellhound slain during the god wars."
+
+[revenant_demon_2]
+id = 6689
+hitpoints = 800
+att = 83
+str = 76
+def = 80
+mage = 120
+range = 80
+examine = "The essence of a demon slain during the god wars."
+
+[revenant_ork_13]
+id = 6690
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_dark_beast_2]
+id = 6691
+hitpoints = 1400
+att = 93
+str = 110
+def = 80
+mage = 130
+range = 135
+examine = "The ghost of a dark beast slain during the god wars."
+
+[revenant_knight_11]
+id = 6692
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_ork_14]
+id = 6696
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_imp_6]
+id = 6697
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_ork_15]
+id = 6702
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_imp_7]
+id = 6703
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_goblin_6]
+id = 6704
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_pyrefiend_7]
+id = 6709
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_hobgoblin_5]
+id = 6710
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_ork_16]
+id = 6713
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_12]
+id = 6714
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_imp_8]
+id = 6715
+hitpoints = 100
+att = 5
+str = 5
+def = 4
+mage = 9
+range = 5
+examine = "The essence of an imp slain during the god wars."
+
+[revenant_goblin_7]
+id = 6716
+hitpoints = 140
+att = 13
+str = 14
+def = 14
+mage = 12
+range = 15
+examine = "The ghost of a goblin slain during the god wars."
+
+[revenant_pyrefiend_8]
+id = 6721
+hitpoints = 480
+att = 60
+str = 40
+def = 33
+mage = 67
+range = 40
+examine = "The essence of a pyrefiend slain during the god wars."
+
+[revenant_hobgoblin_6]
+id = 6722
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_ork_17]
+id = 6725
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_13]
+id = 6726
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_hobgoblin_7]
+id = 6727
+hitpoints = 720
+att = 50
+str = 50
+def = 41
+mage = 55
+range = 60
+examine = "The ghost of a hobgoblin slain during the god wars."
+
+[revenant_ork_18]
+id = 6729
+hitpoints = 1050
+att = 99
+str = 100
+def = 60
+mage = 110
+range = 130
+examine = "The ghost of an ork slain during the god wars."
+
+[revenant_knight_14]
+id = 6730
+hitpoints = 1430
+att = 100
+str = 119
+def = 80
+mage = 146
+range = 146
+examine = "The ghost of a knight slain during the god wars."
+
+[revenant_dragon]
+id = 6998
+hitpoints = 1550
+att = 106
+str = 126
+def = 87
+mage = 150
+range = 151
+examine = "The ghost of a dragon slain during the god wars."
+
+[revenant_dragon_2]
+id = 6999
+hitpoints = 1550
+att = 106
+str = 126
+def = 87
+mage = 150
+range = 151
+examine = "The ghost of a dragon slain during the god wars."

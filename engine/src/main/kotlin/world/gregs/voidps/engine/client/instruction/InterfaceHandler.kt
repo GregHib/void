@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.suspend.Suspension
 
 class InterfaceHandler(
@@ -76,7 +76,7 @@ class InterfaceHandler(
             id == "price_checker" -> itemSlot / 2
             id == "shop" -> itemSlot / 6
             id == "random_event_gift_select" -> itemSlot / 7
-            id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toInt()
+            id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toIntOrNull() ?: return null
             else -> itemSlot
         }
         val definition = inventoryDefinitions.get(inventoryId)
@@ -125,7 +125,7 @@ class InterfaceHandler(
     }
 }
 
-fun <C: Character> C.protectedAccess(block: suspend C.() -> Unit): Boolean {
+fun <C : Character> C.protectedAccess(block: suspend C.() -> Unit): Boolean {
     if (delayed && (this is Player && hasMenuOpen())) {
         return false
     }

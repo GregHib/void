@@ -33,9 +33,7 @@ sealed interface ColumnType<T : Any> {
 
     open class ColumnPair<A : Any, B : Any>(val one: ColumnType<A>, val two: ColumnType<B>) : ColumnType<Pair<A, B>> {
         override val default = Pair(one.default, two.default)
-        override fun toString(): String {
-            return "ColumnPair(one=$one, two=$two)"
-        }
+        override fun toString(): String = "ColumnPair(one=$one, two=$two)"
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -54,14 +52,11 @@ sealed interface ColumnType<T : Any> {
             result = 31 * result + two.hashCode()
             return result
         }
-
     }
 
     open class ColumnTriple<A : Any, B : Any, C : Any>(val one: ColumnType<A>, val two: ColumnType<B>, val three: ColumnType<C>) : ColumnType<Triple<A, B, C>> {
         override val default = Triple(one.default, two.default, three.default)
-        override fun toString(): String {
-            return "ColumnTriple(one=$one, two=$two, three=$three)"
-        }
+        override fun toString(): String = "ColumnTriple(one=$one, two=$two, three=$three)"
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -82,14 +77,11 @@ sealed interface ColumnType<T : Any> {
             result = 31 * result + three.hashCode()
             return result
         }
-
     }
 
     open class ColumnList<T : Any>(val type: ColumnType<T>) : ColumnType<List<T>> {
         override val default = emptyList<T>()
-        override fun toString(): String {
-            return "ColumnList(type=$type)"
-        }
+        override fun toString(): String = "ColumnList(type=$type)"
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -100,10 +92,7 @@ sealed interface ColumnType<T : Any> {
             return type == other.type
         }
 
-        override fun hashCode(): Int {
-            return type.hashCode()
-        }
-
+        override fun hashCode(): Int = type.hashCode()
     }
 
     object BooleanList : ColumnList<Boolean>(ColumnBoolean)
@@ -118,4 +107,3 @@ sealed interface ColumnType<T : Any> {
     object IntStringList : ColumnList<Pair<Int, String>>(ColumnPair(ColumnInt, ColumnString))
     object StringIntList : ColumnList<Pair<String, Int>>(ColumnPair(ColumnString, ColumnInt))
 }
-

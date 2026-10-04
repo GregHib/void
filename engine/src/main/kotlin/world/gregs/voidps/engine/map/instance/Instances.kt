@@ -121,18 +121,29 @@ object Instances : Runnable {
         }
     }
 
+    /**
+     * Clears every region reserved by [instance], including its padding
+     */
     private fun clear(instance: Region) {
-        get<DynamicZones>().clear(instance)
-        for (level in 0..3) {
-            NPCs.clear(instance.toLevel(level))
-        }
-        for (zone in instance.toCuboid().toZones()) {
-            // Floor items too, or they'd linger and resurface when the instance is reused.
-            for (item in FloorItems.at(zone).flatten()) {
-                FloorItems.remove(item)
+        val size = if (instance.y >= MID_POINT) LARGE_SIZE else SMALL_SIZE
+        val dynamicZones = get<DynamicZones>()
+        for (x in instance.x - 1 until instance.x - 1 + size) {
+            for (y in instance.y - 1 until instance.y - 1 + size) {
+                val region = Region(x, y)
+                dynamicZones.clear(region)
+                for (level in 0..3) {
+                    NPCs.clear(region.toLevel(level))
+                }
+                val zones = region.toCuboid().toZones().toSet()
+                for (zone in zones) {
+                    // Floor items too, or they'd linger and resurface when the instance is reused.
+                    for (item in FloorItems.at(zone).flatten()) {
+                        FloorItems.remove(item)
+                    }
+                    Collisions.clear(zone)
+                }
+                GameObjects.clear(zones)
             }
-            GameObjects.clear(zone)
-            Collisions.clear(zone)
         }
     }
 

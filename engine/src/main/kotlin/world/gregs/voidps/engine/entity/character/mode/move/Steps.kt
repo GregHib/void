@@ -43,8 +43,9 @@ class Steps(
      * to walk through doors use [queueSteps]
      */
     fun update(noCollision: Boolean = false, noRun: Boolean = false) {
-        for (i in steps.indices) {
-            steps[i] = steps[i].step(noCollision, noRun)
+        val iterator = steps.listIterator()
+        while (iterator.hasNext()) {
+            iterator.set(iterator.next().step(noCollision, noRun))
         }
         destination = destination.step(noCollision, noRun)
     }

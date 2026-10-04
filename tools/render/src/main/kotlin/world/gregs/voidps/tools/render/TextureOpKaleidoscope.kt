@@ -109,7 +109,9 @@ internal class TextureOpKaleidoscope : TextureOp(1, false) {
                 if (TextureOpPolarDistortion.anInt9139 != i) {
                     anIntArray6035 = IntArray(i)
                     for (i_32_ in 0..<i) anIntArray6035!![i_32_] = (i_32_ shl 12) / i
-                } else anIntArray6035 = TextureOpPerlinNoise.anIntArray6432
+                } else {
+                    anIntArray6035 = TextureOpPerlinNoise.anIntArray6432
+                }
                 anInt6212 = i
                 TextureOpPolarDistortion.anInt6325 = -1 + i
             }

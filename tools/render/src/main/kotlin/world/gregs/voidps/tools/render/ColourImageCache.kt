@@ -31,7 +31,9 @@ class ColourImageCache(i: Int, i_9_: Int, i_10_: Int) {
                     anInt4025++
                 }
                 aColourImageCacheEntryArray4033!![i_6_] = class348_sub24
-            } else this.aBoolean4035 = false
+            } else {
+                this.aBoolean4035 = false
+            }
             aLinkedList_4021!!.method2001(class348_sub24)
             return (anIntArrayArrayArray4029!![class348_sub24.anInt6875])
         }

@@ -4,7 +4,6 @@ hitpoints = 1420
 att = 91
 str = 100
 def = 91
-attack_speed = 7
 style = "crush"
 max_hit_melee = 150
 attack_bonus = 27

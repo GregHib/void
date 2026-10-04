@@ -148,7 +148,10 @@ id = 876
 
 [ogre_shaman_gu_tanoth_7]
 id = 5176
-hitpoints = 10
+hitpoints = 990
+att = 99
+str = 99
+def = 99
 style = "magic"
 max_hit_magic = 300
 respawn_delay = 51
@@ -174,3 +177,31 @@ clone = "ogre_shaman_gu_tanoth_7"
 id = 5193
 clone = "ogre_shaman_gu_tanoth_7"
 
+[skavid]
+id = 129
+hitpoints = 60
+examine = "A skavid."
+
+[ogre_chieftain_2]
+id = 5174
+hitpoints = 600
+att = 75
+str = 71
+def = 75
+examine = "Tough-looking."
+
+[ogre_shaman_gu_tanoth_8]
+id = 5177
+hitpoints = 990
+att = 99
+str = 99
+def = 99
+examine = "Seems intelligent... for an ogre."
+
+[ogre_chieftain_3]
+id = 8660
+hitpoints = 600
+att = 75
+str = 71
+def = 75
+examine = "Tough-looking."

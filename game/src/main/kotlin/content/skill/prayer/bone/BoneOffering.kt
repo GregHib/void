@@ -2,6 +2,7 @@ package content.skill.prayer.bone
 
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.makeAmount
+import content.skill.construction.HouseFurniture.Companion.altarBonus
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
@@ -21,21 +22,22 @@ class BoneOffering : Script {
         itemOnObjectOperate(obj = "prayer_altar*") { (target, item) ->
             Tables.intOrNull("bones.${item.id}.xp") ?: return@itemOnObjectOperate
             val tile = target.nearestTo(tile)
+            val bonus = altarBonus(target) ?: BONUS
             val count = inventory.count(item.id)
             if (count > 1) {
                 val (_, amount) = makeAmount(listOf(item.id), "", count)
-                offer(item, amount, tile)
+                offer(item, amount, tile, bonus)
             } else {
-                offer(item, 1, tile)
+                offer(item, 1, tile, bonus)
             }
         }
     }
 
-    suspend fun Player.offer(item: Item, amount: Int, tile: Tile) {
+    suspend fun Player.offer(item: Item, amount: Int, tile: Tile, bonus: Double) {
         val xp = Tables.intOrNull("bones.${item.id}.xp") ?: return
         repeat(amount) {
             if (inventory.remove(item.id)) {
-                exp(Skill.Prayer, (xp / 10.0) * BONUS)
+                exp(Skill.Prayer, (xp / 10.0) * bonus)
                 anim("offer_bones")
                 areaGfx("bone_offering", tile)
                 message(

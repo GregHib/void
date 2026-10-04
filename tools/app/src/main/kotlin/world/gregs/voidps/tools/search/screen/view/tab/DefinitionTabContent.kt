@@ -65,18 +65,18 @@ import world.gregs.voidps.tools.search.AccentLight
 import world.gregs.voidps.tools.search.BgDark
 import world.gregs.voidps.tools.search.BgPanel
 import world.gregs.voidps.tools.search.BorderColor
-import world.gregs.voidps.tools.search.screen.view.table.ColumnHeader
-import world.gregs.voidps.tools.search.screen.view.table.ColumnPickerButton
-import world.gregs.voidps.tools.search.screen.view.table.ResultRow
 import world.gregs.voidps.tools.search.TextMuted
 import world.gregs.voidps.tools.search.TextPrimary
 import world.gregs.voidps.tools.search.TextSecond
 import world.gregs.voidps.tools.search.copyToClipboard
 import world.gregs.voidps.tools.search.displayValue
 import world.gregs.voidps.tools.search.getProperties
-import world.gregs.voidps.tools.search.screen.view.table.filter.matchesFilter
 import world.gregs.voidps.tools.search.propertyTypeLabel
 import world.gregs.voidps.tools.search.screen.view.detail.DetailPanel
+import world.gregs.voidps.tools.search.screen.view.table.ColumnHeader
+import world.gregs.voidps.tools.search.screen.view.table.ColumnPickerButton
+import world.gregs.voidps.tools.search.screen.view.table.ResultRow
+import world.gregs.voidps.tools.search.screen.view.table.filter.matchesFilter
 import kotlin.reflect.KProperty1
 
 @Composable
@@ -120,20 +120,22 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
             }
         }
         val sortProp = state.sortField?.let { propsByName[it] } ?: return@remember filtered
-        filtered.sortedWith(Comparator { a, b ->
-            val av = try {
-                sortProp.get(a)
-            } catch (_: Exception) {
-                null
-            }
-            val bv = try {
-                sortProp.get(b)
-            } catch (_: Exception) {
-                null
-            }
-            val cmp = compareValues(av, bv)
-            if (state.sortAscending) cmp else -cmp
-        })
+        filtered.sortedWith(
+            Comparator { a, b ->
+                val av = try {
+                    sortProp.get(a)
+                } catch (_: Exception) {
+                    null
+                }
+                val bv = try {
+                    sortProp.get(b)
+                } catch (_: Exception) {
+                    null
+                }
+                val cmp = compareValues(av, bv)
+                if (state.sortAscending) cmp else -cmp
+            },
+        )
     }
 
     val activeFilters = state.columnFilters.values.count { it.value.isNotBlank() }
@@ -173,7 +175,8 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                                                 prop.get(item)
                                             } catch (_: Exception) {
                                                 null
-                                            }, prop.name == "params"
+                                            },
+                                            prop.name == "params",
                                         )
                                     }
                                 }
@@ -191,10 +194,11 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                             val item = filteredResults[newIndex]
                             if (event.isShiftPressed) {
                                 // Extend selection
-                                val range = if (newIndex > state.lastClickedIndex)
+                                val range = if (newIndex > state.lastClickedIndex) {
                                     (state.lastClickedIndex..newIndex)
-                                else
+                                } else {
                                     (newIndex..state.lastClickedIndex)
+                                }
                                 state.selectedItems = filteredResults.slice(range)
                             } else {
                                 state.selectedItems = listOf(item)
@@ -202,8 +206,10 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                             state.lastClickedIndex = newIndex
                             scope.launch { listState.scrollToItem(newIndex) }
                             true
-                        } else false
-                    }
+                        } else {
+                            false
+                        }
+                    },
             ) {
                 // Toolbar
                 Row(
@@ -212,8 +218,10 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
-                        "${filteredResults.size} / ${state.definitions.size}", fontSize = 12.sp,
-                        color = if (activeFilters > 0) AccentBlue else TextSecond, fontWeight = FontWeight.Medium
+                        "${filteredResults.size} / ${state.definitions.size}",
+                        fontSize = 12.sp,
+                        color = if (activeFilters > 0) AccentBlue else TextSecond,
+                        fontWeight = FontWeight.Medium,
                     )
                     if (state.selectedItems.size > 1) {
                         Text("· ${state.selectedItems.size} selected", fontSize = 12.sp, color = AccentLight)
@@ -222,15 +230,21 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                     Spacer(Modifier.weight(1f))
                     if (activeFilters > 0) {
                         Text(
-                            "Clear $activeFilters filter${if (activeFilters > 1) "s" else ""}", fontSize = 11.sp, color = AccentBlue,
-                            modifier = Modifier.clickable { state.columnFilters = emptyMap() })
+                            "Clear $activeFilters filter${if (activeFilters > 1) "s" else ""}",
+                            fontSize = 11.sp,
+                            color = AccentBlue,
+                            modifier = Modifier.clickable { state.columnFilters = emptyMap() },
+                        )
                     }
                     ColumnPickerButton(
                         allFields = allFieldNames,
                         visibleColumns = state.visibleColumns,
                         onToggle = { field, show ->
-                            state.visibleColumns = if (show) allFieldNames.filter { it in state.visibleColumns || it == field }
-                            else state.visibleColumns.filter { it != field }
+                            state.visibleColumns = if (show) {
+                                allFieldNames.filter { it in state.visibleColumns || it == field }
+                            } else {
+                                state.visibleColumns.filter { it != field }
+                            }
                         },
                     )
                 }
@@ -248,8 +262,11 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                             typeStr = propertyTypeLabel(prop),
                             filter = state.columnFilters[prop.name],
                             onFilterChange = { updated ->
-                                state.columnFilters = if (updated == null) state.columnFilters - prop.name
-                                else state.columnFilters + (prop.name to updated)
+                                state.columnFilters = if (updated == null) {
+                                    state.columnFilters - prop.name
+                                } else {
+                                    state.columnFilters + (prop.name to updated)
+                                }
                             },
                             weight = if (prop.name == "id") 0.5f else 1f,
                             state = state,
@@ -297,7 +314,8 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                                 Box(Modifier.fillMaxWidth().padding(48.dp), contentAlignment = Alignment.Center) {
                                     Text(
                                         if (activeFilters > 0) "No results match current filters" else "No definitions loaded",
-                                        color = TextMuted, fontSize = 13.sp
+                                        color = TextMuted,
+                                        fontSize = 13.sp,
                                     )
                                 }
                             }
@@ -307,7 +325,7 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                         modifier = Modifier
                             .align(Alignment.CenterEnd)
                             .fillMaxHeight(),
-                        adapter = rememberScrollbarAdapter(listState)
+                        adapter = rememberScrollbarAdapter(listState),
                     )
                 }
             }
@@ -363,22 +381,25 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text("Detail", fontSize = 13.sp, fontWeight = FontWeight.Medium, color = TextPrimary)
                             if (state.selectedItems.size > 1) {
                                 Spacer(Modifier.width(6.dp))
                                 Box(
                                     Modifier.background(AccentBlue.copy(0.15f), RoundedCornerShape(3.dp))
-                                        .padding(horizontal = 5.dp, vertical = 1.dp)
+                                        .padding(horizontal = 5.dp, vertical = 1.dp),
                                 ) {
                                     Text("${state.selectedItems.size} selected", fontSize = 10.sp, color = AccentLight)
                                 }
                             }
                             Spacer(Modifier.weight(1f))
                             Icon(
-                                painterResource(Res.drawable.close), null, tint = TextSecond,
-                                modifier = Modifier.size(16.dp).clickable { state.selectedItems = emptyList() })
+                                painterResource(Res.drawable.close),
+                                null,
+                                tint = TextSecond,
+                                modifier = Modifier.size(16.dp).clickable { state.selectedItems = emptyList() },
+                            )
                         }
                         HorizontalDivider(color = BorderColor, thickness = 0.5.dp)
                         DetailPanel(item, properties, state.fieldLinks, onNavigate)

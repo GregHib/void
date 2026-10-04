@@ -91,6 +91,56 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     }
 
     @Test
+    fun `Logged out local player removed`() {
+        // Given
+        val client = mockk<Player>(relaxed = true)
+        val viewport = mockk<Viewport>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
+        val sync: Writer = mockk(relaxed = true)
+        every { Players.indexed(1) } returns null
+        every { entities.localCount } returns 1
+        every { entities.locals } returns intArrayOf(1)
+        // When
+        task.processLocals(client, sync, mockk(relaxed = true), entities, viewport, true)
+        // Then
+        verify { entities.remove(1) }
+        verify(exactly = 0) { viewport.setIdle(any()) }
+        verifyOrder {
+            sync.startBitAccess()
+            sync.writeBits(1, true)
+            sync.writeBits(1, false)
+            sync.writeBits(2, 0)
+            sync.writeBits(1, false)
+            sync.stopBitAccess()
+        }
+    }
+
+    @Test
+    fun `Local players skipped when sync is full`() {
+        // Given
+        val client = mockk<Player>(relaxed = true)
+        val viewport = mockk<Viewport>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
+        val sync: Writer = mockk(relaxed = true)
+        every { sync.position() } returns 2500
+        every { entities.localCount } returns 2
+        every { entities.locals } returns intArrayOf(1, 2)
+        // When
+        task.processLocals(client, sync, mockk(relaxed = true), entities, viewport, true)
+        // Then
+        verify(exactly = 0) { Players.indexed(any()) }
+        verify {
+            viewport.setIdle(1)
+            viewport.setIdle(2)
+        }
+        verifyOrder {
+            sync.startBitAccess()
+            task.writeSkip(sync, 1)
+            sync.stopBitAccess()
+        }
+    }
+
+    @Test
     fun `Local player removed`() {
         // Given
         val player = mockk<Player>(relaxed = true)

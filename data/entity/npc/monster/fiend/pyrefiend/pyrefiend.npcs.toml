@@ -33,3 +33,11 @@ str = 36
 max_hit_melee = 50
 hunt_mode = "zamorak_aggressive"
 god = "zamorak"
+
+[pyrefiend]
+id = 8616
+hitpoints = 450
+att = 52
+str = 30
+def = 22
+examine = "A small fire demon."

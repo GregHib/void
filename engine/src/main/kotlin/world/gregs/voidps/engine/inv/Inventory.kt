@@ -77,17 +77,24 @@ class Inventory(
         return get(index).amount >= amount
     }
 
-    fun contains(vararg ids: String, amount: Int = 1): Boolean {
-        return ids.all { contains(it, amount) }
-    }
+    fun contains(vararg ids: String, amount: Int = 1): Boolean = ids.all { contains(it, amount) }
 
     fun stackable(id: String) = stackRule.stackable(id)
 
     fun restricted(id: String) = itemRule.restricted(id)
 
     fun transaction(block: Transaction.() -> Unit): Boolean {
+        if (transaction.state.hasSaved()) {
+            block.invoke(transaction)
+            return !transaction.failed
+        }
         transaction.start()
-        block.invoke(transaction)
+        try {
+            block.invoke(transaction)
+        } catch (e: Exception) {
+            transaction.revert()
+            throw e
+        }
         return transaction.commit()
     }
 

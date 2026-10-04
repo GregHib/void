@@ -15,9 +15,7 @@ internal class IndexedSprite {
     var anInt2702: Int = 0
     var anInt2703: Int = 0
 
-    fun method1510(): Int {
-        return (this.anInt2702 + this.anInt2703 + this.anInt2698)
-    }
+    fun method1510(): Int = (this.anInt2702 + this.anInt2703 + this.anInt2698)
 
     fun method1516(): IntArray {
         val i = method1510()
@@ -28,8 +26,11 @@ internal class IndexedSprite {
                 var i_69_ = (this.anInt2703 + (i_67_ + this.anInt2700) * i)
                 for (i_70_ in 0..<this.anInt2702) {
                     val i_71_ = (this.anIntArray2697!![this.aByteArray2699!![i_68_++].toInt() and 0xff])
-                    if (i_71_ != 0) `is`[i_69_++] = 0xffffff.inv() or i_71_
-                    else `is`[i_69_++] = 0
+                    if (i_71_ != 0) {
+                        `is`[i_69_++] = 0xffffff.inv() or i_71_
+                    } else {
+                        `is`[i_69_++] = 0
+                    }
                 }
             }
         } else {
@@ -45,9 +46,7 @@ internal class IndexedSprite {
         return `is`
     }
 
-    fun method1522(): Int {
-        return (this.anInt2696 + this.anInt2700 + this.anInt2701)
-    }
+    fun method1522(): Int = (this.anInt2696 + this.anInt2700 + this.anInt2701)
 
     fun method1524() {
         val i = method1510()

@@ -37,8 +37,4 @@ data class ExchangeOffer(
     fun cancel() {
         state = if (state.sell) OfferState.CompletedSell else OfferState.CompletedBuy
     }
-
-    companion object {
-        val EMPTY = ExchangeOffer()
-    }
 }

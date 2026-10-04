@@ -87,8 +87,8 @@ object Level {
     fun Player.hasRequirementsToUse(item: Item, message: Boolean = false, skills: Set<Skill> = emptySet()): Boolean {
         val def = item.def
         for (i in 1..6) {
-            val index: Int = def.getOrNull("use_skill_${i}") ?: break
-            val level: Int = def.getOrNull("use_level_${i}") ?: break
+            val index: Int = def.getOrNull("use_skill_$i") ?: break
+            val level: Int = def.getOrNull("use_level_$i") ?: break
             val skill = Skill.all[index]
             if ((skills.isEmpty() || skills.contains(skill)) && !has(skill, level, message)) {
                 return false
@@ -100,8 +100,8 @@ object Level {
     fun Player.hasRequirements(item: Item, message: Boolean = false): Boolean {
         val def = item.def
         for (i in 1..6) {
-            val index: Int = def.getOrNull("equip_skill_${i}") ?: break
-            val level: Int = def.getOrNull("equip_level_${i}") ?: break
+            val index: Int = def.getOrNull("equip_skill_$i") ?: break
+            val level: Int = def.getOrNull("equip_level_$i") ?: break
             val skill = Skill.all[index]
             if (!hasMax(skill, level, message)) {
                 return false

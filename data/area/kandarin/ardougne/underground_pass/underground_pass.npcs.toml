@@ -8,7 +8,6 @@ hitpoints = 600
 att = 43
 str = 43
 def = 43
-attack_speed = 6
 style = "crush"
 max_hit_melee = 70
 attack_bonus = 22
@@ -25,7 +24,8 @@ id = 351
 examine = "One of Ardougne's many citizens."
 drop_table = "man"
 combat_def = "man"
-hitpoints = 70
+hitpoints = 130
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass]
@@ -33,7 +33,8 @@ id = 352
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 100
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_2]
@@ -41,7 +42,8 @@ id = 353
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 130
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_3]
@@ -49,7 +51,8 @@ id = 354
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 100
+att = 2
 max_hit_crush = 10
 
 [child_underground_pass]
@@ -64,7 +67,8 @@ id = 360
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 130
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_5]
@@ -72,7 +76,10 @@ id = 361
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 130
+att = 10
+str = 10
+def = 10
 max_hit_crush = 10
 
 [woman_underground_pass_6]
@@ -80,7 +87,8 @@ id = 362
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 100
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_7]
@@ -88,7 +96,10 @@ id = 363
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
-hitpoints = 70
+hitpoints = 230
+att = 10
+str = 10
+def = 10
 max_hit_crush = 10
 
 [goblin_underground_pass]
@@ -237,7 +248,6 @@ hitpoints = 570
 att = 54
 str = 54
 def = 54
-attack_speed = 5
 style = "slash"
 max_hit_melee = 80
 attack_bonus = 20
@@ -255,7 +265,6 @@ hitpoints = 570
 att = 54
 str = 54
 def = 54
-attack_speed = 5
 style = "slash"
 max_hit_melee = 80
 attack_bonus = 20
@@ -273,7 +282,6 @@ hitpoints = 570
 att = 54
 str = 54
 def = 54
-attack_speed = 5
 style = "slash"
 max_hit_melee = 80
 attack_bonus = 20

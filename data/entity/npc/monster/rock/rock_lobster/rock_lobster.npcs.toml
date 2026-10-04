@@ -1,6 +1,9 @@
 [rock_lobster]
 id = 2889
-attack_speed = 2
+hitpoints = 1500
+att = 100
+str = 100
+def = 100
 hunt_range = 3
 hunt_mode = "aggressive"
 categories = ["rock_lobster"]

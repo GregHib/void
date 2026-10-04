@@ -246,6 +246,10 @@ examine = "Mind your toes!"
 
 [brawler_level_158]
 id = 3776
+hitpoints = 1730
+att = 87
+str = 157
+def = 143
 style = "crush"
 max_hit_melee = 150
 hunt_mode = "cowardly"
@@ -265,6 +269,9 @@ examine = "Duck!"
 
 [defiler_level_33_2]
 id = 3763
+hitpoints = 270
+def = 17
+range = 46
 
 [defiler_level_50]
 id = 3764
@@ -572,7 +579,7 @@ examine = "Eeewww!"
 
 [spinner_level_88]
 id = 3751
-hitpoints = 930
+hitpoints = 1130
 att = 37
 str = 37
 def = 143
@@ -585,7 +592,7 @@ examine = "Eeewww!"
 
 [spinner_level_92]
 id = 3750
-hitpoints = 1010
+hitpoints = 930
 att = 32
 str = 32
 def = 118
@@ -735,7 +742,7 @@ clone = "torcher_level_79"
 
 [torcher_level_91]
 id = 3760
-hitpoints = 710
+hitpoints = 700
 att = 0
 str = 0
 def = 89
@@ -764,3 +771,17 @@ id = 3782
 def = 50
 mage = 50
 examine = "A powerful knight of balance."
+
+[torcher_level_49_4]
+id = 11534
+hitpoints = 300
+def = 41
+mage = 66
+examine = "Burn, baby, burn!"
+
+[defiler_level_50_3]
+id = 12328
+hitpoints = 450
+def = 29
+range = 66
+examine = "Duck!"

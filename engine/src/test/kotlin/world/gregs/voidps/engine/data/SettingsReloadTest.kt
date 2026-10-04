@@ -22,5 +22,4 @@ class SettingsReloadTest : ScriptTest {
     }
 
     override val apis = listOf(SettingsReload)
-
 }

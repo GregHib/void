@@ -17,19 +17,20 @@ data class PhotoSnapshot(
     val time: Long,
 ) {
     companion object {
-        private fun ints(csv: String): IntArray =
-            if (csv.isBlank()) IntArray(0) else csv.split(",").map { it.trim().toInt() }.toIntArray()
+        private fun ints(csv: String): IntArray = if (csv.isBlank()) IntArray(0) else csv.split(",").map { it.trim().toInt() }.toIntArray()
 
         /** Parses the comma-joined string forms persisted by the game. */
-        fun parse(male: Boolean, looks: String, colours: String, equipment: String, time: Long) =
-            PhotoSnapshot(male, ints(looks), ints(colours), ints(equipment), time)
+        fun parse(male: Boolean, looks: String, colours: String, equipment: String, time: Long) = PhotoSnapshot(male, ints(looks), ints(colours), ints(equipment), time)
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is PhotoSnapshot) return false
-        return male == other.male && looks.contentEquals(other.looks) &&
-            colours.contentEquals(other.colours) && equipment.contentEquals(other.equipment) && time == other.time
+        return male == other.male &&
+            looks.contentEquals(other.looks) &&
+            colours.contentEquals(other.colours) &&
+            equipment.contentEquals(other.equipment) &&
+            time == other.time
     }
 
     override fun hashCode(): Int {

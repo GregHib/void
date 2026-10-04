@@ -4,9 +4,7 @@ package world.gregs.voidps.tools.render
 internal class CachedTexture(var anInt6883: Int, private val anInt6880: Int, `is`: IntArray, bool: Boolean) {
     private var anIntArray6884: IntArray?
 
-    fun method2997(): IntArray? {
-        return anIntArray6884
-    }
+    fun method2997(): IntArray? = anIntArray6884
 
     init {
         anIntArray6884 = `is`

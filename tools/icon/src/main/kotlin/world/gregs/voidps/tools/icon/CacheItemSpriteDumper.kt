@@ -3,9 +3,9 @@ package world.gregs.voidps.tools.icon
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
-import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import world.gregs.voidps.tools.render.BillboardType
 import world.gregs.voidps.tools.render.Js5TextureSource
+import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import java.io.File
 
 /**

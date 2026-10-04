@@ -31,8 +31,11 @@ internal class TextureOpClamp : TextureOp(1, false) {
             val is_16_ = this.method3048(i, 0)!!
             for (i_17_ in 0..<TextureOpPolarDistortion.anInt9139) {
                 val i_18_ = is_16_[i_17_]
-                if (anInt9474 > i_18_) `is`!![i_17_] = anInt9474
-                else `is`!![i_17_] = min(i_18_, anInt9470)
+                if (anInt9474 > i_18_) {
+                    `is`!![i_17_] = anInt9474
+                } else {
+                    `is`!![i_17_] = min(i_18_, anInt9470)
+                }
             }
         }
         return `is`
@@ -53,13 +56,21 @@ internal class TextureOpClamp : TextureOp(1, false) {
                 val i_11_ = is_4_[i_10_]
                 val i_12_ = is_5_[i_10_]
                 val i_13_ = is_6_[i_10_]
-                if (i_11_ < anInt9474) is_7_[i_10_] = anInt9474
-                else is_7_[i_10_] = min(i_11_, anInt9470)
-                if (anInt9474 > i_12_) is_8_[i_10_] = anInt9474
-                else is_8_[i_10_] = min(i_12_, anInt9470)
+                if (i_11_ < anInt9474) {
+                    is_7_[i_10_] = anInt9474
+                } else {
+                    is_7_[i_10_] = min(i_11_, anInt9470)
+                }
+                if (anInt9474 > i_12_) {
+                    is_8_[i_10_] = anInt9474
+                } else {
+                    is_8_[i_10_] = min(i_12_, anInt9470)
+                }
                 if (anInt9474 <= i_13_) {
                     is_9_[i_10_] = min(i_13_, anInt9470)
-                } else is_9_[i_10_] = anInt9474
+                } else {
+                    is_9_[i_10_] = anInt9474
+                }
                 i_10_++
             }
         }

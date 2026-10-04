@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.web.api.route.api
 import world.gregs.voidps.web.api.route.apiPlugins
+import world.gregs.voidps.web.route.ProxyLimits
 import world.gregs.voidps.web.route.proxy
 import world.gregs.voidps.web.route.webclient
 import java.io.File
@@ -44,7 +45,7 @@ class WebServer(
         install(WebSockets.Plugin) {
             pingPeriod = 15.seconds
             timeout = 30.seconds
-            maxFrameSize = Long.MAX_VALUE
+            maxFrameSize = MAX_FRAME_SIZE
             masking = false
         }
         apiPlugins()
@@ -59,7 +60,11 @@ class WebServer(
                 staticFiles("/", file)
             }
             if (webclient != null) {
-                proxy(serverAddress, serverPort)
+                val limits = ProxyLimits(
+                    maxPerHost = Settings["network.maxClientPerIP", 10],
+                    maxTotal = Settings["web.proxy.maxConnections", 500],
+                )
+                proxy(serverAddress, serverPort, limits)
                 webclient(webclient)
             }
             api(storage, questDefinitions, cache)
@@ -75,6 +80,9 @@ class WebServer(
     }
 
     companion object {
+        /** Largest websocket frame accepted from a client; game client packets are far smaller. */
+        private const val MAX_FRAME_SIZE = 1024L * 1024L
+
         @JvmStatic
         fun main(args: Array<String>) {
             Settings.load("./game/src/main/resources/game.properties")

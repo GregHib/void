@@ -141,7 +141,6 @@ object Tables {
 
     fun boolListOrNull(path: String): List<Boolean>? = getOrNull(path, ColumnType.BooleanList)
 
-
     /*
         Entity Lists
      */
@@ -207,9 +206,7 @@ object Tables {
 
     fun intStrListOrNull(path: String): List<Pair<Int, String>>? = getOrNull(path, ColumnType.IntStringList)
 
-    private fun <T : Any> get(table: String, column: String, row: Int, type: ColumnType<T>): T {
-        return definitions[table]?.get(column, row, type) ?: error("Table '$table' not found")
-    }
+    private fun <T : Any> get(table: String, column: String, row: Int, type: ColumnType<T>): T = definitions[table]?.get(column, row, type) ?: error("Table '$table' not found")
 
     private fun <T : Any> getOrNull(table: String, column: String, row: Int, type: ColumnType<T>): T? {
         val definition = definitions[table] ?: error("Table '$table' not found")
@@ -218,13 +215,13 @@ object Tables {
 
     fun <T : Any> get(path: String, type: ColumnType<T>): T {
         val (table, row, column) = path.split(".")
-        val id = Rows.ids["${table}.${row}"] ?: error("Row '$row' not found for $path")
+        val id = Rows.ids["$table.$row"] ?: error("Row '$row' not found for $path")
         return get(table, column, id, type)
     }
 
     private fun <T : Any> getOrNull(path: String, type: ColumnType<T>): T? {
         val (table, row, column) = path.split(".")
-        val id = Rows.ids["${table}.${row}"] ?: return null
+        val id = Rows.ids["$table.$row"] ?: return null
         return getOrNull(table, column, id, type)
     }
 

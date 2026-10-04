@@ -34,7 +34,7 @@ internal class TextureOpVoronoiNoise : TextureOp(0, true) {
             val i_2_ = i_1_ shr 12
             val i_3_ = 1 + i_2_
             var i_4_ = 0
-            while_140_@ while ( /**/TextureOpPolarDistortion.anInt9139 > i_4_) {
+            while_140_@ while (TextureOpPolarDistortion.anInt9139 > i_4_) {
                 anInt4715 = 2147483647
                 anInt2023 = anInt4715
                 anInt2835 = anInt2023
@@ -65,7 +65,9 @@ internal class TextureOpVoronoiNoise : TextureOp(0, true) {
                                                         if (i_14_ == 2) break@while_134_
                                                         break@while_135_
                                                     }
-                                                } else break
+                                                } else {
+                                                    break
+                                                }
                                                 break@while_133_
                                             }
                                             i_12_ = if (i_12_ < 0) -i_12_ else i_12_
@@ -94,7 +96,9 @@ internal class TextureOpVoronoiNoise : TextureOp(0, true) {
                                 if (i_15_ < anInt2023) {
                                     anInt4715 = anInt2023
                                     anInt2023 = i_15_
-                                } else if (i_15_ < anInt4715) anInt4715 = i_15_
+                                } else if (i_15_ < anInt4715) {
+                                    anInt4715 = i_15_
+                                }
                             } else {
                                 anInt4715 = anInt2023
                                 anInt2023 = anInt2835
@@ -124,7 +128,9 @@ internal class TextureOpVoronoiNoise : TextureOp(0, true) {
                                         i_4_++
                                         continue@while_140_
                                     }
-                                } else break
+                                } else {
+                                    break
+                                }
                                 break@while_137_
                             }
                             `is`!![i_4_] = anInt2835
@@ -166,10 +172,14 @@ internal class TextureOpVoronoiNoise : TextureOp(0, true) {
                                                     if (i_18_ == 6) break@while_144_
                                                     break@while_145_
                                                 }
-                                            } else break@while_142_
+                                            } else {
+                                                break@while_142_
+                                            }
                                             break@while_143_
                                         }
-                                    } else break
+                                    } else {
+                                        break
+                                    }
                                     break@while_141_
                                 }
                                 anInt9122 = packet!!.readUnsignedByte()

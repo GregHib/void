@@ -57,7 +57,8 @@ class TablesTest {
                 Field("int_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt)), emptyList<Pair<Int, Int>>()),
                 Field("str_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt)), emptyList<Pair<String, Int>>()),
                 Field("int_str_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString)), emptyList<Pair<Int, String>>()),
-            ), definition
+            ),
+            definition,
         )
         assertContentEquals(intArrayOf(0, 1, 2), definition.rows)
 
@@ -127,7 +128,6 @@ class TablesTest {
         assertEquals(emptyList(), Tables.intPairList("header.row_two.int_int_list"))
         assertEquals(emptyList(), Tables.strIntList("header.row_two.str_int_list"))
         assertEquals(emptyList(), Tables.intStrList("header.row_two.int_str_list"))
-
 
         assertEquals(3, Tables.int("header.row_three.int_field"))
         assertEquals("text", Tables.string("header.row_three.string_field"))

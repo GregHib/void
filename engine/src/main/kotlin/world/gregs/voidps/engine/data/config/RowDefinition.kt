@@ -8,86 +8,86 @@ import world.gregs.voidps.engine.data.definition.Tables
 data class RowDefinition(
     val id: Int,
     val data: Array<Any?>,
-    val stringId: String
+    val stringId: String,
 ) {
 
     val rowId: String get() = stringId.substringAfterLast('.')
 
-    fun bool(column: String) = Tables.bool("${stringId}.$column")
+    fun bool(column: String) = Tables.bool("$stringId.$column")
 
-    fun boolOrNull(column: String) = Tables.boolOrNull("${stringId}.$column")
+    fun boolOrNull(column: String) = Tables.boolOrNull("$stringId.$column")
 
-    fun int(column: String) = Tables.int("${stringId}.$column")
+    fun int(column: String) = Tables.int("$stringId.$column")
 
-    fun skill(column: String) = Tables.skill("${stringId}.$column")
+    fun skill(column: String) = Tables.skill("$stringId.$column")
 
-    fun skillOrNull(column: String) = Tables.skillOrNull("${stringId}.$column")
+    fun skillOrNull(column: String) = Tables.skillOrNull("$stringId.$column")
 
-    fun skillPair(column: String) = Tables.skillPair("${stringId}.$column")
+    fun skillPair(column: String) = Tables.skillPair("$stringId.$column")
 
-    fun skillPairOrNull(column: String) = Tables.skillPairOrNull("${stringId}.$column")
+    fun skillPairOrNull(column: String) = Tables.skillPairOrNull("$stringId.$column")
 
-    fun tile(column: String) = Tables.tile("${stringId}.$column")
+    fun tile(column: String) = Tables.tile("$stringId.$column")
 
-    fun tileOrNull(column: String) = Tables.tileOrNull("${stringId}.$column")
+    fun tileOrNull(column: String) = Tables.tileOrNull("$stringId.$column")
 
-    fun tileList(column: String) = Tables.tileList("${stringId}.$column")
+    fun tileList(column: String) = Tables.tileList("$stringId.$column")
 
-    fun tileListOrNull(column: String) = Tables.tileListOrNull("${stringId}.$column")
+    fun tileListOrNull(column: String) = Tables.tileListOrNull("$stringId.$column")
 
-    fun npc(column: String) = Tables.npc("${stringId}.$column")
+    fun npc(column: String) = Tables.npc("$stringId.$column")
 
-    fun npcOrNull(column: String) = Tables.npcOrNull("${stringId}.$column")
+    fun npcOrNull(column: String) = Tables.npcOrNull("$stringId.$column")
 
-    fun npcList(column: String) = Tables.npcList("${stringId}.$column")
+    fun npcList(column: String) = Tables.npcList("$stringId.$column")
 
-    fun npcListOrNull(column: String) = Tables.npcListOrNull("${stringId}.$column")
+    fun npcListOrNull(column: String) = Tables.npcListOrNull("$stringId.$column")
 
-    fun boolList(column: String) = Tables.boolList("${stringId}.$column")
+    fun boolList(column: String) = Tables.boolList("$stringId.$column")
 
-    fun boolListOrNull(column: String) = Tables.boolListOrNull("${stringId}.$column")
+    fun boolListOrNull(column: String) = Tables.boolListOrNull("$stringId.$column")
 
-    fun intList(column: String) = Tables.intList("${stringId}.$column")
+    fun intList(column: String) = Tables.intList("$stringId.$column")
 
-    fun intListOrNull(column: String) = Tables.intListOrNull("${stringId}.$column")
+    fun intListOrNull(column: String) = Tables.intListOrNull("$stringId.$column")
 
-    fun intOrNull(column: String) = Tables.intOrNull("${stringId}.$column")
+    fun intOrNull(column: String) = Tables.intOrNull("$stringId.$column")
 
-    fun intRange(column: String) = Tables.intRange("${stringId}.$column")
+    fun intRange(column: String) = Tables.intRange("$stringId.$column")
 
-    fun intRangeOrNull(column: String) = Tables.intRangeOrNull("${stringId}.$column")
+    fun intRangeOrNull(column: String) = Tables.intRangeOrNull("$stringId.$column")
 
-    fun itemPair(column: String) = Tables.itemPair("${stringId}.$column")
+    fun itemPair(column: String) = Tables.itemPair("$stringId.$column")
 
-    fun string(column: String) = Tables.string("${stringId}.$column")
+    fun string(column: String) = Tables.string("$stringId.$column")
 
-    fun stringOrNull(column: String) = Tables.stringOrNull("${stringId}.$column")
+    fun stringOrNull(column: String) = Tables.stringOrNull("$stringId.$column")
 
-    fun anim(column: String) = Tables.anim("${stringId}.$column")
+    fun anim(column: String) = Tables.anim("$stringId.$column")
 
-    fun animOrNull(column: String) = Tables.animOrNull("${stringId}.$column")
+    fun animOrNull(column: String) = Tables.animOrNull("$stringId.$column")
 
-    fun gfx(column: String) = Tables.gfx("${stringId}.$column")
+    fun gfx(column: String) = Tables.gfx("$stringId.$column")
 
-    fun gfxOrNull(column: String) = Tables.gfxOrNull("${stringId}.$column")
+    fun gfxOrNull(column: String) = Tables.gfxOrNull("$stringId.$column")
 
-    fun obj(column: String) = Tables.obj("${stringId}.$column")
+    fun obj(column: String) = Tables.obj("$stringId.$column")
 
-    fun objOrNull(column: String) = Tables.objOrNull("${stringId}.$column")
+    fun objOrNull(column: String) = Tables.objOrNull("$stringId.$column")
 
-    fun item(column: String) = Tables.item("${stringId}.$column")
+    fun item(column: String) = Tables.item("$stringId.$column")
 
-    fun itemOrNull(column: String) = Tables.itemOrNull("${stringId}.$column")
+    fun itemOrNull(column: String) = Tables.itemOrNull("$stringId.$column")
 
-    fun itemList(column: String) = Tables.itemList("${stringId}.$column")
+    fun itemList(column: String) = Tables.itemList("$stringId.$column")
 
-    fun stringList(column: String) = Tables.stringList("${stringId}.$column")
+    fun stringList(column: String) = Tables.stringList("$stringId.$column")
 
-    fun stringListOrNull(column: String) = Tables.stringListOrNull("${stringId}.$column")
+    fun stringListOrNull(column: String) = Tables.stringListOrNull("$stringId.$column")
 
-    fun rowList(column: String) = Tables.rowList("${stringId}.$column")
+    fun rowList(column: String) = Tables.rowList("$stringId.$column")
 
-    fun rowListOrNull(column: String) = Tables.rowListOrNull("${stringId}.$column")
+    fun rowListOrNull(column: String) = Tables.rowListOrNull("$stringId.$column")
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -215,12 +215,18 @@ object WorldMap {
                 div {
                     attributes["title"] = "Pick a folder (the repo's data/) — every matching file under it, however deep, is loaded"
                     ui.button(
-                        "Load folder…", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                        "Load folder…",
+                        variant = ButtonVariant.Secondary,
+                        size = ButtonSize.Small,
+                        fullWidth = true,
                         onClick = "openMapFolder()",
                     )
                 }
                 ui.button(
-                    "Load files…", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                    "Load files…",
+                    variant = ButtonVariant.Secondary,
+                    size = ButtonSize.Small,
+                    fullWidth = true,
                     onClick = "openMapFiles()",
                 )
                 errorText("[loadError, navLoaded ? '' : navError, areaLoaded ? '' : areaError].filter(Boolean).join('\\n')")
@@ -358,8 +364,12 @@ object WorldMap {
                         div {
                             attributes["title"] = "Undo (Ctrl+Z)"
                             ui.button(
-                                "Undo", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
-                                disabledExpression = "!navCanUndo", onClick = "navUndo()",
+                                "Undo",
+                                variant = ButtonVariant.Secondary,
+                                size = ButtonSize.Small,
+                                fullWidth = true,
+                                disabledExpression = "!navCanUndo",
+                                onClick = "navUndo()",
                             )
                         }
                         div {
@@ -421,8 +431,12 @@ object WorldMap {
                         }
                     }
                     ui.button(
-                        "New area", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
-                        disabledExpression = "areaDrawing >= 0 || !areaActive()", onClick = "areaStartDraw()",
+                        "New area",
+                        variant = ButtonVariant.Secondary,
+                        size = ButtonSize.Small,
+                        fullWidth = true,
+                        disabledExpression = "areaDrawing >= 0 || !areaActive()",
+                        onClick = "areaStartDraw()",
                     )
                     div {
                         style = HINT_STYLE
@@ -461,8 +475,12 @@ object WorldMap {
                         div {
                             attributes["title"] = "Undo (Ctrl+Z)"
                             ui.button(
-                                "Undo", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
-                                disabledExpression = "!areaCanUndo", onClick = "areaUndo()",
+                                "Undo",
+                                variant = ButtonVariant.Secondary,
+                                size = ButtonSize.Small,
+                                fullWidth = true,
+                                disabledExpression = "!areaCanUndo",
+                                onClick = "areaUndo()",
                             )
                         }
                         div {
@@ -781,8 +799,12 @@ object WorldMap {
             // pane whenever the list under it is empty, and would otherwise sit on the panel edge.
             style = "padding:0 14px var(--space-5)"
             ui.textInput(
-                "wm-player-filter", "Online players", model = "playerQuery",
-                placeholder = "filter by name…", icon = Icons.SEARCH, onEnter = "selectFirstPlayer()",
+                "wm-player-filter",
+                "Online players",
+                model = "playerQuery",
+                placeholder = "filter by name…",
+                icon = Icons.SEARCH,
+                onEnter = "selectFirstPlayer()",
                 hintExpression = "filteredPlayers.length + ' of ' + players.length + ' shown'",
             )
         }
@@ -826,8 +848,11 @@ object WorldMap {
             // the last thing in the pane, and would otherwise sit on the panel's bottom edge.
             style = "padding:0 14px var(--space-5)"
             ui.textInput(
-                "wm-search", "Search the world", model = "searchQuery",
-                placeholder = "player, area or place name…", icon = Icons.SEARCH,
+                "wm-search",
+                "Search the world",
+                model = "searchQuery",
+                placeholder = "player, area or place name…",
+                icon = Icons.SEARCH,
                 hintExpression = "!searchQuery.trim() ? 'Jumps the map to any player, area or place name.' : " +
                     "searchResults.length + (searchResults.length === 1 ? ' match' : ' matches') + " +
                     "' — ↑↓ to browse, enter to go'",
@@ -886,7 +911,10 @@ object WorldMap {
                 attributes["class"] = "wm-viewport"
                 style = "position:absolute;inset:0;overflow:hidden"
 
-                div { attributes["id"] = "wm-tile-layer"; style = "position:absolute;left:0;top:0;will-change:transform" }
+                div {
+                    attributes["id"] = "wm-tile-layer"
+                    style = "position:absolute;left:0;top:0;will-change:transform"
+                }
                 div {
                     attributes["id"] = "wm-grid-layer"
                     xShow("showRegionGrid")
@@ -959,17 +987,32 @@ object WorldMap {
                         // send them after a file the page never asks for.
                         if (Site.REMOTE_MAP_TILES) {
                             +"Couldn't load any tiles from "
-                            code { style = "font:var(--type-code);color:var(--text-accent)"; +Site.MAP_TILES_URL }
+                            code {
+                                style = "font:var(--type-code);color:var(--text-accent)"
+                                +Site.MAP_TILES_URL
+                            }
                             +". Check your connection and reload."
                         } else {
                             +"Run "
-                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"MapZoomImageGenerator" }
+                            code {
+                                style = "font:var(--type-code);color:var(--text-accent)"
+                                +"MapZoomImageGenerator"
+                            }
                             +" (in the "
-                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"tools" }
+                            code {
+                                style = "font:var(--type-code);color:var(--text-accent)"
+                                +"tools"
+                            }
                             +" module) to render "
-                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"map-tiles/" }
+                            code {
+                                style = "font:var(--type-code);color:var(--text-accent)"
+                                +"map-tiles/"
+                            }
                             +", then point "
-                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"web.map.tiles" }
+                            code {
+                                style = "font:var(--type-code);color:var(--text-accent)"
+                                +"web.map.tiles"
+                            }
                             +" at its output and reload."
                         }
                     }

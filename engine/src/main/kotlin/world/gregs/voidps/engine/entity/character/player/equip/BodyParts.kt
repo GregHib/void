@@ -139,6 +139,7 @@ data class BodyParts(
         // Hair, beard, chest, arms, hands, legs, feet. Hair 5 = "Short" body_look_id.
         val DEFAULT_LOOK_MALE = intArrayOf(5, 14, 18, 26, 34, 38, 42)
         val DEFAULT_LOOK_FEMALE = intArrayOf(45, -1, 58, 61, 68, 72, 80)
+
         // Hair, top, legs, feet, skin. Hair 7 = "Willow brown" (light brown).
         val DEFAULT_COLOURS_MALE = intArrayOf(7, 0, 0, 0, 0)
         val DEFAULT_COLOURS_FEMALE = IntArray(5)

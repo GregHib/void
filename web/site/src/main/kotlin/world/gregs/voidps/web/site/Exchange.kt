@@ -58,11 +58,26 @@ object Exchange {
                     "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong);" +
                     "border-radius:var(--radius-sm);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
                     "letter-spacing:var(--tracking-wide)"
-                option { value = "vol"; +"Volume traded" }
-                option { value = "price"; +"Highest price" }
-                option { value = "gain"; +"Biggest gain" }
-                option { value = "loss"; +"Biggest fall" }
-                option { value = "name"; +"Name A–Z" }
+                option {
+                    value = "vol"
+                    +"Volume traded"
+                }
+                option {
+                    value = "price"
+                    +"Highest price"
+                }
+                option {
+                    value = "gain"
+                    +"Biggest gain"
+                }
+                option {
+                    value = "loss"
+                    +"Biggest fall"
+                }
+                option {
+                    value = "name"
+                    +"Name A–Z"
+                }
             }
             span {
                 attributes["aria-hidden"] = "true"
@@ -79,11 +94,10 @@ object Exchange {
      * page uses — the 36x32 sprite is left-aligned so the extra 4px is trimmed off the right. Falls back to the category code when there's no sprite
      * or it fails to load. [row] is the Alpine expression for the item row.
      */
-    private fun itemTile(row: String, scale: Int = 1): String =
-        """<div style="box-sizing:content-box;width:${32 * scale}px;height:${32 * scale}px;flex:none;display:flex;align-items:center;justify-content:flex-start;overflow:hidden;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">""" +
-            """<img x-show="$row.icon && !$row.iconMissing" :src="$row.icon" :alt="$row.name" @error="$row.iconMissing = true" width="${36 * scale}" height="${32 * scale}" style="flex:none;max-width:none">""" +
-            """<span x-show="!$row.icon || $row.iconMissing" style="width:100%;text-align:center;font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="$row.code"></span>""" +
-            """</div>"""
+    private fun itemTile(row: String, scale: Int = 1): String = """<div style="box-sizing:content-box;width:${32 * scale}px;height:${32 * scale}px;flex:none;display:flex;align-items:center;justify-content:flex-start;overflow:hidden;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">""" +
+        """<img x-show="$row.icon && !$row.iconMissing" :src="$row.icon" :alt="$row.name" @error="$row.iconMissing = true" width="${36 * scale}" height="${32 * scale}" style="flex:none;max-width:none">""" +
+        """<span x-show="!$row.icon || $row.iconMissing" style="width:100%;text-align:center;font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="$row.code"></span>""" +
+        """</div>"""
 
     private fun DIV.rowListTemplate(listExpr: String) {
         unsafe {
@@ -186,9 +200,12 @@ object Exchange {
                 padded = false,
             ) {
                 tableScroll(
-                    Column("", "48px"), Column("Item", "minmax(0,1fr)"),
-                    Column("Buy price", "140px", "right"), Column("24h", "120px", "right"),
-                    Column("Volume", "130px", "right"), Column("Limit", "90px", "right"),
+                    Column("", "48px"),
+                    Column("Item", "minmax(0,1fr)"),
+                    Column("Buy price", "140px", "right"),
+                    Column("24h", "120px", "right"),
+                    Column("Volume", "130px", "right"),
+                    Column("Limit", "90px", "right"),
                 ) {
                     unsafe {
                         raw(
@@ -228,11 +245,20 @@ object Exchange {
 
             div {
                 style = "display:flex;gap:var(--space-4);align-items:center;font:var(--type-body-sm);color:var(--text-faint)"
-                a(href = "#") { onClick("goHome()"); +"Market" }
+                a(href = "#") {
+                    onClick("goHome()")
+                    +"Market"
+                }
                 span { +"→" }
-                a(href = "#") { onClick("goSearch()"); attributes["x-text"] = "item.cat" }
+                a(href = "#") {
+                    onClick("goSearch()")
+                    attributes["x-text"] = "item.cat"
+                }
                 span { +"→" }
-                span { style = "color:var(--text-muted)"; attributes["x-text"] = "item.name" }
+                span {
+                    style = "color:var(--text-muted)"
+                    attributes["x-text"] = "item.name"
+                }
             }
 
             div {

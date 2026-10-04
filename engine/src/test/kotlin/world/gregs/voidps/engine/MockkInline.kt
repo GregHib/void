@@ -42,7 +42,6 @@ val KClass<*>.isInline: Boolean
         primaryConstructor?.parameters?.size == 1 &&
         java.declaredMethods.any { it.name == "box-impl" }
 
-
 fun Player.containsMessage(message: String) = messages.any { it.contains(message) }
 
 val Player.messages: List<String>

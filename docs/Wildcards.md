@@ -5,9 +5,9 @@ One string can match one or many IDs depending on the pattern, multiple patterns
 ## No wildcards
 
 Matches exactly one thing
- - `"cow"`
- - `"bank"`
- - `"doric"`
+- `"cow"`
+- `"bank"`
+- `"doric"`
 
 ## Match any - `*`
 
@@ -29,10 +29,10 @@ Matches one digit.
 - `"goblin_#"` // cow_0, ... cow_9
 
 ## Lists - `,`
+
 Useful when matching a few unrelated IDs:
 - `cow,bull,sheep`
 - `bronze_arrows,iron_darts,steel_knives`
-
 
 # Where You'll Use Wildcards
 
@@ -47,3 +47,4 @@ interfaceOption("*", "worn_equipment:*_slot") { }
 
 > [!NOTE]
 > For a more technical understand of how wildcards work see [Wildcard System](wildcard-system).
+

@@ -15,6 +15,7 @@ class DynamicZones(
     private val definitions: MapDefinitions,
 ) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
+
     // All dynamic regions
     private val regions = IntOpenHashSet()
 
@@ -45,8 +46,8 @@ class DynamicZones(
      * overlap boundaries from being lost.
      */
     fun copy(entries: List<Triple<Zone, Zone, Int>>) {
+        GameObjects.clear(entries.mapTo(HashSet()) { it.second })
         for ((_, to) in entries) {
-            GameObjects.reset(to)
             Collisions.clear(to)
         }
         for ((from, to, rotation) in entries) {
@@ -91,7 +92,7 @@ class DynamicZones(
      */
     fun clear(zone: Zone) {
         zones.remove(zone.id)
-        GameObjects.reset(zone)
+        GameObjects.clear(zone)
         Collisions.clear(zone)
         definitions.loadZone(zone, zone, 0)
         for (region in zone.toCuboid(radius = 3).toRegions()) {
@@ -107,13 +108,14 @@ class DynamicZones(
      * Clear the dynamic [region] and replace it with the original
      */
     fun clear(region: Region) {
-        for (zone in region.toCuboid().toZones()) {
-            if (zones.containsKey(zone.id)) {
-                GameObjects.clear(zone)
-                Collisions.clear(zone)
-                definitions.loadZone(zone, zone, 0)
-                zones.remove(zone.id)
-            }
+        val dynamic = region.toCuboid().toZones().filter { zones.containsKey(it.id) }
+        GameObjects.clear(dynamic.toSet())
+        for (zone in dynamic) {
+            Collisions.clear(zone)
+        }
+        for (zone in dynamic) {
+            definitions.loadZone(zone, zone, 0)
+            zones.remove(zone.id)
         }
         if (regions.remove(region.id)) {
             version++

@@ -43,9 +43,7 @@ abstract class Toolkit(var textureSource: TextureSource?) {
         method3652()
     }
 
-    fun createSprite(i: Int, `is`: IntArray?, i_86_: Int, i_87_: Int): Sprite? {
-        return method3711(`is`!!, 0, i_86_, i, i_87_)
-    }
+    fun createSprite(i: Int, `is`: IntArray?, i_86_: Int, i_87_: Int): Sprite? = method3711(`is`!!, 0, i_86_, i, i_87_)
 
     init {
         var i = -1
@@ -83,8 +81,6 @@ abstract class Toolkit(var textureSource: TextureSource?) {
         }
 
         @Synchronized
-        fun method3692(i_168_: Int, i_169_: Int, var_textureSource: TextureSource?, canvas: Canvas?): Toolkit {
-            return JavaToolkit(canvas, var_textureSource, i_169_, i_168_)
-        }
+        fun method3692(i_168_: Int, i_169_: Int, var_textureSource: TextureSource?, canvas: Canvas?): Toolkit = JavaToolkit(canvas, var_textureSource, i_169_, i_168_)
     }
 }

@@ -149,6 +149,5 @@ sealed interface ColumnReader<T : Any> {
                 throw IllegalArgumentException("Unsupported type '$name'")
             }
         }
-
     }
 }

@@ -38,7 +38,6 @@ class InterfaceOnFloorItemOptionHandler(private val handler: InterfaceHandler) :
     }
 }
 
-
 fun Player.interactItemOn(target: FloorItem, id: String, component: String, item: Item = Item.EMPTY, itemSlot: Int = -1, approachRange: Int? = null) {
     mode = ItemOnFloorItemInteract(target, item, itemSlot, "$id:$component", this, approachRange)
 }

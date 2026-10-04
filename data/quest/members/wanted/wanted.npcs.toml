@@ -1,8 +1,23 @@
 [solus_dellagar]
 id = 2780
 hitpoints = 400
-attack_speed = 3
 style = "melee"
 max_hit_melee = 40
 hunt_mode = "cowardly"
 examine = "A powerful warrior mage."
+
+[black_knight_wanted]
+id = 2777
+hitpoints = 400
+att = 25
+str = 25
+def = 25
+examine = "A dark-hearted knight."
+
+[black_knight_wanted_2]
+id = 2778
+hitpoints = 400
+att = 25
+str = 25
+def = 25
+examine = "A dark-hearted knight."

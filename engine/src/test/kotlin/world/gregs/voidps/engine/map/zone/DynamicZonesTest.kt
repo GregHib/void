@@ -6,7 +6,11 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.MapDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Region
@@ -21,6 +25,7 @@ internal class DynamicZonesTest {
     fun setup() {
         definitions = mockk(relaxed = true)
         zones = DynamicZones(definitions)
+        GameObjects.clear()
     }
 
     @Test
@@ -85,6 +90,29 @@ internal class DynamicZonesTest {
             Collisions.check(spillTile.x, spillTile.y, spillTile.level, CollisionFlag.FLOOR),
             "collision from zone A's object should survive zone B being cleared afterwards",
         )
+    }
+
+    @Test
+    fun `Copying over a zone removes its previous objects`() {
+        val zone = Zone(8, 8)
+        GameObjects.storeUnused = true
+        GameObjects.set(123, zone.tile.x, zone.tile.y, zone.level, ObjectShape.CENTRE_PIECE_STRAIGHT, 0, ObjectDefinition.EMPTY)
+
+        zones.copy(Zone(4, 4), zone, rotation = 1)
+
+        assertNull(GameObjects.getLayer(zone.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone removes its copied objects`() {
+        val zone = Zone(8, 8)
+        zones.copy(Zone(4, 4), zone)
+        GameObjects.storeUnused = true
+        GameObjects.set(123, zone.tile.x, zone.tile.y, zone.level, ObjectShape.CENTRE_PIECE_STRAIGHT, 0, ObjectDefinition.EMPTY)
+
+        zones.clear(zone)
+
+        assertNull(GameObjects.getLayer(zone.tile, ObjectLayer.GROUND))
     }
 
     @Test

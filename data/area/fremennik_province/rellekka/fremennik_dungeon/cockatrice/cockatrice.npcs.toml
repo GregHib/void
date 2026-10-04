@@ -12,3 +12,11 @@ categories = ["cockatrice"]
 respawn_delay = 15
 drop_table = "cockatrice"
 examine = "The winged reptile."
+
+[cockatrice_2]
+id = 1621
+hitpoints = 370
+att = 22
+str = 37
+def = 37
+examine = "The winged reptile."

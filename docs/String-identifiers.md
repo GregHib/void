@@ -4,13 +4,16 @@ At the borders between these boundaries the integer is replaced by a human-reada
 
 Removing [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) makes code immediately more readable.
 
-## Do ✅ 
+## Do ✅
+
 ```kotlin
 if (npc.id == "bob" && option == "Trade") {
     player.openShop("bobs_brilliant_axes")
 }
 ```
+
 ## Don't ❌
+
 ```kotlin
 if (npc.id == 519 && option == 2) {
     player.openShop(1)
@@ -31,7 +34,7 @@ A string id should follow the following formatting rules to keep them standardis
 5. All symbols removed
 
 > `Naïve bloodrager pouch` -> `naive_bloodrager_pouch`
-
+>
 > `Magic potion (3)` -> `magic_potion_3`
 
 In cases where there is no string id the integer id can be used as a string.

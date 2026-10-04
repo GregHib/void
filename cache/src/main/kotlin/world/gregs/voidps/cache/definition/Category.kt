@@ -117,5 +117,4 @@ object Category {
         "log" -> LOG
         else -> error("Category $name not found")
     }
-
 }

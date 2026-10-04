@@ -5,6 +5,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -136,10 +137,12 @@ internal class ActionQueueTest {
     @Test
     fun `Logout executes long actions immediately`() {
         var executed = false
-        queue.add(Action<Player>("long", 5, ActionPriority.Long) {
-            delay(4)
-            executed = true
-        })
+        queue.add(
+            Action<Player>("long", 5, ActionPriority.Long) {
+                delay(4)
+                executed = true
+            },
+        )
 
         queue.logout()
 
@@ -150,17 +153,58 @@ internal class ActionQueueTest {
     @Test
     fun `Logout resumes a Custom suspension whose predicate is ready`() {
         var pastAwait = false
-        queue.add(Action<Player>("long", 1, ActionPriority.Long) {
-            suspendCancellableCoroutine { cont ->
-                suspension = Suspension.Custom(cont) { true }
-            }
-            suspension = null
-            pastAwait = true
-        })
+        queue.add(
+            Action<Player>("long", 1, ActionPriority.Long) {
+                suspendCancellableCoroutine { cont ->
+                    suspension = Suspension.Custom(cont) { true }
+                }
+                suspension = null
+                pastAwait = true
+            },
+        )
 
         queue.logout()
 
         assertTrue(pastAwait, "Action should advance when the Custom predicate is already satisfied")
         assertTrue(queue.isEmpty())
+    }
+
+    @Test
+    fun `Logout abandons an entry dialogue suspension instead of spinning`() {
+        var pastAwait = false
+        queue.add(
+            Action<Player>("long", 1, ActionPriority.Long) {
+                suspendCancellableCoroutine { cont ->
+                    suspension = Suspension.IntEntry(cont)
+                }
+                pastAwait = true
+            },
+        )
+
+        queue.logout()
+
+        assertFalse(pastAwait, "Input never arrives so the action must not continue")
+        assertNull(player.suspension)
+        assertTrue(queue.isEmpty())
+    }
+
+    @Test
+    fun `Clear by name removes same named actions from every queue`() {
+        queue.add(Action<Player>("name", 1, ActionPriority.Normal) {})
+        queue.add(Action<Player>("name", 1, ActionPriority.Weak) {})
+        queue.add(Action<Player>("name", 1, ActionPriority.Engine) {})
+
+        assertTrue(queue.clear("name"))
+
+        assertFalse(queue.contains("name"))
+    }
+
+    @Test
+    fun `Clear by engine priority removes engine actions`() {
+        queue.add(Action<Player>("engine", 1, ActionPriority.Engine) {})
+
+        queue.clear(ActionPriority.Engine)
+
+        assertFalse(queue.contains(ActionPriority.Engine))
     }
 }

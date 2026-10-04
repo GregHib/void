@@ -33,13 +33,25 @@ examine = "A farmhand."
 
 [honour_guard]
 id = 5514
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
 examine = "The Burgher's protectors."
 
 [honour_guard_2]
 id = 5515
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
 
 [honour_guard_3]
 id = 5516
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
 examine = "The Burgher's protectors."
 
 [kjedelig_uppsen]

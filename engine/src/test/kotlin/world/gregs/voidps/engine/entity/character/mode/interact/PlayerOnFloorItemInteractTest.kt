@@ -11,7 +11,7 @@ class PlayerOnFloorItemInteractTest : OnInteractTest() {
     override val checks = listOf(
         listOf("option"),
     )
-    
+
     override val failedChecks = listOf(
         listOf("*"),
     )
@@ -29,5 +29,4 @@ class PlayerOnFloorItemInteractTest : OnInteractTest() {
     }
 
     override fun interact() = PlayerOnFloorItemInteract(FloorItem(Tile.EMPTY, "floor_item"), "option", Player(), null)
-
 }
