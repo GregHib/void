@@ -1,5 +1,6 @@
 [rasolo_baxtorian_falls]
 id = 1972
+shop = "rasolo_the_wandering_merchant"
 examine = "A travelling merchant."
 
 [mysterious_ghost_baxtorian_falls]
@@ -26,6 +27,7 @@ examine = "Nice hair."
 
 [hudon_baxtorian_falls]
 id = 305
+dialogue = "child"
 examine = "Looks young."
 
 [fishing_spot_baxtorian_falls_lure]

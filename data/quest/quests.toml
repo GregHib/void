@@ -4063,6 +4063,8 @@ xp = "15,250 Magic XP"
 [waterfall_quest]
 id = 50
 name = "Waterfall Quest"
+variables = ["waterfall_pillars", "waterfall_golrie_freed", "waterfall_golrie_key_given"]
+items = ["book_on_baxtorian", "a_key", "glarials_pebble", "glarials_amulet", "glarials_urn", "glarials_urn_empty", "a_key_waterfall_dungeon"]
 difficulty = 1
 length = 3
 members = true

@@ -328,6 +328,7 @@ id = 2003
 
 [door_29_closed]
 id = 2002
+door = false
 examine = "An elf-fashioned door."
 
 [large_door_30_closed]
