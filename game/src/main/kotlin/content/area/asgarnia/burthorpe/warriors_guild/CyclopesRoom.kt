@@ -84,9 +84,7 @@ class CyclopesRoom : Script {
             if (random.nextInt(DEFENDER_CHANCE) != 0) {
                 return@npcDeath
             }
-            // Dragon defenders only come from the basement so the top floor tops out at rune
-            val defender = nextDefender(player.highestDefender()).takeUnless { it == "dragon_defender" } ?: "rune_defender"
-            FloorItems.add(tile, defender, disappearTicks = 200, owner = player)
+            FloorItems.add(tile, nextDefender(player.highestDefender()), disappearTicks = 200, owner = player)
         }
     }
 
@@ -99,7 +97,7 @@ class CyclopesRoom : Script {
         }
         npc<Happy>("kamfreena", "Ahh I see that you have one of the defenders already! Well done.")
         if (defender == nextDefender(defender)) {
-            npc<Happy>("kamfreena", "I'll release some cyclopes which might drop the same rune defender for you as there isn't any higher! Have fun in there.")
+            npc<Happy>("kamfreena", "I'll release some cyclopes which might drop the same dragon defender for you as there isn't any higher! Have fun in there.") // TODO proper message
         } else {
             npc<Happy>("kamfreena", "I'll release some cyclopes which might drop the next defender for you. Have fun in there.")
         }

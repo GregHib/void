@@ -113,7 +113,7 @@ next = "adamant_defender"
 next = "rune_defender"
 
 [.rune_defender]
-next = "rune_defender"
+next = "dragon_defender"
 
 [.dragon_defender]
 next = "dragon_defender"
