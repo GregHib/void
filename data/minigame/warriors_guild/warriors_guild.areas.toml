@@ -7,3 +7,37 @@ tags = ["teleport"]
 x = [2816, 2879]
 y = [3520, 3583]
 tags = ["no_cannon"]
+
+[warriors_guild_animation_room]
+x = [2849, 2861]
+y = [3534, 3545]
+
+[warriors_guild_catapult_room]
+x = [2837, 2847]
+y = [3542, 3556]
+level = 1
+
+[warriors_guild_keg_room]
+x = [2861, 2876]
+y = [3536, 3543]
+level = 1
+
+[warriors_guild_shot_put_south]
+x = [2860, 2862]
+y = [3546, 3548]
+level = 1
+
+[warriors_guild_shot_put_north]
+x = [2860, 2862]
+y = [3552, 3554]
+level = 1
+
+[warriors_guild_cyclopes_room]
+x = [2847, 2876]
+y = [3534, 3556]
+level = 2
+
+[warriors_guild_catapult_target]
+x = [2842, 2842]
+y = [3545, 3545]
+level = 1

@@ -1,0 +1,119 @@
+[warriors_guild_animated_armour]
+npc = "npc"
+
+[.bronze]
+npc = "animated_bronze_armour"
+
+[.iron]
+npc = "animated_iron_armour"
+
+[.steel]
+npc = "animated_steel_armour"
+
+[.black]
+npc = "animated_black_armour"
+
+[.mithril]
+npc = "animated_mithril_armour"
+
+[.adamant]
+npc = "animated_adamant_armour"
+
+[.rune]
+npc = "animated_rune_armour"
+
+# Dummy positions & rotations from 2009scape's Warriors' Guild implementation; unverified.
+[warriors_guild_dummies]
+obj = "obj"
+tiles = "list<tile>"
+rotations = "list<int>"
+
+[.stab]
+obj = "dummy_stab"
+tiles = [{ x = 2857, y = 3549 }]
+rotations = [2]
+
+[.slash]
+obj = "dummy_slash"
+tiles = [{ x = 2858, y = 3554 }]
+rotations = [0]
+
+[.crush]
+obj = "dummy_crush"
+tiles = [{ x = 2859, y = 3549 }]
+rotations = [2]
+
+[.controlled]
+obj = "dummy_controlled"
+tiles = [{ x = 2855, y = 3552 }, { x = 2860, y = 3551 }]
+rotations = [3, 1]
+
+[.defensive]
+obj = "dummy_defensive"
+tiles = [{ x = 2855, y = 3550 }]
+rotations = [3]
+
+[.aggressive]
+obj = "dummy_aggressive"
+tiles = [{ x = 2860, y = 3553 }]
+rotations = [1]
+
+[.accurate]
+obj = "dummy_accurate"
+tiles = [{ x = 2856, y = 3554 }]
+rotations = [0]
+
+[warriors_guild_catapult_attacks]
+obj = "obj"
+success = "anim"
+fail = "anim"
+
+[.spiky_ball]
+obj = "catapult_spiky_ball"
+success = "catapult_defend_spiky_ball"
+fail = "catapult_hit_spiky_ball"
+
+[.flung_anvil]
+obj = "catapult_flung_anvil"
+success = "catapult_defend_flung_anvil"
+fail = "fall_back_on_butt"
+
+[.slashing_blades]
+obj = "catapult_slashing_blades"
+success = "catapult_defend_slashing_blades"
+fail = "catapult_hit_slashing_blades"
+
+[.magic_missile]
+obj = "catapult_magic_missile"
+success = "catapult_defend_magic_missile"
+fail = "catapult_hit_magic_missile"
+
+[warriors_guild_defenders]
+next = "item"
+
+[.none]
+next = "bronze_defender"
+
+[.bronze_defender]
+next = "iron_defender"
+
+[.iron_defender]
+next = "steel_defender"
+
+[.steel_defender]
+next = "black_defender"
+
+[.black_defender]
+next = "mithril_defender"
+
+[.mithril_defender]
+next = "adamant_defender"
+
+[.adamant_defender]
+next = "rune_defender"
+
+[.rune_defender]
+next = "rune_defender"
+
+[.dragon_defender]
+next = "dragon_defender"

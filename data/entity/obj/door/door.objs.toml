@@ -1798,17 +1798,17 @@ examine = "The door is open."
 id = 15536
 examine = "The door is closed."
 
-[door_334_opened]
+[cyclopes_room_door_opened]
 id = 15643
 
-[door_334_closed]
+[cyclopes_room_door_closed]
 id = 15641
 examine = "A door."
 
-[door_335_opened]
+[cyclopes_room_door_2_opened]
 id = 15646
 
-[door_335_closed]
+[cyclopes_room_door_2_closed]
 id = 15644
 examine = "A door."
 
@@ -1826,10 +1826,10 @@ id = 15652
 id = 15650
 examine = "A door."
 
-[door_338_opened]
+[warriors_guild_door_opened]
 id = 15655
 
-[door_338_closed]
+[warriors_guild_door_closed]
 id = 15653
 examine = "A door."
 

@@ -1,0 +1,39 @@
+# Animation ids from 2009scape's Warriors' Guild implementation; unverified against the 634 cache.
+[animated_armour_rise]
+id = 4166
+
+[dummy_sink]
+id = 4164
+
+[catapult_defend_flung_anvil]
+id = 4168
+
+[catapult_defend_spiky_ball]
+id = 4169
+
+[catapult_defend_slashing_blades]
+id = 4170
+
+[catapult_defend_magic_missile]
+id = 4171
+
+[catapult_hit_spiky_ball]
+id = 4173
+
+[catapult_hit_slashing_blades]
+id = 4174
+
+[catapult_hit_magic_missile]
+id = 4175
+
+[keg_pick_up]
+id = 4180
+
+[shot_put_standing_throw]
+id = 4181
+
+[shot_put_step_and_throw]
+id = 4182
+
+[shot_put_spin_and_throw]
+id = 4183

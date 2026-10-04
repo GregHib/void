@@ -1,0 +1,22 @@
+[warriors_guild_tokens]
+format = "int"
+persist = true
+
+[warriors_guild_animated_armour]
+format = "string"
+persist = true
+
+[warriors_guild_catapult_defence]
+format = "string"
+
+[warriors_guild_dummy_round]
+format = "int"
+
+[warriors_guild_kegs]
+format = "int"
+
+[warriors_guild_hands_dusted]
+format = "boolean"
+
+[warriors_guild_cyclopes_entry]
+format = "boolean"

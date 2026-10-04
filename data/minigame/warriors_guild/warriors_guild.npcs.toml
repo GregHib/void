@@ -29,14 +29,17 @@ examine = "Bank staff."
 [anton]
 id = 4295
 examine = "Armour shopkeeper."
+shop = "warriors_guild_armoury"
 
 [lilly]
 id = 4294
 examine = "Potion shopkeeper."
+shop = "warrior_guild_potion_shop"
 
 [lidio]
 id = 4293
 examine = "Food shopkeeper."
+shop = "warriors_guild_food_shop"
 
 [shanomi]
 id = 4290

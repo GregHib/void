@@ -1,3 +1,31 @@
 [warriors_guild]
 id = 1057
 
+# Interface + component ids from 2009scape's Warriors' Guild implementation; unverified against the 634 cache.
+[catapult_room_sign]
+id = 410
+type = "main_screen"
+
+[catapult_defence]
+id = 411
+type = "inventory_tab"
+
+[.spiky_ball]
+id = 9
+options = { Select = 0 }
+
+[.flung_anvil]
+id = 10
+options = { Select = 0 }
+
+[.slashing_blades]
+id = 11
+options = { Select = 0 }
+
+[.magic_missile]
+id = 12
+options = { Select = 0 }
+
+[dummy_room_sign]
+id = 412
+type = "main_screen"

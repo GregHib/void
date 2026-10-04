@@ -1,0 +1,59 @@
+# Object ids from 2009scape's Warriors' Guild implementation; unverified against the 634 cache.
+[magical_animator]
+id = 15621
+examine = "A magical animator."
+
+[dummy_accurate]
+id = 15624
+examine = "A dummy for attacking."
+
+[dummy_slash]
+id = 15625
+examine = "A dummy for attacking."
+
+[dummy_aggressive]
+id = 15626
+examine = "A dummy for attacking."
+
+[dummy_controlled]
+id = 15627
+examine = "A dummy for attacking."
+
+[dummy_crush]
+id = 15628
+examine = "A dummy for attacking."
+
+[dummy_stab]
+id = 15629
+examine = "A dummy for attacking."
+
+[dummy_defensive]
+id = 15630
+examine = "A dummy for attacking."
+
+[dummy_room_sign]
+id = 15656
+
+[catapult_spiky_ball]
+id = 15617
+
+[catapult_magic_missile]
+id = 15618
+
+[catapult_flung_anvil]
+id = 15619
+
+[catapult_slashing_blades]
+id = 15620
+
+[catapult_room_sign]
+id = 15657
+
+[shot_put_18lb]
+id = 15664
+
+[shot_put_22lb]
+id = 15665
+
+[warriors_guild_kegs]
+id = 15668

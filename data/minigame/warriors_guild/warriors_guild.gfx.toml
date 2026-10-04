@@ -1,0 +1,44 @@
+# Graphic ids from 2009scape's Warriors' Guild implementation; unverified against the 634 cache.
+[catapult_spiky_ball]
+id = 679
+height = 70
+end_height = 32
+delay = 80
+
+[catapult_flung_anvil]
+id = 680
+height = 70
+end_height = 32
+delay = 80
+
+[catapult_slashing_blades]
+id = 681
+height = 70
+end_height = 32
+delay = 80
+
+[catapult_magic_missile]
+id = 682
+height = 70
+end_height = 32
+delay = 80
+
+[keg_fall_5]
+id = 684
+
+[keg_fall_4]
+id = 685
+
+[keg_fall_3]
+id = 686
+
+[keg_fall_2]
+id = 687
+
+[keg_fall_1]
+id = 688
+
+[shot_put_shot]
+id = 690
+height = 40
+curve = 20
