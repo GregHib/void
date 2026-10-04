@@ -44,7 +44,7 @@ class VariableBits(
 
     @Suppress("UNCHECKED_CAST")
     fun clear(key: String, refresh: Boolean) {
-        val values = variables.clear(key, refresh) as? List<Any> ?: return
+        val values = variables.clear(key, refresh = false) as? List<Any> ?: return
         if (refresh) {
             variables.send(key)
         }

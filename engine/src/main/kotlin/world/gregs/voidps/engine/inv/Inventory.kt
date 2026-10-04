@@ -84,8 +84,17 @@ class Inventory(
     fun restricted(id: String) = itemRule.restricted(id)
 
     fun transaction(block: Transaction.() -> Unit): Boolean {
+        if (transaction.state.hasSaved()) {
+            block.invoke(transaction)
+            return !transaction.failed
+        }
         transaction.start()
-        block.invoke(transaction)
+        try {
+            block.invoke(transaction)
+        } catch (e: Exception) {
+            transaction.revert()
+            throw e
+        }
         return transaction.commit()
     }
 

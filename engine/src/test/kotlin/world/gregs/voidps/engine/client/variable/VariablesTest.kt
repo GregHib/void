@@ -244,6 +244,48 @@ internal class VariablesTest {
         assertEquals(arrayListOf("Third") to null, calls.first())
     }
 
+    @Test
+    fun `Increment returns clamped value`() {
+        val store = object : VariableStore {
+            override val variables = this@VariablesTest.variables
+        }
+        map[KEY] = 8
+        assertEquals(10, store.inc(KEY, 5, max = 10))
+        assertEquals(10, map[KEY])
+    }
+
+    @Test
+    fun `Decrement returns clamped value`() {
+        val store = object : VariableStore {
+            override val variables = this@VariablesTest.variables
+        }
+        map[KEY] = 3
+        assertEquals(1, store.dec(KEY, 5, min = 1))
+        assertEquals(1, map[KEY])
+    }
+
+    @Test
+    fun `Clear bitwise sends once`() {
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
+        map[KEY] = arrayListOf("First", "Second")
+        VariableDefinitions.set(mapOf(KEY to variable))
+        variables.bits.clear(KEY, true)
+        assertNull(map[KEY])
+        verify(exactly = 1) { variables.send(KEY) }
+        verify {
+            VariableApi.remove(player, KEY, "First")
+            VariableApi.remove(player, KEY, "Second")
+        }
+    }
+
+    @Test
+    fun `Clear empty bitwise doesn't send`() {
+        val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
+        VariableDefinitions.set(mapOf(KEY to variable))
+        variables.bits.clear(KEY, true)
+        verify(exactly = 0) { variables.send(KEY) }
+    }
+
     companion object {
         private const val KEY = "key"
     }

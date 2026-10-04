@@ -15,12 +15,14 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Fishing 95% - No barbarian fishing
 - Summoning 95% - [No loneliness](https://github.com/GregHib/void/issues/894)
 
-
 ## Quests
+
 <img width="240" height="482" alt="quests-progress" src="https://github.com/user-attachments/assets/c9b25c6a-ea06-4893-9645-1d64f32fffda" />
 
 (24 total + 3 mini-quests)
+
 ### Free-to-play
+
 - Cook's Assistant
 - Demon Slayer
 - Dorics' Quest
@@ -33,6 +35,7 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Blood Pact
 
 ### Members
+
 - Druidic Ritual
 - Plague City
 - Lost City
@@ -55,6 +58,7 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Sheep Shearer
 
 ## Bosses
+
 - King Black Dragon
 - Godwars Dungeon (No Nex)
 - Giant Mole
@@ -66,6 +70,7 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Barrows Brothers
 
 ## Transport
+
 - Charter Ships
 - Spirit Tree
 - Fairy Ring
@@ -77,12 +82,14 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Magic Carpets
 
 ## Minigames
+
 - Sorceress' Garden
 - TzHaar Fight Caves
 - Clan Wars (with bots)
 - Vinesweeper
 
 ## Distractions & Diversions
+
 - Shooting Stars
 - Penguin Hide & Seek
 - Tears of Guthix
@@ -90,6 +97,7 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Evil Tree
 
 ## Dungeons
+
 - Lumbridge swamp dungeon
 - Varrock dungeon
 - Edgeville dungeon
@@ -103,12 +111,15 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Chaos Tunnels
 
 ## Bots
+
 - Up to ~150 skill based activities for them to do around Lumbridge, Draynor and Varrock
 
 ## Achievement Diary's
+
 - Lumbridge Easy
 
 ## Players
+
 - Grand Exchange
 - Clan Chat
 - Trading
@@ -120,11 +131,14 @@ Ongoing list of game content added to keep people aware of what exists and what 
   - All special attacks
 
 ## Objects
+
 - Doors - most done
 - Teleports - most done
 
 ## NPCs
+
 - Shops - nearly all
 - Spawns - most done
 - Animations - some missing
 - Combat - a lot missing
+

@@ -9,21 +9,21 @@ class ConnectionTracker(private val limit: Int) {
     private val connections = ConcurrentHashMap<String, Int>()
 
     fun add(address: String): Boolean {
-        val current = connections[address] ?: 0
-        if (current >= limit) {
-            return false
+        var added = false
+        connections.compute(address) { _, current ->
+            val count = current ?: 0
+            if (count >= limit) {
+                current
+            } else {
+                added = true
+                count + 1
+            }
         }
-        connections[address] = current + 1
-        return true
+        return added
     }
 
     fun remove(address: String) {
-        val count = connections[address] ?: 0
-        if (count <= 1) {
-            connections.remove(address)
-        } else {
-            connections[address] = count - 1
-        }
+        connections.computeIfPresent(address) { _, count -> if (count <= 1) null else count - 1 }
     }
 
     fun clear() {

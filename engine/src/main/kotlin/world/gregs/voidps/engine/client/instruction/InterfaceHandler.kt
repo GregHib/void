@@ -76,7 +76,7 @@ class InterfaceHandler(
             id == "price_checker" -> itemSlot / 2
             id == "shop" -> itemSlot / 6
             id == "random_event_gift_select" -> itemSlot / 7
-            id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toInt()
+            id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toIntOrNull() ?: return null
             else -> itemSlot
         }
         val definition = inventoryDefinitions.get(inventoryId)

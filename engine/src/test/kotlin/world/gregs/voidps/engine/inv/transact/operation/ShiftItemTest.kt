@@ -121,4 +121,39 @@ internal class ShiftItemTest : TransactionOperationTest() {
         assertEquals("non_stackable_item", inventory[7].id)
         assertEquals("item", inventory[3].id)
     }
+
+    @Test
+    fun `Shift item already next to free index does nothing`() {
+        transaction(5, stackRule = NeverStack) {
+            add("non_stackable_item", 2)
+            set(1, Item("item", 1))
+        }
+        transaction.shiftToFreeIndex(1)
+        assertTrue(transaction.commit())
+
+        assertEquals("non_stackable_item", inventory[0].id)
+        assertEquals("item", inventory[1].id)
+        assertTrue(inventory[2].isEmpty())
+    }
+
+    @Test
+    fun `Shift last index of full inventory does nothing`() {
+        transaction(3, stackRule = NeverStack) {
+            add("non_stackable_item", 3)
+            clear(2)
+        }
+        transaction.shiftToFreeIndex(2)
+        assertTrue(transaction.commit())
+
+        assertEquals("non_stackable_item", inventory[1].id)
+        assertTrue(inventory[2].isEmpty())
+    }
+
+    @Test
+    fun `Shift invalid index to free index`() {
+        transaction(stackRule = NeverStack)
+        transaction.shiftToFreeIndex(-1)
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
+    }
 }

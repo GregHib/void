@@ -57,10 +57,10 @@ open class Variables(
 
     open fun clear(key: String, refresh: Boolean = true): Any? {
         val removed = data(key).remove(key)
+        val previous = removed ?: return null
         if (refresh) {
             send(key)
         }
-        val previous = removed ?: return null
         if (entity is Player) {
             VariableApi.set(entity as Player, key, previous, null)
         } else if (entity is NPC) {

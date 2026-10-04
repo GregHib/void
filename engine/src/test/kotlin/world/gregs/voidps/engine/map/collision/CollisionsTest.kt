@@ -27,6 +27,15 @@ internal class CollisionsTest {
         }
     }
 
+    @Test
+    fun `Removing collision from an unallocated zone leaves it blocked`() {
+        // When
+        GameObjectCollisionRemove().modifyTile(3, 3, 0, 0, 1)
+        // Then
+        assertEquals(-1, 3, 3, 0)
+        assertEquals(false, Collisions.isZoneAllocated(3, 3, 0))
+    }
+
     private fun print(zone: Zone) {
         val data = Collisions.allocateIfAbsent(zone.tile.x, zone.tile.y, zone.level)
         for (y in 7 downTo 0) {

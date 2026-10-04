@@ -43,8 +43,8 @@ object NPCs :
         while (i < removeIndex) {
             val index = removeQueue[i]
             removeQueue[i++] = -1
-            size--
             val npc = indexArray[index] ?: continue
+            size--
             indexArray[index] = null
             regionMap.remove(npc.tile.regionLevel.id, npc.index)
             zoneMap.remove(npc.tile.zone.id, npc.index)

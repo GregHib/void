@@ -8,6 +8,7 @@ Hunt modes are use for mechanics such as aggression and hunter npcs getting caug
 ## Hunt modes
 
 Hunt modes are specified in [`hunt_modes.toml`](https://github.com/GregHib/void/blob/main/data/entity/npc/hunt_modes.toml):
+
 ```toml
 [cowardly]                     # Name of the hunt mode
 type = "player"                # Target entity type
@@ -17,6 +18,7 @@ check_not_combat_self = true   # NPC can't be in combat
 check_not_too_strong = true    # Targets combat level must be less than double of npc 
 check_not_busy = true          # Target can't be doing something
 ```
+
 And a hunt mode is assigned to an npc in it's `.npcs.toml` file:
 
 ```toml
@@ -35,6 +37,7 @@ huntFloorItem("ash_finder") { target ->
 ```
 
 > Hunt events are: `HuntFloorItem`, `HuntNPC`, `HuntObject`, `HuntPlayer`
-
+>
 > [!NOTE]
 > [Read more about hunt modes](https://github.com/GregHib/void/issues/307)
+

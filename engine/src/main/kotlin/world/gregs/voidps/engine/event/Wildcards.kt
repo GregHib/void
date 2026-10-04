@@ -131,7 +131,11 @@ object Wildcards {
     }
 
     private fun resolve(wildcard: String, type: Wildcard): List<String> {
-        val list = set(type).filter { wildcardEquals(wildcard, it) }
+        val first = wildcard.indexOfFirst { it == '*' || it == '#' }
+        val last = wildcard.indexOfLast { it == '*' || it == '#' }
+        val prefix = if (first == -1) "" else wildcard.substring(0, first)
+        val suffix = if (last == -1) "" else wildcard.substring(last + 1)
+        val list = set(type).filter { it.startsWith(prefix) && it.endsWith(suffix) && wildcardEquals(wildcard, it) }
         require(list.isNotEmpty()) { "No matches found for ${type.name} wildcard '$wildcard'" }
         changes = true
         return list

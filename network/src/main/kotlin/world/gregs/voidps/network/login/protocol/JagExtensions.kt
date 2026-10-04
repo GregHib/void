@@ -33,6 +33,8 @@ suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 
 
 suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
 
+suspend fun ByteWriteChannel.writeBytes(value: ByteArray, offset: Int, length: Int) = writeFully(value, offset, offset + length)
+
 suspend fun ByteWriteChannel.writeShort(value: Int) = writeShort(value.toShort())
 
 suspend fun ByteWriteChannel.writeShortAdd(value: Int) {

@@ -44,6 +44,8 @@ worldSpawn {
 ```
 
 ## Notes
+
 - Properties are global and apply to the whole server.
 - Reload properties with the `reload settings` [command](commands).
 - `settingsReload {}` [event handler](event-handlers) to listen for reloads.
+

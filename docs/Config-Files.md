@@ -3,6 +3,7 @@ Config files are `.toml` files stored in /data/ directory that can store pretty 
 Below is a list of configuration types, a description and example.
 
 ## Areas
+
 Bounding boxes for areas that trigger [entered/exited](https://github.com/GregHib/void/blob/9c82412c374ced55dbcce337e34de8815e7bb9d2/engine/src/main/kotlin/world/gregs/voidps/engine/entity/character/mode/move/Moved.kt#L26)
 
 [ardougne.areas.toml](https://github.com/GregHib/void/blob/main/data/area/kandarin/ardougne/ardougne.areas.toml)
@@ -13,11 +14,13 @@ x = [2660, 2664]
 y = [3304, 3308]
 tags = ["teleport"]
 ```
+
 <img width="386" height="329" alt="image" src="https://github.com/user-attachments/assets/a587f606-8f61-4128-9737-fef1bfe2fb3c" />
 
 [Map link](https://greghib.github.io/void-map/?centreX=2662&centreY=3294&centreZ=0&zoom=10)
 
 ## Sounds
+
 Sound definition extras
 
 [flesh_crawler.sounds.toml](https://github.com/GregHib/void/blob/main/data/area/misthalin/barbarian_village/stronghold_of_security/flesh_crawler/flesh_crawler.sounds.toml)
@@ -108,6 +111,7 @@ height = 100
 ## Variables
 
 ### Players
+
 Player variables
 
 [gameframe.varps.toml](https://github.com/GregHib/void/blob/main/data/entity/player/modal/toplevel/gameframe.varps.toml)
@@ -148,6 +152,7 @@ format = "int"
 ```
 
 ### Client
+
 Client variable definitions
 
 [world_map.varcs.toml](https://github.com/GregHib/void/blob/main/data/entity/player/modal/world_map/world_map.varcs.toml)
@@ -243,6 +248,7 @@ id = 397
 ### Spawns
 
 [entrana.npc-spawns.toml](https://github.com/GregHib/void/blob/main/data/area/asgarnia/entrana/entrana.npc-spawns.toml)
+
 ```toml
 spawns = [
   { id = "chicken_brown", x = 2850, y = 3371 },
@@ -303,6 +309,7 @@ points = [
 ```
 
 ## Objects
+
 ### Definitions
 
 [tree.objs.toml](https://github.com/GregHib/void/blob/main/data/entity/obj/trees.objs.toml)
@@ -353,8 +360,8 @@ tile = { x = 2255, y = 4829, level = 2 }
 delta = { level = 1 }
 ```
 
-
 ## Items
+
 ### Definitions
 
 [ore.items.toml](https://github.com/GregHib/void/blob/main/data/skill/mining/ore.items.toml)
@@ -393,6 +400,7 @@ spawns = [
   { id = "bronze_med_helm", x = 3120, y = 3361, delay = 230 },
 ]
 ```
+
 ### Item-on-item Recipes
 
 [pie.recipes.toml](https://github.com/GregHib/void/blob/main/data/skill/cooking/pie.recipes.toml)
@@ -517,6 +525,5 @@ values = {
     onion = 30,
 }
 ```
-
 
 And many more... see the full list in [game.properties](https://github.com/GregHib/void/blob/9c82412c374ced55dbcce337e34de8815e7bb9d2/game/src/main/resources/game.properties#L308).

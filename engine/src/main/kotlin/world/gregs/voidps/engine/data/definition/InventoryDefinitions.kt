@@ -70,6 +70,7 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
                         "id" -> invId = int()
                         "defaults" -> {
                             var index = 0
+                            require(invId != -1) { "Inventory '$stringId' must declare 'id' before 'defaults' at $path." }
                             val definition = definitions[invId]
                             if (length > definition.length) {
                                 definition.length = length

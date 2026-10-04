@@ -77,6 +77,7 @@ class ItemOnItemDefinitions {
                                 "question" -> question = string()
                                 "maximum" -> maximum = int()
                                 "members" -> members = boolean()
+                                else -> throw IllegalArgumentException("Unexpected item on item key: '$key' ${exception()}")
                             }
                         }
 

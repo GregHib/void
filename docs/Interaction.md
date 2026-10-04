@@ -6,6 +6,7 @@ player.mode = Interact(player, floorItem, interaction)
 ```
 
 ## Interaction types
+
 Interactions fall into two categories: Approach and Operate.
 
 * Approach interactions trigger when the character is within 10 tiles of the target, this is mainly used for [ranged combat](combat-scripts) and magic spells.
@@ -18,16 +19,16 @@ Interactions fall into two categories: Approach and Operate.
 
 There are many types of interactions:
 
-| Interaction | Description |
-|---|---|
-| [`InterfaceOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/client/ui/InterfaceOption.kt) | Clicking [Interfaces](interfaces) or Item . |
-| [`Command`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/client/ui/event/Command.kt) | A command typed into the client console. |
-| [`ItemOn...`](https://github.com/GregHib/void/tree/main/engine/src/main/kotlin/world/gregs/voidps/engine/client/ui/interact) | Using an item on a type of [Entity](entities). |
-| [`NPCOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/character/npc/NPCOption.kt) | An option on an [NPC](entities#npcs). |
-| [`PlayerOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/character/player/PlayerOption.kt) | An option on a [Player](entities#players). |
-| [`FloorItemOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/item/floor/FloorItemOption.kt) | An option on a [Floor item](entities#floor-items). |
-| [`ObjectOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/obj/ObjectOption.kt) | An option on a [Game object](entities#game-objects). |
-| [`CombatInteraction`](https://github.com/GregHib/void/blob/main/game/src/main/kotlin/world/gregs/voidps/world/interact/entity/combat/CombatInteraction.kt) | In [combat](combat-scripts) with a target. |
+|                                                                         Interaction                                                                          |                          Description                           |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| [`InterfaceOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/client/ui/InterfaceOption.kt)                 | Clicking [Interfaces](interfaces) or Item .                    |
+| [`Command`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/client/ui/event/Command.kt)                           | A command typed into the client console.                       |
+| [`ItemOn...`](https://github.com/GregHib/void/tree/main/engine/src/main/kotlin/world/gregs/voidps/engine/client/ui/interact)                                 | Using an item on a type of [Entity](entities).                 |
+| [`NPCOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/character/npc/NPCOption.kt)                  | An option on an [NPC](entities#npcs).                          |
+| [`PlayerOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/character/player/PlayerOption.kt)         | An option on a [Player](entities#players).                     |
+| [`FloorItemOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/item/floor/FloorItemOption.kt)         | An option on a [Floor item](entities#floor-items).             |
+| [`ObjectOption`](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/obj/ObjectOption.kt)                      | An option on a [Game object](entities#game-objects).           |
+| [`CombatInteraction`](https://github.com/GregHib/void/blob/main/game/src/main/kotlin/world/gregs/voidps/world/interact/entity/combat/CombatInteraction.kt)   | In [combat](combat-scripts) with a target.                     |
 | [`InventoryOption`](https://github.com/GregHib/void/blob/main/game/src/main/kotlin/world/gregs/voidps/world/interact/entity/player/equip/InventoryOption.kt) | An option on an [Inventory item](inventories) on an Interface. |
 
 ## Entity interactions
@@ -74,7 +75,7 @@ inventoryItem("Rub", "amulet_of_glory_#", "inventory") {
 
 ### Operation Arrival
 
-Most cases you'll want to wait until the player is right next to the target before interaction. 
+Most cases you'll want to wait until the player is right next to the target before interaction.
 
 - todo pic
 
@@ -92,10 +93,10 @@ When interacting with entities often times you'll want to write code to interact
 
 Currently Void supports two wildcard characters:
 
-| Symbol | Pattern |
-|---|---|
-| `*` | Matches any amount of any character |
-| `#` | Matches a single digit |
+| Symbol |               Pattern               |
+|--------|-------------------------------------|
+| `*`    | Matches any amount of any character |
+| `#`    | Matches a single digit              |
 
 So you can match all bankers using `banker_*` instead of listing them individually.
 Note: The real wildcard uses `banker*` to also match `banker` as well.
