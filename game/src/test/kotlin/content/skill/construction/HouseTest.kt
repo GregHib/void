@@ -853,6 +853,22 @@ class HouseTest : WorldTest() {
     }
 
     @Test
+    fun `Curtains aren't hung on windows joining another room`() {
+        for (mode in 1..2) {
+            val player = createOwner("owner$mode")
+            player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+            player.addHouseFurniture(roomPosition(4, 3, GROUND_LEVEL), "parlour_curtain_space", "curtains")
+            player.addHouseRoom("kitchen", roomPosition(5, 3, GROUND_LEVEL))
+
+            player.enterPortal(mode)
+
+            val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL))
+            val walled = parlour.toCuboid().filter { it.x == parlour.tile.x + 7 }
+            assertTrue(walled.none { tile -> GameObjects.at(tile).any { it.id == "curtains" || it.id == "parlour_curtain_space" } }, "mode $mode")
+        }
+    }
+
+    @Test
     fun `Doorways joining a room without a doorway are walls`() {
         val player = createOwner()
         player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
@@ -866,6 +882,109 @@ class HouseTest : WorldTest() {
         assertNotNull(GameObjects.findOrNull(parlour.add(7, 4), "basic_wood_wall"))
         // Garden doorways join on every side
         assertNull(GameObjects.findOrNull(parlour.add(0, 3)) { it.id == "basic_wood_wall" || it.id.startsWith("door_hotspot") })
+    }
+
+    @Test
+    fun `Doorways out of the house have doors`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        val base = player.instance()!!.tile.zone
+        val parlour = roomZone(base, roomPosition(4, 3, GROUND_LEVEL)).tile
+        // Garden to the west
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "basic_wood_door_right_closed"))
+        // Grounds to the south
+        assertNotNull(GameObjects.findOrNull(parlour.add(4, 0), "basic_wood_door_left_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(3, 0), "basic_wood_door_right_closed"))
+        // Grounds to the east
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 4), "basic_wood_door_left_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 3), "basic_wood_door_right_closed"))
+        // Gardens don't have doors
+        val garden = roomZone(base, START_ROOM)
+        assertTrue(garden.toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("door_") } })
+    }
+
+    @Test
+    fun `Doorways in building mode aren't doors`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+
+        player.enterPortal(2)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3)) { it.id.startsWith("door_hotspot") })
+        assertNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
+    }
+
+    @Test
+    fun `Doors match the house style`() {
+        val player = createOwner()
+        player["house_style"] = "fancy_stone"
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "fancy_stone_door_left_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "fancy_stone_door_right_closed"))
+    }
+
+    @Test
+    fun `Open a door out of the house`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(1)
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        player.tele(parlour.add(1, 3))
+
+        player.objectOption(GameObjects.find(parlour.add(0, 3), "basic_wood_door_left_closed"), "Open")
+        tick(2)
+
+        assertNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
+        assertNoHotspots(parlour)
+    }
+
+    @Test
+    fun `Close a door out of the house`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(1)
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        player.tele(parlour.add(1, 3))
+        player.objectOption(GameObjects.find(parlour.add(0, 3), "basic_wood_door_left_closed"), "Open")
+        tick(2)
+        val opened = (-1..1).flatMap { x -> (2..5).map { y -> parlour.add(x, y) } }
+            .firstNotNullOf { GameObjects.findOrNull(it, "basic_wood_door_left_opened") }
+
+        player.objectOption(opened, "Close")
+        tick(2)
+
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "basic_wood_door_right_closed"))
+        assertNoHotspots(parlour)
+    }
+
+    /**
+     * No doorway hotspots either side of the parlours west doors, in the parlour or the garden
+     */
+    private fun assertNoHotspots(parlour: Tile) {
+        for (tile in listOf(parlour.add(0, 3), parlour.add(0, 4), parlour.add(-1, 3), parlour.add(-1, 4))) {
+            assertNull(GameObjects.findOrNull(tile) { it.id.startsWith("door_hotspot") }, tile.toString())
+        }
+    }
+
+    @Test
+    fun `Dungeon doorways don't have doors`() {
+        val player = createOwner()
+        player.addHouseRoom("dungeon_corridor", roomPosition(4, 3, DUNGEON_LEVEL))
+
+        player.enterPortal(1)
+
+        val corridor = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, DUNGEON_LEVEL))
+        assertTrue(corridor.toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("door_") } })
     }
 
     @Test

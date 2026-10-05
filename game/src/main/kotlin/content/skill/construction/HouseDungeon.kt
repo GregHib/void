@@ -1,11 +1,12 @@
 package content.skill.construction
 
-import content.entity.obj.door.Door
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
+import content.skill.construction.House.Companion.closeHouseDoor
 import content.skill.construction.House.Companion.houseOwner
 import content.skill.construction.House.Companion.inOwnHouse
+import content.skill.construction.House.Companion.openHouseDoor
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -28,7 +29,11 @@ class HouseDungeon : Script {
                 message("The door is locked.") // TODO proper message
                 return@objectOperate
             }
-            Door.openDoor(this, target)
+            openHouseDoor(target)
+        }
+
+        objectOperate("Close", DOORS.replace("_closed", "_opened")) { (target) ->
+            closeHouseDoor(target)
         }
 
         objectOperate("Pick-lock", DOORS) { (target) ->

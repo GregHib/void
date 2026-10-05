@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -43,11 +44,13 @@ class HouseSeatsTest : WorldTest() {
         return player
     }
 
-    private fun Player.enterHouse() {
+    private fun Player.enterHouse(room: Int = parlour) {
         objectOption(GameObjects.find(portal, "house_portal_rimmington"), "Enter")
         tickIf { dialogue == null }
         dialogueOption("line1")
         tickIf { hasOpen("house_loading") }
+        // Start inside the room rather than behind its doors
+        tele(roomZone(instance()!!.tile.zone, room).tile.add(3, 3))
     }
 
     private fun Player.findOrNull(id: String): GameObject? {
@@ -96,7 +99,7 @@ class HouseSeatsTest : WorldTest() {
         val dining = roomPosition(3, 3, GROUND_LEVEL)
         player.addHouseRoom("dining_room", dining)
         player.addHouseFurniture(dining, "dining_room_bench_space", "wooden_bench")
-        player.enterHouse()
+        player.enterHouse(dining)
         val zone = roomZone(player.instance()!!.tile.zone, dining)
         val bench = zone.toCuboid().firstNotNullOf { GameObjects.findOrNull(it, "wooden_bench") }
 
@@ -119,7 +122,7 @@ class HouseSeatsTest : WorldTest() {
         val dining = roomPosition(3, 3, GROUND_LEVEL)
         player.addHouseRoom("dining_room", dining)
         player.addHouseFurniture(dining, "dining_room_bench_space", "wooden_bench")
-        player.enterHouse()
+        player.enterHouse(dining)
         val zone = roomZone(player.instance()!!.tile.zone, dining)
         val bench = zone.toCuboid().firstNotNullOf { GameObjects.findOrNull(it, "wooden_bench") }
         player.objectOption(bench, "Sit-on")
