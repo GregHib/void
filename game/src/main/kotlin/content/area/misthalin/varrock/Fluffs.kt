@@ -176,13 +176,7 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.mildInterest(item: String) {
-        var itemName = item
-        if (item == "doogle_leaves") {
-            itemName = "doogle leaves"
-        }
-        if (item == "raw_sardine") {
-            itemName = "raw sardine"
-        }
+        var itemName = item.replace("_", " ")
         npc<Angry>("Hiss!")
         player<Neutral>("She seems to be a very fussy cat.")
         statement("Fluffs looks vaguely interested at the $itemName but doesn't want it. A similar type of food or drink might be worth a try.")
