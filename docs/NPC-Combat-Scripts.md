@@ -55,7 +55,8 @@ max_hit_crush = 100 # Max hit's can be overridden
 ```
 
 ## Multiples
-Lots of fields can have more than one value e.g. hits, drains, sounds, gfxs, projectiles. 
+
+Lots of fields can have more than one value e.g. hits, drains, sounds, gfxs, projectiles.
 
 ```toml
 sounds = [
@@ -77,10 +78,12 @@ gfx = { id = "gfx_id", area = true }
 ```
 
 ## Mixed type hits
-Hits can also mix their offensive and defensive types. 
 
-For example [Magical-Ranged](https://oldschool.runescape.wiki/w/Magical_ranged) hits roll accuracy against magic but can be blocked via protect from missiles and show as a ranged hitsplat. 
+Hits can also mix their offensive and defensive types.
+
+For example [Magical-Ranged](https://oldschool.runescape.wiki/w/Magical_ranged) hits roll accuracy against magic but can be blocked via protect from missiles and show as a ranged hitsplat.
 
 ```toml
 hit = { offense = "range", defence = "magic", min = 100, max = 150 } 
 ```
+

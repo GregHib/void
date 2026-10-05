@@ -35,6 +35,7 @@ produces = [
 ```
 
 # Resolvers
+
 Resolvers are activities bots can complete to get stuff which is needed for another activity.
 E.g. if a bot needs air and mind runes to cast spells on a combat dummy it will need to talk with the magic tutor to get them.
 
@@ -62,8 +63,8 @@ produces = [
 ]
 ```
 
-
 ## Templates
+
 Templates are re-usable activities where you can put placeholder `$fields` which can be replaced later.
 
 For example a template:
@@ -76,6 +77,7 @@ requires = [
 ```
 
 Can be used like this:
+
 ```toml
 [cooking_trout]
 template = "cooking_template"
@@ -116,3 +118,4 @@ produces = [
     { item = "$burnt" }
 ]
 ```
+

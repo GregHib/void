@@ -322,6 +322,7 @@ internal class LoginServerTest {
         assertEquals(Response.DATA_CHANGE, writeChannel.readByte().toInt())
         assertEquals(Response.WORLD_FULL, writeChannel.readByte().toInt())
         assertTrue(writeChannel.isClosedForRead)
+        assertFalse(server.online.contains("username"))
     }
 
     @Test

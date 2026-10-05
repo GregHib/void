@@ -34,7 +34,6 @@ class NPCUpdateTask(
             writer.stopBitAccess()
 
             client.updateNPCs(writer, updates)
-            client.flush()
         } finally {
             writer.stopBitAccess()
             writer.position(0)
@@ -86,7 +85,7 @@ class NPCUpdateTask(
         val visuals = npc.visuals
         return when {
             visuals.tele -> LocalChange.Tele
-            visuals.walkStep != -1 && npc.def["crawl", false] -> LocalChange.Crawl
+            visuals.walkStep != -1 && npc.crawls -> LocalChange.Crawl
             visuals.runStep != -1 -> LocalChange.Run
             visuals.walkStep != -1 -> LocalChange.Walk
             flag != 0 -> LocalChange.Update

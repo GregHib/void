@@ -26,7 +26,6 @@ empty = "basket"
 examine = "A fruit basket filled with apples."
 ```
 
-
 ### Spawns
 
 Permanent and re-spawning floor items should be added to [`/data/*.item-spawns.toml`](https://github.com/GregHib/void/blob/main/data/minigame/blast_furnace/blast_furnace.item-spawns.toml) [config files](config-files#items):
@@ -38,6 +37,7 @@ spawns = [
 ```
 
 ## Finding floor items
+
 Much the same as other entities, `FloorItems` contains and can be used to control all the floor items in the world, it can be found searched for by `Tile` or `Zone`:
 
 ```kotlin
@@ -66,13 +66,14 @@ npcFloorItemOperate("Take") { (target) ->
 
 ## Floor item data
 
-| Data | Description                                                                                                  |
-|---|--------------------------------------------------------------------------------------------------------------|
-| Id | The type of item as a [String identifier](string-identifiers).                                               |
-| Amount | The amount of the item in this [stack](inventories#item-stack-behaviour).                                    |
+|           Data            |                                                 Description                                                  |
+|---------------------------|--------------------------------------------------------------------------------------------------------------|
+| Id                        | The type of item as a [String identifier](string-identifiers).                                               |
+| Amount                    | The amount of the item in this [stack](inventories#item-stack-behaviour).                                    |
 | [Definition](definitions) | Definition data about this particular type of item.                                                          |
-| Tile | The position of the item represented as an x, y, level coordinate.                                           |
-| Lifecycle | Current stage timer: positive counts down until the item is revealed, negative counts up until it's removed. |
-| Disappear ticks | Number of ticks the item stays public before it's permanently deleted.                                       |
-| Owner | The original owner of the item.                                                                              |
-| Respawn ticks | Number of ticks until a permanent spawn reappears after being removed. |
+| Tile                      | The position of the item represented as an x, y, level coordinate.                                           |
+| Lifecycle                 | Current stage timer: positive counts down until the item is revealed, negative counts up until it's removed. |
+| Disappear ticks           | Number of ticks the item stays public before it's permanently deleted.                                       |
+| Owner                     | The original owner of the item.                                                                              |
+| Respawn ticks             | Number of ticks until a permanent spawn reappears after being removed.                                       |
+

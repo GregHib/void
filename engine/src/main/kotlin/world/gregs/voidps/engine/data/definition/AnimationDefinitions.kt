@@ -18,7 +18,7 @@ object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
         private set
 
     val size: Int
-        get() = ItemDefinitions.definitions.size
+        get() = definitions.size
 
     override fun empty() = AnimationDefinition.EMPTY
 

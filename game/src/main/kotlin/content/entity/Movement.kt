@@ -25,13 +25,13 @@ class Movement : Script {
 
     init {
         playerSpawn {
-            if (Players.add(this) && Settings["world.players.collision", false]) {
+            if (Players.add(this) && playerCollision) {
                 add(this)
             }
         }
 
         npcSpawn {
-            if (Settings["world.npcs.collision", false]) {
+            if (npcCollision) {
                 add(this)
             }
         }
@@ -81,7 +81,7 @@ class Movement : Script {
         }
 
         playerDespawn {
-            if (Settings["world.players.collision", false]) {
+            if (playerCollision) {
                 remove(this)
             }
         }
@@ -91,7 +91,7 @@ class Movement : Script {
         }
 
         npcDespawn {
-            if (Settings["world.npcs.collision", false]) {
+            if (npcCollision) {
                 remove(this)
             }
         }
@@ -115,5 +115,10 @@ class Movement : Script {
                 Collisions.remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
             }
         }
+    }
+
+    companion object {
+        private val npcCollision by Settings.bool("world.npcs.collision", false)
+        private val playerCollision by Settings.bool("world.players.collision", false)
     }
 }

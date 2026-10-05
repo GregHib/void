@@ -30,7 +30,7 @@ object SetCharge {
         }
         // Check if amount exceeds the maximum value
         if (amount.toLong() > maximum) {
-            error = TransactionError.Full(amount - (amount - maximum), item.id)
+            error = TransactionError.Full(maximum, item.id)
             return
         }
         // Update the item in the inventory

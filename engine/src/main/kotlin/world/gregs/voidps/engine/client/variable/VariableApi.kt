@@ -22,7 +22,7 @@ interface VariableApi {
         Script.checkLoading()
         Wildcards.find(key, Wildcard.Variables) { keyMatch ->
             Wildcards.find(id, Wildcard.Npc) { idMatch ->
-                setVarNpc.getOrPut("$keyMatch:$idMatch") { mutableListOf() }.add(handler)
+                setVarNpc.getOrPut(keyMatch) { Object2ObjectOpenHashMap(2) }.getOrPut(idMatch) { mutableListOf() }.add(handler)
             }
         }
     }
@@ -45,7 +45,7 @@ interface VariableApi {
 
     companion object : AutoCloseable {
         private val setVar = Object2ObjectOpenHashMap<String, MutableList<(Player, String, Any?, Any?) -> Unit>>(500)
-        private val setVarNpc = Object2ObjectOpenHashMap<String, MutableList<(NPC, String, Any?, Any?) -> Unit>>(2)
+        private val setVarNpc = Object2ObjectOpenHashMap<String, Object2ObjectOpenHashMap<String, MutableList<(NPC, String, Any?, Any?) -> Unit>>>(2)
 
         private val varbitsAdded = Object2ObjectOpenHashMap<String, Player.(Any) -> Unit>(2)
         private val varbitsRemoved = Object2ObjectOpenHashMap<String, Player.(Any) -> Unit>(2)
@@ -68,16 +68,20 @@ interface VariableApi {
         }
 
         fun set(npc: NPC, key: String, from: Any?, to: Any?) {
-            for (handler in setVarNpc["$key:${npc.id}"] ?: emptyList()) {
+            val byId = setVarNpc[key]
+            if (byId != null) {
+                for (handler in byId[npc.id] ?: emptyList()) {
+                    handler(npc, key, from, to)
+                }
+                for (handler in byId["*"] ?: emptyList()) {
+                    handler(npc, key, from, to)
+                }
+            }
+            val any = setVarNpc["*"] ?: return
+            for (handler in any[npc.id] ?: emptyList()) {
                 handler(npc, key, from, to)
             }
-            for (handler in setVarNpc["$key:*"] ?: emptyList()) {
-                handler(npc, key, from, to)
-            }
-            for (handler in setVarNpc["*:${npc.id}"] ?: emptyList()) {
-                handler(npc, key, from, to)
-            }
-            for (handler in setVarNpc["*:*"] ?: return) {
+            for (handler in any["*"] ?: return) {
                 handler(npc, key, from, to)
             }
         }

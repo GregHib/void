@@ -90,7 +90,9 @@ class BotManager(
 
     override fun run() {
         BotMetrics.beginRun()
-        for (bot in bots) {
+        var i = 0
+        while (i < bots.size) {
+            val bot = bots[i++]
             if (BotMetrics.measuring) {
                 val start = System.nanoTime()
                 tick(bot)
@@ -228,7 +230,7 @@ class BotManager(
             }
         }
         // Permanent groups to always re-evaluate (often no way to listen for changes)
-        for (group in setOf("clock", "tile", "mode", "queue", "timer", "object")) {
+        for (group in PERMANENT_GROUPS) {
             makeAvailable(bot, group)
         }
         // Add activities which have become available
@@ -440,5 +442,9 @@ class BotManager(
                 }
             }
         }
+    }
+
+    private companion object {
+        val PERMANENT_GROUPS = listOf("clock", "tile", "mode", "queue", "timer", "object")
     }
 }

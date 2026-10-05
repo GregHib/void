@@ -3,10 +3,10 @@ There are 3 types of rights a player can have:
 * Moderator
 * Administrator
 
-
 ## Modifying rights
 
 ### File
+
 Logout of the account, and in the player account TOML file found in `/data/saves/<player-name>.toml` you can modify or add the "rights" variable to the "variables" section. Valid values are "none", "mod" or "admin". Save the file then log-back into the game.
 
 ![image](https://github.com/user-attachments/assets/d72b1f2c-e596-4c86-9be4-49c42d70e2d1)

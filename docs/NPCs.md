@@ -27,10 +27,10 @@ examine = "Converts grass to beef."
 
 This information can be obtained using `npc.def["examine", ""]` see [definition extras](definitions#definition-extras) for more info.
 
-
 ### Spawns
 
 Permanent and respawning npcs are configured in `/data/*.npc-spawn.toml` files organised by location.
+
 ```toml
 spawns = [
   { id = "cow_default", x = 2936, y = 3274 },
@@ -101,17 +101,18 @@ npcOperate("Talk-to", "zeke") { }
 
 ## NPC data
 
-| Data | Description |
-|---|---|
-| Id | The type of npc as a [String identifier](string-identifiers). |
-| Index | The number between 1-32768 a particular npc is in the current game world. |
-| Tile | The current position of the npc represented as an x, y, level coordinate. |
-| Levels | Fixed levels used in [Combat calculations](combat-scripts). |
-| Mode | The npcs current style of movement. |
-| [Definition](definitions) | Definition data about this particular type of npc. |
-| [ActionQueue](queues) | List of [Queues](queues) currently in progress for the npc. |
-| [Soft Timer](timers) | The one [Timer](timers) that is currently counting down for the npc. |
-| [Variables](character-variables) | Progress and tracking data for different types of content. |
-| Steps | List of tiles the player plans on walking to in the future. |
-| Collision | Strategy for how the npc can move about the game world. |
-| Visuals | The npcs general appearance. |
+|               Data               |                                Description                                |
+|----------------------------------|---------------------------------------------------------------------------|
+| Id                               | The type of npc as a [String identifier](string-identifiers).             |
+| Index                            | The number between 1-32768 a particular npc is in the current game world. |
+| Tile                             | The current position of the npc represented as an x, y, level coordinate. |
+| Levels                           | Fixed levels used in [Combat calculations](combat-scripts).               |
+| Mode                             | The npcs current style of movement.                                       |
+| [Definition](definitions)        | Definition data about this particular type of npc.                        |
+| [ActionQueue](queues)            | List of [Queues](queues) currently in progress for the npc.               |
+| [Soft Timer](timers)             | The one [Timer](timers) that is currently counting down for the npc.      |
+| [Variables](character-variables) | Progress and tracking data for different types of content.                |
+| Steps                            | List of tiles the player plans on walking to in the future.               |
+| Collision                        | Strategy for how the npc can move about the game world.                   |
+| Visuals                          | The npcs general appearance.                                              |
+

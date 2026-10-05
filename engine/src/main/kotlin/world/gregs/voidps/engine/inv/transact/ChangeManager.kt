@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.inv.transact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
-import java.util.*
 
 /**
  * Tracks the changes made to the inventory and allows for sending these changes to the appropriate recipients.
@@ -11,7 +10,7 @@ import java.util.*
 class ChangeManager(
     private val inventory: Inventory,
 ) {
-    private val changes: Stack<Any> = Stack()
+    private val changes = ArrayList<Any>()
     private val listeners = mutableSetOf<Player>()
 
     /**
@@ -50,7 +49,7 @@ class ChangeManager(
      * Send the tracked changes to the appropriate recipients.
      */
     fun send() {
-        if (changes.isEmpty()) {
+        if (changes.isEmpty() || listeners.isEmpty()) {
             return
         }
         val changeList = changes.filterIsInstance<InventorySlotChanged>()
@@ -62,6 +61,23 @@ class ChangeManager(
                     is ItemAdded -> InventoryApi.add(listener, change)
                     is ItemRemoved -> InventoryApi.remove(listener, change)
                 }
+            }
+        }
+    }
+
+    /**
+     * @return a marker of the current position in the change log for use with [undo]
+     */
+    fun mark(): Int = changes.size
+
+    /**
+     * Reverts the inventory slots changed since [mark] and removes those changes from the log.
+     */
+    fun undo(mark: Int) {
+        while (changes.size > mark) {
+            val change = changes.removeLast()
+            if (change is InventorySlotChanged) {
+                inventory.items[change.index] = change.fromItem
             }
         }
     }

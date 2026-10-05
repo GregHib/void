@@ -44,7 +44,6 @@ Instances.occupied(region)            // Did it have players in it on the last c
 
 For players, `smallInstance()`, `largeInstance()` and `joinInstance()` store both, `instance()` returns null once the instance has been freed, and `clearInstance()` unlinks the player from it.
 
-
 ## Dynamic zones
 
 In most servers Instancing is synonymous with being able to dynamically change maps, in Void these are two separate concepts. Instancing is allocating empty map space, Dynamic Zoning is changing what maps is at a given location and sending those changes to players clients.
@@ -72,7 +71,6 @@ enterArea("demon_slayer_stone_circle") {
 
 > Dynamic regions aren't limited to instances either, you can modify the game map and it will update for players within sight in real time, although I'm not sure why you'd want to; there are better ways of modifying the map permenantly.
 
-
 ## Cutscenes
 
 Cutscenes frequently use this combination of [Instance](#instance) and [Dynamic Zones](#dynamic-zones) along with hiding the [GameFrame](interfaces#gameframe-interfaces) tabs and fading the game screen out, so there's a helper function for it.
@@ -94,4 +92,6 @@ suspend fun CharacterContext.cutscene() {
 }
 
 
+
+```
 

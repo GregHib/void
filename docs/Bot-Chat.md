@@ -4,50 +4,50 @@ Players can type anything (up to 80 characters), bots work out what was meant an
 # Overview
 
 ```
- "whats ur minnig lvl?"
-          │
-   ┌──────▼──────┐   slang, stretched words, smileys
-   │ Normaliser  │   -> [what, is, your, minnig, level, ?]
-   └──────┬──────┘
-   ┌──────▼──────┐   items, npcs, skills, locations, quests, minigames
-   │EntityTagger │   -> [what, is, your, {skill}, level, ?] + Skill=mining
-   └──────┬──────┘
-   ┌──────▼──────┐   fastText-style classifier
-   │ IntentModel │   -> ask_level (0.99)
-   └──────┬──────┘
-   ┌──────▼──────┐   follow ups, pending yes/no questions, annoyance, topic
-   │Conversation │
-   └──────┬──────┘
-   ┌──────▼──────┐   botChat("ask_level") { say(...) } handlers
-   │ BotChatApi  │   -> weighted candidates, adjusted by persona
-   └──────┬──────┘
-   ┌──────▼──────┐   phrase text -> id, slot values -> enum indices
-   │QuickChat    │   -> QuickChatPublic(phrase = 12, data = [])
-   │Phrases      │
-   └─────────────┘
-          │
- Bot: "My Mining level is 45."
+"whats ur minnig lvl?"
+         │
+  ┌──────▼──────┐   slang, stretched words, smileys
+  │ Normaliser  │   -> [what, is, your, minnig, level, ?]
+  └──────┬──────┘
+  ┌──────▼──────┐   items, npcs, skills, locations, quests, minigames
+  │EntityTagger │   -> [what, is, your, {skill}, level, ?] + Skill=mining
+  └──────┬──────┘
+  ┌──────▼──────┐   fastText-style classifier
+  │ IntentModel │   -> ask_level (0.99)
+  └──────┬──────┘
+  ┌──────▼──────┐   follow ups, pending yes/no questions, annoyance, topic
+  │Conversation │
+  └──────┬──────┘
+  ┌──────▼──────┐   botChat("ask_level") { say(...) } handlers
+  │ BotChatApi  │   -> weighted candidates, adjusted by persona
+  └──────┬──────┘
+  ┌──────▼──────┐   phrase text -> id, slot values -> enum indices
+  │QuickChat    │   -> QuickChatPublic(phrase = 12, data = [])
+  │Phrases      │
+  └─────────────┘
+         │
+Bot: "My Mining level is 45."
 ```
 
 The only machine learnt part is the intent classifier, everything else is rules and data, so it's straightforward to see why a bot said something and to change it.
 
 # Runtime (`game/src/main/kotlin/content/bot/chat/`)
 
-| File                                           | Purpose                                                                                                                                                              |
-|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `BotChatModel.kt`                              | Loads the examples, normaliser and entity tagger on startup, retraining the intent model if its training data changed.                                               |
-| `BotChat.kt`                                   | Script with the entry point `BotChat.heard(player, text, phrase)` called from public chat and quick chat. Picks which bot replies and sends it after a short "typing" delay. |
-| `QuickChatIntents.kt`                          | Maps quick chat phrases straight to intents using the `quick_chat` patterns in the intents files.                                                                    |
-| `Normaliser.kt`                                | Lowercases, expands slang (`u` → `you`, `im` → `i am`), turns smileys into tokens and collapses stretched words (`heyyyy` → `hey`).                                  |
-| `EntityTagger.kt`                              | Finds entity names and replaces them with placeholders like `{item}`.                                                                                                |
-| `IntentModel.kt`                               | Runs the intent classifier and reads/writes the cached model.                                                                                                        |
-| `IntentTrainer.kt`                             | Trains the intent classifier.                                                                                                                                        |
-| `ChatProcessor.kt`                             | Normaliser → EntityTagger → IntentModel, producing an `Utterance`.                                                                                                   |
-| `Conversation.kt`                              | Short-term memory for each bot/player pair.                                                                                                                          |
-| `Persona.kt`                                   | Personality derived from the bot's account name.                                                                                                                     |
-| `BotChatApi.kt`                                | Script interface for registering replies.                                                                                                                            |
-| `ChatContext.kt`                               | Receiver for reply handlers: `say`, `silence`, `asking`, `slot`, `activity`.                                                                                         |
-| `QuickChatPhrases.kt`                          | Looks up phrases by text and encodes slot values into quick chat data.                                                                                               |
+|         File          |                                                                                   Purpose                                                                                    |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `BotChatModel.kt`     | Loads the examples, normaliser and entity tagger on startup, retraining the intent model if its training data changed.                                                       |
+| `BotChat.kt`          | Script with the entry point `BotChat.heard(player, text, phrase)` called from public chat and quick chat. Picks which bot replies and sends it after a short "typing" delay. |
+| `QuickChatIntents.kt` | Maps quick chat phrases straight to intents using the `quick_chat` patterns in the intents files.                                                                            |
+| `Normaliser.kt`       | Lowercases, expands slang (`u` → `you`, `im` → `i am`), turns smileys into tokens and collapses stretched words (`heyyyy` → `hey`).                                          |
+| `EntityTagger.kt`     | Finds entity names and replaces them with placeholders like `{item}`.                                                                                                        |
+| `IntentModel.kt`      | Runs the intent classifier and reads/writes the cached model.                                                                                                                |
+| `IntentTrainer.kt`    | Trains the intent classifier.                                                                                                                                                |
+| `ChatProcessor.kt`    | Normaliser → EntityTagger → IntentModel, producing an `Utterance`.                                                                                                           |
+| `Conversation.kt`     | Short-term memory for each bot/player pair.                                                                                                                                  |
+| `Persona.kt`          | Personality derived from the bot's account name.                                                                                                                             |
+| `BotChatApi.kt`       | Script interface for registering replies.                                                                                                                                    |
+| `ChatContext.kt`      | Receiver for reply handlers: `say`, `silence`, `asking`, `slot`, `activity`.                                                                                                 |
+| `QuickChatPhrases.kt` | Looks up phrases by text and encodes slot values into quick chat data.                                                                                                       |
 
 ## Who replies
 
@@ -64,15 +64,15 @@ If the wrong bot replies the player can say "not you" (`not_you` intent), the bo
 
 The entity tagger is built at startup from game data, so new content is understood without retraining:
 
-| Type | Source |
-|---|---|
-| Skill | `chat_skills` table (row id + `aka`) |
+|   Type   |                          Source                           |
+|----------|-----------------------------------------------------------|
+| Skill    | `chat_skills` table (row id + `aka`)                      |
 | Location | Quick chat location enum `1504` + `locations` table `aka` |
-| Minigame | Quick chat minigame enum `1503` |
-| Quest | `quests.toml` names |
-| Item | Item definition names + `aka` |
-| Npc | NPC definition names + `aka` |
-| Number | Any number |
+| Minigame | Quick chat minigame enum `1503`                           |
+| Quest    | `quests.toml` names                                       |
+| Item     | Item definition names + `aka`                             |
+| Npc      | NPC definition names + `aka`                              |
+| Number   | Any number                                                |
 
 Aliases are matched longest first, then by type priority (the order above).
 Skills, locations, minigames and quests allow a one letter typo (`minnig`, `varrok`), items and npcs only match exactly (or plural) as there are too many for fuzzy matching to be safe.
@@ -179,16 +179,16 @@ botChat("level_up") {
 
 ## Context available
 
-| Property | Description |
-|---|---|
-| `bot` / `speaker` | The bot and the player who spoke |
-| `utterance` | Text, tokens, intent, confidence and entities |
-| `conversation` | Turns, topic, sessions, annoyance |
-| `persona` | The bot's personality |
-| `activity` | The behaviour of the bot's current activity (`skill`/`product` read from its `produces`) |
-| `destination` | Area the bot is walking to (from its running `go_to` action), use `ChatLocations.nearest(area)` for a quick chat location |
-| `stuck` | Walking somewhere but hasn't moved in 20 ticks |
-| `now` | Real date and time |
+|     Property      |                                                        Description                                                        |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `bot` / `speaker` | The bot and the player who spoke                                                                                          |
+| `utterance`       | Text, tokens, intent, confidence and entities                                                                             |
+| `conversation`    | Turns, topic, sessions, annoyance                                                                                         |
+| `persona`         | The bot's personality                                                                                                     |
+| `activity`        | The behaviour of the bot's current activity (`skill`/`product` read from its `produces`)                                  |
+| `destination`     | Area the bot is walking to (from its running `go_to` action), use `ChatLocations.nearest(area)` for a quick chat location |
+| `stuck`           | Walking somewhere but hasn't moved in 20 ticks                                                                            |
+| `now`             | Real date and time                                                                                                        |
 
 ## Questions and side effects
 
@@ -210,13 +210,13 @@ say("I have added you to my ignore list.", then = { bot.ignores.add(speaker.acco
 
 ## Knowledge tables (`data/bot/chat/`)
 
-| Table | Contents |
-|---|---|
-| `chat_slang`, `chat_smileys` | Normalisation, row id is the replacement (`[.i_am] words = ["im"]`) |
-| `chat_stop_words` | Single words never treated as items/npcs |
-| `chat_skills` | Skill `aka`, `activity` phrase, `advice` phrase with `spots` `[level, enum value]`, and `tips` `[level, phrase]` |
-| `locations` | Location `aka` and `tile` used for directions (also used by `tele`) |
-| `chat_item_sources` | Where to get items |
+|            Table             |                                                     Contents                                                     |
+|------------------------------|------------------------------------------------------------------------------------------------------------------|
+| `chat_slang`, `chat_smileys` | Normalisation, row id is the replacement (`[.i_am] words = ["im"]`)                                              |
+| `chat_stop_words`            | Single words never treated as items/npcs                                                                         |
+| `chat_skills`                | Skill `aka`, `activity` phrase, `advice` phrase with `spots` `[level, enum value]`, and `tips` `[level, phrase]` |
+| `locations`                  | Location `aka` and `tile` used for directions (also used by `tele`)                                              |
+| `chat_item_sources`          | Where to get items                                                                                               |
 
 Advice is based on the *asker's* level, and bots choose between the two best spots so they don't all say the same thing.
 
@@ -263,3 +263,4 @@ Training is seeded so the same examples always produce the same model on every m
 1. Add a `[new_intent]` section with examples
 2. Run `evaluateBotChat` and check the accuracy
 3. Add a `botChat("new_intent") { ... }` handler
+

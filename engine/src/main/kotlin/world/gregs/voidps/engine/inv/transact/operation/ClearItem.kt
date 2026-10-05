@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
+import world.gregs.voidps.engine.inv.transact.TransactionError
+
 /**
  * Transaction operation for clearing items in an inventory.
  * The clear operation removes all items from the inventory, or a specific item if its index is provided.
@@ -12,6 +14,10 @@ object ClearItem {
      */
     fun TransactionOperation.clear(index: Int) {
         if (failed) {
+            return
+        }
+        if (!inventory.inBounds(index)) {
+            error = TransactionError.Invalid
             return
         }
         set(index, null)

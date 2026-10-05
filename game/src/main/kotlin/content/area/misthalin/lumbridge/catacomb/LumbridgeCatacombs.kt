@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge.catacomb
 
-import content.entity.combat.dead
 import content.entity.combat.hit.directHit
 import content.entity.combat.inCombat
 import content.entity.combat.killer
@@ -243,11 +242,7 @@ class LumbridgeCatacombs : Script {
         }
 
         destroyed("*_demon_statuette") { item ->
-            if (item.id == "diamond_demon_statuette") {
-                set(item.id, "take")
-            } else {
-                set(item.id, "take")
-            }
+            set(item.id, "take")
         }
 
         entered("kayles_room") {

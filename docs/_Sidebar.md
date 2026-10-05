@@ -1,8 +1,10 @@
 ### [**Home**](./home)
+
 - [Roadmap](./roadmap)
 - [Content Progress](./content-progress)
 
 # Players
+
 - Getting Started
   - [Installation](installation-guide)
   - [First launch](installation-guide#step-6-launch-the-server)
@@ -14,6 +16,7 @@
 - [Common issues](troubleshooting)
 
 # Content Creation
+
 - [Cheat Sheet](content-cheat-sheet)
 - [Overview](content-creation)
   - [Content Added](content-progress)
@@ -65,6 +68,7 @@
   - [Interactive Map](https://greghib.github.io/void-map/)
 
 # Developers
+
 - [Setup](ide-setup)
 - Architecture
   - [Philosophy](philosophy)
@@ -87,3 +91,4 @@
   - [Drops and variables](drop-tables)
 - Contributing
   - [Guidelines](https://github.com/GregHib/void/blob/main/CONTRIBUTING.md)
+

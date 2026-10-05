@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.type.Tile
@@ -26,8 +25,7 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
     override val variables = Variables(this)
     private val logger = InlineLogger()
 
-    val members: Boolean
-        get() = Settings["world.members", false]
+    val members by Settings.bool("world.members", false)
 
     fun start(files: ConfigFiles) {
         loadItemSpawns(files.list(Settings["spawns.items"]))

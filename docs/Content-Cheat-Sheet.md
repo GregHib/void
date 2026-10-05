@@ -283,17 +283,17 @@ settingsReload { /* re-read config after a /reload */ }
 
 These come from the `Player` / `NPC` / character extensions, available inside handlers (not from `Script`):
 
-| Call | Effect |
-|------|--------|
-| `message("text")` | Send a game chatbox message |
-| `anim("name")` / `gfx("name")` | Play animation / graphic by string id |
-| `sound("name")` | Play a sound |
-| `open("interface")` / `close()` | Open / close an interface |
-| `inventory` / `bank` / `equipment` | Access named inventories (use `.transaction { }` to mutate) |
-| `get("key", default)` / `set("key", v)` | Read / write a variable |
-| `addVarbit("set", "value")` / `clearVarbit(...)` | Bitfield variables |
-| `exp(Skill.X, amount)` | Award experience |
-| `hasClock("name")` / `start("name", ticks)` | Cooldown/delay [clocks](clocks) |
-| `delay(ticks)` | Suspend the current action (only in `suspend` handlers) |
-| `talkWith(npc) { ... }` | Open a dialogue scope with an NPC |
+|                       Call                       |                           Effect                            |
+|--------------------------------------------------|-------------------------------------------------------------|
+| `message("text")`                                | Send a game chatbox message                                 |
+| `anim("name")` / `gfx("name")`                   | Play animation / graphic by string id                       |
+| `sound("name")`                                  | Play a sound                                                |
+| `open("interface")` / `close()`                  | Open / close an interface                                   |
+| `inventory` / `bank` / `equipment`               | Access named inventories (use `.transaction { }` to mutate) |
+| `get("key", default)` / `set("key", v)`          | Read / write a variable                                     |
+| `addVarbit("set", "value")` / `clearVarbit(...)` | Bitfield variables                                          |
+| `exp(Skill.X, amount)`                           | Award experience                                            |
+| `hasClock("name")` / `start("name", ticks)`      | Cooldown/delay [clocks](clocks)                             |
+| `delay(ticks)`                                   | Suspend the current action (only in `suspend` handlers)     |
+| `talkWith(npc) { ... }`                          | Open a dialogue scope with an NPC                           |
 

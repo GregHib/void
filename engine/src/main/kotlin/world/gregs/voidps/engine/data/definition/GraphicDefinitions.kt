@@ -18,7 +18,7 @@ object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
         private set
 
     val size: Int
-        get() = ItemDefinitions.definitions.size
+        get() = definitions.size
 
     override fun empty() = GraphicDefinition.EMPTY
 
@@ -48,7 +48,7 @@ object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
                 Config.fileReader(path) {
                     while (nextSection()) {
                         val stringId = section()
-                        var id = 0
+                        var id = -1
                         val params = Int2ObjectOpenHashMap<Any>(0)
                         while (nextPair()) {
                             when (val key = key()) {
@@ -58,6 +58,7 @@ object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }
+                        require(id != -1) { "Missing id for graphic '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         definitions[id].params = params.ifEmpty { null }

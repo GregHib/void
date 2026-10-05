@@ -10,10 +10,10 @@ Core concepts:
 - Navigation
 - Behaviours - Joint term for Activities, Resolvers or Shortcuts
 
-
 # Architecture
 
 ## Behaviour Stack
+
 Each bot maintains a stack of Behaviours, processed from Resolvers at the top to the original Activity at the bottom.
 
 ```
@@ -28,6 +28,7 @@ If a behaviour requirement is unmet a resolver is added to the top.
 When a behaviour is complete it is removed.
 
 # Activities
+
 High-level activities around the map assigned to bots based on their available items, skill levels and current world state.
 
 - Capacity
@@ -74,9 +75,11 @@ Small self-contained FSMs that produce instructions, check world state and handl
 An action runs until it succeeds, fails or times-out due to not producing enough producers recently.
 
 # Instructions
+
 The lowest-level event for player entities used by player clients and bots to control player characters
 
 # Bot Manager
+
 Coordinates all bot behaviour, handling allocation of activities and resolvers and checks and updates the state of the top behaviour for every bot each tick.
 
 # Navigation Graph
@@ -85,10 +88,10 @@ Simplified representation of the game world used for efficient path planning bet
 
 <img width="915" height="595" alt="image" src="https://github.com/user-attachments/assets/18da6dab-25d3-4e2b-a463-22c8950403bb" />
 
-
 Supports discovery of nearby locations of interest like banks, shops or other areas.
 
 ## Edges
+
 Defines how bots move between nodes in the navigation graph.
 
 Can include:

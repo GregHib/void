@@ -124,7 +124,7 @@ open class Interact(
      */
     private fun validTarget(): Boolean {
         val target = target
-        if (target is Character && target["dead", false]) {
+        if (target is Character && target.dead) {
             clear()
             return false
         }

@@ -12,11 +12,16 @@ class GameObjectTimers : Runnable {
     private val timers: MutableList<Timer> = mutableListOf()
 
     override fun run() {
+        val expired = mutableListOf<Timer>()
         timers.removeIf { timer ->
-            if (--timer.ticks == 0) {
-                timer.block.invoke()
+            val done = --timer.ticks <= 0
+            if (timer.ticks == 0) {
+                expired.add(timer)
             }
-            timer.ticks <= 0
+            done
+        }
+        for (timer in expired) {
+            timer.block.invoke()
         }
     }
 
@@ -41,6 +46,8 @@ class GameObjectTimers : Runnable {
     fun cancel(gameObject: GameObject): Boolean = timers.removeIf { it.objs.contains(gameObject) }
 
     fun cancel(zone: Zone): Boolean = timers.removeIf { timer -> timer.objs.any { it.tile.zone == zone } }
+
+    fun cancel(zones: Set<Zone>): Boolean = timers.removeIf { timer -> timer.objs.any { it.tile.zone in zones } }
 
     fun execute(gameObject: GameObject): Boolean = timers.removeIf {
         if (it.objs.contains(gameObject)) {

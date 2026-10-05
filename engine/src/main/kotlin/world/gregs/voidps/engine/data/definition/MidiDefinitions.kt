@@ -26,6 +26,7 @@ class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
                                 else -> throw IllegalArgumentException("Unknown midi key: $key")
                             }
                         }
+                        require(id != -1) { "Missing id for midi '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id] = MidiDefinition(id = id, stringId = stringId)
                     }
