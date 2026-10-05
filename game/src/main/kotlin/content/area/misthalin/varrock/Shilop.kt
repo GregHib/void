@@ -29,28 +29,28 @@ class Shilop : Script {
             }
         }
     }
-}
 
-suspend fun Player.gertrudeFluffsNotComeBack() {
-    player<Quiz>("I've found Fluffs but she won't come back home with me. Any ideas?")
-    npc<Neutral>("None at all. Not that I want that boring thing back, anyway. I prefer dogs to a fat cat, any day.")
-}
+    suspend fun Player.gertrudeFluffsNotComeBack() {
+        player<Quiz>("I've found Fluffs but she won't come back home with me. Any ideas?")
+        npc<Neutral>("None at all. Not that I want that boring thing back, anyway. I prefer dogs to a fat cat, any day.")
+    }
 
-private suspend fun Player.lookingForInformationBranch() {
-    gertrudeLookingForInformation()
-    choice {
-        option<Angry>("Tell me sonny, or I will inform your mum you are a pair of criminals.") {
-            npc<Scared>("W..wh..what?! Y..you wouldn't! Anyway, I'll deny it all and she'll be sure to believe me over some wandering killer like you.", largeHead = true)
-            player<Angry>("I'm an upstanding citizen!")
-            npc<Angry>("I'm her darling boy and you'd have to forget about her rewarding you. Hop it snitch.")
-            npc<Happy>(npcId = WILOUGH_STRING_NAME, "And I'm even more her favourite than he is!")
-            statement("You decide it's best not to aggravate the repulsive boys any more.")
-        }
-        option<Quiz>("What will make you tell me?") {
-            gertrudeFluffsCost()
-        }
-        option<Idle>("Well never mind, it's Fluffs loss.") {
-            gertrudeFluffsLoss()
+    private suspend fun Player.lookingForInformationBranch() {
+        gertrudeLookingForInformation()
+        choice {
+            option<Angry>("Tell me sonny, or I will inform your mum you are a pair of criminals.") {
+                npc<Scared>("W..wh..what?! Y..you wouldn't! Anyway, I'll deny it all and she'll be sure to believe me over some wandering killer like you.", largeHead = true)
+                player<Angry>("I'm an upstanding citizen!")
+                npc<Angry>("I'm her darling boy and you'd have to forget about her rewarding you. Hop it snitch.")
+                npc<Happy>(npcId = WILOUGH_STRING_NAME, "And I'm even more her favourite than he is!")
+                statement("You decide it's best not to aggravate the repulsive boys any more.")
+            }
+            option<Quiz>("What will make you tell me?") {
+                gertrudeFluffsCost()
+            }
+            option<Idle>("Well never mind, it's Fluffs loss.") {
+                gertrudeFluffsLoss()
+            }
         }
     }
 }
