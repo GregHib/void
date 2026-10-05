@@ -1,0 +1,24 @@
+[tree_gnome_village_trackers]
+persist = true
+format = "int"
+
+[tree_gnome_village_coordinate]
+persist = true
+format = "int"
+
+[tree_gnome_village_montai_met]
+persist = true
+format = "boolean"
+
+[tree_gnome_village_briefed]
+persist = true
+format = "boolean"
+
+# 0 = orbs not handed in, 1 = ceremony can be resumed, 2 = reward ready.
+[tree_gnome_village_ceremony]
+persist = true
+format = "int"
+
+[tree_gnome_village_commander_met]
+persist = true
+format = "boolean"
