@@ -224,6 +224,23 @@ class HouseRoomsTest : WorldTest() {
     }
 
     @Test
+    fun `Opening dungeon doors doesn't leave their spaces behind`() {
+        val owner = createOwner()
+        owner.addHouseRoom("dungeon_corridor", dungeon)
+        owner.addHouseFurniture(dungeon, "dungeon_door", "oak_door")
+        owner.enterPortal(1)
+        val door = owner.objects(dungeon, "door_309_closed").first()
+        owner.tele(door.tile.addY(1))
+
+        owner.objectOption(door, "Open")
+        tick(3)
+
+        assertNull(GameObjects.findOrNull(door.tile, "door_309_closed"))
+        val corridor = roomZone(owner.instance()!!.tile.zone, dungeon)
+        assertTrue(corridor.toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("dungeon_door_space") } })
+    }
+
+    @Test
     fun `Owner keeps coins in a treasure chest`() {
         val owner = createOwner()
         owner.addHouseRoom("treasure_room", dungeon)

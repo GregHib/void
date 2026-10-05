@@ -1,5 +1,9 @@
 package content.skill.construction
 
+import content.entity.obj.door.Door
+import content.entity.obj.door.DoubleDoor
+import content.entity.obj.door.closeDoor
+import content.entity.obj.door.openDoor
 import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.instance
@@ -44,6 +48,14 @@ class House : Script {
                 return@moved
             }
             leaveHouse(teleport = false)
+        }
+
+        objectOperate("Open", DOORS) { (target) ->
+            openHouseDoor(target)
+        }
+
+        objectOperate("Close", DOORS.replace("_closed", "_opened")) { (target) ->
+            closeHouseDoor(target)
         }
 
         playerDespawn {
@@ -348,8 +360,10 @@ class House : Script {
             val level = roomLevel(position)
             val wall = Tables.obj("house_styles.$style.wall")
             val window = if (level == DUNGEON_LEVEL) wall else Tables.obj("house_styles.$style.window")
+            val doors = Tables.objList("house_styles.$style.doors")
             val positions = houseRoomPositions
             val neighbours = Direction.cardinal.associateWith { side -> roomPosition(base, zone.add(side))?.takeIf { it in positions } }
+            val outdoor = Tables.bool("house_rooms.${houseRoom(position)}.outdoor")
             decorate(
                 zone,
                 buildMode,
@@ -359,9 +373,13 @@ class House : Script {
                     val neighbour = neighbours[side]
                     if (neighbour == null || Tables.bool("house_rooms.${houseRoom(neighbour)}.outdoor")) window else wall
                 },
-                door = { side ->
+                door = { tile ->
+                    val side = roomSide(tile)
                     val neighbour = neighbours[side]
+                    val outside = if (neighbour == null) level == GROUND_LEVEL else Tables.bool("house_rooms.${houseRoom(neighbour)}.outdoor")
                     when {
+                        // Indoor rooms have doors out into gardens and the grounds
+                        outside && !outdoor -> doors[if (leftDoor(tile)) 0 else 1]
                         neighbour != null -> if (side.inverse() in doorways(neighbour)) null else wall
                         // Upstairs doorways without a room on the other side would lead out onto the roofs
                         level > GROUND_LEVEL -> wall
@@ -402,6 +420,19 @@ class House : Script {
                 tile.y == zone.y -> Direction.SOUTH
                 tile.x == zone.x + 7 -> Direction.EAST
                 else -> Direction.NORTH
+            }
+        }
+
+        /**
+         * Whether the doorway on [tile] is the left half when looking out of the room
+         */
+        private fun leftDoor(tile: Tile): Boolean {
+            val zone = tile.zone.tile
+            return when (roomSide(tile)) {
+                Direction.WEST -> tile.y - zone.y < 4
+                Direction.NORTH -> tile.x - zone.x < 4
+                Direction.EAST -> tile.y - zone.y >= 4
+                else -> tile.x - zone.x >= 4
             }
         }
 
@@ -557,10 +588,10 @@ class House : Script {
 
         /**
          * Fills the window spaces in [zone] with the [window] for their side and removes any hotspots outside of [buildMode],
-         * doorways are filled with the [door] wall for their side, or left open when there isn't one.
+         * doorways are filled with the [door] or wall for their tile, or left open when there isn't one.
          * Window spaces filled with [wall] lose any curtains, or curtain hotspots, hung on them.
          */
-        private fun decorate(zone: Zone, buildMode: Boolean, wall: String, window: (Direction) -> String, door: (Direction) -> String?) {
+        private fun decorate(zone: Zone, buildMode: Boolean, wall: String, window: (Direction) -> String, door: (Tile) -> String?) {
             for (tile in zone.toCuboid()) {
                 val objects = GameObjects.at(tile)
                 val walled = objects.any { it.id == "house_window_space" && window(roomSide(it.tile)) == wall }
@@ -568,9 +599,12 @@ class House : Script {
                     if (obj.id == "house_window_space") {
                         obj.replace(window(roomSide(obj.tile)))
                     } else if (walled && (obj.id in curtains || obj.id.endsWith("_curtain_space"))) {
+                        // Removing built curtains would bring back the curtain space they replaced
+                        val space = GameObjects.original(obj)
                         obj.remove()
+                        space?.remove()
                     } else if (!buildMode && obj.id.startsWith("door_hotspot")) {
-                        val wall = door(roomSide(obj.tile))
+                        val wall = door(obj.tile)
                         if (wall == null) obj.remove() else obj.replace(wall)
                     } else if (!buildMode && (obj.def.containsOption("Build") || obj.def.name == HABITAT_FLOOR)) {
                         obj.remove()
@@ -590,6 +624,55 @@ class House : Script {
         private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
 
         private val curtains = setOf("torn_curtains", "curtains", "opulent_curtains")
+
+        // Ticks before an opened house door closes itself, long enough to never happen
+        private const val STAY_OPEN = Int.MAX_VALUE
+
+        // Doors out of the house in each style
+        private const val DOORS = "basic_wood_door_left_closed,basic_wood_door_right_closed,large_door_45_closed,large_door_47_closed," +
+            "whitewashed_stone_door_left_closed,whitewashed_stone_door_right_closed,fremennik_wood_door_left_closed,fremennik_wood_door_right_closed," +
+            "tropical_wood_door_left_closed,tropical_wood_door_right_closed,fancy_stone_door_left_closed,fancy_stone_door_right_closed"
+
+        /**
+         * Opens a [door] in a house, doors elsewhere which share its id open as normal
+         */
+        suspend fun Player.openHouseDoor(door: GameObject) {
+            if (houseBase() == null) {
+                openDoor(door)
+            } else {
+                moveHouseDoor(door, open = true)
+            }
+        }
+
+        /**
+         * Closes a [door] in a house, doors elsewhere which share its id close as normal
+         */
+        suspend fun Player.closeHouseDoor(door: GameObject) {
+            if (houseBase() == null) {
+                closeDoor(door)
+            } else {
+                moveHouseDoor(door, open = false)
+            }
+        }
+
+        /**
+         * Opens or closes a house [door] and its double, opened doors stay open until closed which reverts them back to where they were.
+         * Doorways have hotspots under them which come back when a door moves off of them, so they're removed again.
+         */
+        private fun Player.moveHouseDoor(door: GameObject, open: Boolean) {
+            val def = door.def(this)
+            val double = DoubleDoor.get(this, door, def, if (open) 0 else 1)
+            val moved = if (open) Door.openDoor(this, door, def, ticks = STAY_OPEN) else Door.closeDoor(this, door, def)
+            if (!moved) {
+                return
+            }
+            for (tile in listOfNotNull(door.tile, double?.tile)) {
+                val hotspot = GameObjects.getShape(tile, door.shape) ?: continue
+                if (hotspot.def(this).containsOption("Build")) {
+                    hotspot.remove()
+                }
+            }
+        }
 
         // Name of the menagerie's floor placeholders, one per tile without any options so aren't caught as hotspots
         private const val HABITAT_FLOOR = "Habitat space"

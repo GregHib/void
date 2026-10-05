@@ -1527,38 +1527,6 @@ examine = "The door is open."
 id = 13001
 examine = "The door is closed."
 
-[door_279_opened]
-id = 13008
-examine = "A desert door."
-
-[door_279_closed]
-id = 13006
-examine = "A desert door."
-
-[door_280_opened]
-id = 13009
-examine = "A desert door."
-
-[door_280_closed]
-id = 13007
-examine = "A desert door."
-
-[door_283_opened]
-id = 13017
-examine = "A timber door."
-
-[door_283_closed]
-id = 13015
-examine = "A timber door."
-
-[door_284_opened]
-id = 13018
-examine = "A timber door."
-
-[door_284_closed]
-id = 13016
-examine = "A timber door."
-
 [large_door_45_opened]
 id = 13095
 examine = "A large double door."
@@ -1584,54 +1552,6 @@ examine = "A large double door."
 id = 23340
 opened = "large_door_47_opened"
 examine = "A large double door."
-
-[door_287_opened]
-id = 13102
-examine = "A way in to the house."
-
-[door_287_closed]
-id = 13100
-examine = "A way in to the house."
-
-[door_288_opened]
-id = 13103
-examine = "A way in to the house."
-
-[door_288_closed]
-id = 13101
-examine = "A way in to the house."
-
-[door_291_opened]
-id = 13108
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_291_closed]
-id = 13107
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_293_opened]
-id = 13110
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_293_closed]
-id = 13109
-examine = "I'm sure the tree is glad its wood was put to good use."
-
-[door_295_opened]
-id = 13120
-examine = "A posh door."
-
-[door_295_closed]
-id = 13118
-examine = "A posh door."
-
-[door_296_opened]
-id = 13121
-examine = "A posh door."
-
-[door_296_closed]
-id = 13119
-examine = "A posh door."
 
 [door_299_opened]
 id = 13315

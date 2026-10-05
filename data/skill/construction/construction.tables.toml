@@ -159,7 +159,7 @@ template = { x = 1888, y = 5064 }
 template = { x = 1880, y = 5056 }
 build = { x = 1944, y = 5056 }
 
-# Templates for each style are offset from the basic wood templates, window spaces are filled with the styles window or wall underground
+# Templates for each style are offset from the basic wood templates, window spaces are filled with the styles window or wall underground, and doorways out of the house with its left and right doors
 [house_styles]
 name = "string"
 level = "int"
@@ -167,6 +167,7 @@ cost = "int"
 offset = "tile"
 wall = "obj"
 window = "obj"
+doors = "list<obj>"
 
 [.basic_wood]
 name = "Basic wood"
@@ -174,6 +175,7 @@ level = 1
 cost = 5000
 wall = "basic_wood_wall"
 window = "basic_wood_window"
+doors = ["basic_wood_door_left_closed", "basic_wood_door_right_closed"]
 
 [.basic_stone]
 name = "Basic stone"
@@ -182,6 +184,7 @@ cost = 5000
 offset = { level = 1 }
 wall = "basic_stone_wall"
 window = "basic_stone_window"
+doors = ["large_door_47_closed", "large_door_45_closed"]
 
 [.whitewashed_stone]
 name = "Whitewashed stone"
@@ -190,6 +193,7 @@ cost = 7500
 offset = { level = 2 }
 wall = "whitewashed_stone_wall"
 window = "whitewashed_stone_window"
+doors = ["whitewashed_stone_door_left_closed", "whitewashed_stone_door_right_closed"]
 
 [.fremennik_wood]
 name = "Fremennik-style wood"
@@ -198,6 +202,7 @@ cost = 10000
 offset = { level = 3 }
 wall = "fremennik_wood_wall"
 window = "fremennik_wood_window"
+doors = ["fremennik_wood_door_left_closed", "fremennik_wood_door_right_closed"]
 
 [.tropical_wood]
 name = "Tropical wood"
@@ -206,6 +211,7 @@ cost = 15000
 offset = { x = 64 }
 wall = "tropical_wood_wall"
 window = "tropical_wood_window"
+doors = ["tropical_wood_door_left_closed", "tropical_wood_door_right_closed"]
 
 [.fancy_stone]
 name = "Fancy stone"
@@ -214,6 +220,7 @@ cost = 25000
 offset = { x = 64, level = 1 }
 wall = "fancy_stone_wall"
 window = "fancy_stone_window"
+doors = ["fancy_stone_door_left_closed", "fancy_stone_door_right_closed"]
 
 [house_locations]
 level = "int"
