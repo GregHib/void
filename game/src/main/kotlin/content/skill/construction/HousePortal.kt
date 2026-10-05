@@ -91,7 +91,7 @@ class HousePortal : Script {
     }
 
     /**
-     * Teleport into the players own house by the portal
+     * Teleport into the players own house, or outside its portal if they've chosen to arrive there
      */
     private fun Player.teleportHome(type: String, spell: String, xp: Double = 0.0) {
         if (!contains("house_location")) {
@@ -100,6 +100,10 @@ class HousePortal : Script {
         }
         closeInterfaces()
         Teleport.teleport(this, type, spell, xp = xp, clearInterfaces = false) {
+            if (get("house_teleport_arrival", "in_house") == "at_portal") {
+                leaveHouse(teleport = false)
+                return@teleport Tables.tile("house_locations.${get("house_location", "")}.exit")
+            }
             val tile = createHouse(buildMode = false)
             open("house_loading")
             tile
