@@ -117,18 +117,10 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.checkItem(item: String) {
-        val doogleSardineItems = setOf("doogle_leaves", "raw_sardine", "sardine")
-
         when (item) {
-            in doogleSardineItems -> {
-                mildInterest(item)
-            }
-            "three_little_kittens" -> {
-                fluffsGoesHome()
-            }
-            else -> {
-                message("<red>Fluffs doesn't seem to be interested in that.")
-            }
+            "doogle_leaves", "raw_sardine", "sardine" -> mildInterest(item)
+            "three_little_kittens" -> fluffsGoesHome()
+            else -> message("<red>Fluffs doesn't seem to be interested in that.")
         }
     }
 
