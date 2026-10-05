@@ -222,24 +222,18 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
+        doNotTheCat(cat)
         if (inventory.contains("three_little_kittens")) {
-            doNotTheCat(cat)
-
             statement("Fluffs looks pitifully towards your backpack.")
             return
         }
         if (get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)) {
-            doNotTheCat(cat)
-
             discoverKittenCrates()
             val crate = kittenCrates.random()
             set(KITTENS_HIDING_SPOT, crate.id)
-            println("Your cat is hiding at $crate")
-
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
             return
         }
-        doNotTheCat(cat)
         statement("Fluffs hisses but clearly wants something - maybe she is thirsty?")
     }
 
