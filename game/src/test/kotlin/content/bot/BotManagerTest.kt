@@ -71,6 +71,30 @@ class BotManagerTest {
     }
 
     @Test
+    fun `Idle bot takes available work after its wait completes`() {
+        val activity = testActivity(id = "mine", plan = listOf(BotWait(1)))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val worker = testBot(activity, name = "worker")
+        val waitingBot = testBot(activity, name = "waiting")
+
+        manager.tick(worker)
+        manager.tick(waitingBot)
+        assertEquals("idle", waitingBot.activity!!.id)
+
+        manager.tick(waitingBot)
+        val waitTicks = (waitingBot.frame().state as BehaviourState.Wait).ticks
+        manager.stop(worker)
+        assertTrue(manager.slots.hasFree(activity))
+
+        repeat(waitTicks) { manager.tick(waitingBot) }
+        manager.tick(waitingBot) // Complete idle and release its slot.
+        assertTrue(waitingBot.noTask())
+        manager.tick(waitingBot) // Choose the next activity with mining now available.
+
+        assertEquals("mine", waitingBot.activity!!.id, "Bot should leave idle when the mining slot becomes available")
+    }
+
+    @Test
     fun `Pending frame starts running`() {
         val activity = testActivity(
             id = "walk",
