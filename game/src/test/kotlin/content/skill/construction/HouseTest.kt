@@ -5,10 +5,13 @@ import containsMessage
 import content.quest.instance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
+import content.skill.construction.House.Companion.ROOM_GRID
 import content.skill.construction.House.Companion.START_ROOM
 import content.skill.construction.House.Companion.UPPER_LEVEL
 import content.skill.construction.House.Companion.addHouseFurniture
 import content.skill.construction.House.Companion.addHouseRoom
+import content.skill.construction.House.Companion.houseFurnitureIds
+import content.skill.construction.House.Companion.houseFurnitureRooms
 import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.houseRoomRotations
@@ -20,6 +23,7 @@ import interfaceOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import skipDialogues
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
@@ -39,6 +43,8 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.suspend.Suspension
@@ -915,6 +921,22 @@ class HouseTest : WorldTest() {
             val walled = parlour.toCuboid().filter { it.x == parlour.tile.x + 7 }
             assertTrue(walled.none { tile -> GameObjects.at(tile).any { it.id == "curtains" || it.id == "parlour_curtain_space" } }, "mode $mode")
         }
+    }
+
+    @Test
+    fun `Walls next to furniture spaces block outside of building mode`() {
+        val player = createOwner()
+        player.addHouseRoom("kitchen", roomPosition(4, 4, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        val kitchen = roomZone(player.instance()!!.tile.zone, roomPosition(4, 4, GROUND_LEVEL)).tile
+        // Stove space by the north wall
+        assertTrue(Collisions.check(kitchen.add(3, 7), CollisionFlag.WALL_NORTH))
+        // Sink space by the east wall
+        assertTrue(Collisions.check(kitchen.add(7, 3), CollisionFlag.WALL_EAST))
+        // Table space in the middle of the room
+        assertFalse(Collisions.check(kitchen.add(3, 3), CollisionFlag.OBJECT))
     }
 
     @Test

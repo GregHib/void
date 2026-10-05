@@ -599,7 +599,6 @@ class House : Script {
                     if (obj.id == "house_window_space") {
                         obj.replace(window(roomSide(obj.tile)))
                     } else if (walled && (obj.id in curtains || obj.id.endsWith("_curtain_space"))) {
-                        // Removing built curtains would bring back the curtain space they replaced
                         val space = GameObjects.original(obj)
                         obj.remove()
                         space?.remove()
@@ -607,10 +606,20 @@ class House : Script {
                         val wall = door(obj.tile)
                         if (wall == null) obj.remove() else obj.replace(wall)
                     } else if (!buildMode && (obj.def.containsOption("Build") || obj.def.name == HABITAT_FLOOR)) {
-                        obj.remove()
+                        obj.remove(collision = !againstWall(obj))
                     }
                 }
             }
+        }
+
+        /**
+         * Whether [obj] is on the edge of its room next to the walls
+         */
+        private fun againstWall(obj: GameObject): Boolean {
+            val zone = obj.tile.zone.tile
+            val x = obj.x - zone.x
+            val y = obj.y - zone.y
+            return x == 0 || y == 0 || x + obj.width >= 8 || y + obj.height >= 8
         }
 
         /**

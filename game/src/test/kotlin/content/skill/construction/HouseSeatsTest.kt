@@ -143,7 +143,7 @@ class HouseSeatsTest : WorldTest() {
         val throneRoom = roomPosition(3, 3, GROUND_LEVEL)
         player.addHouseRoom("throne_room", throneRoom)
         player.addHouseFurniture(throneRoom, "throne_room_seating_space", "carved_teak_bench")
-        player.enterHouse()
+        player.enterHouse(throneRoom)
         val zone = roomZone(player.instance()!!.tile.zone, throneRoom)
         val bench = zone.toCuboid().firstNotNullOf { GameObjects.findOrNull(it, "carved_teak_bench_throne_room") }
         val benches = zone.toCuboid().count { GameObjects.findOrNull(it, "carved_teak_bench_throne_room") != null }
