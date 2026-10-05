@@ -392,7 +392,9 @@ class BotManager(
             } else {
                 bot.blocked.remove(behaviour.id)
             }
-            slots.release(behaviour)
+            if (state.reason !is HardReason) {
+                slots.release(behaviour)
+            }
         }
     }
 
