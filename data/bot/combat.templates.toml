@@ -74,7 +74,7 @@ setup = [
     { inventory = { id = "empty", min = 27 } },
 ]
 actions = [
-    { interface = { option = "Select", id = "combat_styles:style1" } },
+    { interface = { option = "Select", id = "combat_styles:$style" } },
     { npc = { option = "Attack", id = "cow*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 reactive = [
