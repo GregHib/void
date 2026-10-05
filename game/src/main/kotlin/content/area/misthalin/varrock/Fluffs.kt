@@ -43,30 +43,21 @@ class Fluffs : Script {
 
     init {
 
-        itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
-            foundCatCheck()
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
-                "attempt_fluffs_pickup" -> checkCanFeed()
-                else -> message("<red>Fluffs doesn't seem to be hungry right now.")
-            }
-            return@itemOnNPCOperate
-        }
-        itemOnNPCOperate("bucket_of_milk", FLUFFS_STRING_ID) {
-            foundCatCheck()
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
-                "attempt_fluffs_pickup" -> milkFluffs()
-                else -> message("<red>Fluffs doesn't seem to be thirsty right now.")
-            }
-            return@itemOnNPCOperate
-        }
         itemOnNPCOperate("*", FLUFFS_STRING_ID) { interact ->
             val item = interact.item.id
-
             foundCatCheck()
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> dontBotherCat()
-                "attempt_fluffs_pickup" -> checkItem(item)
-                else -> message("<red>Fluffs regards you with disdain.")
+                "attempt_fluffs_pickup" -> when (item.id) {
+                    "doogle_sardine" -> checkCanFeed()
+                    "bucket_of_milk" -> milkFluffs()
+                    else -> checkItem(item)
+                }
+                else -> when (item.id) {
+                    "doogle_sardine" -> message("<red>Fluffs doesn't seem to be hungry right now.")
+                    "bucket_of_milk" -> message("<red>Fluffs doesn't seem to be thirsty right now.")
+                    else -> message("<red>Fluffs regards you with disdain.")
+                }
             }
         }
         npcOperate("Talk-to", FLUFFS_STRING_ID) { interact ->
