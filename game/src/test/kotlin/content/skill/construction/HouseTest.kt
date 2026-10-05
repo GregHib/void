@@ -113,9 +113,11 @@ class HouseTest : WorldTest() {
         player.skipDialogues()
 
         assertEquals("rimmington", player["house_location", ""])
-        assertEquals(listOf("garden"), player.houseRoomIds)
-        assertEquals(listOf(START_ROOM), player.houseRoomPositions)
-        assertEquals(listOf(0), player.houseRoomRotations)
+        assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
+        assertEquals(listOf(START_ROOM, START_ROOM + ROOM_GRID), player.houseRoomPositions)
+        assertEquals(listOf(0, 0), player.houseRoomRotations)
+        assertEquals(listOf("exit_portal"), player.houseFurnitureIds)
+        assertEquals(listOf(START_ROOM), player.houseFurnitureRooms)
         assertEquals(0, player.inventory.count("coins"))
     }
 
@@ -243,9 +245,9 @@ class HouseTest : WorldTest() {
 
         player.enterPortal(1)
 
-        assertEquals(listOf("garden"), player.houseRoomIds)
-        assertEquals(listOf(START_ROOM), player.houseRoomPositions)
-        assertEquals(listOf(0), player.houseRoomRotations)
+        assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
+        assertEquals(listOf(START_ROOM, START_ROOM + ROOM_GRID), player.houseRoomPositions)
+        assertEquals(listOf(0, 0), player.houseRoomRotations)
         assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 2), player.tile)
     }
 
@@ -256,8 +258,8 @@ class HouseTest : WorldTest() {
 
         player.enterPortal(1)
 
-        assertEquals(listOf("garden"), player.houseRoomIds)
-        assertEquals(listOf(0), player.houseRoomRotations)
+        assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
+        assertEquals(listOf(0, 0), player.houseRoomRotations)
     }
 
     @Test
