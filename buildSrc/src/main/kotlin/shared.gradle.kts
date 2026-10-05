@@ -25,11 +25,8 @@ kotlin {
 }
 
 spotless {
-    // Nested modules (e.g. tools:app inside tools) check their own files
-    val nested = subprojects.map { "${it.projectDir.relativeTo(projectDir).invariantSeparatorsPath}/**" }
     kotlin {
-        target("**/*.kt", "**/*.kts")
-        targetExclude(listOf("temp/**", "**/build/**", "**/out/**") + nested)
+        target("src/**/*.kt", "src/**/*.kts")
         val rules = mutableMapOf<String, Any>(
             "ktlint_code_style" to "intellij_idea",
             "ktlint_standard_no-wildcard-imports" to "disabled",
