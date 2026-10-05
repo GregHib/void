@@ -1,0 +1,35 @@
+[flax_spinning_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "crafting", min = 10 } },
+    { bank = { id = "flax", min = 28 } },
+]
+setup = [
+    { inventory = { id = "flax", min = 28 } },
+    { area = { id = "$location" } },
+]
+actions = [
+    { item_on_object = { id = "flax", object = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } } },
+    { interface = { option = "All", id = "skill_creation_amount:all" } },
+    { continue = { id = "dialogue_skill_creation:choice1" } },
+    { restart = { wait_if = { queue = { id = "spin" } }, success = { inventory = { id = "flax", max = 0 } } } }
+]
+produces = [
+    { item = "bowstring" },
+    { skill = "crafting" }
+]
+
+[flax_picking_template]
+requires = [
+    { members = { req = true } },
+]
+setup = [
+    { inventory = { id = "empty", min = 28 } },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Pick", id = "flax", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "flax" }
+]

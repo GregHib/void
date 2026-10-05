@@ -9,3 +9,17 @@ x = [2728, 2772]
 y = [3424, 3455]
 tags = ["penguin_area"]
 hint = "near the bees and flax."
+
+[seers_village_bank]
+x = [2721, 2730]
+y = [3490, 3493]
+tags = ["bank"]
+
+[seers_village_spinning_wheel]
+x = [2709, 2715]
+y = [3469, 3473]
+level = 1
+
+[seers_village_flax_field]
+x = [2734, 2747]
+y = [3444, 3453]

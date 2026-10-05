@@ -382,3 +382,9 @@ fields = {
     type = "full_helm",
     item = "bronze_full_helm"
 }
+
+# Crafting
+[lumbridge_flax_spinning]
+template = "flax_spinning_template"
+capacity = 2
+fields = { location = "lumbridge_spinning_wheel", obj = "spinning_wheel_lumbridge" }

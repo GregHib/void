@@ -1,0 +1,9 @@
+[seers_village_flax_spinning]
+template = "flax_spinning_template"
+capacity = 2
+fields = { location = "seers_village_spinning_wheel", obj = "spinning_wheel_seers_village" }
+
+[seers_village_flax_picking]
+template = "flax_picking_template"
+capacity = 4
+fields = { location = "seers_village_flax_field" }
