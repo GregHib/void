@@ -11,6 +11,12 @@ id = 15
 [.close]
 id = 19
 
+[.arrive_at_portal]
+id = 25
+
+[.arrive_in_house]
+id = 26
+
 [.expel_guests]
 id = 27
 

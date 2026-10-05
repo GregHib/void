@@ -327,6 +327,53 @@ class HouseTest : WorldTest() {
     }
 
     @Test
+    fun `Toggle teleport arrival in house options`() {
+        val player = createOwner()
+        player.enterPortal(1)
+        player.interfaceOption("options", "house", "Open House Options")
+
+        player.interfaceOption("house_options", "arrive_at_portal", "When teleporting, arrive at portal")
+        assertEquals("at_portal", player["house_teleport_arrival", "in_house"])
+
+        player.interfaceOption("house_options", "arrive_in_house", "When teleporting, arrive in house")
+        assertEquals("in_house", player["house_teleport_arrival", "in_house"])
+    }
+
+    @Test
+    fun `Teleport to house portal`() {
+        val player = createOwner()
+        player.tele(3222, 3218)
+        player["house_teleport_arrival"] = "at_portal"
+        player.inventory.add("teleport_to_house")
+
+        player.interfaceOption("inventory", "inventory", "Break", 0, Item("teleport_to_house"), 0)
+        tickIf { player.tile != exit }
+
+        assertTrue(player.inventory.isEmpty())
+        assertNull(player.instance())
+        assertFalse(player.contains("house_owner"))
+        assertEquals(exit, player.tile)
+    }
+
+    @Test
+    fun `Teleporting to house portal from inside your house leaves it`() {
+        val owner = createOwner()
+        owner.enterPortal(1)
+        val guest = createPlayer(exit, "guest")
+        guest.visit(owner)
+        owner["house_teleport_arrival"] = "at_portal"
+        owner.inventory.add("teleport_to_house")
+
+        owner.interfaceOption("inventory", "inventory", "Break", 0, Item("teleport_to_house"), 0)
+        tickIf { owner.tile != exit }
+        tick()
+
+        assertNull(owner.instance())
+        assertFalse(owner.contains("house_owner"))
+        assertEquals(exit, guest.tile)
+    }
+
+    @Test
     fun `Build a room in building mode`() {
         val player = createOwner()
         player.levels.set(Skill.Construction, 1)
