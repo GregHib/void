@@ -18,5 +18,5 @@
   - All rows as `Tables.get("barrows_brothers").rows()`.
   - Fields as `row.int("level")`, `row.string("type")`, etc.
 - Persistent variables must be declared in `.vars.toml`, `.varbits.toml`, or `varps.toml` configs.
-- Format with `gradle spotlessApply`
+- Format with `gradle spotlessApply --parallel`
 - **Citations** — comment data with its origin: wiki/web data gets the URL, a made-up `message()` gets `// TODO proper message`, a guessed stat is commented as guessed (also in `.toml`).
