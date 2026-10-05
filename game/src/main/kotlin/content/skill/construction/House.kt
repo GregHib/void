@@ -123,12 +123,12 @@ class House : Script {
         }
 
         /**
-         * Replaces any existing rooms with a new house containing just the starting garden and its exit portal
+         * Replaces any existing rooms with a new house containing the starting garden with its exit portal and a parlour to the north
          */
         fun Player.newHouse() {
-            set("house_room_ids", listOf("garden"))
-            set("house_room_positions", listOf(START_ROOM))
-            set("house_room_rotations", listOf(0))
+            set("house_room_ids", listOf("garden", "parlour"))
+            set("house_room_positions", listOf(START_ROOM, START_ROOM + ROOM_GRID))
+            set("house_room_rotations", listOf(0, 0))
             set("house_furniture_rooms", listOf(START_ROOM))
             set("house_furniture_hotspots", listOf("garden_centrepiece_space"))
             set("house_furniture_ids", listOf("exit_portal"))
