@@ -3,6 +3,7 @@ package content.skill.construction
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -87,13 +87,17 @@ class HouseFurniture : Script {
     }
 
     private suspend fun Player.take(items: List<String>) {
-        val index = pick(items.map { ItemDefinitions.get(it).name })
+        val index = pick(items.map { Rows.getOrNull("house_storage_items.$it")?.string("option") ?: ItemDefinitions.get(it).name })
         if (index == -1) {
             return
         }
-        if (!inventory.add(items[index])) {
+        val item = items[index]
+        if (!inventory.add(item)) {
             inventoryFull()
+            return
         }
+        val name = ItemDefinitions.get(item).name.lowercase()
+        message(Rows.getOrNull("house_storage_items.$item")?.string("message") ?: "You take${name.an()} $name.".replace("  ", " "))
     }
 
     companion object {
