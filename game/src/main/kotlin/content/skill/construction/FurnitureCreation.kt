@@ -193,14 +193,23 @@ class FurnitureCreation : Script {
         val row = if (furniture == null) null else Rows.get("house_furniture.$furniture")
         val materials = if (row == null) emptyList() else materials(row)
         interfaces.sendText("furniture_creation", "name_$slot", if (furniture == null) "" else ItemDefinitions.get(furniture).name)
-        for (line in 1..4) {
-            val item = materials.getOrNull(line - 1)
-            interfaces.sendText("furniture_creation", "material_${slot}_$line", if (item == null) "" else "${item.amount} ${item.def.name}")
+        val lines = materialLines(materials)
+        for (line in 1..MATERIAL_LINES) {
+            interfaces.sendText("furniture_creation", "material_${slot}_$line", lines.getOrElse(line - 1) { "" })
         }
         interfaces.sendText("furniture_creation", "level_$slot", if (row == null) "" else "Level ${row.int("level")}")
         val flatpack = row?.itemOrNull("flatpack")
         val buildable = row != null && has(Skill.Construction, row.int("level")) && (inventory.contains(materials) || (flatpack != null && inventory.contains(flatpack)))
         set("furniture_creation_hide_cross_$slot", row == null || freeBuild || buildable)
+    }
+
+    /**
+     * Text for each of the menu's [MATERIAL_LINES] material lines, the last lines hold two materials each when there are too many for one per line
+     */
+    private fun materialLines(materials: List<Item>): List<String> {
+        val leading = (MATERIAL_LINES * 2 - materials.size).coerceIn(0, MATERIAL_LINES)
+        val lines = materials.take(leading).map { listOf(it) } + materials.drop(leading).chunked(2)
+        return lines.map { line -> line.joinToString(", ") { "${it.amount} ${it.def.name}" } }
     }
 
     /**
@@ -363,6 +372,7 @@ class FurnitureCreation : Script {
     }
 
     companion object {
+        private const val MATERIAL_LINES = 4
         private const val WORKBENCHES = "wooden_workbench,oak_workbench,steel_framed_bench,bench_with_vice,bench_with_lathe"
         private val nailTypes = listOf("bronze_nails", "iron_nails", "steel_nails", "black_nails", "mithril_nails", "adamant_nails", "rune_nails")
     }

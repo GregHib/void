@@ -163,9 +163,11 @@ class HouseStairs : Script {
         if (!hasRoomSpace()) {
             return
         }
+        // Dungeon rooms can only be built underground and others only above it
+        val underground = roomLevel(to) == DUNGEON_LEVEL
         statement("$nowhere<br>Do you want to build a room $place?")
         choice {
-            for ((room, name) in rooms) {
+            for ((room, name) in rooms.filter { (room, _) -> Tables.bool("house_rooms.$room.dungeon") == underground }) {
                 option(name) {
                     build(base, room, from, to, destination)
                 }
