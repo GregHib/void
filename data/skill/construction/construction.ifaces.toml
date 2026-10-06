@@ -367,6 +367,12 @@ id = 11
 
 [pet_house_side]
 id = 878
+type = "inventory_tab"
+
+[.inventory]
+id = 0
+inventory = "inventory"
+options = { Store-1 = 0, Store-5 = 1, Store-10 = 2, Store-All = 3, Store-X = 4, Examine = 9 }
 
 # Library bookcase, the list of stored books is built by the client from the book enum and the house_books_* varcs
 [poh_bookcase]
