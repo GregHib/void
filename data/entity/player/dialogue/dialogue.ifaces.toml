@@ -945,10 +945,6 @@ type = "dialogue_box"
 [chat3_models]
 id = 314
 
-[dialogue_poh_hangman]
-id = 393
-type = "dialogue_box"
-
 [dialogue_tutorial_text2]
 id = 421
 type = "dialogue_box"

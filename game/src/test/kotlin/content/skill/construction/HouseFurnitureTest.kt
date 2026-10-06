@@ -6,6 +6,9 @@ import containsMessage
 import content.activity.shooting_star.ShootingStarHandler
 import content.activity.shooting_star.StarLocationData
 import content.skill.construction.HouseFurniture.Companion.clockTime
+import content.skill.summoning.follower
+import content.skill.summoning.pet.pet
+import dialogueContinue
 import dialogueOption
 import intEntry
 import interfaceOption
@@ -13,20 +16,25 @@ import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Test
 import skillCreation
+import walk
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -530,18 +538,35 @@ class HouseFurnitureTest : WorldTest() {
     }
 
     @Test
-    fun `Feed all stored pets`() {
+    fun `Feed all fills the hunger of the following pet`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.pet = createNPC("pet_cat_baby", emptyTile)
+        player["pet_active_item"] = "pet_kitten"
+        player["pet_cat_hunger"] = 5000
+        player["pet_cat_warn"] = 1
+        val feeder = createObject("oak_pet_feeder", emptyTile.addY(1))
+
+        player.objectOption(feeder, "Feed-all")
+        tickIf { player.get("pet_cat_hunger", 0) != 0 }
+
+        assertEquals(0, player["pet_cat_hunger", 0])
+        assertEquals(0, player["pet_cat_warn", 0])
+    }
+
+    @Test
+    fun `Pet feeders ignore players without a following pet`() {
         val player = createPlayer(emptyTile)
         player["house_owner"] = player.accountName
         player.inventories.inventory("pet_house").add("pet_kitten")
         player["pet_cat_hunger"] = 5000
-        player.inventory.add("raw_shrimps")
         val feeder = createObject("oak_pet_feeder", emptyTile.addY(1))
 
         player.objectOption(feeder, "Feed-all")
-        tickIf { player.inventory.contains("raw_shrimps") }
+        tick(2)
 
-        assertEquals(3500, player["pet_cat_hunger", 0])
+        assertEquals(5000, player["pet_cat_hunger", 0])
+        assertTrue(player.containsMessage("no pet following"))
     }
 
     @Test
@@ -554,6 +579,8 @@ class HouseFurnitureTest : WorldTest() {
         tickIf { !player.containsMessage("Your dart") }
 
         assertEquals(10, player.equipment.count("bronze_dart"))
+        assertTrue(player.hasOpen("poh_ranging"))
+        assertEquals(1, player["ranging_shots", 0])
     }
 
     @Test
@@ -602,14 +629,128 @@ class HouseFurnitureTest : WorldTest() {
     }
 
     @Test
-    fun `Unimplemented furniture sends a message`() {
+    fun `Scrying pool views a location unseen and walking returns the player`() {
         val player = createPlayer(emptyTile)
-        val pool = createObject("scrying_pool", emptyTile.addY(1))
+        player["house_owner"] = player.accountName
+        val observer = createPlayer(emptyTile)
+        val pool = createObject("scrying_pool", emptyTile.addX(1))
 
         player.objectOption(pool, "Scry")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            player.dialogue == null
+        }
+        player.dialogueOption("line1")
+        player.dialogueContinue()
+        tickIf { !player.hasOpen("poh_scrying_pool") }
+        val back = player.get<Tile>("scrying_return")!!
+
+        assertTrue(player.hide)
+        assertTrue(player.contains("house_owner"))
+        assertTrue(player.tile != back)
+
+        player.walk(back)
+        tick(2)
+
+        assertFalse(player.hide)
+        assertFalse(player.hasOpen("poh_scrying_pool"))
+        assertEquals(back, player.tile)
+        assertFalse(observer.hide)
+    }
+
+    @Test
+    fun `Can't scry with a follower`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.follower = createNPC("spirit_wolf_familiar", emptyTile.addY(2))
+        val pool = createObject("scrying_pool", emptyTile.addX(1))
+
+        player.objectOption(pool, "Scry")
+        tickIf { !player.containsMessage("cannot scry while you have a follower") }
+    }
+
+    @Test
+    fun `Bookcase shows books unlocked by completed quests`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player["dwarf_cannon"] = "completed"
+        val book = "instruction_manual"
+        val bookcase = createObject("oak_bookcase", emptyTile.addX(1))
+
+        player.objectOption(bookcase, "Search")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            !player.hasOpen("poh_bookcase")
+        }
+        val slot = 3
+        assertEquals(1 shl slot, player["house_books_1", 0] and (1 shl slot))
+        // The Shield of Arrav (slot 27) isn't unlocked
+        assertEquals(0, player["house_books_1", 0] and (1 shl 27))
+        // Books without a quest are always unlocked
+        assertEquals(1, player["house_books_1", 0] and 1)
+
+        player.interfaceOption("poh_bookcase", "books", "Take", item = Item(book), slot = slot)
         tick()
 
-        assertTrue(player.containsMessage("Not yet implemented."))
+        assertEquals(1, player.inventory.count(book))
+    }
+
+    @Test
+    fun `Store and take an item from a magic wardrobe`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.inventory.add("runecrafter_hat")
+        val wardrobe = createObject("oak_magic_wardrobe", emptyTile.addX(1))
+
+        player.objectOption(wardrobe, "Open")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            !player.hasOpen("poh_costume_room")
+        }
+        val row = player.get<List<String>>("house_costume_items")!!.indexOf("runecrafter_hat") + 1
+        player.interfaceOption("poh_costume_room", "select_$row", "Select")
+        tick()
+
+        assertEquals(0, player.inventory.count("runecrafter_hat"))
+        player.interfaceOption("poh_costume_room", "select_$row", "Select")
+        tick()
+
+        assertEquals(1, player.inventory.count("runecrafter_hat"))
+    }
+
+    @Test
+    fun `Treasure chest asks which level of treasure trail reward to take`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        val chest = createObject("oak_treasure_chest", emptyTile.addX(1))
+
+        player.objectOption(chest, "Open")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            player.dialogue == null
+        }
+        player.dialogueOption("line1")
+        tickIf { !player.hasOpen("poh_costume_room") }
+
+        assertEquals(30, player.get<List<String>>("house_costume_items")!!.size)
+    }
+
+    @Test
+    fun `Hangman selects letters and guesses them`() {
+        val player = createPlayer(emptyTile)
+        val game = createObject("hangman_game", emptyTile.addY(1))
+
+        player.objectOption(game, "Activate")
+        tickIf { !player.hasOpen("poh_hangman") }
+        player["hangman_word"] = "WIZARD"
+        player.interfaceOption("poh_hangman", "w", "Select")
+        player.interfaceOption("poh_hangman", "q", "Select")
+        player.interfaceOption("poh_hangman", "guess", "Guess")
+        tick()
+
+        assertEquals("WQ", player.get<String>("hangman_guessed"))
+        assertEquals(1, player.get<Int>("hangman_wrong"))
+        assertEquals("3945", player.get<NPC>("hangman_npc")?.transformId)
     }
 
     @Test

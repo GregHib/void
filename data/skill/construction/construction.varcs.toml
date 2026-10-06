@@ -5,3 +5,16 @@ format = "int"
 [house_lectern_tier]
 id = 943
 format = "int"
+
+# Bit set of the books unlocked in the library bookcase, 32 books per varc in house_books enum order
+[house_books_1]
+id = 1040
+format = "int"
+
+[house_books_2]
+id = 1041
+format = "int"
+
+[house_books_3]
+id = 1042
+format = "int"

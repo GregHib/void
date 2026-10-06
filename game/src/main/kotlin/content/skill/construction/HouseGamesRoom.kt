@@ -7,6 +7,9 @@ import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.notImplemented
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -24,7 +27,27 @@ import world.gregs.voidps.type.random
  */
 class HouseGamesRoom : Script {
     init {
-        objectOperate("Activate", "jester,treasure_hunt,hangman_game,elemental_balance_*") {
+        interfaceOpened("poh_ranging") { id ->
+            interfaces.sendText(id, "name_1", accountName)
+            for (player in 2..4) {
+                interfaces.sendText(id, "name_$player", "")
+                interfaces.sendText(id, "shots_$player", "")
+                interfaces.sendText(id, "score_$player", "")
+            }
+        }
+
+        interfaceClosed("poh_ranging") {
+            clear("ranging_shots")
+            clear("ranging_score")
+        }
+
+        moved { from ->
+            if (tile.zone != from.zone && hasOpen("poh_ranging")) {
+                close("poh_ranging")
+            }
+        }
+
+        objectOperate("Activate", "jester,treasure_hunt,elemental_balance_*") {
             notImplemented()
         }
 
@@ -41,7 +64,7 @@ class HouseGamesRoom : Script {
             prizeMoney(Tables.int("house_prize_chests.${target.id}.capacity"))
         }
 
-        objectOperate("Hoop", "hoop_and_stick") { (target) ->
+        objectApproach("Hoop", "hoop_and_stick") { (target) ->
             play(target, "throw_dart", "hoop")
         }
 
@@ -64,13 +87,20 @@ class HouseGamesRoom : Script {
     }
 
     /**
-     * Throws or shoots at a ranging game [target], scoring higher with better Ranged levels
+     * Throws or shoots at a ranging game [target], scoring higher with better Ranged levels.
+     * The score board shows the shots taken and the total score, the game ends after [SHOTS] shots.
      */
     private suspend fun Player.play(target: GameObject, animation: String, thing: String) {
         face(target)
         anim(animation)
         delay(2)
         val score = (random.nextInt(levels.get(Skill.Ranged) + 1) * MAX_SCORE / 99).coerceAtMost(MAX_SCORE)
+        val shots = inc("ranging_shots")
+        val total = get("ranging_score", 0) + score
+        set("ranging_score", total)
+        open("poh_ranging")
+        interfaces.sendText("poh_ranging", "shots_1", shots.toString())
+        interfaces.sendText("poh_ranging", "score_1", total.toString())
         message(
             when {
                 score == 0 -> "Your $thing misses completely." // TODO proper message
@@ -78,6 +108,11 @@ class HouseGamesRoom : Script {
                 else -> "Your $thing hits, you score $score." // TODO proper message
             },
         )
+        if (shots >= SHOTS) {
+            message("You finish the game with a score of $total.") // TODO proper message
+            delay(3)
+            close("poh_ranging")
+        }
     }
 
     /**
@@ -107,5 +142,6 @@ class HouseGamesRoom : Script {
 
     companion object {
         private const val MAX_SCORE = 50 // Guessed
+        private const val SHOTS = 5 // Guessed
     }
 }
