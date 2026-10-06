@@ -175,7 +175,7 @@ level = 1
 cost = 5000
 wall = "basic_wood_wall"
 window = "basic_wood_window"
-doors = ["basic_wood_door_left_closed", "basic_wood_door_right_closed"]
+doors = ["basic_wood_door_right_closed", "basic_wood_door_left_closed"]
 
 [.basic_stone]
 name = "Basic stone"
@@ -193,7 +193,7 @@ cost = 7500
 offset = { level = 2 }
 wall = "whitewashed_stone_wall"
 window = "whitewashed_stone_window"
-doors = ["whitewashed_stone_door_left_closed", "whitewashed_stone_door_right_closed"]
+doors = ["whitewashed_stone_door_right_closed", "whitewashed_stone_door_left_closed"]
 
 [.fremennik_wood]
 name = "Fremennik-style wood"
@@ -211,7 +211,7 @@ cost = 15000
 offset = { x = 64 }
 wall = "tropical_wood_wall"
 window = "tropical_wood_window"
-doors = ["tropical_wood_door_left_closed", "tropical_wood_door_right_closed"]
+doors = ["tropical_wood_door_right_closed", "tropical_wood_door_left_closed"]
 
 [.fancy_stone]
 name = "Fancy stone"
