@@ -1,6 +1,7 @@
 package content.skill.construction
 
 import content.activity.shooting_star.ShootingStarHandler
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.skill.magic.spell.SpellRunes
 import content.skill.magic.spell.SpellRunes.removeItems
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -19,6 +21,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
@@ -32,12 +35,14 @@ class HouseStudy : Script {
     init {
         objectOperate("Study", LECTERNS) { (target) ->
             set("house_lectern", target.id)
+            set("house_lectern_tier", LECTERNS.split(",").indexOf(target.id) + 1)
             anim("study_lectern")
             open("teleport_tablets")
         }
 
         interfaceClosed("teleport_tablets") {
             clear("house_lectern")
+            clear("house_lectern_tier")
         }
 
         interfaceOption("Close", "teleport_tablets:close") {
@@ -157,8 +162,16 @@ class HouseStudy : Script {
         )
     }
 
+    private enum class StaffType(val cost: Int, val id: (String) -> String) {
+        Basic(0, { "staff_of_$it" }),
+        Battle(100, { "${it}_battlestaff" }),
+        Mystic(1000, { "mystic_${it}_staff" }),
+    }
+
     companion object {
         private const val BOOK = "modern_spellbook"
+        private val ELEMENTS = listOf("air", "water", "earth", "fire")
+        private val STAVES = StaffType.entries.flatMap { type -> ELEMENTS.map { type.id(it) } }.joinToString(",")
         private const val LECTERNS = "oak_lectern,eagle_lectern,demon_lectern,teak_eagle_lectern,teak_demon_lectern,mahogany_eagle_lectern,mahogany_demon_lectern"
     }
 }
