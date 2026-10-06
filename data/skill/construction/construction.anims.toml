@@ -127,9 +127,14 @@ id = 4116
 [sit_demonic_throne]
 id = 4117
 
-# Guessed from other servers
-[play_chimes]
+[human_use_windchimes]
 id = 3674
+
+[musical_windchimes]
+id = 3576
+
+[musical_bells]
+id = 3577
 
 # Guessed from other servers
 [ring_bell_pull]
@@ -179,3 +184,14 @@ id = 6245
 
 [expression_kalphite_queen_neutral]
 id = 6246
+[telescope_observe]
+id = 3649
+
+[telescope_observe_object]
+id = 3650
+
+[human_poh_build_wall]
+id = 3684
+
+[human_study_ready]
+id = 3653

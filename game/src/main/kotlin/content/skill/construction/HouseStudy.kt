@@ -3,16 +3,19 @@ package content.skill.construction
 import content.activity.shooting_star.ShootingStarHandler
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
+import content.entity.player.dialogue.type.statement
 import content.skill.magic.spell.SpellRunes
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -84,20 +87,13 @@ class HouseStudy : Script {
             makeTablets(tablet, Tables.int("house_lecterns.$lectern.ticks"), amount)
         }
 
-        objectOperate("Study", "alchemical_chart") {
-            message("The chart shows the symbols used by alchemists for each of the elements.") // TODO proper message
-        }
-
-        objectOperate("Study", "astronomical_chart") {
-            message("The chart shows the positions of the stars and planets in the night sky.") // TODO proper message
-        }
-
-        objectOperate("Study", "infernal_chart") {
-            message("The chart shows the many layers of the infernal planes.") // TODO proper message
+        objectOperate("Study", "alchemical_chart,astronomical_chart,infernal_chart") {
+            anim("human_study_ready")
+            walkTrigger { clearAnim() }
         }
 
         objectOperate("Observe", "wooden_telescope,teak_telescope,mahogany_telescope") { (target) ->
-            observe(target.id)
+            observe(target)
         }
 
         objectOperate("Check", "dahmaroc_statue_plinth") {
@@ -144,7 +140,7 @@ class HouseStudy : Script {
             return
         }
         if (!inventory.contains("soft_clay")) {
-            message("You need some soft clay to make a tablet.") // TODO proper message
+            message("You need some soft clay to use this lectern.")
             return
         }
         val runes = SpellRunes.requiredItems(BOOK, spell)?.toMutableMap() ?: return
@@ -167,35 +163,24 @@ class HouseStudy : Script {
      * Shows roughly when and where the next shooting star will land, more accurately with better [telescope]s
      * https://runescape.wiki/w/Telescope
      */
-    private fun Player.observe(telescope: String) {
+    private suspend fun Player.observe(telescope: GameObject) {
         val location = ShootingStarHandler.nextLocation
         if (location == null) {
             message("You look through the telescope but can't see any shooting stars.") // TODO proper message
             return
         }
-        val window = when (telescope) {
+        val window = when (telescope.id) {
             "wooden_telescope" -> 24
             "teak_telescope" -> 9
             else -> 2
         }
         val minutes = ((ShootingStarHandler.nextStarTick - GameLoop.tick) / TimeUnit.MINUTES.toTicks(1)).coerceAtLeast(0)
         val earliest = (minutes - random.nextInt(window + 1)).coerceAtLeast(0)
-        message("You see a shooting star! It looks like it will land near ${location.description}") // TODO proper message
-        message("It should land in $earliest to ${earliest + window} minutes.") // TODO proper message
-        val tier = ShootingStarHandler.nextTier
-        message(
-            when (telescope) {
-                "wooden_telescope" -> if (tier <= 3) {
-                    "It looks quite small."
-                } else if (tier <= 6) {
-                    "It looks a reasonable size."
-                } else {
-                    "It looks very large." // TODO proper message
-                }
-                "teak_telescope" -> "It looks to be about size ${(tier - 1).coerceAtLeast(1)} to ${(tier + 1).coerceAtMost(9)}." // TODO proper message
-                else -> "It looks to be size $tier." // TODO proper message
-            },
-        )
+        anim("telescope_observe")
+        telescope.anim("telescope_observe_object")
+        open("star_telescope_meteor")
+        statement("You see a shooting star! The star looks like it will land in ${location.region} in the next $earliest to ${earliest + window} minutes.")
+        close("star_telescope_meteor")
     }
 
     private enum class StaffType(val cost: Int, val id: (String) -> String) {
