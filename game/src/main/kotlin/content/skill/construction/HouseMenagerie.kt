@@ -1,21 +1,30 @@
 package content.skill.construction
 
-import content.entity.player.dialogue.type.choice
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import content.skill.construction.House.Companion.inOwnHouse
-import content.skill.construction.HouseFurniture.Companion.pick
 import content.skill.summoning.pet.petRowForItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.sendInventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 
 /**
  * Menagerie pet houses store pets so they don't need to be carried around and feeders feed every stored pet at once.
+ * Pets are moved between the pet house and the inventory like any other storage interface.
  * The small obelisk renews summoning points like any other obelisk.
  * TODO stored pets roaming the menagerie
  */
@@ -26,14 +35,54 @@ class HouseMenagerie : Script {
                 message("You can only do that in your own house.") // TODO proper message
                 return@objectOperate
             }
-            choice {
-                option("Store a pet") {
-                    store()
-                }
-                option("Take a pet") {
-                    take()
-                }
-                option("Cancel")
+            movePets()
+            open("pet_house")
+        }
+
+        interfaceOpened("pet_house") { id ->
+            open("pet_house_side")
+            tab(Tab.Inventory)
+            interfaceOptions.send(id, "items")
+            interfaceOptions.unlockAll(id, "items", 0 until CAPACITY)
+            sendInventory(petHouse)
+            sendInventory(inventory)
+        }
+
+        interfaceClosed("pet_house") {
+            close("pet_house_side")
+        }
+
+        interfaceOption("Close", "pet_house:close") {
+            closeMenu()
+        }
+
+        interfaceOption("Take", "pet_house:items") { (item) ->
+            val pets = petHouse
+            pets.transaction {
+                moveToLimit(item.id, 1, this@interfaceOption.inventory)
+            }
+            when (pets.transaction.error) {
+                is TransactionError.Full -> inventoryFull()
+                else -> sync()
+            }
+        }
+
+        interfaceOption(id = "pet_house_side:inventory") { (item, _, option) ->
+            if (!hasOpen("pet_house") || !option.startsWith("Store")) {
+                return@interfaceOption
+            }
+            if (petRowForItem(item.id) == null) {
+                message("You can only store pets in the pet house.") // TODO proper message
+                return@interfaceOption
+            }
+            val pets = petHouse
+            if (pets.items.count { it.isNotEmpty() } >= CAPACITY) {
+                message("Your pet house is full.") // TODO proper message
+                return@interfaceOption
+            }
+            if (inventory.remove(item.id)) {
+                pets.add(item.id)
+                sync()
             }
         }
 
@@ -46,45 +95,30 @@ class HouseMenagerie : Script {
         }
     }
 
-    private val Player.storedPets: List<String>
-        get() = get("house_pets") ?: emptyList()
+    private val Player.petHouse: Inventory
+        get() = inventories.inventory("pet_house")
 
-    private suspend fun Player.store() {
-        val pets = inventory.items.map { it.id }.distinct().filter { petRowForItem(it) != null }
-        if (pets.isEmpty()) {
-            message("You don't have any pets to store.") // TODO proper message
-            return
+    /**
+     * Moves pets stored before pet houses had an interface into the pet house inventory
+     */
+    private fun Player.movePets() {
+        val stored: List<String> = remove("house_pets") ?: return
+        for (pet in stored) {
+            petHouse.add(pet)
         }
-        val index = pick(pets.map { ItemDefinitions.get(it).name })
-        if (index == -1 || !inventory.remove(pets[index])) {
-            return
-        }
-        set("house_pets", storedPets + pets[index])
-        message("You put your pet in the pet house.") // TODO proper message
     }
 
-    private suspend fun Player.take() {
-        val pets = storedPets
-        if (pets.isEmpty()) {
-            message("You don't have any pets stored.") // TODO proper message
-            return
-        }
-        val index = pick(pets.map { ItemDefinitions.get(it).name })
-        if (index == -1) {
-            return
-        }
-        if (!inventory.add(pets[index])) {
-            inventoryFull()
-            return
-        }
-        set("house_pets", pets.filterIndexed { i, _ -> i != index })
+    private fun Player.sync() {
+        sendInventory(petHouse)
+        sendInventory(inventory)
     }
 
     /**
      * Feeds each stored pet one piece of food it eats from the inventory
      */
     private fun Player.feedAll() {
-        val rows = storedPets.mapNotNull { petRowForItem(it) }
+        movePets()
+        val rows = petHouse.items.filter { it.isNotEmpty() }.mapNotNull { petRowForItem(it.id) }
         if (rows.isEmpty()) {
             message("You don't have any pets stored.") // TODO proper message
             return
@@ -109,6 +143,9 @@ class HouseMenagerie : Script {
     companion object {
         private const val PET_HOUSES = "oak_pet_house,teak_pet_house,mahogany_pet_house,consecrated_pet_house,desecrated_pet_house,natural_pet_house"
         private const val PET_FEEDERS = "oak_pet_feeder,teak_pet_feeder,mahogany_pet_feeder"
+
+        // Slots shown by the pet house interface
+        private const val CAPACITY = 40
 
         // Same as feeding a pet by hand
         private const val FEED_HUNGER_REDUCTION = 1500

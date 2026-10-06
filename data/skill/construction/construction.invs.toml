@@ -819,3 +819,8 @@ defaults = [
     { id = "bandos_body", amount = 1 },
     { id = "ancient_body", amount = 1 },
 ]
+
+[pet_house]
+id = 552
+width = 10
+height = 4

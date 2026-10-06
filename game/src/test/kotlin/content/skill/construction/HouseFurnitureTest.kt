@@ -504,33 +504,35 @@ class HouseFurnitureTest : WorldTest() {
         val house = createObject("oak_pet_house", emptyTile.addY(1))
 
         player.objectOption(house, "Store")
-        tickIf { player.dialogue == null }
-        player.dialogueOption("line1")
+        tickIf { !player.hasOpen("pet_house") }
+        player.interfaceOption("summoning_side", "inventory", "Store-1", item = Item("pet_kitten"), slot = 0)
+        tick()
 
         assertEquals(0, player.inventory.count("pet_kitten"))
-        assertEquals(listOf("pet_kitten"), player.get<List<String>>("house_pets"))
+        assertEquals(1, player.inventories.inventory("pet_house").count("pet_kitten"))
     }
 
     @Test
     fun `Take a pet from a pet house`() {
         val player = createPlayer(emptyTile)
         player["house_owner"] = player.accountName
-        player["house_pets"] = listOf("pet_kitten")
+        player.inventories.inventory("pet_house").add("pet_kitten")
         val house = createObject("teak_pet_house", emptyTile.addY(1))
 
         player.objectOption(house, "Store")
-        tickIf { player.dialogue == null }
-        player.dialogueOption("line2")
+        tickIf { !player.hasOpen("pet_house") }
+        player.interfaceOption("pet_house", "items", "Take", item = Item("pet_kitten"), slot = 0)
+        tick()
 
         assertEquals(1, player.inventory.count("pet_kitten"))
-        assertTrue(player.get<List<String>>("house_pets")!!.isEmpty())
+        assertEquals(0, player.inventories.inventory("pet_house").count("pet_kitten"))
     }
 
     @Test
     fun `Feed all stored pets`() {
         val player = createPlayer(emptyTile)
         player["house_owner"] = player.accountName
-        player["house_pets"] = listOf("pet_kitten")
+        player.inventories.inventory("pet_house").add("pet_kitten")
         player["pet_cat_hunger"] = 5000
         player.inventory.add("raw_shrimps")
         val feeder = createObject("oak_pet_feeder", emptyTile.addY(1))

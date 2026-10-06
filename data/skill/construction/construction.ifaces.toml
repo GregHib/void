@@ -352,3 +352,18 @@ id = 63
 [star_telescope_meteor]
 id = 782
 type = "wide_screen"
+
+[pet_house]
+id = 879
+type = "main_screen"
+
+[.items]
+id = 13
+inventory = "pet_house"
+options = { Take = 0, Examine = 9 }
+
+[.close]
+id = 11
+
+[pet_house_side]
+id = 878
