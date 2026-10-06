@@ -6,4 +6,4 @@ fields = { location = "seers_village_spinning_wheel", obj = "spinning_wheel_seer
 [seers_village_flax_picking]
 template = "flax_picking_template"
 capacity = 4
-fields = { location = "seers_village_flax_field" }
+fields = { location = "flax_field" }

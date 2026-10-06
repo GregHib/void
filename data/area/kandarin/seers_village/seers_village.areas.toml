@@ -19,7 +19,3 @@ tags = ["bank"]
 x = [2709, 2715]
 y = [3469, 3473]
 level = 1
-
-[seers_village_flax_field]
-x = [2734, 2747]
-y = [3444, 3453]
