@@ -3746,13 +3746,13 @@ items = "list<item>"
 
 # https://oldschool.runescape.wiki/w/Larder
 [.wooden_larder]
-items = ["tea_leaves", "bucket_of_milk"]
+items = ["cup_of_tea", "bucket_of_milk"]
 
 [.oak_larder]
-items = ["tea_leaves", "bucket_of_milk", "egg", "pot_of_flour"]
+items = ["cup_of_tea", "bucket_of_milk", "egg", "pot_of_flour"]
 
 [.teak_larder]
-items = ["tea_leaves", "bucket_of_milk", "egg", "pot_of_flour", "raw_potato", "garlic", "onion", "cheese"]
+items = ["cup_of_tea", "bucket_of_milk", "egg", "pot_of_flour", "raw_potato", "garlic", "onion", "cheese"]
 
 # https://oldschool.runescape.wiki/w/Wooden_shelves_1
 [.wooden_shelves_1]
@@ -4310,3 +4310,41 @@ capacity = 50000
 
 [.mahogany_prize_chest]
 capacity = 100000
+
+# Option and message used when taking food from larders, other items use their name
+[house_storage_items]
+row_id = "item"
+option = "string"
+message = "string"
+
+[.cup_of_tea]
+option = "Tea"
+message = "You take a cup of tea."
+
+[.bucket_of_milk]
+option = "Milk"
+message = "You take a bucket of milk."
+
+[.egg]
+option = "Egg"
+message = "You take an egg."
+
+[.pot_of_flour]
+option = "Flour"
+message = "You take some flour."
+
+[.raw_potato]
+option = "Potato"
+message = "You take a potato."
+
+[.garlic]
+option = "Garlic"
+message = "You take some garlic."
+
+[.onion]
+option = "Onion"
+message = "You take an onion."
+
+[.cheese]
+option = "Cheese"
+message = "You take some cheese."
