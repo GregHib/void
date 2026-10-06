@@ -9,6 +9,8 @@ import content.quest.exitInstance
 import content.quest.instance
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
+import content.skill.construction.HouseMenagerie.Companion.despawnHousePets
+import content.skill.construction.HouseMenagerie.Companion.spawnHousePets
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -76,6 +78,7 @@ class House : Script {
 
         playerDespawn {
             if (inOwnHouse()) {
+                despawnHousePets()
                 expelGuests()
             }
         }
