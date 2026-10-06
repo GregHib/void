@@ -8,7 +8,7 @@ id = 8
 [expression_granite_crab_neutral]
 id = 8376
 
-[expression_bunyip_neutral]
+[expression_pet_neutral]
 id = 8373
 
 [expression_pet_5_neutral]
@@ -126,7 +126,7 @@ id = 6824
 [expression_granite_crab_sad]
 id = 8378
 
-[expression_bunyip_sad]
+[expression_pet_sad]
 id = 8374
 
 [expression_pet_5_sad]
@@ -227,3 +227,204 @@ id = 9761
 
 [expression_sneakerpeeper_sad]
 id = 13321
+
+[expression_bird_happy]
+id = 7
+
+[expression_bird_quiz]
+id = 9
+
+[expression_lizard_happy]
+id = 4843
+
+[expression_lizard_quiz]
+id = 4845
+
+[expression_peng_quiz]
+id = 5662
+
+[expression_peng_happy]
+id = 5663
+
+[expression_wolf_happy]
+id = 6555
+
+[expression_wolf_idle_no_scale]
+id = 225
+
+[expression_ant_happy]
+id = 7636
+
+[expression_ant_quiz]
+id = 7638
+
+[expression_rodent_happy]
+id = 8372
+
+[expression_crab_happy]
+id = 8377
+
+[expression_crab_quiz]
+id = 8379
+
+[expression_lobster_happy]
+id = 8380
+
+[expression_lobster_quiz]
+id = 8382
+
+[expression_mosquito_happy]
+id = 8384
+
+[expression_mosquito_quiz]
+id = 8386
+
+[expression_chameleon_happy]
+id = 8388
+
+[expression_chameleon_quiz]
+id = 8389
+
+[expression_snake_happy]
+id = 8391
+
+[expression_snake_quiz]
+id = 8393
+
+[expression_snail_happy]
+id = 8395
+
+[expression_snail_quiz]
+id = 8398
+
+[expression_monkey_happy]
+id = 8400
+
+[expression_monkey_quiz]
+id = 8401
+
+[expression_bloated_leech_happy]
+id = 8411
+
+[expression_bloated_leech_quiz]
+id = 8414
+
+[expression_jelly_happy]
+id = 8415
+
+[expression_jelly_quiz]
+id = 8417
+
+[expression_karamthulu_happy]
+id = 8419
+
+[expression_karamthulu_quiz]
+id = 8422
+
+[expression_compost_mound_happy]
+id = 8424
+
+[expression_compost_mound_quiz]
+id = 8426
+
+[expression_stranger_plant_quiz]
+id = 8427
+
+[expression_stranger_plant_happy]
+id = 8428
+
+[expression_ent_happy]
+id = 8432
+
+[expression_ent_quiz]
+id = 8434
+
+[expression_titan_happy]
+id = 8435
+
+[expression_titan_quiz]
+id = 8438
+
+[expression_geyser_happy]
+id = 8439
+
+[expression_geyser_quiz]
+id = 8441
+
+[expression_obsidian_happy]
+id = 8447
+
+[expression_obsidian_quiz]
+id = 8449
+
+[expression_fire_titan_happy]
+id = 8451
+
+[expression_fire_titan_quiz]
+id = 8453
+
+[expression_moss_titan_happy]
+id = 8455
+
+[expression_moss_titan_quiz]
+id = 8457
+
+[expression_swamp_titan_happy]
+id = 8459
+
+[expression_swamp_titan_idle]
+id = 8460
+
+[expression_swamp_titan_quiz]
+id = 8461
+
+[expression_swamp_titan_sad]
+id = 8462
+
+[expression_dust_devil_quiz]
+id = 8465
+
+[expression_dust_devil_happy]
+id = 8466
+
+[expression_flaming_prince_happy]
+id = 8468
+
+[expression_flaming_prince_quiz]
+id = 8470
+
+[expression_shifter_quiz]
+id = 8471
+
+[expression_shifter_happy]
+id = 8472
+
+[expression_arachnid_happy]
+id = 8475
+
+[expression_arachnid_quiz]
+id = 8478
+
+[expression_tzkih_happy]
+id = 8479
+
+[expression_tzkih_quiz]
+id = 8481
+
+[expression_hydra_happy]
+id = 8484
+
+[expression_hydra_quiz]
+id = 8486
+
+[expression_spinner_quiz]
+id = 8489
+
+[expression_spinner_happy]
+id = 8490
+
+[expression_pyrefiend_happy]
+id = 8492
+
+[expression_pyrefiend_quiz]
+id = 8494
