@@ -40,6 +40,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -311,7 +312,7 @@ class FurnitureCreation : Script {
         } else {
             placeFurniture(target.tile.zone, hotspot, furniture)
         }
-        anim("construction_build")
+        anim(if (target.shape < ObjectShape.CENTRE_PIECE_STRAIGHT) "human_poh_build_wall" else "construction_build")
         // Free building doesn't give experience so it can't be used for training, flatpacks gave theirs when made
         if (!freeBuild && !packed) {
             exp(Skill.Construction, row.int("xp") / 10.0)
