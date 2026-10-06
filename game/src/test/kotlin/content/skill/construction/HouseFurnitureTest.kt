@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -515,7 +516,7 @@ class HouseFurnitureTest : WorldTest() {
 
         player.objectOption(house, "Store")
         tickIf { !player.hasOpen("pet_house") }
-        player.interfaceOption("summoning_side", "inventory", "Store-1", item = Item("pet_kitten"), slot = 0)
+        player.interfaceOption("pet_house_side", "inventory", "Store-1", item = Item("pet_kitten"), slot = 0)
         tick()
 
         assertEquals(0, player.inventory.count("pet_kitten"))
@@ -620,7 +621,8 @@ class HouseFurnitureTest : WorldTest() {
                     if (option == "Examine" || option == "Remove") {
                         continue
                     }
-                    if (!Operation.playerObject.containsKey("$option:$id") && !Operation.playerObject.containsKey("$option:*")) {
+                    val key = "$option:$id"
+                    if (!Operation.playerObject.containsKey(key) && !Operation.playerObject.containsKey("$option:*") && !Approachable.playerObject.containsKey(key)) {
                         missing.add("$option:$id")
                     }
                 }
@@ -630,7 +632,7 @@ class HouseFurnitureTest : WorldTest() {
     }
 
     @Test
-    fun `Scrying pool views a location unseen and walking returns the player`() {
+    fun `Scrying pool views a location unseen until the message is continued`() {
         val player = createPlayer(emptyTile)
         player["house_owner"] = player.accountName
         val observer = createPlayer(emptyTile)
@@ -642,13 +644,36 @@ class HouseFurnitureTest : WorldTest() {
             player.dialogue == null
         }
         player.dialogueOption("line1")
-        player.dialogueContinue()
         tickIf { !player.hasOpen("poh_scrying_pool") }
         val back = player.get<Tile>("scrying_return")!!
 
         assertTrue(player.appearance.hidden)
         assertTrue(player.contains("house_owner"))
         assertTrue(player.tile != back)
+        assertFalse(observer.appearance.hidden)
+
+        player.dialogueContinue()
+        tick(2)
+
+        assertFalse(player.appearance.hidden)
+        assertFalse(player.hasOpen("poh_scrying_pool"))
+        assertEquals(back, player.tile)
+    }
+
+    @Test
+    fun `Walking while scrying returns the player`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        val pool = createObject("scrying_pool", emptyTile.addX(1))
+
+        player.objectOption(pool, "Scry")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            player.dialogue == null
+        }
+        player.dialogueOption("line1")
+        tickIf { !player.hasOpen("poh_scrying_pool") }
+        val back = player.get<Tile>("scrying_return")!!
 
         player.walk(back)
         tick(2)
@@ -656,7 +681,6 @@ class HouseFurnitureTest : WorldTest() {
         assertFalse(player.appearance.hidden)
         assertFalse(player.hasOpen("poh_scrying_pool"))
         assertEquals(back, player.tile)
-        assertFalse(observer.appearance.hidden)
     }
 
     @Test

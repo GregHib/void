@@ -296,6 +296,7 @@ abstract class WorldTest : KoinTest {
             properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
             properties["storage.caching.path"] = "../data/.temp/"
             properties["quests.requirements.skipMissing"] = false
+            properties["construction.freeBuild"] = false
             properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
             properties["events.shootingStars.enabled"] = false
