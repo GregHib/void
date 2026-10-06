@@ -9,7 +9,7 @@ setup = [
     { area = { id = "$location" } },
 ]
 actions = [
-    { item_on_object = { id = "flax", object = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } } },
+    { item_on_object = { id = "flax", object = "$obj", delay = 2, success = { interface_open = { id = "dialogue_skill_creation" } } } },
     { interface = { option = "All", id = "skill_creation_amount:all" } },
     { continue = { id = "dialogue_skill_creation:choice1" } },
     { restart = { wait_if = { queue = { id = "spin" } }, success = { inventory = { id = "flax", max = 0 } } } }
