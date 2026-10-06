@@ -23,3 +23,7 @@ level = 1
 [sorcerers_tower_magic_trees]
 x = [2696, 2709]
 y = [3394, 3403]
+
+[seers_village_maple_trees]
+x = [2719, 2735]
+y = [3494, 3505]

@@ -1,5 +1,7 @@
 edges = [
     { from = { x = 2725, y = 3491 }, to = { x = 2725, y = 3487 } }, # bank_to_road
+    { from = { x = 2725, y = 3487 }, to = { x = 2734, y = 3487 } }, # bank_road_to_east_side
+    { from = { x = 2734, y = 3487 }, to = { x = 2727, y = 3499 } }, # east_side_to_maples_north_of_bank
     { from = { x = 2725, y = 3487 }, to = { x = 2725, y = 3477 } },
     { from = { x = 2725, y = 3477 }, to = { x = 2717, y = 3472 } },
     { from = { x = 2717, y = 3472 }, to = { x = 2714, y = 3471 }, cost = 5, actions = [{ object = { option = "Open", id = "door_482_closed", x = 2716, y = 3472, success = { object = { id = "door_436_opened", x = 2715, y = 3472 } } } }, { tile = { x = 2714, y = 3471 } }] }, # spinning_house_entrance

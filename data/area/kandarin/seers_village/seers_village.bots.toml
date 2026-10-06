@@ -9,6 +9,11 @@ capacity = 4
 fields = { location = "flax_field" }
 
 # Woodcutting
+[seers_village_maple_trees]
+template = "maple_tree_template"
+capacity = 4
+fields = { location = "seers_village_maple_trees" }
+
 [sorcerers_tower_magic_trees]
 template = "magic_tree_template"
 capacity = 4
