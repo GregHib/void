@@ -4311,7 +4311,8 @@ capacity = 50000
 [.mahogany_prize_chest]
 capacity = 100000
 
-# Option and message used when taking food from larders, other items use their name
+# Option and message used when taking items from storage furniture, items without a message use "You take a(n) <name>."
+# https://www.youtube.com/watch?v=sNEOq_Barlg&t=23
 [house_storage_items]
 row_id = "item"
 option = "string"
@@ -4348,3 +4349,105 @@ message = "You take an onion."
 [.cheese]
 option = "Cheese"
 message = "You take some cheese."
+
+[.kettle]
+option = "Kettle"
+
+[.teapot_clay]
+option = "Teapot"
+
+[.teapot_white]
+option = "Teapot"
+
+[.teapot_gold]
+option = "Teapot"
+
+[.empty_cup_player_owned_house]
+option = "Cup"
+
+[.porcelain_cup_white]
+option = "Cup"
+
+[.porcelain_cup_gold]
+option = "Cup"
+
+[.beer_glass]
+option = "Beer glass"
+
+[.cake_tin]
+option = "Cake tin"
+
+[.bowl]
+option = "Bowl"
+
+[.pie_dish]
+option = "Pie dish"
+
+[.empty_pot]
+option = "Pot"
+
+[.amulet_unstrung_mould]
+option = "Amulet"
+
+[.necklace_mould]
+option = "Necklace"
+
+[.ring_mould]
+option = "Ring"
+
+[.holy_mould]
+option = "Holy symbol"
+
+[.tiara_mould]
+option = "Tiara"
+
+[.bracelet_mould]
+option = "Bracelet"
+
+[.bucket]
+option = "Bucket"
+
+[.spade]
+option = "Spade"
+
+[.tinderbox]
+option = "Tinderbox"
+
+[.knife]
+option = "Knife"
+
+[.saw]
+option = "Saw"
+
+[.hammer]
+option = "Hammer"
+
+[.chisel]
+option = "Chisel"
+
+[.shears]
+option = "Shears"
+
+[.brown_apron]
+option = "Apron"
+
+[.glassblowing_pipe]
+option = "Glassblowing pipe"
+
+[.needle]
+option = "Needle"
+
+[.rake]
+option = "Rake"
+
+[.gardening_trowel]
+option = "Trowel"
+
+[.seed_dibber]
+option = "Seed dibber"
+
+[.watering_can]
+option = "Watering can"
+
+[.secateurs]
+option = "Secateurs"
