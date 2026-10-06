@@ -179,7 +179,7 @@ class HouseStairs : Script {
     /**
      * Builds [room] at [to] facing the same way as the room at [from] so the stairs line up, then moves into it
      */
-    private suspend fun Player.build(base: Zone, room: String, from: Int, to: Int, destination: Tile) {
+    private fun Player.build(base: Zone, room: String, from: Int, to: Int, destination: Tile) {
         if (houseBase() != base || !inOwnHouse() || to in houseRoomPositions || !canBuildRoom(room, to)) {
             return
         }
@@ -191,7 +191,7 @@ class HouseStairs : Script {
     }
 
     companion object {
-        private const val NOWHERE = "These stairs do no lead anywhere."
+        private const val NOWHERE = "These stairs do not lead anywhere."
         private const val STAIRCASES = "oak_staircase,oak_staircase_down,teak_staircase,teak_staircase_down,spiral_staircase,spiral_staircase_down,marble_staircase,marble_staircase_down,marble_spiral,marble_spiral_down"
 
         // Entrances to the room below and ladders up to the room above
