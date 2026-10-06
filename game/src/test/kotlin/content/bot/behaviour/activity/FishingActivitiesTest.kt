@@ -46,7 +46,7 @@ class FishingActivitiesTest {
         val fishing = activities.values.filter { "skill:fishing" in it.produces }
         assertEquals(12, fishing.size)
         for (activity in fishing) {
-            assertEquals(3000, activity.timeout)
+            assertEquals(BotActivity("default").timeout, activity.timeout)
             val guild = activity.id.startsWith("fishing_guild_")
             val fly = activity.id == "edgeville_fly_fishing"
             val shark = activity.id.contains("shark")

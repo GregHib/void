@@ -1,5 +1,4 @@
 [edgeville_fly_fishing]
 template = "fish_fly_bank_template"
-timeout = 3000 # 30 minutes for a full fishing and banking cycle
 capacity = 2
 fields = { location = "barbarian_village_fishing_spot", bank_area = "edgeville_bank", bank_npc = "banker*", spot = "fishing_spot_barbarian_village", tool = "fly_fishing_rod", option = "Lure", level = 20, catch1 = "raw_trout", catch2 = "raw_salmon" }

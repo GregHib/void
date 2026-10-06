@@ -7,21 +7,18 @@ requires = [{ members = { req = true } }]
 
 [catherby_lobster_fishing]
 template = "fish_bank_template"
-timeout = 3000 # 30 minutes for a full fishing and banking cycle
 capacity = 2
 requires = [{ members = { req = true } }]
 fields = { location = "catherby_cage_fishing_area", bank_area = "catherby_bank", bank_npc = "banker*", spot = "fishing_spot_cage_harpoon_catherby", tool = "lobster_pot", option = "Cage", level = 40, catch1 = "raw_lobster", catch2 = "raw_lobster" }
 
 [catherby_tuna_swordfish_fishing]
 template = "fish_bank_template"
-timeout = 3000 # 30 minutes for a full fishing and banking cycle
 capacity = 2
 requires = [{ members = { req = true } }]
 fields = { location = "catherby_cage_fishing_area", bank_area = "catherby_bank", bank_npc = "banker*", spot = "fishing_spot_cage_harpoon_catherby", tool = "harpoon", option = "Harpoon", level = 35, catch1 = "raw_tuna", catch2 = "raw_swordfish" }
 
 [catherby_shark_fishing]
 template = "fish_bank_template"
-timeout = 3000 # 30 minutes for a full fishing and banking cycle
 capacity = 2
 requires = [{ members = { req = true } }]
 fields = { location = "catherby_cage_fishing_area", bank_area = "catherby_bank", bank_npc = "banker*", spot = "fishing_spot_big_net_harpoon_catherby", tool = "harpoon", option = "Harpoon", level = 76, catch1 = "raw_shark", catch2 = "raw_shark" }
