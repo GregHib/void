@@ -104,6 +104,20 @@ class BotFletchLogsTest {
                 val area = activity.setup.filterIsInstance<BotInArea>().single()
                 assertEquals(BotGoTo(area.id), activity.actions.last())
                 assertTrue(activity.actions.none { it is BotDropItems })
+            } else if (activity.id.startsWith("draynor_") && fletching.product.endsWith("bow_u")) {
+                assertEquals(7, activity.actions.size)
+                assertEquals(BotGoTo("draynor_bank"), activity.actions[2])
+                val bank = activity.actions[3] as BotInteractObject
+                assertEquals("Use-quickly", bank.option)
+                assertEquals("bank_booth*", bank.id)
+                val deposit = activity.actions[4] as BotInterfaceOption
+                assertEquals("Deposit-All", deposit.option)
+                assertEquals("bank_side:inventory:${fletching.product}", deposit.id)
+                assertTrue(deposit.success != null)
+                assertTrue(activity.actions[5] === BotCloseInterface)
+                val area = activity.setup.filterIsInstance<BotInArea>().single()
+                assertEquals(BotGoTo(area.id), activity.actions.last())
+                assertTrue(activity.actions.none { it is BotDropItems })
             } else {
                 assertTrue((activity.actions.last() as BotDropItems).keepStackable)
             }

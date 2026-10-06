@@ -109,3 +109,29 @@ produces = [
     { skill = "woodcutting" },
     { skill = "fletching" }
 ]
+
+# Bank the fletched product while keeping tools, then return to the trees.
+[woodcutting_fletching_bank_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = "$woodcutting_level", max = "$woodcutting_max" } },
+    { skill = { id = "fletching", min = "$fletching_level" } },
+]
+setup = [
+    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { fletch_logs = { wood = "$wood", product = "$product" } },
+    { go_to = { area = "$bank_area" } },
+    { object = { option = "Use-quickly", id = "bank_booth*", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$product", success = { inventory = { id = "$product", max = 0 } } } },
+    { interface_close = { id = "bank" } },
+    { go_to = { area = "$location" } },
+]
+produces = [
+    { item = "$product" },
+    { skill = "woodcutting" },
+    { skill = "fletching" }
+]
