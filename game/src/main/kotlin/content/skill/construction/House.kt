@@ -25,6 +25,8 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -816,7 +818,8 @@ class House : Script {
          */
         fun Player.stopScrying(): Tile? {
             val back: Tile = remove("scrying_return") ?: return null
-            hide = false
+            appearance.hidden = false
+            flagAppearance()
             walkTrigger = null
             close("poh_scrying_pool")
             return back

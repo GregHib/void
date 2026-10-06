@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -645,17 +646,17 @@ class HouseFurnitureTest : WorldTest() {
         tickIf { !player.hasOpen("poh_scrying_pool") }
         val back = player.get<Tile>("scrying_return")!!
 
-        assertTrue(player.hide)
+        assertTrue(player.appearance.hidden)
         assertTrue(player.contains("house_owner"))
         assertTrue(player.tile != back)
 
         player.walk(back)
         tick(2)
 
-        assertFalse(player.hide)
+        assertFalse(player.appearance.hidden)
         assertFalse(player.hasOpen("poh_scrying_pool"))
         assertEquals(back, player.tile)
-        assertFalse(observer.hide)
+        assertFalse(observer.appearance.hidden)
     }
 
     @Test
@@ -742,6 +743,7 @@ class HouseFurnitureTest : WorldTest() {
 
         player.objectOption(game, "Activate")
         tickIf { !player.hasOpen("poh_hangman") }
+        tick()
         player["hangman_word"] = "WIZARD"
         player.interfaceOption("poh_hangman", "w", "Select")
         player.interfaceOption("poh_hangman", "q", "Select")

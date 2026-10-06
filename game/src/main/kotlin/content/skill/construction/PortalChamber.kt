@@ -1,27 +1,38 @@
 package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import content.skill.construction.House.Companion.furnishRoom
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseFurniture
+import content.skill.construction.House.Companion.houseOwner
 import content.skill.construction.House.Companion.inOwnHouse
-import content.skill.construction.House.Companion.notImplemented
+import content.skill.construction.House.Companion.leaveHouse
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.House.Companion.stopScrying
 import content.skill.construction.HouseFurniture.Companion.pick
 import content.skill.magic.spell.SpellRunes
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
 /**
@@ -37,7 +48,24 @@ class PortalChamber : Script {
         }
 
         objectOperate("Scry", "scrying_pool") {
-            notImplemented()
+            if (follower != null) {
+                message("You cannot scry while you have a follower.")
+                return@objectOperate
+            }
+            val owner = houseOwner() ?: return@objectOperate
+            val index = choice(SCRY_LOCATIONS, "Observe which location?")
+            if (index == -1) {
+                return@objectOperate
+            }
+            val destination = when (index) {
+                1 -> Tile(3162, 3468)
+                2 -> Areas["camelot_teleport"].random(this)
+                3 -> Areas["falador_teleport"].random(this)
+                else -> Tables.tileOrNull("house_locations.${owner["house_location", ""]}.exit")
+            } ?: return@objectOperate
+            scry(destination)
+            statement("You view ${SCRY_LOCATIONS[index - 1]}...")
+            endScry()
         }
 
         objectOperate("Direct-portal", FOCUSES) { (target) ->
@@ -64,6 +92,32 @@ class PortalChamber : Script {
             }
             direct(base, position, portals[portal - 1], destinations[index], index + 1)
         }
+    }
+
+    /**
+     * Watches [destination] through the scrying pool by standing there unseen until the player next walks.
+     * The house and the tile to return to are kept while away, unless the owner leaves the house in the meantime.
+     */
+    private fun Player.scry(destination: Tile) {
+        set("scrying_return", tile)
+        appearance.hidden = true // TODO hide the player from themselves
+        flagAppearance()
+        tele(destination, clearInterfaces = false)
+        open("poh_scrying_pool")
+        walkTrigger { endScry() }
+    }
+
+    private fun Player.endScry() {
+        val back = stopScrying() ?: return
+        // Already sent out of the house if the owner left
+        if (get<String>("house_owner") == null) {
+            return
+        }
+        if (houseOwner() == null) {
+            leaveHouse()
+            return
+        }
+        tele(back)
     }
 
     /**
@@ -100,6 +154,7 @@ class PortalChamber : Script {
         private const val PORTALS = "teak_portal_*,mahogany_portal_*,marble_portal_*"
         private const val FOCUSES = "teleport_focus,greater_teleport_focus,scrying_pool"
         private const val RUNE_MULTIPLIER = 100
+        private val SCRY_LOCATIONS = listOf("Varrock", "Camelot", "Falador", "Entrance portal")
         private val PORTAL_SPACES = listOf("portal_chamber_portal_space", "portal_chamber_portal_space_2", "portal_chamber_portal_space_3")
     }
 }
