@@ -43,12 +43,15 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.contains
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -1085,6 +1088,23 @@ class HouseTest : WorldTest() {
 
         assertEquals(64, building.habitatFloor().size)
         assertTrue(visiting.habitatFloor().isEmpty())
+    }
+
+    @Test
+    fun `Leaving the house removes items which can't leave it`() {
+        val player = createOwner()
+        player.enterPortal(1)
+        player.inventory.add("wooden_sword")
+        player.inventory.add("prize_key")
+        player.inventory.add("bones")
+        player.equipment.set(EquipSlot.Weapon.index, "boxing_gloves_red")
+
+        player.leaveHouse()
+
+        assertFalse(player.inventory.contains("wooden_sword"))
+        assertFalse(player.inventory.contains("prize_key"))
+        assertFalse(player.equipment.contains("boxing_gloves_red"))
+        assertTrue(player.inventory.contains("bones"))
     }
 
     @Test
