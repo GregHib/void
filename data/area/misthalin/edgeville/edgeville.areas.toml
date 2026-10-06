@@ -3,6 +3,11 @@ x = [3086, 3088]
 y = [3501, 3503]
 tags = ["teleport"]
 
+[edgeville_bank]
+x = [3091, 3098]
+y = [3488, 3496]
+tags = ["bank"]
+
 [paddewwa_teleport]
 x = [3096, 3098]
 y = [9883, 9885]

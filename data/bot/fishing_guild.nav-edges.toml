@@ -1,0 +1,23 @@
+edges = [
+    { from = { x = 2725, y = 3487 }, to = { x = 2706, y = 3487 } },
+    { from = { x = 2706, y = 3487 }, to = { x = 2687, y = 3483 } },
+    { from = { x = 2687, y = 3483 }, to = { x = 2668, y = 3478 } },
+    { from = { x = 2668, y = 3478 }, to = { x = 2650, y = 3470 } },
+    { from = { x = 2650, y = 3470 }, to = { x = 2640, y = 3450 } },
+    { from = { x = 2640, y = 3450 }, to = { x = 2640, y = 3430 } },
+    { from = { x = 2640, y = 3430 }, to = { x = 2640, y = 3410 } },
+    { from = { x = 2640, y = 3410 }, to = { x = 2634, y = 3393 } },
+    { from = { x = 2634, y = 3393 }, to = { x = 2624, y = 3383 } },
+    { from = { x = 2624, y = 3383 }, to = { x = 2612, y = 3381 } }, # teleport_to_guild
+    { from = { x = 2612, y = 3381 }, to = { x = 2613, y = 3385 } },
+    { from = { x = 2613, y = 3385 }, to = { x = 2613, y = 3387 }, cost = 1, requires = [{ skill = { id = "fishing", min = 68, current = true } }], actions = [{ object = { option = "Open", id = "gate_fishing_guild_left_closed", x = 2613, y = 3386, success = { tile = { x = 2613, y = 3387 } } } }] },
+    { from = { x = 2613, y = 3387 }, to = { x = 2613, y = 3385 }, cost = 1, requires = [{ skill = { id = "fishing", min = 68, current = true } }], actions = [{ object = { option = "Open", id = "gate_fishing_guild_left_closed", x = 2613, y = 3386, success = { tile = { x = 2613, y = 3385 } } } }] },
+    { from = { x = 2613, y = 3387 }, to = { x = 2606, y = 3395 } },
+    { from = { x = 2606, y = 3395 }, to = { x = 2593, y = 3403 } },
+    { from = { x = 2593, y = 3403 }, to = { x = 2595, y = 3412 } },
+    { from = { x = 2595, y = 3412 }, to = { x = 2594, y = 3421 } },
+    { from = { x = 2594, y = 3421 }, to = { x = 2585, y = 3421 } }, # bank
+    { from = { x = 2594, y = 3421 }, to = { x = 2600, y = 3420 } }, # north_pier
+    { from = { x = 2600, y = 3420 }, to = { x = 2603, y = 3415 } },
+    { from = { x = 2603, y = 3415 }, to = { x = 2607, y = 3412 } }, # south_pier
+]

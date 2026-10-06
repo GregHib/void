@@ -10,3 +10,8 @@ y = [3410, 3417]
 [fishing_guild_north_fishing_area]
 x = [2598, 2605]
 y = [3419, 3426]
+
+[fishing_guild_bank]
+x = [2584, 2587]
+y = [3420, 3424]
+tags = ["bank"]
