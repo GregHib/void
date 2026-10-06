@@ -392,6 +392,7 @@ class HouseFurnitureTest : WorldTest() {
 
         player.objectOption(lectern, "Study")
         tickIf { !player.hasOpen("teleport_tablets") }
+        assertEquals(1, player.get<Int>("house_lectern_tier"))
         player.interfaceOption("teleport_tablets", "varrock_teleport", "Make-All")
         tick(8)
 

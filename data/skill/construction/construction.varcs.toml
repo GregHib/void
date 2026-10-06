@@ -1,3 +1,7 @@
 [house_room_count]
 id = 944
 format = "int"
+
+[house_lectern_tier]
+id = 943
+format = "int"
