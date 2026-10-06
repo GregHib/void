@@ -2,6 +2,7 @@ package content.skill.construction
 
 import WorldTest
 import containsMessage
+import itemOption
 import content.quest.instance
 import content.quest.joinInstance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
@@ -99,6 +100,26 @@ class HouseRoomsTest : WorldTest() {
         assertEquals(rope.tile, player.tile)
         assertNull(player.get<String>("house_ring"))
         assertFalse(player["in_pvp", false])
+    }
+
+    @Test
+    fun `Can't equip anything but boxing gloves in a boxing ring`() {
+        val player = createOwner()
+        player.addHouseRoom("combat_room", room)
+        player.addHouseFurniture(room, "combat_ring", "boxing_ring")
+        player.equipment.set(EquipSlot.Weapon.index, "boxing_gloves_red")
+        player.enterPortal(1)
+        val rope = player.objects(room, "boxing_ring").first { it.shape == ObjectShape.WALL_STRAIGHT }
+        player.tele(rope.tile)
+        player.objectOption(rope, "Climb-over")
+        tick(3)
+        player.inventory.add("bronze_full_helm")
+
+        player.itemOption("Wear", "bronze_full_helm")
+        tick()
+
+        assertEquals(1, player.inventory.count("bronze_full_helm"))
+        assertTrue(player.containsMessage("other than the boxing gloves"))
     }
 
     @Test

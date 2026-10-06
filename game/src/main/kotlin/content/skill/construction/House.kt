@@ -80,12 +80,12 @@ class House : Script {
             }
         }
 
-        // Dying in a house is safe
+        // Dying in a house is safe, and sends players fighting in the combat room back to outside the ring
         playerDeath { death ->
             val owner = houseOwner() ?: return@playerDeath
             val base = houseBase() ?: return@playerDeath
             death.dropItems = false
-            death.teleport = owner.houseSpawn(base)
+            death.teleport = get("house_ring_exit") ?: owner.houseSpawn(base)
         }
     }
 

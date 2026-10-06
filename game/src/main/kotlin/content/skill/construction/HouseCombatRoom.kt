@@ -32,9 +32,10 @@ class HouseCombatRoom : Script {
             if (get("house_ring", "") == "beam") {
                 return@objectOperate
             }
+            val from = tile
             anim("climb_up")
             exactMoveDelay(target.tile, 30, direction = target.tile.delta(tile).toDirection())
-            enter("beam")
+            enter("beam", from)
         }
 
         objectOperate("Get-down", BALANCE_BEAMS) { (target) ->
@@ -81,13 +82,14 @@ class HouseCombatRoom : Script {
             return
         }
         val destination = if (entering) inside else target.tile
+        val from = tile
         if (!entering) {
             leave()
         }
         anim(if (ring == "ranging") "pass_through_barrier" else "climb_over_wall")
         exactMoveDelay(destination, 30, direction = destination.delta(tile).toDirection())
         if (entering) {
-            enter(ring)
+            enter(ring, from)
         }
     }
 
@@ -121,8 +123,12 @@ class HouseCombatRoom : Script {
         return true
     }
 
-    private fun Player.enter(ring: String) {
+    /**
+     * Enters a [ring] from [from], where players are sent back to when they die inside it
+     */
+    private fun Player.enter(ring: String, from: Tile) {
         set("house_ring", ring)
+        set("house_ring_exit", from)
         set("in_pvp", true)
         options.set(1, "Attack")
     }
@@ -131,6 +137,7 @@ class HouseCombatRoom : Script {
         if (remove<String>("house_ring") == null) {
             return
         }
+        clear("house_ring_exit")
         clear("in_pvp")
         options.remove("Attack")
     }
