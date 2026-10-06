@@ -348,3 +348,7 @@ id = 60
 
 [.close]
 id = 63
+
+[star_telescope_meteor]
+id = 782
+type = "wide_screen"

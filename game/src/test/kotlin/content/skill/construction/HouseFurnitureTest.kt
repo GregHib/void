@@ -446,11 +446,11 @@ class HouseFurnitureTest : WorldTest() {
         ShootingStarHandler.nextStarTick = GameLoop.tick + 1000
 
         player.objectOption(telescope, "Observe")
-        tickIf { !player.containsMessage("shooting star") }
+        tickIf { !player.hasOpen("star_telescope_meteor") }
         ShootingStarHandler.nextLocation = null
 
-        assertTrue(player.containsMessage("Crafting Guild"))
-        assertTrue(player.containsMessage("size 4"))
+        assertTrue(player.dialogue!!.startsWith("dialogue_message"))
+        assertTrue(player.hasOpen("star_telescope_meteor"))
     }
 
     @Test
