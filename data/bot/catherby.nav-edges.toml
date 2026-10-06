@@ -10,4 +10,9 @@ edges = [
     { from = { x = 2808, y = 3436 }, to = { x = 2809, y = 3441 } }, # catherby_bank_south_entrance
     { from = { x = 2790, y = 3447 }, to = { x = 2785, y = 3435 } },
     { from = { x = 2785, y = 3435 }, to = { x = 2783, y = 3428 } }, # eastern_willows
+    { from = { x = 2785, y = 3435 }, to = { x = 2803, y = 3437 } }, # willows_to_bank_western_road
+    { from = { x = 2808, y = 3436 }, to = { x = 2820, y = 3434 } },
+    { from = { x = 2820, y = 3434 }, to = { x = 2836, y = 3432 } },
+    { from = { x = 2836, y = 3432 }, to = { x = 2844, y = 3430 } },
+    { from = { x = 2844, y = 3430 }, to = { x = 2854, y = 3425 } }, # cage_and_harpoon_spots
 ]
