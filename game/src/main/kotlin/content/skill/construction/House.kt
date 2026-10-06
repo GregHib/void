@@ -27,6 +27,9 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
@@ -722,6 +725,19 @@ class House : Script {
         // Name of the menagerie's floor placeholders, one per tile without any options so aren't caught as hotspots
         private const val HABITAT_FLOOR = "Habitat space"
 
+        private val HOUSE_ITEMS = listOf(
+            "boxing_gloves_red",
+            "boxing_gloves_blue",
+            "wooden_sword",
+            "wooden_shield_weapons_rack",
+            "pugel",
+            "treasure_stone",
+            "prize_key",
+            "hoop",
+            "dart",
+            "bow_and_arrow",
+        )
+
         // Object ids of the first floor placeholder and of the first floor tile of each habitat, there is one for every tile of the room
         private const val HABITAT_SPACE_FLOOR = 44843
         private const val HABITAT_FLOOR_TILES = 64
@@ -771,6 +787,7 @@ class House : Script {
 
         fun Player.leaveHouse(teleport: Boolean = true) {
             val owner: String = remove("house_owner") ?: return
+            removeHouseItems()
             if (hasOpen("house_options")) {
                 open("options")
             }
@@ -781,6 +798,20 @@ class House : Script {
                 exitInstance()
             } else {
                 clearInstance()
+            }
+        }
+
+        /**
+         * Takes back items from house games and the weapons rack which can't leave the house
+         */
+        private fun Player.removeHouseItems() {
+            for (inventory in listOf(inventory, equipment)) {
+                for (item in HOUSE_ITEMS) {
+                    val count = inventory.count(item)
+                    if (count > 0) {
+                        inventory.remove(item, count)
+                    }
+                }
             }
         }
 
