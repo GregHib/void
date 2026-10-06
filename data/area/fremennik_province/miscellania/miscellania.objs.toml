@@ -9,3 +9,7 @@ examine = "You should eat your greens!"
 [viking_market_stall_empty]
 id = 4276
 examine = "Always a source of good bargains."
+
+[misc_dummy_coalrock1]
+id = 4676
+examine = "A rocky outcrop."

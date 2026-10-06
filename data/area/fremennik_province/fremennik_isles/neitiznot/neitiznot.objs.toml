@@ -13,3 +13,7 @@ examine = "For smelting metal."
 [spinning_wheel_neitiznot]
 id = 21304
 examine = "Used for spinning thread."
+
+[frisb_rope_bridge]
+id = 21509
+examine = "Don't look down."

@@ -26,3 +26,63 @@ examine = "A dirty little swamp boat."
 [swamp_boat_mort_ton]
 id = 6969
 examine = "A dirty little swamp boat."
+
+[nastyfungus_dark]
+id = 1171
+examine = "I doubt that's edible."
+
+[waterlily2]
+id = 1176
+examine = "Otherwise known as a lilypad."
+
+[waterlily3]
+id = 1177
+examine = "A home for frogs."
+
+[swamp_roots_1]
+id = 1366
+examine = "A gnarly old tree root."
+
+[swamp_roots_2]
+id = 1367
+examine = "The roots of this tree are exposed."
+
+[swamp_roots_3]
+id = 1368
+examine = "I hope I don't trip over any of these."
+
+[mushroom_massive3]
+id = 4057
+examine = "These fat fungi take up so much room."
+
+[waterlily1]
+id = 1175
+examine = "A home for frogs."
+
+[spooky_tree_base]
+id = 4048
+examine = "Spooky!"
+
+[spooky_tree_mid]
+id = 4049
+examine = "Spooky!"
+
+[spooky_tree_top]
+id = 4050
+examine = "Spooky!"
+
+[deadtree4swamp]
+id = 4051
+examine = "It doesn't look healthy..."
+
+[regicide_tree_dead1swamp]
+id = 4053
+examine = "It doesn't look healthy..."
+
+[mushroom_massive1]
+id = 4055
+examine = "These fat fungi take up so much room."
+
+[myq3_hideout_crates_2]
+id = 17656
+examine = "Some wooden crates."

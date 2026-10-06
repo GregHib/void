@@ -33,3 +33,7 @@ examine = "Handy for boarding the ship."
 [cooking_range_port_sarim]
 id = 40110
 examine = "Ideal for cooking on."
+
+[sarim_barrel]
+id = 9519
+examine = "A wooden barrel for storage."

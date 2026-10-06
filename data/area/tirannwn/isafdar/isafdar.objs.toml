@@ -70,3 +70,11 @@ examine = "A dark cave entrance."
 
 [isafdar_arrow_trap]
 id = 3920
+
+[regicide_crystal_lamp]
+id = 3918
+examine = "The lamp has a glowing crystal at its core."
+
+[regicide_tree_dead1]
+id = 3886
+examine = "It doesn't look healthy."

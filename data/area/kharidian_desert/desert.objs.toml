@@ -13,3 +13,19 @@ examine = "A succulent cactus."
 [desert_cactus_empty]
 id = 2671
 examine = "A less-than-succulent succulent."
+
+[egypt_plantpotted]
+id = 1158
+examine = "A large potted plant."
+
+[cactus4]
+id = 1405
+examine = "How do these things manage to grow?"
+
+[cactus5]
+id = 1406
+examine = "How do these things manage to grow?"
+
+[cactus]
+id = 1396
+examine = "How do these things manage to grow?"

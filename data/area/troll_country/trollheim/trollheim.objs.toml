@@ -29,3 +29,11 @@ examine = ""
 [trollheim_rocks_wilderness]
 id = 9327
 examine = ""
+
+[trollrescue_iceslide5]
+id = 6476
+examine = "Chunky pieces of ice."
+
+[trollrescue_iceslide6]
+id = 6477
+examine = "Chunky pieces of ice."

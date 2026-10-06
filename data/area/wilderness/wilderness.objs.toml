@@ -64,3 +64,51 @@ examine = "I wonder what this does..."
 [wilderness_obelisk_rogues_castle]
 id = 14831
 examine = "I wonder what this does..."
+
+[wild0_tree_stump]
+id = 14516
+examine = "This tree has been cut down."
+
+[wild1_tree_stump]
+id = 14517
+examine = "A twisted tree stump."
+
+[wild1_tree_a]
+id = 14513
+examine = "It doesn't look healthy."
+
+[wild1_mushrooms_d]
+id = 14541
+examine = "Not good for eating."
+
+[wild2_tree_b]
+id = 14565
+examine = "It doesn't look healthy."
+
+[wild2_tree_c]
+id = 14566
+examine = "It doesn't look healthy."
+
+[wild3_tree_a]
+id = 14593
+examine = "It doesn't look healthy."
+
+[wild3_tree_b]
+id = 14594
+examine = "It doesn't look healthy."
+
+[wild3_tree_c]
+id = 14595
+examine = "It doesn't look healthy."
+
+[wild3_tree_stump]
+id = 14596
+examine = "A twisted tree stump."
+
+[wild_burnt_tree]
+id = 14738
+examine = "Maybe it caught fire?"
+
+[wild_water_root_3]
+id = 14761
+examine = "I hope I don't trip over any of these."
