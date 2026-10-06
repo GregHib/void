@@ -11,9 +11,9 @@ import content.skill.construction.House.Companion.roomZone
 import content.skill.summoning.pet.getPetHunger
 import content.skill.summoning.pet.itemFor
 import content.skill.summoning.pet.npcFor
+import content.skill.summoning.pet.pet
 import content.skill.summoning.pet.petRowForItem
 import content.skill.summoning.pet.petRowForNpc
-import content.skill.summoning.pet.pet
 import content.skill.summoning.pet.sendPetDetailsStats
 import content.skill.summoning.pet.stageForItem
 import content.skill.summoning.pet.stageForNpc
