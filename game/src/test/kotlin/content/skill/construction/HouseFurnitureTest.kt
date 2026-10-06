@@ -608,4 +608,44 @@ class HouseFurnitureTest : WorldTest() {
 
         assertTrue(player.containsMessage("Not yet implemented."))
     }
+
+    @Test
+    fun `Crystal of power changes a staff's element`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("staff_of_air")
+        player.inventory.add("mystic_air_staff")
+        player.inventory.add("water_rune", 1000)
+        val crystal = createObject("crystal_of_power", emptyTile.addY(1))
+
+        player.itemOnObject(crystal, 0)
+        tick(2)
+        player.dialogueOption("line1")
+        tick()
+
+        assertEquals(1, player.inventory.count("staff_of_water"))
+
+        player.itemOnObject(crystal, 1)
+        tick(2)
+        player.dialogueOption("line1")
+        tick()
+
+        assertEquals(1, player.inventory.count("mystic_water_staff"))
+        assertEquals(0, player.inventory.count("water_rune"))
+    }
+
+    @Test
+    fun `Crystal of power needs runes for a battlestaff`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("air_battlestaff")
+        player.inventory.add("water_rune", 99)
+        val crystal = createObject("crystal_of_power", emptyTile.addY(1))
+
+        player.itemOnObject(crystal, 0)
+        tick(2)
+        player.dialogueOption("line1")
+        tick()
+
+        assertEquals(1, player.inventory.count("air_battlestaff"))
+        assertEquals(99, player.inventory.count("water_rune"))
+    }
 }

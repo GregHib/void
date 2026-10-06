@@ -40,6 +40,22 @@ class HouseStudy : Script {
             open("teleport_tablets")
         }
 
+
+        itemOnObjectOperate(STAVES, "crystal_of_power") { (_, item, slot) ->
+            val (type, element) = StaffType.entries.firstNotNullOfOrNull { type ->
+                ELEMENTS.firstOrNull { type.id(it) == item.id }?.let { type to it }
+            } ?: return@itemOnObjectOperate
+            choice("Change to which element?") {
+                for (new in ELEMENTS) {
+                    if (new != element) {
+                        option(new.replaceFirstChar { it.uppercase() }) {
+                            changeElement(slot, item.id, type.id(new), "${new}_rune", type.cost)
+                        }
+                    }
+                }
+            }
+        }
+
         interfaceClosed("teleport_tablets") {
             clear("house_lectern")
             clear("house_lectern_tier")
@@ -91,6 +107,26 @@ class HouseStudy : Script {
 
         objectOperate("Search", "wooden_bookcase,oak_bookcase,mahogany_bookcase") {
             message("You search the bookcase but find nothing of interest.") // TODO proper message
+        }
+    }
+
+    /**
+     * Swaps the element of the staff in [slot] for [cost] runes of the new element, combination staves can't be changed
+     */
+    private fun Player.changeElement(slot: Int, old: String, new: String, rune: String, cost: Int) {
+        inventory.transaction {
+            if (cost > 0) {
+                remove(rune, cost)
+            }
+            replace(slot, old, new)
+        }
+        when (inventory.transaction.error) {
+            TransactionError.None -> {
+                anim("study_lectern") // TODO proper anim
+                message("The crystal of power changes your staff.") // TODO proper message
+            }
+            is TransactionError.Deficient -> message("You need $cost ${ItemDefinitions.get(rune).name.lowercase()}s to change that staff.") // TODO proper message
+            else -> {}
         }
     }
 
