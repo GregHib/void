@@ -2197,3 +2197,35 @@ examine = "Books on every subject imaginable."
 [books_3]
 id = 41219
 examine = "Books on every subject imaginable."
+
+[bush1]
+id = 1124
+examine = "A commonly found bush."
+
+[tulips]
+id = 1194
+examine = "Can this talk?"
+
+[flowerbed1]
+id = 1199
+examine = "These smell nice."
+
+[leaflessbush2]
+id = 1123
+examine = "All the leaves have fallen off."
+
+[mushrooms2]
+id = 1166
+examine = "Poisonous no doubt."
+
+[rareflower_blue]
+id = 1195
+examine = "You don't see that many of these."
+
+[rareflowers_blue]
+id = 1196
+examine = "I wonder what these are?"
+
+[treestump]
+id = 1341
+examine = "This tree has been cut down."

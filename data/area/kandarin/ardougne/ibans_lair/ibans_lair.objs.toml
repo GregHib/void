@@ -1,0 +1,11 @@
+[bridge1]
+id = 3247
+examine = "A bridge."
+
+[bridge2]
+id = 3248
+examine = "A bridge."
+
+[bridge3]
+id = 3249
+examine = "A bridge."
