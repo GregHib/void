@@ -31,6 +31,10 @@ x = [3179, 3194]
 y = [3432, 3446]
 tags = ["bank"]
 
+[varrock_palace_yew_trees]
+x = [3201, 3225]
+y = [3499, 3508]
+
 [lumber_yard_teleport]
 x = [3300, 3302]
 y = [3485, 3487]

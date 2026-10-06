@@ -19,3 +19,7 @@ tags = ["bank"]
 x = [2709, 2715]
 y = [3469, 3473]
 level = 1
+
+[sorcerers_tower_magic_trees]
+x = [2696, 2709]
+y = [3394, 3403]

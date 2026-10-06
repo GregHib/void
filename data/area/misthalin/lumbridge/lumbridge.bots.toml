@@ -459,23 +459,3 @@ fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbrid
 template = "woodcutting_fletching_sell_template"
 capacity = 1
 fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbridge,shop_assistant_lumbridge", location = "lumbridge_north_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }
-
-[lumbridge_castle_yew_tree_cutting_fletch_yew_shortbow_u]
-template = "woodcutting_fletching_sell_template"
-capacity = 1
-fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbridge,shop_assistant_lumbridge", location = "lumbridge_north_west_yew_tree", wood = "yew_logs", product = "yew_shortbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 65 }
-
-[lumbridge_castle_yew_tree_cutting_fletch_yew_longbow_u]
-template = "woodcutting_fletching_sell_template"
-capacity = 1
-fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbridge,shop_assistant_lumbridge", location = "lumbridge_north_west_yew_tree", wood = "yew_logs", product = "yew_longbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 70 }
-
-[lumbridge_west_yew_tree_cutting_fletch_yew_shortbow_u]
-template = "woodcutting_fletching_sell_template"
-capacity = 1
-fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbridge,shop_assistant_lumbridge", location = "lumbridge_west_yew_tree", wood = "yew_logs", product = "yew_shortbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 65 }
-
-[lumbridge_west_yew_tree_cutting_fletch_yew_longbow_u]
-template = "woodcutting_fletching_sell_template"
-capacity = 1
-fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbridge,shop_assistant_lumbridge", location = "lumbridge_west_yew_tree", wood = "yew_logs", product = "yew_longbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 70 }

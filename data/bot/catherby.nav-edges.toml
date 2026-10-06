@@ -1,0 +1,13 @@
+edges = [
+    { from = { x = 2726, y = 3465 }, to = { x = 2744, y = 3463 } }, # seers_road_to_catherby
+    { from = { x = 2744, y = 3463 }, to = { x = 2761, y = 3463 } },
+    { from = { x = 2761, y = 3463 }, to = { x = 2779, y = 3463 } },
+    { from = { x = 2779, y = 3463 }, to = { x = 2789, y = 3454 } }, # catherby_teleport
+    { from = { x = 2789, y = 3454 }, to = { x = 2790, y = 3447 } },
+    { from = { x = 2790, y = 3447 }, to = { x = 2800, y = 3447 } },
+    { from = { x = 2800, y = 3447 }, to = { x = 2803, y = 3437 } },
+    { from = { x = 2803, y = 3437 }, to = { x = 2808, y = 3436 } },
+    { from = { x = 2808, y = 3436 }, to = { x = 2809, y = 3441 } }, # catherby_bank_south_entrance
+    { from = { x = 2790, y = 3447 }, to = { x = 2785, y = 3435 } },
+    { from = { x = 2785, y = 3435 }, to = { x = 2783, y = 3428 } }, # eastern_willows
+]

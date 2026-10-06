@@ -1,0 +1,6 @@
+# Woodcutting
+[catherby_willow_trees]
+template = "willow_tree_template"
+capacity = 3
+fields = { location = "catherby_willow_trees" }
+requires = [{ members = { req = true } }]

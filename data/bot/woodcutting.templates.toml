@@ -62,6 +62,23 @@ produces = [
     { skill = "woodcutting" }
 ]
 
+[magic_tree_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = 75 } },
+]
+setup = [
+    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "magic_tree,magic_tree_two", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "magic_logs" },
+    { skill = "woodcutting" }
+]
+
 # Wood and product are item IDs, for example logs/shortbow_u or oak_logs/oak_longbow_u.
 [woodcutting_fletching_template]
 requires = [

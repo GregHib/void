@@ -7,3 +7,9 @@ fields = { location = "seers_village_spinning_wheel", obj = "spinning_wheel_seer
 template = "flax_picking_template"
 capacity = 4
 fields = { location = "flax_field" }
+
+# Woodcutting
+[sorcerers_tower_magic_trees]
+template = "magic_tree_template"
+capacity = 4
+fields = { location = "sorcerers_tower_magic_trees" }

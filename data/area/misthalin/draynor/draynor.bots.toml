@@ -69,13 +69,3 @@ fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood
 template = "woodcutting_fletching_bank_template"
 capacity = 1
 fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }
-
-[draynor_willow_trees_fletch_willow_shortbow_u]
-template = "woodcutting_fletching_bank_template"
-capacity = 8
-fields = { bank_area = "draynor_bank", location = "draynor_willow_trees", wood = "willow_logs", product = "willow_shortbow_u", tree = "willow*", hatchets = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet", woodcutting_level = 30, woodcutting_max = 60, fletching_level = 35 }
-
-[draynor_willow_trees_fletch_willow_longbow_u]
-template = "woodcutting_fletching_bank_template"
-capacity = 8
-fields = { bank_area = "draynor_bank", location = "draynor_willow_trees", wood = "willow_logs", product = "willow_longbow_u", tree = "willow*", hatchets = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet", woodcutting_level = 30, woodcutting_max = 60, fletching_level = 40 }
