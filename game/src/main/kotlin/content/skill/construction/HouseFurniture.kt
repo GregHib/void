@@ -97,7 +97,7 @@ class HouseFurniture : Script {
             return
         }
         val name = ItemDefinitions.get(item).name.lowercase()
-        message(Rows.getOrNull("house_storage_items.$item")?.string("message") ?: "You take${name.an()} $name.".replace("  ", " "))
+        message(Rows.getOrNull("house_storage_items.$item")?.stringOrNull("message") ?: "You take${name.an()} $name.".replace("  ", " "))
     }
 
     companion object {
