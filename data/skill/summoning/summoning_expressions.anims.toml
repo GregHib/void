@@ -44,8 +44,14 @@ id = 8413
 [expression_pet_15_neutral]
 id = 8399
 
-[expression_spirit_cockatrice_neutral]
+[expression_cockatrice_happy]
+id = 8403
+
+[expression_cockatrice_neutral]
 id = 8404
+
+[expression_cockatrice_quiz]
+id = 8405
 
 [expression_karamthulhu_overlord_neutral]
 id = 8421
@@ -156,7 +162,7 @@ id = 8412
 [expression_pet_15_sad]
 id = 8402
 
-[expression_spirit_cockatrice_sad]
+[expression_cockatrice_sad]
 id = 8406
 
 [expression_karamthulhu_overlord_sad]

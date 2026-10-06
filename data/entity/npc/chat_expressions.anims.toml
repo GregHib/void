@@ -1,0 +1,527 @@
+[expression_bird_happy]
+id = 7
+
+[expression_bird_quiz]
+id = 9
+
+[expression_wolf_idle_no_scale]
+id = 225
+
+[expression_skull_1]
+id = 558
+
+[expression_skull_2]
+id = 559
+
+[expression_skull_3]
+id = 560
+
+[expression_skull_4]
+id = 561
+
+[expression_ent_3]
+id = 586
+
+[expression_ent_4]
+id = 587
+
+[expression_chant_1]
+id = 1637
+
+[expression_slug3_human_fear_no_talking]
+id = 2601
+
+[expression_slug3_human_happy]
+id = 2602
+
+[expression_fairy_dragon_idle]
+id = 3344
+
+[expression_bunny_2006_hypnotised]
+id = 3874
+
+[expression_hand_1]
+id = 4119
+
+[expression_hand_2]
+id = 4120
+
+[expression_hand_3]
+id = 4121
+
+[expression_hand_4]
+id = 4122
+
+[expression_eyeglo_mind_meld_1]
+id = 4587
+
+[expression_eyeglo_mind_meld_2]
+id = 4588
+
+[expression_eyeglo_mind_meld_3]
+id = 4589
+
+[expression_eyeglo_mind_meld_4]
+id = 4590
+
+[expression_lizard_happy]
+id = 4843
+
+[expression_lizard_quiz]
+id = 4845
+
+[expression_peng_quiz]
+id = 5662
+
+[expression_peng_happy]
+id = 5663
+
+[expression_kalphite_queen_angry]
+id = 6243
+
+[expression_kalphite_queen_laugh]
+id = 6244
+
+[expression_kalphite_queen_happy]
+id = 6245
+
+[expression_kalphite_queen_idle]
+id = 6246
+
+[expression_wolf_happy]
+id = 6555
+
+[expression_xmas_07_snowman_happy]
+id = 7539
+
+[expression_xmas_07_snowman_idle]
+id = 7540
+
+[expression_xmas_07_snowman_quiz]
+id = 7541
+
+[expression_xmas_07_snowman_sad]
+id = 7542
+
+[expression_scab_insectoid_happy]
+id = 7631
+
+[expression_scab_insectoid_quiz]
+id = 7632
+
+[expression_ant_happy]
+id = 7636
+
+[expression_ant_quiz]
+id = 7638
+
+[expression_rodent_happy]
+id = 8372
+
+[expression_crab_happy]
+id = 8377
+
+[expression_crab_quiz]
+id = 8379
+
+[expression_lobster_happy]
+id = 8380
+
+[expression_lobster_quiz]
+id = 8382
+
+[expression_mosquito_happy]
+id = 8384
+
+[expression_mosquito_quiz]
+id = 8386
+
+[expression_chameleon_happy]
+id = 8388
+
+[expression_chameleon_quiz]
+id = 8389
+
+[expression_snake_happy]
+id = 8391
+
+[expression_snake_quiz]
+id = 8393
+
+[expression_snail_happy]
+id = 8395
+
+[expression_snail_quiz]
+id = 8398
+
+[expression_monkey_happy]
+id = 8400
+
+[expression_monkey_quiz]
+id = 8401
+
+[expression_bloated_leech_happy]
+id = 8411
+
+[expression_bloated_leech_quiz]
+id = 8414
+
+[expression_jelly_happy]
+id = 8415
+
+[expression_jelly_quiz]
+id = 8417
+
+[expression_karamthulu_happy]
+id = 8419
+
+[expression_karamthulu_quiz]
+id = 8422
+
+[expression_compost_mound_happy]
+id = 8424
+
+[expression_compost_mound_quiz]
+id = 8426
+
+[expression_stranger_plant_quiz]
+id = 8427
+
+[expression_stranger_plant_happy]
+id = 8428
+
+[expression_ent_happy]
+id = 8432
+
+[expression_ent_quiz]
+id = 8434
+
+[expression_titan_happy]
+id = 8435
+
+[expression_titan_quiz]
+id = 8438
+
+[expression_geyser_happy]
+id = 8439
+
+[expression_geyser_quiz]
+id = 8441
+
+[expression_obsidian_happy]
+id = 8447
+
+[expression_obsidian_quiz]
+id = 8449
+
+[expression_fire_titan_happy]
+id = 8451
+
+[expression_fire_titan_quiz]
+id = 8453
+
+[expression_moss_titan_happy]
+id = 8455
+
+[expression_moss_titan_quiz]
+id = 8457
+
+[expression_swamp_titan_happy]
+id = 8459
+
+[expression_swamp_titan_idle]
+id = 8460
+
+[expression_swamp_titan_quiz]
+id = 8461
+
+[expression_swamp_titan_sad]
+id = 8462
+
+[expression_dust_devil_quiz]
+id = 8465
+
+[expression_dust_devil_happy]
+id = 8466
+
+[expression_flaming_prince_happy]
+id = 8468
+
+[expression_flaming_prince_quiz]
+id = 8470
+
+[expression_shifter_quiz]
+id = 8471
+
+[expression_shifter_happy]
+id = 8472
+
+[expression_arachnid_happy]
+id = 8475
+
+[expression_arachnid_quiz]
+id = 8478
+
+[expression_tzkih_happy]
+id = 8479
+
+[expression_tzkih_quiz]
+id = 8481
+
+[expression_hydra_happy]
+id = 8484
+
+[expression_hydra_quiz]
+id = 8486
+
+[expression_spinner_quiz]
+id = 8489
+
+[expression_spinner_happy]
+id = 8490
+
+[expression_pyrefiend_happy]
+id = 8492
+
+[expression_pyrefiend_quiz]
+id = 8494
+
+[expression_cat_idle]
+id = 8581
+
+[expression_cat_sad]
+id = 8582
+
+[expression_easter08_rabbit_hole_talk]
+id = 8884
+
+[expression_easter08_chocotrice_happy]
+id = 8898
+
+[expression_easter08_chocotrice_idle]
+id = 8899
+
+[expression_easter08_chocotrice_sad]
+id = 8900
+
+[expression_cat_happy]
+id = 9179
+
+[expression_cat_quiz]
+id = 9180
+
+[expression_cat_shocked]
+id = 9181
+
+[expression_cat_scared]
+id = 9183
+
+[expression_cat_hungry_thirsty]
+id = 9189
+
+[expression_cat_confused]
+id = 9190
+
+[expression_cat_hypnotised]
+id = 9192
+
+[expression_cat_fussy]
+id = 9202
+
+[expression_scab_insectoid_idle]
+id = 9358
+
+[expression_luc2_lucien_angry]
+id = 10931
+
+[expression_luc2_lucien_evil_laugh]
+id = 10932
+
+[expression_element_of_balance_quiz]
+id = 10933
+
+[expression_element_of_balance_sad]
+id = 10934
+
+[expression_element_of_balance_idle]
+id = 10935
+
+[expression_mah1_nightmare_creature_talk]
+id = 11605
+
+[expression_mah1_nightmare_creature_angry]
+id = 11606
+
+[expression_mah1_nightmare_creature_quiz]
+id = 11607
+
+[expression_mah1_nightmare_creature_weary_idle]
+id = 11608
+
+[expression_wolf_idle_no_mouth]
+id = 11710
+
+[expression_mah5_dragonkin_laugh]
+id = 12443
+
+[expression_mah5_dragonkin_happy]
+id = 12444
+
+[expression_mah5_dragonkin_neutral]
+id = 12445
+
+[expression_mah5_dragonkin_sad]
+id = 12446
+
+[expression_hw09_eek_neutral]
+id = 12501
+
+[expression_hw09_eek_happy]
+id = 12502
+
+[expression_hw09_eek_sad]
+id = 12503
+
+[expression_mah4_zaros_idle]
+id = 12550
+
+[expression_troll_idle1]
+id = 12936
+
+[expression_troll_idle2]
+id = 12937
+
+[expression_troll_idle3]
+id = 12938
+
+[expression_troll_idle4]
+id = 12939
+
+[expression_troll_angry1]
+id = 12940
+
+[expression_troll_angry2]
+id = 12941
+
+[expression_troll_angry3]
+id = 12942
+
+[expression_troll_angry4]
+id = 12943
+
+[expression_troll_bored1]
+id = 12944
+
+[expression_troll_bored2]
+id = 12945
+
+[expression_troll_bored3]
+id = 12946
+
+[expression_troll_bored4]
+id = 12947
+
+[expression_troll_sad1]
+id = 12948
+
+[expression_troll_sad2]
+id = 12949
+
+[expression_troll_sad3]
+id = 12950
+
+[expression_troll_sad4]
+id = 12951
+
+[expression_troll_happy1]
+id = 12952
+
+[expression_troll_happy2]
+id = 12953
+
+[expression_troll_happy3]
+id = 12954
+
+[expression_troll_happy4]
+id = 12955
+
+[expression_troll_quiz1]
+id = 12956
+
+[expression_troll_quiz2]
+id = 12957
+
+[expression_troll_quiz3]
+id = 12958
+
+[expression_troll_quiz4]
+id = 12959
+
+[expression_troll_confused1]
+id = 12960
+
+[expression_troll_confused2]
+id = 12961
+
+[expression_troll_confused3]
+id = 12962
+
+[expression_troll_confused4]
+id = 12963
+
+[expression_troll_laugh1]
+id = 12964
+
+[expression_troll_laugh2]
+id = 12965
+
+[expression_troll_laugh3]
+id = 12966
+
+[expression_troll_laugh4]
+id = 12967
+
+[expression_troll_scared1]
+id = 12968
+
+[expression_troll_scared2]
+id = 12969
+
+[expression_troll_scared3]
+id = 12970
+
+[expression_troll_scared4]
+id = 12971
+
+[expression_troll_shifty1]
+id = 12972
+
+[expression_troll_shifty2]
+id = 12973
+
+[expression_troll_shifty3]
+id = 12974
+
+[expression_troll_shifty4]
+id = 12975
+
+[expression_troll_shock1]
+id = 12976
+
+[expression_troll_shock2]
+id = 12977
+
+[expression_troll_shock3]
+id = 12978
+
+[expression_troll_shock4]
+id = 12979
+
+[expression_rand_seeker_quiz]
+id = 13323
+
+[expression_rand_seeker_happy]
+id = 13324
+
+[expression_vkq3_guardian_idle]
+id = 14779
