@@ -96,7 +96,6 @@ produces = [
     { skill = "woodcutting" }
 ]
 
-# Wood and product are item IDs, for example logs/shortbow_u or oak_logs/oak_longbow_u.
 [woodcutting_fletching_template]
 requires = [
     { members = { req = true } },
@@ -110,7 +109,6 @@ setup = [
 actions = [
     { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
     { fletch_logs = { wood = "$wood", product = "$product" } },
-    { drop_items = { id = "$product", keep_stackable = true } },
 ]
 produces = [
     { item = "$product" },
@@ -118,7 +116,6 @@ produces = [
     { skill = "fletching" }
 ]
 
-# Sell each batch and return to the woodcutting area using existing shop actions.
 [woodcutting_fletching_sell_template]
 requires = [
     { members = { req = true } },
@@ -144,7 +141,6 @@ produces = [
     { skill = "fletching" }
 ]
 
-# Bank the fletched product while keeping tools, then return to the trees.
 [woodcutting_fletching_bank_template]
 requires = [
     { members = { req = true } },

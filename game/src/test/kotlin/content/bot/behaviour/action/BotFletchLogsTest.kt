@@ -90,12 +90,12 @@ class BotFletchLogsTest {
         val activities = mutableMapOf<String, BotActivity>()
         loadBehaviours(files, activities, mutableMapOf<String, MutableList<Resolver>>())
         val combined = activities.values.filter { it.actions.any { action -> action is BotFletchLogs } }
-        assertEquals(24, combined.size)
+        assertEquals(19, combined.size)
         val original = activities.values.filter { it.produces.contains("skill:woodcutting") && !it.produces.contains("skill:fletching") }
-        assertEquals(15, original.size)
+        assertEquals(14, original.size)
         for (activity in original) {
             val area = activity.setup.filterIsInstance<BotInArea>().single()
-            val higherLevel = activity.produces.any { it in setOf("item:willow_logs", "item:yew_logs", "item:magic_logs") }
+            val higherLevel = activity.produces.any { it in setOf("item:willow_logs", "item:maple_logs", "item:yew_logs", "item:magic_logs") }
             if (higherLevel) {
                 assertTrue(combined.none { area in it.setup }, "Unexpected combined activity for ${activity.id}")
             } else {
@@ -119,7 +119,6 @@ class BotFletchLogsTest {
                 assertTrue(activity.actions[5] === BotCloseInterface)
                 val area = activity.setup.filterIsInstance<BotInArea>().single()
                 assertEquals(BotGoTo(area.id), activity.actions.last())
-                assertTrue(activity.actions.none { it is BotDropItems })
             } else if (fletching.product.endsWith("bow_u")) {
                 assertEquals(7, activity.actions.size)
                 assertEquals(BotGoTo("draynor_bank"), activity.actions[2])
@@ -133,9 +132,10 @@ class BotFletchLogsTest {
                 assertTrue(activity.actions[5] === BotCloseInterface)
                 val area = activity.setup.filterIsInstance<BotInArea>().single()
                 assertEquals(BotGoTo(area.id), activity.actions.last())
-                assertTrue(activity.actions.none { it is BotDropItems })
             } else {
-                assertTrue((activity.actions.last() as BotDropItems).keepStackable)
+                assertEquals(2, activity.actions.size)
+                assertEquals("arrow_shaft", fletching.product)
+                assertEquals(fletching, activity.actions.last())
             }
             assertTrue(activity.produces.containsAll(setOf("skill:woodcutting", "skill:fletching")))
             val inventory = activity.setup.filterIsInstance<BotInventorySetup>().single()
