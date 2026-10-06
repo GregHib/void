@@ -4,15 +4,11 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.nameEntry
 import content.quest.instance
 import content.quest.joinInstance
-import content.quest.setInstanceLogout
-import content.quest.smallInstance
-import content.skill.construction.House.Companion.hasHouse
+import content.skill.construction.House.Companion.arrival
+import content.skill.construction.House.Companion.createHouse
 import content.skill.construction.House.Companion.houseLoading
-import content.skill.construction.House.Companion.houseSpawn
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.loadHouse
-import content.skill.construction.House.Companion.newHouse
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -24,8 +20,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
 
 class HousePortal : Script {
     init {
@@ -110,20 +104,6 @@ class HousePortal : Script {
         }
     }
 
-    /**
-     * Creates a new instance of the players house, returning the tile to arrive at
-     */
-    private fun Player.createHouse(buildMode: Boolean): Tile {
-        leaveHouse(teleport = false)
-        set("house_build_mode", buildMode)
-        if (!hasHouse()) {
-            newHouse()
-        }
-        val instance = smallInstance()
-        loadHouse(instance.tile.zone, buildMode)
-        return arrival(this, instance)
-    }
-
     private suspend fun Player.visitFriend(location: String) {
         val owner = Players.find(nameEntry("Enter name:"))
         if (owner == null || !owner.inOwnHouse()) {
@@ -147,14 +127,5 @@ class HousePortal : Script {
         joinInstance(instance)
         tele(arrival(owner, instance))
         houseLoading()
-    }
-
-    /**
-     * Marks the player as inside [owner]'s house [instance], returning the tile to arrive at
-     */
-    private fun Player.arrival(owner: Player, instance: Region): Tile {
-        setInstanceLogout(Tables.tile("house_locations.${owner["house_location", ""]}.exit"))
-        set("house_owner", owner.accountName)
-        return owner.houseSpawn(instance.tile.zone)
     }
 }

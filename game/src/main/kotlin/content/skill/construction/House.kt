@@ -7,6 +7,8 @@ import content.entity.obj.door.openDoor
 import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.instance
+import content.quest.setInstanceLogout
+import content.quest.smallInstance
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -30,6 +32,7 @@ import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -691,6 +694,29 @@ class House : Script {
          */
         fun Player.notImplemented() {
             message("<purple>Not yet implemented.") // TODO
+        }
+
+        /**
+         * Creates a new instance of the players house, returning the tile to arrive at
+         */
+        fun Player.createHouse(buildMode: Boolean): Tile {
+            leaveHouse(teleport = false)
+            set("house_build_mode", buildMode)
+            if (!hasHouse()) {
+                newHouse()
+            }
+            val instance = smallInstance()
+            loadHouse(instance.tile.zone, buildMode)
+            return arrival(this, instance)
+        }
+
+        /**
+         * Marks the player as inside [owner]'s house [instance], returning the tile to arrive at
+         */
+        fun Player.arrival(owner: Player, instance: Region): Tile {
+            setInstanceLogout(Tables.tile("house_locations.${owner["house_location", ""]}.exit"))
+            set("house_owner", owner.accountName)
+            return owner.houseSpawn(instance.tile.zone)
         }
 
         suspend fun Player.houseLoading() {

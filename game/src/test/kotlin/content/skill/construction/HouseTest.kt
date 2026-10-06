@@ -965,14 +965,14 @@ class HouseTest : WorldTest() {
         val base = player.instance()!!.tile.zone
         val parlour = roomZone(base, roomPosition(4, 3, GROUND_LEVEL)).tile
         // Garden to the west
-        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
-        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "basic_wood_door_left_closed"))
         // Grounds to the south
-        assertNotNull(GameObjects.findOrNull(parlour.add(4, 0), "basic_wood_door_left_closed"))
-        assertNotNull(GameObjects.findOrNull(parlour.add(3, 0), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(4, 0), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(3, 0), "basic_wood_door_left_closed"))
         // Grounds to the east
-        assertNotNull(GameObjects.findOrNull(parlour.add(7, 4), "basic_wood_door_left_closed"))
-        assertNotNull(GameObjects.findOrNull(parlour.add(7, 3), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 4), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 3), "basic_wood_door_left_closed"))
         // Gardens don't have doors
         val garden = roomZone(base, START_ROOM)
         assertTrue(garden.toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("door_") } })
@@ -987,7 +987,7 @@ class HouseTest : WorldTest() {
 
         val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
         assertNotNull(GameObjects.findOrNull(parlour.add(0, 3)) { it.id.startsWith("door_hotspot") })
-        assertNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
+        assertNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_right_closed"))
     }
 
     @Test
@@ -1011,10 +1011,10 @@ class HouseTest : WorldTest() {
         val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
         player.tele(parlour.add(1, 3))
 
-        player.objectOption(GameObjects.find(parlour.add(0, 3), "basic_wood_door_left_closed"), "Open")
+        player.objectOption(GameObjects.find(parlour.add(0, 3), "basic_wood_door_right_closed"), "Open")
         tick(2)
 
-        assertNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
+        assertNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_right_closed"))
         assertNoHotspots(parlour)
     }
 
@@ -1025,16 +1025,16 @@ class HouseTest : WorldTest() {
         player.enterPortal(1)
         val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
         player.tele(parlour.add(1, 3))
-        player.objectOption(GameObjects.find(parlour.add(0, 3), "basic_wood_door_left_closed"), "Open")
+        player.objectOption(GameObjects.find(parlour.add(0, 3), "basic_wood_door_right_closed"), "Open")
         tick(2)
         val opened = (-1..1).flatMap { x -> (2..5).map { y -> parlour.add(x, y) } }
-            .firstNotNullOf { GameObjects.findOrNull(it, "basic_wood_door_left_opened") }
+            .firstNotNullOf { GameObjects.findOrNull(it, "basic_wood_door_right_opened") }
 
         player.objectOption(opened, "Close")
         tick(2)
 
-        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_left_closed"))
-        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 3), "basic_wood_door_right_closed"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 4), "basic_wood_door_left_closed"))
         assertNoHotspots(parlour)
     }
 

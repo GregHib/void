@@ -11,6 +11,7 @@ class HouseChapel : Script {
     init {
         objectOperate("Play", "windchimes,bells") {
             anim("play_chimes")
+            // TODO sounds
         }
 
         objectOperate("Play", "organ") {
