@@ -9,16 +9,16 @@ import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -31,8 +31,7 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 /**
- * Study furniture: lecterns for making magic tablets, charts, telescopes for spotting shooting stars and the statue plinth,
- * along with bookcases which are also built in parlours and quest halls.
+ * Study furniture: lecterns for making magic tablets, charts, telescopes for spotting shooting stars and the statue plinth.
  */
 class HouseStudy : Script {
     init {
@@ -42,7 +41,6 @@ class HouseStudy : Script {
             anim("study_lectern")
             open("teleport_tablets")
         }
-
 
         itemOnObjectOperate(STAVES, "crystal_of_power") { (_, item, slot) ->
             val (type, element) = StaffType.entries.firstNotNullOfOrNull { type ->
@@ -99,10 +97,6 @@ class HouseStudy : Script {
         objectOperate("Check", "dahmaroc_statue_plinth") {
             // TODO replica statue pieces from Shattered Heart
             message("You haven't added any replica statue pieces to the plinth.") // TODO proper message
-        }
-
-        objectOperate("Search", "wooden_bookcase,oak_bookcase,mahogany_bookcase") {
-            message("You search the bookcase but find nothing of interest.") // TODO proper message
         }
     }
 

@@ -2,7 +2,6 @@ package content.skill.construction
 
 import WorldTest
 import containsMessage
-import itemOption
 import content.quest.instance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
@@ -21,6 +20,7 @@ import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
 import dialogueOption
 import interfaceOption
+import itemOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test

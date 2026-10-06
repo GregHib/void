@@ -367,3 +367,353 @@ id = 11
 
 [pet_house_side]
 id = 878
+
+# Library bookcase, the list of stored books is built by the client from the book enum and the house_books_* varcs
+[poh_bookcase]
+id = 87
+type = "main_screen"
+
+[.title]
+id = 15
+
+[.close]
+id = 16
+
+[.books]
+id = 17
+options = { Take = 0, Examine = 9 }
+
+[.scrollbar]
+id = 18
+
+# Costume room storage, one selectable row per item the furniture can hold
+[poh_costume_room]
+id = 422
+type = "main_screen"
+
+[.title]
+id = 136
+
+[.close]
+id = 75
+
+[.name_1]
+id = 15
+
+[.select_1]
+id = 16
+
+[.name_2]
+id = 17
+
+[.select_2]
+id = 18
+
+[.name_3]
+id = 19
+
+[.select_3]
+id = 20
+
+[.name_4]
+id = 21
+
+[.select_4]
+id = 22
+
+[.name_5]
+id = 23
+
+[.select_5]
+id = 24
+
+[.name_6]
+id = 25
+
+[.select_6]
+id = 26
+
+[.name_7]
+id = 27
+
+[.select_7]
+id = 28
+
+[.name_8]
+id = 29
+
+[.select_8]
+id = 30
+
+[.name_9]
+id = 31
+
+[.select_9]
+id = 32
+
+[.name_10]
+id = 33
+
+[.select_10]
+id = 34
+
+[.name_11]
+id = 35
+
+[.select_11]
+id = 36
+
+[.name_12]
+id = 37
+
+[.select_12]
+id = 38
+
+[.name_13]
+id = 39
+
+[.select_13]
+id = 40
+
+[.name_14]
+id = 41
+
+[.select_14]
+id = 42
+
+[.name_15]
+id = 43
+
+[.select_15]
+id = 44
+
+[.name_16]
+id = 45
+
+[.select_16]
+id = 46
+
+[.name_17]
+id = 47
+
+[.select_17]
+id = 48
+
+[.name_18]
+id = 49
+
+[.select_18]
+id = 50
+
+[.name_19]
+id = 51
+
+[.select_19]
+id = 52
+
+[.name_20]
+id = 53
+
+[.select_20]
+id = 54
+
+[.name_21]
+id = 55
+
+[.select_21]
+id = 56
+
+[.name_22]
+id = 57
+
+[.select_22]
+id = 58
+
+[.name_23]
+id = 59
+
+[.select_23]
+id = 60
+
+[.name_24]
+id = 61
+
+[.select_24]
+id = 62
+
+[.name_25]
+id = 63
+
+[.select_25]
+id = 64
+
+[.name_26]
+id = 65
+
+[.select_26]
+id = 66
+
+[.name_27]
+id = 67
+
+[.select_27]
+id = 68
+
+[.name_28]
+id = 69
+
+[.select_28]
+id = 70
+
+[.name_29]
+id = 71
+
+[.select_29]
+id = 72
+
+[.name_30]
+id = 73
+
+[.select_30]
+id = 74
+
+# Games room hangman, the letters are named after themselves
+[poh_hangman]
+id = 393
+type = "dialogue_box"
+
+[.a]
+id = 0
+
+[.b]
+id = 1
+
+[.c]
+id = 2
+
+[.d]
+id = 3
+
+[.e]
+id = 4
+
+[.f]
+id = 5
+
+[.g]
+id = 6
+
+[.h]
+id = 7
+
+[.i]
+id = 8
+
+[.j]
+id = 9
+
+[.k]
+id = 10
+
+[.l]
+id = 11
+
+[.m]
+id = 12
+
+[.n]
+id = 13
+
+[.o]
+id = 14
+
+[.p]
+id = 15
+
+[.q]
+id = 16
+
+[.r]
+id = 17
+
+[.s]
+id = 18
+
+[.t]
+id = 19
+
+[.u]
+id = 20
+
+[.v]
+id = 21
+
+[.w]
+id = 22
+
+[.x]
+id = 23
+
+[.y]
+id = 24
+
+[.z]
+id = 25
+
+[.guess]
+id = 27
+
+[.selected]
+id = 28
+
+[.word]
+id = 29
+
+[.message]
+id = 30
+
+# Games room shooting game score board for up to four players
+[poh_ranging]
+id = 401
+type = "game_screen_overlay"
+
+[.name_1]
+id = 6
+
+[.shots_1]
+id = 10
+
+[.score_1]
+id = 14
+
+[.name_2]
+id = 7
+
+[.shots_2]
+id = 11
+
+[.score_2]
+id = 15
+
+[.name_3]
+id = 8
+
+[.shots_3]
+id = 12
+
+[.score_3]
+id = 16
+
+[.name_4]
+id = 9
+
+[.shots_4]
+id = 13
+
+[.score_4]
+id = 17
+
+# Wobbly effect shown while gazing into the scrying pool
+[poh_scrying_pool]
+id = 404
+type = "overlay"

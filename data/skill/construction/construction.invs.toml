@@ -1,3 +1,6 @@
+[poh_furniture_menu_inv]
+id = 398
+
 [skill_guide_carpentry_rooms]
 id = 399
 defaults = [
@@ -390,6 +393,9 @@ defaults = [
     { id = "large_map_2", amount = 1 },
     { id = "kite_shield", amount = 1 },
 ]
+
+[poh_costume_menu_inv]
+id = 445
 
 [poh_costume_room_magic_wardrobe_inv]
 id = 446

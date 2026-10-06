@@ -9,6 +9,7 @@ import content.quest.exitInstance
 import content.quest.instance
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
+import content.skill.construction.HouseHangman.Companion.despawnHangman
 import content.skill.construction.HouseMenagerie.Companion.despawnHousePets
 import content.skill.construction.HouseMenagerie.Companion.spawnHousePets
 import org.rsmod.game.pathfinder.flag.CollisionFlag
@@ -29,10 +30,10 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
@@ -58,7 +59,7 @@ class House : Script {
         }
 
         moved {
-            if (!contains("house_owner")) {
+            if (!contains("house_owner") || contains("scrying_return")) {
                 return@moved
             }
             val instance = instance()
@@ -770,7 +771,9 @@ class House : Script {
             }
             val instance = smallInstance()
             loadHouse(instance.tile.zone, buildMode)
-            return arrival(this, instance)
+            val tile = arrival(this, instance)
+            spawnHousePets(instance.tile.zone)
+            return tile
         }
 
         /**
@@ -790,11 +793,15 @@ class House : Script {
 
         fun Player.leaveHouse(teleport: Boolean = true) {
             val owner: String = remove("house_owner") ?: return
+            // Scrying from a pool leaves the player away from the house, so bring them back out of it
+            stopScrying()
+            despawnHangman()
             removeHouseItems()
             if (hasOpen("house_options")) {
                 open("options")
             }
             if (owner == accountName) {
+                despawnHousePets()
                 expelGuests()
             }
             if (teleport) {
@@ -802,6 +809,17 @@ class House : Script {
             } else {
                 clearInstance()
             }
+        }
+
+        /**
+         * Stops scrying through a scrying pool, returning the tile the player was standing on in the house or null if they weren't scrying
+         */
+        fun Player.stopScrying(): Tile? {
+            val back: Tile = remove("scrying_return") ?: return null
+            hide = false
+            walkTrigger = null
+            close("poh_scrying_pool")
+            return back
         }
 
         /**
