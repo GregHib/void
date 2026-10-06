@@ -48,12 +48,12 @@ class Fluffs : Script {
             foundCatCheck()
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> dontBotherCat()
-                "attempt_fluffs_pickup" -> when (item.id) {
+                "attempt_fluffs_pickup" -> when (item) {
                     "doogle_sardine" -> checkCanFeed()
                     "bucket_of_milk" -> milkFluffs()
                     else -> checkItem(item)
                 }
-                else -> when (item.id) {
+                else -> when (item) {
                     "doogle_sardine" -> message("<red>Fluffs doesn't seem to be hungry right now.")
                     "bucket_of_milk" -> message("<red>Fluffs doesn't seem to be thirsty right now.")
                     else -> message("<red>Fluffs regards you with disdain.")
