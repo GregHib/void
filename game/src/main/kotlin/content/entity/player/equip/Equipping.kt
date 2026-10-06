@@ -70,6 +70,10 @@ class Equipping : Script {
             player.message("You should leave your gas mask on while you're in West Ardougne.")
             return
         }
+        if (player["house_ring", ""] == "boxing" && !item.id.startsWith("boxing_gloves")) {
+            player.message("You can't equip any item other than the boxing gloves in the boxing ring.")
+            return
+        }
         if (item.id.endsWith("goblin_mail")) {
             player.message("That armour is too small for a human.")
             return
