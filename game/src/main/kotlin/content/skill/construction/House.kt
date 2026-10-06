@@ -43,6 +43,15 @@ import world.gregs.voidps.type.Zone
  */
 class House : Script {
     init {
+        droppable {
+            if (inOwnHouse() && get("house_build_mode", false)) {
+                message("You cannot drop items while in building mode.")
+                false
+            } else {
+                true
+            }
+        }
+
         moved {
             if (!contains("house_owner")) {
                 return@moved
