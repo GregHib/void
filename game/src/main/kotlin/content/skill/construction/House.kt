@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -229,6 +230,29 @@ class House : Script {
                         obj.remove()
                     } else {
                         obj.replace(id, rotation = (obj.rotation + (rotations?.get(index) ?: 0)) and 0x3)
+                    }
+                }
+            }
+            val floor = HABITAT_FLOORS[furniture]
+            if (floor != null) {
+                laySpaceFloor(zone, floor)
+            }
+        }
+
+        /**
+         * Replaces the floor placeholders of the menagerie in [zone] with the matching tiles of the habitat whose floor objects start at [floor]
+         */
+        private fun laySpaceFloor(zone: Zone, floor: Int) {
+            for (tile in zone.toCuboid()) {
+                for (obj in GameObjects.at(tile)) {
+                    val index = obj.def.id - HABITAT_SPACE_FLOOR
+                    if (index in 0 until HABITAT_FLOOR_TILES) {
+                        // The garden habitat leaves a couple of tiles bare
+                        if (ObjectDefinitions.getValue(floor + index).name.endsWith("habitat")) {
+                            GameObjects.replace(obj, GameObject(floor + index, tile.x, tile.y, tile.level, obj.shape, obj.rotation))
+                        } else {
+                            obj.remove()
+                        }
                     }
                 }
             }
@@ -688,6 +712,17 @@ class House : Script {
 
         // Name of the menagerie's floor placeholders, one per tile without any options so aren't caught as hotspots
         private const val HABITAT_FLOOR = "Habitat space"
+
+        // Object ids of the first floor placeholder and of the first floor tile of each habitat, there is one for every tile of the room
+        private const val HABITAT_SPACE_FLOOR = 44843
+        private const val HABITAT_FLOOR_TILES = 64
+        private val HABITAT_FLOORS = mapOf(
+            "garden_habitat" to 44498,
+            "jungle_habitat" to 44564,
+            "desert_habitat" to 44630,
+            "polar_habitat" to 44696,
+            "volcanic_habitat" to 44762,
+        )
 
         /**
          * Placeholder for furniture interactions which haven't been added yet

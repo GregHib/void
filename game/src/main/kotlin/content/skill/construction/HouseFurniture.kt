@@ -64,7 +64,7 @@ class HouseFurniture : Script {
     private fun Player.light(target: GameObject) {
         val row = Rows.getOrNull("house_lights.${target.id}") ?: return
         if (get("house_build_mode", false)) {
-            message("You can't do that in building mode.") // TODO proper message
+            message("You can't light the fire in building mode.")
             return
         }
         if (!has(Skill.Firemaking, row.int("level"), message = true)) {

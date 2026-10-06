@@ -1086,6 +1086,22 @@ class HouseTest : WorldTest() {
         assertTrue(visiting.habitatFloor().isEmpty())
     }
 
+    @Test
+    fun `Building a menagerie habitat replaces the habitat floor spaces`() {
+        for (buildMode in listOf(true, false)) {
+            val player = createOwner("owner$buildMode")
+            val position = roomPosition(4, 3, GROUND_LEVEL)
+            player.addHouseRoom("menagerie", position)
+            player.addHouseFurniture(position, "menagerie_habitat", "garden_habitat")
+
+            player.enterPortal(if (buildMode) 2 else 1)
+
+            val objects = roomZone(player.instance()!!.tile.zone, position).toCuboid().flatMap { GameObjects.at(it) }
+            assertTrue(objects.none { it.def.name == "Habitat space" && it.def.sizeX == 1 }, "$buildMode")
+            assertEquals(62, objects.filter { it.def.name == "Garden habitat" && it.def.sizeX == 1 }.map { it.tile }.distinct().size, "$buildMode")
+        }
+    }
+
     private fun Player.habitatFloor() = roomZone(instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).toCuboid()
         .flatMap { GameObjects.at(it) }
         .filter { it.def.name == "Habitat space" }
