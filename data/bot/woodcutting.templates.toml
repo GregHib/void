@@ -83,3 +83,29 @@ produces = [
     { skill = "woodcutting" },
     { skill = "fletching" }
 ]
+
+# Sell each batch and return to the woodcutting area using existing shop actions.
+[woodcutting_fletching_sell_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = "$woodcutting_level", max = "$woodcutting_max" } },
+    { skill = { id = "fletching", min = "$fletching_level" } },
+]
+setup = [
+    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { fletch_logs = { wood = "$wood", product = "$product" } },
+    { go_to = { area = "$shop_area" } },
+    { npc = { option = "Trade", id = "$shop_npc", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Sell 50", id = "shop_side:inventory:$product", success = { inventory = { id = "$product", max = 0 } } } },
+    { interface_close = { id = "shop" } },
+    { go_to = { area = "$location" } },
+]
+produces = [
+    { item = "$product" },
+    { skill = "woodcutting" },
+    { skill = "fletching" }
+]

@@ -89,7 +89,24 @@ class BotFletchLogsTest {
         }
         for (activity in combined) {
             assertTrue(activity.actions.first() is BotInteractObject)
-            assertTrue((activity.actions.last() as BotDropItems).keepStackable)
+            val fletching = activity.actions.filterIsInstance<BotFletchLogs>().single()
+            if (activity.id.startsWith("lumbridge_") && fletching.product.endsWith("bow_u")) {
+                assertEquals(7, activity.actions.size)
+                assertEquals(BotGoTo("lumbridge_general_store"), activity.actions[2])
+                val trade = activity.actions[3] as BotInteractNpc
+                assertEquals("Trade", trade.option)
+                assertEquals("shopkeeper_lumbridge,shop_assistant_lumbridge", trade.id)
+                val sell = activity.actions[4] as BotInterfaceOption
+                assertEquals("Sell 50", sell.option)
+                assertEquals("shop_side:inventory:${fletching.product}", sell.id)
+                assertTrue(sell.success != null)
+                assertTrue(activity.actions[5] === BotCloseInterface)
+                val area = activity.setup.filterIsInstance<BotInArea>().single()
+                assertEquals(BotGoTo(area.id), activity.actions.last())
+                assertTrue(activity.actions.none { it is BotDropItems })
+            } else {
+                assertTrue((activity.actions.last() as BotDropItems).keepStackable)
+            }
             assertTrue(activity.produces.containsAll(setOf("skill:woodcutting", "skill:fletching")))
             val inventory = activity.setup.filterIsInstance<BotInventorySetup>().single()
             assertEquals(1, inventory.items.single { "empty" in it.ids }.min)
