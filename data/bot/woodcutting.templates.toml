@@ -61,3 +61,25 @@ produces = [
     { item = "yew_logs" },
     { skill = "woodcutting" }
 ]
+
+# Wood and product are item IDs, for example logs/shortbow_u or oak_logs/oak_longbow_u.
+[woodcutting_fletching_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = "$woodcutting_level", max = "$woodcutting_max" } },
+    { skill = { id = "fletching", min = "$fletching_level" } },
+]
+setup = [
+    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { fletch_logs = { wood = "$wood", product = "$product" } },
+    { drop_items = { id = "$product", keep_stackable = true } },
+]
+produces = [
+    { item = "$product" },
+    { skill = "woodcutting" },
+    { skill = "fletching" }
+]

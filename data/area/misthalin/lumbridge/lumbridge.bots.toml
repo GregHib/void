@@ -388,3 +388,94 @@ fields = {
 template = "flax_spinning_template"
 capacity = 2
 fields = { location = "lumbridge_spinning_wheel", obj = "spinning_wheel_lumbridge" }
+
+# Combined woodcutting and fletching
+[lumbridge_north_tree_cutting_fletch_arrow_shaft]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
+
+[lumbridge_north_tree_cutting_fletch_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_trees", wood = "logs", product = "shortbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
+
+[lumbridge_north_tree_cutting_fletch_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_trees", wood = "logs", product = "longbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
+
+[lumbridge_cow_tree_cutting_fletch_arrow_shaft]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_cow_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
+
+[lumbridge_cow_tree_cutting_fletch_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_cow_trees", wood = "logs", product = "shortbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
+
+[lumbridge_cow_tree_cutting_fletch_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_cow_trees", wood = "logs", product = "longbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
+
+[lumbridge_west_tree_cutting_fletch_arrow_shaft]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_west_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
+
+[lumbridge_west_tree_cutting_fletch_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_west_trees", wood = "logs", product = "shortbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
+
+[lumbridge_west_tree_cutting_fletch_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_west_trees", wood = "logs", product = "longbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
+
+[lumbridge_east_tree_cutting_fletch_arrow_shaft]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_east_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
+
+[lumbridge_east_tree_cutting_fletch_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_east_trees", wood = "logs", product = "shortbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
+
+[lumbridge_east_tree_cutting_fletch_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_east_trees", wood = "logs", product = "longbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
+
+[lumbridge_oak_tree_cutting_fletch_oak_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_trees", wood = "oak_logs", product = "oak_shortbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 20 }
+
+[lumbridge_oak_tree_cutting_fletch_oak_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }
+
+[lumbridge_castle_yew_tree_cutting_fletch_yew_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_west_yew_tree", wood = "yew_logs", product = "yew_shortbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 65 }
+
+[lumbridge_castle_yew_tree_cutting_fletch_yew_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_north_west_yew_tree", wood = "yew_logs", product = "yew_longbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 70 }
+
+[lumbridge_west_yew_tree_cutting_fletch_yew_shortbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_west_yew_tree", wood = "yew_logs", product = "yew_shortbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 65 }
+
+[lumbridge_west_yew_tree_cutting_fletch_yew_longbow_u]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "lumbridge_west_yew_tree", wood = "yew_logs", product = "yew_longbow_u", tree = "yew*", hatchets = "dragon_hatchet,rune_hatchet,adamant_hatchet", woodcutting_level = 60, woodcutting_max = 75, fletching_level = 70 }

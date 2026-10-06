@@ -309,6 +309,17 @@ sealed class ActionParser {
         }
     }
 
+    object FletchLogsParser : ActionParser() {
+        override val required = setOf("wood", "product")
+        override fun parse(map: Map<String, Any>) = BotFletchLogs(map["wood"] as String, map["product"] as String)
+    }
+
+    object DropItemsParser : ActionParser() {
+        override val required = setOf("id")
+        override val optional = setOf("keep_stackable")
+        override fun parse(map: Map<String, Any>) = BotDropItems(map["id"] as String, map["keep_stackable"] as? Boolean ?: false)
+    }
+
     object RestartParser : ActionParser() {
         override val required = setOf("success")
         override val optional = setOf("wait_if")
@@ -391,6 +402,8 @@ sealed class ActionParser {
             "continue" to DialogueParser,
             "enter" to EnterParser,
             "firemaking" to Firemaking,
+            "fletch_logs" to FletchLogsParser,
+            "drop_items" to DropItemsParser,
         )
     }
 }
