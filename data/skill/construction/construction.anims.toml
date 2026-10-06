@@ -158,3 +158,24 @@ id = 3692
 # Guessed from other servers
 [force_lock]
 id = 3693
+
+[expression_crawling_hand_neutral]
+id = 9494
+
+[expression_crawling_hand_happy]
+id = 9495
+
+[expression_crawling_hand_sad]
+id = 9496
+
+[expression_kalphite_queen_angry]
+id = 6243
+
+[expression_kalphite_queen_laugh]
+id = 6244
+
+[expression_kalphite_queen_happy]
+id = 6245
+
+[expression_kalphite_queen_neutral]
+id = 6246

@@ -117,3 +117,39 @@ att = 68
 str = 70
 def = 71
 examine = "Arrgh! Look at its pointy teeth!"
+
+[poh_mounted_crawling_hand]
+id = 4226
+dialogue = "crawling_hand"
+
+[poh_mounted_cockatrice]
+id = 4227
+dialogue = "pet"
+
+[poh_mounted_basilisk]
+id = 4228
+dialogue = "pet"
+
+[poh_mounted_kurask]
+id = 4229
+dialogue = "pet"
+
+[poh_mounted_abyssal]
+id = 4230
+dialogue = "pet"
+
+[poh_mounted_kbd_left]
+id = 4231
+dialogue = "pet"
+
+[poh_mounted_kbd_middle]
+id = 4232
+dialogue = "pet"
+
+[poh_mounted_kbd_right]
+id = 4233
+dialogue = "pet"
+
+[poh_mounted_kq]
+id = 4234
+dialogue = "kalphite_queen"
