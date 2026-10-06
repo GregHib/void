@@ -4451,3 +4451,245 @@ option = "Watering can"
 
 [.secateurs]
 option = "Secateurs"
+
+# Versions of pets without a pick-up option which roam the menagerie when stored in a pet house
+[menagerie_pets]
+row_id = "npc"
+roaming = "npc"
+
+[.pet_cat]
+roaming = "menagerie_pet_9272"
+
+[.pet_cat_1]
+roaming = "menagerie_pet_9273"
+
+[.pet_cat_2]
+roaming = "menagerie_pet_9274"
+
+[.pet_cat_3]
+roaming = "menagerie_pet_9275"
+
+[.pet_cat_4]
+roaming = "menagerie_pet_9276"
+
+[.pet_cat_5]
+roaming = "menagerie_pet_9277"
+
+[.pet_cat_overgrown]
+roaming = "menagerie_pet_9288"
+
+[.pet_cat_1_overgrown]
+roaming = "menagerie_pet_9289"
+
+[.pet_cat_2_overgrown]
+roaming = "menagerie_pet_9290"
+
+[.pet_cat_3_overgrown]
+roaming = "menagerie_pet_9291"
+
+[.pet_cat_4_overgrown]
+roaming = "menagerie_pet_9292"
+
+[.pet_cat_5_overgrown]
+roaming = "menagerie_pet_9293"
+
+[.pet_hellcat_overgrown]
+roaming = "menagerie_pet_9294"
+
+[.pet_hellcat]
+roaming = "menagerie_pet_9278"
+
+[.pet_baby_dragon]
+roaming = "menagerie_pet_9208"
+
+[.pet_baby_dragon_1]
+roaming = "menagerie_pet_9209"
+
+[.pet_baby_dragon_2]
+roaming = "menagerie_pet_9210"
+
+[.pet_baby_dragon_3]
+roaming = "menagerie_pet_9211"
+
+[.pet_penguin]
+roaming = "menagerie_pet_9233"
+
+[.pet_raven]
+roaming = "menagerie_pet_9239"
+
+[.pet_raccoon]
+roaming = "menagerie_pet_9236"
+
+[.pet_gecko]
+roaming = "menagerie_pet_9213"
+
+[.pet_squirrel]
+roaming = "menagerie_pet_9250"
+
+[.pet_chameleon]
+roaming = "menagerie_pet_9262"
+
+[.pet_monkey]
+roaming = "menagerie_pet_9223"
+
+[.pet_vulture]
+roaming = "menagerie_pet_9256"
+
+[.pet_giant_crab]
+roaming = "menagerie_pet_9218"
+
+[.pet_dalmatian]
+roaming = "menagerie_pet_9199"
+
+[.pet_sheepdog]
+roaming = "menagerie_pet_9202"
+
+[.pet_bulldog]
+roaming = "menagerie_pet_9205"
+
+[.pet_monkey_1]
+roaming = "menagerie_pet_9224"
+
+[.pet_monkey_2]
+roaming = "menagerie_pet_9225"
+
+[.pet_monkey_3]
+roaming = "menagerie_pet_9226"
+
+[.pet_monkey_4]
+roaming = "menagerie_pet_9227"
+
+[.pet_monkey_5]
+roaming = "menagerie_pet_9228"
+
+[.pet_monkey_6]
+roaming = "menagerie_pet_9229"
+
+[.pet_monkey_7]
+roaming = "menagerie_pet_9230"
+
+[.pet_monkey_8]
+roaming = "menagerie_pet_9231"
+
+[.pet_monkey_9]
+roaming = "menagerie_pet_9232"
+
+[.pet_dalmatian_1]
+roaming = "menagerie_pet_9200"
+
+[.pet_dalmatian_2]
+roaming = "menagerie_pet_9201"
+
+[.pet_sheepdog_1]
+roaming = "menagerie_pet_9203"
+
+[.pet_sheepdog_2]
+roaming = "menagerie_pet_9204"
+
+[.pet_bulldog_1]
+roaming = "menagerie_pet_9206"
+
+[.pet_bulldog_2]
+roaming = "menagerie_pet_9207"
+
+[.pet_raven_1]
+roaming = "menagerie_pet_9240"
+
+[.pet_raven_2]
+roaming = "menagerie_pet_9241"
+
+[.pet_raven_3]
+roaming = "menagerie_pet_9242"
+
+[.pet_raven_4]
+roaming = "menagerie_pet_9243"
+
+[.pet_raven_5]
+roaming = "menagerie_pet_9244"
+
+[.pet_raccoon_1]
+roaming = "menagerie_pet_9237"
+
+[.pet_raccoon_2]
+roaming = "menagerie_pet_9238"
+
+[.pet_gecko_1]
+roaming = "menagerie_pet_9214"
+
+[.pet_gecko_2]
+roaming = "menagerie_pet_9215"
+
+[.pet_gecko_3]
+roaming = "menagerie_pet_9216"
+
+[.pet_gecko_4]
+roaming = "menagerie_pet_9217"
+
+[.pet_giant_crab_1]
+roaming = "menagerie_pet_9219"
+
+[.pet_giant_crab_2]
+roaming = "menagerie_pet_9220"
+
+[.pet_giant_crab_3]
+roaming = "menagerie_pet_9221"
+
+[.pet_giant_crab_4]
+roaming = "menagerie_pet_9222"
+
+[.pet_squirrel_1]
+roaming = "menagerie_pet_9251"
+
+[.pet_squirrel_2]
+roaming = "menagerie_pet_9252"
+
+[.pet_squirrel_3]
+roaming = "menagerie_pet_9253"
+
+[.pet_squirrel_4]
+roaming = "menagerie_pet_9254"
+
+[.pet_penguin_1]
+roaming = "menagerie_pet_9234"
+
+[.pet_penguin_2]
+roaming = "menagerie_pet_9235"
+
+[.pet_vulture_1]
+roaming = "menagerie_pet_9257"
+
+[.pet_vulture_2]
+roaming = "menagerie_pet_9258"
+
+[.pet_vulture_3]
+roaming = "menagerie_pet_9259"
+
+[.pet_vulture_4]
+roaming = "menagerie_pet_9260"
+
+[.pet_vulture_5]
+roaming = "menagerie_pet_9261"
+
+[.pet_ex_ex_parrot_baby]
+roaming = "menagerie_pet_9212"
+
+[.pet_cat_6]
+roaming = "menagerie_pet_9279"
+
+[.pet_mean_phoenix_eggling_baby]
+roaming = "menagerie_pet_9255"
+
+[.pet_creeping_hand_baby]
+roaming = "menagerie_pet_9246"
+
+[.pet_minitrice_baby]
+roaming = "menagerie_pet_9247"
+
+[.pet_baby_basilisk_baby]
+roaming = "menagerie_pet_9248"
+
+[.pet_baby_kurask_baby]
+roaming = "menagerie_pet_9249"
+
+[.pet_abyssal_minion_baby]
+roaming = "menagerie_pet_9245"

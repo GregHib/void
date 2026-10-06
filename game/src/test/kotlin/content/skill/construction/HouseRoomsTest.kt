@@ -2,7 +2,6 @@ package content.skill.construction
 
 import WorldTest
 import containsMessage
-import itemOption
 import content.quest.instance
 import content.quest.joinInstance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
@@ -11,17 +10,20 @@ import content.skill.construction.House.Companion.START_ROOM
 import content.skill.construction.House.Companion.addHouseFurniture
 import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.houseFurnitureIds
+import content.skill.construction.House.Companion.leaveHouse
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
 import dialogueOption
 import intEntry
 import interfaceOption
+import itemOption
 import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -120,6 +122,24 @@ class HouseRoomsTest : WorldTest() {
 
         assertEquals(1, player.inventory.count("bronze_full_helm"))
         assertTrue(player.containsMessage("other than the boxing gloves"))
+    }
+
+    @Test
+    fun `Stored pets roam the menagerie until the house is left`() {
+        val player = createOwner()
+        player.addHouseRoom("menagerie", room)
+        player.inventories.inventory("pet_house").add("pet_cat")
+        player.enterPortal(1)
+        val pets = { NPCs.filter { it.id.startsWith("menagerie_pet_") } }
+        tick(5)
+
+        assertEquals(1, pets().size)
+
+        player.leaveHouse()
+        tick()
+
+        assertEquals(0, pets().size)
+        assertEquals(1, player.inventories.inventory("pet_house").count("pet_cat"))
     }
 
     @Test
