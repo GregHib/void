@@ -3,7 +3,6 @@ package content.skill.construction
 import content.quest.questCompleted
 import content.skill.construction.House.Companion.inOwnHouse
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
@@ -13,9 +12,10 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.contains
+import world.gregs.voidps.engine.inv.inventory
 
 /**
  * Bookcases, built in parlours, studies and quest halls, hold every book the player has unlocked, which mostly come from completing quests.
