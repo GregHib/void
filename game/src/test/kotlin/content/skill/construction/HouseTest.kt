@@ -2,6 +2,7 @@ package content.skill.construction
 
 import WorldTest
 import containsMessage
+import itemOption
 import content.quest.instance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
@@ -1084,6 +1085,21 @@ class HouseTest : WorldTest() {
 
         assertEquals(64, building.habitatFloor().size)
         assertTrue(visiting.habitatFloor().isEmpty())
+    }
+
+    @Test
+    fun `Can't drop items in building mode`() {
+        for (buildMode in listOf(true, false)) {
+            val player = createOwner("dropper$buildMode")
+            player.inventory.add("bones")
+
+            player.enterPortal(if (buildMode) 2 else 1)
+            player.itemOption("Drop", "bones")
+            tick()
+
+            assertEquals(buildMode, player.inventory.contains("bones"), "$buildMode")
+            assertEquals(buildMode, player.containsMessage("cannot drop items while in building mode"), "$buildMode")
+        }
     }
 
     @Test
