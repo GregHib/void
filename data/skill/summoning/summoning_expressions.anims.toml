@@ -1,0 +1,223 @@
+# Enum 1276 - normal
+[expression_barker_toad_neutral]
+id = 4846
+
+[expression_dreadfowl_neutral]
+id = 8
+
+[expression_granite_crab_neutral]
+id = 8376
+
+[expression_bunyip_neutral]
+id = 8373
+
+[expression_pet_5_neutral]
+id = 5661
+
+[expression_spirit_spider_neutral]
+id = 8477
+
+[expression_spirit_wolf_neutral]
+id = 6551
+
+[expression_spirit_mosquito_neutral]
+id = 7637
+
+[expression_pet_9_neutral]
+id = 8381
+
+[expression_pet_10_neutral]
+id = 8390
+
+[expression_spirit_cobra_neutral]
+id = 8392
+
+[expression_thorny_snail_neutral]
+id = 8396
+
+[expression_void_ravager_neutral]
+id = 8416
+
+[expression_bloated_leech_neutral]
+id = 8413
+
+[expression_pet_15_neutral]
+id = 8399
+
+[expression_spirit_cockatrice_neutral]
+id = 8404
+
+[expression_karamthulhu_overlord_neutral]
+id = 8421
+
+[expression_giant_ent_neutral]
+id = 8431
+
+[expression_hydra_neutral]
+id = 8483
+
+[expression_compost_mound_neutral]
+id = 8423
+
+[expression_stranger_plant_neutral]
+id = 8429
+
+[expression_smoke_devil_neutral]
+id = 8463
+
+[expression_pyrelord_neutral]
+id = 8452
+
+[expression_moss_titan_neutral]
+id = 8456
+
+[expression_geyser_titan_neutral]
+id = 8440
+
+[expression_ice_titan_neutral]
+id = 8436
+
+[expression_lava_titan_neutral]
+id = 8445
+
+[expression_obsidian_golem_neutral]
+id = 8448
+
+[expression_pet_29_neutral]
+id = 8487
+
+[expression_pet_30_neutral]
+id = 8473
+
+[expression_pet_31_neutral]
+id = 8385
+
+[expression_spirit_tz_kih_neutral]
+id = 8482
+
+[expression_pet_33_neutral]
+id = 8491
+
+[expression_pet_34_neutral]
+id = 8467
+
+[expression_pet_35_neutral]
+id = 9494
+
+[expression_pet_36_neutral]
+id = 9804
+
+[expression_sneakerpeeper_neutral]
+id = 13322
+
+# Enum 1275 - sad (varbit value minus 50)
+[expression_barker_toad_sad]
+id = 4844
+
+[expression_spirit_terrorbird_sad]
+id = 6824
+
+[expression_granite_crab_sad]
+id = 8378
+
+[expression_bunyip_sad]
+id = 8374
+
+[expression_pet_5_sad]
+id = 5665
+
+[expression_spirit_spider_sad]
+id = 8476
+
+[expression_spirit_wolf_sad]
+id = 6552
+
+[expression_spirit_mosquito_sad]
+id = 7639
+
+[expression_pet_9_sad]
+id = 8383
+
+[expression_pet_10_sad]
+id = 4844
+
+[expression_spirit_cobra_sad]
+id = 8394
+
+[expression_thorny_snail_sad]
+id = 8397
+
+[expression_void_ravager_sad]
+id = 8418
+
+[expression_bloated_leech_sad]
+id = 8412
+
+[expression_pet_15_sad]
+id = 8402
+
+[expression_spirit_cockatrice_sad]
+id = 8406
+
+[expression_karamthulhu_overlord_sad]
+id = 8420
+
+[expression_giant_ent_sad]
+id = 8433
+
+[expression_hydra_sad]
+id = 8485
+
+[expression_compost_mound_sad]
+id = 8425
+
+[expression_stranger_plant_sad]
+id = 8430
+
+[expression_smoke_devil_sad]
+id = 8464
+
+[expression_pyrelord_sad]
+id = 8454
+
+[expression_moss_titan_sad]
+id = 8458
+
+[expression_geyser_titan_sad]
+id = 8442
+
+[expression_ice_titan_sad]
+id = 8437
+
+[expression_lava_titan_sad]
+id = 8444
+
+[expression_obsidian_golem_sad]
+id = 8450
+
+[expression_void_spinner_sad]
+id = 8488
+
+[expression_pet_30_sad]
+id = 8474
+
+[expression_pet_31_sad]
+id = 8387
+
+[expression_spirit_tz_kih_sad]
+id = 8480
+
+[expression_pet_33_sad]
+id = 8493
+
+[expression_forge_regent_sad]
+id = 8469
+
+[expression_pet_35_sad]
+id = 9496
+
+[expression_pet_36_sad]
+id = 9761
+
+[expression_sneakerpeeper_sad]
+id = 13321
