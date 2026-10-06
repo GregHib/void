@@ -72,7 +72,7 @@ setup = [
     { area = { id = "$location" } },
 ]
 actions = [
-    { object = { option = "Chop down", id = "magic_tree,magic_tree_two", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { object = { option = "Chop down", id = "magic_tree*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "magic_logs" },
