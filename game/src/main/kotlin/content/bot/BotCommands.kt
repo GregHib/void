@@ -343,7 +343,7 @@ class BotCommands(
                 }
                 "${prefix}$selected"
             }
-            val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
+            val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport")
             val player = Player(tile = Areas[areas.random()].random(), accountName = name)
             val bot = player.initBot()
             loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])

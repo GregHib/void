@@ -131,6 +131,7 @@ net = ["raw_shrimps", "raw_anchovies"]
 bait = ["raw_sardine", "raw_herring"]
 
 [.fishing_spot_fishing_guild]
+net_tackle = ["big_fishing_net"]
 net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
 harpoon = ["raw_shark"]
 

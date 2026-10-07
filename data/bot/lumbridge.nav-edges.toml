@@ -1,4 +1,5 @@
 edges = [
+    { from = { x = 3205, y = 3209, level = 1 }, to = { x = 3210, y = 3214, level = 1 } }, # lumbridge_castle_south_stairs_to_spinning_wheel
     { from = { x = 3236, y = 3218 }, to = { x = 3236, y = 3205 } }, # lumbridge_gate_south_to_village
     { from = { x = 3236, y = 3218 }, to = { x = 3243, y = 3209 } }, # lumbridge_gate_south_to_church
     { from = { x = 3236, y = 3205 }, to = { x = 3243, y = 3209 } }, # lumbridge_south_village_to_church

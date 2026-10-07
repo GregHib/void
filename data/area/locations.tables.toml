@@ -62,6 +62,12 @@ aka = ["seers"]
 tile = { x = 2757, y = 3477 }
 aka = ["cammy"]
 
+[.fishing_guild]
+tile = { x = 2613, y = 3385 }
+
+[.fishing_guild_bank]
+tile = { x = 2585, y = 3421 }
+
 [.ardougne_east]
 tile = { x = 2662, y = 3304 }
 aka = ["ardy", "ardougne", "east_ardy", "east_ardougne"]

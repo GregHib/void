@@ -24,3 +24,12 @@ y = [3429, 3431]
 [catherby_cage_fishing_area]
 x = [2853, 2860]
 y = [3423, 3426]
+
+[catherby_bank]
+x = [2806, 2813]
+y = [3438, 3443]
+tags = ["bank"]
+
+[catherby_willow_trees]
+x = [2779, 2789]
+y = [3424, 3432]

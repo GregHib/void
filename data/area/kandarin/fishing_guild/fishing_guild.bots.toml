@@ -1,0 +1,48 @@
+
+[fishing_guild_north_lobster_fishing]
+template = "fish_bank_template"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_north_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_cage_harpoon_fishing_guild", tool = "lobster_pot", option = "Cage", level = 68, catch1 = "raw_lobster", catch2 = "raw_lobster" }
+
+[fishing_guild_north_tuna_swordfish_fishing]
+template = "fish_bank_template"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_north_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_cage_harpoon_fishing_guild", tool = "harpoon", option = "Harpoon", level = 68, catch1 = "raw_tuna", catch2 = "raw_swordfish" }
+
+[fishing_guild_north_shark_fishing]
+template = "fish_bank_template"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_north_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_fishing_guild", tool = "harpoon", option = "Harpoon", level = 76, catch1 = "raw_shark", catch2 = "raw_shark" }
+
+[fishing_guild_south_lobster_fishing]
+template = "fish_bank_template"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_south_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_cage_harpoon_fishing_guild", tool = "lobster_pot", option = "Cage", level = 68, catch1 = "raw_lobster", catch2 = "raw_lobster" }
+
+[fishing_guild_south_tuna_swordfish_fishing]
+template = "fish_bank_template"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_south_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_cage_harpoon_fishing_guild", tool = "harpoon", option = "Harpoon", level = 68, catch1 = "raw_tuna", catch2 = "raw_swordfish" }
+
+[fishing_guild_south_shark_fishing]
+template = "fish_bank_template"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_south_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_fishing_guild", tool = "harpoon", option = "Harpoon", level = 76, catch1 = "raw_shark", catch2 = "raw_shark" }
+
+[fishing_guild_north_big_net_fishing]
+template = "fish_big_net_bank_template"
+capacity = 1
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_north_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_fishing_guild", tool = "big_fishing_net", option = "Net", level = 68, catch1 = "raw_mackerel", catch2 = "raw_cod" }
+
+[fishing_guild_south_big_net_fishing]
+template = "fish_big_net_bank_template"
+capacity = 1
+requires = [{ members = { req = true } }]
+fields = { location = "fishing_guild_south_fishing_area", bank_area = "fishing_guild_bank", bank_npc = "banker_3,banker_4", spot = "fishing_spot_fishing_guild", tool = "big_fishing_net", option = "Net", level = 68, catch1 = "raw_mackerel", catch2 = "raw_cod" }
