@@ -349,7 +349,7 @@ class BotCommands(
     }
 
     fun spawn(requestedName: String? = null, requester: Player? = null) {
-        launchBotSpawn(requestedName, requester) {
+        launchBotSpawn(requestedName, requester, regular = true) {
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
             val saved = if (Settings["bots.save", false]) {
                 saveQueue.awaitSaved(name)
@@ -437,11 +437,11 @@ class BotCommands(
         }
     }
 
-    private fun launchBotSpawn(requestedName: String? = null, requester: Player? = null, action: suspend BotSpawnAttempt.() -> Unit) {
+    private fun launchBotSpawn(requestedName: String? = null, requester: Player? = null, regular: Boolean = false, action: suspend BotSpawnAttempt.() -> Unit) {
         GlobalScope.launch(Contexts.Game) {
             counter++
             val name = if (requestedName == null) {
-                pickBotName() ?: return@launch
+                (if (regular && Settings["bots.save", false]) pickRegularBotName() else pickBotName()) ?: return@launch
             } else {
                 if (!accountNames.reserveBot(requestedName)) {
                     requester?.message("That name belongs to a player or a bot already spawning or online.", ChatType.Console)
@@ -536,7 +536,14 @@ class BotCommands(
         }
     }
 
-    private fun pickBotName(): String? {
+    private suspend fun pickRegularBotName(): String? {
+        val savedNames = withContext(Dispatchers.IO) { storage.botNames().values.map { it.accountName } }
+        return BotNamePicker.pick(savedNames, Settings["bots.savedSpawnPercent", 50].coerceIn(0, 100), random, accountNames::reserveBot) {
+            pickBotName(freshOnly = true)
+        }
+    }
+
+    private fun pickBotName(freshOnly: Boolean = false): String? {
         val prefix = Settings["bots.namePrefix", ""].trim('"')
         val length = 12 - prefix.length
         val numbered = Settings["bots.numberedNames", false]
@@ -548,7 +555,7 @@ class BotCommands(
                 names.remove(selected)
                 "$prefix$selected"
             }
-            if (accountNames.reserveBot(candidate)) return candidate
+            if ((!freshOnly || !accountNames.used(candidate)) && accountNames.reserveBot(candidate)) return candidate
             if (numbered) counter++
         }
         return null
