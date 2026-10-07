@@ -28,6 +28,8 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -62,8 +64,10 @@ class BotCommands(
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
-    accountDefinitions: AccountDefinitions,
+    private val accountDefinitions: AccountDefinitions,
     private val storage: Storage,
+    private val accountNames: AccountNames,
+    private val botAccounts: BotAccountDefinitions,
 ) : Script {
 
     private val combatBotsLogger = InlineLogger("CombatBots")
@@ -108,6 +112,7 @@ class BotCommands(
             if (isBot) {
                 manager.remove(bot)
                 combatBotTiers.remove(accountName)
+                accountNames.releaseBot(accountName)
             }
         }
 
@@ -331,22 +336,9 @@ class BotCommands(
     fun spawn() {
         GlobalScope.launch(Contexts.Game) {
             counter++
-            val name = if (Settings["bots.numberedNames", false]) {
-                "Bot $counter"
-            } else {
-                val prefix = Settings["bots.namePrefix", ""].trim('"')
-                val length = 12 - prefix.length
-                val short = names.filter { it.length < length }
-                var selected = short.randomOrNull(random)
-                if (selected == null) {
-                    selected = names.removeAt(random.nextInt(names.size))
-                } else {
-                    names.remove(selected)
-                }
-                "${prefix}$selected"
-            }
+            val name = pickBotName() ?: return@launch
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
-            val saved = if (Settings["bots.save", false]) withContext(Dispatchers.IO) { storage.load(name) } else null
+            val saved = if (Settings["bots.save", false]) withContext(Dispatchers.IO) { storage.loadBot(name) } else null
             val player = saved?.toPlayer() ?: Player(tile = Areas[areas.random()].random(), accountName = name)
             val bot = player.initBot()
             loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
@@ -364,6 +356,7 @@ class BotCommands(
     fun Player.initBot(): Bot {
         val bot = Bot(this)
         this["bot"] = bot
+        botAccounts.add(this)
         return bot
     }
 
@@ -391,7 +384,7 @@ class BotCommands(
     private fun spawnCombatBot(context: CombatBotContext, arenaKey: String) {
         GlobalScope.launch(Contexts.Game) {
             counter++
-            val name = pickBotName()
+            val name = pickBotName() ?: return@launch
             val spawn = context.arenaSpawn(arenaKey) ?: return@launch
             val bot = Player(tile = spawn, accountName = name).initBot()
             bot.player["combat_bot"] = true
@@ -488,14 +481,22 @@ class BotCommands(
         }
     }
 
-    private fun pickBotName(): String {
-        if (Settings["bots.numberedNames", false]) return "Bot $counter"
+    private fun pickBotName(): String? {
         val prefix = Settings["bots.namePrefix", ""].trim('"')
         val length = 12 - prefix.length
-        val short = names.filter { it.length < length }
-        val selected = short.randomOrNull(random) ?: names.removeAt(random.nextInt(names.size))
-        names.remove(selected)
-        return "$prefix$selected"
+        val numbered = Settings["bots.numberedNames", false]
+        while (numbered || names.isNotEmpty()) {
+            val candidate = if (numbered) {
+                "Bot $counter"
+            } else {
+                val selected = names.filter { it.length < length }.randomOrNull(random) ?: names.random(random)
+                names.remove(selected)
+                "$prefix$selected"
+            }
+            if (accountNames.reserveBot(candidate)) return candidate
+            if (numbered) counter++
+        }
+        return null
     }
 
     fun setAppearance(player: Player): Player {

@@ -9,6 +9,9 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
@@ -18,7 +21,7 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import java.util.concurrent.TimeUnit
 
-class NameChange : Script {
+class NameChange(private val names: AccountNames, private val accounts: AccountDefinitions, private val bots: BotAccountDefinitions) : Script {
 
     init {
         modCommand("rename", desc = "Change your display name (login stays the same)", handler = ::rename)
@@ -41,6 +44,10 @@ class NameChange : Script {
             }
             player.choice("Change your name to '$toName'?") {
                 option("Yes, call me $toName") {
+                    if (names.used(toName, if (player.contains("bot")) bots else accounts, player.accountName)) {
+                        player.message("That name is already in use.")
+                        return@option
+                    }
                     val previous = player.name
                     player.name = toName
                     Players

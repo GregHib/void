@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
@@ -83,6 +85,18 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     fun `Get password`() {
         assertEquals("hash", loader.password("accountName"))
         assertNull(loader.password("name2"))
+    }
+
+    @Test
+    fun `Bot names cannot create or log into human accounts`() = runTest {
+        val bots = BotAccountDefinitions().apply { reserve("bot") }
+        loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher(), AccountNames(definitions, bots))
+        val client: Client = mockk(relaxed = true)
+        assertEquals(true, loader.used("BOT"))
+        assertNull(loader.password("BOT"))
+        assertNull(loader.load(client, "bot", "pass", 0))
+        coVerify { client.disconnect(Response.INVALID_CREDENTIALS) }
+        verify(exactly = 0) { accounts.create(any(), any()) }
     }
 
     @Test

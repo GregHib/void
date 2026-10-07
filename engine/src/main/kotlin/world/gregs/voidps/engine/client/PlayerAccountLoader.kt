@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -33,16 +35,17 @@ class PlayerAccountLoader(
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
     private val gameContext: CoroutineDispatcher,
+    private val names: AccountNames = AccountNames(accountDefinitions, BotAccountDefinitions()),
 ) : AccountLoader {
     private val logger = InlineLogger()
 
     var update: Boolean = false
 
-    override fun used(username: String) = accountDefinitions.get(username) != null
+    override fun used(username: String) = names.used(username)
 
     override fun exists(username: String): Boolean = storage.exists(username)
 
-    override fun password(username: String): String? = accountDefinitions.getByAccount(username)?.passwordHash
+    override fun password(username: String): String? = if (names.isBot(username)) null else accountDefinitions.getByAccount(username)?.passwordHash
 
     /**
      * @return flow of instructions for the player to be controlled with
@@ -59,13 +62,17 @@ class PlayerAccountLoader(
                 return null
             }
             val save = storage.load(username)
+            if (save?.bot == true || names.isBot(username)) {
+                client.disconnect(Response.INVALID_CREDENTIALS)
+                return null
+            }
             if (save != null && banned(save.variables)) {
                 client.disconnect(Response.ACCOUNT_DISABLED)
                 return null
             }
             var player = save?.toPlayer()
             if (player == null) {
-                if (!Settings["development.accountCreation", false]) {
+                if (!Settings["development.accountCreation", false] || used(username)) {
                     client.disconnect(Response.INVALID_CREDENTIALS)
                     return null
                 }

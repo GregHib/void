@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.get
@@ -81,7 +82,11 @@ var Player.name: String
         displayName = value
         set("display_name", value)
         nameHistory.add(previous)
-        get<AccountDefinitions>().update(accountName, value, previous)
+        if (contains("bot")) {
+            get<BotAccountDefinitions>().update(accountName, value, previous)
+        } else {
+            get<AccountDefinitions>().update(accountName, value, previous)
+        }
     }
 
 val Player.nameHistory: MutableList<String>
