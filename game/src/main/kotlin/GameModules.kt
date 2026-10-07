@@ -12,6 +12,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.BotStorage
 import world.gregs.voidps.engine.data.Reports
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
@@ -37,8 +38,8 @@ fun gameModule(files: ConfigFiles) = module {
     single(createdAtStart = true) {
         GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get())
     }
-    single {
-        if (Settings["storage.type", "files"] == "database") {
+    single<Storage> {
+        val players = if (Settings["storage.type", "files"] == "database") {
             val clazz: Class<*>
             val companion: Class<*>
             try {
@@ -65,6 +66,9 @@ fun gameModule(files: ConfigFiles) = module {
             }
             FileStorage(saves)
         }
+        val bots = File(Settings["storage.bots.path", "${Settings["storage.players.path"]}/bots/"])
+        bots.mkdirs()
+        BotStorage(players, FileStorage(bots))
     }
     single(createdAtStart = true) { FarmingDefinitions().load(files.find(Settings["definitions.produce"])) }
 }

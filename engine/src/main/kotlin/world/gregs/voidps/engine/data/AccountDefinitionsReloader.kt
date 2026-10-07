@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Players
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -23,6 +24,7 @@ class AccountDefinitionsReloader(
     private val saveQueue: SaveQueue,
     io: CoroutineDispatcher = Dispatchers.IO,
     private val game: CoroutineDispatcher = Contexts.Game,
+    private val bots: BotAccountDefinitions = BotAccountDefinitions(),
 ) {
     private val logger = InlineLogger()
     private val reloading = AtomicBoolean(false)
@@ -48,10 +50,12 @@ class AccountDefinitionsReloader(
         scope.launch(handler) {
             val names = storage.names()
             val clans = storage.clans()
+            val botNames = storage.botNames()
             withContext(game) {
                 val count = definitions.merge(names, clans) { account ->
                     online.contains(account.lowercase()) || saveQueue.saving(account)
                 }
+                bots.merge(botNames) { account -> online.contains(account.lowercase()) || saveQueue.saving(account) }
                 reloading.set(false)
                 logger.info { "Reloaded $count account definitions." }
                 onComplete(count)

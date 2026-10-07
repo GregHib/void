@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
@@ -23,6 +25,8 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.encode.login
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
@@ -86,10 +90,24 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     }
 
     @Test
+    fun `Bot names cannot create or log into human accounts`() = runTest {
+        val bots = BotAccountDefinitions().apply { reserve("bot") }
+        loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher(), AccountNames(definitions, bots))
+        val client: Client = mockk(relaxed = true)
+        assertEquals(true, loader.used("BOT"))
+        assertNull(loader.password("BOT"))
+        assertNull(loader.load(client, "bot", "pass", 0))
+        coVerify { client.disconnect(Response.INVALID_CREDENTIALS) }
+        verify(exactly = 0) { accounts.create(any(), any()) }
+    }
+
+    @Test
     fun `Successful login`() = runTest {
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
         val client: Client = mockk(relaxed = true)
         playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
         coEvery { queue.await() } just Runs
+        every { accounts.index(any()) } returns true
 
         val instructions = loader.load(client, "name", "pass", 2)
         assertNotNull(instructions)
@@ -107,6 +125,8 @@ internal class PlayerAccountLoaderTest : KoinMock() {
 
     @Test
     fun `Can login once ban expires`() = runTest {
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
+        every { accounts.index(any()) } returns true
         val client: Client = mockk(relaxed = true)
         playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to 1), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
         coEvery { queue.await() } just Runs
@@ -133,7 +153,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         coEvery { queue.await() } just Runs
         every { accounts.index(any()) } returns true
 
-        loader.connect(player, client, 2)
+        assertTrue(loader.connect(player, client, 2))
 
         coVerify {
             queue.await()
@@ -153,7 +173,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             val player = Player(index = 4, accountName = "name", variables = mutableMapOf("display_name" to "name"))
             every { accounts.index(any()) } returns true
 
-            loader.connect(player, client, 2)
+            assertFalse(loader.connect(player, client, 2))
 
             coVerify {
                 accounts.logout(ghost, safely = false)
@@ -172,7 +192,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         val player = Player(index = 4, accountName = "name", passwordHash = "\$2a\$10\$cPB7bqICWrOILrWnXuYNDu1EsbZal9AjxYMbmpMOtI1kwruazGiby", variables = mutableMapOf("display_name" to "name"))
         every { accounts.index(player) } returns false
 
-        loader.connect(player, client, 2)
+        assertFalse(loader.connect(player, client, 2))
 
         coVerify {
             client.disconnect(Response.WORLD_FULL)

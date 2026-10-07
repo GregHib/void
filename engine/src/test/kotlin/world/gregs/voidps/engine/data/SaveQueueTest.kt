@@ -1,12 +1,16 @@
 package world.gregs.voidps.engine.data
 
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.async
+import kotlinx.coroutines.yield
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.type.Tile
@@ -19,8 +23,48 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.test.assertFailsWith
 
 internal class SaveQueueTest : KoinMock() {
+
+    @Test
+    fun `Registered human running bot behaviour saves as a player regardless of bot saving setting`() {
+        val settings = Settings.load(emptyMap<String, String>())
+        val previous = settings["bots.save"]
+        val player = Player(index = 1, accountName = "human_login").apply {
+            this["display_name"] = "Different"
+            this["bot"] = true
+        }
+        val definitions = AccountDefinitions().apply { add(player) }
+        val written = CopyOnWriteArrayList<PlayerSave>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) { written.addAll(accounts) }
+        }
+        try {
+            for (enabled in listOf("false", "true")) {
+                Settings.load(mapOf("bots.save" to enabled))
+                val queue = SaveQueue(storage, accountDefinitions = definitions)
+                queue.save(player)
+                queue.run()
+                runBlocking { queue.awaitInFlight() }
+                assertEquals("human_login", written.single().name)
+                assertFalse(written.single().bot)
+                written.clear()
+
+                assertTrue(Players.add(player))
+                try {
+                    runBlocking { queue.direct().join() }
+                    assertEquals("human_login", written.single().name)
+                    assertFalse(written.single().bot)
+                    written.clear()
+                } finally {
+                    Players.remove(player)
+                }
+            }
+        } finally {
+            if (previous == null) settings.remove("bots.save") else settings["bots.save"] = previous
+        }
+    }
 
     private open class TestStorage : Storage {
         override fun names(): Map<String, AccountDefinition> = emptyMap()
@@ -232,6 +276,136 @@ internal class SaveQueueTest : KoinMock() {
         while (!condition()) {
             check(System.currentTimeMillis() < deadline) { "Timed out waiting for $description" }
             Thread.sleep(10)
+        }
+    }
+
+    @Test
+    fun `Waiting for a save includes queued and superseding snapshots`() = runBlocking {
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val first = AtomicBoolean(true)
+        val written = CopyOnWriteArrayList<Tile>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (first.getAndSet(false)) {
+                    started.countDown()
+                    assertTrue(release.await(5, TimeUnit.SECONDS))
+                }
+                accounts.mapTo(written) { it.tile }
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "Bot", tile = Tile(1, 1)))
+        val waiting = async { queue.awaitSaved("BOT"); written.last() }
+        yield()
+        assertFalse(waiting.isCompleted, "Queued save must block loading before a write starts")
+        queue.run()
+        assertTrue(started.await(5, TimeUnit.SECONDS))
+        queue.save(Player(accountName = "bot", tile = Tile(2, 2)))
+        release.countDown()
+        queue.awaitInFlight()
+        assertTrue(queue.saving("BOT"), "Older write must not clear the newer snapshot")
+        assertFalse(waiting.isCompleted)
+        queue.run()
+        assertEquals(Tile(2, 2), waiting.await())
+    }
+
+    @Test
+    fun `Waiting for a save continues through transient failure`() = runBlocking {
+        var fail = true
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (fail) throw IOException("Temporary failure")
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "bot"))
+        val waiting = async { queue.awaitSaved("bot") }
+        yield()
+        queue.run()
+        queue.awaitInFlight()
+        assertFalse(waiting.isCompleted)
+        fail = false
+        queue.run()
+        waiting.await()
+    }
+
+    @Test
+    fun `Fallback save cannot unblock loading stale primary data`() = runBlocking {
+        var fail = true
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (fail) throw IOException("Disk full")
+            }
+        }
+        val queue = SaveQueue(storage, TestStorage(), retryMillis = 0)
+        queue.save(Player(accountName = "bot"))
+        queue.run()
+        queue.awaitInFlight()
+        assertFailsWith<IllegalStateException> { queue.awaitSaved("BOT") }
+        fail = false
+        queue.save(Player(accountName = "bot"))
+        queue.run()
+        queue.awaitInFlight()
+        queue.awaitSaved("BOT")
+    }
+
+    @Test
+    fun `Bot saving setting controls queued and shutdown saves`() {
+        val settings = Settings.load(emptyMap<String, String>())
+        val previous = settings.remove("bots.save")
+        try {
+            for (enabled in listOf(null, "false", "true")) {
+                if (enabled == null) {
+                    settings.remove("bots.save")
+                } else {
+                    Settings.load(mapOf("bots.save" to enabled))
+                }
+                val written = CopyOnWriteArrayList<String>()
+                val storage = object : TestStorage() {
+                    override fun save(accounts: List<PlayerSave>) {
+                        accounts.mapTo(written) { it.name }
+                    }
+                }
+                val queue = SaveQueue(storage)
+                val bot = Player(index = 1, accountName = "bot")
+                bot["bot"] = true
+                val player = Player(index = 2, accountName = "player")
+                val combatBot = Player(index = 3, accountName = "combat_bot")
+                combatBot["bot"] = true
+                combatBot["combat_bot"] = true
+                val pendingBot = Player(index = 4, accountName = "pending_bot")
+                pendingBot["bot"] = true
+                pendingBot["bot_spawn_pending"] = true
+                queue.save(bot)
+                queue.save(player)
+                queue.save(combatBot)
+                queue.save(pendingBot)
+                assertEquals(enabled == "true", queue.saving("bot"))
+                assertTrue(queue.saving("player"))
+                assertFalse(queue.saving("combat_bot"))
+                assertFalse(queue.saving("pending_bot"))
+                queue.run()
+                runBlocking { queue.awaitInFlight() }
+                assertEquals(if (enabled == "true") setOf("bot", "player") else setOf("player"), written.toSet())
+
+                written.clear()
+                assertTrue(Players.add(bot))
+                assertTrue(Players.add(player))
+                assertTrue(Players.add(combatBot))
+                assertTrue(Players.add(pendingBot))
+                try {
+                    runBlocking { queue.direct().join() }
+                    assertEquals(if (enabled == "true") setOf("bot", "player") else setOf("player"), written.toSet())
+                } finally {
+                    Players.remove(bot)
+                    Players.remove(player)
+                    Players.remove(combatBot)
+                    Players.remove(pendingBot)
+                }
+            }
+        } finally {
+            if (previous == null) settings.remove("bots.save") else settings["bots.save"] = previous
         }
     }
 }

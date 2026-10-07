@@ -15,14 +15,13 @@ import java.util.concurrent.ConcurrentHashMap
  * Stores data about player accounts whether they're online or offline
  */
 class AccountDefinitions(
-    private val definitions: MutableMap<String, AccountDefinition> = ConcurrentHashMap(),
-    val displayNames: MutableMap<String, String> = ConcurrentHashMap(),
+    definitions: MutableMap<String, AccountDefinition> = ConcurrentHashMap(),
+    displayNames: MutableMap<String, String> = ConcurrentHashMap(),
     val clans: MutableMap<String, Clan> = ConcurrentHashMap(),
-) {
+) : AccountNameRegistry(definitions, displayNames) {
 
     fun add(player: Player) {
-        displayNames[player.accountName.lowercase()] = player.name
-        definitions[player.name.lowercase()] = AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash)
+        register(AccountDefinition(player.accountName, player.name, player.previousName, player.passwordHash))
         clans[player.name.lowercase()] = Clan(
             owner = player.accountName,
             ownerDisplayName = player.name,
@@ -37,32 +36,20 @@ class AccountDefinitions(
         )
     }
 
-    fun update(accountName: String, newName: String, previousDisplayName: String) {
-        val definition = definitions.remove(previousDisplayName.lowercase()) ?: return
-        definitions[newName.lowercase()] = definition
+    override fun update(accountName: String, newName: String, previousDisplayName: String) {
+        super.update(accountName, newName, previousDisplayName)
         clans.remove(previousDisplayName.lowercase())?.let {
             it.ownerDisplayName = newName
             clans[newName.lowercase()] = it
         }
-        definition.displayName = newName
-        definition.previousName = previousDisplayName
-        displayNames[accountName.lowercase()] = newName
     }
 
     fun clan(displayName: String) = clans[displayName.lowercase()]
 
-    fun getByAccount(accountName: String): AccountDefinition? {
-        return get(displayNames[accountName.lowercase()] ?: return null)
-    }
-
-    fun get(displayName: String) = definitions[displayName.lowercase()]
-
-    fun getValue(displayName: String) = definitions.getValue(displayName.lowercase())
-
     fun load(storage: Storage = get()): AccountDefinitions {
         timedLoad("account") {
             for ((_, definition) in storage.names()) {
-                definitions[definition.displayName.lowercase()] = definition
+                definitions[key(definition.displayName)] = definition
             }
             for (def in definitions.values) {
                 displayNames[def.accountName.lowercase()] = def.displayName
@@ -70,6 +57,7 @@ class AccountDefinitions(
             for ((name, definition) in storage.clans()) {
                 clans[name.lowercase()] = definition
             }
+            indexNames()
             definitions.size
         }
         return this
@@ -93,7 +81,7 @@ class AccountDefinitions(
             if (skip(definition.accountName)) {
                 continue
             }
-            val displayName = displayNames[definition.accountName.lowercase()]?.lowercase() ?: definition.displayName.lowercase()
+            val displayName = displayNames[definition.accountName.lowercase()]?.let(::key) ?: key(definition.displayName)
             val existing = definitions[displayName]
             if (existing == null) {
                 definitions[displayName] = definition
@@ -101,7 +89,7 @@ class AccountDefinitions(
                 continue
             } else {
                 definitions.remove(displayName)
-                definitions[definition.displayName.lowercase()] = existing
+                definitions[key(definition.displayName)] = existing
                 existing.displayName = definition.displayName
                 existing.previousName = definition.previousName
                 existing.passwordHash = definition.passwordHash
@@ -128,6 +116,7 @@ class AccountDefinitions(
                 existing.coinShare = clan.coinShare
             }
         }
+        indexNames()
         return count
     }
 }

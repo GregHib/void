@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -33,16 +35,17 @@ class PlayerAccountLoader(
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
     private val gameContext: CoroutineDispatcher,
+    private val names: AccountNames = AccountNames(accountDefinitions, BotAccountDefinitions()),
 ) : AccountLoader {
     private val logger = InlineLogger()
 
     var update: Boolean = false
 
-    override fun used(username: String) = accountDefinitions.get(username) != null
+    override fun used(username: String) = names.used(username)
 
     override fun exists(username: String): Boolean = storage.exists(username)
 
-    override fun password(username: String): String? = accountDefinitions.getByAccount(username)?.passwordHash
+    override fun password(username: String): String? = if (names.isBot(username)) null else accountDefinitions.getByAccount(username)?.passwordHash
 
     /**
      * @return flow of instructions for the player to be controlled with
@@ -59,20 +62,24 @@ class PlayerAccountLoader(
                 return null
             }
             val save = storage.load(username)
+            if (save?.bot == true || names.isBot(username)) {
+                client.disconnect(Response.INVALID_CREDENTIALS)
+                return null
+            }
             if (save != null && banned(save.variables)) {
                 client.disconnect(Response.ACCOUNT_DISABLED)
                 return null
             }
             var player = save?.toPlayer()
             if (player == null) {
-                if (!Settings["development.accountCreation", false]) {
+                if (!Settings["development.accountCreation", false] || used(username)) {
                     client.disconnect(Response.INVALID_CREDENTIALS)
                     return null
                 }
                 player = accounts.create(username, passwordHash)
             }
             logger.info { "Player $username loaded and queued for login." }
-            connect(player, client, displayMode)
+            if (!connect(player, client, displayMode)) return null
             return player.instructions
         } catch (e: IllegalStateException) {
             logger.trace(e) { "Error loading player account" }
@@ -86,26 +93,27 @@ class PlayerAccountLoader(
         return until > (System.currentTimeMillis() / 1000).toInt()
     }
 
-    suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {
+    suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true): Boolean {
         accounts.setup(player, client, displayMode, viewport)
-        withContext(gameContext) {
+        return withContext(gameContext) {
             queue.await()
             val existing = Players.findByAccount(player.accountName)
             if (existing != null) {
                 logger.warn { "Logging out stale session for ${player.accountName} before login." }
                 accounts.logout(existing, safely = false)
                 client.disconnect(Response.ACCOUNT_ONLINE)
-                return@withContext
+                return@withContext false
             }
             if (!accounts.index(player)) {
                 logger.warn { "Error setting up account" }
                 client.disconnect(Response.WORLD_FULL)
-                return@withContext
+                return@withContext false
             }
             logger.info { "${if (viewport) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
             client.login(player.name, player.index, player.rights.ordinal, member = World.members, membersWorld = World.members)
             accounts.spawn(player, client)
             AuditLog.event(player, "connected", player.tile)
+            true
         }
     }
 }

@@ -29,12 +29,13 @@ fun engineModule(files: ConfigFiles) = module {
     // Entities
     single { Hunting(get(), get()) }
     single {
-        SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
+        val errors = File(Settings["storage.players.errors"])
+        SaveQueue(get(), BotStorage(SafeStorage(errors), SafeStorage(errors.resolve("bots"))), accountDefinitions = get())
     }
     single { AccountManager(get(), get(), get(), AppearanceOverrides().apply { load() }) }
-    single { AccountDefinitionsReloader(get(), get(), get()) }
+    single { AccountDefinitionsReloader(get(), get(), get(), bots = get()) }
     // IO
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, get()) }
     // Map
     single { DynamicZones(get()) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
@@ -62,6 +63,8 @@ fun engineModule(files: ConfigFiles) = module {
         DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
     }
     single(createdAtStart = true) { AccountDefinitions().load() }
+    single(createdAtStart = true) { BotAccountDefinitions().load(get()) }
+    single { AccountNames(get(), get()) }
     single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
     single(createdAtStart = true) { ClientScriptDefinitions().load(files.list(Settings["definitions.clientScripts"])) }
     single(createdAtStart = true) { CombatDefinitions().load(files.list(Settings["definitions.combatAttacks"])) }

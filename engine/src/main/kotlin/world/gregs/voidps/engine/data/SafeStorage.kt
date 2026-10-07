@@ -126,6 +126,7 @@ class SafeStorage(
 
     private fun toToml(save: PlayerSave): String = buildString {
         appendLine("accountName = \"${save.name}\"")
+        if (save.bot) appendLine("bot = true")
         appendLine("passwordHash = \"${save.password}\"")
         appendLine("experience = [ ${save.experience.joinToString(", ")} ]")
         appendLine("blocked_skills = [ ${save.blocked.joinToString(", ") { "\"${it.name}\"" }} ]")

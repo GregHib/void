@@ -76,4 +76,8 @@ interface Storage {
      * where [names] would otherwise parse each save file twice.
      */
     fun accounts(): List<PlayerSave>
+
+    fun loadBot(accountName: String): PlayerSave? = null
+
+    fun botNames(): Map<String, AccountDefinition> = emptyMap()
 }

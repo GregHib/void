@@ -26,7 +26,11 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.AccountNames
+import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -36,6 +40,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.sex
@@ -61,7 +66,11 @@ class BotCommands(
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
-    accountDefinitions: AccountDefinitions,
+    private val accountDefinitions: AccountDefinitions,
+    private val storage: Storage,
+    private val accountNames: AccountNames,
+    private val botAccounts: BotAccountDefinitions,
+    private val saveQueue: SaveQueue,
 ) : Script {
 
     private val combatBotsLogger = InlineLogger("CombatBots")
@@ -106,6 +115,9 @@ class BotCommands(
             if (isBot) {
                 manager.remove(bot)
                 combatBotTiers.remove(accountName)
+                if (accountDefinitions.getByAccount(accountName) == null) {
+                    accountNames.releaseBot(accountName, discardNew = contains("bot_spawn_pending"))
+                }
             }
         }
 
@@ -177,9 +189,11 @@ class BotCommands(
 
         settingsReload {
             loadSettings()
+            Players.filter { it.isBot }.forEach { it.flagAppearance() }
         }
 
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
+        adminCommand("spawn_bot", stringArg("name", desc = "Bot name; use underscores for spaces"), desc = "Spawn a bot with a specific name", handler = ::spawnNamed)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
@@ -293,7 +307,7 @@ class BotCommands(
                 player.message("  $activity", ChatType.Console)
             }
         }
-        val filter = args.getOrNull(0)
+        val filter = args.getOrNull(0)?.replace('_', ' ')
         val info = mutableListOf<String>()
         for (bot in manager.bots) {
             if (filter != null && !filter.equals(bot.player.name, ignoreCase = true)) {
@@ -326,39 +340,48 @@ class BotCommands(
         }
     }
 
-    fun spawn() {
-        GlobalScope.launch(Contexts.Game) {
-            counter++
-            val name = if (Settings["bots.numberedNames", false]) {
-                "Bot $counter"
-            } else {
-                val prefix = Settings["bots.namePrefix", ""].trim('"')
-                val length = 12 - prefix.length
-                val short = names.filter { it.length < length }
-                var selected = short.randomOrNull(random)
-                if (selected == null) {
-                    selected = names.removeAt(random.nextInt(names.size))
-                } else {
-                    names.remove(selected)
-                }
-                "${prefix}$selected"
-            }
+    fun spawnNamed(player: Player, args: List<String>) {
+        val name = args[0].replace('_', ' ').trim()
+        if (name.length !in 1..12 || name.any { it !in 'a'..'z' && it !in 'A'..'Z' && it !in '0'..'9' && it != ' ' }) {
+            player.message("Bot names must contain 1–12 letters, numbers or spaces.", ChatType.Console)
+            return
+        }
+        val accountName = botAccounts.getByAccount(name)?.accountName ?: botAccounts.get(name)?.accountName ?: name
+        spawn(accountName, player)
+    }
+
+    fun spawn(requestedName: String? = null, requester: Player? = null) {
+        launchBotSpawn(requestedName, requester, regular = true) {
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
-            val player = Player(tile = Areas[areas.random()].random(), accountName = name)
+            val saved = if (Settings["bots.save", false]) {
+                saveQueue.awaitSaved(name)
+                withContext(Dispatchers.IO) { storage.loadBot(name) }
+            } else {
+                null
+            }
+            val player = saved?.toPlayer() ?: Player(tile = Areas[areas.random()].random(), accountName = name)
+            attach(player)
             val bot = player.initBot()
-            loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
-            setAppearance(player)
-            player.inventory.add("coins", 10000)
+            if (!loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])) return@launchBotSpawn
+            if (saved == null) {
+                setAppearance(player)
+                player.inventory.add("coins", 10000)
+            }
             player.viewport?.loaded = true
             delay(3)
+            if (Players.findByAccount(name) !== player) return@launchBotSpawn
             manager.add(bot)
             player.running = true
+            complete()
+            requester?.message("Spawned bot '${player.name}'.", ChatType.Console)
         }
     }
 
     fun Player.initBot(): Bot {
         val bot = Bot(this)
         this["bot"] = bot
+        flagAppearance()
+        botAccounts.add(this, accountDefinitions)
         return bot
     }
 
@@ -384,16 +407,18 @@ class BotCommands(
     }
 
     private fun spawnCombatBot(context: CombatBotContext, arenaKey: String) {
-        GlobalScope.launch(Contexts.Game) {
-            counter++
-            val name = pickBotName()
-            val spawn = context.arenaSpawn(arenaKey) ?: return@launch
-            val bot = Player(tile = spawn, accountName = name).initBot()
-            loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])
+        launchBotSpawn {
+            val spawn = context.arenaSpawn(arenaKey) ?: return@launchBotSpawn
+            val tiers = context.arenaTiers(arenaKey)
+            if (tiers.isEmpty()) return@launchBotSpawn
+            val player = Player(tile = spawn, accountName = name)
+            attach(player)
+            val bot = player.initBot()
+            bot.player["combat_bot"] = true
+            if (!loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])) return@launchBotSpawn
             setAppearance(bot.player)
             delay(3)
-            val tiers = context.arenaTiers(arenaKey)
-            if (tiers.isEmpty()) return@launch
+            if (Players.findByAccount(name) !== player) return@launchBotSpawn
             val tier = tiers.random(random)
             combatBotTiers[bot.player.accountName] = tier
             applyTier(bot, tier)
@@ -410,6 +435,37 @@ class BotCommands(
             bot.blocked.remove(tier.activityId)
             manager.assign(bot, tier.activityId)
             bot.player.running = true
+            complete()
+        }
+    }
+
+    private fun launchBotSpawn(requestedName: String? = null, requester: Player? = null, regular: Boolean = false, action: suspend BotSpawnAttempt.() -> Unit) {
+        GlobalScope.launch(Contexts.Game) {
+            counter++
+            val name = if (requestedName == null) {
+                (if (regular && Settings["bots.save", false]) pickRegularBotName() else pickBotName()) ?: return@launch
+            } else {
+                if (!accountNames.reserveBot(requestedName)) {
+                    requester?.message("That name belongs to a player or a bot already spawning or online.", ChatType.Console)
+                    return@launch
+                }
+                requestedName
+            }
+            val attempt = BotSpawnAttempt(name)
+            try {
+                attempt.run(action, cleanup = {
+                    attempt.player?.let { player ->
+                        if (player.isBot) manager.remove(player.bot)
+                        combatBotTiers.remove(name)
+                        if (Players.findByAccount(name) === player) accounts.logout(player, safely = false)
+                    }
+                }, release = { accountNames.releaseBot(name, discardNew = true) })
+            } catch (exception: CancellationException) {
+                throw exception
+            } catch (exception: Exception) {
+                combatBotsLogger.error(exception) { "Failed to spawn bot '$name'." }
+                requester?.message("Failed to spawn bot '$name'; check the server log.", ChatType.Console)
+            }
         }
     }
 
@@ -482,14 +538,29 @@ class BotCommands(
         }
     }
 
-    private fun pickBotName(): String {
-        if (Settings["bots.numberedNames", false]) return "Bot $counter"
+    private suspend fun pickRegularBotName(): String? {
+        val savedNames = withContext(Dispatchers.IO) { storage.botNames().values.map { it.accountName } }
+        return BotNamePicker.pick(savedNames, Settings["bots.savedSpawnPercent", 50].coerceIn(0, 100), random, accountNames::reserveBot) {
+            pickBotName(freshOnly = true)
+        }
+    }
+
+    private fun pickBotName(freshOnly: Boolean = false): String? {
         val prefix = Settings["bots.namePrefix", ""].trim('"')
         val length = 12 - prefix.length
-        val short = names.filter { it.length < length }
-        val selected = short.randomOrNull(random) ?: names.removeAt(random.nextInt(names.size))
-        names.remove(selected)
-        return "$prefix$selected"
+        val numbered = Settings["bots.numberedNames", false]
+        while (numbered || names.isNotEmpty()) {
+            val candidate = if (numbered) {
+                "Bot $counter"
+            } else {
+                val selected = names.filter { it.length < length }.randomOrNull(random) ?: names.random(random)
+                names.remove(selected)
+                "$prefix$selected"
+            }
+            if ((!freshOnly || !accountNames.used(candidate)) && accountNames.reserveBot(candidate)) return candidate
+            if (numbered) counter++
+        }
+        return null
     }
 
     fun setAppearance(player: Player): Player {

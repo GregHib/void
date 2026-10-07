@@ -37,6 +37,7 @@ data class PlayerSave(
     val kills: Map<String, Int>,
     val records: Map<String, Int>,
     val recentEvents: List<RecentEvent>,
+    val bot: Boolean = false,
 ) {
 
     fun toPlayer(): Player = Player(
@@ -60,6 +61,7 @@ data class PlayerSave(
     fun save(file: File) {
         Config.atomicFileWriter(file) {
             writePair("accountName", name)
+            if (bot) writePair("bot", true)
             writePair("passwordHash", password)
             writePair("experience", experience)
             writePair("blocked_skills", blocked)
@@ -200,6 +202,7 @@ data class PlayerSave(
         other as PlayerSave
 
         if (male != other.male) return false
+        if (bot != other.bot) return false
         if (name != other.name) return false
         if (password != other.password) return false
         if (tile != other.tile) return false
@@ -222,6 +225,7 @@ data class PlayerSave(
 
     override fun hashCode(): Int {
         var result = male.hashCode()
+        result = 31 * result + bot.hashCode()
         result = 31 * result + name.hashCode()
         result = 31 * result + password.hashCode()
         result = 31 * result + tile.hashCode()
@@ -246,6 +250,7 @@ data class PlayerSave(
         fun load(file: File): PlayerSave {
             var name = ""
             var password = ""
+            var bot = false
             var tile = Tile.EMPTY
             val experience = IntArray(25)
             val blocked = ObjectArrayList<Skill>(0)
@@ -266,6 +271,7 @@ data class PlayerSave(
                 while (nextPair()) {
                     when (val key = key()) {
                         "accountName" -> name = string()
+                        "bot" -> bot = boolean()
                         "passwordHash" -> password = string()
                         "experience" -> {
                             var index = 0
@@ -471,12 +477,14 @@ data class PlayerSave(
                 kills = kills,
                 records = records,
                 recentEvents = recentEvents,
+                bot = bot,
             )
         }
     }
 }
 
-internal fun Player.copy() = PlayerSave(
+internal fun Player.copy(bot: Boolean = contains("bot")) = PlayerSave(
+    bot = bot,
     name = accountName,
     password = passwordHash,
     tile = tile,
