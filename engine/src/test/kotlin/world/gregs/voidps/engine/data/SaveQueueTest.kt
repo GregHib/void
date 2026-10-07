@@ -5,6 +5,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.yield
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
@@ -25,6 +26,45 @@ import kotlin.test.assertTrue
 import kotlin.test.assertFailsWith
 
 internal class SaveQueueTest : KoinMock() {
+
+    @Test
+    fun `Registered human running bot behaviour saves as a player regardless of bot saving setting`() {
+        val settings = Settings.load(emptyMap<String, String>())
+        val previous = settings["bots.save"]
+        val player = Player(index = 1, accountName = "human_login").apply {
+            this["display_name"] = "Different"
+            this["bot"] = true
+        }
+        val definitions = AccountDefinitions().apply { add(player) }
+        val written = CopyOnWriteArrayList<PlayerSave>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) { written.addAll(accounts) }
+        }
+        try {
+            for (enabled in listOf("false", "true")) {
+                Settings.load(mapOf("bots.save" to enabled))
+                val queue = SaveQueue(storage, accountDefinitions = definitions)
+                queue.save(player)
+                queue.run()
+                runBlocking { queue.awaitInFlight() }
+                assertEquals("human_login", written.single().name)
+                assertFalse(written.single().bot)
+                written.clear()
+
+                assertTrue(Players.add(player))
+                try {
+                    runBlocking { queue.direct().join() }
+                    assertEquals("human_login", written.single().name)
+                    assertFalse(written.single().bot)
+                    written.clear()
+                } finally {
+                    Players.remove(player)
+                }
+            }
+        } finally {
+            if (previous == null) settings.remove("bots.save") else settings["bots.save"] = previous
+        }
+    }
 
     private open class TestStorage : Storage {
         override fun names(): Map<String, AccountDefinition> = emptyMap()

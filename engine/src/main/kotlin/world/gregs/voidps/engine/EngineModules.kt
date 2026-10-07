@@ -30,7 +30,7 @@ fun engineModule(files: ConfigFiles) = module {
     single { Hunting(get(), get()) }
     single {
         val errors = File(Settings["storage.players.errors"])
-        SaveQueue(get(), BotStorage(SafeStorage(errors), SafeStorage(errors.resolve("bots"))))
+        SaveQueue(get(), BotStorage(SafeStorage(errors), SafeStorage(errors.resolve("bots"))), accountDefinitions = get())
     }
     single { AccountManager(get(), get(), get(), AppearanceOverrides().apply { load() }) }
     single { AccountDefinitionsReloader(get(), get(), get(), bots = get()) }

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import java.lang.Runnable
@@ -15,6 +16,7 @@ class SaveQueue(
     // SupervisorJob so a failed save doesn't cancel the scope and kill future saves
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
     private val retryMillis: Long = TimeUnit.MINUTES.toMillis(Settings["storage.save.retryMinutes", 5].toLong()),
+    private val accountDefinitions: AccountDefinitions = AccountDefinitions(),
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
     private val failing = ConcurrentHashMap<String, Long>()
@@ -38,7 +40,7 @@ class SaveQueue(
     }
 
     fun direct(): Job {
-        val online = Players.filter { shouldSave(it) }.map { it.copy() }
+        val online = Players.filter { shouldSave(it) }.map { it.copy(bot = isBotAccount(it)) }
         val names = online.mapTo(HashSet()) { it.name.lowercase() }
         val queued = pending.values.filter { it.name.lowercase() !in names }
         return scope.save(online + queued, retry = false)
@@ -113,12 +115,14 @@ class SaveQueue(
         if (!shouldSave(player) || Settings["storage.disabled", false]) {
             return
         }
-        pending[player.accountName.lowercase()] = player.copy()
+        pending[player.accountName.lowercase()] = player.copy(bot = isBotAccount(player))
     }
 
     fun saving(name: String) = pending.containsKey(name.lowercase())
 
-    private fun shouldSave(player: Player): Boolean = !player.contains("bot") ||
+    private fun isBotAccount(player: Player): Boolean = player.contains("bot") && accountDefinitions.getByAccount(player.accountName) == null
+
+    private fun shouldSave(player: Player): Boolean = !isBotAccount(player) ||
         (Settings["bots.save", false] && !player.contains("combat_bot") && !player.contains("bot_spawn_pending"))
 
     fun empty(): Boolean = pending.isEmpty()

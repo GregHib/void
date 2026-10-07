@@ -115,7 +115,9 @@ class BotCommands(
             if (isBot) {
                 manager.remove(bot)
                 combatBotTiers.remove(accountName)
-                accountNames.releaseBot(accountName, discardNew = contains("bot_spawn_pending"))
+                if (accountDefinitions.getByAccount(accountName) == null) {
+                    accountNames.releaseBot(accountName, discardNew = contains("bot_spawn_pending"))
+                }
             }
         }
 
@@ -379,7 +381,7 @@ class BotCommands(
         val bot = Bot(this)
         this["bot"] = bot
         flagAppearance()
-        botAccounts.add(this)
+        botAccounts.add(this, accountDefinitions)
         return bot
     }
 

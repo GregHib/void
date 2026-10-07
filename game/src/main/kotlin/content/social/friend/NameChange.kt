@@ -44,7 +44,7 @@ class NameChange(private val names: AccountNames, private val accounts: AccountD
             }
             player.choice("Change your name to '$toName'?") {
                 option("Yes, call me $toName") {
-                    if (names.used(toName, if (player.contains("bot")) bots else accounts, player.accountName)) {
+                    if (names.used(toName, if (accounts.getByAccount(player.accountName) != null) accounts else bots, player.accountName)) {
                         player.message("That name is already in use.")
                         return@option
                     }

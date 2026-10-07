@@ -92,7 +92,7 @@ var Player.name: String
         displayName = value
         set("display_name", value)
         nameHistory.add(previous)
-        if (contains("bot")) {
+        if (contains("bot") && get<AccountDefinitions>().getByAccount(accountName) == null) {
             get<BotAccountDefinitions>().update(accountName, value, previous)
         } else {
             get<AccountDefinitions>().update(accountName, value, previous)

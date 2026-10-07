@@ -483,8 +483,8 @@ data class PlayerSave(
     }
 }
 
-internal fun Player.copy() = PlayerSave(
-    bot = contains("bot"),
+internal fun Player.copy(bot: Boolean = contains("bot")) = PlayerSave(
+    bot = bot,
     name = accountName,
     password = passwordHash,
     tile = tile,

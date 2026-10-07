@@ -29,7 +29,8 @@ class BotAccountDefinitions : AccountNameRegistry() {
 
     fun discard(accountName: String) = unregister(accountName)
 
-    fun add(player: Player) {
+    fun add(player: Player, players: AccountDefinitions) {
+        if (players.getByAccount(player.accountName) != null) return
         register(AccountDefinition(player.accountName, player.name, player.previousName, ""))
     }
 }
