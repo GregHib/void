@@ -191,6 +191,7 @@ class BotCommands(
         }
 
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
+        adminCommand("spawn_bot", stringArg("name", desc = "Bot name; use underscores for spaces"), desc = "Spawn a bot with a specific name", handler = ::spawnNamed)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
@@ -304,7 +305,7 @@ class BotCommands(
                 player.message("  $activity", ChatType.Console)
             }
         }
-        val filter = args.getOrNull(0)
+        val filter = args.getOrNull(0)?.replace('_', ' ')
         val info = mutableListOf<String>()
         for (bot in manager.bots) {
             if (filter != null && !filter.equals(bot.player.name, ignoreCase = true)) {
@@ -337,8 +338,18 @@ class BotCommands(
         }
     }
 
-    fun spawn() {
-        launchBotSpawn {
+    fun spawnNamed(player: Player, args: List<String>) {
+        val name = args[0].replace('_', ' ').trim()
+        if (name.length !in 1..12 || name.any { it !in 'a'..'z' && it !in 'A'..'Z' && it !in '0'..'9' && it != ' ' }) {
+            player.message("Bot names must contain 1–12 letters, numbers or spaces.", ChatType.Console)
+            return
+        }
+        val accountName = botAccounts.getByAccount(name)?.accountName ?: botAccounts.get(name)?.accountName ?: name
+        spawn(accountName, player)
+    }
+
+    fun spawn(requestedName: String? = null, requester: Player? = null) {
+        launchBotSpawn(requestedName, requester) {
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
             val saved = if (Settings["bots.save", false]) {
                 saveQueue.awaitSaved(name)
@@ -360,6 +371,7 @@ class BotCommands(
             manager.add(bot)
             player.running = true
             complete()
+            requester?.message("Spawned bot '${player.name}'.", ChatType.Console)
         }
     }
 
@@ -425,10 +437,18 @@ class BotCommands(
         }
     }
 
-    private fun launchBotSpawn(action: suspend BotSpawnAttempt.() -> Unit) {
+    private fun launchBotSpawn(requestedName: String? = null, requester: Player? = null, action: suspend BotSpawnAttempt.() -> Unit) {
         GlobalScope.launch(Contexts.Game) {
             counter++
-            val name = pickBotName() ?: return@launch
+            val name = if (requestedName == null) {
+                pickBotName() ?: return@launch
+            } else {
+                if (!accountNames.reserveBot(requestedName)) {
+                    requester?.message("That name belongs to a player or a bot already spawning or online.", ChatType.Console)
+                    return@launch
+                }
+                requestedName
+            }
             val attempt = BotSpawnAttempt(name)
             try {
                 attempt.run(action, cleanup = {
@@ -442,6 +462,7 @@ class BotCommands(
                 throw exception
             } catch (exception: Exception) {
                 combatBotsLogger.error(exception) { "Failed to spawn bot '$name'." }
+                requester?.message("Failed to spawn bot '$name'; check the server log.", ChatType.Console)
             }
         }
     }
