@@ -113,7 +113,7 @@ class BotCommands(
             if (isBot) {
                 manager.remove(bot)
                 combatBotTiers.remove(accountName)
-                accountNames.releaseBot(accountName)
+                accountNames.releaseBot(accountName, discardNew = contains("bot_spawn_pending"))
             }
         }
 
@@ -336,22 +336,23 @@ class BotCommands(
     }
 
     fun spawn() {
-        GlobalScope.launch(Contexts.Game) {
-            counter++
-            val name = pickBotName() ?: return@launch
+        launchBotSpawn {
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
             val saved = if (Settings["bots.save", false]) withContext(Dispatchers.IO) { storage.loadBot(name) } else null
             val player = saved?.toPlayer() ?: Player(tile = Areas[areas.random()].random(), accountName = name)
+            attach(player)
             val bot = player.initBot()
-            loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
+            if (!loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])) return@launchBotSpawn
             if (saved == null) {
                 setAppearance(player)
                 player.inventory.add("coins", 10000)
             }
             player.viewport?.loaded = true
             delay(3)
+            if (Players.findByAccount(name) !== player) return@launchBotSpawn
             manager.add(bot)
             player.running = true
+            complete()
         }
     }
 
@@ -385,17 +386,18 @@ class BotCommands(
     }
 
     private fun spawnCombatBot(context: CombatBotContext, arenaKey: String) {
-        GlobalScope.launch(Contexts.Game) {
-            counter++
-            val name = pickBotName() ?: return@launch
-            val spawn = context.arenaSpawn(arenaKey) ?: return@launch
-            val bot = Player(tile = spawn, accountName = name).initBot()
+        launchBotSpawn {
+            val spawn = context.arenaSpawn(arenaKey) ?: return@launchBotSpawn
+            val tiers = context.arenaTiers(arenaKey)
+            if (tiers.isEmpty()) return@launchBotSpawn
+            val player = Player(tile = spawn, accountName = name)
+            attach(player)
+            val bot = player.initBot()
             bot.player["combat_bot"] = true
-            loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])
+            if (!loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])) return@launchBotSpawn
             setAppearance(bot.player)
             delay(3)
-            val tiers = context.arenaTiers(arenaKey)
-            if (tiers.isEmpty()) return@launch
+            if (Players.findByAccount(name) !== player) return@launchBotSpawn
             val tier = tiers.random(random)
             combatBotTiers[bot.player.accountName] = tier
             applyTier(bot, tier)
@@ -412,6 +414,28 @@ class BotCommands(
             bot.blocked.remove(tier.activityId)
             manager.assign(bot, tier.activityId)
             bot.player.running = true
+            complete()
+        }
+    }
+
+    private fun launchBotSpawn(action: suspend BotSpawnAttempt.() -> Unit) {
+        GlobalScope.launch(Contexts.Game) {
+            counter++
+            val name = pickBotName() ?: return@launch
+            val attempt = BotSpawnAttempt(name)
+            try {
+                attempt.run(action, cleanup = {
+                    attempt.player?.let { player ->
+                        if (player.isBot) manager.remove(player.bot)
+                        combatBotTiers.remove(name)
+                        if (Players.findByAccount(name) === player) accounts.logout(player, safely = false)
+                    }
+                }, release = { accountNames.releaseBot(name, discardNew = true) })
+            } catch (exception: CancellationException) {
+                throw exception
+            } catch (exception: Exception) {
+                combatBotsLogger.error(exception) { "Failed to spawn bot '$name'." }
+            }
         }
     }
 

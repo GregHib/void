@@ -106,7 +106,8 @@ class SaveQueue(
 
     fun saving(name: String) = pending.containsKey(name)
 
-    private fun shouldSave(player: Player): Boolean = !player.contains("bot") || (Settings["bots.save", false] && !player.contains("combat_bot"))
+    private fun shouldSave(player: Player): Boolean = !player.contains("bot") ||
+        (Settings["bots.save", false] && !player.contains("combat_bot") && !player.contains("bot_spawn_pending"))
 
     fun empty(): Boolean = pending.isEmpty()
 }

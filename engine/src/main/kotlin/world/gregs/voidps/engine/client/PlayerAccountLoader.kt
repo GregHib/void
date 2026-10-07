@@ -79,7 +79,7 @@ class PlayerAccountLoader(
                 player = accounts.create(username, passwordHash)
             }
             logger.info { "Player $username loaded and queued for login." }
-            connect(player, client, displayMode)
+            if (!connect(player, client, displayMode)) return null
             return player.instructions
         } catch (e: IllegalStateException) {
             logger.trace(e) { "Error loading player account" }
@@ -93,26 +93,27 @@ class PlayerAccountLoader(
         return until > (System.currentTimeMillis() / 1000).toInt()
     }
 
-    suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {
+    suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true): Boolean {
         accounts.setup(player, client, displayMode, viewport)
-        withContext(gameContext) {
+        return withContext(gameContext) {
             queue.await()
             val existing = Players.findByAccount(player.accountName)
             if (existing != null) {
                 logger.warn { "Logging out stale session for ${player.accountName} before login." }
                 accounts.logout(existing, safely = false)
                 client.disconnect(Response.ACCOUNT_ONLINE)
-                return@withContext
+                return@withContext false
             }
             if (!accounts.index(player)) {
                 logger.warn { "Error setting up account" }
                 client.disconnect(Response.WORLD_FULL)
-                return@withContext
+                return@withContext false
             }
             logger.info { "${if (viewport) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
             client.login(player.name, player.index, player.rights.ordinal, member = World.members, membersWorld = World.members)
             accounts.spawn(player, client)
             AuditLog.event(player, "connected", player.tile)
+            true
         }
     }
 }

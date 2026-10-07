@@ -21,6 +21,19 @@ internal class AccountNamesTest : KoinMock() {
     }
 
     @Test
+    fun `Failed first spawn releases its identity but failed saved bot load preserves ownership`() {
+        val bots = BotAccountDefinitions().apply { reserve("saved") }
+        val names = AccountNames(AccountDefinitions(), bots)
+        assertTrue(names.reserveBot("fresh"))
+        names.releaseBot("fresh", discardNew = true)
+        assertFalse(names.used("fresh"))
+        assertTrue(names.reserveBot("saved"))
+        names.releaseBot("saved", discardNew = true)
+        assertTrue(names.used("saved"))
+        assertTrue(names.reserveBot("saved"))
+    }
+
+    @Test
     fun `Bots cannot claim human login display or previous names`() {
         val players = AccountDefinitions(mutableMapOf("hero" to AccountDefinition("login", "Hero", "Old Hero", "hash")))
         val names = AccountNames(players, BotAccountDefinitions())

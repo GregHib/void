@@ -31,6 +31,12 @@ open class AccountNameRegistry(
         indexNames()
     }
 
+    protected fun unregister(accountName: String) {
+        definitions.entries.removeIf { key(it.value.accountName) == key(accountName) }
+        displayNames.remove(accountName.lowercase())
+        indexNames()
+    }
+
     fun used(name: String, exceptAccount: String? = null): Boolean =
         owners[key(name)]?.any { it != exceptAccount?.let(::key) } == true
 
