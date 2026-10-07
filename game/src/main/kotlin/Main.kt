@@ -50,6 +50,8 @@ object Main {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
         val settings = settings()
+        val tickMillis = Settings["server.tickMillis", 600].toLong()
+        require(tickMillis > 0) { "server.tickMillis must be greater than zero" }
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
@@ -88,7 +90,7 @@ object Main {
         val stages = getTickStages()
         World.start(configFiles)
         val scope = CoroutineScope(Contexts.Game)
-        val engine = GameLoop(stages).start(scope)
+        val engine = GameLoop(stages, tickMillis).start(scope)
         server.loginServer = loginServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
