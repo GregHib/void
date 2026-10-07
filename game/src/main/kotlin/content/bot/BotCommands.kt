@@ -389,6 +389,7 @@ class BotCommands(
             val name = pickBotName()
             val spawn = context.arenaSpawn(arenaKey) ?: return@launch
             val bot = Player(tile = spawn, accountName = name).initBot()
+            bot.player["combat_bot"] = true
             loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])
             setAppearance(bot.player)
             delay(3)

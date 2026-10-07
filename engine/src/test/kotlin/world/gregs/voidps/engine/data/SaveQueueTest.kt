@@ -257,10 +257,15 @@ internal class SaveQueueTest : KoinMock() {
                 val bot = Player(index = 1, accountName = "bot")
                 bot["bot"] = true
                 val player = Player(index = 2, accountName = "player")
+                val combatBot = Player(index = 3, accountName = "combat_bot")
+                combatBot["bot"] = true
+                combatBot["combat_bot"] = true
                 queue.save(bot)
                 queue.save(player)
+                queue.save(combatBot)
                 assertEquals(enabled == "true", queue.saving("bot"))
                 assertTrue(queue.saving("player"))
+                assertFalse(queue.saving("combat_bot"))
                 queue.run()
                 runBlocking { queue.awaitInFlight() }
                 assertEquals(if (enabled == "true") setOf("bot", "player") else setOf("player"), written.toSet())
@@ -268,12 +273,14 @@ internal class SaveQueueTest : KoinMock() {
                 written.clear()
                 assertTrue(Players.add(bot))
                 assertTrue(Players.add(player))
+                assertTrue(Players.add(combatBot))
                 try {
                     runBlocking { queue.direct().join() }
                     assertEquals(if (enabled == "true") setOf("bot", "player") else setOf("player"), written.toSet())
                 } finally {
                     Players.remove(bot)
                     Players.remove(player)
+                    Players.remove(combatBot)
                 }
             }
         } finally {
