@@ -49,6 +49,39 @@ class GrandExchangeTest : WorldTest() {
     }
 
     @Test
+    fun `Edit sell quantity with a large stack of unnoteable items`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("fire_rune", 2_140_000_000)
+
+        sell(seller, "fire_rune")
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(100_000)
+
+        assertEquals(100_000, seller.get<Int>("grand_exchange_quantity"))
+        tick()
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(Int.MAX_VALUE)
+        assertEquals(2_140_000_000, seller.get<Int>("grand_exchange_quantity"))
+    }
+
+    @Test
+    fun `Combined noted and unnoted sell quantities saturate at integer maximum`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword_noted", Int.MAX_VALUE)
+        seller.inventory.add("rune_longsword")
+
+        sell(seller, "rune_longsword")
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(100_000)
+
+        assertEquals(100_000, seller.get<Int>("grand_exchange_quantity"))
+        tick()
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(Int.MAX_VALUE)
+        assertEquals(Int.MAX_VALUE, seller.get<Int>("grand_exchange_quantity"))
+    }
+
+    @Test
     fun `Instant sells do not share a synthetic buyer limit`() {
         Settings.load(mapOf("grandExchange.instantOffer" to "true", "grandExchange.instantSellUnderMarketPrice" to "0.0"))
         val definition = ItemDefinitions.get("rune_longsword")
