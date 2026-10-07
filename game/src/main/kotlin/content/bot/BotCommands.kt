@@ -39,6 +39,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.sex
@@ -184,6 +185,7 @@ class BotCommands(
 
         settingsReload {
             loadSettings()
+            Players.filter { it.isBot }.forEach { it.flagAppearance() }
         }
 
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
@@ -356,6 +358,7 @@ class BotCommands(
     fun Player.initBot(): Bot {
         val bot = Bot(this)
         this["bot"] = bot
+        flagAppearance()
         botAccounts.add(this)
         return bot
     }

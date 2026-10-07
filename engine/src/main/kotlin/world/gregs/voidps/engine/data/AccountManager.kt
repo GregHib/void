@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.appearanceName
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
@@ -68,7 +69,7 @@ class AccountManager(
         player.levels.link(player, PlayerLevels(player.experience))
         player.body.link(player.equipment, overrides)
         player.body.updateAll()
-        player.appearance.displayName = player.name
+        player.appearance.displayName = player.appearanceName
         if (player.contains("new_player")) {
             accountDefinitions.add(player)
         }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
@@ -12,10 +13,19 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 fun Player.flagMovementType() = visuals.flag(VisualMask.MOVEMENT_TYPE_MASK)
 
 fun Player.flagAppearance() {
+    appearance.displayName = appearanceName
     visuals.flag(VisualMask.APPEARANCE_MASK)
     appearance.hash = appearance.hashCode()
     appearance.length = appearance.length()
 }
+
+val Player.appearanceName: String
+    get() {
+        val colour = Settings["bots.nameColour", ""].trim().removePrefix("#")
+        return if (contains("bot") && colour.matches(botNameColourPattern)) "<col=$colour>$name</col>" else name
+    }
+
+private val botNameColourPattern = Regex("[0-9a-fA-F]{6}")
 
 fun Player.flagTemporaryMoveType() = visuals.flag(VisualMask.TEMPORARY_MOVEMENT_TYPE_MASK)
 
