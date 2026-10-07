@@ -206,12 +206,11 @@ class GrandExchangeControls : Script {
     fun Player.totalItems(): Int {
         val item = Item(get("grand_exchange_item", ""))
         val noted = item.noted
-        var total = 0
-        if (noted != null) {
-            total += inventory.count(noted.id)
+        var total = inventory.count(item.id).toLong()
+        if (noted != null && noted.id != item.id) {
+            total += inventory.count(noted.id).toLong()
         }
-        total += inventory.count(item.id)
-        return total
+        return total.coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
     }
 
     /**

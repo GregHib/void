@@ -253,8 +253,9 @@ class GrandExchange(
         // if offer has more or same as other
         val required = offer.amount - offer.completed
         val available = open.remaining
+        val buyer = if (offer.sell) open.account else account
         var traded = if (required >= available) available else required
-        val limit = limits.limit(if (offer.sell) open.account else account, offer.item)
+        val limit = if (buyer.isEmpty()) -1 else limits.limit(buyer, offer.item)
         if (limit != -1) {
             traded = traded.coerceAtMost(limit)
             if (traded <= 0) {
@@ -270,8 +271,10 @@ class GrandExchange(
         }
         claim(open.id, open.account, offer.item, traded, traderPrice, offer.price, !offer.sell)
         // Record the successful exchange
-        limits.record(account, offer.item, traded)
-        history.record(offer.item, traded, offer.price)
+        if (buyer.isNotEmpty()) {
+            limits.record(buyer, offer.item, traded)
+        }
+        history.record(offer.item, traded, traderPrice)
         return true
     }
 
