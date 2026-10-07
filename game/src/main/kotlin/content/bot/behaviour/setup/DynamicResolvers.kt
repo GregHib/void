@@ -14,9 +14,12 @@ import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.BotItem
+import content.bot.behaviour.condition.BotVariable
 import content.bot.behaviour.condition.Condition
 import content.entity.npc.shop.stock.Price
 import content.entity.player.bank.bank
+import content.entity.player.bank.isNote
+import content.entity.player.bank.noted
 import content.entity.player.bank.ownsItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -165,10 +168,12 @@ object DynamicResolvers {
         actions.add(BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))))
         var found = false
         for (entry in items) {
-            val item = player.bank.items.firstOrNull { item -> valid(player, item, entry) }
+            val item = player.bank.items.firstOrNull { item -> valid(player, item, entry) || item.noted?.let { valid(player, it, entry) } == true }
             if (item == null) {
                 continue
             }
+            val output = if (valid(player, item, entry)) item else item.noted!!
+            actions.add(BotInterfaceOption("Toggle item/note withdrawl", "bank:note_mode", success = BotVariable("bank_notes", output.isNote, false)))
             withdraw(actions, entry, item)
             found = true
         }
