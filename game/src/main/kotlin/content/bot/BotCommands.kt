@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.AccountNames
 import world.gregs.voidps.engine.data.definition.BotAccountDefinitions
@@ -69,6 +70,7 @@ class BotCommands(
     private val storage: Storage,
     private val accountNames: AccountNames,
     private val botAccounts: BotAccountDefinitions,
+    private val saveQueue: SaveQueue,
 ) : Script {
 
     private val combatBotsLogger = InlineLogger("CombatBots")
@@ -338,7 +340,12 @@ class BotCommands(
     fun spawn() {
         launchBotSpawn {
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank")
-            val saved = if (Settings["bots.save", false]) withContext(Dispatchers.IO) { storage.loadBot(name) } else null
+            val saved = if (Settings["bots.save", false]) {
+                saveQueue.awaitSaved(name)
+                withContext(Dispatchers.IO) { storage.loadBot(name) }
+            } else {
+                null
+            }
             val player = saved?.toPlayer() ?: Player(tile = Areas[areas.random()].random(), accountName = name)
             attach(player)
             val bot = player.initBot()

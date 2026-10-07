@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.data
 
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.async
+import kotlinx.coroutines.yield
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.Claim
@@ -20,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.test.assertFailsWith
 
 internal class SaveQueueTest : KoinMock() {
 
@@ -234,6 +237,77 @@ internal class SaveQueueTest : KoinMock() {
             check(System.currentTimeMillis() < deadline) { "Timed out waiting for $description" }
             Thread.sleep(10)
         }
+    }
+
+    @Test
+    fun `Waiting for a save includes queued and superseding snapshots`() = runBlocking {
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val first = AtomicBoolean(true)
+        val written = CopyOnWriteArrayList<Tile>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (first.getAndSet(false)) {
+                    started.countDown()
+                    assertTrue(release.await(5, TimeUnit.SECONDS))
+                }
+                accounts.mapTo(written) { it.tile }
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "Bot", tile = Tile(1, 1)))
+        val waiting = async { queue.awaitSaved("BOT"); written.last() }
+        yield()
+        assertFalse(waiting.isCompleted, "Queued save must block loading before a write starts")
+        queue.run()
+        assertTrue(started.await(5, TimeUnit.SECONDS))
+        queue.save(Player(accountName = "bot", tile = Tile(2, 2)))
+        release.countDown()
+        queue.awaitInFlight()
+        assertTrue(queue.saving("BOT"), "Older write must not clear the newer snapshot")
+        assertFalse(waiting.isCompleted)
+        queue.run()
+        assertEquals(Tile(2, 2), waiting.await())
+    }
+
+    @Test
+    fun `Waiting for a save continues through transient failure`() = runBlocking {
+        var fail = true
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (fail) throw IOException("Temporary failure")
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "bot"))
+        val waiting = async { queue.awaitSaved("bot") }
+        yield()
+        queue.run()
+        queue.awaitInFlight()
+        assertFalse(waiting.isCompleted)
+        fail = false
+        queue.run()
+        waiting.await()
+    }
+
+    @Test
+    fun `Fallback save cannot unblock loading stale primary data`() = runBlocking {
+        var fail = true
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (fail) throw IOException("Disk full")
+            }
+        }
+        val queue = SaveQueue(storage, TestStorage(), retryMillis = 0)
+        queue.save(Player(accountName = "bot"))
+        queue.run()
+        queue.awaitInFlight()
+        assertFailsWith<IllegalStateException> { queue.awaitSaved("BOT") }
+        fail = false
+        queue.save(Player(accountName = "bot"))
+        queue.run()
+        queue.awaitInFlight()
+        queue.awaitSaved("BOT")
     }
 
     @Test

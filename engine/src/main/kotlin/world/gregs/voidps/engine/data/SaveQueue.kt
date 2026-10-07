@@ -18,6 +18,7 @@ class SaveQueue(
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
     private val failing = ConcurrentHashMap<String, Long>()
+    private val failedSaves = ConcurrentHashMap.newKeySet<String>()
     private val logger = InlineLogger()
     private var job: Job? = null
 
@@ -38,13 +39,22 @@ class SaveQueue(
 
     fun direct(): Job {
         val online = Players.filter { shouldSave(it) }.map { it.copy() }
-        val names = online.mapTo(HashSet()) { it.name }
-        val queued = pending.values.filter { it.name !in names }
+        val names = online.mapTo(HashSet()) { it.name.lowercase() }
+        val queued = pending.values.filter { it.name.lowercase() !in names }
         return scope.save(online + queued, retry = false)
     }
 
     suspend fun awaitInFlight() {
         job?.join()
+    }
+
+    /** Waits for all pending snapshots of this account, including queued retries. */
+    suspend fun awaitSaved(name: String) {
+        val key = name.lowercase()
+        while (pending.containsKey(key)) {
+            delay(10)
+        }
+        check(key !in failedSaves) { "Save for '$name' failed; refusing to load outdated account data." }
     }
 
     private fun CoroutineScope.save(accounts: List<PlayerSave>, retry: Boolean = true) = launch(handler) {
@@ -56,6 +66,7 @@ class SaveQueue(
                 failed(accounts, e, retry)
                 return@withContext
             }
+            accounts.forEach { failedSaves.remove(it.name.lowercase()) }
             clearPending(accounts)
             clearFailing(accounts)
             logger.info { "Saved ${accounts.size} ${"account".plural(accounts.size)} in ${System.currentTimeMillis() - start}ms" }
@@ -69,6 +80,7 @@ class SaveQueue(
             return
         }
         logger.error(exception) { "Giving up on ${exhausted.size} ${"account".plural(exhausted.size)}, writing to fallback storage: ${exhausted.joinToString { it.name }}" }
+        exhausted.forEach { failedSaves.add(it.name.lowercase()) }
         try {
             fallback.save(exhausted)
         } catch (e: Exception) {
@@ -80,18 +92,18 @@ class SaveQueue(
 
     private fun exhausted(accounts: List<PlayerSave>): List<PlayerSave> {
         val now = System.currentTimeMillis()
-        return accounts.filter { now - (failing.putIfAbsent(it.name, now) ?: now) >= retryMillis }
+        return accounts.filter { now - (failing.putIfAbsent(it.name.lowercase(), now) ?: now) >= retryMillis }
     }
 
     private fun clearFailing(accounts: List<PlayerSave>) {
         for (account in accounts) {
-            failing.remove(account.name)
+            failing.remove(account.name.lowercase())
         }
     }
 
     private fun clearPending(accounts: List<PlayerSave>) {
         for (account in accounts) {
-            pending.computeIfPresent(account.name) { _, current ->
+            pending.computeIfPresent(account.name.lowercase()) { _, current ->
                 if (current === account) null else current
             }
         }
@@ -101,10 +113,10 @@ class SaveQueue(
         if (!shouldSave(player) || Settings["storage.disabled", false]) {
             return
         }
-        pending[player.accountName] = player.copy()
+        pending[player.accountName.lowercase()] = player.copy()
     }
 
-    fun saving(name: String) = pending.containsKey(name)
+    fun saving(name: String) = pending.containsKey(name.lowercase())
 
     private fun shouldSave(player: Player): Boolean = !player.contains("bot") ||
         (Settings["bots.save", false] && !player.contains("combat_bot") && !player.contains("bot_spawn_pending"))
