@@ -37,7 +37,7 @@ class SaveQueue(
     }
 
     fun direct(): Job {
-        val online = Players.filter { !it.contains("bot") }.map { it.copy() }
+        val online = Players.filter { shouldSave(it) }.map { it.copy() }
         val names = online.mapTo(HashSet()) { it.name }
         val queued = pending.values.filter { it.name !in names }
         return scope.save(online + queued, retry = false)
@@ -98,13 +98,15 @@ class SaveQueue(
     }
 
     fun save(player: Player) {
-        if (player.contains("bot") || Settings["storage.disabled", false]) {
+        if (!shouldSave(player) || Settings["storage.disabled", false]) {
             return
         }
         pending[player.accountName] = player.copy()
     }
 
     fun saving(name: String) = pending.containsKey(name)
+
+    private fun shouldSave(player: Player): Boolean = !player.contains("bot") || Settings["bots.save", false]
 
     fun empty(): Boolean = pending.isEmpty()
 }

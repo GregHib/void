@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.type.Tile
@@ -232,6 +233,51 @@ internal class SaveQueueTest : KoinMock() {
         while (!condition()) {
             check(System.currentTimeMillis() < deadline) { "Timed out waiting for $description" }
             Thread.sleep(10)
+        }
+    }
+
+    @Test
+    fun `Bot saving setting controls queued and shutdown saves`() {
+        val settings = Settings.load(emptyMap<String, String>())
+        val previous = settings.remove("bots.save")
+        try {
+            for (enabled in listOf(null, "false", "true")) {
+                if (enabled == null) {
+                    settings.remove("bots.save")
+                } else {
+                    Settings.load(mapOf("bots.save" to enabled))
+                }
+                val written = CopyOnWriteArrayList<String>()
+                val storage = object : TestStorage() {
+                    override fun save(accounts: List<PlayerSave>) {
+                        accounts.mapTo(written) { it.name }
+                    }
+                }
+                val queue = SaveQueue(storage)
+                val bot = Player(index = 1, accountName = "bot")
+                bot["bot"] = true
+                val player = Player(index = 2, accountName = "player")
+                queue.save(bot)
+                queue.save(player)
+                assertEquals(enabled == "true", queue.saving("bot"))
+                assertTrue(queue.saving("player"))
+                queue.run()
+                runBlocking { queue.awaitInFlight() }
+                assertEquals(if (enabled == "true") setOf("bot", "player") else setOf("player"), written.toSet())
+
+                written.clear()
+                assertTrue(Players.add(bot))
+                assertTrue(Players.add(player))
+                try {
+                    runBlocking { queue.direct().join() }
+                    assertEquals(if (enabled == "true") setOf("bot", "player") else setOf("player"), written.toSet())
+                } finally {
+                    Players.remove(bot)
+                    Players.remove(player)
+                }
+            }
+        } finally {
+            if (previous == null) settings.remove("bots.save") else settings["bots.save"] = previous
         }
     }
 }
