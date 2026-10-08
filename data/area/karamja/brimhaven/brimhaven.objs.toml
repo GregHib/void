@@ -73,7 +73,3 @@ examine = "Handy for boarding the ship."
 [travel_cart_brimhaven]
 id = 2230
 examine = "A sturdy cart for travelling in."
-
-[bigtable2]
-id = 595
-examine = "A nice sturdy looking table."

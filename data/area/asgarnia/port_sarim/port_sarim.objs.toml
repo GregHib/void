@@ -142,10 +142,6 @@ examine = "A huge lump of rock."
 id = 714
 examine = "A recently extinguished fire."
 
-[port_sarim_fungus]
-id = 1171
-examine = "I doubt that's edible."
-
 [port_sarim_hanging_wheel]
 id = 40105
 examine = "Looks like this ship was way off course!"

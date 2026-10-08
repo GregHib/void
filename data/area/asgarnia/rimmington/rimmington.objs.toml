@@ -214,10 +214,6 @@ examine = "Used to squeeze moisture from the hide"
 id = 1031
 examine = "Used to squeeze moisture from the hide"
 
-[rimmington_barrel_3]
-id = 9519
-examine = "A wooden barrel for storage."
-
 [customs_sergeant_object]
 id = 4340
 examine = "Wow, he looks busy."
