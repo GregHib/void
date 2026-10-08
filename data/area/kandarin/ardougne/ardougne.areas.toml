@@ -46,3 +46,11 @@ hint = "south of Ardougne."
 [ardounge_fishing_area]
 x = [2561, 2568]
 y = [3365, 3374]
+
+[ardougne_north_farming_patch]
+# nav-editor: named area only
+x = [2664, 2671]
+y = [3372, 3377]
+level = 0
+tags = []
+hint = ""
