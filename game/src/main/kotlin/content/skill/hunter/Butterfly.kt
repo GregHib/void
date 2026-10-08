@@ -43,10 +43,6 @@ class Butterfly : Script {
                 return@npcOperate
             }
             var jar = inventory.contains("butterfly_jar")
-            if (net && !jar) {
-                message("You do not have any empty jars to hold this butterfly with.") // TODO proper message
-                return@npcOperate
-            }
             anim("butterfly_catch")
             sound("butterfly_net")
             delay(2)
