@@ -115,7 +115,7 @@ class MakeoverMage : Script {
     }
 
     fun makeover(npc: NPC): Int {
-        val current = if (npc.transformed) npc.transformId else "makeover_mage_male"
+        val current = if (npc.transformed) npc.transformId else npc.id
         val toFemale = current == "makeover_mage_male"
         npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
         npc.gfx("curse_impact", delay = 15)

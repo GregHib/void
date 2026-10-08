@@ -57,3 +57,47 @@ examine = "A wooden stool."
 [falador_ladder_down]
 id = 2113
 examine = "I can climb down this."
+
+[falador_cauldron]
+id = 692
+examine = "I don't even want to think about what's cooking in that."
+
+[falador_cooking_shelves]
+id = 1013
+examine = "Storage for cookery items."
+
+[falador_drawers]
+id = 350
+examine = "These open and close!"
+
+[falador_noticeboard]
+id = 9694
+examine = "Some helpful people have placed notes on here, how nice."
+
+[falador_closed_chest]
+id = 33934
+examine = "I wonder what's inside."
+
+[falador_bookcase]
+id = 9609
+examine = "A case. With books."
+
+[falador_bed]
+id = 9612
+examine = "The Makeover Mage's bed."
+
+[falador_mossy_rock]
+id = 462
+examine = "Looks slippery!"
+
+[falador_mossy_rock_2]
+id = 463
+examine = "Looks slippery!"
+
+[falador_mushroom]
+id = 1167
+examine = "Fungal growth."
+
+[falador_mushroom_2]
+id = 1168
+examine = "Poisonous no doubt."

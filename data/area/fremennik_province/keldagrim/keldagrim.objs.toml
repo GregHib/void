@@ -49,3 +49,35 @@ examine = "A whole lot of tools for crafting."
 [clothes_stall_keldagrim]
 id = 6165
 examine = "I can get clothes made up from this stall."
+
+[dwarf_keldagrim_lamp_stand]
+id = 6203
+examine = "Gives out light, but then you knew that already."
+
+[ridable_trackstraight_gdecor]
+id = 7022
+examine = "Tracks for the carts to run over."
+
+[keldagrim_trackstraight_gdecor]
+id = 8887
+examine = "Cart tracks."
+
+[keldagrim_track_supports]
+id = 8899
+examine = "A support for the tracks."
+
+[keldagrim_track_supports5]
+id = 8903
+examine = "A support for the tracks."
+
+[dwarf_firewall_centre_straight]
+id = 5979
+examine = "It's a sheer wall of fire, rising as high as you can see."
+
+[dwarf_gold_mine]
+id = 5989
+examine = "A mineral vein that looks distinctly like gold."
+
+[dwarf_keldagrim_table_big]
+id = 6198
+examine = "Useful for a dwarf."

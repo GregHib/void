@@ -137,6 +137,7 @@ att = 5
 str = 5
 def = 5
 combat_def = "man"
+respawn_delay = 25
 hunt_mode = "cowardly"
 drop_table = "mugger"
 examine = "He jumps out and attacks people."
@@ -156,6 +157,7 @@ examine = "Holy looking."
 [bellemorde_port_sarim]
 id = 2942
 examine = "Unkempt and a bit smelly."
+dialogue = "cat"
 
 [the_face_port_sarim]
 id = 2950
@@ -287,6 +289,7 @@ slayer_xp = 5.0
 categories = ["goblins"]
 examine = "A badly-behaved goblin."
 drop_table = "empty"
+dialogue = "old"
 
 [ned_port_sarim_2]
 id = 4475
@@ -297,3 +300,6 @@ id = 11508
 [sir_tiffy_port_sarim_2]
 id = 11512
 
+[skippy]
+id = 2795
+examine = "He looks angry and smells drunk."
