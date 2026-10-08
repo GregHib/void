@@ -100,6 +100,16 @@ option = "Climb-down"
 tile = { x = 3011, y = 3235, level = 1 }
 delta = { level = -1 }
 
+[40026]
+option = "Climb-up"
+tile = { x = 3013, y = 3203 }
+delta = { level = 1 }
+
+[40027]
+option = "Climb-down"
+tile = { x = 3013, y = 3203, level = 1 }
+delta = { level = -1 }
+
 [10321]
 option = "Climb-down"
 tile = { x = 3018, y = 3232 }
@@ -174,4 +184,3 @@ to = { x = 3047, y = 3204 }
 option = "Cross"
 tile = { x = 3047, y = 3205 }
 to = { x = 3047, y = 3207, level = 1 }
-

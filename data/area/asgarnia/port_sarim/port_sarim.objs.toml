@@ -37,3 +37,299 @@ examine = "Ideal for cooking on."
 [sarim_barrel]
 id = 9519
 examine = "A wooden barrel for storage."
+
+[port_sarim_fireplace]
+id = 40195
+examine = "A fire burns brightly here."
+
+[port_sarim_bed]
+id = 40188
+examine = "I guess I could sleep in it if I was really tired"
+
+[port_sarim_bed_2]
+id = 40189
+examine = "Ideal for late night conversations."
+
+[port_sarim_hot_coals]
+id = 9549
+examine = "A bucket full of red hot coals."
+
+[port_sarim_rat_hole]
+id = 5613
+examine = "It smells like the rats aren't washing often enough."
+
+[port_sarim_roots]
+id = 9664
+examine = "A gnarly old tree root."
+
+[port_sarim_roots_2]
+id = 9665
+examine = "The roots of a tree are exposed."
+
+[port_sarim_roots_3]
+id = 9666
+examine = "I hope I don't trip over any of these."
+
+[port_sarim_mysterious_statue]
+id = 9668
+examine = "Its eyes stare off into the distance..."
+
+[port_sarim_fallen_tree]
+id = 9663
+examine = "This tree has fallen to the ground."
+
+[port_sarim_bucket]
+id = 9567
+examine = "Ewww!"
+
+[port_sarim_gravestone]
+id = 39846
+examine = "The inscription is worn away and unreadable."
+
+[port_sarim_gravestone_2]
+id = 39848
+examine = "'Here lies...' is all I can read."
+
+[port_sarim_gravestone_3]
+id = 39849
+examine = "The inscription is worn away and unreadable."
+
+[port_sarim_gravestone_4]
+id = 39852
+examine = "'Here lies...' is all I can read."
+
+[port_sarim_gravestone_5]
+id = 39855
+examine = "The inscription is worn away and unreadable."
+
+[port_sarim_fire]
+id = 5631
+examine = "Glowing embers."
+
+[port_sarim_hammock]
+id = 9508
+examine = "Perfect for snoozing in the sun."
+
+[port_sarim_leafy_tree]
+id = 1302
+examine = "A leafy tree."
+
+[port_sarim_leafy_tree_2]
+id = 7397
+examine = "A leafy tree."
+
+[port_sarim_leafy_tree_3]
+id = 7398
+examine = "A leafy tree."
+
+[port_sarim_rock]
+id = 440
+examine = "A big slimy lump of rock."
+
+[port_sarim_rock_2]
+id = 442
+examine = "A slippery looking rock."
+
+[port_sarim_boulder]
+id = 444
+examine = "A huge lump of rock."
+
+[port_sarim_boulder_2]
+id = 445
+examine = "A huge lump of rock."
+
+[port_sarim_fire_remains]
+id = 714
+examine = "A recently extinguished fire."
+
+[port_sarim_fungus]
+id = 1171
+examine = "I doubt that's edible."
+
+[port_sarim_hanging_wheel]
+id = 40105
+examine = "Looks like this ship was way off course!"
+
+[port_sarim_stuffed_swordfish]
+id = 40042
+examine = "It really was this big!"
+
+[port_sarim_stuffed_swordfish_2]
+id = 40043
+examine = "It really was this big!"
+
+[port_sarim_fishing_net]
+id = 969
+examine = "Complete with authentic seaweed!"
+
+[port_sarim_table]
+id = 40031
+examine = "Useful for putting things on."
+
+[port_sarim_bar]
+id = 40066
+examine = "Excessive consumption of alcohol is bad for you."
+
+[port_sarim_bar_2]
+id = 40067
+examine = "Excessive consumption of alcohol is bad for you."
+
+[port_sarim_bar_3]
+id = 40068
+examine = "Excessive consumption of alcohol is bad for you."
+
+[port_sarim_bar_4]
+id = 40069
+examine = "A drink for every occasion."
+
+[port_sarim_bar_5]
+id = 40070
+examine = "A drink for every occasion."
+
+[port_sarim_bar_6]
+id = 40071
+examine = "A drink for every occasion."
+
+[port_sarim_bar_trapdoor]
+id = 53649
+examine = "Leads down to the pub's cellar."
+
+[port_sarim_anchor]
+id = 9522
+examine = "How much does this weigh?"
+
+[port_sarim_barrel]
+id = 40018
+examine = "A wooden barrel for storage."
+
+[port_sarim_barrel_2]
+id = 40019
+examine = "A wooden barrel containing lots of fish."
+
+[port_sarim_full_fishing_net]
+id = 392
+examine = "A fishing net full of fish."
+
+[port_sarim_crane]
+id = 40081
+examine = "It's used for loading and unloading fishing boats."
+
+[port_sarim_picnic_bench]
+id = 40082
+examine = "Sit back and enjoy the view."
+
+[port_sarim_row_boat]
+id = 40084
+examine = "I hope it doesn't sink."
+
+[port_sarim_cart]
+id = 40083
+examine = "One horse power, wooden suspension. A beauty."
+
+[port_sarim_tree]
+id = 1301
+examine = "Home to many unusual creatures."
+
+[port_sarim_drawers]
+id = 40050
+examine = "A chest of drawers."
+
+[port_sarim_bed_3]
+id = 40035
+examine = "Sweet dreams!"
+
+[port_sarim_wardrobe]
+id = 40064
+examine = "A fancy place to store clothes."
+
+[port_sarim_counter]
+id = 9516
+examine = "Betty's counter."
+
+[port_sarim_cauldron]
+id = 40104
+examine = "I wonder what she's making?"
+
+[port_sarim_shelves]
+id = 40077
+examine = "Betty keeps some rune objects here."
+
+[port_sarim_shelves_2]
+id = 40078
+examine = "Betty keeps some rune objects here."
+
+[port_sarim_shelves_3]
+id = 40079
+examine = "Betty keeps some rune objects here."
+
+[port_sarim_shelves_4]
+id = 40080
+examine = "Betty keeps some rune objects here."
+
+[port_sarim_axe_cabinet]
+id = 40076
+examine = "Break glass in case of emergency."
+
+[port_sarim_cabinet]
+id = 40054
+examine = "The perfect place to store things."
+
+[port_sarim_shelf]
+id = 40045
+examine = "Storage for all needs."
+
+[port_sarim_shelf_2]
+id = 40046
+examine = "Storage for all needs."
+
+[port_sarim_shelf_3]
+id = 40047
+examine = "Storage for all needs."
+
+[port_sarim_bookcase]
+id = 40033
+examine = "A case. With books."
+
+[port_sarim_mirror]
+id = 40065
+examine = "Looking good!"
+
+[port_sarim_drawers_2]
+id = 40052
+examine = "A chest of drawers."
+
+[port_sarim_dresser]
+id = 40055
+examine = "Storage for all cookery items."
+
+[port_sarim_dresser_2]
+id = 40056
+examine = "Storage for all needs."
+
+[port_sarim_clock]
+id = 40029
+examine = "Tick-tock, it's a clock."
+
+[port_sarim_chest_closed]
+id = 40093
+examine = "I wonder what's inside."
+
+[port_sarim_counter_2]
+id = 40028
+examine = "Items are for sale here."
+
+[port_sarim_table_2]
+id = 40030
+examine = "A nice sturdy looking table."
+
+[port_sarim_bookcase_2]
+id = 40032
+examine = "A good source of books!"
+
+[port_sarim_bed_4]
+id = 40034
+examine = "Somewhere to rest your head."
+
+[port_sarim_bed_5]
+id = 40190
+examine = "Ideal for late night conversations."

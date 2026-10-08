@@ -1,0 +1,267 @@
+[rimmington_spade]
+id = 9662
+examine = "A spade."
+
+[rimmington_wardrobe_closed]
+id = 388
+examine = "I wonder what this spooky item contains."
+
+[rimmington_wardrobe_open]
+id = 389
+examine = "It smells funny in there."
+
+[rimmington_cauldron]
+id = 14338
+examine = "A large bubbling cauldron. Smells... Ugh!"
+
+[rimmington_shelf]
+id = 1019
+examine = "What kind of sick person keeps a skull on their wall?"
+
+[rimmington_shelf_2]
+id = 1020
+examine = "Esoteric artifacts."
+
+[rimmington_shelf_3]
+id = 1021
+examine = "Esoteric artifacts."
+
+[rimmington_broom]
+id = 693
+examine = "Good for sweeping."
+
+[rimmington_rocking_chair]
+id = 1096
+examine = "Good for rocking in!"
+
+[rimmington_bed]
+id = 5497
+examine = "A well slept in bed."
+
+[rimmington_table]
+id = 9614
+examine = "Generally used for putting things on."
+
+[rimmington_barrel]
+id = 6213
+examine = "A barrel full of ranging equipment..."
+
+[rimmington_warehouse_shelves]
+id = 9618
+examine = "All-purpose storage."
+
+[rimmington_warehouse_shelves_2]
+id = 9619
+examine = "All-purpose storage."
+
+[rimmington_warehouse_shelves_3]
+id = 9620
+examine = "All-purpose storage."
+
+[rimmington_warehouse_shelves_4]
+id = 9617
+examine = "All-purpose storage."
+
+[rimmington_table_2]
+id = 9685
+examine = "Generally used for putting things on."
+
+[rimmington_cloth]
+id = 9686
+examine = "Some fabric ready for clothing."
+
+[rimmington_clothes_model]
+id = 9690
+examine = "I think this one's for making men's clothes."
+
+[rimmington_clothes_model_2]
+id = 9688
+examine = "I'm guessing it's for making women's clothes."
+
+[rimmington_clothes_model_3]
+id = 9689
+examine = "Looks like it's for making men's clothes."
+
+[rimmington_clothes_model_4]
+id = 9687
+examine = "I'm guessing it's for making women's clothes."
+
+[rimmington_clothes_equipment]
+id = 963
+examine = "Essentials for a seamstress."
+
+[rimmington_small_table]
+id = 9615
+examine = "A small wooden table."
+
+[rimmington_counter]
+id = 9616
+examine = "Items are for sale here."
+
+[rimmington_large_table]
+id = 9613
+examine = "A nice sturdy looking table."
+
+[rimmington_crates]
+id = 9553
+examine = "Some wooden crates."
+
+[rimmington_boxes]
+id = 9536
+examine = "Some wooden boxes."
+
+[rimmington_hollow_log]
+id = 1338
+examine = "This old tree is rotting away."
+
+[rimmington_easel]
+id = 9610
+examine = "An artist's easel."
+
+[rimmington_fractionalizing_still]
+id = 4026
+examine = "A still for fractionalising oils."
+
+[rimmington_potted_flower]
+id = 1156
+examine = "I bet bees like this."
+
+[rimmington_large_table_2]
+id = 9697
+examine = "A nice sturdy looking table."
+
+[rimmington_large_table_3]
+id = 9698
+examine = "A nice sturdy looking table."
+
+[rimmington_large_table_4]
+id = 9699
+examine = "A nice sturdy looking table."
+
+[rimmington_large_table_5]
+id = 9700
+examine = "A nice sturdy looking table."
+
+[rimmington_bookcase]
+id = 9611
+examine = "A good source of books!"
+
+[rimmington_bookcase_2]
+id = 9523
+examine = "A case. With books."
+
+[rimmington_bookcase_3]
+id = 9607
+examine = "A case. With books."
+
+[rimmington_bookcase_4]
+id = 9608
+examine = "A case. With books."
+
+[rimmington_fireplace]
+id = 8712
+examine = "A grand old fireplace."
+
+[rimmington_barrel_2]
+id = 9521
+examine = "A wooden barrel for storage."
+
+[rimmington_vat]
+id = 1028
+examine = "This contains dye for leather."
+
+[rimmington_chemistry_table]
+id = 619
+examine = "There are some strange chemicals here."
+
+[rimmington_lamp_oil_still]
+id = 5909
+examine = "A still for making lamp oil."
+
+[rimmington_potted_plant]
+id = 1158
+examine = "A large potted plant."
+
+[rimmington_trapdoor]
+id = 53281
+examine = "The chemist's basement is through this trapdoor."
+
+[rimmington_scarecrow]
+id = 9667
+examine = "Disturbingly man-like."
+
+[rimmington_table_3]
+id = 595
+examine = "A nice sturdy looking table."
+
+[rimmington_workbench]
+id = 610
+examine = "A handy workbench for a handy person."
+
+[rimmington_table_4]
+id = 598
+examine = "Useful for putting things on."
+
+[rimmington_vat_2]
+id = 1029
+examine = "This contains dye for leather."
+
+[rimmington_mangle]
+id = 1030
+examine = "Used to squeeze moisture from the hide"
+
+[rimmington_mangle_2]
+id = 1031
+examine = "Used to squeeze moisture from the hide"
+
+[rimmington_barrel_3]
+id = 9519
+examine = "A wooden barrel for storage."
+
+[customs_sergeant_object]
+id = 4340
+examine = "Wow, he looks busy."
+
+[customs_sergeant_object_2]
+id = 31459
+examine = "Wow, he looks busy."
+
+[rimmington_table_5]
+id = 602
+examine = "Useful for putting things on."
+
+[rimmington_table_6]
+id = 604
+examine = "Useful for putting things on."
+
+[rimmington_piano_stool]
+id = 682
+examine = "Time for a recital?"
+
+[rimmington_piano]
+id = 681
+examine = "I never learnt to play."
+
+[rimmington_study_desk]
+id = 608
+examine = "Laden with heaps of paper."
+
+[rimmington_bed_2]
+id = 9509
+examine = "Lovely comfy-looking big bed."
+
+[rimmington_drawers_closed]
+id = 352
+examine = "These open and close!"
+
+[rimmington_painting]
+id = 888
+examine = "A beautiful landscape."
+
+[rimmington_locker]
+id = 31460
+examine = "Things are stored in here."
+
+[rimmington_crates_2]
+id = 9535
+examine = "A wooden crate."

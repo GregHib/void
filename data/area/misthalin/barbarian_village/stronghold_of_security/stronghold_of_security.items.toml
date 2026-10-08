@@ -4,6 +4,7 @@ price = 152
 limit = 100
 weight = 0.01
 aka = ["runescape_account_security"]
+book = "security_book"
 examine = "Contains information which could make your account secure!"
 
 [stronghold_notes]

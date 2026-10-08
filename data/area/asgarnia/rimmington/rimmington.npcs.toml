@@ -183,6 +183,7 @@ hitpoints = 70
 combat_def = "woman"
 respawn_delay = 25
 drop_table = "citizen"
+categories = ["human"]
 examine = "A citizen of Rimmington."
 
 [hengel]
@@ -190,4 +191,13 @@ id = 2683
 hitpoints = 70
 combat_def = "man"
 respawn_delay = 25
+categories = ["human"]
 examine = "A citizen of Rimmington."
+
+[customs_sergeant]
+id = 7830
+examine = "Wow, he looks busy."
+
+[customs_sergeant_2]
+id = 7831
+clone = "customs_sergeant"
