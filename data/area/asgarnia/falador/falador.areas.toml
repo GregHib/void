@@ -92,3 +92,19 @@ y = [3369, 3371]
 level = 0
 tags = ["bank"]
 hint = ""
+
+[falador_chainmail_shop]
+# nav-editor: named area only
+x = [2970, 2974]
+y = [3311, 3314]
+level = 0
+tags = []
+hint = ""
+
+[falador_mace_shop]
+# nav-editor: named area only
+x = [2949, 2951]
+y = [3385, 3388]
+level = 0
+tags = []
+hint = ""

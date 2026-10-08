@@ -1,0 +1,13 @@
+edges = [
+    { from = { x = 2913, y = 3508 }, to = { x = 2918, y = 3525 } },
+    { from = { x = 2918, y = 3525 }, to = { x = 2922, y = 3541 } },
+    { from = { x = 2922, y = 3541 }, to = { x = 2920, y = 3545 } },
+    { from = { x = 2920, y = 3545 }, to = { x = 2925, y = 3546 }, actions = [{ object = { option = "Open", id = "door_7_closed", x = 2924, y = 3545, radius = 0, success = { object = { id = "door_7_opened", x = 2923, y = 3545 } } } }, { tile = { x = 2925, y = 3546, radius = 1 } }], cost = 6 },
+    { from = { x = 2925, y = 3546 }, to = { x = 2920, y = 3545 }, actions = [{ object = { option = "Open", id = "door_7_closed", x = 2924, y = 3545, radius = 0, success = { object = { id = "door_7_opened", x = 2923, y = 3545 } } } }, { tile = { x = 2920, y = 3545, radius = 1 } }], cost = 6 },
+    { from = { x = 2920, y = 3545 }, to = { x = 2907, y = 3546 } },
+    { from = { x = 2907, y = 3546 }, to = { x = 2898, y = 3546 } },
+    { from = { x = 2898, y = 3546 }, to = { x = 2898, y = 3557 } },
+    { from = { x = 2898, y = 3557 }, to = { x = 2898, y = 3563 }, actions = [{ object = { option = "Open", id = "large_door_13_closed", x = 2898, y = 3558, radius = 0, success = { object = { id = "large_door_13_opened", x = 2898, y = 3559 } } } }, { tile = { x = 2898, y = 3563, radius = 1 } }], cost = 7 },
+    { from = { x = 2898, y = 3563 }, to = { x = 2898, y = 3557 }, actions = [{ object = { option = "Open", id = "large_door_13_closed", x = 2898, y = 3558, radius = 0, success = { object = { id = "large_door_13_opened", x = 2898, y = 3559 } } } }, { tile = { x = 2898, y = 3557, radius = 1 } }], cost = 7 },
+    { from = { x = 2898, y = 3546 }, to = { x = 2881, y = 3546 } },
+]

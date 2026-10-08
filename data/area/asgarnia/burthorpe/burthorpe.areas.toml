@@ -14,3 +14,11 @@ x = [2816, 2943]
 y = [3520, 3647]
 tags = ["penguin_area"]
 hint = "where the Imperial Guard train."
+
+[burthorpe_general_store]
+# nav-editor: named area only
+x = [2925, 2930]
+y = [3545, 3548]
+level = 0
+tags = []
+hint = ""
