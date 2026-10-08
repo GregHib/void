@@ -58,14 +58,6 @@ examine = "A large curling plant."
 id = 1204
 examine = "A small fernlike plant."
 
-[jungletree1]
-id = 1301
-examine = "Home to many unusual creatures."
-
-[jungletree2]
-id = 1302
-examine = "A leafy tree."
-
 [jungletree2_karamja]
 id = 1304
 examine = "A tree found in tropical areas."

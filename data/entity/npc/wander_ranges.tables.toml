@@ -801,7 +801,7 @@ wander_range = 1
 wander_range = 5
 
 [.redbeard_frank_port_sarim]
-wander_range = 0
+wander_range = 3
 
 [.seaman_thresnor]
 wander_range = 0
@@ -6614,8 +6614,8 @@ wander_range = 3
 #[.2795]
 #max_range = 10
 
-#[.2796]
-#max_range = 10
+[.skippy]
+max_range = 3
 
 #[.2797]
 #max_range = 10

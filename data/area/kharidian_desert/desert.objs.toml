@@ -14,10 +14,6 @@ examine = "A succulent cactus."
 id = 2671
 examine = "A less-than-succulent succulent."
 
-[egypt_plantpotted]
-id = 1158
-examine = "A large potted plant."
-
 [cactus4]
 id = 1405
 examine = "How do these things manage to grow?"
