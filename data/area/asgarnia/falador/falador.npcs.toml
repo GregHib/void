@@ -247,7 +247,6 @@ combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 respawn_delay = 25
-collision = "indoors"
 
 [man_falador_2]
 id = 1086
@@ -628,6 +627,7 @@ examine = "An armourer."
 
 [estate_agent]
 id = 4247
+collision = "indoors"
 examine = "A fancy businessman with a mighty fine hat."
 
 [gadrin]

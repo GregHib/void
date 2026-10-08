@@ -10,6 +10,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
+import content.skill.construction.House.Companion.hasHouse
 
 class GardenSupplier : Script {
 
@@ -22,10 +23,24 @@ class GardenSupplier : Script {
                     openShop("garden_centre")
                 }
                 option<Quiz>("What are these plants for?") {
-                    // todo when construction is added, there needs to be a check for if the player has a house or not; then the alternate dialogue can be added
                     npc<Laugh>("For planting in your house's garden, of course!")
-                    player<Disheartened>("I don't have a house.")
-                    npc<Laugh>("Well they won't do you much good then, will they?")
+                    if (hasHouse()) {
+                        player<Quiz>("How do I do that?")
+                        npc<Laugh>("The same way you make furniture. You'll find plant hotspots in your garden and you just need to have one of my bagged saplings with you when you build at them.")
+                        player<Neutral>("Ah, I see.")
+                        npc<Happy>("So do you want to look at my stock?")
+                        choice {
+                            option("Yes please!") {
+                                openShop("garden_centre")
+                            }
+                            option("No thanks") {
+                                player<Neutral>("No thanks.")
+                            }
+                        }
+                    } else {
+                        player<Disheartened>("I don't have a house.")
+                        npc<Laugh>("Well they won't do you much good then, will they?")
+                    }
                 }
                 option("No thanks") {
                     player<Neutral>("No thanks.")
