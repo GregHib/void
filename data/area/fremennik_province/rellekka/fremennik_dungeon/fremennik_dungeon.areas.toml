@@ -70,3 +70,11 @@ y = [9965, 9986]
 level = 0
 tags = []
 hint = ""
+
+[fremennik_dungeon_small_obelisk]
+# nav-editor: named area only
+x = [2786, 2787]
+y = [9990, 9991]
+level = 0
+tags = ["small_obelisk"]
+hint = ""
