@@ -11,8 +11,8 @@ import world.gregs.voidps.type.Tile
 class RimmingtonSpade : Script {
 
     init {
-        objectOperate("Take", "*") { (target) ->
-            if (target.intId != 9662 || target.tile != Tile(2979, 3241)) {
+        objectOperate("Take", "rimmington_spade") { (target) ->
+            if (target.tile != Tile(2979, 3241)) {
                 return@objectOperate
             }
             arriveDelay()
