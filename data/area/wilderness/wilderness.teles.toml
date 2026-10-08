@@ -134,3 +134,13 @@ to = { x = 2920, y = 3935 }
 option = "Pull"
 tile = { x = 2273, y = 4680 }
 to = { x = 3067, y = 10254 }
+
+[wilderness_volcano_exit]
+option = "Exit"
+tile = { x = 3163, y = 3693 }
+to = { x = 3164, y = 3685 }
+
+[wilderness_volcano_entrance]
+option = "Enter"
+tile = { x = 3163, y = 3686 }
+to = { x = 3164, y = 3696 }
