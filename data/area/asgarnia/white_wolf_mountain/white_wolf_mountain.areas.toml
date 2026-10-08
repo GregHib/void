@@ -8,3 +8,11 @@ tags = ["multi_combat"]
 x = [2856, 2879]
 y = [9928, 9967]
 tags = ["multi_combat"]
+
+[white_wolf_mountain_gnome_glider]
+# nav-editor: named area only
+x = [2847, 2851]
+y = [3496, 3499]
+level = 0
+tags = []
+hint = ""
