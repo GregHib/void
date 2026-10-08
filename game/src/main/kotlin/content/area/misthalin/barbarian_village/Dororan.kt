@@ -102,8 +102,7 @@ class Dororan : Script {
                                     npc<Pleased>("What can I do for you?")
                                     someThingElse()
                                 }
-                                option<Idle>("I don't have time right now.") {
-                                }
+                                option<Idle>("I don't have time right now.")
                             }
                         }
                     } else if (get("dororan_dragonstone_necklace", 0) != 1) {
@@ -155,8 +154,7 @@ class Dororan : Script {
                         npc<Pleased>("What can I do for you?")
                         someThingElse()
                     }
-                    option<Idle>("I don't have time right now.") {
-                    }
+                    option<Idle>("I don't have time right now.")
                 }
             } else {
                 someThingElse()
@@ -1004,8 +1002,7 @@ class Dororan : Script {
                         npc<Pleased>("By all means.")
                         lovePoemMenu()
                     }
-                    option<Idle>("I'll return with a ring from Jeffery.") {
-                    }
+                    option<Idle>("I'll return with a ring from Jeffery.")
                 }
             }
             option<Idle>("I'll return with a ring from Jeffery.")
@@ -1161,8 +1158,7 @@ class Dororan : Script {
                     set("gunnars_ground", "started")
                     started()
                 }
-                option("No.") {
-                }
+                option("No.")
             }
         }
     }

@@ -48,8 +48,7 @@ class Getorix : Script {
         option("Who's the weird looking giant earwig?") {
             askAboutFiara()
         }
-        option<Neutral>("I'd better get going.") {
-        }
+        option<Neutral>("I'd better get going.")
     }
 
     private suspend fun Player.explainPlace() {
@@ -74,8 +73,7 @@ class Getorix : Script {
             option("I suppose so...") {
                 theoryMenu()
             }
-            option<Neutral>("I'd better get going.") {
-            }
+            option<Neutral>("I'd better get going.")
         }
     }
 
@@ -106,8 +104,7 @@ class Getorix : Script {
                 npc<Neutral>("Do you want to hear another theory?")
                 theoryMenu()
             }
-            option<Neutral>("I'd better get going.") {
-            }
+            option<Neutral>("I'd better get going.")
         }
     }
 
@@ -128,12 +125,10 @@ class Getorix : Script {
                     option("So what are you doing here?") {
                         explainPlace()
                     }
-                    option<Neutral>("I'd better get going.") {
-                    }
+                    option<Neutral>("I'd better get going.")
                 }
             }
-            option<Neutral>("I'd better get going.") {
-            }
+            option<Neutral>("I'd better get going.")
         }
     }
 

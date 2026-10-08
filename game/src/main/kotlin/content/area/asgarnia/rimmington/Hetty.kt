@@ -41,8 +41,7 @@ class Hetty : Script {
     private suspend fun Player.afterWitchDialogueOptions() {
         choice("Select an Option") {
             lookingForQuest()
-            option<Sad>("Goodbye.") {
-            }
+            option<Sad>("Goodbye.")
         }
     }
 

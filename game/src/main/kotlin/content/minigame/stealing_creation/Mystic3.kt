@@ -50,8 +50,7 @@ class Mystic3 : Script {
                 npc<Happy>("If you have friends with you, you could make a clan and challenge another clan in the clan enclosure to the east. You can even ally your clan with up to three others!")
                 canHelpMenu()
             }
-            option<Neutral>("Never mind.") {
-            }
+            option<Neutral>("Never mind.")
         }
     }
 
@@ -72,8 +71,7 @@ class Mystic3 : Script {
             option("Just put me on a team") {
                 assignTeam()
             }
-            option<Neutral>("Never mind.") {
-            }
+            option<Neutral>("Never mind.")
         }
     }
 
@@ -114,8 +112,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -133,8 +130,7 @@ class Mystic3 : Script {
                     option("Back to my other questions...") {
                         primordialRealmQuestions()
                     }
-                    option<Neutral>("That's all I need to know.") {
-                    }
+                    option<Neutral>("That's all I need to know.")
                 }
             }
             option<Neutral>("Tell me about the level requirements.") {
@@ -144,8 +140,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -163,15 +158,13 @@ class Mystic3 : Script {
                     option("Back to my other questions...") {
                         primordialRealmQuestions()
                     }
-                    option<Neutral>("That's all I need to know.") {
-                    }
+                    option<Neutral>("That's all I need to know.")
                 }
             }
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -180,8 +173,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -229,8 +221,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -267,8 +258,7 @@ class Mystic3 : Script {
                 primordialRealmQuestions()
             }
             if (lastAsked != null) {
-                option<Neutral>("That's all I need to know.") {
-                }
+                option<Neutral>("That's all I need to know.")
             }
         }
     }
@@ -283,8 +273,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -299,8 +288,7 @@ class Mystic3 : Script {
                 npc<Neutral>("The table in the middle of your base allows you to deposit all the items you are carrying very quickly. When you do this you will keep your highest-class tool of each type.")
                 tablesQuestion()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -309,8 +297,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -319,8 +306,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -381,8 +367,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -391,8 +376,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -401,8 +385,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -411,8 +394,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -421,8 +403,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -431,8 +412,7 @@ class Mystic3 : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 }

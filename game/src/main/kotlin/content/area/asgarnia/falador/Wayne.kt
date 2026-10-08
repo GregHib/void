@@ -16,8 +16,7 @@ class Wayne : Script {
                 option("Yes please.") {
                     openShop("waynes_chains_chainmail_specialist")
                 }
-                option<Neutral>("No, thanks.") {
-                }
+                option<Neutral>("No, thanks.")
             }
         }
     }

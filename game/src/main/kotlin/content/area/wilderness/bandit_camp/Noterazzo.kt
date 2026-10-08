@@ -23,8 +23,7 @@ class Noterazzo : Script {
             option("Yes please.") {
                 openShop(shop)
             }
-            option<Neutral>("No thanks.") {
-            }
+            option<Neutral>("No thanks.")
             option<Quiz>("How can you afford to give such good deals?") {
                 npc<Shifty>("The general stores in Asgarnia and Misthalin are heavily taxed. It really makes it hard for them to run an effective business. For some reason taxmen don't visit my store.")
             }

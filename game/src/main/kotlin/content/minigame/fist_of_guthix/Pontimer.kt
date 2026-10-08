@@ -44,8 +44,7 @@ class Pontimer : Script {
         option("Who's the weird looking giant earwig?") {
             askAboutFiara()
         }
-        option<Neutral>("I'd better get going.") {
-        }
+        option<Neutral>("I'd better get going.")
     }
 
     private suspend fun Player.explainPlace() {
@@ -70,8 +69,7 @@ class Pontimer : Script {
             option("I suppose so...") {
                 theoryMenu()
             }
-            option<Neutral>("I'd better get going.") {
-            }
+            option<Neutral>("I'd better get going.")
         }
     }
 
@@ -106,8 +104,7 @@ class Pontimer : Script {
                 npc<Neutral>("Do you want to hear another theory?")
                 theoryMenu()
             }
-            option<Neutral>("I'd better get going.") {
-            }
+            option<Neutral>("I'd better get going.")
         }
     }
 
@@ -128,12 +125,10 @@ class Pontimer : Script {
                     option("So what are you doing here?") {
                         explainPlace()
                     }
-                    option<Neutral>("I'd better get going.") {
-                    }
+                    option<Neutral>("I'd better get going.")
                 }
             }
-            option<Neutral>("I'd better get going.") {
-            }
+            option<Neutral>("I'd better get going.")
         }
     }
 }

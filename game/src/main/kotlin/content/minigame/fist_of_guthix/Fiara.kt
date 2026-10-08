@@ -59,8 +59,7 @@ class Fiara : Script {
         option("What are you?") {
             askWhatFiaraIs()
         }
-        option<Neutral>("Never mind.") {
-        }
+        option<Neutral>("Never mind.")
     }
 
     private suspend fun Player.askWhatThisPlaceIs() {
@@ -126,8 +125,7 @@ class Fiara : Script {
         option("What is this place?") {
             askWhatThisPlaceIs()
         }
-        option<Neutral>("No, thanks.") {
-        }
+        option<Neutral>("No, thanks.")
     }
 
     private suspend fun Player.afterTutorialDialogue() {
@@ -148,8 +146,7 @@ class Fiara : Script {
         option("What are you?") {
             askWhatFiaraAfterTutorial()
         }
-        option<Neutral>("Never mind.") {
-        }
+        option<Neutral>("Never mind.")
     }
 
     private suspend fun Player.gameQuestionsMenu(): Unit = choice("Select an Option") {
@@ -177,8 +174,7 @@ class Fiara : Script {
             npc<Neutral>("Also, use the ruins of the past to your advantage. Hide behind rubble and make a run for it when your opponent is out of reach. Use the buildings to hide or as a means of escape.")
             moreQuestionsMenu()
         }
-        option<Neutral>("Never mind.") {
-        }
+        option<Neutral>("Never mind.")
     }
 
     private suspend fun Player.moreQuestionsMenu() {
@@ -190,8 +186,7 @@ class Fiara : Script {
             option("What are you?") {
                 askWhatFiaraAfterTutorial()
             }
-            option<Neutral>("No, thanks.") {
-            }
+            option<Neutral>("No, thanks.")
         }
     }
 
@@ -207,8 +202,7 @@ class Fiara : Script {
         option("I have some questions about the Fist of Guthix game.") {
             gameQuestionsMenu()
         }
-        option<Neutral>("No, thanks.") {
-        }
+        option<Neutral>("No, thanks.")
     }
 
     private suspend fun Player.startTutorial() {
