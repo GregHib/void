@@ -10,4 +10,10 @@ edges = [
     { from = { x = 2898, y = 3557 }, to = { x = 2898, y = 3563 }, actions = [{ object = { option = "Open", id = "large_door_13_closed", x = 2898, y = 3558, radius = 0, success = { object = { id = "large_door_13_opened", x = 2898, y = 3559 } } } }, { tile = { x = 2898, y = 3563, radius = 1 } }], cost = 7 },
     { from = { x = 2898, y = 3563 }, to = { x = 2898, y = 3557 }, actions = [{ object = { option = "Open", id = "large_door_13_closed", x = 2898, y = 3558, radius = 0, success = { object = { id = "large_door_13_opened", x = 2898, y = 3559 } } } }, { tile = { x = 2898, y = 3557, radius = 1 } }], cost = 7 },
     { from = { x = 2898, y = 3546 }, to = { x = 2881, y = 3546 } },
+
+    { from = { x = 2898, y = 3563 }, to = { x = 2205, y = 4934, level = 1 }, actions = [{ object = { option = "Climb-down", id = "games_room_stairs_down_2", x = 2899, y = 3566, radius = 0, success = { tile = { x = 2205, y = 4934, level = 1 } } } }, { tile = { x = 2205, y = 4934, radius = 1 } }], cost = 2065 },
+    { from = { x = 2205, y = 4934, level = 1 }, to = { x = 2898, y = 3563 }, actions = [{ object = { option = "Climb-up", id = "games_room_stairs_up", x = 2205, y = 4935, radius = 0, success = { tile = { x = 2899, y = 3565, level = 0 } } } }, { tile = { x = 2898, y = 3563, radius = 1 } }], cost = 2065 },
+    { from = { x = 2205, y = 4934, level = 1 }, to = { x = 2207, y = 4934, level = 1 } },
+    { from = { x = 2207, y = 4934, level = 1 }, to = { x = 2207, y = 4938 }, actions = [{ object = { option = "Climb-down", id = "games_room_basement_stairs_down", x = 2207, y = 4935, radius = 0, success = { tile = { x = 2207, y = 4938, level = 0 } } } }, { tile = { x = 2207, y = 4938, radius = 1 } }], cost = 5 },
+    { from = { x = 2207, y = 4938 }, to = { x = 2207, y = 4934, level = 1 }, actions = [{ object = { option = "Climb-up", id = "games_room_basement_stairs_up", x = 2207, y = 4935, radius = 0, success = { tile = { x = 2207, y = 4934, level = 1 } } } }, { tile = { x = 2207, y = 4934, radius = 1 } }], cost = 5 },
 ]
