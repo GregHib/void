@@ -16,4 +16,9 @@ edges = [
     { from = { x = 2205, y = 4934, level = 1 }, to = { x = 2207, y = 4934, level = 1 } },
     { from = { x = 2207, y = 4934, level = 1 }, to = { x = 2207, y = 4938 }, actions = [{ object = { option = "Climb-down", id = "games_room_basement_stairs_down", x = 2207, y = 4935, radius = 0, success = { tile = { x = 2207, y = 4938, level = 0 } } } }, { tile = { x = 2207, y = 4938, radius = 1 } }], cost = 5 },
     { from = { x = 2207, y = 4938 }, to = { x = 2207, y = 4934, level = 1 }, actions = [{ object = { option = "Climb-up", id = "games_room_basement_stairs_up", x = 2207, y = 4935, radius = 0, success = { tile = { x = 2207, y = 4934, level = 1 } } } }, { tile = { x = 2207, y = 4934, radius = 1 } }], cost = 5 },
+
+    # Southern approach from Taverley.
+{ from = { x = 2899, y = 3477 }, to = { x = 2905, y = 3490 } },
+    { from = { x = 2905, y = 3490 }, to = { x = 2913, y = 3502 } },
+    { from = { x = 2913, y = 3502 }, to = { x = 2913, y = 3508 } },
 ]
