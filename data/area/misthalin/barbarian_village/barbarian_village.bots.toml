@@ -1,0 +1,14 @@
+[kill_barbarian_village_longhall_attack]
+template = "kill_longhall_barbarians"
+capacity = 2
+fields = { skill = "attack", style = "style1" }
+
+[kill_barbarian_village_longhall_strength]
+template = "kill_longhall_barbarians"
+capacity = 2
+fields = { skill = "strength", style = "style2" }
+
+[kill_barbarian_village_longhall_defence]
+template = "kill_longhall_barbarians"
+capacity = 2
+fields = { skill = "defence", style = "style4" }

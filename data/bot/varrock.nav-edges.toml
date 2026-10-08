@@ -276,4 +276,9 @@ edges = [
     { from = { x = 3183, y = 3487 }, to = { x = 3185, y = 3506 } },
     { from = { x = 3185, y = 3506 }, to = { x = 3207, y = 3506 } }, # palace_yews_west
     { from = { x = 3207, y = 3506 }, to = { x = 3220, y = 3506 } }, # palace_yews_east
+
+    { from = { x = 3087, y = 3440 }, to = { x = 3079, y = 3433 } },
+    { from = { x = 3079, y = 3433 }, to = { x = 3080, y = 3423 } },
+    { from = { x = 3079, y = 3433 }, to = { x = 3079, y = 3437 }, actions = [{ object = { option = "Open", id = "long_hall_door_closed", x = 3079, y = 3435, radius = 0, success = { object = { id = "long_hall_door_opened", x = 3079, y = 3436 } } } }, { tile = { x = 3079, y = 3437, radius = 1 } }], cost = 5 },
+    { from = { x = 3079, y = 3437 }, to = { x = 3079, y = 3433 }, actions = [{ object = { option = "Open", id = "long_hall_door_closed", x = 3079, y = 3435, radius = 0, success = { object = { id = "long_hall_door_opened", x = 3079, y = 3436 } } } }, { tile = { x = 3079, y = 3433, radius = 1 } }], cost = 5 },
 ]
