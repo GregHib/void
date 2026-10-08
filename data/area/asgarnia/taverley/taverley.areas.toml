@@ -8,37 +8,27 @@ hint = "in a town of druids."
 x = [2933, 2939]
 y = [3435, 3441]
 level = 0
-tags = []
-hint = ""
 
 [taverly_herblore_shop]
 # nav-editor: named area only
 x = [2896, 2900]
 y = [3426, 3430]
 level = 0
-tags = []
-hint = ""
 
 [taverly_pet_shop]
 # nav-editor: named area only
 x = [2922, 2925]
 y = [3431, 3433]
 level = 0
-tags = []
-hint = ""
 
 [taverly_summoning_shop]
 # nav-editor: named area only
 x = [2923, 2926]
 y = [3442, 3444]
 level = 0
-tags = []
-hint = ""
 
 [taverly_2h_shop]
 # nav-editor: named area only
 x = [2883, 2886]
 y = [3448, 3451]
 level = 0
-tags = []
-hint = ""

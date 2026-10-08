@@ -13,13 +13,9 @@ y = [3424, 3434]
 x = [3075, 3082]
 y = [3436, 3445]
 level = 0
-tags = []
-hint = ""
 
 [barbarian_village_helmet_shop]
 # nav-editor: named area only
 x = [3074, 3076]
 y = [3427, 3430]
 level = 0
-tags = []
-hint = ""

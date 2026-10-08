@@ -41,32 +41,24 @@ tags = ["no_cannon", "no_cannon_dank"]
 x = [2662, 2664]
 y = [3691, 3694]
 level = 0
-tags = []
-hint = ""
 
 [rellekka_west_rock_crabs]
 # nav-editor: named area only
 x = [2662, 2662, 2666, 2673, 2679, 2679, 2675, 2673, 2668, 2666, 2666, 2670, 2674, 2679, 2684, 2690, 2689, 2689]
 y = [3712, 3718, 3720, 3720, 3723, 3726, 3726, 3723, 3723, 3725, 3728, 3730, 3732, 3733, 3732, 3729, 3721, 3712]
 level = 0
-tags = []
-hint = ""
 
 [rellekka_mines]
 # nav-editor: named area only
 x = [2680, 2687]
 y = [3702, 3709]
 level = 0
-tags = []
-hint = ""
 
 [rellekka_dairy_churn]
 # nav-editor: named area only
 x = [2673, 2676]
 y = [3663, 3667]
 level = 0
-tags = []
-hint = ""
 
 [rellekka_small_obelisk]
 # nav-editor: named area only
@@ -74,7 +66,6 @@ x = [2673, 2675]
 y = [3639, 3640]
 level = 0
 tags = ["small_obelisk"]
-hint = ""
 
 [rellekka_house_portal]
 # nav-editor: named area only
@@ -82,7 +73,6 @@ x = [2669, 2671]
 y = [3631, 3632]
 level = 0
 tags = ["house_portal"]
-hint = ""
 
 [fremennik_fairy_ring_ajr]
 # nav-editor: named area only
@@ -90,23 +80,18 @@ x = [2779, 2781]
 y = [3612, 3614]
 level = 0
 tags = ["fairy_ring"]
-hint = ""
 
 [keldagrim_entrance_mine]
 # nav-editor: named area only
 x = [2722, 2728]
 y = [3687, 3697]
 level = 0
-tags = []
-hint = ""
 
 [rellekka_east_rock_crabs]
 # nav-editor: named area only
 x = [2691, 2722]
 y = [3714, 3731]
 level = 0
-tags = []
-hint = ""
 
 [fremennik_fairy_ring_dks]
 # nav-editor: named area only
@@ -114,4 +99,3 @@ x = [2743, 2745]
 y = [3718, 3720]
 level = 0
 tags = ["fairy_ring"]
-hint = ""
