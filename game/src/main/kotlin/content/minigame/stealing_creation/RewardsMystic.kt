@@ -32,8 +32,7 @@ class RewardsMystic : Script {
                 npc<Happy>("All the rewards are made from the same sacred clay that your team works so hard to harvest, which gives them some rather special properties.")
                 information()
             }
-            option<Neutral>("Never mind.") {
-            }
+            option<Neutral>("Never mind.")
         }
     }
 
@@ -56,8 +55,7 @@ class RewardsMystic : Script {
             option<Neutral>("Show me the rewards, please.") {
                 open("stealing_creation_rewards")
             }
-            option<Neutral>("Thanks.") {
-            }
+            option<Neutral>("Thanks.")
         }
     }
 }

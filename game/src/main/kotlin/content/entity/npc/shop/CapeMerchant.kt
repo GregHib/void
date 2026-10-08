@@ -32,8 +32,7 @@ class CapeMerchant : Script {
             option("Yes please!") {
                 openShop(shop)
             }
-            option<Neutral>("No thanks.") {
-            }
+            option<Neutral>("No thanks.")
         }
     }
 
@@ -42,8 +41,7 @@ class CapeMerchant : Script {
             option("Yes please!") {
                 openShop(shop)
             }
-            option<Neutral>("No thanks.") {
-            }
+            option<Neutral>("No thanks.")
         }
     }
 }

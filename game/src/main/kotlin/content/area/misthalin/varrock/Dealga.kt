@@ -31,8 +31,7 @@ class Dealga : Script {
                             option<Neutral>("Yes, please.") {
                                 openShop(shopName)
                             }
-                            option<Neutral>("No, thanks.") {
-                            }
+                            option<Neutral>("No, thanks.")
                         }
                     }
                     option<Neutral>("Who are you?") {

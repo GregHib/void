@@ -21,8 +21,7 @@ class FatTony : Script {
     private suspend fun Player.dialogue(shop: String) {
         npc<Angry>("Go away I'm very busy.")
         choice {
-            option<Neutral>("Sorry to disturb you.") {
-            }
+            option<Neutral>("Sorry to disturb you.")
             option<Quiz>("What are you busy doing?") {
                 npc<Neutral>("I'm cooking pizzas for the people in this camp.")
                 npc<Angry>("Not that these louts appreciate my gourmet cooking!")

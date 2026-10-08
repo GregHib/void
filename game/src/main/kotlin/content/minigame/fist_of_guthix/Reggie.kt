@@ -29,8 +29,7 @@ class Reggie : Script {
             option("No, I have some questions.") {
                 questions()
             }
-            option<Neutral>("No, I'm just passing by.") {
-            }
+            option<Neutral>("No, I'm just passing by.")
         }
     }
 
@@ -81,8 +80,7 @@ class Reggie : Script {
             option("I have more questions that I want answered.") {
                 questions()
             }
-            option<Neutral>("Alright, I will do that.") {
-            }
+            option<Neutral>("Alright, I will do that.")
         }
     }
 
@@ -137,8 +135,7 @@ class Reggie : Script {
             option("I still have more questions.") {
                 questions()
             }
-            option<Neutral>("Okay, I'll do that.") {
-            }
+            option<Neutral>("Okay, I'll do that.")
         }
     }
 

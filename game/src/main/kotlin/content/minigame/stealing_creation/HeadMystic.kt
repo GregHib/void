@@ -95,8 +95,7 @@ class HeadMystic : Script {
                 option<Confused>("What?") {
                     npc<Sad>("rewards_mystic", "He means you need to get rid of all the items in your inventory and all worn items. There's a bank deposit box in the camp, so you can do that easily.")
                 }
-                option<Neutral>("Oh, okay.") {
-                }
+                option<Neutral>("Oh, okay.")
             }
             return
         }
@@ -234,8 +233,7 @@ class HeadMystic : Script {
             option<Neutral>("I have some questions about the primordial realm...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("Goodbye.") {
-            }
+            option<Neutral>("Goodbye.")
         }
     }
 
@@ -258,8 +256,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -268,8 +265,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -314,8 +310,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -357,8 +352,7 @@ class HeadMystic : Script {
                 primordialRealmQuestions()
             }
             if (lastAsked != null) {
-                option<Neutral>("That's all I need to know.") {
-                }
+                option<Neutral>("That's all I need to know.")
             }
         }
     }
@@ -372,8 +366,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -386,8 +379,7 @@ class HeadMystic : Script {
                 explainTables()
                 tablesQuestion()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -402,8 +394,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -412,8 +403,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -474,8 +464,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -484,8 +473,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -494,8 +482,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -504,8 +491,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -514,8 +500,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 
@@ -524,8 +509,7 @@ class HeadMystic : Script {
             option("Back to my other questions...") {
                 primordialRealmQuestions()
             }
-            option<Neutral>("That's all I need to know.") {
-            }
+            option<Neutral>("That's all I need to know.")
         }
     }
 }

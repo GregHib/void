@@ -27,7 +27,6 @@ class Wormbrain : Script {
             player<Neutral>("Well, that would be why then.")
             npc<Happy>("Oh, right.")
         }
-        option<Neutral>("Sorry, thought this was a zoo.") {
-        }
+        option<Neutral>("Sorry, thought this was a zoo.")
     }
 }

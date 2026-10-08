@@ -35,8 +35,7 @@ class Mystic4 : Script {
                 npc<Shifty>("I worship the spirits of the Wilderness, innit? Ya gotta love 'em, gliding silently through the night an' killing everything they see.")
                 whatDoYouDoHereMenu()
             }
-            option<Scared>("Um...I'll just leave you alone.") {
-            }
+            option<Scared>("Um...I'll just leave you alone.")
         }
     }
 

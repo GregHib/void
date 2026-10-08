@@ -44,8 +44,7 @@ class Kjell : Script {
                 npc<Angry>("I don't need the advice of an outerlander.")
                 advice()
             }
-            option<Idle>("I'll leave you in peace.") {
-            }
+            option<Idle>("I'll leave you in peace.")
         }
     }
 
@@ -75,8 +74,7 @@ class Kjell : Script {
             option<Idle>("What's in this hut you're guarding?") {
                 npc<Frustrated>("Nothing yet. Once there is, no one will get in or out! Now, Go away!")
             }
-            option<Idle>("Goodbye then.") {
-            }
+            option<Idle>("Goodbye then.")
         }
     }
 }

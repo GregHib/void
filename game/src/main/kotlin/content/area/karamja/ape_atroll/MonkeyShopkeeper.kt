@@ -29,8 +29,7 @@ class MonkeyShopkeeper : Script {
                     option<Neutral>("Yes, please.") {
                         openShop(shopName)
                     }
-                    option<Neutral>("No, thanks.") {
-                    }
+                    option<Neutral>("No, thanks.")
                 }
             } else {
                 npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
