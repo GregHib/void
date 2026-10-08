@@ -10,8 +10,8 @@ edges = [
     
 
     
-    { from = { x = 3081, y = 3421 }, to = { x = 1859, y = 5243 }, actions = [{ object = { option = "Climb-down", id = "stronghold_of_security_entrance", x = 3081, y = 3420, radius = 0, success = { tile = { x = 1859, y = 5243, level = 0 } } } }, { tile = { x = 1859, y = 5243, radius = 1 } }], cost = 3045 },
-    { from = { x = 1859, y = 5243 }, to = { x = 3081, y = 3421 }, actions = [{ object = { option = "Climb-up", id = "stronghold_war_ladder_up", x = 1859, y = 5244, radius = 0, success = { tile = { x = 3081, y = 3421, level = 0 } } } }, { tile = { x = 3081, y = 3421, radius = 1 } }], cost = 3045 },
+    { from = { x = 3081, y = 3421 }, to = { x = 1859, y = 5243 }, actions = [{ object = { option = "Climb-down", id = "stronghold_of_security_entrance", x = 3081, y = 3420, radius = 0, success = { tile = { x = 1859, y = 5243, level = 0 } } } }, { tile = { x = 1859, y = 5243, radius = 1 } }], cost = 3 },
+    { from = { x = 1859, y = 5243 }, to = { x = 3081, y = 3421 }, actions = [{ object = { option = "Climb-up", id = "stronghold_war_ladder_up", x = 1859, y = 5244, radius = 0, success = { tile = { x = 3081, y = 3421, level = 0 } } } }, { tile = { x = 3081, y = 3421, radius = 1 } }], cost = 3 },
 
     { from = { x = 3081, y = 3421 }, to = { x = 3080, y = 3423 } },
 
