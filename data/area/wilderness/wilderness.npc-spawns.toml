@@ -246,7 +246,6 @@ spawns = [
     { id = "ian", x = 2967, y = 3765 },
     { id = "darren", x = 3007, y = 3860 },
     { id = "edward", x = 3354, y = 3884 },
-    { id = "larry", x = 3205, y = 3718 },
     { id = "edmond_wilderness", x = 3092, y = 3798 },
     { id = "simon_wilderness", x = 3236, y = 3600 },
     { id = "black_knight_1", x = 3023, y = 3849, members = true },

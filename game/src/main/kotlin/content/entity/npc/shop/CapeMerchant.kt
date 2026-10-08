@@ -1,6 +1,5 @@
-package content.area.wilderness
+package content.entity.npc.shop
 
-import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -9,10 +8,10 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class Ian : Script {
+class CapeMerchant : Script {
 
     init {
-        npcOperate("Talk-to", "ian") { (target) ->
+        npcOperate("Talk-to", "william,ian,larry,darren,edward,richard_edgeville,neil,edmond_wilderness,simon_wilderness,sam") { (target) ->
             wildernessCapeShop(target.def["shop"])
         }
     }
