@@ -63,6 +63,7 @@ combat_def  = "guard_edgeville"
 
 [doris_edgeville]
 id = 3381
+collision = "indoors"
 examine = "One of Gielinor's many citizens."
 
 [guard_edgeville_6]

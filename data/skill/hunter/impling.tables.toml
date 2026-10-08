@@ -231,6 +231,21 @@ tile = { x = 2331, y = 3639 }
 tile = { x = 3278, y = 3155 }
 low_tier = true
 
+[.al_kharid_resource_dungeon_1]
+tile = { x = 1176, y = 4511 }
+
+[.al_kharid_resource_dungeon_2]
+tile = { x = 1152, y = 4480 }
+
+[.al_kharid_resource_dungeon_3]
+tile = { x = 1188, y = 4513 }
+
+[.al_kharid_resource_dungeon_4]
+tile = { x = 1182, y = 4507 }
+
+[.al_kharid_resource_dungeon_5]
+tile = { x = 1194, y = 4514 }
+
 [.draynor]
 tile = { x = 3093, y = 3238 }
 low_tier = true

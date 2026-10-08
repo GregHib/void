@@ -1,0 +1,13 @@
+spawns = [
+    { id = "blue_dragon_scale", x = 986, y = 4495, delay = 25 },
+    { id = "blue_dragon_scale", x = 984, y = 4493, delay = 25 },
+    { id = "blue_dragon_scale", x = 983, y = 4492, delay = 25 },
+    { id = "blue_dragon_scale", x = 980, y = 4493, delay = 25 },
+    { id = "blue_dragon_scale", x = 981, y = 4496, delay = 25 },
+    { id = "blue_dragon_scale", x = 980, y = 4499, delay = 25 },
+    { id = "blue_dragon_scale", x = 977, y = 4501, delay = 25 },
+    { id = "blue_dragon_scale", x = 978, y = 4504, delay = 25 },
+    { id = "blue_dragon_scale", x = 981, y = 4505, delay = 25 },
+    { id = "blue_dragon_scale", x = 986, y = 4502, delay = 25 },
+    { id = "blue_dragon_scale", x = 987, y = 4500, delay = 25 },
+]
