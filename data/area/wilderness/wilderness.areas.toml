@@ -47,17 +47,10 @@ y = [10304, 10367]
 tags = ["wilderness"]
 hint = "in the Wilderness."
 
-[underground_wilderness_region_12443]
+[varrock_sewer_wilderness]
 x = [3072, 3135]
-y = [9920, 9983]
+y = [9920, 10047]
 tags = ["wilderness"]
-hint = "in the Wilderness."
-
-[underground_wilderness_region_12444]
-x = [3072, 3135]
-y = [9984, 10047]
-tags = ["wilderness"]
-hint = "in the Wilderness."
 
 [wilderness_main_multi_area]
 x = [3200, 3392, 3392, 3328, 3328, 3136, 3136, 3192, 3192, 3152, 3152, 3136, 3136, 3112, 3112, 3072, 3072, 3048, 3048, 3056, 3056, 3048, 3048, 3008, 3008, 3200]
