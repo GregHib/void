@@ -32,7 +32,7 @@ class RimmingtonSpadeTest : WorldTest() {
         assertEquals(AnimationDefinitions.get("take").id, player.visuals.animation.force)
         assertNull(GameObjects.findOrNull(tile, 9662))
 
-        tick(73)
+        tick(74)
         assertNull(GameObjects.findOrNull(tile, 9662))
 
         tick()

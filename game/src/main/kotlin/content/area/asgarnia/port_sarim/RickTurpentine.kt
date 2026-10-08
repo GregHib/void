@@ -1,6 +1,5 @@
 package content.area.asgarnia.port_sarim
 
-import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
