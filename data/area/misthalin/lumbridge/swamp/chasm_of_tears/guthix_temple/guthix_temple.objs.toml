@@ -17,3 +17,7 @@ examine = "A sinister cave opening."
 [guthix_temple_granite_wall]
 id = 41077
 examine = "I can exit the temple through the hole in this wall."
+
+[luc2_gt_vine_empty]
+id = 40888
+examine = "A dried-up vine."

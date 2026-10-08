@@ -58,3 +58,7 @@ examine = "a door."
 [slayer_tower_door_mirror_closed]
 id = 10529
 examine = "a door."
+
+[oldsuitofarmour]
+id = 1900
+examine = "This could do with a bit of a spit and polish."

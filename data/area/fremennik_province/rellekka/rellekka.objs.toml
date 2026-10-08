@@ -57,3 +57,7 @@ examine = "This must be the way out."
 [erjolf_cave_entrance]
 id = 42793
 examine = "An entrance leading under ground."
+
+[viking_treestump]
+id = 4328
+examine = "This tree has been cut down."

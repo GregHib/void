@@ -39,3 +39,11 @@ examine = "	A very hot furnace."
 [dorgesh_kaan_bone_door]
 id = 22945
 examine = "Leads to the goblin caves."
+
+[dorgesh_lamp_post_cable1]
+id = 22751
+examine = "The cable connects the lampposts."
+
+[dorgesh_lamp_post_light]
+id = 22760
+examine = "A bright light."
