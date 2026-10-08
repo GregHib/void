@@ -49,3 +49,19 @@ y = [3440, 3443]
 level = 0
 tags = []
 hint = ""
+
+[catherby_farming_patch]
+# nav-editor: named area only
+x = [2806, 2814]
+y = [3461, 3466]
+level = 0
+tags = []
+hint = ""
+
+[catherby_farming_shop]
+# nav-editor: named area only
+x = [2818, 2821]
+y = [3460, 3462]
+level = 0
+tags = []
+hint = ""
