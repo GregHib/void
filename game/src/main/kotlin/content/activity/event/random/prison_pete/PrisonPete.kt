@@ -14,7 +14,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
@@ -29,7 +31,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -86,6 +87,16 @@ class PrisonPete : Script {
                 return@itemOnNPCOperate
             }
             returnKey(pete)
+        }
+
+        itemOption("Return", "prison_key_prison_pete") { (item, slot) ->
+            if (get<String>("random_event") != "prison_pete") {
+                return@itemOption
+            }
+            val pete = NPCs.findOrNull(tile.regionLevel, "prison_pete") ?: return@itemOption
+            closeInterfaces()
+            talkWith(pete)
+            interactItemOn(pete, "inventory", "inventory", item, slot)
         }
     }
 

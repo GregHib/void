@@ -6,7 +6,6 @@ import world.gregs.voidps.type.Tile
 
 class Wilderness : Script {
 
-    val wilderness = Areas["wilderness"]
     val safeZones = Areas.tagged("safe_zone")
 
     init {
@@ -27,5 +26,5 @@ class Wilderness : Script {
         }
     }
 
-    fun inWilderness(tile: Tile) = tile in wilderness && safeZones.none { tile in it.area }
+    fun inWilderness(tile: Tile) = Areas.get(tile.zone).any { tile in it.area && it.tags.contains("wilderness") } && safeZones.none { tile in it.area }
 }
