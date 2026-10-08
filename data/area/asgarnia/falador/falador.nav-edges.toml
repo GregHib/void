@@ -90,8 +90,8 @@ edges = [
     { from = { x = 2933, y = 3355 }, to = { x = 2939, y = 3355 }, actions = [{ object = { option = "Climb-over", id = "falador_crumbling_wall", x = 2935, y = 3355, radius = 0, success = { tile = { x = 2936, y = 3355, level = 0 } } } }, { tile = { x = 2939, y = 3355, radius = 1 } }], cost = 7 , requires = [{ skill = { id = "agility", min = 5 } }]},
     { from = { x = 2939, y = 3355 }, to = { x = 2933, y = 3355 }, actions = [{ object = { option = "Climb-over", id = "falador_crumbling_wall", x = 2935, y = 3355, radius = 0, success = { tile = { x = 2935, y = 3355, level = 0 } } } }, { tile = { x = 2933, y = 3355, radius = 1 } }], cost = 7 , requires = [{ skill = { id = "agility", min = 5 } }]},
     { from = { x = 2939, y = 3355 }, to = { x = 2950, y = 3376 } },
-    { from = { x = 2939, y = 3355 }, to = { x = 2951, y = 3322 } },
-    { from = { x = 2951, y = 3322 }, to = { x = 2972, y = 3317 } },
+
+
     { from = { x = 2972, y = 3317 }, to = { x = 2972, y = 3313 }, actions = [{ object = { option = "Open", id = "door_271_closed", x = 2972, y = 3315, radius = 0, success = { object = { id = "door_271_opened", x = 2972, y = 3314 } } } }, { tile = { x = 2972, y = 3313, radius = 1 } }], cost = 5 },
     { from = { x = 2972, y = 3313 }, to = { x = 2972, y = 3317 }, actions = [{ object = { option = "Open", id = "door_271_closed", x = 2972, y = 3315, radius = 0, success = { object = { id = "door_271_opened", x = 2972, y = 3314 } } } }, { tile = { x = 2972, y = 3317, radius = 1 } }], cost = 5 },
     { from = { x = 2972, y = 3317 }, to = { x = 2995, y = 3322 } },
@@ -107,11 +107,22 @@ edges = [
 
     { from = { x = 2939, y = 3355 }, to = { x = 2950, y = 3358 } },
     { from = { x = 2950, y = 3358 }, to = { x = 2950, y = 3376 } },
-    { from = { x = 2950, y = 3376 }, to = { x = 2951, y = 3322 } },
-    { from = { x = 2951, y = 3322 }, to = { x = 2965, y = 3366 } },
+
+
     { from = { x = 2965, y = 3366 }, to = { x = 2967, y = 3380 } },
     { from = { x = 2965, y = 3366 }, to = { x = 2996, y = 3361 } },
     { from = { x = 2996, y = 3361 }, to = { x = 3007, y = 3361 } },
     { from = { x = 2996, y = 3361 }, to = { x = 3007, y = 3355 } },
     { from = { x = 2994, y = 3368 }, to = { x = 2996, y = 3361 } },
+
+
+
+
+
+
+    { from = { x = 2950, y = 3358 }, to = { x = 2944, y = 3341 } },
+    { from = { x = 2944, y = 3341 }, to = { x = 2939, y = 3355 } },
+    { from = { x = 2944, y = 3341 }, to = { x = 2943, y = 3329 } },
+    { from = { x = 2943, y = 3329 }, to = { x = 2954, y = 3319 } },
+    { from = { x = 2954, y = 3319 }, to = { x = 2972, y = 3317 } },
 ]
