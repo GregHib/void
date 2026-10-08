@@ -1,9 +1,3 @@
-[teleport_block]
-id = 4163 # osrs
-format = "int"
-persist = true
-transmit = false
-
 [vengeance]
 id = 2450 # osrs
 format = "boolean"

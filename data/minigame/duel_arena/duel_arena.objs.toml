@@ -1,0 +1,7 @@
+[duel_arena_forfeit_trapdoor]
+id = 3203
+examine = "Access to the duel arena."
+
+[duel_arena_scoreboard]
+id = 3192
+examine = "You can see the last 50 fights on here."
