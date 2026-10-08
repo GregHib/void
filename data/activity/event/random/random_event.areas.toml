@@ -21,3 +21,11 @@ y = [3243, 3245]
 [random_event_exile_al_kharid]
 x = [3292, 3294]
 y = [3183, 3185]
+
+[fremennik_dungeon_small_obelisk]
+# nav-editor: named area only
+x = [2786, 2787]
+y = [9990, 9991]
+level = 0
+tags = ["small_obelisk"]
+hint = ""
