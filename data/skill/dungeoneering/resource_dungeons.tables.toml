@@ -1,0 +1,119 @@
+[resource_dungeons]
+level = "int"
+xp = "int"
+enter_id = "int"
+enter = "tile"
+exit_id = "int"
+exit = "tile"
+
+[.blue_dragons]
+level = 10
+xp = 1100
+enter_id = 52849
+enter = { x = 991, y = 4585 }
+exit_id = 52867
+exit = { x = 3132, y = 9933 }
+
+[.chaos_druids]
+level = 15
+xp = 1500
+enter_id = 52855
+enter = { x = 1041, y = 4575 }
+exit_id = 52864
+exit = { x = 3034, y = 9772 }
+
+[.flesh_crawlers]
+level = 20
+xp = 1600
+enter_id = 52853
+enter = { x = 1135, y = 4589 }
+exit_id = 52868
+exit = { x = 3104, y = 9826 }
+
+[.hill_giants]
+level = 25
+xp = 2100
+enter_id = 52850
+enter = { x = 1186, y = 4598 }
+exit_id = 52869
+exit = { x = 2845, y = 9557 }
+
+[.moss_giants]
+level = 30
+xp = 2400
+enter_id = 52862
+enter = { x = 3513, y = 3666 }
+exit_id = 52861
+exit = { x = 3498, y = 3633 }
+
+[.fire_giants]
+level = 35
+xp = 3000
+enter_id = 52857
+enter = { x = 1256, y = 4592 }
+exit_id = 52873
+exit = { x = 2578, y = 9898 }
+
+[.black_demons]
+level = 45
+xp = 4400
+enter_id = 52856
+enter = { x = 1052, y = 4521 }
+exit_id = 52866
+exit = { x = 3022, y = 9741 }
+
+[.greater_demons]
+level = 55
+xp = 6200
+enter_id = 52851
+enter = { x = 1394, y = 4588 }
+exit_id = 52870
+exit = { x = 2854, y = 9841 }
+
+[.hellhounds]
+level = 60
+xp = 7000
+enter_id = 52852
+enter = { x = 1000, y = 4522 }
+exit_id = 52865
+exit = { x = 2912, y = 9810 }
+
+[.iron_dragons]
+level = 65
+xp = 8500
+enter_id = 52863
+enter = { x = 1312, y = 4590 }
+exit_id = 52876
+exit = { x = 3164, y = 9878 }
+
+[.ice_giants]
+level = 70
+xp = 9600
+enter_id = 52858
+enter = { x = 1238, y = 4524 }
+exit_id = 52874
+exit = { x = 3160, y = 5521 }
+
+[.kurasks]
+level = 75
+xp = 11400
+enter_id = 52860
+enter = { x = 1182, y = 4515 }
+exit_id = 52872
+exit = { x = 3298, y = 3307 }
+
+[.lesser_demons]
+level = 80
+xp = 12800
+enter_id = 52854
+enter = { x = 1140, y = 4499 }
+exit_id = 52871
+exit = { x = 2697, y = 9442 }
+
+[.ankou]
+level = 85
+xp = 15000
+enter_id = 52859
+enter = { x = 1297, y = 4510 }
+exit_id = 52875
+exit = { x = 3033, y = 9599 }
