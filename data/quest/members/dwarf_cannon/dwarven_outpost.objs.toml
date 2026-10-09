@@ -1,0 +1,31 @@
+[coal_truck_locked]
+id = 46394
+examine = "This empty coal transport is locked in place."
+
+[coal_truck]
+id = 46388
+examine = "An empty coal transport."
+
+[coal_truck_with_some_coal]
+id = 46539
+examine = "It's got some coal in it."
+
+[coal_truck_almost_half_full]
+id = 46389
+examine = "It's almost half full."
+
+[coal_truck_nearly_full]
+id = 46390
+examine = "This could take a little more coal."
+
+[coal_truck_full]
+id = 46391
+examine = "A full coal truck."
+
+[coal_truck_impressively_stacked]
+id = 46392
+examine = "Thats some impressive stacking!"
+
+[coal_truck_maximum_stack]
+id = 46393
+examine = "It doesn't get fuller than this!"
