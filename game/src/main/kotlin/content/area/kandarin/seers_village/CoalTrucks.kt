@@ -2,6 +2,7 @@ package content.area.kandarin.seers_village
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.add
@@ -55,6 +56,7 @@ class CoalTrucks : Script {
             }
             val total = stored + amount
             storeCoalTruckCount(total)
+            sound("coalfill")
             message("You put the coal in the truck.")
             if (total >= capacity) {
                 message("The coal truck is now full.")
@@ -88,6 +90,7 @@ class CoalTrucks : Script {
 
             val remaining = stored - amount
             storeCoalTruckCount(remaining)
+            sound("coalfill")
             if (remaining == 0) {
                 message("The truck is now empty.")
                 return@objectOperate
