@@ -42,7 +42,6 @@ spawns = [
     { id = "gull_karamja_2", x = 2824, y = 3133 },
     { id = "gull_karamja_2", x = 2829, y = 3131 },
     { id = "gull_karamja_2", x = 2833, y = 3134 },
-    { id = "saniboch", x = 2745, y = 3152 },
     { id = "tiadeche_karamja", x = 2912, y = 3118, members = true },
     { id = "tinsay_karamja", x = 2764, y = 2976, members = true },
     { id = "tamayu_karamja", x = 2844, y = 3042, members = true },
