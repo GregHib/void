@@ -79,7 +79,10 @@ class RewardsTrader : Script {
                         charge(it.slot, total - charges)
                     }
                     when (inventory.transaction.error) {
-                        is TransactionError.Deficient -> TODO()
+                        is TransactionError.Deficient -> {
+                            message("You can not afford that.")
+                            npc<Teary>("No good. No funds, no help.")
+                        }
                         TransactionError.None -> npc<Teary>("All done. Move on. Please...")
                         else -> {}
                     }
@@ -87,16 +90,20 @@ class RewardsTrader : Script {
                 option("${coins}gp and $tokens tokens.") {
                     val current = get("dungeoneering_tokens", 0)
                     if (current < tokens) {
-                        message("You don't have enough tokens to recharge that.") // TODO proper message
+                        npc<Teary>("Not enough tokens. Leave me be.")
                         return@option
                     }
                     inventory.transaction {
-                        remove("coins", coins * 10)
+                        remove("coins", coins)
                         charge(it.slot, total - charges)
                     }
                     when (inventory.transaction.error) {
-                        is TransactionError.Deficient -> message("Don't have enough coins") // TODO proper message
+                        is TransactionError.Deficient -> {
+                            message("You can not afford that.")
+                            npc<Teary>("No good. No funds, no help.")
+                        }
                         TransactionError.None -> {
+                            dec("dungeoneering_tokens", tokens)
                             npc<Teary>("All done. Move on. Please...")
                         }
                         else -> {}

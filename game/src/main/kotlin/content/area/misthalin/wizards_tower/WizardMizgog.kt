@@ -113,7 +113,7 @@ class WizardMizgog : Script {
                     player<Happy>("I have found some of your beads.")
                     npc<Neutral>("Come back when you have them all. The colour of the four beads that I need are red, yellow, black, and white. Go chase some imps!")
                 } else {
-                    player<Sad>("I haven't found any yet.") // TODO proper message
+                    player<Sad>("I don't yet have them all.")
                     npc<Neutral>("Come back when you have them all. The colour of the four beads that I need are red, yellow, black, and white. Go chase some imps!")
                 }
             }
