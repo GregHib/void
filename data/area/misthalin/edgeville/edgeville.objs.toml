@@ -194,3 +194,6 @@ examine = "A column of elemental power."
 [obelisk_of_air]
 id = 2152
 examine = "A column of elemental power."
+
+[100_goblin_ladder_down]
+id = 12389

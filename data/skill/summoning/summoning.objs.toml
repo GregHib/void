@@ -9,3 +9,6 @@ examine = "Contains traces of summoning energy."
 [small_obelisk_2]
 id = 29953
 examine = "Contains traces of summoning energy."
+
+[lore_mini_obelisk_light_grass]
+id = 29954

@@ -281,4 +281,7 @@ edges = [
     { from = { x = 3079, y = 3433 }, to = { x = 3080, y = 3423 } },
     { from = { x = 3079, y = 3433 }, to = { x = 3079, y = 3437 }, actions = [{ object = { option = "Open", id = "long_hall_door_closed", x = 3079, y = 3435, radius = 0, success = { object = { id = "long_hall_door_opened", x = 3079, y = 3436 } } } }, { tile = { x = 3079, y = 3437, radius = 1 } }], cost = 5 },
     { from = { x = 3079, y = 3437 }, to = { x = 3079, y = 3433 }, actions = [{ object = { option = "Open", id = "long_hall_door_closed", x = 3079, y = 3435, radius = 0, success = { object = { id = "long_hall_door_opened", x = 3079, y = 3436 } } } }, { tile = { x = 3079, y = 3433, radius = 1 } }], cost = 5 },
+
+    { from = { x = 3094, y = 3470 }, to = { x = 3096, y = 9867 }, actions = [{ object = { option = "Open", id = "trapdoor_80_closed", x = 3097, y = 3468, radius = 0, success = { object = { id = "trapdoor_80_opened", x = 3097, y = 3468 } } } }, { object = { option = "Climb-down", id = "trapdoor_80_opened", x = 3097, y = 3468, radius = 0, success = { tile = { x = 3096, y = 9867, level = 0 } } } }, { tile = { x = 3096, y = 9867, radius = 1 } }], cost = 6401 },
+    { from = { x = 3096, y = 9867 }, to = { x = 3094, y = 3470 }, actions = [{ object = { option = "Climb-up", id = "29355", x = 3097, y = 9867, radius = 0, success = { tile = { x = 3096, y = 3468, level = 0 } } } }, { tile = { x = 3094, y = 3470, radius = 1 } }], cost = 6400 },
 ]
