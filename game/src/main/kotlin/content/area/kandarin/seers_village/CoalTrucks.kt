@@ -64,7 +64,7 @@ class CoalTrucks : Script {
         objectOperate("Investigate", ACTIVE_COAL_TRUCKS) {
             val stored = coalTruckCount()
             if (stored <= 0) {
-                message("There is no coal left in the truck.")
+                message("There is nothing in this coal truck.")
                 return@objectOperate
             }
             if (stored == 1) {
