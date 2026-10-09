@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
+import kotlin.random.Random
 
 class FremennikSlayerDungeonTest : WorldTest() {
 
@@ -20,8 +22,26 @@ class FremennikSlayerDungeonTest : WorldTest() {
         player.objectOption(chasm, "Jump-across")
         tick(8)
 
-        assertEquals(10.0, player.experience.get(Skill.Agility))
+        assertEquals(5.0, player.experience.get(Skill.Agility))
         assertTrue(player.containsMessage("Your feet skid as you land"))
+        assertEquals(Tile(2768, 10002), player.tile)
+    }
+
+    @Test
+    fun `Fail jump across chasm`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 255
+        })
+        val player = createPlayer(Tile(2777, 10002))
+        player.levels.set(Skill.Agility, 81)
+
+        val chasm = GameObjects.find(Tile(2769, 10002), "slayer_dungeon_chasm")
+        player.objectOption(chasm, "Jump-across")
+        tick(8)
+
+        assertTrue(player.containsMessage("You land badly and take some damage."))
+        assertFalse(player.containsMessage("Your feet skid as you land"))
+        assertTrue(player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution))
         assertEquals(Tile(2768, 10002), player.tile)
     }
 
@@ -34,7 +54,7 @@ class FremennikSlayerDungeonTest : WorldTest() {
         player.objectOption(chasm, "Jump-across")
         tick(8)
 
-        assertEquals(10.0, player.experience.get(Skill.Agility))
+        assertEquals(5.0, player.experience.get(Skill.Agility))
         assertTrue(player.containsMessage("Your feet skid as you land"))
         assertEquals(Tile(2775, 10002), player.tile)
     }
