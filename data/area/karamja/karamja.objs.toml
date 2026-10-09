@@ -1,3 +1,7 @@
+[stool_bamboo]
+id = 1113
+examine = "Park it here..."
+
 [snake_vine_full]
 id = 2575
 examine = "A marshy jungle vine."
@@ -41,3 +45,71 @@ examine = "It looks as if it is covered in some fungus."
 [rogues_purse_cave_empty]
 id = 32107
 examine = "It looks as if it is covered in some fungus."
+
+[jungle1]
+id = 1184
+examine = "The tendrils of a creeping plant."
+
+[greener_jungle1]
+id = 1186
+examine = "A large curling plant."
+
+[jungleplant4]
+id = 1204
+examine = "A small fernlike plant."
+
+[jungletree2_karamja]
+id = 1304
+examine = "A tree found in tropical areas."
+
+[bamboo_tree_base]
+id = 1326
+examine = "A terribly tall tropical tree."
+
+[bamboo_tree_mid]
+id = 1327
+examine = "A terribly tall tropical tree."
+
+[bamboo_tree_uppermid]
+id = 1328
+examine = "A terribly tall tropical tree."
+
+[bamboo_tree_top]
+id = 1329
+examine = "Leaves of a bamboo tree."
+
+[bamboo_tree_2_base]
+id = 1371
+examine = "This tree contains dangerous insects no doubt."
+
+[bamboo_tree_2_mid]
+id = 1372
+examine = "This tree contains dangerous insects no doubt."
+
+[bamboo_tree_2_top]
+id = 1374
+examine = "This tree contains dangerous insects no doubt."
+
+[jungle2]
+id = 1390
+examine = "Commonly found in these parts."
+
+[jungleplant1_karamja]
+id = 1400
+examine = "A large waxy jungle plant."
+
+[jungleplant3]
+id = 1402
+examine = "A large waxy jungle plant."
+
+[jungletree1_karamja]
+id = 1303
+examine = "A tree found in tropical areas."
+
+[bamboo_tree_2_uppermid]
+id = 1373
+examine = "This tree contains dangerous insects no doubt."
+
+[greener_jungle2]
+id = 1398
+examine = "A leafy fern."

@@ -47,3 +47,51 @@ exp = 210.0
 restock = 32
 chance = "20-180"
 examine = "This table has items of a general nature on it."
+
+[mm_bananatreefull]
+id = 4749
+examine = "It's a banana tree, full of bananas."
+
+[mm_long_jungle_grass1]
+id = 4812
+examine = "Looks good for hiding in..."
+
+[mm_long_jungle_grass2]
+id = 4813
+examine = "Looks good for hiding in..."
+
+[mm_long_jungle_grass3]
+id = 4814
+examine = "Looks good for hiding in..."
+
+[mm_jungle_plant_fern]
+id = 4825
+examine = "A small fernlike plant."
+
+[mm_bamboo_tree_base]
+id = 4845
+examine = "A terribly tall tropical tree."
+
+[mm_bamboo_tree_mid]
+id = 4846
+examine = "A terribly tall tropical tree."
+
+[mm_bamboo_tree_uppermid]
+id = 4847
+examine = "A terribly tall tropical tree."
+
+[mm_bamboo_tree_top]
+id = 4848
+examine = "Leaves of a tropical tree."
+
+[mm_glowfungus_small]
+id = 4856
+examine = "It's a small patch of glowing fungus."
+
+[mm_glowfungus_med]
+id = 4857
+examine = "It's a medium patch of glowing fungus."
+
+[mm_glowfungus_big]
+id = 4862
+examine = "It's a large patch of glowing fungus."

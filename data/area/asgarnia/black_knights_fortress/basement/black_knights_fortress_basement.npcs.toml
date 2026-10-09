@@ -38,6 +38,8 @@ id = 12336
 id = 2682
 drop_table = "rat"
 combat_def = "rat"
+collision = "indoors"
+respawn_delay = 1
 hitpoints = 20
 
 [arthur_black_knights_fortress_basement]

@@ -4063,7 +4063,7 @@ indexes = [682]
 [the_horn_of_chill]
 id = 693
 indexes = [692]
-areas = [ { x = [ 2891, 2917 ], y = [ 10315, 10325 ], level = 1 } ]
+areas = [ { region = 11581 } ]
 
 [tomb_stones]
 id = 694

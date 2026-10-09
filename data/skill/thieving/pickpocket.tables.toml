@@ -5,6 +5,9 @@ type = "string"
 [.agnar_rellekka]
 type = "fremmennik"
 
+[.anja]
+type = "human"
+
 [.al_kharid_warrior]
 type = "warrior"
 
@@ -205,6 +208,9 @@ type = "ham_member"
 
 [.hero]
 type = "hero"
+
+[.hengel]
+type = "human"
 
 [.inga]
 type = "fremmennik"

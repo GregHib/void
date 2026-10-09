@@ -1,0 +1,7 @@
+[boardgames_table]
+id = 4651
+examine = "A table for board games."
+
+[boardgames_barstool_white]
+id = 4656
+examine = "A comfy stool."

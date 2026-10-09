@@ -7,9 +7,12 @@ id = 11654
 
 [gull_mudskipper_point]
 id = 2726
+collision = "sky"
+examine = "A sea bird."
 
 [gull_mudskipper_point_2]
 id = 2727
+clone = "gull_mudskipper_point"
 
 [fishing_spot_mudskipper_point]
 id = 325
