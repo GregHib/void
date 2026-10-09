@@ -78,3 +78,9 @@ tags = ["bank"]
 x = [2682, 2685]
 y = [3274, 3276]
 level = 0
+
+[ardougne_deep_wilderness_lever]
+# nav-editor: named area only
+x = [2561, 2562]
+y = [3311, 3312]
+level = 0
