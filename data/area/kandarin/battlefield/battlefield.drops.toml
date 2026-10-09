@@ -2,12 +2,6 @@
 type = "all"
 drops = [
     { id = "bones" },
-    { table = "khazard_commander_tertiary" },
-]
-
-[khazard_commander_tertiary]
-drops = [
-    { id = "orb_of_protection" },
 ]
 
 [gnome_drop_table]
