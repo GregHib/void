@@ -160,7 +160,7 @@ class CoalTrucksTest : WorldTest() {
     }
 
     @Test
-    fun `Coal truck preserves elite storage while showing full`() {
+    fun `Coal truck clamps legacy 200 storage to 196`() {
         val player = createPlayer(emptyTile)
         val truck = createObject("coal_truck", emptyTile.addY(1))
         player["coal_truck_coal_count"] = 200
@@ -168,9 +168,9 @@ class CoalTrucksTest : WorldTest() {
         player.objectOption(truck, "Investigate")
         tick()
 
-        assertEquals(200, player["coal_truck_coal_count", 0])
+        assertEquals(196, player["coal_truck_coal_count", 0])
         assertEquals(140, player["coal_truck_coal", 0])
-        assertTrue(player.containsMessage("The truck contains 200 pieces of coal."))
+        assertTrue(player.containsMessage("The truck contains 196 pieces of coal."))
     }
 
     @Test
@@ -219,23 +219,6 @@ class CoalTrucksTest : WorldTest() {
         tick()
 
         assertEquals(196, player["coal_truck_coal_count", 0])
-        assertEquals(196, player["coal_truck_coal", 0])
-        assertEquals(0, player.inventory.count("coal"))
-        assertTrue(player.containsMessage("The coal truck is now full."))
-    }
-
-    @Test
-    fun `Coal truck requires seers headband 4 for 200 coal`() {
-        val player = createPlayer(emptyTile)
-        val truck = createObject("coal_truck", emptyTile.addY(1))
-        player.equipment.set(EquipSlot.Hat.index, "seers_headband_4")
-        player["coal_truck_coal_count"] = 199
-        player.inventory.add("coal")
-
-        player.itemOnObject(truck, player.inventory.indexOf("coal"))
-        tick()
-
-        assertEquals(200, player["coal_truck_coal_count", 0])
         assertEquals(196, player["coal_truck_coal", 0])
         assertEquals(0, player.inventory.count("coal"))
         assertTrue(player.containsMessage("The coal truck is now full."))

@@ -2,9 +2,9 @@ package content.area.kandarin.seers_village
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -16,7 +16,6 @@ private const val COAL_TRUCK_DEFAULT_CAPACITY = 120
 private const val COAL_TRUCK_HEADBAND_1_CAPACITY = 140
 private const val COAL_TRUCK_HEADBAND_2_CAPACITY = 168
 private const val COAL_TRUCK_HEADBAND_3_CAPACITY = 196
-private const val COAL_TRUCK_HEADBAND_4_CAPACITY = 200
 private const val COAL_TRUCK_DISPLAY_SOME = 1
 private const val COAL_TRUCK_DISPLAY_ALMOST_HALF = 40
 private const val COAL_TRUCK_DISPLAY_NEARLY_FULL = 80
@@ -31,7 +30,6 @@ private enum class CoalTruckTier(val capacity: Int, val headbandId: String? = nu
     Easy(COAL_TRUCK_HEADBAND_1_CAPACITY, "seers_headband_1"),
     Medium(COAL_TRUCK_HEADBAND_2_CAPACITY, "seers_headband_2"),
     Hard(COAL_TRUCK_HEADBAND_3_CAPACITY, "seers_headband_3"),
-    Elite(COAL_TRUCK_HEADBAND_4_CAPACITY, "seers_headband_4"),
 }
 
 class CoalTrucks : Script {
@@ -104,7 +102,7 @@ class CoalTrucks : Script {
         val count = get(COAL_TRUCK_COUNT, 0)
         val stored = when (count) {
             0 -> legacyCoalTruckCount(display)
-            else -> count.coerceIn(0, COAL_TRUCK_HEADBAND_4_CAPACITY)
+            else -> count.coerceIn(0, COAL_TRUCK_HEADBAND_3_CAPACITY)
         }
         val transformed = coalTruckDisplayValue(stored, coalTruckCapacity())
         if (stored != count) {
@@ -119,7 +117,7 @@ class CoalTrucks : Script {
     private fun Player.coalTruckCount(): Int = normaliseCoalTruckState()
 
     private fun Player.storeCoalTruckCount(stored: Int) {
-        val amount = stored.coerceIn(0, COAL_TRUCK_HEADBAND_4_CAPACITY)
+        val amount = stored.coerceIn(0, COAL_TRUCK_HEADBAND_3_CAPACITY)
         set(COAL_TRUCK_COUNT, amount)
         syncCoalTruckDisplay(amount)
     }
@@ -131,7 +129,6 @@ class CoalTrucks : Script {
     private fun Player.coalTruckCapacity(): Int = coalTruckTier().capacity
 
     private fun Player.coalTruckTier(): CoalTruckTier = when {
-        hasCoalTruckTier(CoalTruckTier.Elite) -> CoalTruckTier.Elite
         hasCoalTruckTier(CoalTruckTier.Hard) -> CoalTruckTier.Hard
         hasCoalTruckTier(CoalTruckTier.Medium) -> CoalTruckTier.Medium
         hasCoalTruckTier(CoalTruckTier.Easy) -> CoalTruckTier.Easy
@@ -143,6 +140,10 @@ class CoalTrucks : Script {
         return equipped(EquipSlot.Hat).id == headband
     }
     // Future diary gate:
+    // Seers' headband 4 should not raise truck capacity beyond the hard-tier 196.
+    // Instead, the first 200 coal stored each day should be sent straight to the bank,
+    // so the first trip of the day can bank 200 coal and still fill the truck with 196.
+    //
     // return equipped(EquipSlot.Hat).id == headband && hasCoalTruckDiaryUnlock(tier)
     //
     // private fun Player.hasCoalTruckDiaryUnlock(tier: CoalTruckTier): Boolean = when (tier) {
@@ -150,7 +151,6 @@ class CoalTrucks : Script {
     //     CoalTruckTier.Easy -> get("seers_easy_diary_complete", false)
     //     CoalTruckTier.Medium -> get("seers_medium_diary_complete", false)
     //     CoalTruckTier.Hard -> get("seers_hard_diary_complete", false)
-    //     CoalTruckTier.Elite -> get("seers_elite_diary_complete", false)
     // }
 }
 
