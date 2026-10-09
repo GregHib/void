@@ -723,7 +723,7 @@ class HouseFurnitureTest : WorldTest() {
     fun `Store and take an item from a magic wardrobe`() {
         val player = createPlayer(emptyTile)
         player["house_owner"] = player.accountName
-        player.inventory.add("runecrafter_hat")
+        player.inventory.add("skeletal_helm", "skeletal_top", "skeletal_bottoms", "skeletal_gloves", "skeletal_boots")
         val wardrobe = createObject("oak_magic_wardrobe", emptyTile.addX(1))
 
         player.objectOption(wardrobe, "Open")
@@ -731,15 +731,35 @@ class HouseFurnitureTest : WorldTest() {
             player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
             !player.hasOpen("poh_costume_room")
         }
-        val row = player.get<List<String>>("house_costume_items")!!.indexOf("runecrafter_hat") + 1
+        val row = 4 // Skeletal armour
         player.interfaceOption("poh_costume_room", "select_$row", "Select")
         tick()
 
-        assertEquals(0, player.inventory.count("runecrafter_hat"))
+        assertEquals(0, player.inventory.count("skeletal_helm") + player.inventory.count("skeletal_boots"))
         player.interfaceOption("poh_costume_room", "select_$row", "Select")
         tick()
 
-        assertEquals(1, player.inventory.count("runecrafter_hat"))
+        assertEquals(1, player.inventory.count("skeletal_helm"))
+        assertEquals(1, player.inventory.count("skeletal_boots"))
+    }
+
+    @Test
+    fun `Magic wardrobe needs the full set to store`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.inventory.add("skeletal_helm")
+        val wardrobe = createObject("oak_magic_wardrobe", emptyTile.addX(1))
+
+        player.objectOption(wardrobe, "Open")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            !player.hasOpen("poh_costume_room")
+        }
+        val row = 4 // Skeletal armour
+        player.interfaceOption("poh_costume_room", "select_$row", "Select")
+        tick()
+
+        assertEquals(1, player.inventory.count("skeletal_helm"))
     }
 
     @Test
@@ -756,7 +776,53 @@ class HouseFurnitureTest : WorldTest() {
         player.dialogueOption("line1")
         tickIf { !player.hasOpen("poh_costume_room") }
 
-        assertEquals(30, player.get<List<String>>("house_costume_items")!!.size)
+        assertEquals("treasure_trail_1", player.get<String>("house_costume_storage"))
+    }
+
+    @Test
+    fun `Cape rack pages through more capes than fit on the interface`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.inventory.add("summoning_cape")
+        val rack = createObject("oak_cape_rack", emptyTile.addX(1))
+
+        player.objectOption(rack, "Search")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            !player.hasOpen("poh_costume_room")
+        }
+        player.interfaceOption("poh_costume_room", "select_30", "Select")
+        tick()
+        val row = 1 // First cape on the second page
+        player.interfaceOption("poh_costume_room", "select_$row", "Select")
+        tick()
+
+        assertEquals(0, player.inventory.count("summoning_cape"))
+    }
+
+    @Test
+    fun `Store and take a holiday item from a toy box`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.inventory.add("snow_globe")
+        val box = createObject("oak_toy_box", emptyTile.addX(1))
+
+        player.objectOption(box, "Open")
+        tickIf {
+            player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
+            !player.hasOpen("poh_costume_room")
+        }
+        val row = 29 // Snow globe is the last item on the first page
+        player.interfaceOption("poh_costume_room", "select_$row", "Select")
+        tick()
+
+        assertEquals(0, player.inventory.count("snow_globe"))
+        assertTrue(player.containsVarbit("poh_toy_box", "snow_globe"))
+        player.interfaceOption("poh_costume_room", "select_$row", "Select")
+        tick()
+
+        assertEquals(1, player.inventory.count("snow_globe"))
+        assertFalse(player.containsVarbit("poh_toy_box", "snow_globe"))
     }
 
     @Test

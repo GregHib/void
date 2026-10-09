@@ -60,3 +60,363 @@ persist = true
 [house_prize_money]
 format = "int"
 persist = true
+
+# Costume room items which are stored, one bit for each item of the inventory listing them
+
+[poh_costume_room_capes_inv]
+format = "bitwise"
+persist = true
+values = [
+    "cape_of_legends_poh",
+    "obsidian_cape_poh",
+    "fire_cape_poh",
+    "team_1_cape_poh",
+    "guthix_cape_poh",
+    "attack_cape_poh",
+    "defence_cape_poh",
+    "strength_cape_poh",
+    "constitution_cape_poh",
+    "agility_cape_poh",
+    "cooking_cape_poh",
+    "construct_cape",
+    "crafting_cape_poh",
+    "farming_cape_poh",
+    "firemaking_cape_poh",
+    "fishing_cape_poh",
+    "fletching_cape_poh",
+    "herblore_cape_poh",
+    "magic_cape_poh",
+    "mining_cape_poh",
+    "prayer_cape_poh",
+    "ranging_cape",
+    "runecraft_cape",
+    "slayer_cape_poh",
+    "smithing_cape_poh",
+    "thieving_cape_poh",
+    "woodcutting_cape_poh",
+    "hunter_cape_poh",
+    "quest_point_cape_poh",
+]
+
+[poh_costume_room_capes_inv_page2]
+format = "bitwise"
+persist = true
+values = [
+    "summoning_cape_poh",
+    "dungeoneering_cape_poh",
+    "dungeoneering_master_cape_poh",
+    "spotted_cape_poh",
+    "spottier_cape_poh",
+    "blue_cape_poh",
+]
+
+[poh_costume_room_magic_wardrobe_inv]
+format = "bitwise"
+persist = true
+values = [
+    "mystic_hat_blue_poh",
+    "mystic_hat_dark_poh",
+    "mystic_hat_light_poh",
+    "skeletal_helm_poh",
+    "infinity_top_poh",
+    "splitbark_helm_poh",
+    "ghostly_boots_poh",
+    "moonclan_hat_poh",
+    "lunar_helm_poh",
+    "runecrafter_hat_blue_poh",
+    "runecrafter_hat_green_poh",
+    "runecrafter_hat",
+    "dagonhai_robe_top_poh",
+    "serjeant_cap_poh",
+    "commander_cap_poh",
+    "war_chief_cap_poh",
+    "lord_marshal_cap_poh",
+]
+
+[poh_costume_room_ame_inv]
+format = "bitwise"
+persist = true
+values = [
+    "mime_mask_poh",
+    "princess_blouse_poh",
+    "frog_mask_poh",
+    "zombie_shirt_poh",
+    "camo_top_poh",
+    "lederhosen_top_poh",
+    "shade_robe",
+    "swanky_boots_poh",
+]
+
+[poh_costume_room_armour_inv]
+format = "bitwise"
+persist = true
+values = [
+    "basic_decorative_platebody_poh",
+    "void_knight_top_poh",
+    "rogue_mask_poh",
+    "spined_helm_poh",
+    "rock_shell_helm_poh",
+    "tribal_mask_green_poh",
+    "tribal_mask_orange_poh",
+    "tribal_mask_blue_poh",
+    "white_platebody_poh",
+    "initiate_hauberk_poh",
+    "proselyte_hauberk_poh",
+    "mourner_top_poh",
+    "graahk_top_poh",
+    "larupia_top_poh",
+    "kyatt_top_poh",
+    "polar_camo_top_poh",
+    "jungle_camo_top_poh",
+    "wood_camo_top_poh",
+    "desert_camo_top_poh",
+    "witchdoctor_mask_poh",
+    "hard_hat_poh",
+    "lumberjack_top_poh",
+    "bomber_jacket_poh",
+    "ham_shirt_poh",
+    "void_melee_helm_poh",
+    "void_ranger_helm_poh",
+    "void_mage_helm_poh",
+]
+
+[poh_costume_room_armour_inv_page2]
+format = "bitwise"
+persist = true
+values = [
+    "void_knight_deflector_poh",
+    "elite_void_knight_torso",
+    "elite_void_knight_legs",
+    "black_naval_shirt_poh",
+    "blue_naval_shirt_poh",
+    "brown_naval_shirt_poh",
+    "green_naval_shirt_poh",
+    "grey_naval_shirt_poh",
+    "purple_naval_shirt_poh",
+    "red_naval_shirt_poh",
+    "elite_black_platebody_poh",
+    "royal_shirt_poh",
+    "mask_of_dragith_nurn_poh",
+    "helmet_of_trials_poh",
+    "ancient_ceremonial_hood",
+]
+
+[poh_costume_room_treasure_trail_1_inv]
+format = "bitwise"
+persist = true
+values = [
+    "black_platebody_h1_poh",
+    "black_platebody_h2_poh",
+    "black_platebody_h3_poh",
+    "black_platebody_h4_poh",
+    "black_platebody_h5_poh",
+    "studded_body_g_poh",
+    "studded_body_t_poh",
+    "wizard_robe_g",
+    "wizard_robe_t",
+    "black_platebody_t_poh",
+    "black_platebody_g_poh",
+    "highwayman_mask_poh",
+    "blue_beret_poh",
+    "black_beret_poh",
+    "white_beret_poh",
+    "amulet_of_magic_t_poh",
+    "pantaloons_poh",
+    "a_powdered_wig",
+    "flared_trousers_poh",
+    "sleeping_cap_poh",
+    "bob_shirt_red_poh",
+    "bob_shirt_blue_poh",
+    "bob_shirt_green_poh",
+    "bob_shirt_black_poh",
+    "bob_shirt_purple_poh",
+    "red_elegant_shirt_poh",
+    "green_elegant_shirt_poh",
+    "blue_elegant_shirt_poh",
+    "beret_mask",
+]
+
+[poh_costume_room_treasure_trail_1a_inv]
+format = "bitwise"
+persist = true
+values = [
+    "black_cane_poh",
+    "spiked_helmet_poh",
+]
+
+[poh_costume_room_treasure_trail_2_inv]
+format = "bitwise"
+persist = true
+values = [
+    "red_boater_poh",
+    "orange_boater_poh",
+    "green_boater_poh",
+    "blue_boater_poh",
+    "black_boater_poh",
+    "adamant_platebody_h1_poh",
+    "adamant_platebody_h2_poh",
+    "adamant_platebody_h3_poh",
+    "adamant_platebody_h4_poh",
+    "adamant_platebody_h5_poh",
+    "dhide_body_g",
+    "dhide_body_t",
+    "ranger_boots_poh",
+    "adam_platebody_t",
+    "adam_platebody_g",
+    "red_headband_poh",
+    "black_headband_poh",
+    "brown_headband_poh",
+    "strength_amulet_t_poh",
+    "elegant_shirt",
+    "purple_elegant_shirt_poh",
+    "wizard_boots_poh",
+    "adamant_cane_poh",
+    "sheep_mask_poh",
+    "bat_mask_poh",
+    "wolf_mask_poh",
+    "penguin_mask_poh",
+    "cat_mask_poh",
+    "pith_helmet_poh",
+]
+
+[poh_costume_room_treasure_trail_3_inv]
+format = "bitwise"
+persist = true
+values = [
+    "rune_platebody_h1_poh",
+    "rune_platebody_h2_poh",
+    "rune_platebody_h3_poh",
+    "rune_platebody_h4_poh",
+    "rune_platebody_h5_poh",
+    "dhide_body_g_poh",
+    "dhide_body_t_poh",
+    "enchanted_top_poh",
+    "robin_hood_hat_poh",
+    "rune_platebody_g_poh",
+    "rune_platebody_t_poh",
+    "tan_cavalier_poh",
+    "dark_cavalier_poh",
+    "black_cavalier_poh",
+    "pirates_hat_poh",
+    "zamorak_platebody",
+    "saradomin_plate",
+    "guthix_platebody",
+    "gilded_platebody",
+    "amulet_of_glory_t_0",
+    "saradomin_robe_top_poh",
+    "guthix_robe_top_poh",
+    "zamorak_robe_top_poh",
+    "saradomin_dragonhide",
+    "guthix_dragonhide",
+    "zamorak_dragonhide",
+    "cavalier_mask",
+    "rune_cane_poh",
+    "top_hat_poh",
+]
+
+[poh_costume_room_treasure_trail_3a_inv]
+format = "bitwise"
+persist = true
+values = [
+    "fox_mask_poh",
+    "white_unicorn_mask_poh",
+    "black_unicorn_mask_poh",
+    "green_dragon_mask_poh",
+    "blue_dragon_mask_poh",
+    "red_dragon_mask_poh",
+]
+
+[poh_costume_room_treasure_trail_4_inv]
+format = "bitwise"
+persist = true
+values = [
+    "black_dragon_mask_poh",
+    "frost_dragon_mask_poh",
+    "bronze_dragon_mask_poh",
+    "iron_dragon_mask_poh",
+    "steel_dragon_mask_poh",
+    "mithril_dragon_mask_poh",
+    "amulet_of_fury_o",
+    "dragon_platebody_o",
+    "dragon_platebody_s",
+    "armadyl_robe_top_poh",
+    "bandos_robe_top_poh",
+    "ancient_robe_top_poh",
+    "armadyl_platebody",
+    "bandos_platebody",
+    "ancient_platebody",
+    "armadyl_dragonhide",
+    "bandos_dragonhide",
+    "ancient_dragonhide",
+]
+
+[poh_toy_box]
+format = "bitwise"
+persist = true
+values = [
+    "bunny_ears",
+    "scythe",
+    "yo_yo",
+    "rubber_chicken",
+    "zombie_head",
+    "easter_ring",
+    "bobble_hat",
+    "bobble_scarf",
+    "jester_hat",
+    "jester_scarf",
+    "tri_jester_hat",
+    "tri_jester_scarf",
+    "woolly_hat",
+    "woolly_scarf",
+    "reindeer_hat",
+    "blue_marionette",
+    "jack_lantern_mask",
+    "skeleton_boots",
+    "skeleton_gloves",
+    "skeleton_leggings",
+    "skeleton_shirt",
+    "skeleton_mask",
+    "wintumber_tree",
+    "chicken_feet",
+    "chicken_legs",
+    "chicken_wings",
+    "chicken_head",
+    "grim_reaper_hood",
+    "snow_globe",
+]
+
+[poh_toy_box_page2]
+format = "bitwise"
+persist = true
+values = [
+    "chocatrice_cape",
+    "witch_top",
+    "witch_skirt",
+    "witch_cloak",
+    "santa_costume_top",
+    "santa_costume_legs",
+    "santa_costume_gloves",
+    "santa_costume_boots",
+    "ice_amulet",
+    "cornucopia",
+    "easter_carrot",
+    "eek",
+    "web_cloak",
+    "candy_cane",
+    "christmas_ghost_hood",
+    "christmas_ghost_top",
+    "christmas_ghost_bottoms",
+    "squirrel_ears",
+    "bone_brooch",
+    "flagstaff_of_festivities",
+    "magnifying_glass",
+    "investigators_hat",
+    "investigators_trousers",
+    "investigators_coat",
+    "mysterious_book",
+    "salty_claws_hat",
+    "heimland_games_souvenir",
+    "golden_cracker",
+    "tenth_anniversary_cake",
+    "hati_head",
+]
