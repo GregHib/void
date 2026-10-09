@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.IntArrayList
+import it.unimi.dsi.fastutil.ints.IntList
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
@@ -69,6 +70,15 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
+        private fun points(name: String, x: IntList, y: IntList): MutableList<Point> {
+            return when {
+                x.size == y.size -> MutableList(x.size) { index -> Point(x.getInt(index), y.getInt(index)) }
+                x.size == 1 && y.size == 2 -> mutableListOf(Point(x.getInt(0), y.getInt(0)), Point(x.getInt(0), y.getInt(1)))
+                y.size == 1 && x.size == 2 -> mutableListOf(Point(x.getInt(0), y.getInt(0)), Point(x.getInt(1), y.getInt(0)))
+                else -> throw IllegalArgumentException("Area '$name' has mismatched x/y sizes: x=${x.size}, y=${y.size}")
+            }
+        }
+
         fun load(paths: List<String>, set: AreaSet) {
             set.areas.clear()
             val areas = mutableListOf<Area>()
@@ -101,7 +111,7 @@ class AreaSet {
                                 name,
                                 level ?: 0,
                                 level ?: 0,
-                                x.mapIndexed { index, m -> Point(m, y.getInt(index)) }.toMutableList(),
+                                points(name, x, y),
                             ),
                         )
                     }
