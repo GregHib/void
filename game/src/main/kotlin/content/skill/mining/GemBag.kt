@@ -126,7 +126,7 @@ class GemBag : Script {
                 return@option
             }
             val removed = inventory.addToLimit("uncut_sapphire", count)
-            dec("gem_bag_${item}", removed)
+            dec("gem_bag_$item", removed)
             when (removed) {
                 0 -> inventoryFull()
                 1 -> message("You take a $item out of the gem bag.")
