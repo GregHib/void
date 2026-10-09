@@ -53,7 +53,7 @@ class MagicInstructor : Script {
     private suspend fun Player.finish() {
         npc<Happy>("Well you're all finished here now. I'll give you a reasonable number of runes when you leave.")
         choice("Do you want to go to the mainland?") {
-            option<Happy>("Yes.") {
+            option("Yes.") {
                 leave()
             }
             option<Neutral>("No.") {
