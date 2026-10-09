@@ -125,7 +125,7 @@ class GemBag : Script {
                 message("There are no $plural to withdraw.")
                 return@option
             }
-            val removed = inventory.addToLimit("uncut_sapphire", count)
+            val removed = inventory.addToLimit("uncut_$item", count)
             dec("gem_bag_$item", removed)
             when (removed) {
                 0 -> inventoryFull()
