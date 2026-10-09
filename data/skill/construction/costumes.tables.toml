@@ -1,0 +1,959 @@
+# Toy box doesn't have any invs for some reason
+[house_toy_box]
+items = "list<item>"
+
+[.page]
+items = [
+    "bunny_ears",
+    "scythe",
+    "yo_yo",
+    "rubber_chicken",
+    "zombie_head",
+    "easter_ring",
+    "bobble_hat",
+    "bobble_scarf",
+    "jester_hat",
+    "jester_scarf",
+    "tri_jester_hat",
+    "tri_jester_scarf",
+    "woolly_hat",
+    "woolly_scarf",
+    "reindeer_hat",
+    "blue_marionette",
+    "jack_lantern_mask",
+    "skeleton_boots",
+    "skeleton_gloves",
+    "skeleton_leggings",
+    "skeleton_shirt",
+    "skeleton_mask",
+    "wintumber_tree",
+    "chicken_feet",
+    "chicken_legs",
+    "chicken_wings",
+    "chicken_head",
+    "grim_reaper_hood",
+    "snow_globe",
+]
+
+# Toy box items from the second page
+[house_toy_box_page2]
+items = "list<item>"
+
+[.page]
+items = [
+    "chocatrice_cape",
+    "witch_top",
+    "witch_skirt",
+    "witch_cloak",
+    "santa_costume_top",
+    "santa_costume_legs",
+    "santa_costume_gloves",
+    "santa_costume_boots",
+    "ice_amulet",
+    "cornucopia",
+    "easter_carrot",
+    "eek",
+    "web_cloak",
+    "candy_cane",
+    "christmas_ghost_hood",
+    "christmas_ghost_top",
+    "christmas_ghost_bottoms",
+    "squirrel_ears",
+    "bone_brooch",
+    "flagstaff_of_festivities",
+    "magnifying_glass",
+    "investigators_hat",
+    "investigators_trousers",
+    "investigators_coat",
+    "mysterious_book",
+    "salty_claws_hat",
+    "heimland_games_souvenir",
+    "golden_cracker",
+    "tenth_anniversary_cake",
+    "hati_head",
+]
+
+# Costume room items stored as a set of pieces or as a different item to the one shown, keyed by the item shown on the interface
+[house_costume_sets]
+row_id = "item"
+name = "string"
+pieces = "list<item>"
+
+[.mystic_hat_blue_poh]
+name = "Mystic robes (blue)"
+pieces = [
+    "mystic_hat_blue",
+    "mystic_robe_top_blue",
+    "mystic_robe_bottom_blue",
+    "mystic_gloves_blue",
+    "mystic_boots_blue",
+]
+
+[.mystic_hat_dark_poh]
+name = "Mystic robes (dark)"
+pieces = [
+    "mystic_hat_dark",
+    "mystic_robe_top_dark",
+    "mystic_robe_bottom_dark",
+    "mystic_gloves_dark",
+    "mystic_boots_dark",
+]
+
+[.mystic_hat_light_poh]
+name = "Mystic robes (light)"
+pieces = [
+    "mystic_hat_light",
+    "mystic_robe_top_light",
+    "mystic_robe_bottom_light",
+    "mystic_gloves_light",
+    "mystic_boots_light",
+]
+
+[.skeletal_helm_poh]
+name = "Skeletal armour"
+pieces = [
+    "skeletal_helm",
+    "skeletal_top",
+    "skeletal_bottoms",
+    "skeletal_gloves",
+    "skeletal_boots",
+]
+
+[.infinity_top_poh]
+name = "Infinity robes"
+pieces = [
+    "infinity_hat",
+    "infinity_top",
+    "infinity_bottoms",
+    "infinity_gloves",
+    "infinity_boots",
+]
+
+[.splitbark_helm_poh]
+name = "Splitbark armour"
+pieces = [
+    "splitbark_helm",
+    "splitbark_body",
+    "splitbark_legs",
+    "splitbark_gauntlets",
+    "splitbark_boots",
+]
+
+[.ghostly_boots_poh]
+name = "Ghostly robes"
+pieces = [
+    "ghostly_hood",
+    "ghostly_cloak",
+    "ghostly_robe_top",
+    "ghostly_robe_bottom",
+    "ghostly_gloves",
+    "ghostly_boots",
+]
+
+[.moonclan_hat_poh]
+name = "Moonclan armour"
+pieces = [
+    "moonclan_hat",
+    "moonclan_armour",
+    "moonclan_skirt",
+    "moonclan_gloves",
+    "moonclan_boots",
+    "moonclan_cape",
+]
+
+[.lunar_helm_poh]
+name = "Lunar equipment"
+pieces = [
+    "lunar_helm",
+    "lunar_torso",
+    "lunar_legs",
+    "lunar_gloves",
+    "lunar_boots",
+    "lunar_cape",
+    "lunar_amulet",
+    "lunar_ring",
+]
+
+[.runecrafter_hat_blue_poh]
+name = "Runecrafter robes (blue)"
+pieces = [
+    "runecrafter_hat_blue_goggles_off",
+    "runecrafter_robe_blue",
+    "runecrafter_skirt_blue",
+    "runecrafter_gloves_blue",
+]
+
+[.runecrafter_hat_green_poh]
+name = "Runecrafter robes (green)"
+pieces = [
+    "runecrafter_hat_green_goggles_off",
+    "runecrafter_robe_green",
+    "runecrafter_skirt_green",
+    "runecrafter_gloves_green",
+]
+
+[.runecrafter_hat]
+name = "Runecrafter robes (yellow)"
+pieces = [
+    "runecrafter_hat_yellow_goggles_off",
+    "runecrafter_robe_yellow",
+    "runecrafter_skirt_yellow",
+    "runecrafter_gloves_yellow",
+]
+
+[.dagonhai_robe_top_poh]
+name = "Dagon'hai robes"
+pieces = [
+    "dagonhai_hat",
+    "dagonhai_robe_top",
+    "dagonhai_robe_bottom",
+]
+
+[.serjeant_cap_poh]
+name = "Serjeant outfit"
+pieces = [
+    "serjeant_cap",
+    "serjeant_top",
+    "serjeant_trousers",
+    "serjeant_gloves",
+    "serjeant_boots",
+]
+
+[.commander_cap_poh]
+name = "Commander outfit"
+pieces = [
+    "commander_cap",
+    "commander_top",
+    "commander_trousers",
+    "commander_gloves",
+    "commander_boots",
+]
+
+[.war_chief_cap_poh]
+name = "War chief outfit"
+pieces = [
+    "war_chief_cap",
+    "war_chief_top",
+    "war_chief_trousers",
+    "war_chief_gloves",
+    "war_chief_boots",
+]
+
+[.lord_marshal_cap_poh]
+name = "Lord marshal outfit"
+pieces = [
+    "lord_marshal_cap",
+    "lord_marshal_top",
+    "lord_marshal_trousers",
+    "lord_marshal_gloves",
+    "lord_marshal_boots",
+]
+
+[.basic_decorative_platebody_poh]
+name = "Castle Wars armour"
+pieces = [
+    "basic_decorative_helm",
+    "basic_decorative_platebody",
+    "basic_decorative_platelegs",
+    "basic_decorative_shield",
+    "basic_decorative_sword",
+]
+
+[.void_knight_top_poh]
+name = "Void Knight armour"
+pieces = [
+    "void_knight_top",
+    "void_knight_robe",
+    "void_knight_gloves",
+]
+
+[.rogue_mask_poh]
+name = "Rogue armour"
+pieces = [
+    "rogue_mask",
+    "rogue_top",
+    "rogue_trousers",
+    "rogue_gloves",
+    "rogue_boots",
+]
+
+[.spined_helm_poh]
+name = "Spined armour"
+pieces = [
+    "spined_helm",
+    "spined_body",
+    "spined_chaps",
+    "spined_gloves",
+    "spined_boots",
+]
+
+[.rock_shell_helm_poh]
+name = "Rockshell armour"
+pieces = [
+    "rock_shell_helm",
+    "rock_shell_plate",
+    "rock_shell_legs",
+    "rock_shell_gloves",
+    "rock_shell_boots",
+]
+
+[.white_platebody_poh]
+name = "White knight armour"
+pieces = [
+    "white_full_helm",
+    "white_platebody",
+    "white_platelegs",
+    "white_kiteshield",
+]
+
+[.initiate_hauberk_poh]
+name = "Temple Knight initiate armour"
+pieces = [
+    "initiate_sallet",
+    "initiate_hauberk",
+    "initiate_cuisse",
+]
+
+[.proselyte_hauberk_poh]
+name = "Temple Knight proselyte armour"
+pieces = [
+    "proselyte_sallet",
+    "proselyte_hauberk",
+    "proselyte_cuisse",
+]
+
+[.mourner_top_poh]
+name = "Mourner gear"
+pieces = [
+    "mourner_top",
+    "mourner_trousers",
+    "mourner_boots",
+    "mourner_gloves",
+    "mourner_cloak",
+]
+
+[.graahk_top_poh]
+name = "Graahk hunter gear"
+pieces = [
+    "graahk_headdress",
+    "graahk_top",
+    "graahk_legs",
+]
+
+[.larupia_top_poh]
+name = "Larupia hunter gear"
+pieces = [
+    "larupia_hat",
+    "larupia_top",
+    "larupia_legs",
+]
+
+[.kyatt_top_poh]
+name = "Kyatt hunter gear"
+pieces = [
+    "kyatt_hat",
+    "kyatt_top",
+    "kyatt_legs",
+]
+
+[.polar_camo_top_poh]
+name = "Polar camouflage gear"
+pieces = [
+    "polar_camo_top",
+    "polar_camo_legs",
+]
+
+[.jungle_camo_top_poh]
+name = "Jungle camouflage gear"
+pieces = [
+    "jungle_camo_top",
+    "jungle_camo_legs",
+]
+
+[.wood_camo_top_poh]
+name = "Wood camouflage gear"
+pieces = [
+    "wood_camo_top",
+    "wood_camo_legs",
+]
+
+[.tribal_mask_green_poh]
+name = "Broodoo mask (poison)"
+pieces = [
+    "tribal_mask_green_poh",
+]
+
+[.tribal_mask_orange_poh]
+name = "Broodoo mask (disease)"
+pieces = [
+    "tribal_mask_orange_poh",
+]
+
+[.tribal_mask_blue_poh]
+name = "Broodoo mask (combat)"
+pieces = [
+    "tribal_mask_blue_poh",
+]
+
+[.desert_camo_top_poh]
+name = "Desert camouflage gear"
+pieces = [
+    "desert_camo_top",
+    "desert_camo_legs",
+]
+
+[.witchdoctor_mask_poh]
+name = "Witchdoctor camouflage gear"
+pieces = [
+    "witchdoctor_mask",
+    "witchdoctor_robes",
+    "witchdoctor_legs",
+]
+
+[.hard_hat_poh]
+name = "Builder's costume"
+pieces = [
+    "hard_hat",
+    "builders_shirt",
+    "builders_trousers",
+    "builders_boots",
+]
+
+[.lumberjack_top_poh]
+name = "Lumberjack costume"
+pieces = [
+    "lumberjack_hat",
+    "lumberjack_top",
+    "lumberjack_legs",
+    "lumberjack_boots",
+]
+
+[.bomber_jacket_poh]
+name = "Bomber jacket costume"
+pieces = [
+    "bomber_cap",
+    "bomber_jacket",
+]
+
+[.ham_shirt_poh]
+name = "H.A.M. robes"
+pieces = [
+    "ham_hood",
+    "ham_shirt",
+    "ham_robe",
+    "ham_boots",
+    "ham_gloves",
+    "ham_cloak",
+]
+
+[.elite_black_platebody_poh]
+name = "Elite Black Armour"
+pieces = [
+    "elite_black_full_helm",
+    "elite_black_platebody",
+    "elite_black_platelegs",
+]
+
+[.black_naval_shirt_poh]
+name = "Black naval costume"
+pieces = [
+    "black_naval_shirt",
+    "black_tricorn_hat",
+    "black_navy_slacks",
+]
+
+[.blue_naval_shirt_poh]
+name = "Blue naval costume"
+pieces = [
+    "blue_naval_shirt",
+    "blue_tricorn_hat",
+    "blue_navy_slacks",
+]
+
+[.brown_naval_shirt_poh]
+name = "Brown naval costume"
+pieces = [
+    "brown_naval_shirt",
+    "brown_tricorn_hat",
+    "brown_navy_slacks",
+]
+
+[.green_naval_shirt_poh]
+name = "Green naval costume"
+pieces = [
+    "green_naval_shirt",
+    "green_tricorn_hat",
+    "green_navy_slacks",
+]
+
+[.grey_naval_shirt_poh]
+name = "Grey naval costume"
+pieces = [
+    "grey_naval_shirt",
+    "grey_tricorn_hat",
+    "grey_navy_slacks",
+]
+
+[.purple_naval_shirt_poh]
+name = "Purple naval costume"
+pieces = [
+    "purple_naval_shirt",
+    "purple_tricorn_hat",
+    "purple_navy_slacks",
+]
+
+[.red_naval_shirt_poh]
+name = "Red naval costume"
+pieces = [
+    "red_naval_shirt",
+    "red_tricorn_hat",
+    "red_navy_slacks",
+]
+
+[.royal_shirt_poh]
+name = "Red naval costume"
+pieces = [
+    "royal_shirt",
+    "royal_leggings",
+    "royal_sceptre",
+    "royal_crown",
+    "royal_amulet",
+]
+
+[.ancient_ceremonial_hood]
+name = "Ancient ceremonial gear"
+pieces = [
+    "ancient_ceremonial_mask",
+    "ancient_ceremonial_top",
+    "ancient_ceremonial_legs",
+    "ancient_ceremonial_gloves",
+    "ancient_ceremonial_boots",
+]
+
+[.construct_cape]
+name = "Construction cape"
+pieces = [
+    "construction_cape",
+]
+
+[.runecraft_cape]
+name = "Runecrafting cape"
+pieces = [
+    "runecrafting_cape",
+]
+
+[.mime_mask_poh]
+name = "Mime costume"
+pieces = [
+    "mime_mask",
+    "mime_top",
+    "mime_legs",
+    "mime_gloves",
+    "mime_boots",
+]
+
+[.princess_blouse_poh]
+name = "Princess outfit"
+pieces = [
+    "princess_blouse",
+    "princess_skirt",
+]
+
+[.zombie_shirt_poh]
+name = "Zombie outfit"
+pieces = [
+    "zombie_mask",
+    "zombie_shirt",
+    "zombie_trousers",
+    "zombie_gloves",
+    "zombie_boots",
+]
+
+[.camo_top_poh]
+name = "Camouflage outfit"
+pieces = [
+    "camo_helmet",
+    "camo_top",
+    "camo_bottoms",
+]
+
+[.lederhosen_top_poh]
+name = "Lederhosen outfit"
+pieces = [
+    "lederhosen_hat",
+    "lederhosen_top",
+    "lederhosen_shorts",
+]
+
+[.shade_robe]
+name = "Shade robes"
+pieces = [
+    "shade_robe_top",
+    "shade_robe_bottom",
+]
+
+[.studded_body_g_poh]
+name = "Studded leather (g)"
+pieces = [
+    "studded_body_g",
+    "studded_chaps_g",
+]
+
+[.black_platebody_g_poh]
+name = "Black armour (g)"
+pieces = [
+    "black_full_helm_g",
+    "black_platebody_g",
+    "black_platelegs_g",
+    "black_kiteshield_g",
+]
+
+[.rune_platebody_g_poh]
+name = "Rune armour (g)"
+pieces = [
+    "rune_full_helm_g",
+    "rune_platebody_g",
+    "rune_platelegs_g",
+    "rune_kiteshield_g",
+]
+
+[.wizard_robe_g]
+name = "Blue wizard (g)"
+pieces = [
+    "wizard_hat_g",
+    "wizard_robe_top_g",
+    "wizard_robe_g",
+]
+
+[.studded_body_t_poh]
+name = "Studded leather (t)"
+pieces = [
+    "studded_body_t",
+    "studded_chaps_t",
+]
+
+[.black_platebody_t_poh]
+name = "Black armour (t)"
+pieces = [
+    "black_full_helm_t",
+    "black_platebody_t",
+    "black_platelegs_t",
+    "black_kiteshield_t",
+]
+
+[.rune_platebody_t_poh]
+name = "Rune armour (t)"
+pieces = [
+    "rune_full_helm_t",
+    "rune_platebody_t",
+    "rune_platelegs_t",
+    "rune_kiteshield_t",
+]
+
+[.wizard_robe_t]
+name = "Blue wizard (t)"
+pieces = [
+    "wizard_hat_t",
+    "wizard_robe_top_t",
+    "wizard_robe_t",
+]
+
+[.adam_platebody_g]
+name = "Adamant armour (g)"
+pieces = [
+    "adamant_full_helm_g",
+    "adamant_platebody_g",
+    "adamant_platelegs_g",
+    "adamant_kiteshield_g",
+]
+
+[.adam_platebody_t]
+name = "Adamant armour (t)"
+pieces = [
+    "adamant_full_helm_t",
+    "adamant_platebody_t",
+    "adamant_platelegs_t",
+    "adamant_kiteshield_t",
+]
+
+[.dhide_body_g]
+name = "Green d'hide (g)"
+pieces = [
+    "green_dragonhide_body_g",
+    "green_dragonhide_chaps_g",
+]
+
+[.dhide_body_g_poh]
+name = "Blue d'hide (g)"
+pieces = [
+    "blue_dragonhide_body_g",
+    "blue_dragonhide_chaps_g",
+]
+
+[.dhide_body_t]
+name = "Green d'hide (t)"
+pieces = [
+    "green_dragonhide_body_t",
+    "green_dragonhide_chaps_t",
+]
+
+[.dhide_body_t_poh]
+name = "Blue d'hide (t)"
+pieces = [
+    "blue_dragonhide_body_t",
+    "blue_dragonhide_chaps_t",
+]
+
+[.red_elegant_shirt_poh]
+name = "Red elegant clothes"
+pieces = [
+    "red_elegant_shirt",
+    "red_elegant_blouse",
+    "red_elegant_legs",
+    "red_elegant_skirt",
+]
+
+[.green_elegant_shirt_poh]
+name = "Green elegant clothes"
+pieces = [
+    "green_elegant_shirt",
+    "green_elegant_blouse",
+    "green_elegant_legs",
+    "green_elegant_skirt",
+]
+
+[.blue_elegant_shirt_poh]
+name = "Blue elegant clothes"
+pieces = [
+    "blue_elegant_shirt",
+    "blue_elegant_blouse",
+    "blue_elegant_legs",
+    "blue_elegant_skirt",
+]
+
+[.elegant_shirt]
+name = "Black and white elegant clothes"
+pieces = [
+    "black_elegant_shirt",
+    "white_elegant_blouse",
+    "black_elegant_legs",
+    "white_elegant_skirt",
+]
+
+[.purple_elegant_shirt_poh]
+name = "Purple elegant clothes"
+pieces = [
+    "purple_elegant_shirt",
+    "purple_elegant_blouse",
+    "purple_elegant_legs",
+    "purple_elegant_skirt",
+]
+
+[.enchanted_top_poh]
+name = "Enchanted robes"
+pieces = [
+    "enchanted_hat",
+    "enchanted_top",
+    "enchanted_robe",
+]
+
+[.zamorak_platebody]
+name = "Zamorak armour"
+pieces = [
+    "rune_full_helm_zamorak",
+    "rune_platebody_zamorak",
+    "rune_platelegs_zamorak",
+    "rune_kiteshield_zamorak",
+]
+
+[.saradomin_plate]
+name = "Saradomin armour"
+pieces = [
+    "rune_full_helm_saradomin",
+    "rune_platebody_saradomin",
+    "rune_platelegs_saradomin",
+    "rune_kiteshield_saradomin",
+]
+
+[.guthix_platebody]
+name = "Guthix armour"
+pieces = [
+    "rune_full_helm_guthix",
+    "rune_platebody_guthix",
+    "rune_platelegs_guthix",
+    "rune_kiteshield_guthix",
+]
+
+[.gilded_platebody]
+name = "Gilded armour"
+pieces = [
+    "rune_full_helm_gilded",
+    "rune_platebody_gilded",
+    "rune_platelegs_gilded",
+    "rune_kiteshield_gilded",
+]
+
+[.armadyl_platebody]
+name = "Armadyl armour"
+pieces = [
+    "rune_full_helm_armadyl",
+    "rune_platebody_armadyl",
+    "rune_platelegs_armadyl",
+    "rune_kiteshield_armadyl",
+]
+
+[.bandos_platebody]
+name = "Bandos armour"
+pieces = [
+    "rune_full_helm_bandos",
+    "rune_platebody_bandos",
+    "rune_platelegs_bandos",
+    "rune_kiteshield_bandos",
+]
+
+[.ancient_platebody]
+name = "Ancient armour"
+pieces = [
+    "rune_full_helm_ancient",
+    "rune_platebody_ancient",
+    "rune_platelegs_ancient",
+    "rune_kiteshield_ancient",
+]
+
+[.zamorak_robe_top_poh]
+name = "Zamorak vestments"
+pieces = [
+    "zamorak_mitre",
+    "zamorak_robe_top",
+    "zamorak_robe_legs",
+    "zamorak_cloak",
+    "zamorak_stole",
+    "zamorak_crozier",
+]
+
+[.zamorak_dragonhide]
+name = "Zamorak blessed dragonhide"
+pieces = [
+    "zamorak_coif",
+    "zamorak_body",
+    "zamorak_chaps",
+    "zamorak_vambraces",
+]
+
+[.saradomin_robe_top_poh]
+name = "Saradomin vestments"
+pieces = [
+    "saradomin_mitre",
+    "saradomin_robe_top",
+    "saradomin_robe_legs",
+    "saradomin_cloak",
+    "saradomin_stole",
+    "saradomin_crozier",
+]
+
+[.saradomin_dragonhide]
+name = "Saradomin blessed dragonhide"
+pieces = [
+    "saradomin_coif",
+    "saradomin_body",
+    "saradomin_chaps",
+    "saradomin_vambraces",
+]
+
+[.guthix_robe_top_poh]
+name = "Guthix vestments"
+pieces = [
+    "guthix_mitre",
+    "guthix_robe_top",
+    "guthix_robe_legs",
+    "guthix_cloak",
+    "guthix_stole",
+    "guthix_crozier",
+]
+
+[.guthix_dragonhide]
+name = "Guthix blessed dragonhide"
+pieces = [
+    "guthix_coif",
+    "guthix_body",
+    "guthix_chaps",
+    "guthix_vambraces",
+]
+
+[.armadyl_robe_top_poh]
+name = "Armadyl vestments"
+pieces = [
+    "armadyl_mitre",
+    "armadyl_robe_top",
+    "armadyl_robe_legs",
+    "armadyl_cloak",
+    "armadyl_stole",
+    "armadyl_crozier",
+]
+
+[.armadyl_dragonhide]
+name = "Armadyl blessed dragonhide"
+pieces = [
+    "armadyl_coif",
+    "armadyl_body",
+    "armadyl_chaps",
+    "armadyl_vambraces",
+]
+
+[.bandos_robe_top_poh]
+name = "Bandos vestments"
+pieces = [
+    "bandos_mitre",
+    "bandos_robe_top",
+    "bandos_robe_legs",
+    "bandos_cloak",
+    "bandos_stole",
+    "bandos_crozier",
+]
+
+[.bandos_dragonhide]
+name = "Bandos blessed dragonhide"
+pieces = [
+    "bandos_coif",
+    "bandos_body",
+    "bandos_chaps",
+    "bandos_vambraces",
+]
+
+[.ancient_robe_top_poh]
+name = "Ancient vestments"
+pieces = [
+    "ancient_mitre",
+    "ancient_robe_top",
+    "ancient_robe_legs",
+    "ancient_cloak",
+    "ancient_stole",
+    "ancient_crozier",
+]
+
+[.ancient_dragonhide]
+name = "Ancient blessed dragonhide"
+pieces = [
+    "ancient_coif",
+    "ancient_body",
+    "ancient_chaps",
+    "ancient_vambraces",
+]
+
+[.dragon_platebody_o]
+name = "Dragon armour (or)"
+pieces = [
+    "dragon_full_helm_or",
+    "dragon_platebody_or",
+    "dragon_platelegs_or",
+    "dragon_sq_shield_or",
+]
+
+[.dragon_platebody_s]
+name = "Dragon armour (sp)"
+pieces = [
+    "dragon_full_helm_sp",
+    "dragon_platebody_sp",
+    "dragon_platelegs_sp",
+    "dragon_sq_shield_sp",
+]

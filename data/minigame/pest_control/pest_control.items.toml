@@ -123,22 +123,3 @@ id = 11673
 slot = "Amulet"
 examine = "A seal storing the power of the Void Knights."
 weight = 0.005
-
-[void_mage_helm_2]
-id = 11674
-slot = "Hat"
-type = "Hair"
-destroy = "No"
-examine = "A mage helm from the order of the Void Knights."
-
-[void_ranger_helm_2]
-id = 11675
-slot = "Hat"
-type = "Hair"
-examine = "A ranger helm from the order of the Void Knights"
-
-[void_melee_helm_2]
-id = 11676
-slot = "Hat"
-type = "Hair"
-examine = "A melee helm from the order of the Void Knights."

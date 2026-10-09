@@ -400,6 +400,16 @@ type = "main_screen"
 [.title]
 id = 136
 
+[.scroll]
+id = 11
+
+[.scrollbar]
+id = 14
+
+# Item icons, one column of rows
+[.items]
+id = 12
+
 [.close]
 id = 75
 
@@ -582,6 +592,98 @@ id = 73
 
 [.select_30]
 id = 74
+
+# Hidden layers holding a dark overlay for each row
+
+[.overlay_1]
+id = 77
+
+[.overlay_2]
+id = 79
+
+[.overlay_3]
+id = 81
+
+[.overlay_4]
+id = 83
+
+[.overlay_5]
+id = 85
+
+[.overlay_6]
+id = 87
+
+[.overlay_7]
+id = 89
+
+[.overlay_8]
+id = 91
+
+[.overlay_9]
+id = 93
+
+[.overlay_10]
+id = 95
+
+[.overlay_11]
+id = 97
+
+[.overlay_12]
+id = 99
+
+[.overlay_13]
+id = 101
+
+[.overlay_14]
+id = 103
+
+[.overlay_15]
+id = 105
+
+[.overlay_16]
+id = 107
+
+[.overlay_17]
+id = 109
+
+[.overlay_18]
+id = 111
+
+[.overlay_19]
+id = 113
+
+[.overlay_20]
+id = 115
+
+[.overlay_21]
+id = 117
+
+[.overlay_22]
+id = 119
+
+[.overlay_23]
+id = 121
+
+[.overlay_24]
+id = 123
+
+[.overlay_25]
+id = 125
+
+[.overlay_26]
+id = 127
+
+[.overlay_27]
+id = 129
+
+[.overlay_28]
+id = 131
+
+[.overlay_29]
+id = 133
+
+[.overlay_30]
+id = 135
 
 # Games room hangman, the letters are named after themselves
 [poh_hangman]
