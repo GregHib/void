@@ -4,6 +4,7 @@
 *.dll
 *.dat*
 *.checksum
+/data/cache/*.sha256
 *.jct
 
 # scripts

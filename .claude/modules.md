@@ -6,7 +6,7 @@ Dependency direction: `game` → `engine`, `cache`, `network`, `config`, `types`
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | **engine**            | Game loop, entity model (Player, NPC, GameObject, FloorItem), event system, inventory transactions, pathfinding, all `Script` mix-in interfaces |
 | **game**              | All content (`content/`), `Main.kt`, `WorldTest.kt`                                                                                             |
-| **cache**             | Decoders and encoders of binary RS cache files                                                                                                  |
+| **cache**             | Decoders and encoders of binary RS cache files, startup cache downloader (`CacheDownloader`)                                                                                                  |
 | **config**            | Reader for simplified toml file reading (string IDs, shops, drop tables, etc.)                                                                  |
 | **network**           | Ktor server for connections, login, packet encoding/decoding                                                                                    |
 | **buffer**            | Binary read/write utilities                                                                                                                     |
