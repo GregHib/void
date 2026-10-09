@@ -52,3 +52,29 @@ y = [3365, 3374]
 x = [2664, 2671]
 y = [3372, 3377]
 level = 0
+
+[ardougne_east_bank]
+# nav-editor: named area only
+x = [2650, 2653]
+y = [3282, 3285]
+level = 0
+tags = ["bank"]
+
+[ardougne_east_general_store]
+# nav-editor: named area only
+x = [2613, 2615]
+y = [3292, 3294]
+level = 0
+
+[ardougne_north_bank]
+# nav-editor: named area only
+x = [2615, 2618]
+y = [3332, 3334]
+level = 0
+tags = ["bank"]
+
+[ardougne_brimhaven_boat_embark]
+# nav-editor: named area only
+x = [2682, 2685]
+y = [3274, 3276]
+level = 0

@@ -193,4 +193,8 @@ edges = [
     { from = { x = 3030, y = 3320 }, to = { x = 3007, y = 3319 } },
     { from = { x = 3007, y = 3319 }, to = { x = 3007, y = 3305 } },
     { from = { x = 3007, y = 3305 }, to = { x = 3007, y = 3295 } },
+
+    { from = { x = 3027, y = 3217 }, to = { x = 2956, y = 3143, level = 1 }, actions = [ { npc = { id = "captain_tobias_1", option = "Talk-to", success = { interface_open = { id = "dialogue_npc_chat1" } } } }, { wait = { ticks = 2 } }, { continue = { id = "dialogue_npc_chat1:continue" } }, { wait = { ticks = 2 } }, { continue = { id = "dialogue_npc_chat1:continue" } }, { wait = { ticks = 2 } }, { continue = { id = "dialogue_multi2:line1" } }, { wait = { ticks = 2 } }, { continue = { id = "dialogue_chat1:continue" } }, { wait = { ticks = 7 } }, { continue = { id = "dialogue_message1:continue" } }, { wait = { ticks = 2 } }, { tile = { x = 2956, y = 3143, radius = 1 } } ], requires = [{ inventory = { id = "coins", min = 30 } }], cost = 16 },
+    { from = { x = 3032, y = 3217, level = 1 }, to = { x = 3029, y = 3217 }, actions = [{ object = { option = "Cross", id = "port_sarim_musa_point_gangplank_exit", x = 3031, y = 3217, radius = 0, success = { tile = { x = 3029, y = 3217, level = 0 } } } }, { tile = { x = 3029, y = 3217, radius = 1 } }], cost = 4 },
+    { from = { x = 3029, y = 3217 }, to = { x = 3032, y = 3217, level = 1 }, actions = [{ object = { option = "Cross", id = "port_sarim_musa_point_gangplank_enter", x = 3030, y = 3217, radius = 0, success = { tile = { x = 3032, y = 3217, level = 1 } } } }, { tile = { x = 3032, y = 3217, radius = 1 } }], cost = 4 },
 ]

@@ -5,3 +5,9 @@ y = [3159, 3176]
 [thurgo_fishing_area]
 x = [2986, 2995]
 y = [3153, 3179]
+
+[karamja_port_sarim_boat_embark]
+# nav-editor: named area only
+x = [2952, 2956]
+y = [3146, 3147]
+level = 0

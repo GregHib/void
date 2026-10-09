@@ -7,3 +7,73 @@ x = [2688,2688,2815,2815,2879,2879,2908,2908,2961,2961]
 y = [3136,3263,3263,3207,3207,3199,3199,3186,3186,3136]
 tags = ["penguin_area"]
 hint = "where banana smugglers dwell."
+
+[karamja_volcano_small_obelisk]
+# nav-editor: named area only
+x = [2847, 2849]
+y = [3160, 3162]
+level = 0
+tags = ["small_obelisk"]
+
+[brimhaven_agility_arena_entrance]
+# nav-editor: named area only
+x = [2807, 2810]
+y = [3192, 3195]
+level = 0
+
+[brimhaven_spirit_tree_patch]
+# nav-editor: named area only
+x = [2800, 2804]
+y = [3201, 3205]
+level = 0
+
+[brimhaven_shilo_village_cart_embark]
+# nav-editor: named area only
+x = [2776, 2779]
+y = [3210, 3213]
+level = 0
+
+[brimhaven_ardougne_boat_embark]
+# nav-editor: named area only
+x = [2771, 2773]
+y = [3225, 3228]
+level = 0
+
+[brimhaven_charter_boat_embark]
+# nav-editor: named area only
+x = [2759, 2761]
+y = [3232, 3237]
+level = 0
+tags = ["charter_boat"]
+
+[brimhaven_fruit_tree_patch]
+# nav-editor: named area only
+x = [2763, 2766]
+y = [3211, 3214]
+level = 0
+
+[brimhaven_house_portal]
+# nav-editor: named area only
+x = [2757, 2758]
+y = [3177, 3179]
+level = 0
+tags = ["house_portal"]
+
+[brimhaven_obelisk]
+# nav-editor: named area only
+x = [2715, 2718]
+y = [3210, 3213]
+level = 0
+tags = ["obelisk"]
+
+[brimhaven_gold_mine]
+# nav-editor: named area only
+x = [2730, 2736]
+y = [3222, 3228]
+level = 0
+
+[brimhaven_moss_giants]
+# nav-editor: named area only
+x = [2691, 2702]
+y = [3202, 3217]
+level = 0

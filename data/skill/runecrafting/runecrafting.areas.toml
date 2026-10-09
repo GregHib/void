@@ -83,3 +83,9 @@ y = [4800, 4863]
 [earth_altar]
 x = [2624, 2687]
 y = [4800, 4863]
+
+[nature_altar]
+# nav-editor: named area only
+x = [2398, 2402]
+y = [4839, 4843]
+level = 0
