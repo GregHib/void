@@ -17,6 +17,7 @@
   - Rows accessed as `val row = Rows.get("cooking.${itemId}")`.
   - All rows as `Tables.get("barrows_brothers").rows()`.
   - Fields as `row.int("level")`, `row.string("type")`, etc.
+  - **No data classes for table data** — don't copy rows into them; read fields from the `Row` directly, and search `Tables.get(...).rows()` when needed.
 - Persistent variables must be declared in `.vars.toml`, `.varbits.toml`, or `varps.toml` configs.
 - Format with `gradle spotlessApply`
 - **Citations** — comment data with its origin: wiki/web data gets the URL, a made-up `message()` gets `// TODO proper message`, a guessed stat is commented as guessed (also in `.toml`).

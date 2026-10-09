@@ -85,6 +85,8 @@ internal class GemBagTest : WorldTest() {
         player.inventory.add("shark", 20)
 
         player.itemOption("Withdraw", "gem_bag")
+        tick()
+        player.dialogueOption(1)
 
         assertEquals(7, player.inventory.count("uncut_sapphire"))
         assertEquals(18, player["gem_bag_sapphire", 0])
@@ -98,8 +100,10 @@ internal class GemBagTest : WorldTest() {
         player.inventory.add("shark", 27)
 
         player.itemOption("Withdraw", "gem_bag")
+        tick()
+        player.dialogueOption(2)
 
-        assertEquals(0, player.inventory.count("emerald"))
+        assertEquals(0, player.inventory.count("uncut_emerald"))
         assertEquals(25, player["gem_bag_emerald", 0])
     }
 

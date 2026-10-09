@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.player.chat.noAid
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
@@ -38,7 +39,7 @@ class EnergyTransfer : Script {
                 return@onPlayerApproach
             }
             if (!get("accept_aid", true)) {
-                message("This player is not currently accepting aid.") // TODO proper message
+                noAid()
                 return@onPlayerApproach
             }
             if (!removeSpellItems("energy_transfer")) {
