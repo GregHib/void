@@ -15,7 +15,7 @@ private const val COAL_TRUCK_DEFAULT_CAPACITY = 120
 private const val COAL_TRUCK_HEADBAND_1_CAPACITY = 140
 private const val COAL_TRUCK_HEADBAND_2_CAPACITY = 168
 private const val COAL_TRUCK_HEADBAND_3_CAPACITY = 196
-private const val COAL_TRUCK_MAX_CAPACITY = 196
+private const val COAL_TRUCK_HEADBAND_4_CAPACITY = 200
 private const val COAL_TRUCK_DISPLAY_SOME = 1
 private const val COAL_TRUCK_DISPLAY_ALMOST_HALF = 40
 private const val COAL_TRUCK_DISPLAY_NEARLY_FULL = 80
@@ -30,6 +30,7 @@ private enum class CoalTruckTier(val capacity: Int, val headbandId: String? = nu
     Easy(COAL_TRUCK_HEADBAND_1_CAPACITY, "seers_headband_1"),
     Medium(COAL_TRUCK_HEADBAND_2_CAPACITY, "seers_headband_2"),
     Hard(COAL_TRUCK_HEADBAND_3_CAPACITY, "seers_headband_3"),
+    Elite(COAL_TRUCK_HEADBAND_4_CAPACITY, "seers_headband_4"),
 }
 
 class CoalTrucks : Script {
@@ -100,7 +101,7 @@ class CoalTrucks : Script {
         val count = get(COAL_TRUCK_COUNT, 0)
         val stored = when (count) {
             0 -> legacyCoalTruckCount(display)
-            else -> count.coerceIn(0, COAL_TRUCK_MAX_CAPACITY)
+            else -> count.coerceIn(0, COAL_TRUCK_HEADBAND_4_CAPACITY)
         }
         val transformed = coalTruckDisplayValue(stored, coalTruckCapacity())
         if (stored != count) {
@@ -115,7 +116,7 @@ class CoalTrucks : Script {
     private fun Player.coalTruckCount(): Int = normaliseCoalTruckState()
 
     private fun Player.storeCoalTruckCount(stored: Int) {
-        val amount = stored.coerceIn(0, COAL_TRUCK_MAX_CAPACITY)
+        val amount = stored.coerceIn(0, COAL_TRUCK_HEADBAND_4_CAPACITY)
         set(COAL_TRUCK_COUNT, amount)
         syncCoalTruckDisplay(amount)
     }
@@ -127,6 +128,7 @@ class CoalTrucks : Script {
     private fun Player.coalTruckCapacity(): Int = coalTruckTier().capacity
 
     private fun Player.coalTruckTier(): CoalTruckTier = when {
+        hasCoalTruckTier(CoalTruckTier.Elite) -> CoalTruckTier.Elite
         hasCoalTruckTier(CoalTruckTier.Hard) -> CoalTruckTier.Hard
         hasCoalTruckTier(CoalTruckTier.Medium) -> CoalTruckTier.Medium
         hasCoalTruckTier(CoalTruckTier.Easy) -> CoalTruckTier.Easy
@@ -145,6 +147,7 @@ class CoalTrucks : Script {
     //     CoalTruckTier.Easy -> get("seers_easy_diary_complete", false)
     //     CoalTruckTier.Medium -> get("seers_medium_diary_complete", false)
     //     CoalTruckTier.Hard -> get("seers_hard_diary_complete", false)
+    //     CoalTruckTier.Elite -> get("seers_elite_diary_complete", false)
     // }
 }
 
@@ -156,10 +159,10 @@ private fun legacyCoalTruckCount(legacy: Int): Int = when {
 
 private fun coalTruckDisplayValue(stored: Int, capacity: Int): Int = when {
     stored <= 0 -> 0
-    capacity < COAL_TRUCK_MAX_CAPACITY && stored >= capacity -> COAL_TRUCK_DISPLAY_FULL
+    capacity < COAL_TRUCK_HEADBAND_3_CAPACITY && stored >= capacity -> COAL_TRUCK_DISPLAY_FULL
     stored < capacity / 4 -> COAL_TRUCK_DISPLAY_SOME
     stored < capacity / 2 -> COAL_TRUCK_DISPLAY_ALMOST_HALF
-    capacity < COAL_TRUCK_MAX_CAPACITY -> COAL_TRUCK_DISPLAY_NEARLY_FULL
+    capacity < COAL_TRUCK_HEADBAND_3_CAPACITY -> COAL_TRUCK_DISPLAY_NEARLY_FULL
     stored < COAL_TRUCK_DISPLAY_FULL -> COAL_TRUCK_DISPLAY_NEARLY_FULL
     stored < COAL_TRUCK_DISPLAY_IMPRESSIVELY_STACKED -> COAL_TRUCK_DISPLAY_FULL
     stored < COAL_TRUCK_DISPLAY_MAXIMUM_STACK -> COAL_TRUCK_DISPLAY_IMPRESSIVELY_STACKED
