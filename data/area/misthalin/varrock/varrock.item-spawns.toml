@@ -30,6 +30,9 @@ spawns = [
   { id = "doogle_leaves", x = 3151, y = 3399, delay = 100 },
   { id = "doogle_leaves", x = 3157, y = 3400, delay = 100 },
   { id = "doogle_leaves", x = 3156, y = 3401, delay = 100 },
+  # 12598
+  { id = "earth_rune", x = 3195, y = 3515, delay = 100 },
+  { id = "wooden_shield", x = 3204, y = 3515, delay = 48 },
   # 12853
   { id = "spade", x = 3218, y = 3412, level = 1, delay = 100 },
   { id = "knife", x = 3218, y = 3418, level = 1, delay = 100 }

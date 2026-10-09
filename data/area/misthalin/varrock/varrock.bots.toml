@@ -49,3 +49,9 @@ fields = { location = "varrock_south_west_mine" }
 template = "iron_ore_template"
 capacity = 2
 fields = { location = "varrock_south_west_mine" }
+
+# Woodcutting
+[varrock_palace_yew_trees]
+template = "yew_tree_template"
+capacity = 3
+fields = { location = "varrock_palace_yew_trees" }

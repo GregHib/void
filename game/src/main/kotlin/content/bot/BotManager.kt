@@ -171,7 +171,7 @@ class BotManager(
         if (bot.player["debug", false]) {
             logger.trace { "Picking new activity from ${bot.available} for bot ${bot.player.accountName}." }
         }
-        var activity = if (hasRequirements(bot, bot.previous)) {
+        var activity = if (bot.previous != idle && hasRequirements(bot, bot.previous)) {
             bot.previous!!
         } else {
             bot.available
@@ -392,7 +392,9 @@ class BotManager(
             } else {
                 bot.blocked.remove(behaviour.id)
             }
-            slots.release(behaviour)
+            if (state.reason !is HardReason) {
+                slots.release(behaviour)
+            }
         }
     }
 

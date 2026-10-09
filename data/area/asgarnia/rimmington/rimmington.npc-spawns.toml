@@ -58,4 +58,10 @@ spawns = [
   { id = "tool_leprechaun_rimmington", x = 2939, y = 3219, members = true },
   { id = "rommik", x = 2949, y = 3205 },
   { id = "brian_rimmington", x = 2957, y = 3204 },
+  { id = "hengel", x = 2967, y = 3210, level = 1 },
+  { id = "anja", x = 2967, y = 3213, level = 1 },
+  { id = "rat_black_knights_fortress", x = 2953, y = 3204 },
+  { id = "rat_black_knights_fortress", x = 2955, y = 3202 },
+  { id = "rat_black_knights_fortress", x = 2959, y = 3202 },
+  { id = "rat_black_knights_fortress", x = 2960, y = 3205 },
 ]

@@ -10,6 +10,7 @@ import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.BotItem
+import content.bot.behaviour.condition.BotVariable
 import content.entity.player.bank.bank
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -78,6 +79,40 @@ class DynamicResolversTest {
         val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
         assertTrue(resolver!!.actions.any { it is BotGoToNearest || it is BotInteractObject })
+    }
+
+    @Test
+    fun `Bank withdrawals check the requested note mode for each item`() {
+        ItemDefinitions.set(
+            arrayOf(
+                ItemDefinition(stringId = "pickaxe", noteId = 1),
+                ItemDefinition(stringId = "pickaxe_noted", noteId = 0, notedTemplateId = 799, stackable = 1),
+            ),
+            mapOf("pickaxe" to 0, "pickaxe_noted" to 1),
+        )
+        player.bank.add("pickaxe", 10)
+
+        for (initialMode in listOf(false, true)) {
+            player["bank_notes"] = initialMode
+            val resolver = DynamicResolvers.resolver(
+                player,
+                BotInventorySetup(listOf(BotItem(setOf("pickaxe_noted"), min = 5), BotItem(setOf("pickaxe")))),
+            )!!
+            val options = resolver.actions.filterIsInstance<BotInterfaceOption>()
+            val modes = options.filter { it.id == "bank:note_mode" }
+            assertEquals(listOf(true, false), modes.map { (it.success as BotVariable).equals })
+            for (mode in modes) {
+                val condition = mode.success as BotVariable
+                val desiredMode = condition.equals as Boolean
+                player["bank_notes"] = desiredMode
+                assertTrue(condition.check(player))
+                player["bank_notes"] = !desiredMode
+                assertFalse(condition.check(player))
+            }
+            assertEquals("bank:inventory:pickaxe", options[options.indexOf(modes[0]) + 1].id)
+            assertEquals("Withdraw-X", options[options.indexOf(modes[0]) + 1].option)
+            assertEquals("Withdraw-1", options[options.indexOf(modes[1]) + 1].option)
+        }
     }
 
     @Test

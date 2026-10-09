@@ -31,7 +31,7 @@ class LivingRockCaverns : Script {
             delay(2)
             tele(3651, 5122)
             val rope = GameObjects.find(Tile(3651, 5123), "living_rock_caverns_rope")
-            anim("living_rock_caverns_rope") // TODO proper anim
+            anim("living_rock_caverns_rope")
             rope.anim("living_rock_caverns_rope_drop")
             face(Direction.SOUTH)
             delay(3)

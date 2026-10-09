@@ -35,6 +35,5 @@ class Roddeck : Script {
         npc<Laugh>("Advice? Certainly, certainly! Click my Advisor button whenever you have a question.")
     }
 
-    fun ChoiceOption.noThanks(): Unit = option<Bored>("Nothing, thanks.") {
-    }
+    fun ChoiceOption.noThanks(): Unit = option<Bored>("Nothing, thanks.")
 }

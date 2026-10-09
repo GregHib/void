@@ -46,6 +46,23 @@ produces = [
     { skill = "woodcutting" }
 ]
 
+[maple_tree_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = 45 } },
+]
+setup = [
+    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "maple_tree*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "maple_logs" },
+    { skill = "woodcutting" }
+]
+
 [yew_tree_template]
 requires = [
     { skill = { id = "woodcutting", min = 60, max = 75 } },
@@ -60,4 +77,91 @@ actions = [
 produces = [
     { item = "yew_logs" },
     { skill = "woodcutting" }
+]
+
+[magic_tree_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = 75 } },
+]
+setup = [
+    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "magic_tree*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "magic_logs" },
+    { skill = "woodcutting" }
+]
+
+[woodcutting_fletching_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = "$woodcutting_level", max = "$woodcutting_max" } },
+    { skill = { id = "fletching", min = "$fletching_level" } },
+]
+setup = [
+    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { fletch_logs = { wood = "$wood", product = "$product" } },
+]
+produces = [
+    { item = "$product" },
+    { skill = "woodcutting" },
+    { skill = "fletching" }
+]
+
+[woodcutting_fletching_sell_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = "$woodcutting_level", max = "$woodcutting_max" } },
+    { skill = { id = "fletching", min = "$fletching_level" } },
+]
+setup = [
+    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { fletch_logs = { wood = "$wood", product = "$product" } },
+    { go_to = { area = "$shop_area" } },
+    { npc = { option = "Trade", id = "$shop_npc", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Sell 50", id = "shop_side:inventory:$product", success = { inventory = { id = "$product", max = 0 } } } },
+    { interface_close = { id = "shop" } },
+    { go_to = { area = "$location" } },
+]
+produces = [
+    { item = "$product" },
+    { skill = "woodcutting" },
+    { skill = "fletching" }
+]
+
+[woodcutting_fletching_bank_template]
+requires = [
+    { members = { req = true } },
+    { skill = { id = "woodcutting", min = "$woodcutting_level", max = "$woodcutting_max" } },
+    { skill = { id = "fletching", min = "$fletching_level" } },
+]
+setup = [
+    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Chop down", id = "$tree", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { fletch_logs = { wood = "$wood", product = "$product" } },
+    { go_to = { area = "$bank_area" } },
+    { object = { option = "Use-quickly", id = "bank_booth*", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$product", success = { inventory = { id = "$product", max = 0 } } } },
+    { interface_close = { id = "bank" } },
+    { go_to = { area = "$location" } },
+]
+produces = [
+    { item = "$product" },
+    { skill = "woodcutting" },
+    { skill = "fletching" }
 ]

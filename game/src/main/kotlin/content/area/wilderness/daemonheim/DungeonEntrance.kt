@@ -24,7 +24,10 @@ import content.skill.dungeoneering.DungeonSize
 import content.skill.dungeoneering.DungeonStartingItems
 import content.skill.dungeoneering.dungeonMap
 import content.skill.magic.spell.spellBook
+import content.skill.summoning.dismissFamiliar
+import content.skill.summoning.isFamiliar
 import content.skill.summoning.pet.pet
+import content.skill.summoning.pet.pickupPet
 import net.pearx.kasechange.toPascalCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -162,7 +165,7 @@ class DungeonEntrance : Script {
         }
     }
 
-    private fun Player.allMembersCanEnter(): Boolean {
+    private suspend fun Player.allMembersCanEnter(): Boolean {
         for (member in dungeonMembers) {
             if (!member.canEnter()) {
                 if (member == this) {
@@ -175,10 +178,76 @@ class DungeonEntrance : Script {
                 return false
             }
             if (pet != null) {
+                // rs3
                 if (member == this) {
-                    message("You cannot bring a familiar into Daemonheim.") // TODO proper message
+                    if (pet.isFamiliar) {
+                        choice("Are you sure you want to dismiss your familiar?") {
+                            option("Yes.") {
+                                dismissFamiliar()
+                                message("You dismissed your follower, ${pet?.def?.name}, so your party can enter Daemonheim.")
+                            }
+                            option("No.") {
+                                message("You must dismiss your follower, ${pet?.def?.name}, so your party can enter Daemonheim.")
+                            }
+                        }
+                    } else {
+                        choice("What do you want to do with your pet?") {
+                            option("Pick pet up.") {
+                                pickupPet()
+                                message("You picked up your pet, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                            }
+                            option("Release pet.") {
+                                choice("Are you sure you want to dismiss your pet?") {
+                                    option("Yes.") {
+                                        dismissFamiliar()
+                                        message("You dismiss your pet, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                    }
+                                    option("No.") {
+                                        message("You must dismiss your follower, ${pet?.def?.name}, so your party can enter Daemonheim.")
+                                    }
+                                }
+                            }
+                            option("Cancel") {
+                                message("You must dismiss your follower, ${pet?.def?.name}, so your party can enter Daemonheim.")
+                            }
+                        }
+                    }
                 } else {
-                    message("A member of your party has a familiar that cannot be taken into Daemonheim.") // TODO proper message
+                    message("${member.name} has been informed they must dismiss their follower before the party can enter Daemonheim.")
+                    member.strongQueue("dismiss") {
+                        if (pet.isFamiliar) {
+                            choice("Are you sure you want to dismiss your familiar?") {
+                                option("Yes.") {
+                                    dismissFamiliar()
+                                    message("$name made you to dismiss your pet, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                }
+                                option("No.") {
+                                    message("$name requires you to dismiss your follower, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                }
+                            }
+                        } else {
+                            choice("What do you want to do with your pet?") {
+                                option("Pick pet up.") {
+                                    pickupPet()
+                                    message("$name made you to pick up your pet, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                }
+                                option("Release pet.") {
+                                    choice("Are you sure you want to dismiss your pet?") {
+                                        option("Yes.") {
+                                            dismissFamiliar()
+                                            message("$name made you to dismiss your pet, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                        }
+                                        option("No.") {
+                                            message("$name requires you to dismiss your follower, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                        }
+                                    }
+                                }
+                                option("Cancel") {
+                                    message("$name requires you to dismiss your follower, ${pet?.def?.name}, so the party can enter Daemonheim.")
+                                }
+                            }
+                        }
+                    }
                 }
                 return false
             }

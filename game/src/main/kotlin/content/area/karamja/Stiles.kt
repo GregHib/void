@@ -26,8 +26,7 @@ class Stiles : Script {
                 option<Happy>("Which fish can you exchange?") {
                     witchFish()
                 }
-                option<Idle>("No thanks.") {
-                }
+                option<Idle>("No thanks.")
             }
         }
 
@@ -51,8 +50,7 @@ class Stiles : Script {
             option<Happy>("Which fish can you exchange?") {
                 witchFish()
             }
-            option<Idle>("No thanks.") {
-            }
+            option<Idle>("No thanks.")
         }
     }
 
@@ -68,8 +66,7 @@ class Stiles : Script {
                     option<Quiz>("Who are you and why are you here?") {
                         whoAreYou()
                     }
-                    option<Idle>("No thanks.") {
-                    }
+                    option<Idle>("No thanks.")
                 }
             }
             option<Happy>("Okay, exchange all my fish for banknotes.") {
@@ -78,8 +75,7 @@ class Stiles : Script {
             option<Quiz>("Who are you and why are you here?") {
                 whoAreYou()
             }
-            option<Idle>("No thanks.") {
-            }
+            option<Idle>("No thanks.")
         }
     }
 

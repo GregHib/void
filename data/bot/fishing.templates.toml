@@ -49,3 +49,60 @@ actions = [
 produces = [
     { skill = "fishing" },
 ]
+
+[fish_bank_template]
+requires = [{ skill = { id = "fishing", min = "$level" } }]
+setup = [
+    { inventory = [{ id = "$tool" }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { npc = { option = "$option", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { go_to = { area = "$bank_area" } },
+    { npc = { option = "Bank", id = "$bank_npc", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$catch1", success = { inventory = { id = "$catch1", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$catch2", success = { inventory = { id = "$catch2", max = 0 } } } },
+    { interface_close = { id = "bank" } },
+    { go_to = { area = "$location" } },
+]
+produces = [{ item = "$catch1" }, { item = "$catch2" }, { skill = "fishing" }]
+
+[fish_fly_bank_template]
+requires = [{ skill = { id = "fishing", min = "$level" } }]
+setup = [
+    { inventory = [{ id = "$tool" }, { id = "feather", min = 52 }, { id = "empty", min = 26 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { npc = { option = "$option", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { go_to = { area = "$bank_area" } },
+    { npc = { option = "Bank", id = "$bank_npc", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$catch1", success = { inventory = { id = "$catch1", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$catch2", success = { inventory = { id = "$catch2", max = 0 } } } },
+    { interface_close = { id = "bank" } },
+    { go_to = { area = "$location" } },
+]
+produces = [{ item = "$catch1" }, { item = "$catch2" }, { skill = "fishing" }]
+
+[fish_big_net_bank_template]
+requires = [{ skill = { id = "fishing", min = "$level" } }]
+setup = [
+    { inventory = [{ id = "$tool" }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { npc = { option = "$option", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { go_to = { area = "$bank_area" } },
+    { npc = { option = "Bank", id = "$bank_npc", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$catch1", success = { inventory = { id = "$catch1", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:$catch2", success = { inventory = { id = "$catch2", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:raw_bass", success = { inventory = { id = "raw_bass", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:oyster", success = { inventory = { id = "oyster", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:casket", success = { inventory = { id = "casket", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:seaweed", success = { inventory = { id = "seaweed", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:leather_gloves", success = { inventory = { id = "leather_gloves", max = 0 } } } },
+    { interface = { option = "Deposit-All", id = "bank_side:inventory:leather_boots", success = { inventory = { id = "leather_boots", max = 0 } } } },
+    { interface_close = { id = "bank" } },
+    { go_to = { area = "$location" } },
+]
+produces = [{ item = "$catch1" }, { item = "$catch2" }, { item = "raw_bass" }, { item = "oyster" }, { item = "casket" }, { item = "seaweed" }, { item = "leather_gloves" }, { item = "leather_boots" }, { skill = "fishing" }]

@@ -71,6 +71,55 @@ class BotManagerTest {
     }
 
     @Test
+    fun `Hard failure releases only the failed bots activity slot`() {
+        val activity = testActivity(id = "mine", plan = listOf(BotWait(1))).copy(capacity = 2)
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val failedBot = testBot(activity, name = "failed")
+        val survivingBot = testBot(activity, name = "surviving")
+        val replacementBot = testBot(activity, name = "replacement")
+        val extraBot = testBot(activity, name = "extra")
+
+        manager.tick(failedBot)
+        manager.tick(survivingBot)
+        assertFalse(manager.slots.hasFree(activity))
+
+        failedBot.frame().fail(Reason.Timeout)
+        manager.tick(failedBot)
+        assertTrue(failedBot.noTask())
+        assertEquals("mine", survivingBot.activity!!.id)
+
+        manager.tick(replacementBot)
+        assertEquals("mine", replacementBot.activity!!.id)
+        manager.tick(extraBot)
+
+        assertEquals("idle", extraBot.activity!!.id, "The surviving bot and replacement should occupy both mining slots")
+    }
+
+    @Test
+    fun `Idle bot takes available work after its wait completes`() {
+        val activity = testActivity(id = "mine", plan = listOf(BotWait(1)))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val worker = testBot(activity, name = "worker")
+        val waitingBot = testBot(activity, name = "waiting")
+
+        manager.tick(worker)
+        manager.tick(waitingBot)
+        assertEquals("idle", waitingBot.activity!!.id)
+
+        manager.tick(waitingBot)
+        val waitTicks = (waitingBot.frame().state as BehaviourState.Wait).ticks
+        manager.stop(worker)
+        assertTrue(manager.slots.hasFree(activity))
+
+        repeat(waitTicks) { manager.tick(waitingBot) }
+        manager.tick(waitingBot) // Complete idle and release its slot.
+        assertTrue(waitingBot.noTask())
+        manager.tick(waitingBot) // Choose the next activity with mining now available.
+
+        assertEquals("mine", waitingBot.activity!!.id, "Bot should leave idle when the mining slot becomes available")
+    }
+
+    @Test
     fun `Pending frame starts running`() {
         val activity = testActivity(
             id = "walk",

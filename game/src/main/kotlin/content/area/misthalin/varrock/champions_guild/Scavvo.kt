@@ -14,8 +14,7 @@ class Scavvo : Script {
         npcOperate("Talk-to", "scavvo") { (target) ->
             npc<Happy>("'Ello matey! D'ya wanna buy some exciting new toys?")
             choice {
-                option<Confused>("No, toys are for kids.") {
-                }
+                option<Confused>("No, toys are for kids.")
                 option("Let's have a look then.") {
                     openShop(target.def["shop", ""])
                 }

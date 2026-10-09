@@ -1,0 +1,6 @@
+spawns = [
+    { id = "limpwurt_root", x = 1122, y = 4565, delay = 100 },
+    { id = "limpwurt_root", x = 1107, y = 4569, delay = 100 },
+    { id = "limpwurt_root", x = 1106, y = 4577, delay = 100 },
+    { id = "limpwurt_root", x = 1110, y = 4583, delay = 100 },
+]

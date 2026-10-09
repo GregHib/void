@@ -5,3 +5,7 @@ examine = "Glowing with barely-suppressed energies."
 [small_obelisk]
 id = 29944
 examine = "Contains traces of summoning energy."
+
+[small_obelisk_2]
+id = 29953
+examine = "Contains traces of summoning energy."

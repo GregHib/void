@@ -1,3 +1,7 @@
+[gnome_lamp2]
+id = 201
+examine = "These insects love this light."
+
 [gnome_stronghold_shortcut_rock_top]
 id = 9316
 examine = "A rocky outcrop."

@@ -54,6 +54,7 @@ id = 15316
 
 [door_hotspot_13]
 id = 15317
+examine = "You can make this into a room."
 
 [garden_centrepiece_space]
 id = 15361
@@ -197,6 +198,7 @@ id = 13614
 
 [house_window_space]
 id = 13830
+examine = "Lets you see through walls."
 
 [basic_wood_wall]
 id = 13098
@@ -602,6 +604,7 @@ id = 15368
 
 [formal_garden_fencing_space]
 id = 15369
+examine = "You can build a fence here."
 
 [formal_garden_hedging_space]
 id = 15370

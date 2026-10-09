@@ -1,11 +1,3 @@
-[draynor_east_trees]
-template = "normal_tree_template"
-fields = { location = "draynor_oak_trees" }
-
-[draynor_east_oak_trees]
-template = "oak_tree_template"
-fields = { location = "draynor_oak_trees" }
-
 [draynor_north_trees]
 template = "normal_tree_template"
 fields = { location = "draynor_north_trees" }
@@ -18,3 +10,29 @@ fields = { location = "draynor_west_oak_trees" }
 template = "willow_tree_template"
 capacity = 8
 fields = { location = "draynor_willow_trees" }
+
+# Combined woodcutting and fletching
+[draynor_north_trees_fletch_arrow_shaft]
+template = "woodcutting_fletching_template"
+capacity = 1
+fields = { location = "draynor_north_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
+
+[draynor_north_trees_fletch_shortbow_u]
+template = "woodcutting_fletching_bank_template"
+capacity = 1
+fields = { bank_area = "draynor_bank", location = "draynor_north_trees", wood = "logs", product = "shortbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
+
+[draynor_north_trees_fletch_longbow_u]
+template = "woodcutting_fletching_bank_template"
+capacity = 1
+fields = { bank_area = "draynor_bank", location = "draynor_north_trees", wood = "logs", product = "longbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
+
+[draynor_west_oak_trees_fletch_oak_shortbow_u]
+template = "woodcutting_fletching_bank_template"
+capacity = 1
+fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_shortbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 20 }
+
+[draynor_west_oak_trees_fletch_oak_longbow_u]
+template = "woodcutting_fletching_bank_template"
+capacity = 1
+fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }
