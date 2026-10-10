@@ -711,13 +711,17 @@ class House : Script {
 
         /**
          * Opens or closes a house [door] and its double, opened doors stay open until closed which reverts them back to where they were.
-         * Doorways have hotspots under them which come back when a door moves off of them, so they're removed again.
+         * Doorways have hotspots under them which come back when a door moves off of them, so outside of building mode they're removed again.
          */
         private fun Player.moveHouseDoor(door: GameObject, open: Boolean) {
             val def = door.def(this)
             val double = DoubleDoor.get(this, door, def, if (open) 0 else 1)
             val moved = if (open) Door.openDoor(this, door, def, ticks = STAY_OPEN) else Door.closeDoor(this, door, def)
             if (!moved) {
+                return
+            }
+            // Hotspots stay in building mode as they are what rooms and furniture are built on
+            if (get("house_build_mode", false)) {
                 return
             }
             for (tile in listOfNotNull(door.tile, double?.tile)) {

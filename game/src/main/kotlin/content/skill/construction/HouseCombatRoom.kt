@@ -1,17 +1,34 @@
 package content.skill.construction
 
+import content.entity.player.dialogue.type.statement
 import content.skill.construction.House.Companion.houseBase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.cantReach
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.renderEmote
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.move
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import kotlin.math.abs
+import kotlin.math.sign
 
 /**
  * Combat room rings and the barriers and balance beams built inside them, players inside can fight each other.
@@ -28,23 +45,37 @@ class HouseCombatRoom : Script {
             cross(target, "ranging")
         }
 
-        objectOperate("Stand-on", BALANCE_BEAMS) { (target) ->
+        // Approached rather than operated so the player isn't walked on to the beam before it's known they can climb on
+        objectApproach("Stand-on", BALANCE_BEAMS) { (target) ->
             if (get("house_ring", "") == "beam") {
-                return@objectOperate
+                step(target)
+                return@objectApproach
+            }
+            if (target.id != "balance_beam_end") {
+                message("You should get on the balance beam at one end.")
+                return@objectApproach
+            }
+            approachRange(1)
+            message("Climbing on to beam.")
+            if (!freeHands()) {
+                return@objectApproach
             }
             val from = tile
-            anim("climb_up")
-            exactMoveDelay(target.tile, 30, direction = target.tile.delta(tile).toDirection())
+            anim("balance_beam_getup")
+            exactMoveDelay(target.tile, delay = 37, direction = facing(from, target.tile))
+            equipment.transaction { set(EquipSlot.Weapon.index, Item("pugel")) }
             enter("beam", from)
+            renderEmote("beam_balance")
+            walkTrigger { blockWalking() }
         }
 
-        objectOperate("Get-down", BALANCE_BEAMS) { (target) ->
-            if (get("house_ring", "") != "beam") {
-                return@objectOperate
-            }
-            val free = Direction.cardinal.map { target.tile.add(it) }.firstOrNull { !onBeam(it) } ?: return@objectOperate
-            leave()
-            exactMoveDelay(free, 30, direction = free.delta(tile).toDirection())
+        // Operated on the beam being stood on, which can't be approached from underneath, and approached along the rest of it
+        objectOperate("Get-down", BALANCE_BEAMS) {
+            getDown()
+        }
+
+        objectApproach("Get-down", BALANCE_BEAMS) {
+            getDown()
         }
 
         moved {
@@ -86,10 +117,95 @@ class HouseCombatRoom : Script {
         if (!entering) {
             leave()
         }
-        anim(if (ring == "ranging") "pass_through_barrier" else "climb_over_wall")
-        exactMoveDelay(destination, 30, direction = destination.delta(tile).toDirection())
+        if (ring == "ranging") {
+            delay(1)
+            target.replace("magic_barrier_off", ticks = 2)
+            walkOverDelay(destination)
+        } else {
+            anim(climbAnimation(), delay = 30)
+            exactMoveDelay(destination, startDelay = 30, delay = 69, direction = facing(from, destination))
+            delay(1)
+        }
         if (entering) {
             enter(ring, from)
+        }
+    }
+
+    private fun Player.climbAnimation() = when (equipped(EquipSlot.Weapon).id) {
+        "boxing_gloves_red" -> "human_get_over_combatring_redgloves"
+        "boxing_gloves_blue" -> "human_get_over_combatring_bluegloves"
+        else -> "human_get_over_combatring_nogloves"
+    }
+
+    /**
+     * Pugel sticks are two-handed so both hands have to be free before climbing on to a balance beam
+     */
+    private suspend fun Player.freeHands(): Boolean {
+        if (equipped(EquipSlot.Weapon).isEmpty() && equipped(EquipSlot.Shield).isEmpty()) {
+            return true
+        }
+        val text = "You must free your hands so you can wield the pugel stick."
+        message(text, ChatType.Broadcast)
+        statement(text)
+        for (slot in listOf(EquipSlot.Weapon, EquipSlot.Shield)) {
+            if (equipped(slot).isNotEmpty() && !equipment.move(slot.index, inventory)) {
+                inventoryFull()
+                break
+            }
+        }
+        return false
+    }
+
+    private suspend fun Player.getDown() {
+        if (get("house_ring", "") != "beam") {
+            cantReach()
+            return
+        }
+        val free = dismount() ?: return
+        val from = tile
+        leave()
+        anim("balance_beam_jumpoff")
+        areaSound("jump", from, radius = 5)
+        exactMoveDelay(free, startDelay = 34, delay = 46, direction = facing(from, free))
+    }
+
+    /**
+     * The tile to jump down on to, beside the beam rather than along it
+     */
+    private fun Player.dismount(): Tile? {
+        val axis = Direction.cardinal.firstOrNull { onBeam(tile.add(it)) }
+        return Direction.cardinal
+            .filter { it != axis && it != axis?.inverse() }
+            .map { tile.add(it) }
+            .firstOrNull { !onBeam(it) }
+    }
+
+    /**
+     * Moves one tile along the beam towards [target]
+     */
+    private suspend fun Player.step(target: GameObject) {
+        val delta = target.tile.delta(tile)
+        val direction = if (abs(delta.x) >= abs(delta.y)) Direction.of(delta.x.sign, 0) else Direction.of(0, delta.y.sign)
+        val next = tile.add(direction)
+        if (direction == Direction.NONE || !onBeam(next)) {
+            return
+        }
+        walkToDelay(next, forceWalk = true)
+    }
+
+    /**
+     * Stops the player walking off the beam, getting down is the only way off
+     */
+    private fun Player.blockWalking() {
+        val mode = mode
+        // Interacting with the beam itself is how the player gets down and moves along it
+        val interacting = mode is PlayerOnObjectInteract && mode.target.id in BEAM_IDS
+        if (mode is Movement && !interacting) {
+            steps.clear()
+            this.mode = EmptyMode
+        }
+        if (get("house_ring", "") == "beam") {
+            walkTrigger { blockWalking() }
         }
     }
 
@@ -102,12 +218,12 @@ class HouseCombatRoom : Script {
                     return false
                 }
                 if (equipment.items.any { it.isNotEmpty() && it.id != gloves }) {
-                    message("You can only wear boxing gloves in the boxing ring.") // TODO proper message
+                    message("You can't wear weapons or armour in the boxing ring (except boxing gloves).")
                     return false
                 }
             }
             "fencing" -> if (equipment.items.withIndex().any { (slot, item) -> item.isNotEmpty() && slot != EquipSlot.Weapon.index }) {
-                message("You can only use a weapon in the fencing ring.") // TODO proper message
+                message("You can't wear any armour in the fencing ring.")
                 return false
             }
         }
@@ -124,6 +240,19 @@ class HouseCombatRoom : Script {
     }
 
     /**
+     * The direction faced when moving from [from] to [to]
+     */
+    private fun facing(from: Tile, to: Tile): Direction {
+        val delta = to.delta(from)
+        return when {
+            delta.y > 0 -> Direction.NORTH
+            delta.y < 0 -> Direction.SOUTH
+            delta.x > 0 -> Direction.EAST
+            else -> Direction.WEST
+        }
+    }
+
+    /**
      * Enters a [ring] from [from], where players are sent back to when they die inside it
      */
     private fun Player.enter(ring: String, from: Tile) {
@@ -134,8 +263,11 @@ class HouseCombatRoom : Script {
     }
 
     private fun Player.leave() {
-        if (remove<String>("house_ring") == null) {
-            return
+        val ring: String = remove("house_ring") ?: return
+        if (ring == "beam") {
+            equipment.remove(EquipSlot.Weapon.index, "pugel")
+            clearRenderEmote()
+            clearWalkTrigger()
         }
         clear("house_ring_exit")
         clear("in_pvp")
@@ -163,6 +295,7 @@ class HouseCombatRoom : Script {
 
     companion object {
         private const val BALANCE_BEAMS = "balance_beam,balance_beam_end"
+        private val BEAM_IDS = BALANCE_BEAMS.split(",")
         private val sides = arrayOf(Direction.WEST, Direction.NORTH, Direction.EAST, Direction.SOUTH)
         private val corners = arrayOf(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.SOUTH_EAST, Direction.SOUTH_WEST)
     }

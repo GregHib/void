@@ -1253,6 +1253,9 @@ id = 13508
 [jester]
 id = 13390
 
+[jester_active]
+id = 13391
+
 [treasure_hunt]
 id = 13379
 
@@ -1262,11 +1265,20 @@ id = 13404
 [oak_prize_chest]
 id = 13385
 
+[oak_prize_chest_open]
+id = 13384
+
 [teak_prize_chest]
 id = 13387
 
+[teak_prize_chest_open]
+id = 13386
+
 [mahogany_prize_chest]
 id = 13389
+
+[mahogany_prize_chest_open]
+id = 13388
 
 [clay_attack_stone]
 id = 13392
@@ -1289,11 +1301,20 @@ id = 13397
 [hoop_and_stick]
 id = 13399
 
+[hoop_stick]
+id = 13398
+
 [dartboard]
 id = 13400
 
+[dartboard_hit]
+id = 13401
+
 [house_archery_target]
 id = 13402
+
+[house_archery_target_hit]
+id = 13403
 
 [boxing_ring]
 id = 13129
@@ -1333,6 +1354,9 @@ id = 13140
 
 [magic_barrier]
 id = 13145
+
+[magic_barrier_off]
+id = 13146
 
 [ranging_spot]
 id = 13147

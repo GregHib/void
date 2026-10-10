@@ -196,3 +196,46 @@ id = 3684
 
 [human_study_ready]
 id = 3653
+
+[human_get_over_combatring_nogloves]
+id = 3688
+
+[human_get_over_combatring_redgloves]
+id = 3689
+
+# Blue gloves id assumed to follow red
+[human_get_over_combatring_bluegloves]
+id = 3690
+
+[balance_beam_jumpoff]
+id = 3598
+
+[balance_beam_getup]
+id = 3599
+
+[poh_jester_elevate]
+id = 3588
+
+[human_throw_hoop1]
+id = 3602
+
+[human_throw_hoop2]
+id = 3603
+
+[ii_human_dart_throw]
+id = 6600
+
+[human_bow]
+id = 426
+
+[human_unarmedkick]
+id = 423
+
+[human_openheavychest]
+id = 8778
+
+[elemental_orb_closes]
+id = 3585
+
+[hangman_hangs]
+id = 3601

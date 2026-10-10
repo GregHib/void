@@ -780,6 +780,9 @@ id = 29
 [.message]
 id = 30
 
+[.guessing]
+id = 31
+
 # Games room shooting game score board for up to four players
 [poh_ranging]
 id = 401
@@ -820,6 +823,12 @@ id = 13
 
 [.score_4]
 id = 17
+
+[.winner_1]
+id = 18
+
+[.last_shot]
+id = 22
 
 # Wobbly effect shown while gazing into the scrying pool
 [poh_scrying_pool]

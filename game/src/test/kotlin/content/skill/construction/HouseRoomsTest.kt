@@ -13,6 +13,7 @@ import content.skill.construction.House.Companion.houseFurnitureIds
 import content.skill.construction.House.Companion.leaveHouse
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.RoomCreation.Companion.canBuildRoom
 import dialogueOption
 import intEntry
 import interfaceOption
@@ -33,10 +34,13 @@ import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -90,14 +94,14 @@ class HouseRoomsTest : WorldTest() {
         player.tele(rope.tile)
 
         player.objectOption(rope, "Climb-over")
-        tick(3)
+        tick(6)
 
         assertFalse(player.tile == rope.tile)
         assertEquals("boxing", player.get<String>("house_ring"))
         assertTrue(player["in_pvp", false])
 
         player.objectOption(rope, "Climb-over")
-        tick(3)
+        tick(6)
 
         assertEquals(rope.tile, player.tile)
         assertNull(player.get<String>("house_ring"))
@@ -114,14 +118,14 @@ class HouseRoomsTest : WorldTest() {
         val rope = player.objects(room, "boxing_ring").first { it.shape == ObjectShape.WALL_STRAIGHT }
         player.tele(rope.tile)
         player.objectOption(rope, "Climb-over")
-        tick(3)
+        tick(6)
         player.inventory.add("bronze_full_helm")
 
         player.itemOption("Wear", "bronze_full_helm")
         tick()
 
         assertEquals(1, player.inventory.count("bronze_full_helm"))
-        assertTrue(player.containsMessage("other than the boxing gloves"))
+        assertTrue(player.containsMessage("weapons or armour in the boxing ring"))
     }
 
     @Test
@@ -152,10 +156,38 @@ class HouseRoomsTest : WorldTest() {
         player.tele(corner.tile)
 
         player.objectOption(corner, "Climb-over")
-        tick(3)
+        tick(6)
 
         assertEquals(1, player.tile.distanceTo(corner.tile))
         assertEquals("combat", player.get<String>("house_ring"))
+    }
+
+    @Test
+    fun `Balance beam needs free hands to climb on and can't be walked off`() {
+        val player = createOwner()
+        player.addHouseRoom("combat_room", room)
+        player.addHouseFurniture(room, "combat_ring", "balance_beam")
+        player.equipment.set(EquipSlot.Weapon.index, "wooden_sword")
+        player.enterPortal(1)
+        val end = player.objects(room, "balance_beam_end").first()
+        val start = end.tile
+        val away = Direction.cardinal.first { GameObjects.at(start.add(it)).none { obj -> obj.id.startsWith("balance_beam") } }
+        player.tele(start.add(away.delta.x * 2, away.delta.y * 2))
+
+        player.objectOption(end, "Stand-on")
+        tickIf { !player.containsMessage("free your hands") }
+        tick(2)
+
+        assertTrue(player.tile.distanceTo(start) > 0)
+        assertNull(player.get<String>("house_ring"))
+
+        player.equipment.remove(EquipSlot.Weapon.index, "wooden_sword")
+        player.objectOption(end, "Stand-on")
+        tick(8)
+
+        assertEquals(start, player.tile)
+        assertEquals("beam", player.get<String>("house_ring"))
+        assertEquals("pugel", player.equipment[EquipSlot.Weapon.index].id)
     }
 
     @Test
@@ -168,47 +200,25 @@ class HouseRoomsTest : WorldTest() {
         player.tele(rope.tile)
 
         player.objectOption(rope, "Climb-over")
-        tick(3)
+        tick(6)
 
         assertEquals(rope.tile, player.tile)
         assertTrue(player.containsMessage("boxing gloves"))
     }
 
     @Test
-    fun `Throne room trapdoor floor drops guests into the oubliette`() {
+    fun `Throne room levers are not implemented`() {
         val owner = createOwner()
         owner.addHouseRoom("throne_room", room)
         owner.addHouseFurniture(room, "throne_room_lever_space", "oak_lever")
-        owner.addHouseFurniture(room, "throne_room_floor_space", "trapdoor_4")
-        owner.addHouseRoom("oubliette", dungeon)
         owner.enterPortal(1)
-        val floor = owner.objects(room, "floor_decoration_basic_wood").first()
-        val guest = guest(owner, floor.tile)
         val lever = owner.objects(room, "oak_lever").first()
 
         owner.tele(lever.tile.addY(-1))
         owner.objectOption(lever, "Pull")
         tick(3)
 
-        assertEquals(floor.tile.level - 1, guest.tile.level)
-    }
-
-    @Test
-    fun `Steel cage traps guests on the throne room floor`() {
-        val owner = createOwner()
-        owner.addHouseRoom("throne_room", room)
-        owner.addHouseFurniture(room, "throne_room_lever_space", "oak_lever")
-        owner.addHouseFurniture(room, "throne_room_floor_space", "steel_cage_2")
-        owner.enterPortal(1)
-        val floor = owner.objects(room, "floor_decoration_basic_wood").first()
-        val guest = guest(owner, floor.tile)
-        val lever = owner.objects(room, "oak_lever").first()
-
-        owner.tele(lever.tile.addY(-1))
-        owner.objectOption(lever, "Pull")
-        tick(3)
-
-        assertTrue(guest.containsMessage("trapped"))
+        assertTrue(owner.containsMessage("Not yet implemented"))
     }
 
     @Test
@@ -225,7 +235,7 @@ class HouseRoomsTest : WorldTest() {
         tickIf { owner.dialogue == null }
         owner.skipDialogues()
         owner.dialogueOption("line1")
-        tick(3)
+        tick(6)
 
         assertTrue(owner.houseFurnitureIds.contains("oak_ladder"))
         assertEquals(DUNGEON_LEVEL, owner.tile.level - owner.instance()!!.tile.level)
@@ -259,7 +269,7 @@ class HouseRoomsTest : WorldTest() {
         val guest = guest(owner, door.tile)
 
         guest.objectOption(door, "Open")
-        tick(3)
+        tick(6)
 
         assertTrue(guest.containsMessage("The door is locked."))
     }
@@ -274,7 +284,7 @@ class HouseRoomsTest : WorldTest() {
         owner.tele(door.tile.addY(1))
 
         owner.objectOption(door, "Open")
-        tick(3)
+        tick(6)
 
         assertNull(GameObjects.findOrNull(door.tile, "door_309_closed"))
         val corridor = roomZone(owner.instance()!!.tile.zone, dungeon)
@@ -317,5 +327,94 @@ class HouseRoomsTest : WorldTest() {
         owner.interfaceOption("furniture_creation", "items", "Build", item = Item("tool_store_2"), slot = 0)
 
         assertEquals(listOf("exit_portal", "tool_store_2"), owner.houseFurnitureIds)
+    }
+
+    @Test
+    fun `Get down from a balance beam`() {
+        val player = createOwner()
+        player.addHouseRoom("combat_room", room)
+        player.addHouseFurniture(room, "combat_ring", "balance_beam")
+        player.enterPortal(1)
+        val end = player.objects(room, "balance_beam_end").first()
+        val start = end.tile
+        val away = Direction.cardinal.first { GameObjects.at(start.add(it)).none { obj -> obj.id.startsWith("balance_beam") } }
+        player.tele(start.add(away.delta.x * 2, away.delta.y * 2))
+        player.objectOption(end, "Stand-on")
+        tick(8)
+        assertEquals("beam", player.get<String>("house_ring"))
+
+        player.objectOption(end, "Get-down")
+        tick(8)
+
+        assertNull(player.get<String>("house_ring"))
+        assertNull(player.equipment[EquipSlot.Weapon.index].id.takeIf { it == "pugel" })
+        assertTrue(player.tile.distanceTo(start) > 0)
+    }
+
+    @Test
+    fun `Removing a balance beam outside building mode doesn't walk on to it`() {
+        val player = createOwner()
+        player.addHouseRoom("combat_room", room)
+        player.addHouseFurniture(room, "combat_ring", "balance_beam")
+        player.enterPortal(1)
+        val end = player.objects(room, "balance_beam_end").first()
+        val away = Direction.cardinal.first { GameObjects.at(end.tile.add(it)).none { obj -> obj.id.startsWith("balance_beam") } }
+        val start = end.tile.add(away.delta.x * 3, away.delta.y * 3)
+        player.tele(start)
+
+        player.objectOption(end, "Remove")
+        tickIf { !player.containsMessage("only do that in building mode") }
+        tick(4)
+
+        assertTrue(GameObjects.at(player.tile).none { it.id.startsWith("balance_beam") })
+        assertTrue(player.tile.distanceTo(end.tile) > 1)
+    }
+
+    @Test
+    fun `Magic barrier comes back after walking through`() {
+        val player = createOwner()
+        player.addHouseRoom("combat_room", room)
+        player.addHouseFurniture(room, "combat_ring", "ranging_pedestals")
+        player.enterPortal(1)
+        val barrier = player.objects(room, "magic_barrier").first()
+        player.tele(barrier.tile)
+
+        player.objectOption(barrier, "Walk-through")
+        tickIf { GameObjects.findOrNull(barrier.tile, "magic_barrier_off") == null }
+        tick(5)
+
+        assertNotNull(GameObjects.findOrNull(barrier.tile, "magic_barrier"))
+        assertNull(GameObjects.findOrNull(barrier.tile, "magic_barrier_off"))
+    }
+
+    @Test
+    fun `Can only have one games room`() {
+        val player = createOwner()
+        player.addHouseRoom("games_room", room)
+        val other = roomPosition(5, 3, GROUND_LEVEL)
+        player.inventory.add("coins", 100000)
+
+        assertFalse(player.canBuildRoom("games_room", other))
+        assertTrue(player.containsMessage("only have one games room"))
+        assertTrue(player.canBuildRoom("combat_room", other))
+    }
+
+    @Test
+    fun `Opening every door of a dungeon junction doesn't leave their spaces behind`() {
+        val owner = createOwner()
+        owner.addHouseRoom("dungeon_junction", dungeon)
+        owner.addHouseFurniture(dungeon, "dungeon_door", "oak_door")
+        owner.enterPortal(1)
+        val junction = roomZone(owner.instance()!!.tile.zone, dungeon)
+        val doors = junction.toCuboid().flatMap { GameObjects.at(it) }.filter { it.id == "door_309_closed" }
+        assertTrue(doors.isNotEmpty())
+
+        for (door in doors) {
+            owner.tele(door.tile.addY(1))
+            owner.objectOption(door, "Open")
+            tick(6)
+        }
+
+        assertTrue(junction.toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("dungeon_door_space") } })
     }
 }

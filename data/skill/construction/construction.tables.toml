@@ -10,6 +10,7 @@ stairs = "obj"
 stairs_down = "obj"
 dungeon = "boolean"
 outdoor = "boolean"
+unique = "boolean"
 
 [.parlour]
 level = 1
@@ -54,6 +55,7 @@ stairs_down = "skill_hall_stair_space_down"
 level = 30
 cost = 25000
 template = { x = 1896, y = 5088 }
+unique = true
 
 [.combat_room]
 level = 32
@@ -2189,7 +2191,7 @@ level = 30
 xp = 1200
 materials = ["oak_plank"]
 amounts = [2]
-objects = ["hoop_and_stick"]
+objects = ["hoop_stick"]
 
 [.dartboard]
 level = 54
@@ -3743,6 +3745,7 @@ objects = ["magic_treasure_room_chest"]
 [house_storage]
 row_id = "obj"
 items = "list<item>"
+title = "string"
 
 # https://oldschool.runescape.wiki/w/Larder
 [.wooden_larder]
@@ -3805,13 +3808,16 @@ items = ["rake", "spade", "gardening_trowel", "seed_dibber", "watering_can", "se
 # https://oldschool.runescape.wiki/w/Weapons_rack
 [.glove_rack]
 items = ["boxing_gloves_red", "boxing_gloves_blue"]
+title = "What do you want to take?"
 
 [.weapons_rack]
 items = ["boxing_gloves_red", "boxing_gloves_blue", "wooden_sword", "wooden_shield_weapons_rack"]
+title = "What do you want to take?"
 
 # Extra rack's pugel stick is from the Fury emulator
 [.extra_weapons_rack]
 items = ["boxing_gloves_red", "boxing_gloves_blue", "wooden_sword", "wooden_shield_weapons_rack", "pugel"]
+title = "What do you want to take?"
 
 # Drinks poured into an empty beer glass from kitchen barrels
 # https://oldschool.runescape.wiki/w/Beer_barrel
@@ -4317,6 +4323,26 @@ capacity = 100000
 row_id = "item"
 option = "string"
 message = "string"
+
+[.boxing_gloves_red]
+option = "Red boxing gloves"
+message = ""
+
+[.boxing_gloves_blue]
+option = "Blue boxing gloves"
+message = ""
+
+[.wooden_sword]
+option = "Wooden sword"
+message = ""
+
+[.wooden_shield_weapons_rack]
+option = "Wooden shield"
+message = ""
+
+[.pugel]
+option = "Pugel stick"
+message = ""
 
 [.cup_of_tea]
 option = "Tea"
