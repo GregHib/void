@@ -11,3 +11,94 @@ y = [3410, 3423]
 [tree_gnome_stronghold_east_fishing_spot]
 x = [2389, 2391]
 y = [3421, 3423]
+
+[tree_gnome_stronghold_bank_south]
+# nav-editor: named area only
+x = [2445, 2446]
+y = [3422, 3427]
+level = 1
+tags = ["bank"]
+
+[tree_gnome_stronghold_agility_course]
+# nav-editor: named area only
+x = [2471, 2488]
+y = [3417, 3437]
+level = 0
+tags = ["agility_course"]
+
+[tree_gnome_stronghold_spirit_tree]
+# nav-editor: named area only
+x = [2459, 2464]
+y = [3444, 3449]
+level = 0
+tags = ["spirit_tree"]
+
+[tree_gnome_stronghold_fruit_tree_patch]
+# nav-editor: named area only
+x = [2474, 2477]
+y = [3444, 3447]
+level = 0
+
+[king_narnode]
+# nav-editor: named area only
+x = [2464, 2467]
+y = [3494, 3497]
+level = 0
+
+[tree_gnome_stronghold_glider]
+# nav-editor: named area only
+x = [2463, 2465]
+y = [3499, 3501]
+level = 3
+tags = ["gnome_glider"]
+
+[grand_tree_west_bank]
+# nav-editor: named area only
+x = [2442, 2442]
+y = [3487, 3489]
+level = 1
+tags = ["bank"]
+
+[grand_tree_hudo]
+# nav-editor: named area only
+x = [2448, 2450]
+y = [3508, 3511]
+level = 1
+
+[grand_tree_south_bank]
+# nav-editor: named area only
+x = [2448, 2450]
+y = [3482, 3482]
+level = 1
+tags = ["bank"]
+
+[gnome_stronghold_1f_range]
+# nav-editor: named area only
+x = [2481, 2483]
+y = [3479, 3482]
+level = 1
+tags = ["range"]
+
+[grand_tree_fashion_store]
+# nav-editor: named area only
+x = [2481, 2483]
+y = [3508, 3510]
+level = 1
+
+[tree_gnome_stronghold_frog_legs]
+# nav-editor: named area only
+x = [2415, 2421]
+y = [3510, 3512]
+level = 0
+
+[tree_gnome_stronghold_terrorbirds]
+# nav-editor: named area only
+x = [2376, 2381]
+y = [3428, 3439]
+level = 0
+
+[tree_gnome_stronghold_tree_patch]
+# nav-editor: named area only
+x = [2434, 2438]
+y = [3413, 3417]
+level = 0

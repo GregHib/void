@@ -1,3 +1,11 @@
+[spiralstairs_wooden]
+id = 1742
+examine = "I can climb up these stairs."
+
+[spiralstairstop_wooden]
+id = 1744
+examine = "I can climb down these stairs."
+
 [spooky_stairs]
 id = 2522
 examine = "It's a flight of stairs."
