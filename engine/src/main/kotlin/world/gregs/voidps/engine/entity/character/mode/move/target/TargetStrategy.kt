@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.reach.ReachStrategy
-import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped

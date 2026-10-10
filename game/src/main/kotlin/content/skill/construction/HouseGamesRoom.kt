@@ -2,8 +2,8 @@ package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
-import content.skill.construction.House.Companion.houseOwner
 import content.entity.proj.shoot
+import content.skill.construction.House.Companion.houseOwner
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.melee.weapon.attackRange
 import content.skill.ranged.Ammo
@@ -20,9 +20,9 @@ import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
