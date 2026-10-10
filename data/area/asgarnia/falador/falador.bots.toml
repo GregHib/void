@@ -1,0 +1,34 @@
+# Combat in the south Falador farm areas.
+
+[kill_falador_south_chickens_attack]
+template = "kill_chickens"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { skill = "attack", location = "falador_south_chickens", style = "style1" }
+
+[kill_falador_south_chickens_strength]
+template = "kill_chickens"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { skill = "strength", location = "falador_south_chickens", style = "style2" }
+
+[kill_falador_south_chickens_defence]
+template = "kill_chickens"
+capacity = 2
+requires = [{ members = { req = true } }]
+fields = { skill = "defence", location = "falador_south_chickens", style = "style4" }
+
+[kill_falador_south_cows_attack]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "attack", location = "falador_south_cows", style = "style1" }
+
+[kill_falador_south_cows_strength]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "strength", location = "falador_south_cows", style = "style2" }
+
+[kill_falador_south_cows_defence]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "defence", location = "falador_south_cows", style = "style4" }

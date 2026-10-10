@@ -19,3 +19,9 @@ y = [3245, 3253]
 [betties_magic_shop]
 x = [3011, 3016]
 y = [3256, 3261]
+
+[port_sarim_karamja_boat_embark]
+# nav-editor: named area only
+x = [3026, 3028]
+y = [3216, 3219]
+level = 0

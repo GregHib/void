@@ -1,0 +1,61 @@
+
+[fremennik_dungeon_cave_crawlers]
+# nav-editor: named area only
+x = [2780, 2796]
+y = [9992, 10002]
+level = 0
+
+[fremennik_dungeon_rockslugs]
+# nav-editor: named area only
+x = [2789, 2808]
+y = [10012, 10022]
+level = 0
+
+[fremennik_dungeon_cockatrices]
+# nav-editor: named area only
+x = [2783, 2801]
+y = [10029, 10041]
+level = 0
+
+[fremennik_dungeon_pyrefiends]
+# nav-editor: named area only
+x = [2755, 2765]
+y = [9996, 10013]
+level = 0
+
+[fremennik_dungeon_basilisks]
+# nav-editor: named area only
+x = [2737, 2749]
+y = [10002, 10020]
+level = 0
+
+[fremennik_dungeon_jellies]
+# nav-editor: named area only
+x = [2697, 2713]
+y = [10021, 10034]
+level = 0
+
+[fremennik_dungeon_turoths]
+# nav-editor: named area only
+x = [2716, 2729]
+y = [9992, 10015]
+level = 0
+
+[fremennik_dungeon_kurasks]
+# nav-editor: named area only
+x = [2692, 2707]
+y = [9991, 10006]
+level = 0
+
+[fremennik_dungeon_aquanites]
+# nav-editor: named area only
+x = [2707, 2742]
+y = [9965, 9986]
+level = 0
+
+[fremennik_dungeon_small_obelisk]
+# nav-editor: named area only
+x = [2786, 2787]
+y = [9990, 9991]
+level = 0
+tags = ["small_obelisk"]

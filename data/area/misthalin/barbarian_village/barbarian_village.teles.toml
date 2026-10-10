@@ -45,7 +45,7 @@ option = "Climb-down"
 tile = { x = 3097, y = 3433, level = 2 }
 delta = { level = -1 }
 
-[12389]
+[100_goblin_ladder_down]
 option = "Climb-Down"
 tile = { x = 3116, y = 3452 }
 delta = { y = 6400 }

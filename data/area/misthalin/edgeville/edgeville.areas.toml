@@ -33,3 +33,22 @@ x = [3072, 3135]
 y = [3392, 3519]
 tags = ["penguin_area"]
 hint = "west of Varrock."
+
+[edgeville_dungeon_slayer_master]
+# nav-editor: named area only
+x = [3144, 3149]
+y = [9912, 9915]
+level = 0
+tags = ["slayer_master"]
+
+[edgeville_dungeon_mine]
+# nav-editor: named area only
+x = [3134, 3143]
+y = [9868, 9880]
+level = 0
+
+[edgeville_dungeon_brass_key]
+# nav-editor: named area only
+x = [3130, 3132]
+y = [9862, 9862]
+level = 0

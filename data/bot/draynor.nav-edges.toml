@@ -39,7 +39,8 @@ edges = [
     { from = { x = 3172, y = 3286 }, to = { x = 3162, y = 3288 } },
     { from = { x = 3172, y = 3286 }, to = { x = 3181, y = 3287 } },
     { from = { x = 3181, y = 3287 }, to = { x = 3190, y = 3283 } },
-    { from = { x = 3190, y = 3283 }, to = { x = 3188, y = 3278 } },
+    { from = { x = 3190, y = 3283 }, to = { x = 3188, y = 3278 }, cost = 6, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3188, y = 3279, success = { object = { id = "gate_235_opened", x = 3189, y = 3281 } } } }, { tile = { x = 3188, y = 3278 } }] }, # open the double gate into the farm
+    { from = { x = 3188, y = 3278 }, to = { x = 3190, y = 3283 }, cost = 6, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3188, y = 3279, success = { object = { id = "gate_235_opened", x = 3189, y = 3281 } } } }, { tile = { x = 3190, y = 3283 } }] }, # open the double gate out of the farm
     { from = { x = 3167, y = 3291 }, to = { x = 3167, y = 3302 } },
     { from = { x = 3167, y = 3302 }, to = { x = 3176, y = 3307 } },
     { from = { x = 3176, y = 3307 }, to = { x = 3177, y = 3315 } },

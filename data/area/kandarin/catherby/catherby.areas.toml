@@ -33,3 +33,27 @@ tags = ["bank"]
 [catherby_willow_trees]
 x = [2779, 2789]
 y = [3424, 3432]
+
+[catherby_fruit_tree_patch]
+# nav-editor: named area only
+x = [2858, 2861]
+y = [3431, 3434]
+level = 0
+
+[catherby_fishing_store]
+# nav-editor: named area only
+x = [2832, 2835]
+y = [3440, 3443]
+level = 0
+
+[catherby_farming_patch]
+# nav-editor: named area only
+x = [2806, 2814]
+y = [3461, 3466]
+level = 0
+
+[catherby_farming_shop]
+# nav-editor: named area only
+x = [2818, 2821]
+y = [3460, 3462]
+level = 0

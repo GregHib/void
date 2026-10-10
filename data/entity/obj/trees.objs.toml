@@ -199,6 +199,11 @@ examine = "This tree has long been dead."
 id = 5551
 examine = "A droopy tree."
 
+[willow_6]
+clone = "willow"
+id = 1308
+stump = "willow_stump"
+
 [willow_5]
 clone = "willow"
 id = 37480

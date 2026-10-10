@@ -140,12 +140,12 @@ edges = [
     { from = { x = 3260, y = 3228 }, to = { x = 3267, y = 3228 } }, # lumbridge_east_crossroad_to_tollgate_north
     { from = { x = 3260, y = 3228 }, to = { x = 3263, y = 3222 } }, # lumbridge_east_crossroad_to_trees_east
     { from = { x = 3201, y = 3155 }, to = { x = 3201, y = 3169 } },
-    { from = { x = 3201, y = 3169 }, to = { x = 3218, y = 3173 } },
-    { from = { x = 3218, y = 3173 }, to = { x = 3231, y = 3181 } },
+    { from = { x = 3201, y = 3169 }, to = { x = 3218, y = 3175 } },
+    { from = { x = 3218, y = 3175 }, to = { x = 3231, y = 3181 } },
     { from = { x = 3201, y = 3169 }, to = { x = 3215, y = 3162 } },
     { from = { x = 3215, y = 3162 }, to = { x = 3201, y = 3155 } },
     { from = { x = 3215, y = 3162 }, to = { x = 3221, y = 3156 } },
-    { from = { x = 3215, y = 3162 }, to = { x = 3218, y = 3173 } },
+    { from = { x = 3215, y = 3162 }, to = { x = 3218, y = 3175 } },
     { from = { x = 3201, y = 3169 }, to = { x = 3186, y = 3167 } },
     { from = { x = 3186, y = 3167 }, to = { x = 3176, y = 3174 } },
     { from = { x = 3186, y = 3167 }, to = { x = 3181, y = 3153 } },
@@ -175,4 +175,11 @@ edges = [
     { from = { x = 3136, y = 3260 }, to = { x = 3138, y = 3245 } },
     { from = { x = 3138, y = 3245 }, to = { x = 3138, y = 3227 } },
     { from = { x = 3138, y = 3245 }, to = { x = 3150, y = 3248 } },
+    { from = { x = 3199, y = 3279 }, to = { x = 3197, y = 3275 }, cost = 6, actions = [{ object = { option = "Climb-over", id = "freds_farm_stile", x = 3197, y = 3276, success = { tile = { x = 3197, y = 3275, radius = 1 } } } }, { tile = { x = 3197, y = 3275 } }] }, # freds_farm_stile_north_to_south
+    { from = { x = 3197, y = 3275 }, to = { x = 3199, y = 3279 }, cost = 6, actions = [{ object = { option = "Climb-over", id = "freds_farm_stile", x = 3197, y = 3276, success = { tile = { x = 3197, y = 3278, radius = 1 } } } }, { tile = { x = 3199, y = 3279 } }] }, # freds_farm_stile_south_to_north
+    { from = { x = 3212, y = 3262 }, to = { x = 3213, y = 3262 }, cost = 3, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3213, y = 3261, success = { object = { id = "gate_235_opened", x = 3211, y = 3262 } } } }, { tile = { x = 3213, y = 3262 } }] }, # groats_farm_gate_west_to_east
+    { from = { x = 3213, y = 3262 }, to = { x = 3212, y = 3262 }, cost = 3, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3213, y = 3261, success = { object = { id = "gate_235_opened", x = 3211, y = 3262 } } } }, { tile = { x = 3212, y = 3262 } }] }, # groats_farm_gate_east_to_west
+    { from = { x = 3213, y = 3262 }, to = { x = 3218, y = 3255 } }, # groats_farm_gate_to_smiths_crossroad
+    { from = { x = 3212, y = 3262 }, to = { x = 3203, y = 3268 } }, # groats_farm_gate_to_field
+    { from = { x = 3203, y = 3268 }, to = { x = 3197, y = 3275 } }, # groats_farm_field_to_freds_farm_stile
 ]
