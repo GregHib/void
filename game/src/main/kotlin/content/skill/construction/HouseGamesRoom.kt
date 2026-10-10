@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -47,8 +48,7 @@ import java.util.concurrent.TimeUnit
 class HouseGamesRoom : Script {
     init {
         interfaceClosed("poh_ranging") {
-            clear("ranging_shots")
-            clear("ranging_score")
+            leaveBoard()
             softTimers.stop("house_ranging")
         }
 
@@ -126,7 +126,7 @@ class HouseGamesRoom : Script {
     }
 
     private fun Player.takePrize(owner: Player, chest: GameObject) {
-        val prize = owner.get("house_prize_money", 0)
+        val prize = owner["house_prize_money", 0]
         if (prize <= 0) {
             return
         }
@@ -177,13 +177,27 @@ class HouseGamesRoom : Script {
         if (!game.canPlay(this)) {
             return
         }
+        if (isFull(target)) {
+            return
+        }
+        approachRange(game.range(this))
+        // Someone else may have taken the last space while walking over
+        if (isFull(target)) {
+            return
+        }
         var shots = get("ranging_shots", 0)
-        if (shots >= SHOTS) {
+        if (shots >= SHOTS || get<Tile>("ranging_target") != target.tile) {
+            leaveBoard()
             clear("ranging_shots")
             clear("ranging_score")
             shots = 0
         }
-        approachRange(game.range(this))
+        if (!contains("ranging_target")) {
+            set("ranging_target", target.tile)
+            set("ranging_joined", GameLoop.tick)
+        }
+        // Counts as a player of the game straight away so the space can't be taken while mid shot
+        set("ranging_shots", shots)
         steps.clear()
         face(target)
         game.start(this, target.tile)
@@ -198,25 +212,73 @@ class HouseGamesRoom : Script {
         }
         areaSound(game.land, target.tile, radius = 5)
         exp(Skill.Ranged, game.experience())
-        open("poh_ranging")
         softTimers.start("house_ranging", restart = true)
-        // Sent after opening every shot as the client shows null for text set while the overlay is still opening
-        interfaces.sendText("poh_ranging", "name_1", name)
-        for (row in 2..4) {
-            interfaces.sendVisibility("poh_ranging", "name_$row", false)
-            interfaces.sendVisibility("poh_ranging", "shots_$row", false)
-            interfaces.sendVisibility("poh_ranging", "score_$row", false)
-        }
-        interfaces.sendText("poh_ranging", "winner_1", "")
-        interfaces.sendText("poh_ranging", "shots_1", shots.toString())
-        interfaces.sendText("poh_ranging", "score_1", total.toString())
+        refreshBoard(target.tile)
         interfaces.sendText("poh_ranging", "last_shot", if (score == 0) "You missed" else "You scored $score")
         if (shots == 1) {
             offerPrize(game.id)
         }
         if (shots >= SHOTS) {
-            interfaces.sendText("poh_ranging", "winner_1", "Winner!")
             winPrize(game.id)
+        }
+    }
+
+    /**
+     * Players currently taking part in the game at [target] in the order they joined
+     */
+    private fun participants(target: Tile) = Players
+        .filter { it.contains("ranging_shots") && it.get<Tile>("ranging_target") == target }
+        .sortedBy { it["ranging_joined", 0] }
+
+    /**
+     * Whether four other players are already playing the game at [target] and this player isn't one of them
+     */
+    private fun Player.isFull(target: GameObject): Boolean {
+        if (participants(target.tile).count { it != this } < MAX_PLAYERS) {
+            return false
+        }
+        message("This game already has $MAX_PLAYERS players, wait for a space to free up.")
+        return true
+    }
+
+    /**
+     * Removes this player from the game they were playing and updates the score board for everyone else
+     */
+    private fun Player.leaveBoard() {
+        val target = get<Tile>("ranging_target") ?: return
+        clear("ranging_target")
+        clear("ranging_joined")
+        clear("ranging_shots")
+        clear("ranging_score")
+        refreshBoard(target)
+    }
+
+    /**
+     * Shows every player of the game at [target] their name, shots and score
+     * with the names set as variables as the name components run scripts reading them.
+     */
+    private fun refreshBoard(target: Tile) {
+        val players = participants(target)
+        for (viewer in players) {
+            if (!viewer.hasOpen("poh_ranging")) {
+                viewer.open("poh_ranging")
+            }
+            for (row in 1..MAX_PLAYERS) {
+                val player = players.getOrNull(row - 1)
+                val visible = player != null
+                viewer.interfaces.sendVisibility("poh_ranging", "name_$row", visible)
+                viewer.interfaces.sendVisibility("poh_ranging", "shots_$row", visible)
+                viewer.interfaces.sendVisibility("poh_ranging", "score_$row", visible)
+                if (player == null) {
+                    viewer.interfaces.sendText("poh_ranging", "winner_$row", "")
+                    continue
+                }
+                val shots = player["ranging_shots", 0]
+                viewer["ranging_name_$row"] = player.name
+                viewer.interfaces.sendText("poh_ranging", "shots_$row", shots.toString())
+                viewer.interfaces.sendText("poh_ranging", "score_$row", player["ranging_score", 0].toString())
+                viewer.interfaces.sendText("poh_ranging", "winner_$row", if (shots >= SHOTS) "Winner!" else "")
+            }
         }
     }
 
@@ -318,6 +380,7 @@ class HouseGamesRoom : Script {
     companion object {
         private const val CHESTS = "oak_prize_chest,teak_prize_chest,mahogany_prize_chest"
         private const val SHOTS = 10
+        private const val MAX_PLAYERS = 4
         private const val RANGE = 6 // Guessed
         private const val SCORE_BOARD_TICKS = 50 // Guessed
         private const val ADD_AMOUNT = 10_000
@@ -329,7 +392,7 @@ class HouseGamesRoom : Script {
          */
         suspend fun Player.offerPrize(id: String) {
             val owner = houseOwner() ?: return
-            if (owner != this || owner.get("house_prize_money", 0) <= 0 || owner.contains("house_prize_game")) {
+            if (owner != this || owner["house_prize_money", 0] <= 0 || owner.contains("house_prize_game")) {
                 return
             }
             choice("Offer the prize for this game?") {

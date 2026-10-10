@@ -827,6 +827,15 @@ id = 17
 [.winner_1]
 id = 18
 
+[.winner_2]
+id = 19
+
+[.winner_3]
+id = 20
+
+[.winner_4]
+id = 21
+
 [.last_shot]
 id = 22
 
