@@ -38,6 +38,14 @@ class HouseOptions : Script {
             buildMode(false)
         }
 
+        interfaceOption("When teleporting, arrive at portal", "house_options:arrive_at_portal") {
+            set("house_teleport_arrival", "at_portal")
+        }
+
+        interfaceOption("When teleporting, arrive in house", "house_options:arrive_in_house") {
+            set("house_teleport_arrival", "in_house")
+        }
+
         interfaceOption("Expel guests", "house_options:expel_guests") {
             if (!inOwnHouse()) {
                 message("You can only expel guests when you are in your own house.")

@@ -54,11 +54,3 @@ slot = "Feet"
 destroy = "You can ask Dororan for another pair of boots, but stocks are limited!"
 examine = "You can tell by the way I use my walk I'm too busy for a natter."
 kept = "Vanish"
-
-[swanky_boots_2]
-id = 19777
-tradeable = false
-weight = 0.34
-destroy = "You can ask Dororan for another pair of boots, but stocks are limited!"
-examine = "You can tell by the way I use my walk I'm too busy for a natter."
-kept = "Vanish"

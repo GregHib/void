@@ -196,6 +196,10 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             if (!freeBuild && !has(Skill.Construction, row.int("level"), message = true)) {
                 return false
             }
+            if (row.bool("unique") && room in houseRoomIds) {
+                message("You can only have one ${room.replace('_', ' ')}, remove the existing one to build it somewhere else.") // TODO proper message
+                return false
+            }
             val dungeon = row.bool("dungeon")
             if (dungeon && roomLevel(position) != DUNGEON_LEVEL) {
                 message("That room can only be built underground.") // TODO proper messages

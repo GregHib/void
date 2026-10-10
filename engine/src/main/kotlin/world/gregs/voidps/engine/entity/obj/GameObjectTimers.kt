@@ -43,6 +43,8 @@ class GameObjectTimers : Runnable {
         timers.add(Timer(gameObjects, ticks, block))
     }
 
+    fun contains(gameObject: GameObject): Boolean = timers.any { it.objs.contains(gameObject) }
+
     fun cancel(gameObject: GameObject): Boolean = timers.removeIf { it.objs.contains(gameObject) }
 
     fun cancel(zone: Zone): Boolean = timers.removeIf { timer -> timer.objs.any { it.tile.zone == zone } }

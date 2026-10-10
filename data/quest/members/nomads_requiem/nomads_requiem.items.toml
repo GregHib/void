@@ -49,11 +49,3 @@ weight = 5.0
 destroy = "There may be more slabs in the temple ruins."
 examine = "This looks like it might come in handy."
 kept = "Vanish"
-
-[blue_cape_4]
-id = 15474
-limit = 100
-tradeable = false
-weight = 0.453
-examine = "Like a red cape, but blue."
-kept = "Reclaim"

@@ -1,8 +1,17 @@
 package content.skill.construction
 
+import content.entity.obj.door.Door
+import content.entity.obj.door.DoubleDoor
+import content.entity.obj.door.closeDoor
+import content.entity.obj.door.openDoor
 import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.instance
+import content.quest.setInstanceLogout
+import content.quest.smallInstance
+import content.skill.construction.HouseHangman.Companion.despawnHangman
+import content.skill.construction.HouseMenagerie.Companion.despawnHousePets
+import content.skill.construction.HouseMenagerie.Companion.spawnHousePets
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -10,22 +19,29 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -35,8 +51,17 @@ import world.gregs.voidps.type.Zone
  */
 class House : Script {
     init {
+        droppable {
+            if (inOwnHouse() && get("house_build_mode", false)) {
+                message("You cannot drop items while in building mode.")
+                false
+            } else {
+                true
+            }
+        }
+
         moved {
-            if (!contains("house_owner")) {
+            if (!contains("house_owner") || contains("scrying_return")) {
                 return@moved
             }
             val instance = instance()
@@ -46,10 +71,27 @@ class House : Script {
             leaveHouse(teleport = false)
         }
 
+        objectOperate("Open", DOORS) { (target) ->
+            openHouseDoor(target)
+        }
+
+        objectOperate("Close", DOORS.replace("_closed", "_opened")) { (target) ->
+            closeHouseDoor(target)
+        }
+
         playerDespawn {
             if (inOwnHouse()) {
+                despawnHousePets()
                 expelGuests()
             }
+        }
+
+        // Dying in a house is safe, and sends players fighting in the combat room back to outside the ring
+        playerDeath { death ->
+            val owner = houseOwner() ?: return@playerDeath
+            val base = houseBase() ?: return@playerDeath
+            death.dropItems = false
+            death.teleport = get("house_ring_exit") ?: owner.houseSpawn(base)
         }
     }
 
@@ -103,12 +145,12 @@ class House : Script {
         }
 
         /**
-         * Replaces any existing rooms with a new house containing just the starting garden and its exit portal
+         * Replaces any existing rooms with a new house containing the starting garden with its exit portal and a parlour to the north
          */
         fun Player.newHouse() {
-            set("house_room_ids", listOf("garden"))
-            set("house_room_positions", listOf(START_ROOM))
-            set("house_room_rotations", listOf(0))
+            set("house_room_ids", listOf("garden", "parlour"))
+            set("house_room_positions", listOf(START_ROOM, START_ROOM + ROOM_GRID))
+            set("house_room_rotations", listOf(0, 0))
             set("house_furniture_rooms", listOf(START_ROOM))
             set("house_furniture_hotspots", listOf("garden_centrepiece_space"))
             set("house_furniture_ids", listOf("exit_portal"))
@@ -209,6 +251,29 @@ class House : Script {
                     }
                 }
             }
+            val floor = HABITAT_FLOORS[furniture]
+            if (floor != null) {
+                laySpaceFloor(zone, floor)
+            }
+        }
+
+        /**
+         * Replaces the floor placeholders of the menagerie in [zone] with the matching tiles of the habitat whose floor objects start at [floor]
+         */
+        private fun laySpaceFloor(zone: Zone, floor: Int) {
+            for (tile in zone.toCuboid()) {
+                for (obj in GameObjects.at(tile)) {
+                    val index = obj.def.id - HABITAT_SPACE_FLOOR
+                    if (index in 0 until HABITAT_FLOOR_TILES) {
+                        // The garden habitat leaves a couple of tiles bare
+                        if (ObjectDefinitions.getValue(floor + index).name.endsWith("habitat")) {
+                            GameObjects.replace(obj, GameObject(floor + index, tile.x, tile.y, tile.level, obj.shape, obj.rotation))
+                        } else {
+                            obj.remove()
+                        }
+                    }
+                }
+            }
         }
 
         private fun piece(obj: GameObject) = Tables.int("house_hotspots.${obj.id}.piece")
@@ -249,6 +314,9 @@ class House : Script {
          */
         fun Player.connectStairs(position: Int): Boolean {
             val room = houseRoom(position) ?: return false
+            if (connectLadder(position)) {
+                return true
+            }
             if (houseStairs(position) != null) {
                 return false
             }
@@ -266,6 +334,44 @@ class House : Script {
             addHouseFurniture(position, hotspot, furniture)
             return true
         }
+
+        /**
+         * The throne room trapdoor built in the room at [position]
+         */
+        fun Player.houseTrapdoor(position: Int): String? = houseFurniture(position, TRAPDOOR_SPACE)
+
+        /**
+         * The oubliette ladder built in the room at [position]
+         */
+        fun Player.houseLadder(position: Int): String? = houseFurniture(position, LADDER_SPACE)
+
+        /**
+         * Adds the ladder matching the trapdoor in the throne room above to the oubliette at [position].
+         * Returns whether a ladder was added.
+         */
+        private fun Player.connectLadder(position: Int): Boolean {
+            if (houseRoom(position) != "oubliette" || houseLadder(position) != null) {
+                return false
+            }
+            val trapdoor = houseTrapdoor(roomAbove(position)) ?: return false
+            addHouseFurniture(position, LADDER_SPACE, ladders.getOrNull(trapdoors.indexOf(trapdoor)) ?: return false)
+            return true
+        }
+
+        /**
+         * Removes the other end of the trapdoor or ladder [furniture] built in the room at [position]
+         */
+        fun Player.removeLadder(position: Int, furniture: String) {
+            when (furniture) {
+                in trapdoors -> removeHouseFurniture(roomBelow(position), LADDER_SPACE)
+                in ladders -> removeHouseFurniture(roomAbove(position), TRAPDOOR_SPACE)
+            }
+        }
+
+        val trapdoors = listOf("trapdoor", "trapdoor_2", "trapdoor_3")
+        val ladders = listOf("oak_ladder", "teak_ladder", "mahogany_ladder")
+        private const val TRAPDOOR_SPACE = "throne_room_trapdoor_space"
+        private const val LADDER_SPACE = "oubliette_ladder_space"
 
         /**
          * The room built at [position]
@@ -299,8 +405,10 @@ class House : Script {
             val level = roomLevel(position)
             val wall = Tables.obj("house_styles.$style.wall")
             val window = if (level == DUNGEON_LEVEL) wall else Tables.obj("house_styles.$style.window")
+            val doors = Tables.objList("house_styles.$style.doors")
             val positions = houseRoomPositions
             val neighbours = Direction.cardinal.associateWith { side -> roomPosition(base, zone.add(side))?.takeIf { it in positions } }
+            val outdoor = Tables.bool("house_rooms.${houseRoom(position)}.outdoor")
             decorate(
                 zone,
                 buildMode,
@@ -310,9 +418,13 @@ class House : Script {
                     val neighbour = neighbours[side]
                     if (neighbour == null || Tables.bool("house_rooms.${houseRoom(neighbour)}.outdoor")) window else wall
                 },
-                door = { side ->
+                door = { tile ->
+                    val side = roomSide(tile)
                     val neighbour = neighbours[side]
+                    val outside = if (neighbour == null) level == GROUND_LEVEL else Tables.bool("house_rooms.${houseRoom(neighbour)}.outdoor")
                     when {
+                        // Indoor rooms have doors out into gardens and the grounds
+                        outside && !outdoor -> doors[if (leftDoor(tile)) 0 else 1]
                         neighbour != null -> if (side.inverse() in doorways(neighbour)) null else wall
                         // Upstairs doorways without a room on the other side would lead out onto the roofs
                         level > GROUND_LEVEL -> wall
@@ -356,6 +468,19 @@ class House : Script {
             }
         }
 
+        /**
+         * Whether the doorway on [tile] is the left half when looking out of the room
+         */
+        private fun leftDoor(tile: Tile): Boolean {
+            val zone = tile.zone.tile
+            return when (roomSide(tile)) {
+                Direction.WEST -> tile.y - zone.y < 4
+                Direction.NORTH -> tile.x - zone.x < 4
+                Direction.EAST -> tile.y - zone.y >= 4
+                else -> tile.x - zone.x >= 4
+            }
+        }
+
         fun roomPosition(x: Int, y: Int, level: Int) = x + y * ROOM_GRID + level * ROOM_GRID * ROOM_GRID
 
         fun roomX(position: Int) = position % ROOM_GRID
@@ -387,6 +512,22 @@ class House : Script {
         }
 
         fun Player.inOwnHouse() = get<String>("house_owner") == accountName
+
+        /**
+         * Tile in front of the exit portal of this players house starting at [base], or the middle of the garden without one
+         */
+        fun Player.houseSpawn(base: Zone): Tile {
+            val portal = houseFurnitureIds.indexOf("exit_portal")
+            if (portal != -1) {
+                val zone = roomZone(base, houseFurnitureRooms[portal])
+                val obj = zone.toCuboid().firstNotNullOfOrNull { GameObjects.findOrNull(it, "exit_portal") }
+                if (obj != null) {
+                    return obj.tile.add(0, -1)
+                }
+            }
+            val garden = houseRoomIds.indexOf("garden").coerceAtLeast(0)
+            return roomZone(base, houseRoomPositions[garden]).tile.add(3, 3)
+        }
 
         /**
          * The owner of the house the player is currently in
@@ -492,10 +633,10 @@ class House : Script {
 
         /**
          * Fills the window spaces in [zone] with the [window] for their side and removes any hotspots outside of [buildMode],
-         * doorways are filled with the [door] wall for their side, or left open when there isn't one.
+         * doorways are filled with the [door] or wall for their tile, or left open when there isn't one.
          * Window spaces filled with [wall] lose any curtains, or curtain hotspots, hung on them.
          */
-        private fun decorate(zone: Zone, buildMode: Boolean, wall: String, window: (Direction) -> String, door: (Direction) -> String?) {
+        private fun decorate(zone: Zone, buildMode: Boolean, wall: String, window: (Direction) -> String, door: (Tile) -> String?) {
             for (tile in zone.toCuboid()) {
                 val objects = GameObjects.at(tile)
                 val walled = objects.any { it.id == "house_window_space" && window(roomSide(it.tile)) == wall }
@@ -503,15 +644,27 @@ class House : Script {
                     if (obj.id == "house_window_space") {
                         obj.replace(window(roomSide(obj.tile)))
                     } else if (walled && (obj.id in curtains || obj.id.endsWith("_curtain_space"))) {
+                        val space = GameObjects.original(obj)
                         obj.remove()
+                        space?.remove()
                     } else if (!buildMode && obj.id.startsWith("door_hotspot")) {
-                        val wall = door(roomSide(obj.tile))
+                        val wall = door(obj.tile)
                         if (wall == null) obj.remove() else obj.replace(wall)
                     } else if (!buildMode && (obj.def.containsOption("Build") || obj.def.name == HABITAT_FLOOR)) {
-                        obj.remove()
+                        obj.remove(collision = !againstWall(obj))
                     }
                 }
             }
+        }
+
+        /**
+         * Whether [obj] is on the edge of its room next to the walls
+         */
+        private fun againstWall(obj: GameObject): Boolean {
+            val zone = obj.tile.zone.tile
+            val x = obj.x - zone.x
+            val y = obj.y - zone.y
+            return x == 0 || y == 0 || x + obj.width >= 8 || y + obj.height >= 8
         }
 
         /**
@@ -526,14 +679,116 @@ class House : Script {
 
         private val curtains = setOf("torn_curtains", "curtains", "opulent_curtains")
 
+        // Ticks before an opened house door closes itself, long enough to never happen
+        private const val STAY_OPEN = Int.MAX_VALUE
+
+        // Doors out of the house in each style
+        private const val DOORS = "basic_wood_door_left_closed,basic_wood_door_right_closed,large_door_45_closed,large_door_47_closed," +
+            "whitewashed_stone_door_left_closed,whitewashed_stone_door_right_closed,fremennik_wood_door_left_closed,fremennik_wood_door_right_closed," +
+            "tropical_wood_door_left_closed,tropical_wood_door_right_closed,fancy_stone_door_left_closed,fancy_stone_door_right_closed"
+
+        /**
+         * Opens a [door] in a house, doors elsewhere which share its id open as normal
+         */
+        suspend fun Player.openHouseDoor(door: GameObject) {
+            if (houseBase() == null) {
+                openDoor(door)
+            } else {
+                moveHouseDoor(door, open = true)
+            }
+        }
+
+        /**
+         * Closes a [door] in a house, doors elsewhere which share its id close as normal
+         */
+        suspend fun Player.closeHouseDoor(door: GameObject) {
+            if (houseBase() == null) {
+                closeDoor(door)
+            } else {
+                moveHouseDoor(door, open = false)
+            }
+        }
+
+        /**
+         * Opens or closes a house [door] and its double, opened doors stay open until closed which reverts them back to where they were.
+         * Doorways have hotspots under them which come back when a door moves off of them, so outside of building mode they're removed again.
+         */
+        private fun Player.moveHouseDoor(door: GameObject, open: Boolean) {
+            val def = door.def(this)
+            val double = DoubleDoor.get(this, door, def, if (open) 0 else 1)
+            val moved = if (open) Door.openDoor(this, door, def, ticks = STAY_OPEN) else Door.closeDoor(this, door, def)
+            if (!moved) {
+                return
+            }
+            // Hotspots stay in building mode as they are what rooms and furniture are built on
+            if (get("house_build_mode", false)) {
+                return
+            }
+            for (tile in listOfNotNull(door.tile, double?.tile)) {
+                val hotspot = GameObjects.getShape(tile, door.shape) ?: continue
+                if (hotspot.def(this).containsOption("Build")) {
+                    hotspot.remove()
+                }
+            }
+        }
+
         // Name of the menagerie's floor placeholders, one per tile without any options so aren't caught as hotspots
         private const val HABITAT_FLOOR = "Habitat space"
+
+        private val HOUSE_ITEMS = listOf(
+            "boxing_gloves_red",
+            "boxing_gloves_blue",
+            "wooden_sword",
+            "wooden_shield_weapons_rack",
+            "pugel",
+            "treasure_stone",
+            "prize_key",
+            "hoop",
+            "dart",
+            "bow_and_arrow",
+        )
+
+        // Object ids of the first floor placeholder and of the first floor tile of each habitat, there is one for every tile of the room
+        private const val HABITAT_SPACE_FLOOR = 44843
+        private const val HABITAT_FLOOR_TILES = 64
+        private val HABITAT_FLOORS = mapOf(
+            "garden_habitat" to 44498,
+            "jungle_habitat" to 44564,
+            "desert_habitat" to 44630,
+            "polar_habitat" to 44696,
+            "volcanic_habitat" to 44762,
+        )
 
         /**
          * Placeholder for furniture interactions which haven't been added yet
          */
         fun Player.notImplemented() {
             message("<purple>Not yet implemented.") // TODO
+        }
+
+        /**
+         * Creates a new instance of the players house, returning the tile to arrive at
+         */
+        fun Player.createHouse(buildMode: Boolean): Tile {
+            leaveHouse(teleport = false)
+            set("house_build_mode", buildMode)
+            if (!hasHouse()) {
+                newHouse()
+            }
+            val instance = smallInstance()
+            loadHouse(instance.tile.zone, buildMode)
+            val tile = arrival(this, instance)
+            spawnHousePets(instance.tile.zone)
+            return tile
+        }
+
+        /**
+         * Marks the player as inside [owner]'s house [instance], returning the tile to arrive at
+         */
+        fun Player.arrival(owner: Player, instance: Region): Tile {
+            setInstanceLogout(Tables.tile("house_locations.${owner["house_location", ""]}.exit"))
+            set("house_owner", owner.accountName)
+            return owner.houseSpawn(instance.tile.zone)
         }
 
         suspend fun Player.houseLoading() {
@@ -544,16 +799,47 @@ class House : Script {
 
         fun Player.leaveHouse(teleport: Boolean = true) {
             val owner: String = remove("house_owner") ?: return
+            // Scrying from a pool leaves the player away from the house, so bring them back out of it
+            stopScrying()
+            despawnHangman()
+            removeHouseItems()
             if (hasOpen("house_options")) {
                 open("options")
             }
             if (owner == accountName) {
+                despawnHousePets()
                 expelGuests()
             }
             if (teleport) {
                 exitInstance()
             } else {
                 clearInstance()
+            }
+        }
+
+        /**
+         * Stops scrying through a scrying pool, returning the tile the player was standing on in the house or null if they weren't scrying
+         */
+        fun Player.stopScrying(): Tile? {
+            val back: Tile = remove("scrying_return") ?: return null
+            appearance.hidden = false
+            flagAppearance()
+            walkTrigger = null
+            close("poh_scrying_pool")
+            return back
+        }
+
+        /**
+         * Takes back items from house games and the weapons rack which can't leave the house
+         */
+        private fun Player.removeHouseItems() {
+            for (inventory in listOf(inventory, equipment)) {
+                for (item in HOUSE_ITEMS) {
+                    val count = inventory.count(item)
+                    if (count > 0) {
+                        inventory.remove(item, count)
+                    }
+                }
             }
         }
 

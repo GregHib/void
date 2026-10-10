@@ -8,6 +8,7 @@ import content.entity.combat.hit.damage
 import content.entity.player.dialogue.Disheartened
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -81,6 +82,7 @@ class ShootingStar : Script {
                 eventUpdate()
             } else if (!Settings["events.shootingStars.enabled", false] && World.contains("shooting_star_event_timer")) {
                 World.clearQueue("shooting_star_event_timer")
+                ShootingStarHandler.nextLocation = null
             }
         }
 
@@ -144,6 +146,7 @@ class ShootingStar : Script {
             eventUpdate(minutes)
         } else {
             World.clearQueue("shooting_star_event_timer")
+            ShootingStarHandler.nextLocation = null
         }
     }
 
@@ -153,7 +156,11 @@ class ShootingStar : Script {
     }
 
     fun eventUpdate(minutes: Int) {
-        World.queue("shooting_star_event_timer", TimeUnit.MINUTES.toTicks(minutes)) {
+        val ticks = TimeUnit.MINUTES.toTicks(minutes)
+        ShootingStarHandler.nextLocation = StarLocationData.entries.random()
+        ShootingStarHandler.nextTier = random.nextInt(1, 9)
+        ShootingStarHandler.nextStarTick = GameLoop.tick + ticks
+        World.queue("shooting_star_event_timer", ticks) {
             if (currentStarTile != Tile.EMPTY) {
                 cleanseEvent(true)
                 logger.info { "There was already an active star, deleted it and started a new event" }
@@ -164,9 +171,11 @@ class ShootingStar : Script {
     }
 
     fun startCrashedStarEvent() {
-        val location = StarLocationData.entries.random()
+        val location = ShootingStarHandler.nextLocation ?: StarLocationData.entries.random()
+        val tier = if (ShootingStarHandler.nextTier == 0) random.nextInt(1, 9) else ShootingStarHandler.nextTier
+        ShootingStarHandler.nextLocation = null
+        ShootingStarHandler.nextTier = 0
         currentStarTile = location.tile
-        val tier = random.nextInt(1, 9)
         if (Settings["world.messages", false]) {
             for (player in Players) {
                 player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")

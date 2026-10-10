@@ -3,6 +3,7 @@ package content.skill.construction
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -30,7 +30,7 @@ class HouseFurniture : Script {
     init {
         objectOperate("Search", STORAGE) { (target) ->
             val items = Tables.itemListOrNull("house_storage.${target.id}.items") ?: return@objectOperate
-            take(items)
+            take(items, Rows.getOrNull("house_storage.${target.id}")?.stringOrNull("title"))
         }
 
         itemOnObjectOperate("beer_glass", BARRELS) { (target) ->
@@ -64,7 +64,7 @@ class HouseFurniture : Script {
     private fun Player.light(target: GameObject) {
         val row = Rows.getOrNull("house_lights.${target.id}") ?: return
         if (get("house_build_mode", false)) {
-            message("You can't do that in building mode.") // TODO proper message
+            message("You can't light the fire in building mode.")
             return
         }
         if (!has(Skill.Firemaking, row.int("level"), message = true)) {
@@ -86,13 +86,20 @@ class HouseFurniture : Script {
         exp(Skill.Firemaking, row.int("xp") / 10.0)
     }
 
-    private suspend fun Player.take(items: List<String>) {
-        val index = pick(items.map { ItemDefinitions.get(it).name })
+    private suspend fun Player.take(items: List<String>, title: String? = null) {
+        val index = pick(title = title, options = items.map { Rows.getOrNull("house_storage_items.$it")?.string("option") ?: ItemDefinitions.get(it).name })
         if (index == -1) {
             return
         }
-        if (!inventory.add(items[index])) {
+        val item = items[index]
+        if (!inventory.add(item)) {
             inventoryFull()
+            return
+        }
+        val name = ItemDefinitions.get(item).name.lowercase()
+        val message = Rows.getOrNull("house_storage_items.$item")?.stringOrNull("message") ?: "You take${name.an()} $name.".replace("  ", " ")
+        if (message.isNotEmpty()) {
+            message(message)
         }
     }
 
@@ -107,14 +114,17 @@ class HouseFurniture : Script {
          * Pick one of [options], four at a time with a "More..." option when there are too many for one choice.
          * Returns the index picked or -1 if none were.
          */
-        suspend fun Player.pick(options: List<String>, offset: Int = 0): Int {
+        suspend fun Player.pick(options: List<String>, offset: Int = 0, title: String? = null): Int {
+            if (options.size == 1) {
+                return 0
+            }
             val remaining = options.size - offset
             val count = if (remaining > 5) 4 else remaining
             val lines = options.subList(offset, offset + count)
-            val choice = choice(if (count < remaining) lines + "More..." else lines)
+            val choice = choice(if (count < remaining) lines + "More..." else lines, title)
             return when {
                 choice == -1 -> -1
-                choice > count -> pick(options, offset + count)
+                choice > count -> pick(options, offset + count, title)
                 else -> offset + choice - 1
             }
         }

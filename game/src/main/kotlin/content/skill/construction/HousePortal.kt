@@ -4,19 +4,11 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.nameEntry
 import content.quest.instance
 import content.quest.joinInstance
-import content.quest.setInstanceLogout
-import content.quest.smallInstance
-import content.skill.construction.House.Companion.hasHouse
-import content.skill.construction.House.Companion.houseFurnitureIds
-import content.skill.construction.House.Companion.houseFurnitureRooms
+import content.skill.construction.House.Companion.arrival
+import content.skill.construction.House.Companion.createHouse
 import content.skill.construction.House.Companion.houseLoading
-import content.skill.construction.House.Companion.houseRoomIds
-import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.loadHouse
-import content.skill.construction.House.Companion.newHouse
-import content.skill.construction.House.Companion.roomZone
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -28,9 +20,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
 
 class HousePortal : Script {
     init {
@@ -96,7 +85,7 @@ class HousePortal : Script {
     }
 
     /**
-     * Teleport into the players own house by the portal
+     * Teleport into the players own house, or outside its portal if they've chosen to arrive there
      */
     private fun Player.teleportHome(type: String, spell: String, xp: Double = 0.0) {
         if (!contains("house_location")) {
@@ -105,24 +94,14 @@ class HousePortal : Script {
         }
         closeInterfaces()
         Teleport.teleport(this, type, spell, xp = xp, clearInterfaces = false) {
+            if (get("house_teleport_arrival", "in_house") == "at_portal") {
+                leaveHouse(teleport = false)
+                return@teleport Tables.tile("house_locations.${get("house_location", "")}.exit")
+            }
             val tile = createHouse(buildMode = false)
             open("house_loading")
             tile
         }
-    }
-
-    /**
-     * Creates a new instance of the players house, returning the tile to arrive at
-     */
-    private fun Player.createHouse(buildMode: Boolean): Tile {
-        leaveHouse(teleport = false)
-        set("house_build_mode", buildMode)
-        if (!hasHouse()) {
-            newHouse()
-        }
-        val instance = smallInstance()
-        loadHouse(instance.tile.zone, buildMode)
-        return arrival(this, instance)
     }
 
     private suspend fun Player.visitFriend(location: String) {
@@ -148,24 +127,5 @@ class HousePortal : Script {
         joinInstance(instance)
         tele(arrival(owner, instance))
         houseLoading()
-    }
-
-    /**
-     * Marks the player as inside [owner]'s house [instance], returning the tile to arrive at
-     */
-    private fun Player.arrival(owner: Player, instance: Region): Tile {
-        setInstanceLogout(Tables.tile("house_locations.${owner["house_location", ""]}.exit"))
-        set("house_owner", owner.accountName)
-        val base = instance.tile.zone
-        val portal = owner.houseFurnitureIds.indexOf("exit_portal")
-        if (portal != -1) {
-            val zone = roomZone(base, owner.houseFurnitureRooms[portal])
-            val obj = zone.toCuboid().firstNotNullOfOrNull { GameObjects.findOrNull(it, "exit_portal") }
-            if (obj != null) {
-                return obj.tile.add(0, -1)
-            }
-        }
-        val garden = owner.houseRoomIds.indexOf("garden").coerceAtLeast(0)
-        return roomZone(base, owner.houseRoomPositions[garden]).tile.add(3, 3)
     }
 }

@@ -1,0 +1,1009 @@
+[adamant_cane_poh]
+id = 13164
+tradeable = false
+examine = "A ruby-topped cane."
+
+[adamant_platebody_h1_poh]
+id = 19482
+limit = 2
+weight = 11.339
+examine = "A platebody with a heraldic design."
+
+[adamant_platebody_h2_poh]
+clone = "adamant_platebody_h1_poh"
+id = 19485
+
+[adamant_platebody_h3_poh]
+clone = "adamant_platebody_h1_poh"
+id = 19488
+
+[adamant_platebody_h4_poh]
+clone = "adamant_platebody_h1_poh"
+id = 19491
+
+[adamant_platebody_h5_poh]
+clone = "adamant_platebody_h1_poh"
+id = 19494
+
+[agility_cape_poh]
+id = 10648
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the most agile of heroes."
+kept = "Reclaim"
+
+[amulet_of_magic_t_poh]
+id = 10738
+tradeable = false
+examine = "An enchanted sapphire amulet of magic."
+
+[ancient_robe_top_poh]
+id = 19509
+limit = 2
+weight = 1.8
+examine = "A vestment of Zaros."
+
+[armadyl_robe_top_poh]
+id = 19508
+limit = 2
+weight = 1.8
+examine = "A vestment of Armadyl."
+
+[attack_cape_poh]
+id = 10639
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by masters of Attack."
+kept = "Reclaim"
+
+[bandos_robe_top_poh]
+id = 19510
+limit = 2
+weight = 1.8
+examine = "A vestment of Bandos."
+
+[basic_decorative_platebody_poh]
+id = 10610
+tradeable = false
+examine = "A platebody with a simple and basic decoration."
+
+[bat_mask_poh]
+id = 13171
+tradeable = false
+examine = "The bats have left the belltower."
+
+[black_beret_poh]
+id = 10694
+tradeable = false
+examine = "Parlez-vous francais?"
+
+[black_boater_poh]
+id = 10766
+tradeable = false
+examine = "Stylish!"
+
+[black_cane_poh]
+id = 13163
+tradeable = false
+examine = "A sapphire-topped cane."
+
+[black_cavalier_poh]
+id = 10806
+tradeable = false
+examine = "All for one and one for all!"
+
+[black_dragon_mask_poh]
+clone = "green_dragon_mask_poh"
+id = 19502
+
+[black_headband_poh]
+id = 10770
+tradeable = false
+examine = "A minimalist's hat."
+
+[black_naval_shirt_poh]
+id = 13185
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[black_platebody_g_poh]
+id = 10691
+tradeable = false
+examine = "Black platebody with gold trim."
+
+[black_platebody_h1_poh]
+id = 19481
+limit = 2
+weight = 9.979
+examine = "A platebody with a heraldic design."
+
+[black_platebody_h2_poh]
+clone = "black_platebody_h1_poh"
+id = 19484
+
+[black_platebody_h3_poh]
+clone = "black_platebody_h1_poh"
+id = 19487
+
+[black_platebody_h4_poh]
+clone = "black_platebody_h1_poh"
+id = 19490
+
+[black_platebody_h5_poh]
+clone = "black_platebody_h1_poh"
+id = 19493
+
+[black_platebody_t_poh]
+id = 10690
+tradeable = false
+examine = "Black platebody with trim."
+
+[black_unicorn_mask_poh]
+clone = "white_unicorn_mask_poh"
+id = 19498
+
+[blue_beret_poh]
+id = 10693
+tradeable = false
+examine = "Parlez-vous francais?"
+
+[blue_boater_poh]
+id = 10764
+tradeable = false
+examine = "Stylish!"
+
+[blue_cape_poh]
+id = 15474
+limit = 100
+tradeable = false
+weight = 0.453
+examine = "Like a red cape, but blue."
+kept = "Reclaim"
+
+[blue_dragon_mask_poh]
+clone = "green_dragon_mask_poh"
+id = 19500
+
+[blue_elegant_shirt_poh]
+id = 10752
+tradeable = false
+examine = "A well made elegant men's shirt."
+
+[blue_naval_shirt_poh]
+id = 13181
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[bob_shirt_black_poh]
+id = 10717
+tradeable = false
+examine = "'Bob says: A bank pin will keep your items secure.'"
+
+[bob_shirt_blue_poh]
+id = 10715
+tradeable = false
+examine = "'Bob says: Always check the second trade screen.'"
+
+[bob_shirt_green_poh]
+id = 10716
+tradeable = false
+examine = "'Bob says: Never trade in the wilderness!'"
+
+[bob_shirt_purple_poh]
+id = 10718
+tradeable = false
+examine = "'Bob says: Keep your computer keylogger free and virus scanned.'"
+
+[bob_shirt_red_poh]
+id = 10714
+tradeable = false
+examine = "'Bob says: Never give your password out to anyone.'"
+
+[bomber_jacket_poh]
+id = 11135
+tradeable = false
+weight = 0.001
+examine = "For all your flying needs."
+kept = "Vanish"
+
+[bronze_dragon_mask_poh]
+id = 19504
+limit = 2
+weight = 2.267
+examine = "Never has bronze looked so impressive."
+
+[brown_headband_poh]
+id = 10772
+tradeable = false
+examine = "A minimalist's hat."
+
+[brown_naval_shirt_poh]
+id = 13184
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[camo_top_poh]
+id = 10632
+tradeable = false
+examine = "Examine what?"
+
+[cape_of_legends_poh]
+id = 10635
+tradeable = false
+examine = "The cape worn by members of the Legends Guild."
+
+[cat_mask_poh]
+id = 13172
+tradeable = false
+examine = "It's the year of the cat!"
+
+[commander_cap_poh]
+id = 15337
+tradeable = false
+examine = "A cap displaying a middle rank."
+
+[constitution_cape_poh]
+id = 10647
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by well-constituted adventurers."
+kept = "Reclaim"
+
+[cooking_cape_poh]
+id = 10658
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the world's best chefs."
+kept = "Reclaim"
+
+[crafting_cape_poh]
+id = 10651
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master craftworkers."
+kept = "Reclaim"
+
+[dagonhai_robe_top_poh]
+id = 14732
+tradeable = false
+examine = "A robe worn by members of the Dagon'hai."
+
+[dark_cavalier_poh]
+id = 10804
+tradeable = false
+examine = "All for one and one for all!"
+
+[defence_cape_poh]
+id = 10641
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by masters of the art of Defence."
+kept = "Reclaim"
+
+[desert_camo_top_poh]
+id = 10627
+tradeable = false
+examine = "This should make me harder to spot in desert areas."
+
+[dhide_body_g_poh]
+id = 10684
+tradeable = false
+examine = "Made from 100% real dragonhide. With colourful trim!"
+
+[dhide_body_t_poh]
+id = 10685
+tradeable = false
+examine = "Made from 100% real dragonhide. With colourful trim!"
+
+[dungeoneering_cape_poh]
+id = 15706
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by veterans of Daemonheim."
+kept = "Reclaim"
+
+[dungeoneering_master_cape_poh]
+id = 19710
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the true masters of Daemonheim."
+kept = "Reclaim"
+
+[elite_black_platebody_poh]
+id = 14730
+tradeable = false
+examine = "Provides excellent protection, and is elite."
+
+[enchanted_top_poh]
+id = 10688
+tradeable = false
+examine = "Enchanted Wizards robes."
+
+[farming_cape_poh]
+id = 10661
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master farmers."
+kept = "Reclaim"
+
+[fire_cape_poh]
+id = 10637
+tradeable = false
+examine = "A cape of fire."
+
+[firemaking_cape_poh]
+id = 10659
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master firelighters."
+kept = "Reclaim"
+
+[fishing_cape_poh]
+id = 10657
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the best fishermen."
+kept = "Reclaim"
+
+[flared_trousers_poh]
+id = 10742
+tradeable = false
+examine = "These'll help me stay alive."
+
+[fletching_cape_poh]
+id = 10652
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the best of fletchers."
+kept = "Reclaim"
+
+[fox_mask_poh]
+id = 19496
+limit = 2
+weight = 1.0
+examine = "A cunning disguise."
+
+[frog_mask_poh]
+id = 10721
+tradeable = false
+examine = "Now that's just silly."
+
+[frost_dragon_mask_poh]
+clone = "green_dragon_mask_poh"
+id = 19503
+
+[ghostly_boots_poh]
+id = 10607
+tradeable = false
+examine = "They seem to be not quite of this world..."
+
+[graahk_top_poh]
+id = 10624
+tradeable = false
+examine = "This should make me harder to spot in desert areas."
+
+[green_boater_poh]
+id = 10762
+tradeable = false
+examine = "Stylish!"
+
+[green_dragon_mask_poh]
+id = 19499
+limit = 2
+weight = 1.0
+examine = "Doesn't let you breathe fire, sadly."
+
+[green_elegant_shirt_poh]
+id = 10754
+tradeable = false
+examine = "A well made elegant men's shirt."
+
+[green_naval_shirt_poh]
+id = 13182
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[grey_naval_shirt_poh]
+id = 13187
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[guthix_cape_poh]
+id = 10720
+tradeable = false
+examine = "A cape from the almighty god Guthix."
+
+[guthix_robe_top_poh]
+id = 10788
+tradeable = false
+examine = "Guthix Vestments."
+
+[ham_shirt_poh]
+id = 11274
+tradeable = false
+examine = "A vivid crimson shirt."
+
+[hard_hat_poh]
+id = 10883
+tradeable = false
+weight = 2.0
+slot = "Hat"
+type = "HairLow"
+destroy = "You'll have to find another within the Tower of Life!"
+examine = "Can't get any safer than this."
+kept = "Vanish"
+
+[helmet_of_trials_poh]
+id = 15624
+tradeable = false
+weight = 3.175
+destroy = "You can get another one from Xenia in Lumbridge."
+examine = "A helmet of epic accomplishment for a hero with 300 Quest Points."
+destroy2 = "You can get another one from Ilona in Lumbridge."
+kept = "Vanish"
+
+[herblore_cape_poh]
+id = 10649
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the most skilled at the art of Herblore."
+kept = "Reclaim"
+
+[highwayman_mask_poh]
+id = 10692
+tradeable = false
+examine = "Your money or your life!"
+
+[hunter_cape_poh]
+id = 10646
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master hunters."
+kept = "Reclaim"
+
+[infinity_top_poh]
+id = 10605
+tradeable = false
+examine = "Mystical robes."
+
+[initiate_hauberk_poh]
+id = 10619
+tradeable = false
+examine = "An initiate Temple Knight's Armour."
+
+[iron_dragon_mask_poh]
+id = 19505
+limit = 2
+weight = 2.267
+examine = "Never has iron looked so impressive."
+
+[jungle_camo_top_poh]
+id = 10626
+tradeable = false
+examine = "This should make me harder to spot in jungle areas."
+
+[kyatt_top_poh]
+id = 10622
+tradeable = false
+examine = "This should make me harder to spot in polar areas."
+
+[larupia_top_poh]
+id = 10623
+tradeable = false
+examine = "This should make me harder to spot in woodland and jungle areas."
+
+[lederhosen_top_poh]
+id = 10633
+tradeable = false
+examine = "A leather strapped top."
+
+[lord_marshal_cap_poh]
+id = 15339
+tradeable = false
+examine = "A cap displaying a high rank."
+
+[lumberjack_top_poh]
+id = 10945
+tradeable = false
+weight = 1.36
+slot = "Chest"
+destroy = "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
+examine = "You'll certainly be alright wearing this."
+kept = "Reclaim"
+
+[lunar_helm_poh]
+id = 10609
+tradeable = false
+examine = "A mystical helmet."
+
+[magic_cape_poh]
+id = 10644
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the most powerful mages."
+kept = "Reclaim"
+
+[mask_of_dragith_nurn_poh]
+id = 15625
+tradeable = false
+weight = 0.5
+destroy = "You can reclaim the mask from Xenia at the entrance to the Lumbridge Catacombs."
+examine = "The magic mask of the undead necromancer Dragith Nurn."
+kept = "Wilderness"
+
+[mime_mask_poh]
+id = 10629
+tradeable = false
+examine = "A mime would wear this."
+
+[mining_cape_poh]
+id = 10655
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the most skilled miners."
+kept = "Reclaim"
+
+[mithril_dragon_mask_poh]
+id = 19507
+limit = 2
+weight = 2.267
+examine = "Never has mithril looked so impressive."
+
+[moonclan_hat_poh]
+id = 10608
+tradeable = false
+examine = "A mystical hat."
+
+[mourner_top_poh]
+id = 10621
+tradeable = false
+examine = "A thick heavy leather top."
+
+[mystic_hat_blue_poh]
+id = 10601
+tradeable = false
+examine = "A magical hat."
+
+[mystic_hat_dark_poh]
+id = 10602
+tradeable = false
+examine = "A dark magical hat."
+
+[mystic_hat_light_poh]
+id = 10603
+tradeable = false
+examine = "A bright magical hat."
+
+[obsidian_cape_poh]
+id = 10636
+tradeable = false
+examine = "A cape of woven obsidian plates."
+
+[orange_boater_poh]
+id = 10760
+tradeable = false
+examine = "Stylish!"
+
+[pantaloons_poh]
+id = 10744
+tradeable = false
+examine = "Alas, someone has slashed my pantaloons."
+
+[penguin_mask_poh]
+id = 13170
+tradeable = false
+examine = "I can get the look right, but can I do the waddle too?"
+
+[pirates_hat_poh]
+id = 10774
+tradeable = false
+examine = "Shiver me timbers!"
+
+[pith_helmet_poh]
+id = 13167
+tradeable = false
+examine = "Official explorer headgear!"
+
+[polar_camo_top_poh]
+id = 10628
+tradeable = false
+examine = "This should make me harder to spot in polar areas."
+
+[prayer_cape_poh]
+id = 10643
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by the most pious of heroes."
+kept = "Reclaim"
+
+[princess_blouse_poh]
+id = 10630
+tradeable = false
+examine = "Very posh!"
+
+[proselyte_hauberk_poh]
+id = 10620
+tradeable = false
+examine = "A Proselyte Temple Knight's armour."
+
+[purple_elegant_shirt_poh]
+id = 10756
+tradeable = false
+examine = "A well made elegant men's shirt."
+
+[purple_naval_shirt_poh]
+id = 13186
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[quest_point_cape_poh]
+id = 10662
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by only the most experienced adventurers."
+kept = "Reclaim"
+
+[ranger_boots_poh]
+id = 10696
+tradeable = false
+examine = "Lightweight boots ideal for rangers."
+
+[red_boater_poh]
+id = 10758
+tradeable = false
+examine = "Stylish!"
+
+[red_dragon_mask_poh]
+clone = "green_dragon_mask_poh"
+id = 19501
+
+[red_elegant_shirt_poh]
+id = 10750
+tradeable = false
+examine = "A well made elegant men's shirt."
+
+[red_headband_poh]
+id = 10768
+tradeable = false
+examine = "A minimalist's hat."
+
+[red_naval_shirt_poh]
+id = 13183
+tradeable = false
+examine = "...You can sail the seven seas..."
+
+[robin_hood_hat_poh]
+id = 10796
+tradeable = false
+examine = "Endorsed by Robin Hood."
+
+[rock_shell_helm_poh]
+id = 10613
+tradeable = false
+examine = "Protective headwear made from crabs. Better than that sounds."
+
+[rogue_mask_poh]
+id = 10612
+tradeable = false
+examine = "Black banded leather armour, a rogue's dream!"
+
+[royal_shirt_poh]
+id = 15519
+limit = 2
+weight = 1.0
+examine = "The shirt of royalty!"
+
+[rune_cane_poh]
+id = 13165
+tradeable = false
+examine = "A diamond-topped cane."
+
+[rune_platebody_g_poh]
+id = 10798
+tradeable = false
+examine = "Rune platebody with gold trim."
+
+[rune_platebody_h1_poh]
+id = 19483
+limit = 2
+weight = 9.979
+examine = "A platebody with a heraldic design."
+
+[rune_platebody_h2_poh]
+clone = "rune_platebody_h1_poh"
+id = 19486
+
+[rune_platebody_h3_poh]
+clone = "rune_platebody_h1_poh"
+id = 19489
+
+[rune_platebody_h4_poh]
+clone = "rune_platebody_h1_poh"
+id = 19492
+
+[rune_platebody_h5_poh]
+clone = "rune_platebody_h1_poh"
+id = 19495
+
+[rune_platebody_t_poh]
+id = 10800
+tradeable = false
+examine = "Rune platebody with trim."
+
+[runecrafter_hat_blue_poh]
+id = 13658
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "HairLow"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[runecrafter_hat_green_poh]
+id = 13657
+tradeable = false
+weight = 0.453
+slot = "Hat"
+type = "HairLow"
+examine = "Comes with goggles, for extra safety while Runecrafting."
+kept = "Reclaim"
+
+[saradomin_robe_top_poh]
+id = 10784
+tradeable = false
+examine = "Saradomin Vestments."
+
+[serjeant_cap_poh]
+id = 15336
+tradeable = false
+examine = "A cap displaying a low rank."
+
+[sheep_mask_poh]
+id = 13169
+tradeable = false
+examine = "Shear elegance."
+
+[skeletal_helm_poh]
+id = 10604
+tradeable = false
+examine = "Make your foes cower by wearing a skull as a helmet!"
+
+[slayer_cape_poh]
+id = 10653
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by Slayer masters."
+kept = "Reclaim"
+
+[sleeping_cap_poh]
+id = 10746
+tradeable = false
+examine = "A cap for wearing whilzzzzzzzzzz."
+
+[smithing_cape_poh]
+id = 10656
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master smiths."
+kept = "Reclaim"
+
+[spiked_helmet_poh]
+id = 13168
+tradeable = false
+examine = "Spikier than normal."
+
+[spined_helm_poh]
+id = 10614
+tradeable = false
+examine = "A helm fit for any Fremennik ranger."
+
+[splitbark_helm_poh]
+id = 10606
+tradeable = false
+examine = "A wooden helmet."
+
+[spotted_cape_poh]
+id = 10663
+tradeable = false
+examine = "A surprisingly aerodynamic cape."
+
+[spottier_cape_poh]
+id = 10664
+tradeable = false
+examine = "A really surprisingly aerodynamic cape."
+
+[steel_dragon_mask_poh]
+id = 19506
+limit = 2
+weight = 2.267
+examine = "Never has steel looked so impressive."
+
+[strength_amulet_t_poh]
+id = 10736
+tradeable = false
+examine = "An enchanted ruby amulet."
+
+[strength_cape_poh]
+id = 10640
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by only the strongest people."
+kept = "Reclaim"
+
+[studded_body_g_poh]
+id = 10680
+tradeable = false
+examine = "Those studs should provide a bit more protection, nice trim too!"
+
+[studded_body_t_poh]
+id = 10681
+tradeable = false
+examine = "Those studs should provide a bit more protection, nice trim too!"
+
+[summoning_cape_poh]
+id = 12524
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by masters of Summoning."
+kept = "Reclaim"
+
+[swanky_boots_poh]
+id = 19777
+tradeable = false
+weight = 0.34
+destroy = "You can ask Dororan for another pair of boots, but stocks are limited!"
+examine = "You can tell by the way I use my walk I'm too busy for a natter."
+kept = "Vanish"
+
+[tan_cavalier_poh]
+id = 10802
+tradeable = false
+examine = "All for one and one for all!"
+
+[team_1_cape_poh]
+id = 10638
+tradeable = false
+examine = "Ooohhh look at the pretty colours..."
+
+[thieving_cape_poh]
+id = 10650
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master thieves."
+kept = "Reclaim"
+
+[top_hat_poh]
+id = 13166
+tradeable = false
+examine = "Comes with a free rabbit!"
+
+[tribal_mask_blue_poh]
+id = 10617
+tradeable = false
+examine = "A ceremonial wooden mask."
+
+[tribal_mask_green_poh]
+id = 10615
+tradeable = false
+examine = "A ceremonial wooden mask."
+
+[tribal_mask_orange_poh]
+id = 10616
+tradeable = false
+examine = "A ceremonial wooden mask."
+
+[void_knight_deflector_poh]
+id = 19711
+tradeable = false
+weight = 0.453
+examine = "A deft void knight shield."
+kept = "Reclaim"
+
+[void_knight_top_poh]
+id = 10611
+tradeable = false
+examine = "Torso armour of the order of the Void Knights."
+
+[void_mage_helm_poh]
+id = 11674
+slot = "Hat"
+type = "Hair"
+destroy = "No"
+examine = "A mage helm from the order of the Void Knights."
+
+[void_melee_helm_poh]
+id = 11676
+slot = "Hat"
+type = "Hair"
+examine = "A melee helm from the order of the Void Knights."
+
+[void_ranger_helm_poh]
+id = 11675
+slot = "Hat"
+type = "Hair"
+examine = "A ranger helm from the order of the Void Knights"
+
+[war_chief_cap_poh]
+id = 15338
+tradeable = false
+examine = "A cap displaying a fairly high rank."
+
+[white_beret_poh]
+id = 10695
+tradeable = false
+examine = "Parlez-vous francais?"
+
+[white_platebody_poh]
+id = 10618
+tradeable = false
+examine = "Provides excellent protection."
+
+[white_unicorn_mask_poh]
+id = 19497
+limit = 2
+weight = 1.0
+examine = "Not to be used in antipoison potions."
+
+[witchdoctor_mask_poh]
+id = 20050
+tradeable = false
+weight = 0.226
+slot = "Hat"
+examine = "Camouflage for the herblore habitat."
+kept = "Reclaim"
+
+[wizard_boots_poh]
+id = 10689
+tradeable = false
+examine = "Slightly magical boots."
+
+[wolf_mask_poh]
+id = 13173
+tradeable = false
+examine = "I'm hungry like the wolf."
+
+[wood_camo_top_poh]
+id = 10625
+tradeable = false
+examine = "This should make me harder to spot in wooded areas."
+
+[woodcutting_cape_poh]
+id = 10660
+tradeable = false
+weight = 0.453
+slot = "Cape"
+examine = "The cape worn by master woodcutters."
+kept = "Reclaim"
+
+[zamorak_robe_top_poh]
+id = 10786
+tradeable = false
+examine = "Zamorak Vestments."
+
+[zombie_shirt_poh]
+id = 10631
+tradeable = false
+examine = "Aside from the braaaains on the lapel, it's still quite good."

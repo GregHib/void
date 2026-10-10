@@ -153,7 +153,7 @@ class HouseStairsTest : WorldTest() {
 
         player.use(entrance, "Enter")
         player.skipDialogues()
-        player.dialogueOption("line3")
+        player.dialogueOption("line1")
         tick(4)
 
         assertEquals("dungeon_stairs", player.houseRoomIds.last())
@@ -317,7 +317,7 @@ class HouseStairsTest : WorldTest() {
 
         player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
         player.skipDialogues()
-        player.dialogueOption("line3")
+        player.dialogueOption("line1")
         tick(4)
 
         assertEquals("dungeon_stairs", player.houseRoomIds.last())
@@ -544,7 +544,7 @@ class HouseStairsTest : WorldTest() {
     }
 
     @Test
-    fun `Rooms with stairs are offered below the entrance`() {
+    fun `Only a dungeon stairs room is offered below the entrance`() {
         val player = createOwner()
         player.addEntrance()
         player.inventory.add("coins", 7500)
@@ -553,7 +553,7 @@ class HouseStairsTest : WorldTest() {
         player.use(player.find(hall, "dungeon_entrance"), "Enter")
         player.skipDialogues()
 
-        assertEquals("dialogue_multi4", player.dialogue)
+        assertEquals("dialogue_multi2", player.dialogue)
     }
 
     @Test
@@ -574,7 +574,7 @@ class HouseStairsTest : WorldTest() {
     }
 
     @Test
-    fun `Can't build a hall underground below the stairs`() {
+    fun `Only a dungeon stairs room is offered below the stairs`() {
         val player = createOwner()
         player.addHouseRoom("skill_hall", hall)
         player.addHouseFurniture(hall, "skill_hall_stair_space_down", "oak_staircase")
@@ -583,11 +583,10 @@ class HouseStairsTest : WorldTest() {
 
         player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
         player.skipDialogues()
-        player.dialogueOption("line1")
+        player.dialogueOption("line2")
 
         assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
         assertEquals(25000, player.inventory.count("coins"))
-        assertTrue(player.containsMessage("That room can't be built underground."))
     }
 
     @Test

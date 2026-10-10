@@ -1,0 +1,62 @@
+[windchimes]
+id = 2225
+
+[bells]
+id = 932
+
+[poh_jester_appear]
+id = 952
+
+[pop2]
+id = 2215
+
+[poh_setup_stone]
+id = 971
+
+[poh_clay_hit]
+id = 940
+
+[poh_stone_shatter]
+id = 977
+
+[poh_fairy_appear]
+id = 946
+
+[poh_stick_on_hoop]
+id = 976
+
+[poh_dart_land]
+id = 943
+
+[ping]
+id = 933
+
+[dart]
+id = 2696
+
+[arrowlaunch2]
+id = 2693
+
+[coins_jingle_1]
+id = 2114
+
+[poh_sphere_powerup]
+id = 975
+
+[poh_sphere_powerdown]
+id = 974
+
+[stabsword_stab]
+id = 2549
+
+[stabsword_slash]
+id = 2548
+
+[unarmed_punch]
+id = 2566
+
+[poh_select]
+id = 970
+
+[poh_wrong]
+id = 990

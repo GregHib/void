@@ -630,11 +630,3 @@ weight = 0.226
 slot = "Legs"
 examine = "Camouflage for the herblore habitat."
 kept = "Reclaim"
-
-[witchdoctor_mask_2]
-id = 20050
-tradeable = false
-weight = 0.226
-slot = "Hat"
-examine = "Camouflage for the herblore habitat."
-kept = "Reclaim"

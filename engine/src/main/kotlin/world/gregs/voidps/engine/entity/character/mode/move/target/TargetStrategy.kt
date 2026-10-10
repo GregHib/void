@@ -1,7 +1,9 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
+import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.reach.ReachStrategy
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -36,6 +38,8 @@ interface TargetStrategy {
 
     fun requiresLineOfSight(): Boolean = true
 
+    fun hasLineOfSight(validator: LineValidator, character: Character): Boolean = validator.hasLineOfSight(character, tile, width, height)
+
     fun within(tile: Tile, range: Int): Boolean = tile.within(this.tile, range)
 
     fun nearest(source: Character): Tile = Distance.nearest(tile, width, height, source.tile)
@@ -67,6 +71,7 @@ interface TargetStrategy {
                 "gnome_obstacle_pipe_east", "gnome_obstacle_pipe_west" -> TileTargetStrategy(entity.tile.addY(-1))
                 "lumbridge_church_bell" -> TileTargetStrategy(entity.tile.addY(-1))
                 "wall_pipe" -> TileTargetStrategy(entity.tile.addY(-1))
+                "hoop_stick", "hoop_and_stick", "dartboard", "dartboard_hit", "house_archery_target", "house_archery_target_hit" -> ObjectTargetStrategy(entity, lineOfSight = true)
                 else -> ObjectTargetStrategy(entity)
             }
             is FloorItem -> FloorItemTargetStrategy(entity)

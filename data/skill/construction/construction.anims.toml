@@ -126,3 +126,116 @@ id = 4116
 
 [sit_demonic_throne]
 id = 4117
+
+[human_use_windchimes]
+id = 3674
+
+[musical_windchimes]
+id = 3576
+
+[musical_bells]
+id = 3577
+
+# Guessed from other servers
+[ring_bell_pull]
+id = 3668
+
+# Guessed from other servers
+[study_lectern]
+id = 3652
+
+# Guessed from other servers
+[make_tablet]
+id = 3645
+
+# Guessed from other servers
+[pull_throne_room_lever]
+id = 3611
+
+# Guessed from other servers
+[throne_room_lever_pulled]
+id = 3612
+
+# Guessed from other servers
+[pick_lock]
+id = 3692
+
+# Guessed from other servers
+[force_lock]
+id = 3693
+
+[expression_crawling_hand_neutral]
+id = 9494
+
+[expression_crawling_hand_happy]
+id = 9495
+
+[expression_crawling_hand_sad]
+id = 9496
+
+[expression_kalphite_queen_angry]
+id = 6243
+
+[expression_kalphite_queen_laugh]
+id = 6244
+
+[expression_kalphite_queen_happy]
+id = 6245
+
+[expression_kalphite_queen_neutral]
+id = 6246
+
+[telescope_observe]
+id = 3649
+
+[telescope_observe_object]
+id = 3650
+
+[human_poh_build_wall]
+id = 3684
+
+[human_study_ready]
+id = 3653
+
+[human_get_over_combatring_nogloves]
+id = 3688
+
+[human_get_over_combatring_redgloves]
+id = 3689
+
+# Blue gloves id assumed to follow red
+[human_get_over_combatring_bluegloves]
+id = 3690
+
+[balance_beam_jumpoff]
+id = 3598
+
+[balance_beam_getup]
+id = 3599
+
+[poh_jester_elevate]
+id = 3588
+
+[human_throw_hoop1]
+id = 3602
+
+[human_throw_hoop2]
+id = 3603
+
+[ii_human_dart_throw]
+id = 6600
+
+[human_bow]
+id = 426
+
+[human_unarmedkick]
+id = 423
+
+[human_openheavychest]
+id = 8778
+
+[elemental_orb_closes]
+id = 3585
+
+[hangman_hangs]
+id = 3601

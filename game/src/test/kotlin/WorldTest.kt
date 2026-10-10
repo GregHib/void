@@ -297,6 +297,7 @@ abstract class WorldTest : KoinTest {
             properties["storage.caching.path"] = "../data/.temp/"
             properties["bots.chat.model"] = "../temp/data/test-bot_chat.model"
             properties["quests.requirements.skipMissing"] = false
+            properties["construction.freeBuild"] = false
             properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
             properties["events.shootingStars.enabled"] = false

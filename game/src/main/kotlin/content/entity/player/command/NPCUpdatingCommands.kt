@@ -1,12 +1,16 @@
 package content.entity.player.command
 
 import content.entity.effect.transform
+import content.entity.player.dialogue.sendChat
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.colourOverlay
 import world.gregs.voidps.engine.entity.character.flagHits
@@ -14,6 +18,8 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setTimeBar
+import world.gregs.voidps.engine.suspend.pauseButton
+import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.Delta
 
@@ -33,6 +39,25 @@ class NPCUpdatingCommands : Script {
         adminCommand("npc_anim", stringArg("anim-id", autofill = AnimationDefinitions.ids.keys)) { args ->
             val npc = NPCs.at(tile.addY(1)).first()
             npc.anim(args[0]) // 863
+        }
+
+        adminCommand(
+            "chathead",
+            stringArg("npc-id", autofill = NPCDefinitions.ids.keys),
+            stringArg("anim-id", autofill = AnimationDefinitions.ids.keys),
+            stringArg("text", optional = true),
+            desc = "Test an npc chat head with an animation (name, expression_ name or id)",
+        ) { args ->
+            val npc = NPCDefinitions.get(args[0])
+            val animation = AnimationDefinitions.getOrNull("expression_${args[1]}") ?: AnimationDefinitions.get(args[1])
+            val id = "dialogue_npc_chat1"
+            if (!open(id)) {
+                return@adminCommand
+            }
+            InterfaceDefinitions.getComponent(id, "head")?.let { client?.npcDialogueHead(it.id, npc.id) }
+            interfaces.sendChat(id, "head", animation.id, npc.name, listOf(args.getOrNull(2) ?: "${args[0]} - ${args[1]} (${animation.id})"))
+            pauseButton()
+            close(id)
         }
 
         adminCommand("npc_overlay") { _ ->

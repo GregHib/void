@@ -124,23 +124,6 @@ examine = "A helmet of epic accomplishment for a hero with 300 Quest Points."
 destroy2 = "You can get another one from Ilona in Lumbridge."
 kept = "Vanish"
 
-[helmet_of_trials_2]
-id = 15624
-tradeable = false
-weight = 3.175
-destroy = "You can get another one from Xenia in Lumbridge."
-examine = "A helmet of epic accomplishment for a hero with 300 Quest Points."
-destroy2 = "You can get another one from Ilona in Lumbridge."
-kept = "Vanish"
-
-[mask_of_dragith_nurn_2]
-id = 15625
-tradeable = false
-weight = 0.5
-destroy = "You can reclaim the mask from Xenia at the entrance to the Lumbridge Catacombs."
-examine = "The magic mask of the undead necromancer Dragith Nurn."
-kept = "Wilderness"
-
 [sling]
 id = 19830
 price = 6

@@ -77,6 +77,10 @@ class Hairdresser : Script {
             body.setColour(BodyColour.Hair, get("makeover_colour_hair", 0))
             flagAppearance()
             closeMenu()
+            // Also opened by player owned house furniture
+            if (contains("house_owner")) {
+                return@interfaceOption
+            }
             npc<Happy>(
                 "hairdresser",
                 if (male) {

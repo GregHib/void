@@ -7,11 +7,13 @@ import content.skill.construction.House.Companion.UPPER_LEVEL
 import content.skill.construction.House.Companion.changeFloor
 import content.skill.construction.House.Companion.hasEntrance
 import content.skill.construction.House.Companion.houseBase
+import content.skill.construction.House.Companion.houseLadder
 import content.skill.construction.House.Companion.houseOwner
 import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.houseRoomRotations
 import content.skill.construction.House.Companion.houseStairs
+import content.skill.construction.House.Companion.houseTrapdoor
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.removeHouseStairs
 import content.skill.construction.House.Companion.roomAbove
@@ -24,6 +26,7 @@ import content.skill.construction.RoomCreation.Companion.canBuildRoom
 import content.skill.construction.RoomCreation.Companion.hasRoomSpace
 import content.skill.construction.RoomCreation.Companion.removeRoom
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
@@ -43,6 +46,28 @@ class HouseStairs : Script {
             // The entrance leads down to the stairs in the room below
             val connected = owner.houseRoom(below)?.let { Tables.objOrNull("house_rooms.$it.stairs") } != null
             travel(base, position, below, connected, stairRooms, "This entrance does not lead anywhere.", "below") // TODO proper message
+        }
+
+        objectOperate("Open", "oak_trapdoor,teak_trapdoor,mahogany_trapdoor") { (target) ->
+            val base = houseBase() ?: return@objectOperate
+            val owner = houseOwner() ?: return@objectOperate
+            if (!inOwnHouse()) {
+                message("Only the owner of the house can use the trapdoor.") // TODO proper message
+                return@objectOperate
+            }
+            val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
+            val below = roomBelow(position)
+            anim("climb_down")
+            travel(base, position, below, owner.houseLadder(below) != null, listOf("oubliette" to "Oubliette"), "This trapdoor does not lead anywhere.", "below") // TODO proper message
+        }
+
+        objectOperate("Climb", "oak_ladder,teak_ladder,mahogany_ladder") { (target) ->
+            val base = houseBase() ?: return@objectOperate
+            val owner = houseOwner() ?: return@objectOperate
+            val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
+            val above = roomAbove(position)
+            anim("climb_up")
+            travel(base, position, above, owner.houseTrapdoor(above) != null, listOf("throne_room" to "Throne room"), "This ladder does not lead anywhere.", "above") // TODO proper message
         }
 
         objectOperate("Climb-up", STAIRCASES) { (target) ->
@@ -138,9 +163,11 @@ class HouseStairs : Script {
         if (!hasRoomSpace()) {
             return
         }
+        // Dungeon rooms can only be built underground and others only above it
+        val underground = roomLevel(to) == DUNGEON_LEVEL
         statement("$nowhere<br>Do you want to build a room $place?")
         choice {
-            for ((room, name) in rooms) {
+            for ((room, name) in rooms.filter { (room, _) -> Tables.bool("house_rooms.$room.dungeon") == underground }) {
                 option(name) {
                     build(base, room, from, to, destination)
                 }
@@ -152,7 +179,7 @@ class HouseStairs : Script {
     /**
      * Builds [room] at [to] facing the same way as the room at [from] so the stairs line up, then moves into it
      */
-    private suspend fun Player.build(base: Zone, room: String, from: Int, to: Int, destination: Tile) {
+    private fun Player.build(base: Zone, room: String, from: Int, to: Int, destination: Tile) {
         if (houseBase() != base || !inOwnHouse() || to in houseRoomPositions || !canBuildRoom(room, to)) {
             return
         }
@@ -164,7 +191,7 @@ class HouseStairs : Script {
     }
 
     companion object {
-        private const val NOWHERE = "These stairs do no lead anywhere."
+        private const val NOWHERE = "These stairs do not lead anywhere."
         private const val STAIRCASES = "oak_staircase,oak_staircase_down,teak_staircase,teak_staircase_down,spiral_staircase,spiral_staircase_down,marble_staircase,marble_staircase_down,marble_spiral,marble_spiral_down"
 
         // Entrances to the room below and ladders up to the room above

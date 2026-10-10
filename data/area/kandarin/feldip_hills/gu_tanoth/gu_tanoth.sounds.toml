@@ -1,6 +1,8 @@
 [gorad_defend]
 id = 451
+
 [gorad_death]
 id = 450
+
 [gorad_attack]
 id = 448

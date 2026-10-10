@@ -117,3 +117,276 @@ att = 68
 str = 70
 def = 71
 examine = "Arrgh! Look at its pointy teeth!"
+
+[poh_mounted_crawling_hand]
+id = 4226
+dialogue = "crawling_hand"
+
+[poh_mounted_cockatrice]
+id = 4227
+dialogue = "pet"
+
+[poh_mounted_basilisk]
+id = 4228
+dialogue = "pet"
+
+[poh_mounted_kurask]
+id = 4229
+dialogue = "pet"
+
+[poh_mounted_abyssal]
+id = 4230
+dialogue = "pet"
+
+[poh_mounted_kbd_left]
+id = 4231
+dialogue = "pet"
+
+[poh_mounted_kbd_middle]
+id = 4232
+dialogue = "pet"
+
+[poh_mounted_kbd_right]
+id = 4233
+dialogue = "pet"
+
+[poh_mounted_kq]
+id = 4234
+dialogue = "kalphite_queen"
+
+[menagerie_pet_9199]
+id = 9199
+
+[menagerie_pet_9200]
+id = 9200
+
+[menagerie_pet_9201]
+id = 9201
+
+[menagerie_pet_9202]
+id = 9202
+
+[menagerie_pet_9203]
+id = 9203
+
+[menagerie_pet_9204]
+id = 9204
+
+[menagerie_pet_9205]
+id = 9205
+
+[menagerie_pet_9206]
+id = 9206
+
+[menagerie_pet_9207]
+id = 9207
+
+[menagerie_pet_9208]
+id = 9208
+
+[menagerie_pet_9209]
+id = 9209
+
+[menagerie_pet_9210]
+id = 9210
+
+[menagerie_pet_9211]
+id = 9211
+
+[menagerie_pet_9212]
+id = 9212
+
+[menagerie_pet_9213]
+id = 9213
+
+[menagerie_pet_9214]
+id = 9214
+
+[menagerie_pet_9215]
+id = 9215
+
+[menagerie_pet_9216]
+id = 9216
+
+[menagerie_pet_9217]
+id = 9217
+
+[menagerie_pet_9218]
+id = 9218
+
+[menagerie_pet_9219]
+id = 9219
+
+[menagerie_pet_9220]
+id = 9220
+
+[menagerie_pet_9221]
+id = 9221
+
+[menagerie_pet_9222]
+id = 9222
+
+[menagerie_pet_9223]
+id = 9223
+
+[menagerie_pet_9224]
+id = 9224
+
+[menagerie_pet_9225]
+id = 9225
+
+[menagerie_pet_9226]
+id = 9226
+
+[menagerie_pet_9227]
+id = 9227
+
+[menagerie_pet_9228]
+id = 9228
+
+[menagerie_pet_9229]
+id = 9229
+
+[menagerie_pet_9230]
+id = 9230
+
+[menagerie_pet_9231]
+id = 9231
+
+[menagerie_pet_9232]
+id = 9232
+
+[menagerie_pet_9233]
+id = 9233
+
+[menagerie_pet_9234]
+id = 9234
+
+[menagerie_pet_9235]
+id = 9235
+
+[menagerie_pet_9236]
+id = 9236
+
+[menagerie_pet_9237]
+id = 9237
+
+[menagerie_pet_9238]
+id = 9238
+
+[menagerie_pet_9239]
+id = 9239
+
+[menagerie_pet_9240]
+id = 9240
+
+[menagerie_pet_9241]
+id = 9241
+
+[menagerie_pet_9242]
+id = 9242
+
+[menagerie_pet_9243]
+id = 9243
+
+[menagerie_pet_9244]
+id = 9244
+
+[menagerie_pet_9245]
+id = 9245
+
+[menagerie_pet_9246]
+id = 9246
+
+[menagerie_pet_9247]
+id = 9247
+
+[menagerie_pet_9248]
+id = 9248
+
+[menagerie_pet_9249]
+id = 9249
+
+[menagerie_pet_9250]
+id = 9250
+
+[menagerie_pet_9251]
+id = 9251
+
+[menagerie_pet_9252]
+id = 9252
+
+[menagerie_pet_9253]
+id = 9253
+
+[menagerie_pet_9254]
+id = 9254
+
+[menagerie_pet_9255]
+id = 9255
+
+[menagerie_pet_9256]
+id = 9256
+
+[menagerie_pet_9257]
+id = 9257
+
+[menagerie_pet_9258]
+id = 9258
+
+[menagerie_pet_9259]
+id = 9259
+
+[menagerie_pet_9260]
+id = 9260
+
+[menagerie_pet_9261]
+id = 9261
+
+[menagerie_pet_9262]
+id = 9262
+
+[menagerie_pet_9272]
+id = 9272
+
+[menagerie_pet_9273]
+id = 9273
+
+[menagerie_pet_9274]
+id = 9274
+
+[menagerie_pet_9275]
+id = 9275
+
+[menagerie_pet_9276]
+id = 9276
+
+[menagerie_pet_9277]
+id = 9277
+
+[menagerie_pet_9278]
+id = 9278
+
+[menagerie_pet_9279]
+id = 9279
+
+[menagerie_pet_9288]
+id = 9288
+
+[menagerie_pet_9289]
+id = 9289
+
+[menagerie_pet_9290]
+id = 9290
+
+[menagerie_pet_9291]
+id = 9291
+
+[menagerie_pet_9292]
+id = 9292
+
+[menagerie_pet_9293]
+id = 9293
+
+[menagerie_pet_9294]
+id = 9294

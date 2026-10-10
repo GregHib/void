@@ -20,6 +20,11 @@ object ShootingStarHandler {
     var currentStarTile = Tile.EMPTY
     var currentActiveObject: GameObject? = null
 
+    // Where, when and how big the next star will be so it can be seen coming through a telescope
+    var nextLocation: StarLocationData? = null
+    var nextTier: Int = 0
+    var nextStarTick: Int = -1
+
     fun addStarDustCollected() {
         totalCollected++
     }
