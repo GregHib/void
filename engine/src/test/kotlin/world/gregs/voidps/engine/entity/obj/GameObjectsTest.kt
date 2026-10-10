@@ -293,6 +293,24 @@ class GameObjectsTest : KoinMock() {
         assertFalse(GameObjects.contains(second))
     }
 
+    @Test
+    fun `Replacing a permanent replacement is undone back to it`() {
+        val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val permanent = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val temporary = GameObject(id = 456, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.replace(original, permanent, collision = false)
+        GameObjects.replace(permanent, temporary, ticks = 5, collision = false)
+        repeat(5) {
+            assertFalse(GameObjects.contains(permanent))
+            assertTrue(GameObjects.contains(temporary))
+            GameObjects.timers.run()
+        }
+        assertTrue(GameObjects.contains(permanent))
+        assertFalse(GameObjects.contains(original))
+        assertFalse(GameObjects.contains(temporary))
+    }
+
     /**
      * Despawn handlers run while [GameObjects.remove] is midway through its own bookkeeping, so an
      * object added by one used to be wiped from the map the moment remove resumed - leaving it
