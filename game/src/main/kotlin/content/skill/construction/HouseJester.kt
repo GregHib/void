@@ -2,10 +2,8 @@ package content.skill.construction
 
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.statement
 import content.skill.construction.House.Companion.houseOwner
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Script
