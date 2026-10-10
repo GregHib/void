@@ -187,4 +187,8 @@ edges = [
     { from = { x = 2762, y = 3427 }, to = { x = 2785, y = 3431 } },
     { from = { x = 2762, y = 3427 }, to = { x = 2735, y = 3434 } },
     { from = { x = 2762, y = 3427 }, to = { x = 2774, y = 3452 } },
+
+    { from = { x = 2729, y = 3347 }, to = { x = 2729, y = 3352 }, actions = [{ object = { option = "Open", id = "gate_51_closed", x = 2729, y = 3349, radius = 0, success = { tile = { x = 2729, y = 3350, level = 0 } } } }, { tile = { x = 2729, y = 3352, radius = 1 } }], requires = [{ variable = { id = "legends_quest", equals = "completed", default = "unstarted" } }], cost = 6 },
+    { from = { x = 2729, y = 3352 }, to = { x = 2729, y = 3347 }, actions = [{ object = { option = "Open", id = "gate_51_closed", x = 2729, y = 3349, radius = 0, success = { tile = { x = 2729, y = 3349, level = 0 } } } }, { tile = { x = 2729, y = 3347, radius = 1 } }], requires = [{ variable = { id = "legends_quest", equals = "completed", default = "unstarted" } }], cost = 6 },
+    { from = { x = 2729, y = 3352 }, to = { x = 2729, y = 3368 } },
 ]
