@@ -59,17 +59,17 @@ class HouseThroneRoom : Script {
                 return@objectOperate
             }
             choice("Which mode would you like?") {
-                // TODO proper message
+                // https://youtu.be/kLYcT26KFRE?t=73
                 option("Challenge mode") {
                     set("house_challenge_mode", true)
                     pull(target)
                     message("Challenge mode is now on.") // TODO proper message
                 }
-                option("PvP mode") {
+                option("PvP challenge mode") {
                     set("house_challenge_mode", true)
                     set("house_pvp_mode", true)
                     pull(target)
-                    message("PvP mode is now on.") // TODO proper message
+                    message("PvP Challenge mode is on.")
                 }
                 option("Cancel")
             }
@@ -77,6 +77,10 @@ class HouseThroneRoom : Script {
     }
 
     private fun Player.canPull(): Boolean {
+        if (!LEVERS_ENABLED) {
+            message("<purple>Not yet implemented.") // TODO
+            return false
+        }
         if (!inOwnHouse()) {
             message("You can only do that in your own house.") // TODO proper message
             return false
@@ -153,6 +157,7 @@ class HouseThroneRoom : Script {
     }
 
     companion object {
+        private const val LEVERS_ENABLED = false
         private const val LEVERS = "oak_lever,teak_lever,mahogany_lever"
         private const val CAGE_TICKS = 50 // Guessed
         private const val MAGIC_CAGE_TICKS = 100 // Guessed

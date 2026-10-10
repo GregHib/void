@@ -1,28 +1,46 @@
 package content.skill.construction
 
 import content.entity.effect.transform
+import content.entity.player.dialogue.type.statement
+import content.skill.construction.HouseGamesRoom.Companion.offerPrize
+import content.skill.construction.HouseGamesRoom.Companion.winPrize
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.type.random
 
 /**
- * Games room hangman: guess the word by choosing up to five letters at a time, nine wrong letters and the mannequin is complete.
- * The gallows is a npc beside the game which is built up a stage for each wrong letter, the player can come back to
- * guess more letters, reset the game once it's over or banish the gallows.
+ * Games room hangman: guess the word one letter at a time, nine wrong letters and the mannequin is complete.
+ * The gallows is a npc standing in place of the game which is built up a stage for each wrong letter.
+ * Clicking a letter guesses it straight away, the guess button switches to guessing the missing letters all at once.
  */
 class HouseHangman : Script {
     init {
         objectOperate("Activate", "hangman_game") { (target) ->
-            val gallows = gallows ?: NPCs.add(STAGES.first(), target.tile).also { set("hangman_npc", it) }
-            if (!contains("hangman_word")) {
-                start(gallows)
+            if (get("house_build_mode", false)) {
+                message("You cannot activate the game while in building mode.", ChatType.Game)
+                return@objectOperate
             }
-            open("poh_hangman")
+            val gallows = NPCs.add(STAGES.first(), target.tile)
+            gallows["hangman_object"] = target.id
+            set("hangman_npc", gallows)
+            begin(gallows)
+            // Npcs spawn at the start of the next tick, so the game stays until then rather than leaving a gap
+            delay(1)
+            target.replace("invisible_seat", collision = false)
+            offerPrize(GAME)
         }
 
         npcOperate("Guess-letter", STAGES.joinToString(",")) { (target) ->
@@ -31,7 +49,9 @@ class HouseHangman : Script {
                 return@npcOperate
             }
             if (!contains("hangman_word")) {
-                start(target)
+                begin(target)
+                offerPrize(GAME)
+                return@npcOperate
             }
             open("poh_hangman")
         }
@@ -41,8 +61,8 @@ class HouseHangman : Script {
                 message("That isn't your game.") // TODO proper message
                 return@npcOperate
             }
-            start(target)
-            open("poh_hangman")
+            begin(target)
+            offerPrize(GAME)
         }
 
         npcOperate("Banish", STAGES.joinToString(",")) { (target) ->
@@ -53,76 +73,138 @@ class HouseHangman : Script {
             despawnHangman()
         }
 
-        interfaceOpened("poh_hangman") {
-            refresh("Enter up to five letters in any order then click 'guess' again.") // TODO proper message
+        interfaceOpened("poh_hangman") { id ->
+            clear("hangman_guessing")
+            set("hangman_selected", "")
+            interfaces.sendText(id, "word", display())
+            interfaces.sendText(id, "selected", "")
+            interfaces.sendVisibility(id, "guessing", false)
         }
 
         interfaceClosed("poh_hangman") {
-            // Letters which haven't been guessed yet are dropped, the rest of the game is kept to carry on with later
-            set("hangman_selected", "")
+            clear("hangman_guessing")
+            clear("hangman_selected")
         }
 
         interfaceOption("Select", "poh_hangman:*") {
             val letter = it.component.singleOrNull()?.uppercaseChar() ?: return@interfaceOption
-            val selected = get("hangman_selected", "")
-            if (letter in selected || letter in get("hangman_guessed", "")) {
-                return@interfaceOption
+            if (get("hangman_guessing", false)) {
+                select(letter)
+            } else {
+                guessLetter(letter)
             }
-            if (selected.length >= MAX_SELECTED) {
-                refresh("You can only choose five letters at a time.") // TODO proper message
-                return@interfaceOption
-            }
-            set("hangman_selected", selected + letter)
-            refresh("Enter up to five letters in any order then click 'guess' again.") // TODO proper message
         }
 
         interfaceOption("Guess", "poh_hangman:guess") {
-            val word: String = get("hangman_word") ?: return@interfaceOption
-            val selected = get("hangman_selected", "")
-            if (selected.isEmpty()) {
+            if (!get("hangman_guessing", false)) {
+                set("hangman_guessing", true)
+                set("hangman_selected", "")
+                interfaces.sendText("poh_hangman", "selected", "")
+                interfaces.sendVisibility("poh_hangman", "guessing", true)
                 return@interfaceOption
             }
-            val guessed = get("hangman_guessed", "") + selected
-            val wrong = get("hangman_wrong", 0) + selected.count { it !in word }
-            set("hangman_guessed", guessed)
-            set("hangman_selected", "")
-            set("hangman_wrong", wrong)
-            gallows?.transform(STAGES[wrong.coerceAtMost(MAX_WRONG)])
-            when {
-                word.all { it in guessed } -> finish("Well done, you guessed the word!") // TODO proper message
-                wrong >= MAX_WRONG -> finish("You've been hanged! The word was ${word.lowercase()}.") // TODO proper message
-                else -> refresh("${MAX_WRONG - wrong} wrong guesses left.") // TODO proper message
+            val selected = get("hangman_selected", "")
+            if (selected.isNotEmpty()) {
+                guessWord(selected)
             }
         }
     }
 
-    private suspend fun Player.finish(text: String) {
-        refresh(text, reveal = true)
-        message(text)
-        clear("hangman_word")
-        delay(4)
-        close("poh_hangman")
-    }
-
-    private fun Player.start(gallows: NPC) {
-        set("hangman_word", WORDS[random.nextInt(WORDS.size)])
+    /**
+     * Starts a new game with a new word
+     */
+    private fun Player.begin(gallows: NPC) {
+        val words = Tables.stringList("hangman_words.all.words")
+        set("hangman_word", words[random.nextInt(words.size)])
         set("hangman_guessed", "")
-        set("hangman_selected", "")
         set("hangman_wrong", 0)
         if (gallows.transformId != STAGES.first()) {
             gallows.transform(STAGES.first())
         }
+        message("Hangman word: ${display()}", ChatType.Game)
+        message("You activate the hangman game.", ChatType.Filter)
     }
 
-    private fun Player.refresh(text: String, reveal: Boolean = false) {
+    /**
+     * Adds a [letter] to the final guess
+     */
+    private suspend fun Player.select(letter: Char) {
+        val selected = get("hangman_selected", "")
+        if (selected.length >= MAX_SELECTED) {
+            message("You can only guess five letters.", ChatType.Broadcast)
+            statement("You can only guess five letters.")
+            return
+        }
+        areaSound("poh_select", tile, radius = 5)
+        set("hangman_selected", selected + letter)
+        interfaces.sendText("poh_hangman", "selected", selected + letter)
+    }
+
+    private suspend fun Player.guessLetter(letter: Char) {
         val word: String = get("hangman_word") ?: return
+        val gallows = gallows ?: return
+        say(letter.toString())
+        sound("poh_select")
+        close("poh_hangman")
+        delay(1)
+        val wrong = get("hangman_wrong", 0) + if (letter in word) 0 else 1
+        set("hangman_wrong", wrong)
+        val guessed = get("hangman_guessed", "") + letter
+        set("hangman_guessed", guessed)
+        if (wrong >= MAX_WRONG) {
+            gallows.transform(STAGES.last())
+            gallows.anim("hangman_hangs")
+            gallows.say("Game over")
+            jingle("burthorpe_games_room_loss")
+            clear("hangman_word")
+            return
+        }
+        gallows.transform(STAGES[wrong])
+        message("Hangman word: ${display()}", ChatType.Game)
+        gallows.say(display())
+        if (word.all { it in guessed }) {
+            win(gallows, word)
+        }
+    }
+
+    /**
+     * Guesses the [letters] which are missing from the word, in any order
+     */
+    private suspend fun Player.guessWord(letters: String) {
+        val word: String = get("hangman_word") ?: return
+        val gallows = gallows ?: return
+        say("Guess: $letters")
+        close("poh_hangman")
+        delay(1)
+        val missing = word.filter { it !in get("hangman_guessed", "") }.toSet()
+        if (letters.toSet() == missing) {
+            win(gallows, word)
+        } else {
+            areaSound("poh_wrong", tile, radius = 5)
+            gallows.say("$name guessed wrongly.")
+        }
+    }
+
+    private fun Player.win(gallows: NPC, word: String) {
+        val text = "$word! $name is the winner!"
+        message("Hangman word: $text", ChatType.Game)
+        gallows.say(text)
+        jingle("burthorpe_games_room_victory")
+        clear("hangman_word")
+        winPrize(GAME)
+    }
+
+    /**
+     * The word with the letters which haven't been guessed yet hidden
+     */
+    private fun Player.display(): String {
+        val word: String = get("hangman_word") ?: return ""
         val guessed = get("hangman_guessed", "")
-        interfaces.sendText("poh_hangman", "word", word.map { if (reveal || it in guessed) it else '_' }.joinToString(" "))
-        interfaces.sendText("poh_hangman", "selected", get("hangman_selected", "").toList().joinToString(" "))
-        interfaces.sendText("poh_hangman", "message", text)
+        return word.map { if (it in guessed) it else '_' }.joinToString("")
     }
 
     companion object {
+        private const val GAME = "hangman"
         private const val MAX_SELECTED = 5
         private const val MAX_WRONG = 9
 
@@ -138,15 +220,13 @@ class HouseHangman : Script {
         fun Player.despawnHangman() {
             val npc: NPC = remove("hangman_npc") ?: return
             NPCs.remove(npc)
+            val id: String = npc["hangman_object", "hangman_game"]
+            GameObjects.findOrNull(npc.tile, "invisible_seat")?.replace(id)
             clear("hangman_word")
             clear("hangman_guessed")
             clear("hangman_selected")
+            clear("hangman_guessing")
             clear("hangman_wrong")
         }
-
-        private val WORDS = listOf(
-            "RUNESCAPE", "WIZARD", "DRAGON", "CASTLE", "GOBLIN", "VARROCK", "KNIGHT", "SWORD", "ADVENTURE", "FALADOR",
-            "TREASURE", "DUNGEON", "PICKAXE", "LUMBRIDGE", "MONSTER", "ARCHER", "CAMELOT", "PRAYER", "SCIMITAR", "HITPOINTS",
-        )
     }
 }

@@ -10,9 +10,10 @@ import content.skill.summoning.follower
 import content.skill.summoning.pet.pet
 import dialogueContinue
 import dialogueOption
-import intEntry
 import interfaceOption
 import itemOnObject
+import itemOption
+import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
 import skillCreation
@@ -25,7 +26,9 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -577,9 +580,9 @@ class HouseFurnitureTest : WorldTest() {
         val board = createObject("dartboard", emptyTile.addY(1))
 
         player.objectOption(board, "Throw-at")
-        tickIf { !player.containsMessage("Your dart") }
+        tickIf { player["ranging_shots", 0] == 0 }
 
-        assertEquals(10, player.equipment.count("bronze_dart"))
+        assertEquals(9, player.equipment.count("bronze_dart"))
         assertTrue(player.hasOpen("poh_ranging"))
         assertEquals(1, player["ranging_shots", 0])
     }
@@ -590,11 +593,11 @@ class HouseFurnitureTest : WorldTest() {
         val target = createObject("house_archery_target", emptyTile.addY(1))
 
         player.objectOption(target, "Shoot-at")
-        tickIf { !player.containsMessage("bow and arrows") }
+        tickIf { !player.containsMessage("must have a bow equipped") }
     }
 
     @Test
-    fun `Owner adds prize money to the prize chest up to its capacity`() {
+    fun `Owner adds prize money to the prize chest`() {
         val player = createPlayer(emptyTile)
         player["house_owner"] = player.accountName
         player.inventory.add("coins", 30000)
@@ -602,12 +605,13 @@ class HouseFurnitureTest : WorldTest() {
 
         player.objectOption(chest, "Open")
         tickIf { player.dialogue == null }
+        player.dialogueContinue()
+        tickIf { player.dialogue == null }
         player.dialogueOption("line1")
-        player.intEntry(30000)
         tick()
 
-        assertEquals(20000, player["house_prize_money", 0])
-        assertEquals(10000, player.inventory.count("coins"))
+        assertEquals(10000, player["house_prize_money", 0])
+        assertEquals(20000, player.inventory.count("coins"))
     }
 
     @Test
@@ -826,22 +830,191 @@ class HouseFurnitureTest : WorldTest() {
     }
 
     @Test
-    fun `Hangman selects letters and guesses them`() {
+    fun `Hangman guesses a letter straight away`() {
         val player = createPlayer(emptyTile)
         val game = createObject("hangman_game", emptyTile.addY(1))
 
         player.objectOption(game, "Activate")
-        tickIf { !player.hasOpen("poh_hangman") }
-        tick()
+        tickIf { player.get<NPC>("hangman_npc") == null }
+        tick(2)
+        val gallows = player.get<NPC>("hangman_npc")!!
+        assertTrue(player.containsMessage("You activate the hangman game."))
+        assertNotNull(GameObjects.findOrNull(game.tile, "invisible_seat"))
         player["hangman_word"] = "WIZARD"
-        player.interfaceOption("poh_hangman", "w", "Select")
+        player["hangman_guessed"] = ""
+        player["hangman_wrong"] = 0
+
+        player.npcOption(gallows, "Guess-letter")
+        tickIf { !player.hasOpen("poh_hangman") }
         player.interfaceOption("poh_hangman", "q", "Select")
+        tick(2)
+
+        assertEquals("Q", player.get<String>("hangman_guessed"))
+        assertEquals(1, player.get<Int>("hangman_wrong"))
+        assertEquals("3945", gallows.transformId)
+        assertFalse(player.hasOpen("poh_hangman"))
+        assertTrue(player.containsMessage("Hangman word: ______"))
+
+        player.npcOption(gallows, "Banish")
+        tick(3)
+    }
+
+    @Test
+    fun `Hangman final guess of the missing letters wins`() {
+        val player = createPlayer(emptyTile)
+        val game = createObject("hangman_game", emptyTile.addY(1))
+        player.objectOption(game, "Activate")
+        tickIf { player.get<NPC>("hangman_npc") == null }
+        tick(2)
+        val gallows = player.get<NPC>("hangman_npc")!!
+        player["hangman_word"] = "WIZARD"
+        player["hangman_guessed"] = "WIARD"
+
+        player.npcOption(gallows, "Guess-letter")
+        tickIf { !player.hasOpen("poh_hangman") }
         player.interfaceOption("poh_hangman", "guess", "Guess")
+        player.interfaceOption("poh_hangman", "x", "Select")
+        player.interfaceOption("poh_hangman", "guess", "Guess")
+        tick(3)
+        assertTrue(player.contains("hangman_word"))
+        assertTrue(player.containsMessage("guessed wrongly").not())
+
+        player.npcOption(gallows, "Guess-letter")
+        tickIf { !player.hasOpen("poh_hangman") }
+        player.interfaceOption("poh_hangman", "guess", "Guess")
+        player.interfaceOption("poh_hangman", "z", "Select")
+        player.interfaceOption("poh_hangman", "guess", "Guess")
+        tick(3)
+
+        assertFalse(player.contains("hangman_word"))
+        assertTrue(player.containsMessage("is the winner!"))
+
+        player.npcOption(gallows, "Banish")
+        tick(3)
+    }
+
+    @Test
+    fun `Banishing hangman puts the game back`() {
+        val player = createPlayer(emptyTile)
+        val game = createObject("hangman_game", emptyTile.addY(1))
+        player.objectOption(game, "Activate")
+        tickIf { player.get<NPC>("hangman_npc") == null }
+        tick(2)
+        val gallows = player.get<NPC>("hangman_npc")!!
+
+        player.npcOption(gallows, "Banish")
+        tick(3)
+
+        assertNotNull(GameObjects.findOrNull(game.tile, "hangman_game"))
+        assertNull(player.get<NPC>("hangman_npc"))
+    }
+
+    @Test
+    fun `Attack stone cracks and shatters after enough damage`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Strength, 99)
+        player.experience.set(Skill.Strength, 0.0)
+        val tile = emptyTile.addY(1)
+        val stone = createObject("clay_attack_stone", tile)
+
+        player.objectOption(stone, "Set-up")
+        tickIf { NPCs.findOrNull(tile, "3957") == null }
+        val npc = NPCs.find(tile, "3957")
+        var hits = 0
+        while (NPCs.at(tile).any { it.id.toIntOrNull() in 3957..3972 } && hits++ < 400) {
+            player.npcOption(npc, "Hit")
+            tick(3)
+        }
+
+        assertTrue(hits < 400)
+        assertNotNull(GameObjects.findOrNull(tile, "clay_attack_stone"))
+        assertEquals(100.0, player.experience.get(Skill.Strength) + player.experience.get(Skill.Attack) + player.experience.get(Skill.Defence), 0.5)
+    }
+
+    @Test
+    fun `Can't set up games in building mode`() {
+        val player = createPlayer(emptyTile)
+        player["house_build_mode"] = true
+
+        for ((id, text) in listOf(
+            "clay_attack_stone" to "an attack stone",
+            "elemental_balance_1" to "an elemental balance",
+            "treasure_hunt" to "summon the fairy",
+        )) {
+            val obj = createObject(id, emptyTile.addY(1))
+            player.objectOption(obj, if (id.endsWith("stone")) "Set-up" else "Activate")
+            tickIf { !player.containsMessage(text) }
+        }
+    }
+
+    @Test
+    fun `Summon and banish a jester`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        val jester = createObject("jester", emptyTile.addY(1))
+
+        player.objectOption(jester, "Activate")
+        tickIf { player.get<NPC>("house_jester") == null }
+        val npc = player.get<NPC>("house_jester")!!
+        assertEquals("3955", npc.id)
+        assertNotNull(GameObjects.findOrNull(jester.tile, "jester_active"))
+
+        player.tele(npc.tile.addY(-1))
+        player["house_owner"] = player.accountName // Moving leaves the house
+        player.npcOption(npc, "Banish")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line1")
+        tick(2)
+
+        assertNotNull(GameObjects.findOrNull(jester.tile, "jester"))
+        assertTrue(NPCs.at(npc.tile).none { it.id == "3955" })
+    }
+
+    @Test
+    fun `Elemental balance sphere is summoned and banished`() {
+        val player = createPlayer(emptyTile)
+        val tile = emptyTile.addY(1)
+        val balance = createObject("elemental_balance_1", tile)
+
+        player.objectOption(balance, "Activate")
+        tickIf { NPCs.findOrNull(tile, "4021") == null }
+        val sphere = NPCs.find(tile, "4021")
+
+        player.npcOption(sphere, "Banish")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line1")
+        tick(5)
+
+        assertNull(NPCs.findOrNull(tile, "4021"))
+        assertNotNull(GameObjects.findOrNull(tile, "elemental_balance_1"))
+    }
+
+    @Test
+    fun `Magic stone is inert without a hidden fairy`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("treasure_stone")
+
+        player.itemOption("Feel", "treasure_stone")
         tick()
 
-        assertEquals("WQ", player.get<String>("hangman_guessed"))
-        assertEquals(1, player.get<Int>("hangman_wrong"))
-        assertEquals("3945", player.get<NPC>("hangman_npc")?.transformId)
+        assertTrue(player.containsMessage("The stone is inert"))
+    }
+
+    @Test
+    fun `Weapons rack gives items without a message`() {
+        val player = createPlayer(emptyTile)
+        val rack = createObject("weapons_rack", emptyTile.addY(1))
+
+        player.objectOption(rack, "Search")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line3")
+        tick()
+
+        assertEquals(1, player.inventory.count("wooden_sword"))
+        assertFalse(player.containsMessage("You take"))
     }
 
     @Test
@@ -882,5 +1055,94 @@ class HouseFurnitureTest : WorldTest() {
 
         assertEquals(1, player.inventory.count("air_battlestaff"))
         assertEquals(99, player.inventory.count("water_rune"))
+    }
+
+    @Test
+    fun `Hoop score board closes after a while without throwing`() {
+        val player = createPlayer(emptyTile)
+        val hoop = createObject("hoop_stick", emptyTile.addY(1))
+
+        player.objectOption(hoop, "Hoop")
+        tickIf { !player.hasOpen("poh_ranging") }
+        tick(30)
+        assertTrue(player.hasOpen("poh_ranging"))
+        tick(30)
+
+        assertFalse(player.hasOpen("poh_ranging"))
+        assertEquals(0, player["ranging_shots", 0])
+    }
+
+    @Test
+    fun `Hoop on the stick isn't thrown again`() {
+        val player = createPlayer(emptyTile)
+        val hoop = createObject("hoop_and_stick", emptyTile.addY(1))
+
+        player.objectOption(hoop, "Hoop")
+        tick(6)
+
+        assertEquals(0, player["ranging_shots", 0])
+        assertNotNull(GameObjects.findOrNull(hoop.tile, "hoop_and_stick"))
+    }
+
+    @Test
+    fun `Hoop comes back off the stick after a throw`() {
+        val player = createPlayer(emptyTile)
+        val hoop = createObject("hoop_stick", emptyTile.addY(1))
+
+        player.objectOption(hoop, "Hoop")
+        tickIf { player["ranging_shots", 0] == 0 }
+        assertNotNull(GameObjects.findOrNull(hoop.tile, "hoop_and_stick"))
+        tick(5)
+
+        assertNotNull(GameObjects.findOrNull(hoop.tile, "hoop_stick"))
+    }
+
+    @Test
+    fun `Attack stone shows a hit`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Strength, 99)
+        val tile = emptyTile.addY(1)
+        val stone = createObject("clay_attack_stone", tile)
+        player.objectOption(stone, "Set-up")
+        tickIf { NPCs.findOrNull(tile, "3957") == null }
+        tick(2)
+        val npc = NPCs.find(tile, "3957")
+        assertNull(GameObjects.findOrNull(tile, "clay_attack_stone"))
+
+        player.npcOption(npc, "Hit")
+        tickIf { npc.visuals.hits.splats.all { it == null } }
+
+        assertEquals(1, npc.visuals.hits.splats.count { it != null })
+    }
+
+    @Test
+    fun `Only one jester and only the owner can banish him`() {
+        val owner = createPlayer(emptyTile)
+        owner["house_owner"] = owner.accountName
+        val guest = createPlayer(emptyTile.addX(2), "guest")
+        guest["house_owner"] = owner.accountName
+        val jester = createObject("jester", emptyTile.addY(1))
+        val other = createObject("jester", emptyTile.addX(4).addY(1))
+
+        guest.tele(jester.tile.addY(-1))
+        guest["house_owner"] = owner.accountName // Moving leaves the house
+        guest.objectOption(jester, "Activate")
+        tickIf { owner.get<NPC>("house_jester") == null }
+        guest.tele(other.tile.addY(-1))
+        guest["house_owner"] = owner.accountName
+        guest.objectOption(other, "Activate")
+        tickIf { !guest.containsMessage("already a jester") }
+        val npc = owner.get<NPC>("house_jester")!!
+        assertNotNull(GameObjects.findOrNull(other.tile, "jester"))
+
+        val third = createPlayer(emptyTile.addX(-2), "third")
+        owner["house_owner"] = owner.accountName
+        third.tele(npc.tile.addY(-1))
+        third["house_owner"] = owner.accountName
+        owner["house_owner"] = owner.accountName
+        third.npcOption(npc, "Banish")
+        tickIf { !third.containsMessage("Only the house owner") }
+
+        assertNotNull(owner.get<NPC>("house_jester"))
     }
 }

@@ -30,7 +30,7 @@ class HouseFurniture : Script {
     init {
         objectOperate("Search", STORAGE) { (target) ->
             val items = Tables.itemListOrNull("house_storage.${target.id}.items") ?: return@objectOperate
-            take(items)
+            take(items, Rows.getOrNull("house_storage.${target.id}")?.stringOrNull("title"))
         }
 
         itemOnObjectOperate("beer_glass", BARRELS) { (target) ->
@@ -86,8 +86,8 @@ class HouseFurniture : Script {
         exp(Skill.Firemaking, row.int("xp") / 10.0)
     }
 
-    private suspend fun Player.take(items: List<String>) {
-        val index = pick(items.map { Rows.getOrNull("house_storage_items.$it")?.string("option") ?: ItemDefinitions.get(it).name })
+    private suspend fun Player.take(items: List<String>, title: String? = null) {
+        val index = pick(title = title, options = items.map { Rows.getOrNull("house_storage_items.$it")?.string("option") ?: ItemDefinitions.get(it).name })
         if (index == -1) {
             return
         }
@@ -97,7 +97,10 @@ class HouseFurniture : Script {
             return
         }
         val name = ItemDefinitions.get(item).name.lowercase()
-        message(Rows.getOrNull("house_storage_items.$item")?.stringOrNull("message") ?: "You take${name.an()} $name.".replace("  ", " "))
+        val message = Rows.getOrNull("house_storage_items.$item")?.stringOrNull("message") ?: "You take${name.an()} $name.".replace("  ", " ")
+        if (message.isNotEmpty()) {
+            message(message)
+        }
     }
 
     companion object {
@@ -111,17 +114,17 @@ class HouseFurniture : Script {
          * Pick one of [options], four at a time with a "More..." option when there are too many for one choice.
          * Returns the index picked or -1 if none were.
          */
-        suspend fun Player.pick(options: List<String>, offset: Int = 0): Int {
+        suspend fun Player.pick(options: List<String>, offset: Int = 0, title: String? = null): Int {
             if (options.size == 1) {
                 return 0
             }
             val remaining = options.size - offset
             val count = if (remaining > 5) 4 else remaining
             val lines = options.subList(offset, offset + count)
-            val choice = choice(if (count < remaining) lines + "More..." else lines)
+            val choice = choice(if (count < remaining) lines + "More..." else lines, title)
             return when {
                 choice == -1 -> -1
-                choice > count -> pick(options, offset + count)
+                choice > count -> pick(options, offset + count, title)
                 else -> offset + choice - 1
             }
         }

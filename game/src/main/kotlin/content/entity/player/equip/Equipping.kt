@@ -71,7 +71,11 @@ class Equipping : Script {
             return
         }
         if (player["house_ring", ""] == "boxing" && !item.id.startsWith("boxing_gloves")) {
-            player.message("You can't equip any item other than the boxing gloves in the boxing ring.")
+            player.message("You can't wear weapons or armour in the boxing ring (except boxing gloves).")
+            return
+        }
+        if (player["house_ring", ""] == "fencing" && item.slot != EquipSlot.Weapon) {
+            player.message("You can't wear any armour in the fencing ring.")
             return
         }
         if (item.id.endsWith("goblin_mail")) {

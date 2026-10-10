@@ -25,6 +25,7 @@ import content.skill.construction.House.Companion.roomLevel
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.stairsDown
 import content.skill.construction.House.Companion.trapdoors
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -33,6 +34,7 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -48,6 +50,8 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Zone
 
 /**
@@ -130,46 +134,63 @@ class FurnitureCreation : Script {
         }
 
         objectOperate("Remove") { (target) ->
-            val base = houseBase()
-            if (base == null || !inOwnHouse()) {
-                return@objectOperate
+            removeFurniture(target)
+        }
+
+        // Approached too so that furniture which can be walked on, such as a balance beam, isn't stepped on to before it's known it can be removed
+        objectApproach("Remove") { (target) ->
+            if (houseBase() == null || !inOwnHouse() || GameObjects.original(target)?.let { hotspot(it) } == null) {
+                return@objectApproach
             }
-            val original = GameObjects.original(target) ?: return@objectOperate
-            val hotspot = hotspot(original) ?: return@objectOperate
             if (!get("house_build_mode", false)) {
                 message("You can only do that in building mode.") // TODO proper message
-                return@objectOperate
+                return@objectApproach
             }
-            val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
-            if (houseFurniture(position, hotspot) == "exit_portal" && exitPortals() <= 1) {
-                message("Your house must have at least one exit portal.") // TODO proper message
-                return@objectOperate
-            }
-            choice("Really remove it?") {
-                option("Yes") {
-                    val furniture = houseFurniture(position, hotspot)
-                    if (!GameObjects.contains(target) || furniture == null) {
-                        return@option
-                    }
-                    if (furniture == houseStairs(position)) {
-                        // Staircases are removed from both floors
-                        removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
-                        removeHouseFurniture(position, hotspot)
-                        loadHouse(base, buildMode = true)
-                    } else if (furniture in trapdoors || furniture in ladders) {
-                        // Trapdoors and ladders are removed from both floors
-                        removeLadder(position, furniture)
-                        removeHouseFurniture(position, hotspot)
-                        loadHouse(base, buildMode = true)
-                    } else {
-                        removeHouseFurniture(position, hotspot)
-                        GameObjects.reset(target.tile.zone)
-                        furnishRoom(base, position, buildMode = true)
-                    }
-                    anim("construction_remove")
+            approachRange(1)
+            removeFurniture(target)
+        }
+    }
+
+    private suspend fun Player.removeFurniture(target: GameObject) {
+        val base = houseBase()
+        if (base == null || !inOwnHouse()) {
+            return
+        }
+        val original = GameObjects.original(target) ?: return
+        val hotspot = hotspot(original) ?: return
+        if (!get("house_build_mode", false)) {
+            message("You can only do that in building mode.") // TODO proper message
+            return
+        }
+        val position = roomPosition(base, target.tile.zone) ?: return
+        if (houseFurniture(position, hotspot) == "exit_portal" && exitPortals() <= 1) {
+            message("Your house must have at least one exit portal.") // TODO proper message
+            return
+        }
+        choice("Really remove it?") {
+            option("Yes") {
+                val furniture = houseFurniture(position, hotspot)
+                if (!GameObjects.contains(target) || furniture == null) {
+                    return@option
                 }
-                option("No")
+                if (furniture == houseStairs(position)) {
+                    // Staircases are removed from both floors
+                    removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
+                    removeHouseFurniture(position, hotspot)
+                    loadHouse(base, buildMode = true)
+                } else if (furniture in trapdoors || furniture in ladders) {
+                    // Trapdoors and ladders are removed from both floors
+                    removeLadder(position, furniture)
+                    removeHouseFurniture(position, hotspot)
+                    loadHouse(base, buildMode = true)
+                } else {
+                    removeHouseFurniture(position, hotspot)
+                    GameObjects.reset(target.tile.zone)
+                    furnishRoom(base, position, buildMode = true)
+                }
+                anim("construction_remove")
             }
+            option("No")
         }
     }
 
@@ -313,10 +334,23 @@ class FurnitureCreation : Script {
             placeFurniture(target.tile.zone, hotspot, furniture)
         }
         anim(if (target.shape < ObjectShape.CENTRE_PIECE_STRAIGHT) "human_poh_build_wall" else "construction_build")
+        if (furniture in COMBAT_RINGS && tile.zone == target.tile.zone) {
+            moveToEdge()
+        }
         // Free building doesn't give experience so it can't be used for training, flatpacks gave theirs when made
         if (!freeBuild && !packed) {
             exp(Skill.Construction, row.int("xp") / 10.0)
         }
+    }
+
+    /**
+     * Moves the player out of a combat ring built around them, to the nearest free tile on the edge of the room
+     */
+    private fun Player.moveToEdge() {
+        val corner = tile.zone.tile
+        val edge = tile.zone.toCuboid().filter { it.x == corner.x || it.y == corner.y || it.x == corner.x + 7 || it.y == corner.y + 7 }
+        val free = edge.filter { !Collisions.check(it, CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT) }
+        tele(free.minByOrNull { it.distanceTo(tile) } ?: return)
     }
 
     /**
@@ -374,6 +408,7 @@ class FurnitureCreation : Script {
 
     companion object {
         private const val MATERIAL_LINES = 4
+        private val COMBAT_RINGS = setOf("boxing_ring", "fencing_ring", "combat_ring", "ranging_pedestals", "balance_beam")
         private const val WORKBENCHES = "wooden_workbench,oak_workbench,steel_framed_bench,bench_with_vice,bench_with_lathe"
         private val nailTypes = listOf("bronze_nails", "iron_nails", "steel_nails", "black_nails", "mithril_nails", "adamant_nails", "rune_nails")
     }
