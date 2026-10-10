@@ -239,7 +239,7 @@ open class Movement(
         if (!strategy.requiresLineOfSight()) {
             return true
         }
-        return lineValidator.hasLineOfSight(character, strategy.tile, strategy.width, strategy.height)
+        return strategy.hasLineOfSight(lineValidator, character)
     }
 
     companion object {
