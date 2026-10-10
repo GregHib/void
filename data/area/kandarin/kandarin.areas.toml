@@ -9,3 +9,10 @@ x = [2496, 2598]
 y = [3392, 3519]
 tags = ["penguin_area"]
 hint = "in the west of the kingdom of Kandarin."
+
+[legends_guild_fairy_ring_blr]
+# nav-editor: named area only
+x = [2739, 2741]
+y = [3350, 3352]
+level = 0
+tags = ["fairy_ring"]
