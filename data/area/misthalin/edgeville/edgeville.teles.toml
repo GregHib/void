@@ -104,12 +104,12 @@ option = "Climb-down"
 tile = { x = 3029, y = 3506, level = 3 }
 to = { x = 3029, y = 3508, level = 2 }
 
-[26982]
+[edge_ladder_up]
 option = "Climb-up"
 tile = { x = 3069, y = 3517 }
 delta = { level = 1 }
 
-[26983]
+[edge_ladder_down]
 option = "Climb-down"
 tile = { x = 3069, y = 3517, level = 1 }
 delta = { level = -1 }
@@ -150,17 +150,17 @@ option = "Go-down"
 tile = { x = 3077, y = 3493 }
 delta = { x = -1, y = 6400 }
 
-[26982]
+[edge_ladder_up]
 option = "Climb-up"
 tile = { x = 3082, y = 3513 }
 delta = { level = 1 }
 
-[26983]
+[edge_ladder_down]
 option = "Climb-down"
 tile = { x = 3082, y = 3513, level = 1 }
 delta = { level = -1 }
 
-[26982]
+[edge_ladder_up]
 option = "Climb-up"
 tile = { x = 3096, y = 3511 }
 delta = { level = 1 }

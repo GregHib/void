@@ -27,7 +27,7 @@ tile = { x = 3017, y = 10249 }
 delta = { x = 52, y = -6392 }
 
 # 12343 wilderness
-[26983]
+[edge_ladder_down]
 option = "Climb-down"
 tile = { x = 3096, y = 3511, level = 1 }
 delta = { level = -1 }

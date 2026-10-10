@@ -1022,6 +1022,10 @@ examine = "It has a seed pod."
 id = 25654
 examine = "Trinkets and stuff."
 
+[snp_edgeville_portal_leafy]
+id = 42219
+examine = "A mystical portal leading to Soul Wars."
+
 [fern_16]
 id = 52787
 examine = "A plant."

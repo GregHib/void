@@ -1,3 +1,11 @@
+[fai_varrock_bank_chest]
+id = 23926
+examine = "I wonder what's inside it."
+
+[fai_varrock_chest_closed]
+id = 24203
+examine = "I wonder what's inside."
+
 [varrock_palace_drain]
 id = 31759
 examine = "This drain leads from the sink to the sewers below."
