@@ -16,7 +16,7 @@ edges = [
     { from = { x = 2767, y = 3215 }, to = { x = 2776, y = 3215 } },
     { from = { x = 2776, y = 3209 }, to = { x = 2767, y = 3215 } },
     { from = { x = 2786, y = 3208 }, to = { x = 2776, y = 3215 } },
-    { from = { x = 2834, y = 2951 }, to = { x = 2776, y = 3215 }, actions = [{ object = { option = "Pay-fare", id = "travel_cart_shilo_village", x = 2831, y = 2952, radius = 0, success = { tile = { x = 2778, y = 3210, level = 0 } } } }, { tile = { x = 2776, y = 3215, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }, { variable = { id = "shilo_village", equals = "completed", default = "unstarted" } }], cost = 323 },
+    { from = { x = 2834, y = 2951 }, to = { x = 2776, y = 3215 }, actions = [{ object = { option = "Pay-fare", id = "travel_cart_shilo_village", x = 2831, y = 2952, radius = 0, success = { tile = { x = 2778, y = 3210, level = 0 } } } }, { tile = { x = 2776, y = 3215, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }, { variable = { id = "shilo_village", equals = "completed", default = "unstarted" } }], cost = 13 },
 
     { from = { x = 2772, y = 3222 }, to = { x = 2772, y = 3227 } },
     { from = { x = 2772, y = 3227 }, to = { x = 2760, y = 3235 } },

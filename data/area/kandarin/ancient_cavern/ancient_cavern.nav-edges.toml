@@ -1,5 +1,5 @@
 edges = [
-    { from = { x = 2511, y = 3520 }, to = { x = 1763, y = 5365, level = 1 }, actions = [{ object = { option = "Dive in", id = "ancient_cavern_whirlpool", x = 2510, y = 3506, radius = 0, success = { tile = { x = 1763, y = 5365, level = 1 } } } }, { tile = { x = 1763, y = 5365, radius = 1 } }], cost = 2594 },
+    { from = { x = 2511, y = 3520 }, to = { x = 1763, y = 5365, level = 1 }, actions = [{ object = { option = "Dive in", id = "ancient_cavern_whirlpool", x = 2510, y = 3506, radius = 0, success = { tile = { x = 1763, y = 5365, level = 1 } } } }, { tile = { x = 1763, y = 5365, radius = 1 } }], cost = 17 },
     { from = { x = 1763, y = 5365, level = 1 }, to = { x = 1772, y = 5366 }, actions = [{ object = { option = "Climb-down", id = "ancient_cavern_steps", x = 1769, y = 5365, radius = 0, success = { tile = { x = 1772, y = 5366, level = 0 } } } }, { tile = { x = 1772, y = 5366, radius = 1 } }], cost = 11 },
     { from = { x = 1772, y = 5366 }, to = { x = 1763, y = 5365, level = 1 }, actions = [{ object = { option = "Climb-up", id = "ancient_cavern_stairs", x = 1770, y = 5365, radius = 0, success = { tile = { x = 1768, y = 5366, level = 1 } } } }, { tile = { x = 1763, y = 5365, radius = 1 } }], cost = 11 },
     { from = { x = 1772, y = 5366 }, to = { x = 1772, y = 5363 } },
@@ -20,8 +20,8 @@ edges = [
     { from = { x = 1739, y = 5313, level = 1 }, to = { x = 1750, y = 5299, level = 1 } },
     { from = { x = 1750, y = 5299, level = 1 }, to = { x = 1750, y = 5290, level = 1 } },
 
-    { from = { x = 1739, y = 5313, level = 1 }, to = { x = 1661, y = 5257 }, actions = [{ object = { option = "Enter", id = "kuradal_dungeon_cave", x = 1733, y = 5311, radius = 0, success = { tile = { x = 1661, y = 5257, level = 0 } } } }, { tile = { x = 1661, y = 5257, radius = 1 } }], requires = [{ variable = { id = "slayer_master", default = "", equals = "kuradal" } }, { variable = { id = "slayer_count", default = 0, min = 1 } }], cost = 135 },
-    { from = { x = 1661, y = 5257 }, to = { x = 1739, y = 5313, level = 1 }, actions = [{ object = { option = "Enter", id = "kuradal_dungeon_cave_exit", x = 1662, y = 5256, radius = 0, success = { tile = { x = 1735, y = 5313, level = 1 } } } }, { tile = { x = 1739, y = 5313, radius = 1 } }], requires = [], cost = 135 },
+    { from = { x = 1739, y = 5313, level = 1 }, to = { x = 1661, y = 5257 }, actions = [{ object = { option = "Enter", id = "kuradal_dungeon_cave", x = 1733, y = 5311, radius = 0, success = { tile = { x = 1661, y = 5257, level = 0 } } } }, { tile = { x = 1661, y = 5257, radius = 1 } }], requires = [{ variable = { id = "slayer_master", default = "", equals = "kuradal" } }, { variable = { id = "slayer_count", default = 0, min = 1 } }], cost = 10 },
+    { from = { x = 1661, y = 5257 }, to = { x = 1739, y = 5313, level = 1 }, actions = [{ object = { option = "Enter", id = "kuradal_dungeon_cave_exit", x = 1662, y = 5256, radius = 0, success = { tile = { x = 1735, y = 5313, level = 1 } } } }, { tile = { x = 1739, y = 5313, radius = 1 } }], requires = [], cost = 8 },
     { from = { x = 1661, y = 5257 }, to = { x = 1658, y = 5258 } },
     { from = { x = 1658, y = 5258 }, to = { x = 1644, y = 5255 } },
 
