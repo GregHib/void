@@ -22,4 +22,6 @@ edges = [
     { from = { x = 3056, y = 9567 }, to = { x = 3058, y = 9565 } },
     { from = { x = 3056, y = 9567 }, to = { x = 3050, y = 9566 } },
     { from = { x = 3056, y = 9562 }, to = { x = 3056, y = 9555 }, actions = [ { object = { id = "ice_dungeon_wyvern_cave_exit", option = "Exit", x = 3055, y = 9560, radius = 1 , success = { interface_open = { id = "dialogue_message1" } } } }, { wait = { ticks = 2 } }, { continue = { id = "dialogue_message1:continue" } }, { wait = { ticks = 2 } }, { continue = { id = "dialogue_multi2:line1" } }, { wait = { ticks = 2 } } , { tile = { x = 3056, y = 9555, radius = 1 } } ], requires = [{ skill = { id = "constitution", min = 90 } }], cost = 7 },
+
+    { from = { x = 3056, y = 9555 }, to = { x = 3056, y = 9562 }, actions = [ { object = { id = "ice_dungeon_wyvern_cave_enter", option = "Enter", x = 3055, y = 9556, radius = 1 , success = { interface_open = { id = "dialogue_message1" } } } }, { wait = { ticks = 1 } }, { continue = { id = "dialogue_message1:continue" } }, { wait = { ticks = 1 } }, { continue = { id = "dialogue_multi2:line1" } }, { wait = { ticks = 2 } } , { tile = { x = 3056, y = 9562, radius = 1 } } ], requires = [], cost = 7 },
 ]
