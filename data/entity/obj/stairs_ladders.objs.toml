@@ -1,3 +1,19 @@
+[stairs]
+id = 1722
+examine = "I can climb these stairs."
+
+[stairstop]
+id = 1723
+examine = "They go down."
+
+[yanillestairsdown]
+id = 1728
+examine = "I can climb down this."
+
+[yanillestairsup]
+id = 1729
+examine = "I can climb this."
+
 [spiralstairs_wooden]
 id = 1742
 examine = "I can climb up these stairs."
@@ -44,6 +60,14 @@ examine = "Warning: leads into the wilderness."
 
 [wizards_tower_staircase]
 id = 12537
+examine = "I can climb these stairs."
+
+[di2_stairs]
+id = 32270
+examine = "I can climb these stairs."
+
+[di2_stairs_above_ground]
+id = 32271
 examine = "I can climb these stairs."
 
 [lumbridge_castle_staircase_north]

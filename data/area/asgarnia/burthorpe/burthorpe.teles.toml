@@ -31,12 +31,12 @@ option = "Climb-down"
 tile = { x = 2897, y = 3567, level = 1 }
 delta = { y = -4, level = -1 }
 
-[1722]
+[stairs]
 option = "Climb-up"
 tile = { x = 2914, y = 3539 }
 delta = { y = 4, level = 1 }
 
-[1723]
+[stairstop]
 option = "Climb-down"
 tile = { x = 2914, y = 3540, level = 1 }
 delta = { y = -4, level = -1 }

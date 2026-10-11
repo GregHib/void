@@ -2,6 +2,7 @@
 x = [2592, 2593]
 y = [3084, 3085]
 
+level = 0
 [yanille_house_portal]
 # nav-editor: named area only
 x = [2543, 2545]
@@ -37,4 +38,22 @@ tags = ["pet_shop"]
 # nav-editor: named area only
 x = [2573, 2578]
 y = [3102, 3107]
+level = 0
+
+[magic_guild_shop]
+# nav-editor: named area only
+x = [2594, 2595]
+y = [3086, 3089]
+level = 1
+
+[yanille_agility_dungeon_chaos_druids]
+# nav-editor: named area only
+x = [2610, 2616]
+y = [9483, 9488]
+level = 0
+
+[yanille_dungeon_lockpick_floor_spawn]
+# nav-editor: named area only
+x = [2614, 2616]
+y = [9568, 9570]
 level = 0
