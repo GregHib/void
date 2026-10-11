@@ -16,3 +16,34 @@ x = [2739, 2741]
 y = [3350, 3352]
 level = 0
 tags = ["fairy_ring"]
+
+[ourania_chaos_altar]
+# nav-editor: named area only
+x = [2452, 2455]
+y = [3232, 3232]
+level = 0
+
+[ourania_bank]
+# nav-editor: named area only
+x = [3269, 3274]
+y = [4855, 4859]
+level = 0
+
+[ourania_runecrafting_altar]
+# nav-editor: named area only
+x = [3314, 3318]
+y = [4809, 4813]
+level = 0
+
+[observatory_reception]
+# nav-editor: named area only
+x = [2439, 2445]
+y = [3184, 3187]
+level = 0
+
+[castle_wars_bank]
+# nav-editor: named area only
+x = [2444, 2444]
+y = [3082, 3084]
+level = 0
+tags = ["bank"]

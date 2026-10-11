@@ -1,3 +1,40 @@
 [wizard_distentor_return]
 x = [2592, 2593]
 y = [3084, 3085]
+
+[yanille_house_portal]
+# nav-editor: named area only
+x = [2543, 2545]
+y = [3095, 3096]
+level = 0
+tags = ["house_portal"]
+
+[yanille]
+x = [2533, 2621]
+y = [3071, 3110]
+
+[yanille_sandpit]
+# nav-editor: named area only
+x = [2541, 2544]
+y = [3102, 3105]
+level = 0
+tags = ["sandpit"]
+
+[yanille_hunter_shop]
+# nav-editor: named area only
+x = [2564, 2567]
+y = [3080, 3084]
+level = 0
+
+[yanille_pet_shop]
+# nav-editor: named area only
+x = [2576, 2578]
+y = [3080, 3082]
+level = 0
+tags = ["pet_shop"]
+
+[yanille_hops_patch]
+# nav-editor: named area only
+x = [2573, 2578]
+y = [3102, 3107]
+level = 0
