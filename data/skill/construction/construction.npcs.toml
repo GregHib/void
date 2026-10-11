@@ -154,239 +154,473 @@ dialogue = "pet"
 id = 4234
 dialogue = "kalphite_queen"
 
-[menagerie_pet_9199]
+[poh_hangman_armour1]
+id = 3944
+
+[poh_hangman_armour2]
+id = 3945
+
+[poh_hangman_armour3]
+id = 3946
+
+[poh_hangman_armour4]
+id = 3947
+
+[poh_hangman_armour5]
+id = 3948
+
+[poh_hangman_armour6]
+id = 3949
+
+[poh_hangman_armour7]
+id = 3950
+
+[poh_hangman_armour8]
+id = 3951
+
+[poh_hangman_armour9]
+id = 3952
+
+[poh_hangman_armour10]
+id = 3953
+
+[poh_treasure_hunt_fairy]
+id = 3954
+
+[poh_mimic]
+id = 3955
+
+[poh_elemental_balance_1]
+id = 4021
+
+[poh_tbt_limestone_destroyed]
+id = 3956
+
+[poh_tbt_limestone_000]
+id = 3957
+
+[poh_tbt_limestone_001]
+id = 3958
+
+[poh_tbt_limestone_002]
+id = 3959
+
+[poh_tbt_limestone_003]
+id = 3960
+
+[poh_tbt_limestone_010]
+id = 3961
+
+[poh_tbt_limestone_011]
+id = 3962
+
+[poh_tbt_limestone_012]
+id = 3963
+
+[poh_tbt_limestone_013]
+id = 3964
+
+[poh_tbt_limestone_020]
+id = 3965
+
+[poh_tbt_limestone_021]
+id = 3966
+
+[poh_tbt_limestone_022]
+id = 3967
+
+[poh_tbt_limestone_023]
+id = 3968
+
+[poh_tbt_limestone_030]
+id = 3969
+
+[poh_tbt_limestone_031]
+id = 3970
+
+[poh_tbt_limestone_032]
+id = 3971
+
+[poh_tbt_limestone_033]
+id = 3972
+
+[poh_tbt_limestone_100]
+id = 3973
+
+[poh_tbt_limestone_101]
+id = 3974
+
+[poh_tbt_limestone_102]
+id = 3975
+
+[poh_tbt_limestone_103]
+id = 3976
+
+[poh_tbt_limestone_110]
+id = 3977
+
+[poh_tbt_limestone_111]
+id = 3978
+
+[poh_tbt_limestone_112]
+id = 3979
+
+[poh_tbt_limestone_113]
+id = 3980
+
+[poh_tbt_limestone_120]
+id = 3981
+
+[poh_tbt_limestone_121]
+id = 3982
+
+[poh_tbt_limestone_122]
+id = 3983
+
+[poh_tbt_limestone_123]
+id = 3984
+
+[poh_tbt_limestone_130]
+id = 3985
+
+[poh_tbt_limestone_131]
+id = 3986
+
+[poh_tbt_limestone_132]
+id = 3987
+
+[poh_tbt_limestone_133]
+id = 3988
+
+[poh_tbt_limestone_200]
+id = 3989
+
+[poh_tbt_limestone_201]
+id = 3990
+
+[poh_tbt_limestone_202]
+id = 3991
+
+[poh_tbt_limestone_203]
+id = 3992
+
+[poh_tbt_limestone_210]
+id = 3993
+
+[poh_tbt_limestone_211]
+id = 3994
+
+[poh_tbt_limestone_212]
+id = 3995
+
+[poh_tbt_limestone_213]
+id = 3996
+
+[poh_tbt_limestone_220]
+id = 3997
+
+[poh_tbt_limestone_221]
+id = 3998
+
+[poh_tbt_limestone_222]
+id = 3999
+
+[poh_tbt_limestone_223]
+id = 4000
+
+[poh_tbt_limestone_230]
+id = 4001
+
+[poh_tbt_limestone_231]
+id = 4002
+
+[poh_tbt_limestone_232]
+id = 4003
+
+[poh_tbt_limestone_233]
+id = 4004
+
+[poh_tbt_limestone_300]
+id = 4005
+
+[poh_tbt_limestone_301]
+id = 4006
+
+[poh_tbt_limestone_302]
+id = 4007
+
+[poh_tbt_limestone_303]
+id = 4008
+
+[poh_tbt_limestone_310]
+id = 4009
+
+[poh_tbt_limestone_311]
+id = 4010
+
+[poh_tbt_limestone_312]
+id = 4011
+
+[poh_tbt_limestone_313]
+id = 4012
+
+[poh_tbt_limestone_320]
+id = 4013
+
+[poh_tbt_limestone_321]
+id = 4014
+
+[poh_tbt_limestone_322]
+id = 4015
+
+[poh_tbt_limestone_323]
+id = 4016
+
+[poh_tbt_limestone_330]
+id = 4017
+
+[poh_tbt_limestone_331]
+id = 4018
+
+[poh_tbt_limestone_332]
+id = 4019
+
+[poh_tbt_limestone_333]
+id = 4020
+
+[poh_dog_dalmation_1]
 id = 9199
 
-[menagerie_pet_9200]
+[poh_dog_dalmation_2]
 id = 9200
 
-[menagerie_pet_9201]
+[poh_dog_dalmation_3]
 id = 9201
 
-[menagerie_pet_9202]
+[poh_dog_sheepdog_1]
 id = 9202
 
-[menagerie_pet_9203]
+[poh_dog_sheepdog_2]
 id = 9203
 
-[menagerie_pet_9204]
+[poh_dog_sheepdog_3]
 id = 9204
 
-[menagerie_pet_9205]
+[poh_dog_bulldog_1]
 id = 9205
 
-[menagerie_pet_9206]
+[poh_dog_bulldog_2]
 id = 9206
 
-[menagerie_pet_9207]
+[poh_dog_bulldog_3]
 id = 9207
 
-[menagerie_pet_9208]
+[poh_baby_dragon_1]
 id = 9208
 
-[menagerie_pet_9209]
+[poh_baby_dragon_2]
 id = 9209
 
-[menagerie_pet_9210]
+[poh_baby_dragon_3]
 id = 9210
 
-[menagerie_pet_9211]
+[poh_baby_dragon_4]
 id = 9211
 
-[menagerie_pet_9212]
+[poh_ex_ex_parrot]
 id = 9212
 
-[menagerie_pet_9213]
+[poh_gecko]
 id = 9213
 
-[menagerie_pet_9214]
+[mtx130_wyrm]
 id = 9214
 
-[menagerie_pet_9215]
+[mtx130_wyrm_poh]
 id = 9215
 
-[menagerie_pet_9216]
+[egwd_jas_boss_lightning_strike_gold]
 id = 9216
 
-[menagerie_pet_9217]
+[game_pass_sep2021_pet]
 id = 9217
 
-[menagerie_pet_9218]
+[poh_giant_crab_1]
 id = 9218
 
-[menagerie_pet_9219]
+[poh_giant_crab_2]
 id = 9219
 
-[menagerie_pet_9220]
+[poh_giant_crab_3]
 id = 9220
 
-[menagerie_pet_9221]
+[poh_giant_crab_4]
 id = 9221
 
-[menagerie_pet_9222]
+[poh_giant_crab_5]
 id = 9222
 
-[menagerie_pet_9223]
+[poh_monkey_1]
 id = 9223
 
-[menagerie_pet_9224]
+[poh_monkey_2]
 id = 9224
 
-[menagerie_pet_9225]
+[poh_monkey_3]
 id = 9225
 
-[menagerie_pet_9226]
+[poh_monkey_4]
 id = 9226
 
-[menagerie_pet_9227]
+[poh_monkey_5]
 id = 9227
 
-[menagerie_pet_9228]
+[poh_monkey_6]
 id = 9228
 
-[menagerie_pet_9229]
+[poh_monkey_7]
 id = 9229
 
-[menagerie_pet_9230]
+[poh_monkey_8]
 id = 9230
 
-[menagerie_pet_9231]
+[poh_monkey_9]
 id = 9231
 
-[menagerie_pet_9232]
+[poh_monkey_10]
 id = 9232
 
-[menagerie_pet_9233]
+[poh_penguin]
 id = 9233
 
-[menagerie_pet_9234]
+[fai_varrock_guard_female]
 id = 9234
 
-[menagerie_pet_9235]
+[test_anim_npc]
 id = 9235
 
-[menagerie_pet_9236]
+[poh_raccoon_1]
 id = 9236
 
-[menagerie_pet_9237]
+[poh_raccoon_2]
 id = 9237
 
-[menagerie_pet_9238]
+[poh_raccoon_3]
 id = 9238
 
-[menagerie_pet_9239]
+[poh_raven_1]
 id = 9239
 
-[menagerie_pet_9240]
+[poh_raven_2]
 id = 9240
 
-[menagerie_pet_9241]
+[poh_raven_3]
 id = 9241
 
-[menagerie_pet_9242]
+[poh_raven_4]
 id = 9242
 
-[menagerie_pet_9243]
+[poh_raven_5]
 id = 9243
 
-[menagerie_pet_9244]
+[poh_raven_6]
 id = 9244
 
-[menagerie_pet_9245]
+[poh_pet_abbyd]
 id = 9245
 
-[menagerie_pet_9246]
+[game_pass_sep2021_pet_poh]
 id = 9246
 
-[menagerie_pet_9247]
+[poh_pet_cockatrice]
 id = 9247
 
-[menagerie_pet_9248]
+[poh_pet_basilisk]
 id = 9248
 
-[menagerie_pet_9249]
+[poh_pet_kurask]
 id = 9249
 
-[menagerie_pet_9250]
+[poh_squirrel_1]
 id = 9250
 
-[menagerie_pet_9251]
+[poh_squirrel_2]
 id = 9251
 
-[menagerie_pet_9252]
+[poh_squirrel_3]
 id = 9252
 
-[menagerie_pet_9253]
+[poh_squirrel_4]
 id = 9253
 
-[menagerie_pet_9254]
+[poh_squirrel_5]
 id = 9254
 
-[menagerie_pet_9255]
+[poh_phoenix_evil_eggling]
 id = 9255
 
-[menagerie_pet_9256]
+[poh_vulture_1]
 id = 9256
 
-[menagerie_pet_9257]
+[poh_vulture_2]
 id = 9257
 
-[menagerie_pet_9258]
+[poh_vulture_3]
 id = 9258
 
-[menagerie_pet_9259]
+[poh_vulture_4]
 id = 9259
 
-[menagerie_pet_9260]
+[poh_vulture_5]
 id = 9260
 
-[menagerie_pet_9261]
+[poh_vulture_6]
 id = 9261
 
-[menagerie_pet_9262]
+[poh_chameleon_grass]
 id = 9262
 
-[menagerie_pet_9272]
+[poh_growncat]
 id = 9272
 
-[menagerie_pet_9273]
+[poh_growncat_light]
 id = 9273
 
-[menagerie_pet_9274]
+[poh_growncat_brown]
 id = 9274
 
-[menagerie_pet_9275]
+[poh_growncat_black]
 id = 9275
 
-[menagerie_pet_9276]
+[poh_growncat_browngrey]
 id = 9276
 
-[menagerie_pet_9277]
+[poh_growncat_bluegrey]
 id = 9277
 
-[menagerie_pet_9278]
+[poh_growncat_hell]
 id = 9278
 
-[menagerie_pet_9279]
+[poh_growncat_swept_purple]
 id = 9279
 
-[menagerie_pet_9288]
+[poh_overgrowncat]
 id = 9288
 
-[menagerie_pet_9289]
+[poh_overgrowncat_light]
 id = 9289
 
-[menagerie_pet_9290]
+[poh_overgrowncat_brown]
 id = 9290
 
-[menagerie_pet_9291]
+[poh_overgrowncat_black]
 id = 9291
 
-[menagerie_pet_9292]
+[poh_overgrowncat_browngrey]
 id = 9292
 
-[menagerie_pet_9293]
+[poh_overgrowncat_bluegrey]
 id = 9293
 
-[menagerie_pet_9294]
+[poh_overgrowncat_hell]
 id = 9294

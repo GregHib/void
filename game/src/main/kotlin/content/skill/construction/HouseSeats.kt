@@ -19,7 +19,12 @@ import world.gregs.voidps.type.Tile
  */
 class HouseSeats : Script {
     init {
-        objectOperate("Sit-on", SEATS) { (target) ->
+        objectOperate(
+            "Sit-on",
+            "crude_wooden_chair,wooden_chair,rocking_chair,oak_chair,oak_armchair,teak_armchair,mahogany_armchair," +
+                "wooden_bench,oak_bench,carved_oak_bench,teak_dining_bench,carved_teak_bench,carved_teak_bench_throne_room,mahogany_bench,mahogany_bench_throne_room,gilded_bench,gilded_bench_throne_room," +
+                "oak_throne,teak_throne,mahogany_throne,gilded_throne,skeleton_throne,crystal_throne,demonic_throne",
+        ) { (target) ->
             if (contains("house_seat") || !GameObjects.contains(target)) {
                 return@objectOperate
             }
@@ -28,7 +33,6 @@ class HouseSeats : Script {
             val from = tile
             anim(if (diagonal) "chair_sit_diagonal" else "chair_sit", delay = 17)
             if (bench) {
-                // Dining benches are pushed back from the table as they're sat on
                 target.replace("invisible_seat", collision = false)
                 pushBack(target)
             }
@@ -46,7 +50,6 @@ class HouseSeats : Script {
             walkTrigger { stand(animate = true) }
         }
 
-        // Replay the seated animation so it doesn't run out and is seen by players arriving later
         timerStart("house_seat") { if (contains("house_seat")) 50 else Timer.CANCEL }
 
         timerTick("house_seat") {
@@ -78,9 +81,7 @@ class HouseSeats : Script {
             return
         }
         if (diningBench(seat)) {
-            // Dining benches are pulled back out before returning to their place
             pushBack(seat)
-            // Put back next tick along with the pushed back bench being removed
             World.queue("house_seat_${seat.tile.id}") { restore(seat) }
         } else {
             restore(seat)
@@ -118,7 +119,7 @@ class HouseSeats : Script {
     /**
      * Seats face away from their rotation
      */
-    private fun facing(seat: GameObject): Direction = directions[seat.rotation and 0x3]
+    private fun facing(seat: GameObject): Direction = seat.direction().inverse()
 
     /**
      * The seated animation for [seat], throne room benches use the same as the dining room
@@ -126,12 +127,5 @@ class HouseSeats : Script {
     private fun seated(seat: GameObject): String {
         val id = "sit_${seat.id.removeSuffix("_throne_room")}"
         return if (seat.shape == ObjectShape.CENTRE_PIECE_DIAGONAL && id.endsWith("chair")) "${id}_diagonal" else id
-    }
-
-    companion object {
-        private const val SEATS = "crude_wooden_chair,wooden_chair,rocking_chair,oak_chair,oak_armchair,teak_armchair,mahogany_armchair," +
-            "wooden_bench,oak_bench,carved_oak_bench,teak_dining_bench,carved_teak_bench,carved_teak_bench_throne_room,mahogany_bench,mahogany_bench_throne_room,gilded_bench,gilded_bench_throne_room," +
-            "oak_throne,teak_throne,mahogany_throne,gilded_throne,skeleton_throne,crystal_throne,demonic_throne"
-        private val directions = arrayOf(Direction.SOUTH, Direction.WEST, Direction.NORTH, Direction.EAST)
     }
 }

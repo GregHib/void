@@ -4,10 +4,11 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.skill.construction.House.Companion.houseBase
-import content.skill.construction.House.Companion.houseRoomIds
-import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.inOwnHouse
-import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.House.Companion.isFloorFree
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseRooms.houseRoomIds
+import content.skill.construction.HouseRooms.houseRoomPositions
 import content.skill.summoning.pet.getPetHunger
 import content.skill.summoning.pet.itemFor
 import content.skill.summoning.pet.npcFor
@@ -17,7 +18,6 @@ import content.skill.summoning.pet.petRowForNpc
 import content.skill.summoning.pet.sendPetDetailsStats
 import content.skill.summoning.pet.stageForItem
 import content.skill.summoning.pet.stageForNpc
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -38,8 +38,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Zone
 
 /**
@@ -50,7 +48,7 @@ import world.gregs.voidps.type.Zone
  */
 class HouseMenagerie : Script {
     init {
-        objectOperate("Store", PET_HOUSES) {
+        objectOperate("Store", "oak_pet_house,teak_pet_house,mahogany_pet_house,consecrated_pet_house,desecrated_pet_house,natural_pet_house") {
             if (!inOwnHouse()) {
                 message("You can only do that in your own house.") // TODO proper message
                 return@objectOperate
@@ -68,7 +66,7 @@ class HouseMenagerie : Script {
             open("pet_house_side")
             tab(Tab.Inventory)
             interfaceOptions.send(id, "items")
-            interfaceOptions.unlockAll(id, "items", 0 until CAPACITY)
+            interfaceOptions.unlockAll(id, "items", 0 until 15)
             sendInventory(petHouse)
             sendInventory(inventory)
         }
@@ -106,14 +104,17 @@ class HouseMenagerie : Script {
                 return@interfaceOption
             }
             val pets = petHouse
-            if (pets.items.count { it.isNotEmpty() } >= CAPACITY) {
+            if (pets.items.count { it.isNotEmpty() } >= 15) {
                 message("Your pet house is full.") // TODO proper message
                 return@interfaceOption
             }
             if (inventory.remove(item.id)) {
                 pets.add(item.id)
                 // The feeder keeps stored pets fed
-                petRowForItem(item.id)?.let { row -> if (get("pet_active_item", "") != item.id) feed(row.rowId) }
+                val row = petRowForItem(item.id)
+                if (row != null && get("pet_active_item", "") != item.id) {
+                    feed(row.rowId)
+                }
                 spawnHousePet(item.id)
                 sync()
                 // https://youtu.be/7VRYU4UqbYo?t=519
@@ -121,7 +122,7 @@ class HouseMenagerie : Script {
             }
         }
 
-        objectOperate("Feed-all", PET_FEEDERS) {
+        objectOperate("Feed-all", "oak_pet_feeder,teak_pet_feeder,mahogany_pet_feeder") {
             if (!inOwnHouse()) {
                 message("You can only do that in your own house.") // TODO proper message
                 return@objectOperate
@@ -171,28 +172,31 @@ class HouseMenagerie : Script {
         message("You fill the feeder and your pet happily eats.") // TODO proper message
     }
 
+    private fun Player.despawnHousePet(item: String) {
+        val pets = housePets
+        val index = pets.indexOfFirst { it.petItem() == item }
+        if (index == -1) {
+            return
+        }
+        NPCs.remove(pets.removeAt(index))
+    }
+
+    /**
+     * The pet item a roaming pet came from, found by going back through the pet's menagerie version to its normal npc
+     */
+    private fun NPC.petItem(): String? {
+        val pet = Tables.get("menagerie_pets").rows().firstOrNull { it.npcOrNull("roaming") == id } ?: return null
+        val row = petRowForNpc(pet.rowId) ?: return null
+        return row.stageForNpc(pet.rowId)?.let { row.itemFor(it) }
+    }
+
     companion object {
         private val Player.petHouse: Inventory
             get() = inventories.inventory("pet_house")
 
-        /**
-         * Pets which are roaming the house, one for each pet stored
-         */
         private val Player.housePets: MutableList<NPC>
             get() = get("house_pet_npcs") ?: mutableListOf<NPC>().also { set("house_pet_npcs", it) }
 
-        /**
-         * The pet item a roaming pet came from, found by going back through the pet's menagerie version to its normal npc
-         */
-        private fun NPC.petItem(): String? {
-            val pet = Tables.get("menagerie_pets").rows().firstOrNull { it.npcOrNull("roaming") == id } ?: return null
-            val row = petRowForNpc(pet.rowId) ?: return null
-            return row.stageForNpc(pet.rowId)?.let { row.itemFor(it) }
-        }
-
-        /**
-         * Spawns all the pets stored in the pet house into the menagerie of the house starting at [base]
-         */
         fun Player.spawnHousePets(base: Zone) {
             despawnHousePets()
             for (pet in petHouse.items) {
@@ -210,37 +214,18 @@ class HouseMenagerie : Script {
             val npc = row.stageForItem(item)?.let { row.npcFor(it) } ?: return
             val roaming = Rows.getOrNull("menagerie_pets.$npc")?.npcOrNull("roaming") ?: return
             val rooms = houseRoomIds.indices.filter { houseRoomIds[it] == "menagerie" }.map { roomZone(base, houseRoomPositions[it]) }
-            val tiles = rooms.flatMap { room -> room.toCuboid().filter { !Collisions.check(it, BLOCKED) } }
+            val tiles = rooms.flatMap { room -> room.toCuboid().filter(::isFloorFree) }
             val tile = tiles.randomOrNull() ?: return
             val spawned = NPCs.add(roaming, tile)
             spawned.mode = Wander(spawned, tile)
             housePets.add(spawned)
         }
 
-        private fun Player.despawnHousePet(item: String) {
-            val pets = housePets
-            val index = pets.indexOfFirst { it.petItem() == item }
-            if (index == -1) {
-                return
-            }
-            NPCs.remove(pets.removeAt(index))
-        }
-
-        /**
-         * Removes every pet roaming the house
-         */
         fun Player.despawnHousePets() {
             val pets: MutableList<NPC> = remove("house_pet_npcs") ?: return
             for (npc in pets) {
                 NPCs.remove(npc)
             }
         }
-
-        private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
-        private const val PET_HOUSES = "oak_pet_house,teak_pet_house,mahogany_pet_house,consecrated_pet_house,desecrated_pet_house,natural_pet_house"
-        private const val PET_FEEDERS = "oak_pet_feeder,teak_pet_feeder,mahogany_pet_feeder"
-
-        // Most pets which can be stored
-        private const val CAPACITY = 15
     }
 }

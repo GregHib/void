@@ -3,12 +3,12 @@ package content.skill.construction
 import content.entity.player.dialogue.type.choice
 import content.skill.construction.House.Companion.changeFloor
 import content.skill.construction.House.Companion.houseBase
-import content.skill.construction.House.Companion.houseFurniture
-import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.roomBelow
-import content.skill.construction.House.Companion.roomPosition
+import content.skill.construction.HouseGrid.roomBelow
+import content.skill.construction.HouseGrid.roomPosition
+import content.skill.construction.HouseHotspots.houseFurniture
+import content.skill.construction.HouseRooms.houseRoom
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
@@ -25,21 +25,27 @@ import world.gregs.voidps.type.Zone
  * https://oldschool.runescape.wiki/w/Throne_room
  */
 class HouseThroneRoom : Script {
+    private val leversEnabled = false
+    private val levers = "oak_lever,teak_lever,mahogany_lever"
+    private val cageTicks = 50 // Guessed
+    private val magicCageTicks = 100 // Guessed
+    private val trapFloors = listOf("throne_room_floor_space", "throne_room_floor_space_2", "throne_room_floor_space_3", "throne_room_floor_space_4", "throne_room_floor_space_5", "throne_room_floor_space_6")
+
     init {
-        objectOperate("Pull", LEVERS) { (target) ->
+        objectOperate("Pull", levers) { (target) ->
             val base = houseBase() ?: return@objectOperate
             if (!canPull()) {
                 return@objectOperate
             }
             pull(target)
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
-            val trap = FLOORS.firstNotNullOfOrNull { houseFurniture(position, it) }
+            val trap = trapFloors.firstNotNullOfOrNull { houseFurniture(position, it) }
             val victims = victims(target.tile.zone)
             when (trap) {
-                "steel_cage_2" -> cage(victims, CAGE_TICKS)
+                "steel_cage_2" -> cage(victims, cageTicks)
                 "trapdoor_4" -> drop(base, position, victims)
                 "lesser_magic_cage", "greater_magic_cage" -> {
-                    cage(victims, MAGIC_CAGE_TICKS)
+                    cage(victims, magicCageTicks)
                     if (victims.isNotEmpty()) {
                         magicCage(base, position, victims, greater = trap == "greater_magic_cage")
                     }
@@ -48,7 +54,7 @@ class HouseThroneRoom : Script {
             }
         }
 
-        objectOperate("Challenge-mode", LEVERS) { (target) ->
+        objectOperate("Challenge-mode", levers) { (target) ->
             if (!canPull()) {
                 return@objectOperate
             }
@@ -78,7 +84,7 @@ class HouseThroneRoom : Script {
     }
 
     private fun Player.canPull(): Boolean {
-        if (!LEVERS_ENABLED) {
+        if (!leversEnabled) {
             notImplemented()
             return false
         }
@@ -155,13 +161,5 @@ class HouseThroneRoom : Script {
                 }
             }
         }
-    }
-
-    companion object {
-        private const val LEVERS_ENABLED = false
-        private const val LEVERS = "oak_lever,teak_lever,mahogany_lever"
-        private const val CAGE_TICKS = 50 // Guessed
-        private const val MAGIC_CAGE_TICKS = 100 // Guessed
-        private val FLOORS = listOf("throne_room_floor_space", "throne_room_floor_space_2", "throne_room_floor_space_3", "throne_room_floor_space_4", "throne_room_floor_space_5", "throne_room_floor_space_6")
     }
 }

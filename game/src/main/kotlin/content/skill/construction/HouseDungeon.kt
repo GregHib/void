@@ -23,8 +23,13 @@ import world.gregs.voidps.type.random
  * https://runescape.wiki/w/Treasure_room
  */
 class HouseDungeon : Script {
+    private val doors = "door_309_closed,door_310_closed,door_311_closed,door_312_closed,door_313_closed,door_314_closed"
+
+    // Oak, steel-plated and marble door strengths guessed from other servers
+    private val doorLevels = intArrayOf(35, 66, 80)
+
     init {
-        objectOperate("Open", DOORS) { (target) ->
+        objectOperate("Open", doors) { (target) ->
             if (locked()) {
                 message("The door is locked.") // TODO proper message
                 return@objectOperate
@@ -32,15 +37,15 @@ class HouseDungeon : Script {
             openHouseDoor(target)
         }
 
-        objectOperate("Close", DOORS.replace("_closed", "_opened")) { (target) ->
+        objectOperate("Close", doors.replace("_closed", "_opened")) { (target) ->
             closeHouseDoor(target)
         }
 
-        objectOperate("Pick-lock", DOORS) { (target) ->
+        objectOperate("Pick-lock", doors) { (target) ->
             unlock(target, Skill.Thieving, "pick_lock", "You attempt to pick the lock...", "You fail to pick the lock.") // TODO proper messages
         }
 
-        objectOperate("Force", DOORS) { (target) ->
+        objectOperate("Force", doors) { (target) ->
             unlock(target, Skill.Strength, "force_lock", "You attempt to force the door...", "You fail to force the door.") // TODO proper messages
         }
 
@@ -54,9 +59,6 @@ class HouseDungeon : Script {
         }
     }
 
-    /**
-     * Doors are only locked to guests in challenge mode
-     */
     private fun Player.locked(): Boolean = !inOwnHouse() && houseOwner()?.get("house_challenge_mode", false) == true
 
     /**
@@ -70,7 +72,7 @@ class HouseDungeon : Script {
         message(attempt, ChatType.Filter)
         anim(animation)
         delay(2)
-        val strength = doorLevels[DOORS.split(',').indexOf(door.id) / 2]
+        val strength = doorLevels[doors.split(',').indexOf(door.id) / 2]
         if (random.nextInt(levels.get(skill) + 1) < random.nextInt(strength + 1)) {
             message(fail, ChatType.Filter)
             return
@@ -78,9 +80,6 @@ class HouseDungeon : Script {
         enterDoor(door)
     }
 
-    /**
-     * Lets the owner add coins to or take coins from the treasure kept in the treasure room
-     */
     private suspend fun Player.treasure() {
         val treasure = get("house_treasure", 0)
         choice("The chest holds $treasure coins.") {
@@ -100,12 +99,5 @@ class HouseDungeon : Script {
             }
             option("Cancel")
         }
-    }
-
-    companion object {
-        private const val DOORS = "door_309_closed,door_310_closed,door_311_closed,door_312_closed,door_313_closed,door_314_closed"
-
-        // Oak, steel-plated and marble door strengths guessed from other servers
-        private val doorLevels = intArrayOf(35, 66, 80)
     }
 }

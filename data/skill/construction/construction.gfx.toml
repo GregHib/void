@@ -3,3 +3,6 @@ id = 610
 
 [poh_hoop_projectile]
 id = 612
+flight_time = 30
+curve = 2
+size_offset = 128

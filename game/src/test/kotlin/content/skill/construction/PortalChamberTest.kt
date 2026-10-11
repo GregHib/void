@@ -2,11 +2,11 @@ package content.skill.construction
 
 import WorldTest
 import content.quest.instance
-import content.skill.construction.House.Companion.START_ROOM
-import content.skill.construction.House.Companion.addHouseFurniture
-import content.skill.construction.House.Companion.addHouseRoom
-import content.skill.construction.House.Companion.removeHouseFurniture
-import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.HouseGrid.START_ROOM
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseHotspots.addHouseFurniture
+import content.skill.construction.HouseHotspots.removeHouseFurniture
+import content.skill.construction.HouseRooms.addHouseRoom
 import dialogueOption
 import objectOption
 import org.junit.jupiter.api.Test

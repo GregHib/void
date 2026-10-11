@@ -2,8 +2,8 @@ package content.skill.construction
 
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
-import content.skill.construction.HouseGamesRoom.Companion.offerPrize
-import content.skill.construction.HouseGamesRoom.Companion.winPrize
+import content.skill.construction.HousePrizeChest.Companion.offerPrize
+import content.skill.construction.HousePrizeChest.Companion.winPrize
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -27,50 +27,52 @@ import world.gregs.voidps.type.random
  * Clicking a letter guesses it straight away, the guess button switches to guessing the missing letters all at once.
  */
 class HouseHangman : Script {
+    private val game = "hangman"
+    private val maxSelected = 5
+    private val maxWrong = 9
+
+    private val Player.gallows: NPC?
+        get() = get<NPC>("hangman_npc")?.takeIf { NPCs.indexed(it.index) == it }
+
     init {
         objectOperate("Activate", "hangman_game") { (target) ->
             if (get("house_build_mode", false)) {
                 message("You cannot activate the game while in building mode.", ChatType.Game)
                 return@objectOperate
             }
-            val gallows = NPCs.add(STAGES.first(), target.tile)
+            val gallows = NPCs.add("poh_hangman_armour1", target.tile)
             gallows["hangman_object"] = target.id
             set("hangman_npc", gallows)
             begin(gallows)
-            // Npcs spawn at the start of the next tick, so the game stays until then rather than leaving a gap
             delay(1)
             target.replace("invisible_seat", collision = false)
-            offerPrize(GAME)
+            offerPrize(game)
         }
 
-        npcOperate("Guess-letter", STAGES.joinToString(",")) { (target) ->
-            if (target != gallows) {
-                message("That isn't your game.") // TODO proper message
+        npcOperate("Guess-letter", "poh_hangman_armour*") { (target) ->
+            if (!ownsGame(target)) {
                 return@npcOperate
             }
             if (!contains("hangman_word")) {
                 begin(target)
-                offerPrize(GAME)
+                offerPrize(game)
                 return@npcOperate
             }
             open("poh_hangman")
         }
 
-        npcOperate("Reset", STAGES.last()) { (target) ->
-            if (target != gallows) {
-                message("That isn't your game.") // TODO proper message
+        npcOperate("Reset", "poh_hangman_armour10") { (target) ->
+            if (!ownsGame(target)) {
                 return@npcOperate
             }
             begin(target)
-            offerPrize(GAME)
+            offerPrize(game)
         }
 
-        npcOperate("Banish", STAGES.joinToString(",")) { (target) ->
-            if (target != gallows) {
-                message("That isn't your game.") // TODO proper message
-                return@npcOperate
+        npcOperate("Banish", "poh_hangman_armour*") { (target) ->
+            if (ownsGame(target)) {
+                despawnHangman()
             }
-            despawnHangman()
         }
 
         interfaceOpened("poh_hangman") { id ->
@@ -110,16 +112,21 @@ class HouseHangman : Script {
         }
     }
 
-    /**
-     * Starts a new game with a new word
-     */
+    private fun Player.ownsGame(target: NPC): Boolean {
+        if (target != gallows) {
+            message("That isn't your game.") // TODO proper message
+            return false
+        }
+        return true
+    }
+
     private fun Player.begin(gallows: NPC) {
         val words = Tables.stringList("hangman_words.all.words")
         set("hangman_word", words[random.nextInt(words.size)])
         set("hangman_guessed", "")
         set("hangman_wrong", 0)
-        if (gallows.transformId != STAGES.first()) {
-            gallows.transform(STAGES.first())
+        if (gallows.transformId != "poh_hangman_armour1") {
+            gallows.transform("poh_hangman_armour1")
         }
         message("Hangman word: ${display()}", ChatType.Game)
         message("You activate the hangman game.", ChatType.Filter)
@@ -130,7 +137,7 @@ class HouseHangman : Script {
      */
     private suspend fun Player.select(letter: Char) {
         val selected = get("hangman_selected", "")
-        if (selected.length >= MAX_SELECTED) {
+        if (selected.length >= maxSelected) {
             message("You can only guess five letters.", ChatType.Broadcast)
             statement("You can only guess five letters.")
             return
@@ -151,15 +158,15 @@ class HouseHangman : Script {
         set("hangman_wrong", wrong)
         val guessed = get("hangman_guessed", "") + letter
         set("hangman_guessed", guessed)
-        if (wrong >= MAX_WRONG) {
-            gallows.transform(STAGES.last())
+        if (wrong >= maxWrong) {
+            gallows.transform("poh_hangman_armour10")
             gallows.anim("hangman_hangs")
             gallows.say("Game over")
             jingle("burthorpe_games_room_loss")
             clear("hangman_word")
             return
         }
-        gallows.transform(STAGES[wrong])
+        gallows.transform("poh_hangman_armour${wrong + 1}")
         message("Hangman word: ${display()}", ChatType.Game)
         gallows.say(display())
         if (word.all { it in guessed }) {
@@ -191,7 +198,7 @@ class HouseHangman : Script {
         gallows.say(text)
         jingle("burthorpe_games_room_victory")
         clear("hangman_word")
-        winPrize(GAME)
+        winPrize(game)
     }
 
     /**
@@ -204,16 +211,6 @@ class HouseHangman : Script {
     }
 
     companion object {
-        private const val GAME = "hangman"
-        private const val MAX_SELECTED = 5
-        private const val MAX_WRONG = 9
-
-        // Gallows npcs from empty to the complete mannequin
-        private val STAGES = (3944..3953).map { it.toString() }
-
-        private val Player.gallows: NPC?
-            get() = get<NPC>("hangman_npc")?.takeIf { NPCs.indexed(it.index) == it }
-
         /**
          * Removes the gallows and ends the game
          */

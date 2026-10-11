@@ -4484,238 +4484,238 @@ row_id = "npc"
 roaming = "npc"
 
 [.pet_cat]
-roaming = "menagerie_pet_9272"
+roaming = "poh_growncat"
 
 [.pet_cat_1]
-roaming = "menagerie_pet_9273"
+roaming = "poh_growncat_light"
 
 [.pet_cat_2]
-roaming = "menagerie_pet_9274"
+roaming = "poh_growncat_brown"
 
 [.pet_cat_3]
-roaming = "menagerie_pet_9275"
+roaming = "poh_growncat_black"
 
 [.pet_cat_4]
-roaming = "menagerie_pet_9276"
+roaming = "poh_growncat_browngrey"
 
 [.pet_cat_5]
-roaming = "menagerie_pet_9277"
+roaming = "poh_growncat_bluegrey"
 
 [.pet_cat_overgrown]
-roaming = "menagerie_pet_9288"
+roaming = "poh_overgrowncat"
 
 [.pet_cat_1_overgrown]
-roaming = "menagerie_pet_9289"
+roaming = "poh_overgrowncat_light"
 
 [.pet_cat_2_overgrown]
-roaming = "menagerie_pet_9290"
+roaming = "poh_overgrowncat_brown"
 
 [.pet_cat_3_overgrown]
-roaming = "menagerie_pet_9291"
+roaming = "poh_overgrowncat_black"
 
 [.pet_cat_4_overgrown]
-roaming = "menagerie_pet_9292"
+roaming = "poh_overgrowncat_browngrey"
 
 [.pet_cat_5_overgrown]
-roaming = "menagerie_pet_9293"
+roaming = "poh_overgrowncat_bluegrey"
 
 [.pet_hellcat_overgrown]
-roaming = "menagerie_pet_9294"
+roaming = "poh_overgrowncat_hell"
 
 [.pet_hellcat]
-roaming = "menagerie_pet_9278"
+roaming = "poh_growncat_hell"
 
 [.pet_baby_dragon]
-roaming = "menagerie_pet_9208"
+roaming = "poh_baby_dragon_1"
 
 [.pet_baby_dragon_1]
-roaming = "menagerie_pet_9209"
+roaming = "poh_baby_dragon_2"
 
 [.pet_baby_dragon_2]
-roaming = "menagerie_pet_9210"
+roaming = "poh_baby_dragon_3"
 
 [.pet_baby_dragon_3]
-roaming = "menagerie_pet_9211"
+roaming = "poh_baby_dragon_4"
 
 [.pet_penguin]
-roaming = "menagerie_pet_9233"
+roaming = "poh_penguin"
 
 [.pet_raven]
-roaming = "menagerie_pet_9239"
+roaming = "poh_raven_1"
 
 [.pet_raccoon]
-roaming = "menagerie_pet_9236"
+roaming = "poh_raccoon_1"
 
 [.pet_gecko]
-roaming = "menagerie_pet_9213"
+roaming = "poh_gecko"
 
 [.pet_squirrel]
-roaming = "menagerie_pet_9250"
+roaming = "poh_squirrel_1"
 
 [.pet_chameleon]
-roaming = "menagerie_pet_9262"
+roaming = "poh_chameleon_grass"
 
 [.pet_monkey]
-roaming = "menagerie_pet_9223"
+roaming = "poh_monkey_1"
 
 [.pet_vulture]
-roaming = "menagerie_pet_9256"
+roaming = "poh_vulture_1"
 
 [.pet_giant_crab]
-roaming = "menagerie_pet_9218"
+roaming = "poh_giant_crab_1"
 
 [.pet_dalmatian]
-roaming = "menagerie_pet_9199"
+roaming = "poh_dog_dalmation_1"
 
 [.pet_sheepdog]
-roaming = "menagerie_pet_9202"
+roaming = "poh_dog_sheepdog_1"
 
 [.pet_bulldog]
-roaming = "menagerie_pet_9205"
+roaming = "poh_dog_bulldog_1"
 
 [.pet_monkey_1]
-roaming = "menagerie_pet_9224"
+roaming = "poh_monkey_2"
 
 [.pet_monkey_2]
-roaming = "menagerie_pet_9225"
+roaming = "poh_monkey_3"
 
 [.pet_monkey_3]
-roaming = "menagerie_pet_9226"
+roaming = "poh_monkey_4"
 
 [.pet_monkey_4]
-roaming = "menagerie_pet_9227"
+roaming = "poh_monkey_5"
 
 [.pet_monkey_5]
-roaming = "menagerie_pet_9228"
+roaming = "poh_monkey_6"
 
 [.pet_monkey_6]
-roaming = "menagerie_pet_9229"
+roaming = "poh_monkey_7"
 
 [.pet_monkey_7]
-roaming = "menagerie_pet_9230"
+roaming = "poh_monkey_8"
 
 [.pet_monkey_8]
-roaming = "menagerie_pet_9231"
+roaming = "poh_monkey_9"
 
 [.pet_monkey_9]
-roaming = "menagerie_pet_9232"
+roaming = "poh_monkey_10"
 
 [.pet_dalmatian_1]
-roaming = "menagerie_pet_9200"
+roaming = "poh_dog_dalmation_2"
 
 [.pet_dalmatian_2]
-roaming = "menagerie_pet_9201"
+roaming = "poh_dog_dalmation_3"
 
 [.pet_sheepdog_1]
-roaming = "menagerie_pet_9203"
+roaming = "poh_dog_sheepdog_2"
 
 [.pet_sheepdog_2]
-roaming = "menagerie_pet_9204"
+roaming = "poh_dog_sheepdog_3"
 
 [.pet_bulldog_1]
-roaming = "menagerie_pet_9206"
+roaming = "poh_dog_bulldog_2"
 
 [.pet_bulldog_2]
-roaming = "menagerie_pet_9207"
+roaming = "poh_dog_bulldog_3"
 
 [.pet_raven_1]
-roaming = "menagerie_pet_9240"
+roaming = "poh_raven_2"
 
 [.pet_raven_2]
-roaming = "menagerie_pet_9241"
+roaming = "poh_raven_3"
 
 [.pet_raven_3]
-roaming = "menagerie_pet_9242"
+roaming = "poh_raven_4"
 
 [.pet_raven_4]
-roaming = "menagerie_pet_9243"
+roaming = "poh_raven_5"
 
 [.pet_raven_5]
-roaming = "menagerie_pet_9244"
+roaming = "poh_raven_6"
 
 [.pet_raccoon_1]
-roaming = "menagerie_pet_9237"
+roaming = "poh_raccoon_2"
 
 [.pet_raccoon_2]
-roaming = "menagerie_pet_9238"
+roaming = "poh_raccoon_3"
 
 [.pet_gecko_1]
-roaming = "menagerie_pet_9214"
+roaming = "mtx130_wyrm"
 
 [.pet_gecko_2]
-roaming = "menagerie_pet_9215"
+roaming = "mtx130_wyrm_poh"
 
 [.pet_gecko_3]
-roaming = "menagerie_pet_9216"
+roaming = "egwd_jas_boss_lightning_strike_gold"
 
 [.pet_gecko_4]
-roaming = "menagerie_pet_9217"
+roaming = "game_pass_sep2021_pet"
 
 [.pet_giant_crab_1]
-roaming = "menagerie_pet_9219"
+roaming = "poh_giant_crab_2"
 
 [.pet_giant_crab_2]
-roaming = "menagerie_pet_9220"
+roaming = "poh_giant_crab_3"
 
 [.pet_giant_crab_3]
-roaming = "menagerie_pet_9221"
+roaming = "poh_giant_crab_4"
 
 [.pet_giant_crab_4]
-roaming = "menagerie_pet_9222"
+roaming = "poh_giant_crab_5"
 
 [.pet_squirrel_1]
-roaming = "menagerie_pet_9251"
+roaming = "poh_squirrel_2"
 
 [.pet_squirrel_2]
-roaming = "menagerie_pet_9252"
+roaming = "poh_squirrel_3"
 
 [.pet_squirrel_3]
-roaming = "menagerie_pet_9253"
+roaming = "poh_squirrel_4"
 
 [.pet_squirrel_4]
-roaming = "menagerie_pet_9254"
+roaming = "poh_squirrel_5"
 
 [.pet_penguin_1]
-roaming = "menagerie_pet_9234"
+roaming = "fai_varrock_guard_female"
 
 [.pet_penguin_2]
-roaming = "menagerie_pet_9235"
+roaming = "test_anim_npc"
 
 [.pet_vulture_1]
-roaming = "menagerie_pet_9257"
+roaming = "poh_vulture_2"
 
 [.pet_vulture_2]
-roaming = "menagerie_pet_9258"
+roaming = "poh_vulture_3"
 
 [.pet_vulture_3]
-roaming = "menagerie_pet_9259"
+roaming = "poh_vulture_4"
 
 [.pet_vulture_4]
-roaming = "menagerie_pet_9260"
+roaming = "poh_vulture_5"
 
 [.pet_vulture_5]
-roaming = "menagerie_pet_9261"
+roaming = "poh_vulture_6"
 
 [.pet_ex_ex_parrot_baby]
-roaming = "menagerie_pet_9212"
+roaming = "poh_ex_ex_parrot"
 
 [.pet_cat_6]
-roaming = "menagerie_pet_9279"
+roaming = "poh_growncat_swept_purple"
 
 [.pet_mean_phoenix_eggling_baby]
-roaming = "menagerie_pet_9255"
+roaming = "poh_phoenix_evil_eggling"
 
 [.pet_creeping_hand_baby]
-roaming = "menagerie_pet_9246"
+roaming = "game_pass_sep2021_pet_poh"
 
 [.pet_minitrice_baby]
-roaming = "menagerie_pet_9247"
+roaming = "poh_pet_cockatrice"
 
 [.pet_baby_basilisk_baby]
-roaming = "menagerie_pet_9248"
+roaming = "poh_pet_basilisk"
 
 [.pet_baby_kurask_baby]
-roaming = "menagerie_pet_9249"
+roaming = "poh_pet_kurask"
 
 [.pet_abyssal_minion_baby]
-roaming = "menagerie_pet_9245"
+roaming = "poh_pet_abbyd"

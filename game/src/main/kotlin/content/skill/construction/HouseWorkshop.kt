@@ -22,6 +22,8 @@ import world.gregs.voidps.engine.queue.weakQueue
  * which paint the players family crest. Workbenches and upgrading are part of [FurnitureCreation].
  */
 class HouseWorkshop : Script {
+    private val crests = listOf("arrav", "asgarnia", "dorgeshuun", "dragon", "fairy", "guthix", "ham", "horse", "jogre", "kandarin", "misthalin", "money", "saradomin", "skull", "varrock", "zamorak")
+
     init {
         objectOperate("Craft", "crafting_table_*") { (target) ->
             val bench = target.id.removePrefix("crafting_table_").toIntOrNull() ?: return@objectOperate
@@ -92,10 +94,5 @@ class HouseWorkshop : Script {
         }
         face(stand)
         anim("construction_build")
-    }
-
-    companion object {
-        // Family crests in the order they're picked
-        private val crests = listOf("arrav", "asgarnia", "dorgeshuun", "dragon", "fairy", "guthix", "ham", "horse", "jogre", "kandarin", "misthalin", "money", "saradomin", "skull", "varrock", "zamorak")
     }
 }

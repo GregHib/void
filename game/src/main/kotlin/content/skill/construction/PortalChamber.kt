@@ -2,15 +2,15 @@ package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.skill.construction.House.Companion.furnishRoom
 import content.skill.construction.House.Companion.houseBase
-import content.skill.construction.House.Companion.houseFurniture
 import content.skill.construction.House.Companion.houseOwner
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.roomPosition
-import content.skill.construction.House.Companion.roomZone
 import content.skill.construction.HouseFurniture.Companion.pick
+import content.skill.construction.HouseGrid.roomPosition
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseHotspots.houseFurniture
+import content.skill.construction.HouseLoader.furnishRoom
 import content.skill.magic.spell.SpellRunes
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
@@ -41,8 +41,12 @@ import world.gregs.voidps.type.Zone
  * https://oldschool.runescape.wiki/w/Portal_chamber
  */
 class PortalChamber : Script {
+    private val runeMultiplier = 100
+    private val scryLocations = listOf("Varrock", "Camelot", "Falador", "Entrance portal")
+    private val portalSpaces = listOf("portal_chamber_portal_space", "portal_chamber_portal_space_2", "portal_chamber_portal_space_3")
+
     init {
-        objectOperate("Enter", PORTALS) { (target) ->
+        objectOperate("Enter", "teak_portal_*,mahogany_portal_*,marble_portal_*") { (target) ->
             val spell = Tables.stringOrNull("house_portals.${target.id.substringAfter("_portal_")}.spell") ?: return@objectOperate
             Teleport.teleport(this, spell, "modern")
         }
@@ -53,7 +57,7 @@ class PortalChamber : Script {
                 return@objectOperate
             }
             val owner = houseOwner() ?: return@objectOperate
-            val index = choice(SCRY_LOCATIONS, "Observe which location?")
+            val index = choice(scryLocations, "Observe which location?")
             if (index == -1) {
                 return@objectOperate
             }
@@ -64,18 +68,18 @@ class PortalChamber : Script {
                 else -> Tables.tileOrNull("house_locations.${owner["house_location", ""]}.exit")
             } ?: return@objectOperate
             scry(destination)
-            statement("You view ${SCRY_LOCATIONS[index - 1]}...")
+            statement("You view ${scryLocations[index - 1]}...")
             endScry()
         }
 
-        objectOperate("Direct-portal", FOCUSES) { (target) ->
+        objectOperate("Direct-portal", "teleport_focus,greater_teleport_focus,scrying_pool") { (target) ->
             val base = houseBase() ?: return@objectOperate
             if (!inOwnHouse()) {
                 message("You can only do that in your own house.") // TODO proper message
                 return@objectOperate
             }
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
-            val portals = PORTAL_SPACES.filter { houseFurniture(position, it) != null }
+            val portals = portalSpaces.filter { houseFurniture(position, it) != null }
             if (portals.isEmpty()) {
                 message("You need to build a portal frame first.") // TODO proper message
                 return@objectOperate
@@ -139,7 +143,7 @@ class PortalChamber : Script {
         if (!has(Skill.Magic, level, message = true)) {
             return
         }
-        val runes = SpellRunes.requiredItems(book, spell)?.map { (id, amount) -> Item(id, amount * RUNE_MULTIPLIER) } ?: return
+        val runes = SpellRunes.requiredItems(book, spell)?.map { (id, amount) -> Item(id, amount * runeMultiplier) } ?: return
         if (!inventory.remove(runes)) {
             message("You need ${runes.joinToString { "${it.amount} ${it.def.name.lowercase()}s" }} to direct the portal there.") // TODO proper message
             return
@@ -151,12 +155,6 @@ class PortalChamber : Script {
     }
 
     companion object {
-        private const val PORTALS = "teak_portal_*,mahogany_portal_*,marble_portal_*"
-        private const val FOCUSES = "teleport_focus,greater_teleport_focus,scrying_pool"
-        private const val RUNE_MULTIPLIER = 100
-        private val SCRY_LOCATIONS = listOf("Varrock", "Camelot", "Falador", "Entrance portal")
-        private val PORTAL_SPACES = listOf("portal_chamber_portal_space", "portal_chamber_portal_space_2", "portal_chamber_portal_space_3")
-
         /**
          * Stops scrying through a scrying pool, returning the tile the player was standing on in the house or null if they weren't scrying
          */

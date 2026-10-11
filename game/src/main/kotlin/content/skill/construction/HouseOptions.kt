@@ -3,10 +3,10 @@ package content.skill.construction
 import content.skill.construction.House.Companion.expelGuests
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseLoading
-import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.loadHouse
+import content.skill.construction.HouseLoader.loadHouse
+import content.skill.construction.HouseRooms.houseRoomIds
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open

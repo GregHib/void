@@ -26,12 +26,36 @@ import world.gregs.voidps.engine.inv.remove
  * https://youtu.be/tOWlmQD0Zks?t=301
  */
 class HouseCostumeRoom : Script {
+    private val rows = 30
+    private val rowHeight = 62
+    private val storageTypes = listOf("magic_wardrobe", "toy_box", "fancy_dress_box", "armour_case")
+    private val pageButtons = setOf("more", "back")
+
+    /**
+     * Inventories listing the items each storage holds, with the inventory of real items for treasure trail rewards
+     */
+    private val sources = mapOf(
+        "cape_rack" to listOf("poh_costume_room_capes_inv" to null, "poh_costume_room_capes_inv_page2" to null),
+        "magic_wardrobe" to listOf("poh_costume_room_magic_wardrobe_inv" to null),
+        "fancy_dress_box" to listOf("poh_costume_room_ame_inv" to null),
+        "armour_case" to listOf("poh_costume_room_armour_inv" to null, "poh_costume_room_armour_inv_page2" to null),
+        "treasure_trail_1" to listOf("poh_costume_room_treasure_trail_1_inv" to "poh_costume_room_treasure_trail_1_inv_check", "poh_costume_room_treasure_trail_1a_inv" to "poh_costume_room_treasure_trail_1a_inv_check"),
+        "treasure_trail_2" to listOf("poh_costume_room_treasure_trail_2_inv" to "poh_costume_room_treasure_trail_2_inv_check"),
+        "treasure_trail_3" to listOf("poh_costume_room_treasure_trail_3_inv" to "poh_costume_room_treasure_trail_3_inv_check", "poh_costume_room_treasure_trail_3a_inv" to "poh_costume_room_treasure_trail_3a_inv_check"),
+        "treasure_trail_4" to listOf("poh_costume_room_treasure_trail_4_inv" to "poh_costume_room_treasure_trail_4_inv_check"),
+    )
+
     init {
-        objectOperate("Search", CAPE_RACKS) { (target) ->
+        objectOperate("Search", "oak_cape_rack,teak_cape_rack,mahogany_cape_rack,gilded_cape_rack,marble_cape_rack,magic_cape_rack") { (target) ->
             openStorage(target.id, "cape_rack")
         }
 
-        objectOperate("Open", "$MAGIC_WARDROBES,$CHESTS") { (target) ->
+        objectOperate(
+            "Open",
+            "oak_magic_wardrobe,carved_oak_magic_wardrobe,teak_magic_wardrobe,carved_teak_magic_wardrobe,mahogany_magic_wardrobe,gilded_magic_wardrobe,marble_magic_wardrobe," +
+                "oak_toy_box,teak_toy_box,mahogany_toy_box,oak_treasure_chest,teak_treasure_chest,mahogany_treasure_chest," +
+                "oak_fancy_dress_box,teak_fancy_dress_box,mahogany_fancy_dress_box,oak_armour_case,teak_armour_case,mahogany_armour_case",
+        ) { (target) ->
             if (target.id.endsWith("treasure_chest")) {
                 if (!inOwnHouse()) {
                     message("You can only do that in your own house.") // TODO proper message
@@ -46,7 +70,7 @@ class HouseCostumeRoom : Script {
                 }
                 return@objectOperate
             }
-            val key = STORAGE.first { target.id.endsWith(it) }
+            val key = storageTypes.first { target.id.endsWith(it) }
             openStorage(target.id, key)
         }
 
@@ -55,9 +79,9 @@ class HouseCostumeRoom : Script {
             val scrollbar = InterfaceDefinitions.getComponent(id, "scrollbar")!!.id
             val scroll = InterfaceDefinitions.getComponent(id, "scroll")!!.id
             sendScript("scrollbar_vertical", scrollbar, scroll)
-            sendScript("set_scroll_height", scrollbar, scroll, ROWS * ROW_HEIGHT, 0)
+            sendScript("set_scroll_height", scrollbar, scroll, rows * rowHeight, 0)
             val items = InterfaceDefinitions.getComponent(id, "items")!!.id
-            sendScript("interface_inv_init", items, InventoryDefinitions.get("poh_costume_menu_inv").id, 1, ROWS, 0, -1, "", "", "", "", "")
+            sendScript("interface_inv_init", items, InventoryDefinitions.get("poh_costume_menu_inv").id, 1, rows, 0, -1, "", "", "", "", "")
             refresh()
         }
 
@@ -127,11 +151,11 @@ class HouseCostumeRoom : Script {
             Tables.itemList("house_toy_box.page.items").mapTo(slots) { Slot(it, null, "poh_toy_box") }
             Tables.itemList("house_toy_box_page2.page.items").mapTo(slots) { Slot(it, null, "poh_toy_box_page2") }
         }
-        for ((source, check) in SOURCES[storage] ?: emptyList()) {
+        for ((source, check) in sources[storage] ?: emptyList()) {
             val ids = InventoryDefinitions.get(source).ids ?: continue
             val real = check?.let { InventoryDefinitions.get(it).ids }
             for ((index, id) in ids.withIndex()) {
-                if (id == -1 || ItemDefinitions.get(id).stringId in PAGE_ITEMS) {
+                if (id == -1 || ItemDefinitions.get(id).stringId in pageButtons) {
                     continue
                 }
                 slots.add(Slot(ItemDefinitions.get(id).stringId, real?.getOrNull(index), source))
@@ -144,20 +168,20 @@ class HouseCostumeRoom : Script {
      * When there are more items than rows the last row is used to switch between pages
      */
     private fun pageItems(items: List<Slot>, page: Int): List<Slot> {
-        if (items.size <= ROWS) {
+        if (items.size <= rows) {
             return items
         }
-        return items.drop(page * (ROWS - 1)).take(ROWS - 1)
+        return items.drop(page * (rows - 1)).take(rows - 1)
     }
 
     /**
      * The row of the "More" or "Back" button, "More" is always last and "Back" follows the final item
      */
     private fun pageRow(items: List<Slot>, page: Int): Int? {
-        if (items.size <= ROWS) {
+        if (items.size <= rows) {
             return null
         }
-        return if (hasNextPage(items, page)) ROWS - 1 else pageItems(items, page).size
+        return if (hasNextPage(items, page)) rows - 1 else pageItems(items, page).size
     }
 
     /**
@@ -174,7 +198,7 @@ class HouseCostumeRoom : Script {
 
     private fun name(item: String): String = Rows.getOrNull("house_costume_sets.$item")?.string("name") ?: ItemDefinitions.get(item).name
 
-    private fun hasNextPage(items: List<Slot>, page: Int) = (page + 1) * (ROWS - 1) < items.size
+    private fun hasNextPage(items: List<Slot>, page: Int) = (page + 1) * (rows - 1) < items.size
 
     private fun Player.refresh() {
         val items = slots(get("house_costume_storage") ?: return)
@@ -182,19 +206,19 @@ class HouseCostumeRoom : Script {
         val visible = pageItems(items, page)
         sendInventoryItems(
             inventory = InventoryDefinitions.get("poh_costume_menu_inv").id,
-            size = ROWS,
-            items = IntArray(ROWS * 2) { index ->
-                val row = index.rem(ROWS)
+            size = rows,
+            items = IntArray(rows * 2) { index ->
+                val row = index.rem(rows)
                 val item = visible.getOrNull(row)?.item ?: if (row == pageRow(items, page)) (if (hasNextPage(items, page)) "more" else "back") else null
                 when {
-                    item == null -> if (index < ROWS) -1 else 0
-                    index < ROWS -> ItemDefinitions.get(item).id
+                    item == null -> if (index < rows) -1 else 0
+                    index < rows -> ItemDefinitions.get(item).id
                     else -> 1
                 }
             },
             primary = false,
         )
-        for (index in 1..ROWS) {
+        for (index in 1..rows) {
             val slot = visible.getOrNull(index - 1)
             val item = slot?.item
             val text = when {
@@ -205,30 +229,5 @@ class HouseCostumeRoom : Script {
             interfaces.sendText("poh_costume_room", "name_$index", text)
             interfaces.sendVisibility("poh_costume_room", "overlay_$index", slot != null && !containsVarbit(slot.source, slot.item))
         }
-    }
-
-    companion object {
-        private const val ROWS = 30
-        private const val ROW_HEIGHT = 62
-        private val STORAGE = listOf("magic_wardrobe", "toy_box", "fancy_dress_box", "armour_case")
-        private val PAGE_ITEMS = setOf("more", "back")
-
-        /**
-         * Inventories listing the items each storage holds, with the inventory of real items for treasure trail rewards
-         */
-        private val SOURCES = mapOf(
-            "cape_rack" to listOf("poh_costume_room_capes_inv" to null, "poh_costume_room_capes_inv_page2" to null),
-            "magic_wardrobe" to listOf("poh_costume_room_magic_wardrobe_inv" to null),
-            "fancy_dress_box" to listOf("poh_costume_room_ame_inv" to null),
-            "armour_case" to listOf("poh_costume_room_armour_inv" to null, "poh_costume_room_armour_inv_page2" to null),
-            "treasure_trail_1" to listOf("poh_costume_room_treasure_trail_1_inv" to "poh_costume_room_treasure_trail_1_inv_check", "poh_costume_room_treasure_trail_1a_inv" to "poh_costume_room_treasure_trail_1a_inv_check"),
-            "treasure_trail_2" to listOf("poh_costume_room_treasure_trail_2_inv" to "poh_costume_room_treasure_trail_2_inv_check"),
-            "treasure_trail_3" to listOf("poh_costume_room_treasure_trail_3_inv" to "poh_costume_room_treasure_trail_3_inv_check", "poh_costume_room_treasure_trail_3a_inv" to "poh_costume_room_treasure_trail_3a_inv_check"),
-            "treasure_trail_4" to listOf("poh_costume_room_treasure_trail_4_inv" to "poh_costume_room_treasure_trail_4_inv_check"),
-        )
-        private const val CAPE_RACKS = "oak_cape_rack,teak_cape_rack,mahogany_cape_rack,gilded_cape_rack,marble_cape_rack,magic_cape_rack"
-        private const val MAGIC_WARDROBES = "oak_magic_wardrobe,carved_oak_magic_wardrobe,teak_magic_wardrobe,carved_teak_magic_wardrobe,mahogany_magic_wardrobe,gilded_magic_wardrobe,marble_magic_wardrobe"
-        private const val CHESTS = "oak_toy_box,teak_toy_box,mahogany_toy_box,oak_treasure_chest,teak_treasure_chest,mahogany_treasure_chest," +
-            "oak_fancy_dress_box,teak_fancy_dress_box,mahogany_fancy_dress_box,oak_armour_case,teak_armour_case,mahogany_armour_case"
     }
 }

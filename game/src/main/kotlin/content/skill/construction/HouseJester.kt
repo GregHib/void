@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.Timer
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -31,6 +30,17 @@ import world.gregs.voidps.type.random
  * https://oldschool.runescape.wiki/w/Games_room
  */
 class HouseJester : Script {
+    private val greetDelay = 8
+    private val emoteGap = 6
+    private val copyTime = 16
+    private val pause = 4
+    private val settle = 4
+    private val maxLength = 6
+    private val emotes = listOf("bow", "angry", "wave", "cheer", "beckon", "jump_for_joy", "clap", "raspberry", "salute", "twirl", "dance", "panic")
+
+    private val Player.jester: NPC?
+        get() = get<NPC>("house_jester")?.takeIf { NPCs.indexed(it.index) == it }
+
     init {
         objectOperate("Activate", "jester") { (target) ->
             if (get("house_build_mode", false)) {
@@ -49,7 +59,7 @@ class HouseJester : Script {
             message("Nothing interesting happens.", ChatType.Engine)
         }
 
-        npcOperate("Banish", JESTER) { (target) ->
+        npcOperate("Banish", "poh_mimic") { (target) ->
             val owner = houseOwner()
             if (owner == null || target != owner.jester) {
                 message("That isn't your jester.") // TODO proper message
@@ -68,33 +78,40 @@ class HouseJester : Script {
             }
         }
 
-        timerStart("house_jester") { 1 }
+        timerStart("house_jester") { restart -> if (restart) remove("jester_delay") ?: 1 else greetDelay }
 
         timerTick("house_jester") {
             val jester = jester ?: return@timerTick Timer.CANCEL
-            val wait = get("jester_wait", 0) - 1
-            set("jester_wait", wait)
-            if (wait > 0) {
-                return@timerTick Timer.CONTINUE
-            }
-            when (get("jester_phase", "greet")) {
-                "greet" -> greet(jester)
+            when (get("jester_state", "bow")) {
+                "bow" -> {
+                    jester.anim("emote_bow", delay = 15)
+                    next("greet", 2)
+                }
+                "greet" -> {
+                    jester.say("Let's play a game!")
+                    next("instruct", 2)
+                }
+                "instruct" -> {
+                    jester.say("Everyone copy me!")
+                    next("round", 4)
+                }
+                "round" -> round()
                 "demo" -> demonstrate(jester)
                 "copy" -> finishRound(jester)
-                else -> round(jester)
+                else -> Timer.CANCEL
             }
-            Timer.CONTINUE
         }
 
         timerStop("house_jester") {
-            clear("jester_phase")
+            clear("jester_state")
+            clear("jester_step")
         }
 
         interfaceOption(id = "emotes:*") {
             val owner = houseOwner() ?: return@interfaceOption
             val jester = owner.jester ?: return@interfaceOption
             val round = owner["jester_round", 0]
-            if (owner["jester_phase", ""] != "copy" || get("jester_done", -1) == round) {
+            if (owner["jester_state", ""] != "copy" || get("jester_done", -1) == round) {
                 return@interfaceOption
             }
             val sequence = owner.sequence()
@@ -105,7 +122,7 @@ class HouseJester : Script {
             }
             if (progress + 1 < sequence.size) {
                 set("jester_progress", progress + 1)
-                owner["jester_wait"] = COPY_TIME
+                owner.reschedule(copyTime)
                 return@interfaceOption
             }
             set("jester_done", round)
@@ -115,7 +132,7 @@ class HouseJester : Script {
             jester.anim("emote_cheer")
             // Others get a moment longer to finish before the next round
             owner["jester_solved"] = true
-            owner["jester_wait"] = SETTLE
+            owner.reschedule(settle)
         }
     }
 
@@ -132,16 +149,16 @@ class HouseJester : Script {
         summoner.message("You summon a jester.", ChatType.Filter)
         areaSound("poh_jester_appear", target.tile, radius = 5)
         target.anim("poh_jester_elevate")
-        val tile = target.tile.add(forward(target.rotation).delta.x * 3, forward(target.rotation).delta.y * 3)
+        val forward = target.direction().rotate(-2)
+        val tile = target.tile.add(forward.delta.x * 3, forward.delta.y * 3)
         areaGfx("poh_jester_appear", tile, height = 128)
-        val jester = NPCs.add(JESTER, tile, forward(target.rotation).inverse(), ticks = -1, owner = this)
+        val jester = NPCs.add("poh_mimic", tile, forward.inverse(), ticks = -1, owner = this)
         set("house_jester", jester)
         set("jester_summoner", summoner.accountName)
         set("jester_tile", target.tile)
         set("jester_level", 0)
         set("jester_round", 0)
-        set("jester_phase", "greet")
-        set("jester_wait", GREET_DELAY)
+        set("jester_state", "bow")
         for (player in participants()) {
             player.clear("jester_score")
         }
@@ -149,41 +166,36 @@ class HouseJester : Script {
         softTimers.start("house_jester")
     }
 
-    private fun Player.greet(jester: NPC) {
-        when (get("jester_step", 0)) {
-            0 -> {
-                jester.anim("emote_bow", delay = 15)
-                set("jester_step", 1)
-                set("jester_wait", 2)
-            }
-            1 -> {
-                jester.say("Let's play a game!")
-                set("jester_step", 2)
-                set("jester_wait", 2)
-            }
-            else -> {
-                jester.say("Everyone copy me!")
-                clear("jester_step")
-                set("jester_wait", 4)
-                set("jester_phase", "round")
-            }
-        }
+    /**
+     * Moves the jester on to [state] after [ticks]
+     */
+    private fun Player.next(state: String, ticks: Int): Int {
+        set("jester_state", state)
+        return ticks
     }
 
     /**
-     * Picks a new sequence of emotes, one longer for every point scored up to [MAX_LENGTH]
+     * Pushes the end of the current state back to [ticks] from now
      */
-    private fun Player.round(jester: NPC) {
-        val length = (get("jester_level", 0) + 1).coerceAtMost(MAX_LENGTH)
-        set("jester_round", get("jester_round", 0) + 1)
-        clear("jester_solved")
-        set("jester_sequence", List(length) { EMOTES[random.nextInt(EMOTES.size)] })
-        set("jester_step", 0)
-        set("jester_phase", "demo")
-        set("jester_wait", 1)
+    private fun Player.reschedule(ticks: Int) {
+        set("jester_delay", ticks)
+        softTimers.clear("house_jester")
+        softTimers.start("house_jester", restart = true)
     }
 
-    private fun Player.demonstrate(jester: NPC) {
+    /**
+     * Picks a new sequence of emotes, one longer for every point scored up to [maxLength]
+     */
+    private fun Player.round(): Int {
+        val length = (get("jester_level", 0) + 1).coerceAtMost(maxLength)
+        set("jester_round", get("jester_round", 0) + 1)
+        clear("jester_solved")
+        set("jester_sequence", List(length) { emotes[random.nextInt(emotes.size)] })
+        set("jester_step", 0)
+        return next("demo", 1)
+    }
+
+    private fun Player.demonstrate(jester: NPC): Int {
         val sequence = sequence()
         val step = get("jester_step", 0)
         if (step >= sequence.size) {
@@ -191,19 +203,17 @@ class HouseJester : Script {
             for (player in participants()) {
                 player["jester_progress"] = 0
             }
-            set("jester_phase", "copy")
-            set("jester_wait", COPY_TIME)
-            return
+            return next("copy", copyTime)
         }
         jester.anim("emote_${sequence[step]}")
         set("jester_step", step + 1)
-        set("jester_wait", EMOTE_GAP)
+        return emoteGap
     }
 
     /**
      * Ends the round when the time is up, anyone who hasn't finished the sequence got it wrong
      */
-    private fun Player.finishRound(jester: NPC) {
+    private fun Player.finishRound(jester: NPC): Int {
         val round = get("jester_round", 0)
         for (player in participants()) {
             if (player["jester_done", -1] != round) {
@@ -215,15 +225,10 @@ class HouseJester : Script {
         } else {
             jester.anim("emote_jump_for_joy")
         }
-        nextRound(PAUSE)
+        return next("round", pause)
     }
 
     private fun Player.participants() = Players.filter { it.get<String>("house_owner") == accountName }
-
-    private fun Player.nextRound(ticks: Int) {
-        set("jester_phase", "round")
-        set("jester_wait", ticks)
-    }
 
     private fun Player.sequence(): List<String> = get("jester_sequence", emptyList())
 
@@ -245,26 +250,5 @@ class HouseJester : Script {
         for (player in participants()) {
             player.clear("jester_score")
         }
-    }
-
-    private fun forward(rotation: Int) = when (rotation and 0x3) {
-        0 -> Direction.WEST
-        1 -> Direction.NORTH
-        2 -> Direction.EAST
-        else -> Direction.SOUTH
-    }
-
-    companion object {
-        private const val JESTER = "3955"
-        private const val GREET_DELAY = 8
-        private const val EMOTE_GAP = 6
-        private const val COPY_TIME = 16
-        private const val PAUSE = 4
-        private const val SETTLE = 4
-        private const val MAX_LENGTH = 6
-        private val EMOTES = listOf("bow", "angry", "wave", "cheer", "beckon", "jump_for_joy", "clap", "raspberry", "salute", "twirl", "dance", "panic")
-
-        private val Player.jester: NPC?
-            get() = get<NPC>("house_jester")?.takeIf { NPCs.indexed(it.index) == it }
     }
 }

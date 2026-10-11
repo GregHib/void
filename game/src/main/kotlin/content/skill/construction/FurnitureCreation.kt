@@ -1,31 +1,31 @@
 package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
-import content.skill.construction.House.Companion.GROUND_LEVEL
-import content.skill.construction.House.Companion.addHouseFurniture
-import content.skill.construction.House.Companion.connectStairs
-import content.skill.construction.House.Companion.exitPortals
 import content.skill.construction.House.Companion.freeBuild
-import content.skill.construction.House.Companion.furnishRoom
-import content.skill.construction.House.Companion.hotspot
 import content.skill.construction.House.Companion.houseBase
-import content.skill.construction.House.Companion.houseFurniture
-import content.skill.construction.House.Companion.houseRoom
-import content.skill.construction.House.Companion.houseStairs
 import content.skill.construction.House.Companion.inOwnHouse
-import content.skill.construction.House.Companion.ladders
-import content.skill.construction.House.Companion.loadHouse
-import content.skill.construction.House.Companion.placeFurniture
-import content.skill.construction.House.Companion.removeHouseFurniture
-import content.skill.construction.House.Companion.removeHouseStairs
-import content.skill.construction.House.Companion.removeLadder
-import content.skill.construction.House.Companion.roomAbove
-import content.skill.construction.House.Companion.roomBelow
-import content.skill.construction.House.Companion.roomLevel
-import content.skill.construction.House.Companion.roomPosition
-import content.skill.construction.House.Companion.stairsDown
-import content.skill.construction.House.Companion.trapdoors
-import org.rsmod.game.pathfinder.flag.CollisionFlag
+import content.skill.construction.House.Companion.isFloorFree
+import content.skill.construction.HouseConnections.connectStairs
+import content.skill.construction.HouseConnections.houseStairs
+import content.skill.construction.HouseConnections.ladders
+import content.skill.construction.HouseConnections.removeHouseStairs
+import content.skill.construction.HouseConnections.removeLadder
+import content.skill.construction.HouseConnections.stairsDown
+import content.skill.construction.HouseConnections.trapdoors
+import content.skill.construction.HouseGrid.GROUND_LEVEL
+import content.skill.construction.HouseGrid.roomAbove
+import content.skill.construction.HouseGrid.roomBelow
+import content.skill.construction.HouseGrid.roomLevel
+import content.skill.construction.HouseGrid.roomPosition
+import content.skill.construction.HouseHotspots.addHouseFurniture
+import content.skill.construction.HouseHotspots.exitPortals
+import content.skill.construction.HouseHotspots.hotspot
+import content.skill.construction.HouseHotspots.houseFurniture
+import content.skill.construction.HouseHotspots.removeHouseFurniture
+import content.skill.construction.HouseLoader.furnishRoom
+import content.skill.construction.HouseLoader.loadHouse
+import content.skill.construction.HouseLoader.placeFurniture
+import content.skill.construction.HouseRooms.houseRoom
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -50,8 +50,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Zone
 
 /**
@@ -59,6 +57,9 @@ import world.gregs.voidps.type.Zone
  * Workbenches make flatpacks which can be built in place of the furniture's materials.
  */
 class FurnitureCreation : Script {
+    private val combatRings = setOf("boxing_ring", "fencing_ring", "combat_ring", "ranging_pedestals", "balance_beam")
+    private val nailTypes = listOf("bronze_nails", "iron_nails", "steel_nails", "black_nails", "mithril_nails", "adamant_nails", "rune_nails")
+
     init {
         objectOperate("Build", "*_space*") { (target) ->
             val hotspot = Rows.getOrNull("house_hotspots.${target.id}") ?: return@objectOperate
@@ -87,7 +88,7 @@ class FurnitureCreation : Script {
             openMenu(furniture.drop(furniture.indexOf(current) + 1))
         }
 
-        objectOperate("Work-at", WORKBENCHES) { (target) ->
+        objectOperate("Work-at", "wooden_workbench,oak_workbench,steel_framed_bench,bench_with_vice,bench_with_lathe") { (target) ->
             set("house_workbench", target.id)
             open("flatpack_creation")
         }
@@ -174,13 +175,11 @@ class FurnitureCreation : Script {
                 }
                 when (furniture) {
                     houseStairs(position) -> {
-                        // Staircases are removed from both floors
                         removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
                         removeHouseFurniture(position, hotspot)
                         loadHouse(base, buildMode = true)
                     }
                     in trapdoors, in ladders -> {
-                        // Trapdoors and ladders are removed from both floors
                         removeLadder(position, furniture)
                         removeHouseFurniture(position, hotspot)
                         loadHouse(base, buildMode = true)
@@ -197,9 +196,6 @@ class FurnitureCreation : Script {
         }
     }
 
-    /**
-     * Opens the furniture creation menu listing [furniture]
-     */
     private fun Player.openMenu(furniture: List<String>) {
         inventories.inventory("poh_furniture_menu_inv").transaction {
             clear()
@@ -218,7 +214,7 @@ class FurnitureCreation : Script {
         val materials = if (row == null) emptyList() else materials(row)
         interfaces.sendText("furniture_creation", "name_$slot", if (furniture == null) "" else ItemDefinitions.get(furniture).name)
         val lines = materialLines(materials)
-        for (line in 1..MATERIAL_LINES) {
+        for (line in 1..4) {
             interfaces.sendText("furniture_creation", "material_${slot}_$line", lines.getOrElse(line - 1) { "" })
         }
         interfaces.sendText("furniture_creation", "level_$slot", if (row == null) "" else "Level ${row.int("level")}")
@@ -228,17 +224,14 @@ class FurnitureCreation : Script {
     }
 
     /**
-     * Text for each of the menu's [MATERIAL_LINES] material lines, the last lines hold two materials each when there are too many for one per line
+     * Text for each of the menu's [materialRows] material lines, the last lines hold two materials each when there are too many for one per line
      */
     private fun materialLines(materials: List<Item>): List<String> {
-        val leading = (MATERIAL_LINES * 2 - materials.size).coerceIn(0, MATERIAL_LINES)
+        val leading = (8 - materials.size).coerceIn(0, 4)
         val lines = materials.take(leading).map { listOf(it) } + materials.drop(leading).chunked(2)
         return lines.map { line -> line.joinToString(", ") { "${it.amount} ${it.def.name}" } }
     }
 
-    /**
-     * Makes a flatpack of [furniture] at a [workbench] which can make furniture of its level
-     */
     private fun Player.makeFlatpack(workbench: String, furniture: String) {
         val row = Rows.getOrNull("house_furniture.$furniture") ?: return
         val flatpack = row.itemOrNull("flatpack") ?: return
@@ -306,7 +299,6 @@ class FurnitureCreation : Script {
             return
         }
         val flatpack = row.itemOrNull("flatpack")
-        // Materials are used before flatpacks
         val packed = !freeBuild && flatpack != null && !inventory.contains(materials(row)) && inventory.contains(flatpack)
         if (packed) {
             if (!inventory.remove(flatpack)) {
@@ -333,7 +325,7 @@ class FurnitureCreation : Script {
             placeFurniture(target.tile.zone, hotspot, furniture)
         }
         anim(if (target.shape < ObjectShape.CENTRE_PIECE_STRAIGHT) "human_poh_build_wall" else "construction_build")
-        if (furniture in COMBAT_RINGS && tile.zone == target.tile.zone) {
+        if (furniture in combatRings && tile.zone == target.tile.zone) {
             moveToEdge()
         }
         if (!freeBuild && !packed) {
@@ -347,8 +339,7 @@ class FurnitureCreation : Script {
     private fun Player.moveToEdge() {
         val corner = tile.zone.tile
         val edge = tile.zone.toCuboid().filter { it.x == corner.x || it.y == corner.y || it.x == corner.x + 7 || it.y == corner.y + 7 }
-        val free = edge.filter { !Collisions.check(it, CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT) }
-        tele(free.minByOrNull { it.distanceTo(tile) } ?: return)
+        tele(edge.filter(::isFloorFree).minByOrNull { it.distanceTo(tile) } ?: return)
     }
 
     /**
@@ -402,12 +393,5 @@ class FurnitureCreation : Script {
         }
         val type = nailTypes.firstOrNull { inventory.contains(it, nails) } ?: nailTypes.first()
         return materials + Item(type, nails)
-    }
-
-    companion object {
-        private const val MATERIAL_LINES = 4
-        private val COMBAT_RINGS = setOf("boxing_ring", "fencing_ring", "combat_ring", "ranging_pedestals", "balance_beam")
-        private const val WORKBENCHES = "wooden_workbench,oak_workbench,steel_framed_bench,bench_with_vice,bench_with_lathe"
-        private val nailTypes = listOf("bronze_nails", "iron_nails", "steel_nails", "black_nails", "mithril_nails", "adamant_nails", "rune_nails")
     }
 }

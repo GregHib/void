@@ -35,19 +35,22 @@ import java.util.concurrent.TimeUnit
  */
 class HouseStudy : Script {
     init {
-        objectOperate("Study", LECTERNS) { (target) ->
+        val lecterns = "oak_lectern,eagle_lectern,demon_lectern,teak_eagle_lectern,teak_demon_lectern,mahogany_eagle_lectern,mahogany_demon_lectern"
+        objectOperate("Study", lecterns) { (target) ->
             set("house_lectern", target.id)
-            set("house_lectern_tier", LECTERNS.split(",").indexOf(target.id) + 1)
+            set("house_lectern_tier", lecterns.split(",").indexOf(target.id) + 1)
             anim("study_lectern")
             open("teleport_tablets")
         }
 
-        itemOnObjectOperate(STAVES, "crystal_of_power") { (_, item, slot) ->
+        val elements = listOf("air", "water", "earth", "fire")
+        val staves = StaffType.entries.flatMap { type -> elements.map { type.id(it) } }.joinToString(",")
+        itemOnObjectOperate(staves, "crystal_of_power") { (_, item, slot) ->
             val (type, element) = StaffType.entries.firstNotNullOfOrNull { type ->
-                ELEMENTS.firstOrNull { type.id(it) == item.id }?.let { type to it }
+                elements.firstOrNull { type.id(it) == item.id }?.let { type to it }
             } ?: return@itemOnObjectOperate
             choice("Change to which element?") {
-                for (new in ELEMENTS) {
+                for (new in elements) {
                     if (new != element) {
                         option(new.replaceFirstChar { it.uppercase() }) {
                             changeElement(slot, item.id, type.id(new), "${new}_rune", type.cost)
@@ -129,7 +132,7 @@ class HouseStudy : Script {
             return
         }
         val spell = Tables.string("house_tablets.$tablet.spell")
-        val level = SpellRunes.magicLevel(BOOK, spell) ?: return
+        val level = SpellRunes.magicLevel("modern_spellbook", spell) ?: return
         if (!has(Skill.Magic, level, message = true)) {
             return
         }
@@ -137,7 +140,7 @@ class HouseStudy : Script {
             message("You need some soft clay to use this lectern.")
             return
         }
-        val runes = SpellRunes.requiredItems(BOOK, spell)?.toMutableMap() ?: return
+        val runes = SpellRunes.requiredItems("modern_spellbook", spell)?.toMutableMap() ?: return
         inventory.transaction {
             remove("soft_clay")
             removeItems(this@makeTablets, runes, spell)
@@ -181,12 +184,5 @@ class HouseStudy : Script {
         Basic(0, { "staff_of_$it" }),
         Battle(100, { "${it}_battlestaff" }),
         Mystic(1000, { "mystic_${it}_staff" }),
-    }
-
-    companion object {
-        private const val BOOK = "modern_spellbook"
-        private val ELEMENTS = listOf("air", "water", "earth", "fire")
-        private val STAVES = StaffType.entries.flatMap { type -> ELEMENTS.map { type.id(it) } }.joinToString(",")
-        private const val LECTERNS = "oak_lectern,eagle_lectern,demon_lectern,teak_eagle_lectern,teak_demon_lectern,mahogany_eagle_lectern,mahogany_demon_lectern"
     }
 }

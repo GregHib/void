@@ -23,14 +23,13 @@ class HouseElementalBalance : Script {
                 return@objectOperate
             }
             areaSound("poh_sphere_powerup", target.tile, radius = 5)
-            val sphere = NPCs.add(SPHERE, target.tile, Direction.SOUTH)
+            val sphere = NPCs.add("poh_elemental_balance_1", target.tile, Direction.SOUTH)
             sphere["balance_id"] = target.id
-            // Npcs spawn at the start of the next tick, so the balance stays until then rather than leaving a gap
             delay(1)
             target.replace("invisible_seat", collision = false)
         }
 
-        npcOperate("Banish", SPHERE) { (target) ->
+        npcOperate("Banish", "poh_elemental_balance_1") { (target) ->
             banish(target)
         }
     }
@@ -47,9 +46,5 @@ class HouseElementalBalance : Script {
             }
             option("No")
         }
-    }
-
-    companion object {
-        private const val SPHERE = "4021"
     }
 }

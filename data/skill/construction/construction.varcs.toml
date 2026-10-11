@@ -6,15 +6,17 @@ format = "int"
 id = 943
 format = "int"
 
-# Bit set of the books unlocked in the library bookcase, 32 books per varc in house_books enum order
 [house_books_1]
 id = 1040
-format = "int"
+format = "bitwise"
+values = [ "construction_guide", "game_book", "diary_witchs_house", "instruction_manual", "book_on_chemicals", "battered_book", "fenk_journal", "varmens_notes", "goblin_symbol_book", "book_of_haricanto", "translation_manual", "translation", "translation_book", "gloughs_journal", "journal_horror_from_the_deep", "diary_horror_from_the_deep", "manual", "shamans_tome", "binding_book", "ghrims_book", "astronomy_book", "old_journal", "history_of_iban", "the_big_book_of_bangs", "cadarn_lineage", "crystal_of_seren", "diary_shades_of_mortton", "the_shield_of_arrav_book", "guide_book", "book_on_baxtorian", "dwarven_lore", "embalming_manual" ]
 
 [house_books_2]
 id = 1041
-format = "int"
+format = "bitwise"
+values = [ "demonic_tome", "crumbling_tome", "book_of_portraiture", "the_ratpits_manual", "abyssal_book", "ederns_journal", "prifddinas_history", "eastern_discovery", "eastern_settlement", "the_great_divide", "journal_making_history", "giannes_cook_book", "cocktail_guide", "security_book", "stronghold_notes", "moonclan_manual", "hermans_book", "pie_recipe_book", "brewin_guide", "arena_book", "burnt_diary_5", "lift_manual", "little_book_o_piracy", "sinkeths_diary", "dagonhai_history", "tarns_diary", "bird_book", "feathered_journal", "farming_manual", "queen_help_book", "prayer_book", "histories_of_the_hallowland" ]
 
 [house_books_3]
 id = 1042
-format = "int"
+format = "bitwise"
+values = [ "the_sleeping_seven", "modern_day_morytania", "beaten_book", "a_handwritten_book_the_eyes_of_glouphrie", "clockwork_book", "goblin_book", "barbarian_skills", "my_notes", "explorers_notes", "glassblowing_book", "yewnocks_notes", "scabaras_research", "tzhaar_tourist_guide", "ancient_hymnal", "combination_runes_book", "roddecks_diary", "manual_unstable_foundations", "void_knight_book", "void_pest_research_notes", "gunnars_ground_post_quest", "miners_diary" ]

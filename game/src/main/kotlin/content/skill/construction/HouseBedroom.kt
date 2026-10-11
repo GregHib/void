@@ -19,7 +19,7 @@ class HouseBedroom : Script {
             changeShoes()
         }
 
-        objectOperate("Change-clothes", WARDROBES) {
+        objectOperate("Change-clothes", "oak_drawers,oak_wardrobe,teak_drawers,teak_wardrobe,mahogany_wardrobe,gilded_wardrobe") {
             choice("What would you like to change?") {
                 // TODO proper message
                 option("Clothes") {
@@ -31,7 +31,7 @@ class HouseBedroom : Script {
             }
         }
 
-        objectOperate("Preen", DRESSERS) {
+        objectOperate("Preen", "shaving_stand,oak_shaving_stand,oak_dresser,teak_dresser,fancy_teak_dresser,mahogany_dresser,gilded_dresser") {
             changeHair()
         }
     }
@@ -58,10 +58,5 @@ class HouseBedroom : Script {
             return
         }
         openDressingRoom("hairdressers_salon")
-    }
-
-    companion object {
-        private const val WARDROBES = "oak_drawers,oak_wardrobe,teak_drawers,teak_wardrobe,mahogany_wardrobe,gilded_wardrobe"
-        private const val DRESSERS = "shaving_stand,oak_shaving_stand,oak_dresser,teak_dresser,fancy_teak_dresser,mahogany_dresser,gilded_dresser"
     }
 }

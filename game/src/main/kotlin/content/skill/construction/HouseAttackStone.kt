@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Direction
 
 /**
  * Games room attack stones: set up a stone to hit until it cracks and finally shatters.
@@ -33,16 +32,24 @@ import world.gregs.voidps.type.Direction
  * https://oldschool.runescape.wiki/w/Games_room
  */
 class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val styleDefinitions: WeaponStyleDefinitions) : Script {
+    private val hitpoints = 400
+    private val experienceRates = doubleArrayOf(0.25, 0.5, 5.0)
+
     init {
-        objectOperate("Set-up", STONES.keys.joinToString(",")) { (target) ->
+        objectOperate("Set-up", "*_attack_stone") { (target) ->
             if (get("house_build_mode", false)) {
                 message("You cannot set up an attack stone while in building mode.")
                 return@objectOperate
             }
-            val type = STONES.getValue(target.id)
+            val type = when (target.id) {
+                "limestone_attack_stone" -> 1
+                "marble_attack_stone" -> 2
+                else -> 0
+            }
             message("You activate the stone.", ChatType.Filter)
             areaSound("poh_setup_stone", target.tile, radius = 5)
-            val stone = NPCs.add((FIRST + type * IDS_PER_STONE).toString(), target.tile, forward(target.rotation))
+            // Face the same way as the stone object so the npc doesn't turn on spawn
+            val stone = NPCs.add("poh_tbt_limestone_${type}00", target.tile, target.direction().rotate(-2))
             stone["stone_id"] = target.id
             stone["stone_type"] = type
             // Npcs spawn at the start of the next tick, so the stone stays until then rather than leaving a gap
@@ -50,7 +57,7 @@ class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val
             target.replace("invisible_seat", collision = false)
         }
 
-        npcOperate("Hit", (FIRST..LAST).joinToString(",")) { (target) ->
+        npcOperate("Hit", "poh_tbt_limestone_*") { (target) ->
             hit(target)
         }
     }
@@ -71,14 +78,14 @@ class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val
         val offensiveType = Weapon.type(this, weapon)
         val before: Int = stone["stone_damage", 0]
         val roll = Damage.roll(this, stone, offensiveType, weapon)
-        val damage = if (roll < 0) 0 else Damage.modify(this, stone, offensiveType, roll, weapon, "").coerceIn(0, HITPOINTS - before)
+        val damage = if (roll < 0) 0 else Damage.modify(this, stone, offensiveType, roll, weapon, "").coerceIn(0, hitpoints - before)
         val total = before + damage
         stone["stone_damage"] = total
-        val remaining = (HITPOINTS - total).coerceAtLeast(0)
-        stone.visuals.hits.add(HitSplat(damage, if (damage == 0) HitSplat.Mark.Missed else Weapon.mark(offensiveType), remaining * 255 / HITPOINTS, source = index))
+        val remaining = (hitpoints - total).coerceAtLeast(0)
+        stone.visuals.hits.add(HitSplat(damage, if (damage == 0) HitSplat.Mark.Missed else Weapon.mark(offensiveType), remaining * 255 / hitpoints, source = index))
         stone.flagHits()
-        grantExperience(damage * EXPERIENCE[type])
-        if (total >= HITPOINTS) {
+        grantExperience(damage * experienceRates[type])
+        if (total >= hitpoints) {
             message("You shatter the stone!", ChatType.Filter)
             areaSound("poh_stone_shatter", stone.tile, radius = 5)
             val id: String = stone["stone_id", ""]
@@ -86,18 +93,10 @@ class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val
             GameObjects.findOrNull(stone.tile, "invisible_seat")?.replace(id)
             return
         }
-        val stage = total * STAGES / HITPOINTS
-        if (stage != before * STAGES / HITPOINTS) {
-            stone.transform((FIRST + type * IDS_PER_STONE + stage * IDS_PER_STAGE).toString())
+        val stage = total * 4 / hitpoints
+        if (stage != before * 4 / hitpoints) {
+            stone.transform("poh_tbt_limestone_${type}${stage}0")
         }
-    }
-
-    // The direction the stone object faces, so the npc replacing it doesn't turn on spawn
-    private fun forward(rotation: Int) = when (rotation and 0x3) {
-        0 -> Direction.WEST
-        1 -> Direction.NORTH
-        2 -> Direction.EAST
-        else -> Direction.SOUTH
     }
 
     /**
@@ -117,24 +116,5 @@ class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val
                 exp(Skill.Defence, experience / 3)
             }
         }
-    }
-
-    companion object {
-        private val STONES = mapOf(
-            "clay_attack_stone" to 0,
-            "limestone_attack_stone" to 1,
-            "marble_attack_stone" to 2,
-        )
-
-        // The first combat stone npc with something to hit, each stone has four npcs for each of its four stages
-        private const val FIRST = 3957
-        private const val LAST = 4020
-        private const val IDS_PER_STAGE = 4
-        private const val IDS_PER_STONE = 16
-        private const val STAGES = 4
-
-        // Damage needed to shatter a stone in tenths of a hit point, each point of damage is worth 2.5% of the experience of destroying the stone
-        private const val HITPOINTS = 400
-        private val EXPERIENCE = doubleArrayOf(0.25, 0.5, 5.0)
     }
 }

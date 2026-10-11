@@ -27,13 +27,15 @@ import java.time.ZoneOffset
  * Furniture which can be used once built: storage to take items from, barrels to pour drinks, fireplaces and lamps to light and clocks to read.
  */
 class HouseFurniture : Script {
+    private val lights = "clay_fireplace,stone_fireplace,marble_fireplace,wooden_torches,steel_torches,steel_candlesticks,gold_candlesticks,incense_burners,mahogany_burners,marble_burners"
+
     init {
-        objectOperate("Search", STORAGE) { (target) ->
+        objectOperate("Search", "wooden_larder,oak_larder,teak_larder,wooden_shelves_*,oak_shelves_*,teak_shelves_*,tool_store_*,glove_rack,weapons_rack,extra_weapons_rack") { (target) ->
             val items = Tables.itemListOrNull("house_storage.${target.id}.items") ?: return@objectOperate
             take(items, Rows.getOrNull("house_storage.${target.id}")?.stringOrNull("title"))
         }
 
-        itemOnObjectOperate("beer_glass", BARRELS) { (target) ->
+        itemOnObjectOperate("beer_glass", "beer_barrel,cider_barrel,asgarnian_ale_barrel,greenmans_ale_barrel,dragon_bitter_barrel,chefs_delight_barrel") { (target) ->
             val row = Rows.getOrNull("house_barrels.${target.id}") ?: return@itemOnObjectOperate
             val drink = row.item("drink")
             if (!inventory.replace("beer_glass", drink)) {
@@ -43,17 +45,17 @@ class HouseFurniture : Script {
             message("You fill the glass with ${ItemDefinitions.get(drink).name.lowercase()}.") // TODO proper message
         }
 
-        objectOperate("Light", LIGHTS) { (target) ->
+        objectOperate("Light", lights) { (target) ->
             light(target)
         }
 
-        itemOnObjectOperate("tinderbox,logs,clean_marrentill", LIGHTS) { (target, item) ->
+        itemOnObjectOperate("tinderbox,logs,clean_marrentill", lights) { (target, item) ->
             if (item.id == "tinderbox" || item.id == Tables.itemOrNull("house_lights.${target.id}.item")) {
                 light(target)
             }
         }
 
-        objectOperate("Read", CLOCKS) {
+        objectOperate("Read", "oak_clock,teak_clock,gilded_clock") {
             message(clockTime(LocalTime.now(ZoneOffset.UTC).minute))
         }
     }
@@ -104,11 +106,7 @@ class HouseFurniture : Script {
     }
 
     companion object {
-        private const val STORAGE = "wooden_larder,oak_larder,teak_larder,wooden_shelves_*,oak_shelves_*,teak_shelves_*,tool_store_*,glove_rack,weapons_rack,extra_weapons_rack"
-        private const val BARRELS = "beer_barrel,cider_barrel,asgarnian_ale_barrel,greenmans_ale_barrel,dragon_bitter_barrel,chefs_delight_barrel"
-        private const val LIGHTS = "clay_fireplace,stone_fireplace,marble_fireplace,wooden_torches,steel_torches,steel_candlesticks,gold_candlesticks,incense_burners,mahogany_burners,marble_burners"
         private val burners = setOf("incense_burners_lit", "mahogany_burners_lit", "marble_burners_lit")
-        private const val CLOCKS = "oak_clock,teak_clock,gilded_clock"
 
         /**
          * Pick one of [options], four at a time with a "More..." option when there are too many for one choice.

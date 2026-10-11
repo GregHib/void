@@ -4,15 +4,15 @@ import WorldTest
 import containsMessage
 import content.quest.instance
 import content.quest.joinInstance
-import content.skill.construction.House.Companion.DUNGEON_LEVEL
-import content.skill.construction.House.Companion.GROUND_LEVEL
-import content.skill.construction.House.Companion.START_ROOM
-import content.skill.construction.House.Companion.addHouseFurniture
-import content.skill.construction.House.Companion.addHouseRoom
-import content.skill.construction.House.Companion.houseFurnitureIds
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.roomPosition
-import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.HouseGrid.DUNGEON_LEVEL
+import content.skill.construction.HouseGrid.GROUND_LEVEL
+import content.skill.construction.HouseGrid.START_ROOM
+import content.skill.construction.HouseGrid.roomPosition
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseHotspots.addHouseFurniture
+import content.skill.construction.HouseHotspots.houseFurnitureIds
+import content.skill.construction.HouseRooms.addHouseRoom
 import content.skill.construction.RoomCreation.Companion.canBuildRoom
 import dialogueOption
 import intEntry
@@ -134,7 +134,7 @@ class HouseRoomsTest : WorldTest() {
         player.addHouseRoom("menagerie", room)
         player.inventories.inventory("pet_house").add("pet_cat")
         player.enterPortal(1)
-        val pets = { NPCs.filter { it.id.startsWith("menagerie_pet_") } }
+        val pets = { NPCs.filter { it.id == "poh_growncat" } }
         tick(5)
 
         assertEquals(1, pets().size)

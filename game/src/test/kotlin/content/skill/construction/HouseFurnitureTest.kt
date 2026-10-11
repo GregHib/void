@@ -21,7 +21,9 @@ import walk
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.Approachable
@@ -710,14 +712,13 @@ class HouseFurnitureTest : WorldTest() {
             player["house_owner"] = player.accountName // Walking up to the furniture leaves the house
             !player.hasOpen("poh_bookcase")
         }
-        val slot = 3
-        assertEquals(1 shl slot, player["house_books_1", 0] and (1 shl slot))
-        // The Shield of Arrav (slot 27) isn't unlocked
-        assertEquals(0, player["house_books_1", 0] and (1 shl 27))
+        val books: List<String> = player["house_books_1", emptyList()]
+        assertTrue(book in books)
+        assertFalse("the_shield_of_arrav_book" in books)
         // Books without a quest are always unlocked
-        assertEquals(1, player["house_books_1", 0] and 1)
+        assertTrue("construction_guide" in books)
 
-        player.interfaceOption("poh_bookcase", "books", "Take", item = Item(book), slot = slot)
+        player.interfaceOption("poh_bookcase", "books", "Take", item = Item(book), slot = 3)
         tick()
 
         assertEquals(1, player.inventory.count(book))
@@ -851,7 +852,7 @@ class HouseFurnitureTest : WorldTest() {
 
         assertEquals("Q", player.get<String>("hangman_guessed"))
         assertEquals(1, player.get<Int>("hangman_wrong"))
-        assertEquals("3945", gallows.transformId)
+        assertEquals("poh_hangman_armour2", gallows.transformId)
         assertFalse(player.hasOpen("poh_hangman"))
         assertTrue(player.containsMessage("Hangman word: ______"))
 
@@ -921,10 +922,10 @@ class HouseFurnitureTest : WorldTest() {
         val stone = createObject("clay_attack_stone", tile)
 
         player.objectOption(stone, "Set-up")
-        tickIf { NPCs.findOrNull(tile, "3957") == null }
-        val npc = NPCs.find(tile, "3957")
+        tickIf { NPCs.findOrNull(tile, "poh_tbt_limestone_000") == null }
+        val npc = NPCs.find(tile, "poh_tbt_limestone_000")
         var hits = 0
-        while (NPCs.at(tile).any { it.id.toIntOrNull() in 3957..3972 } && hits++ < 400) {
+        while (NPCs.at(tile).any { it.id.startsWith("poh_tbt_limestone_") } && hits++ < 400) {
             player.npcOption(npc, "Hit")
             tick(3)
         }
@@ -959,7 +960,7 @@ class HouseFurnitureTest : WorldTest() {
         player.objectOption(jester, "Activate")
         tickIf { player.get<NPC>("house_jester") == null }
         val npc = player.get<NPC>("house_jester")!!
-        assertEquals("3955", npc.id)
+        assertEquals("poh_mimic", npc.id)
         assertNotNull(GameObjects.findOrNull(jester.tile, "jester_active"))
 
         player.tele(npc.tile.addY(-1))
@@ -970,7 +971,31 @@ class HouseFurnitureTest : WorldTest() {
         tick(2)
 
         assertNotNull(GameObjects.findOrNull(jester.tile, "jester"))
-        assertTrue(NPCs.at(npc.tile).none { it.id == "3955" })
+        assertTrue(NPCs.at(npc.tile).none { it.id == "poh_mimic" })
+    }
+
+    @Test
+    fun `Copying the jester scores a point`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        val jester = createObject("jester", emptyTile.addY(1))
+
+        player.objectOption(jester, "Activate")
+        tickIf { player["jester_state", ""] != "copy" }
+        val sequence: List<String> = player["jester_sequence", emptyList()]
+        player["house_owner"] = player.accountName // Walking up to the jester leaves the house
+        player.open("emotes")
+        for (emote in sequence) {
+            val component = InterfaceDefinitions.getComponent("emotes", emote)!!
+            player.interfaceOption("emotes", emote, component.options!!.first { it != null }!!)
+            tick()
+            // Copies count once the emote has finished playing
+            tickIf { player.suspension != null }
+        }
+
+        assertEquals(1, player["jester_score", 0])
+        tickIf { player["jester_state", ""] != "demo" }
+        assertEquals(2, player.get<List<String>>("jester_sequence")!!.size)
     }
 
     @Test
@@ -980,15 +1005,15 @@ class HouseFurnitureTest : WorldTest() {
         val balance = createObject("elemental_balance_1", tile)
 
         player.objectOption(balance, "Activate")
-        tickIf { NPCs.findOrNull(tile, "4021") == null }
-        val sphere = NPCs.find(tile, "4021")
+        tickIf { NPCs.findOrNull(tile, "poh_elemental_balance_1") == null }
+        val sphere = NPCs.find(tile, "poh_elemental_balance_1")
 
         player.npcOption(sphere, "Banish")
         tickIf { player.dialogue == null }
         player.dialogueOption("line1")
         tick(5)
 
-        assertNull(NPCs.findOrNull(tile, "4021"))
+        assertNull(NPCs.findOrNull(tile, "poh_elemental_balance_1"))
         assertNotNull(GameObjects.findOrNull(tile, "elemental_balance_1"))
     }
 
@@ -1104,9 +1129,9 @@ class HouseFurnitureTest : WorldTest() {
         val tile = emptyTile.addY(1)
         val stone = createObject("clay_attack_stone", tile)
         player.objectOption(stone, "Set-up")
-        tickIf { NPCs.findOrNull(tile, "3957") == null }
+        tickIf { NPCs.findOrNull(tile, "poh_tbt_limestone_000") == null }
         tick(2)
-        val npc = NPCs.find(tile, "3957")
+        val npc = NPCs.find(tile, "poh_tbt_limestone_000")
         assertNull(GameObjects.findOrNull(tile, "clay_attack_stone"))
 
         player.npcOption(npc, "Hit")

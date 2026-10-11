@@ -22,6 +22,11 @@ import world.gregs.voidps.type.random
  * https://oldschool.runescape.wiki/w/Quest_hall
  */
 class HouseHalls : Script {
+    private val insultAdjectives = listOf("boring", "fat", "hideous", "puny", "smelly", "stupid")
+    private val insultNouns = listOf("beetle", "chicken", "egg", "mud", "slime", "worm")
+    private val insultSuffixes = listOf("brained", "eating", "like", "loving", "smelling", "witted")
+    private val insultTargets = listOf("basilisk", "idiot", "lizard", "mudworm", "slimeball", "weakling")
+
     init {
         objectOperate("Talk-to", "crawling_hand_trophy") {
             if (!inOwnHouse()) {
@@ -91,7 +96,7 @@ class HouseHalls : Script {
             choice {
                 option<Neutral>("I want to mock you.") {
                     npc<Neutral>("poh_mounted_basilisk", "All right. Go on then.")
-                    player<Laugh>("You're a ${INSULT_ADJECTIVES.random(random)} ${INSULT_NOUNS.random(random)}-${INSULT_SUFFIXES.random(random)} ${INSULT_TARGETS.random(random)}!")
+                    player<Laugh>("You're a ${insultAdjectives.random(random)} ${insultNouns.random(random)}-${insultSuffixes.random(random)} ${insultTargets.random(random)}!")
                     npc<Neutral>("poh_mounted_basilisk", "I'm going back to sleep.")
                 }
                 option<Neutral>("I want to apologise for killing you.") {
@@ -404,12 +409,5 @@ class HouseHalls : Script {
     private fun Player.gloryTeleport(area: String) {
         message("You rub the amulet...", ChatType.Filter)
         Teleport.teleport(this, area, "jewellery")
-    }
-
-    private companion object {
-        val INSULT_ADJECTIVES = listOf("boring", "fat", "hideous", "puny", "smelly", "stupid")
-        val INSULT_NOUNS = listOf("beetle", "chicken", "egg", "mud", "slime", "worm")
-        val INSULT_SUFFIXES = listOf("brained", "eating", "like", "loving", "smelling", "witted")
-        val INSULT_TARGETS = listOf("basilisk", "idiot", "lizard", "mudworm", "slimeball", "weakling")
     }
 }

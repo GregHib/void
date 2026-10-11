@@ -45,8 +45,7 @@ class HouseCombatRoom : Script {
             cross(target, "ranging")
         }
 
-        // Approached rather than operated so the player isn't walked on to the beam before it's known they can climb on
-        objectApproach("Stand-on", BALANCE_BEAMS) { (target) ->
+        objectApproach("Stand-on", "balance_beam,balance_beam_end") { (target) ->
             if (get("house_ring", "") == "beam") {
                 step(target)
                 return@objectApproach
@@ -69,12 +68,11 @@ class HouseCombatRoom : Script {
             walkTrigger { blockWalking() }
         }
 
-        // Operated on the beam being stood on, which can't be approached from underneath, and approached along the rest of it
-        objectOperate("Get-down", BALANCE_BEAMS) {
+        objectOperate("Get-down", "balance_beam,balance_beam_end") {
             getDown()
         }
 
-        objectApproach("Get-down", BALANCE_BEAMS) {
+        objectApproach("Get-down", "balance_beam,balance_beam_end") {
             getDown()
         }
 
@@ -198,8 +196,7 @@ class HouseCombatRoom : Script {
      */
     private fun Player.blockWalking() {
         val mode = mode
-        // Interacting with the beam itself is how the player gets down and moves along it
-        val interacting = mode is PlayerOnObjectInteract && mode.target.id in BEAM_IDS
+        val interacting = mode is PlayerOnObjectInteract && mode.target.id.startsWith("balance_beam")
         if (mode is Movement && !interacting) {
             steps.clear()
             this.mode = EmptyMode
@@ -239,9 +236,6 @@ class HouseCombatRoom : Script {
         return true
     }
 
-    /**
-     * The direction faced when moving from [from] to [to]
-     */
     private fun facing(from: Tile, to: Tile): Direction {
         val delta = to.delta(from)
         return when {
@@ -288,15 +282,5 @@ class HouseCombatRoom : Script {
     /**
      * The side of the rope or barrier [target] facing into the ring, corners face diagonally
      */
-    private fun side(target: GameObject): Direction = when (target.shape) {
-        ObjectShape.WALL_STRAIGHT -> sides[target.rotation and 0x3]
-        else -> corners[target.rotation and 0x3]
-    }
-
-    companion object {
-        private const val BALANCE_BEAMS = "balance_beam,balance_beam_end"
-        private val BEAM_IDS = BALANCE_BEAMS.split(",")
-        private val sides = arrayOf(Direction.WEST, Direction.NORTH, Direction.EAST, Direction.SOUTH)
-        private val corners = arrayOf(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.SOUTH_EAST, Direction.SOUTH_WEST)
-    }
+    private fun side(target: GameObject): Direction = target.direction().rotate(if (target.shape == ObjectShape.WALL_STRAIGHT) -2 else -1)
 }
