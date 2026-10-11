@@ -112,7 +112,6 @@ class Thessalia : Script {
             body.setColour(BodyColour.Legs, get("makeover_colour_legs", 0))
             flagAppearance()
             closeMenu()
-            // Also opened by player owned house furniture
             if (contains("house_owner")) {
                 return@interfaceOption
             }

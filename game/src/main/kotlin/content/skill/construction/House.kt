@@ -12,6 +12,7 @@ import content.quest.smallInstance
 import content.skill.construction.HouseHangman.Companion.despawnHangman
 import content.skill.construction.HouseMenagerie.Companion.despawnHousePets
 import content.skill.construction.HouseMenagerie.Companion.spawnHousePets
+import content.skill.construction.PortalChamber.Companion.stopScrying
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -25,14 +26,13 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.appearance
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -86,7 +86,6 @@ class House : Script {
             }
         }
 
-        // Dying in a house is safe, and sends players fighting in the combat room back to outside the ring
         playerDeath { death ->
             val owner = houseOwner() ?: return@playerDeath
             val base = houseBase() ?: return@playerDeath
@@ -104,9 +103,6 @@ class House : Script {
         const val GROUND_LEVEL = 1
         const val UPPER_LEVEL = 2
         const val START_ROOM = HOUSE_CENTRE + HOUSE_CENTRE * ROOM_GRID + GROUND_LEVEL * ROOM_GRID * ROOM_GRID
-
-        // Staircase placed in the dungeon room below a dungeon entrance so it leads back up
-        private const val ENTRANCE_STAIRS = "oak_staircase"
 
         /**
          * Whether furniture and rooms can be built without levels, tools, materials or coins
@@ -309,7 +305,7 @@ class House : Script {
 
         /**
          * Adds the other end of the stairs leading down from the room above, or up from the room below,
-         * to the room at [position] if it has space for them. Dungeon rooms below a dungeon entrance get [ENTRANCE_STAIRS].
+         * to the room at [position] if it has space for them. Dungeon rooms below a dungeon entrance get .
          * Returns whether stairs were added.
          */
         fun Player.connectStairs(position: Int): Boolean {
@@ -325,7 +321,7 @@ class House : Script {
             val (furniture, hotspot) = when {
                 houseStairs(above) != null && stairsDown(above) -> houseStairs(above) to Tables.objOrNull("house_rooms.$room.stairs")
                 houseStairs(below) != null && !stairsDown(below) -> houseStairs(below) to Tables.objOrNull("house_rooms.$room.stairs_down")
-                roomLevel(position) == DUNGEON_LEVEL && hasEntrance(above) -> ENTRANCE_STAIRS to Tables.objOrNull("house_rooms.$room.stairs")
+                roomLevel(position) == DUNGEON_LEVEL && hasEntrance(above) -> "oak_staircase" to Tables.objOrNull("house_rooms.$room.stairs")
                 else -> return false
             }
             if (furniture == null || hotspot == null) {
@@ -760,13 +756,6 @@ class House : Script {
         )
 
         /**
-         * Placeholder for furniture interactions which haven't been added yet
-         */
-        fun Player.notImplemented() {
-            message("<purple>Not yet implemented.") // TODO
-        }
-
-        /**
          * Creates a new instance of the players house, returning the tile to arrive at
          */
         fun Player.createHouse(buildMode: Boolean): Tile {
@@ -799,7 +788,6 @@ class House : Script {
 
         fun Player.leaveHouse(teleport: Boolean = true) {
             val owner: String = remove("house_owner") ?: return
-            // Scrying from a pool leaves the player away from the house, so bring them back out of it
             stopScrying()
             despawnHangman()
             removeHouseItems()
@@ -818,22 +806,10 @@ class House : Script {
         }
 
         /**
-         * Stops scrying through a scrying pool, returning the tile the player was standing on in the house or null if they weren't scrying
-         */
-        fun Player.stopScrying(): Tile? {
-            val back: Tile = remove("scrying_return") ?: return null
-            appearance.hidden = false
-            flagAppearance()
-            walkTrigger = null
-            close("poh_scrying_pool")
-            return back
-        }
-
-        /**
          * Takes back items from house games and the weapons rack which can't leave the house
          */
         private fun Player.removeHouseItems() {
-            for (inventory in listOf(inventory, equipment)) {
+            for (inventory in listOf(inventory, equipment, beastOfBurden)) {
                 for (item in HOUSE_ITEMS) {
                     val count = inventory.count(item)
                     if (count > 0) {

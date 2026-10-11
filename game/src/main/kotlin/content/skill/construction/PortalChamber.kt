@@ -10,12 +10,12 @@ import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
-import content.skill.construction.House.Companion.stopScrying
 import content.skill.construction.HouseFurniture.Companion.pick
 import content.skill.magic.spell.SpellRunes
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Areas
@@ -156,5 +156,17 @@ class PortalChamber : Script {
         private const val RUNE_MULTIPLIER = 100
         private val SCRY_LOCATIONS = listOf("Varrock", "Camelot", "Falador", "Entrance portal")
         private val PORTAL_SPACES = listOf("portal_chamber_portal_space", "portal_chamber_portal_space_2", "portal_chamber_portal_space_3")
+
+        /**
+         * Stops scrying through a scrying pool, returning the tile the player was standing on in the house or null if they weren't scrying
+         */
+        fun Player.stopScrying(): Tile? {
+            val back: Tile = remove("scrying_return") ?: return null
+            appearance.hidden = false
+            flagAppearance()
+            walkTrigger = null
+            close("poh_scrying_pool")
+            return back
+        }
     }
 }

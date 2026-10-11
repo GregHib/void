@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.notImplemented
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Zone
@@ -78,7 +79,7 @@ class HouseThroneRoom : Script {
 
     private fun Player.canPull(): Boolean {
         if (!LEVERS_ENABLED) {
-            message("<purple>Not yet implemented.") // TODO
+            notImplemented()
             return false
         }
         if (!inOwnHouse()) {

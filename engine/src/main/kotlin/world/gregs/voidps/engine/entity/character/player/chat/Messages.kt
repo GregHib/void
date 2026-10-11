@@ -14,3 +14,5 @@ fun Character.notEnough(thing: String) = message("You don't have enough $thing."
 fun Character.obstacle(level: Int) = message("You need an Agility level of $level to use this obstacle.")
 
 fun Character.noAid() = message("That player is not accepting aid.")
+
+fun Character.notImplemented() = message("<purple>Not yet implemented.")

@@ -137,7 +137,6 @@ class FurnitureCreation : Script {
             removeFurniture(target)
         }
 
-        // Approached too so that furniture which can be walked on, such as a balance beam, isn't stepped on to before it's known it can be removed
         objectApproach("Remove") { (target) ->
             if (houseBase() == null || !inOwnHouse() || GameObjects.original(target)?.let { hotspot(it) } == null) {
                 return@objectApproach
@@ -173,20 +172,24 @@ class FurnitureCreation : Script {
                 if (!GameObjects.contains(target) || furniture == null) {
                     return@option
                 }
-                if (furniture == houseStairs(position)) {
-                    // Staircases are removed from both floors
-                    removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
-                    removeHouseFurniture(position, hotspot)
-                    loadHouse(base, buildMode = true)
-                } else if (furniture in trapdoors || furniture in ladders) {
-                    // Trapdoors and ladders are removed from both floors
-                    removeLadder(position, furniture)
-                    removeHouseFurniture(position, hotspot)
-                    loadHouse(base, buildMode = true)
-                } else {
-                    removeHouseFurniture(position, hotspot)
-                    GameObjects.reset(target.tile.zone)
-                    furnishRoom(base, position, buildMode = true)
+                when (furniture) {
+                    houseStairs(position) -> {
+                        // Staircases are removed from both floors
+                        removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
+                        removeHouseFurniture(position, hotspot)
+                        loadHouse(base, buildMode = true)
+                    }
+                    in trapdoors, in ladders -> {
+                        // Trapdoors and ladders are removed from both floors
+                        removeLadder(position, furniture)
+                        removeHouseFurniture(position, hotspot)
+                        loadHouse(base, buildMode = true)
+                    }
+                    else -> {
+                        removeHouseFurniture(position, hotspot)
+                        GameObjects.reset(target.tile.zone)
+                        furnishRoom(base, position, buildMode = true)
+                    }
                 }
                 anim("construction_remove")
             }
@@ -201,7 +204,6 @@ class FurnitureCreation : Script {
         inventories.inventory("poh_furniture_menu_inv").transaction {
             clear()
             for ((index, id) in furniture.withIndex()) {
-                // Menu items are listed down each column
                 set(index % 4 * 2 + index / 4, Item(id))
             }
         }
@@ -271,7 +273,6 @@ class FurnitureCreation : Script {
             return
         }
         val position = roomPosition(base, target.tile.zone) ?: return
-        // Upgrades are built on the furniture rather than the hotspot
         val hotspot = hotspot(GameObjects.original(target) ?: target) ?: return
         val row = Rows.getOrNull("house_furniture.$furniture") ?: return
         if (!canBuild(row) || !canUpgrade(position, hotspot, row)) {
@@ -308,7 +309,7 @@ class FurnitureCreation : Script {
         // Materials are used before flatpacks
         val packed = !freeBuild && flatpack != null && !inventory.contains(materials(row)) && inventory.contains(flatpack)
         if (packed) {
-            if (!inventory.remove(flatpack ?: return)) {
+            if (!inventory.remove(flatpack)) {
                 return
             }
         } else if (!freeBuild && !inventory.remove(materials(row))) {
@@ -325,10 +326,8 @@ class FurnitureCreation : Script {
             furnishRoom(base, position, buildMode = true)
         } else if (furniture == houseStairs(position)) {
             connectStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
-            // Stairs leading down change the rooms template
             loadHouse(base, buildMode = true)
         } else if ((furniture == "dungeon_entrance" || furniture in trapdoors) && connectStairs(roomBelow(position))) {
-            // The entrance leads down to stairs and trapdoors to the ladder in the dungeon room below
             loadHouse(base, buildMode = true)
         } else {
             placeFurniture(target.tile.zone, hotspot, furniture)
@@ -337,7 +336,6 @@ class FurnitureCreation : Script {
         if (furniture in COMBAT_RINGS && tile.zone == target.tile.zone) {
             moveToEdge()
         }
-        // Free building doesn't give experience so it can't be used for training, flatpacks gave theirs when made
         if (!freeBuild && !packed) {
             exp(Skill.Construction, row.int("xp") / 10.0)
         }
