@@ -35,6 +35,6 @@ edges = [
     { from = { x = 2595, y = 3098 }, to = { x = 2605, y = 3093 } },
     { from = { x = 2605, y = 3093 }, to = { x = 2612, y = 3093 } },
     { from = { x = 2605, y = 3093 }, to = { x = 2597, y = 3088 } },
-    { from = { x = 2597, y = 3088 }, to = { x = 2596, y = 3088 }, actions = [{ object = { option = "Open", id = "magic_guild_door_2_closed", x = 2597, y = 3088, radius = 0, success = { tile = { x = 2596, y = 3088, level = 0 } } } }, { tile = { x = 2596, y = 3088, radius = 1 } }], requires = [{ skill = { id = "magic", min = 66 } }], cost = 2 },
+    { from = { x = 2597, y = 3088 }, to = { x = 2596, y = 3088 }, actions = [{ object = { option = "Open", id = "magic_guild_door_2_closed", x = 2597, y = 3088, radius = 0, success = { tile = { x = 2596, y = 3088, level = 0 } } } }, { tile = { x = 2596, y = 3088, radius = 1 } }], requires = [{ skill = { id = "magic", min = 66, current = true } }], cost = 2 },
     { from = { x = 2596, y = 3088 }, to = { x = 2597, y = 3088 }, actions = [{ object = { option = "Open", id = "magic_guild_door_2_closed", x = 2597, y = 3088, radius = 0, success = { tile = { x = 2597, y = 3088, level = 0 } } } }, { tile = { x = 2597, y = 3088, radius = 1 } }], requires = [], cost = 2 },
 ]

@@ -13,10 +13,11 @@ import kotlin.test.assertNotNull
 
 class MagicGuildDoorTest : WorldTest() {
     @Test
-    fun `Qualified player crosses and both guild doors close`() {
+    fun `Boosted player crosses and both guild doors close`() {
         val tile = Tile(4000, 4000)
         val player = createPlayer(tile.addX(-1))
-        player.experience.set(Skill.Magic, Level.experience(66))
+        player.experience.set(Skill.Magic, Level.experience(63))
+        player.levels.set(Skill.Magic, 66)
         val door = createObject("magic_guild_door_closed", tile, ObjectShape.WALL_STRAIGHT, 0)
         createObject("magic_guild_door_2_closed", tile.addY(1), ObjectShape.WALL_STRAIGHT, 0)
         player.objectOption(door, "Open")
