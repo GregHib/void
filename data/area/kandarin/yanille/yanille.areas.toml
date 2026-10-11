@@ -72,16 +72,3 @@ y = [3117, 3124]
 level = 0
 tags = ["cow_field"]
 
-[hazelmere_fairy_ring_cls]
-# nav-editor: named area only
-x = [2681, 2683]
-y = [3080, 3082]
-level = 0
-tags = ["fairy_ring"]
-
-[yanille_fairy_ring_ciq]
-# nav-editor: named area only
-x = [2527, 2529]
-y = [3126, 3128]
-level = 0
-tags = ["fairy_ring"]

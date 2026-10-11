@@ -30,13 +30,6 @@ x = [1749, 1749, 1742, 1741, 1737, 1737, 1735, 1735]
 y = [5335, 5342, 5342, 5355, 5359, 5353, 5350, 5335]
 level = 0
 
-[ancient_cavern_fairy_ring_bjq]
-# nav-editor: named area only
-x = [1736, 1738]
-y = [5341, 5343]
-level = 0
-tags = ["fairy_ring"]
-
 [ancient_cavern_slayer_master]
 # nav-editor: named area only
 x = [1736, 1741]

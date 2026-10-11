@@ -46,6 +46,10 @@ examine = "I wonder what's down there?"
 id = 7434
 examine = "I wonder what's under it?"
 
+[fai_trapdoor]
+id = 9472
+examine = "What could be down here?"
+
 [trapdoor_44_opened]
 id = 10559
 examine = "I wonder what's down there?"

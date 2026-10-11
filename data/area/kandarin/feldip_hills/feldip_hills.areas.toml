@@ -69,13 +69,6 @@ x = [2448, 2461]
 y = [2892, 2908]
 level = 0
 
-[feldip_hills_fairy_ring_bkp]
-# nav-editor: named area only
-x = [2384, 2386]
-y = [3034, 3036]
-level = 0
-tags = ["fairy_ring"]
-
 [feldip_hills_gnome_glider]
 # nav-editor: named area only
 x = [2543, 2546]
@@ -90,9 +83,3 @@ y = [2961, 2963]
 level = 0
 tags = ["small_obelisk"]
 
-[feldip_hills_fairy_ring_aks]
-# nav-editor: named area only
-x = [2570, 2572]
-y = [2955, 2957]
-level = 0
-tags = ["fairy_ring"]
