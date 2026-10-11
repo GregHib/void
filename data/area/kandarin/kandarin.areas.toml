@@ -47,3 +47,10 @@ x = [2444, 2444]
 y = [3082, 3084]
 level = 0
 tags = ["bank"]
+
+[tower_of_life_fairy_ring_djp]
+# nav-editor: named area only
+x = [2657, 2659]
+y = [3229, 3231]
+level = 0
+tags = ["fairy_ring"]

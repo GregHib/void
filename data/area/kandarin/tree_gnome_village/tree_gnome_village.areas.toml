@@ -1,0 +1,11 @@
+
+[tree_gnome_village_maze_exit]
+# nav-editor: named area only
+x = [2501, 2505]
+y = [3190, 3193]
+level = 0
+
+[tree_gnome_village]
+# nav-editor: navigation region
+x = [2496, 2558]
+y = [3136, 3200]

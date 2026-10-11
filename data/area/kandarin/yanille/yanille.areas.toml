@@ -57,3 +57,24 @@ level = 0
 x = [2614, 2616]
 y = [9568, 9570]
 level = 0
+
+[yanille_anvils]
+# nav-editor: named area only
+x = [2612, 2615]
+y = [3079, 3082]
+level = 0
+tags = ["smithing_anvils"]
+
+[yanille_cows]
+# nav-editor: named area only
+x = [2580, 2590]
+y = [3117, 3124]
+level = 0
+tags = ["cow_field"]
+
+[hazelmere_fairy_ring_cls]
+# nav-editor: named area only
+x = [2681, 2683]
+y = [3080, 3082]
+level = 0
+tags = ["fairy_ring"]

@@ -96,3 +96,9 @@ level = 0
 x = [2382, 2386]
 y = [3351, 3353]
 level = 0
+
+[ardougne_bush_patch]
+# nav-editor: named area only
+x = [2616, 2619]
+y = [3224, 3227]
+level = 0
