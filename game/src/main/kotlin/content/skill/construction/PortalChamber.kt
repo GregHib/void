@@ -113,7 +113,6 @@ class PortalChamber : Script {
 
     private fun Player.endScry() {
         val back = stopScrying() ?: return
-        // Already sent out of the house if the owner left
         if (get<String>("house_owner") == null) {
             return
         }

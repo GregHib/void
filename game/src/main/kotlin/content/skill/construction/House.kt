@@ -51,10 +51,6 @@ import world.gregs.voidps.type.Zone
  * Entering, leaving and moving around a players house
  */
 class House : Script {
-    private val doors = "basic_wood_door_left_closed,basic_wood_door_right_closed,large_door_45_closed,large_door_47_closed," +
-        "whitewashed_stone_door_left_closed,whitewashed_stone_door_right_closed,fremennik_wood_door_left_closed,fremennik_wood_door_right_closed," +
-        "tropical_wood_door_left_closed,tropical_wood_door_right_closed,fancy_stone_door_left_closed,fancy_stone_door_right_closed"
-
     init {
         droppable {
             if (inOwnHouse() && get("house_build_mode", false)) {
@@ -75,6 +71,10 @@ class House : Script {
             }
             leaveHouse(teleport = false)
         }
+
+        val doors = "basic_wood_door_left_closed,basic_wood_door_right_closed,large_door_45_closed,large_door_47_closed," +
+                "whitewashed_stone_door_left_closed,whitewashed_stone_door_right_closed,fremennik_wood_door_left_closed,fremennik_wood_door_right_closed," +
+                "tropical_wood_door_left_closed,tropical_wood_door_right_closed,fancy_stone_door_left_closed,fancy_stone_door_right_closed"
 
         objectOperate("Open", doors) { (target) ->
             openHouseDoor(target)
