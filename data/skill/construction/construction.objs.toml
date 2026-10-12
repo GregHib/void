@@ -2293,3 +2293,51 @@ id = 13289
 
 [magic_treasure_room_chest]
 id = 13291
+
+[poh_dungeon_ldoor_oak_opened]
+id = 13350
+examine = "A sturdy oak door."
+
+[poh_dungeon_ldoor_oak_closed]
+id = 13344
+examine = "A sturdy oak door."
+
+[poh_dungeon_rdoor_oak_opened]
+id = 13351
+examine = "A sturdy oak door."
+
+[poh_dungeon_rdoor_oak_closed]
+id = 13345
+examine = "A sturdy oak door."
+
+[poh_dungeon_ldoor_steel_opened]
+id = 13352
+examine = "A formidable steel door."
+
+[poh_dungeon_ldoor_steel_closed]
+id = 13346
+examine = "A formidable steel door."
+
+[poh_dungeon_rdoor_steel_opened]
+id = 13353
+examine = "A formidable steel door."
+
+[poh_dungeon_rdoor_steel_closed]
+id = 13347
+examine = "A formidable steel door."
+
+[poh_dungeon_ldoor_marble_opened]
+id = 13354
+examine = "Could anyone get through a solid marble door?"
+
+[poh_dungeon_ldoor_marble_closed]
+id = 13348
+examine = "Could anyone get through a solid marble door?"
+
+[poh_dungeon_rdoor_marble_opened]
+id = 13355
+examine = "Could anyone get through a solid marble door?"
+
+[poh_dungeon_rdoor_marble_closed]
+id = 13349
+examine = "Could anyone get through a solid marble door?"

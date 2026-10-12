@@ -3570,21 +3570,21 @@ level = 74
 xp = 6000
 materials = ["oak_plank"]
 amounts = [10]
-objects = ["door_309_closed", "door_310_closed"]
+objects = ["poh_dungeon_ldoor_oak_closed", "poh_dungeon_rdoor_oak_closed"]
 
 [.steel_plated_door]
 level = 84
 xp = 8000
 materials = ["oak_plank", "steel_bar"]
 amounts = [10, 10]
-objects = ["door_311_closed", "door_312_closed"]
+objects = ["poh_dungeon_ldoor_steel_closed", "poh_dungeon_rdoor_steel_closed"]
 
 [.marble_door]
 level = 94
 xp = 20000
 materials = ["marble_block"]
 amounts = [4]
-objects = ["door_313_closed", "door_314_closed"]
+objects = ["poh_dungeon_ldoor_marble_closed", "poh_dungeon_rdoor_marble_closed"]
 
 [.decorative_blood]
 level = 72

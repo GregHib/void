@@ -1593,54 +1593,6 @@ examine = "A cage of bones. How delightfully macabre."
 id = 13326
 examine = "A cage of bones. How delightfully macabre."
 
-[door_309_opened]
-id = 13350
-examine = "A sturdy oak door."
-
-[door_309_closed]
-id = 13344
-examine = "A sturdy oak door."
-
-[door_310_opened]
-id = 13351
-examine = "A sturdy oak door."
-
-[door_310_closed]
-id = 13345
-examine = "A sturdy oak door."
-
-[door_311_opened]
-id = 13352
-examine = "A formidable steel door."
-
-[door_311_closed]
-id = 13346
-examine = "A formidable steel door."
-
-[door_312_opened]
-id = 13353
-examine = "A formidable steel door."
-
-[door_312_closed]
-id = 13347
-examine = "A formidable steel door."
-
-[door_313_opened]
-id = 13354
-examine = "Could anyone get through a solid marble door?"
-
-[door_313_closed]
-id = 13348
-examine = "Could anyone get through a solid marble door?"
-
-[door_314_opened]
-id = 13355
-examine = "Could anyone get through a solid marble door?"
-
-[door_314_closed]
-id = 13349
-examine = "Could anyone get through a solid marble door?"
-
 [door_321_opened]
 id = 14750
 examine = "A tatty old door."

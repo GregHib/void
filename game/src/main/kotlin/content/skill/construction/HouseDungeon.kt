@@ -23,12 +23,10 @@ import world.gregs.voidps.type.random
  * https://runescape.wiki/w/Treasure_room
  */
 class HouseDungeon : Script {
-    private val doors = "door_309_closed,door_310_closed,door_311_closed,door_312_closed,door_313_closed,door_314_closed"
-
-    // Oak, steel-plated and marble door strengths guessed from other servers
-    private val doorLevels = intArrayOf(35, 66, 80)
 
     init {
+        val doors = "poh_dungeon_ldoor_oak_closed,poh_dungeon_rdoor_oak_closed,poh_dungeon_ldoor_steel_closed,poh_dungeon_rdoor_steel_closed,poh_dungeon_ldoor_marble_closed,poh_dungeon_rdoor_marble_closed"
+
         objectOperate("Open", doors) { (target) ->
             if (locked()) {
                 message("The door is locked.") // TODO proper message
@@ -72,7 +70,11 @@ class HouseDungeon : Script {
         message(attempt, ChatType.Filter)
         anim(animation)
         delay(2)
-        val strength = doorLevels[doors.split(',').indexOf(door.id) / 2]
+        val strength = when { // guessed
+            door.id.contains("door_steel") -> 66
+            door.id.contains("door_marble") -> 80
+            else -> 35
+        }
         if (random.nextInt(levels.get(skill) + 1) < random.nextInt(strength + 1)) {
             message(fail, ChatType.Filter)
             return

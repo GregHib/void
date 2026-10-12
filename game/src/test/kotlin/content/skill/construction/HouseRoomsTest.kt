@@ -265,7 +265,7 @@ class HouseRoomsTest : WorldTest() {
         owner.addHouseFurniture(dungeon, "dungeon_door", "oak_door")
         owner.enterPortal(1)
         owner["house_challenge_mode"] = true
-        val door = owner.objects(dungeon, "door_309_closed").first()
+        val door = owner.objects(dungeon, "poh_dungeon_ldoor_oak_closed").first()
         val guest = guest(owner, door.tile)
 
         guest.objectOption(door, "Open")
@@ -280,13 +280,13 @@ class HouseRoomsTest : WorldTest() {
         owner.addHouseRoom("dungeon_corridor", dungeon)
         owner.addHouseFurniture(dungeon, "dungeon_door", "oak_door")
         owner.enterPortal(1)
-        val door = owner.objects(dungeon, "door_309_closed").first()
+        val door = owner.objects(dungeon, "poh_dungeon_ldoor_oak_closed").first()
         owner.tele(door.tile.addY(1))
 
         owner.objectOption(door, "Open")
         tick(6)
 
-        assertNull(GameObjects.findOrNull(door.tile, "door_309_closed"))
+        assertNull(GameObjects.findOrNull(door.tile, "poh_dungeon_ldoor_oak_closed"))
         val corridor = roomZone(owner.instance()!!.tile.zone, dungeon)
         assertTrue(corridor.toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("dungeon_door_space") } })
     }
@@ -406,7 +406,7 @@ class HouseRoomsTest : WorldTest() {
         owner.addHouseFurniture(dungeon, "dungeon_door", "oak_door")
         owner.enterPortal(1)
         val junction = roomZone(owner.instance()!!.tile.zone, dungeon)
-        val doors = junction.toCuboid().flatMap { GameObjects.at(it) }.filter { it.id == "door_309_closed" }
+        val doors = junction.toCuboid().flatMap { GameObjects.at(it) }.filter { it.id == "poh_dungeon_ldoor_oak_closed" }
         assertTrue(doors.isNotEmpty())
 
         for (door in doors) {

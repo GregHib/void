@@ -49,7 +49,6 @@ class HouseSeatsTest : WorldTest() {
         tickIf { dialogue == null }
         dialogueOption("line1")
         tickIf { hasOpen("house_loading") }
-        // Start inside the room rather than behind its doors
         tele(roomZone(instance()!!.tile.zone, room).tile.add(3, 3))
     }
 
