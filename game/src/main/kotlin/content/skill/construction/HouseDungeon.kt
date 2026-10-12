@@ -64,7 +64,7 @@ class HouseDungeon : Script {
      */
     private suspend fun Player.unlock(door: GameObject, skill: Skill, animation: String, attempt: String, fail: String) {
         if (!locked()) {
-            message("The door isn't locked.") // TODO proper message
+            message("The door is not locked.")
             return
         }
         message(attempt, ChatType.Filter)

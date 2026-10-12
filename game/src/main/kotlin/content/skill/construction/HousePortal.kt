@@ -2,6 +2,7 @@ package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.nameEntry
+import content.entity.player.dialogue.type.statement
 import content.quest.instance
 import content.quest.joinInstance
 import content.skill.construction.House.Companion.arrival
@@ -53,7 +54,11 @@ class HousePortal : Script {
             }
             val locked = !get("house_locked", false)
             set("house_locked", locked)
-            message(if (locked) "Your house is now locked to all visitors." else "Visitors can now enter your house.") // TODO proper messages
+            if (locked) {
+                statement("Your house is now locked to all visitors.")
+            } else {
+                statement("Visitors can now enter your house.")
+            }
         }
 
         interfaceOption("Cast", "modern_spellbook:teleport_to_house") {

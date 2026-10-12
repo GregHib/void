@@ -239,3 +239,75 @@ id = 3585
 
 [hangman_hangs]
 id = 3601
+
+[crystal_ball1_air]
+id = 4043
+
+[crystal_ball2_air]
+id = 4044
+
+[crystal_ball1_earth]
+id = 4045
+
+[crystal_ball2_earth]
+id = 4046
+
+[crystal_ball1_water]
+id = 4047
+
+[crystal_ball2_water]
+id = 4048
+
+[crystal_ball1_fire]
+id = 4049
+
+[crystal_ball2_fire]
+id = 4050
+
+[crystal_ball1_air_battlestaff]
+id = 4051
+
+[crystal_ball2_air_battlestaff]
+id = 4052
+
+[crystal_ball1_earth_battlestaff]
+id = 4053
+
+[crystal_ball2_earth_battlestaff]
+id = 4054
+
+[crystal_ball1_water_battlestaff]
+id = 4055
+
+[crystal_ball2_water_battlestaff]
+id = 4056
+
+[crystal_ball1_fire_battlestaff]
+id = 4057
+
+[crystal_ball2_fire_battlestaff]
+id = 4058
+
+[crystal_ball1_air_mystic]
+id = 4059
+
+[crystal_ball2_air_mystic]
+id = 4060
+
+[crystal_ball1_earth_mystic]
+id = 4061
+
+[crystal_ball2_earth_mystic]
+id = 4062
+
+[crystal_ball1_water_mystic]
+id = 4063
+
+[crystal_ball2_water_mystic]
+id = 4064
+
+[crystal_ball1_fire_mystic]
+id = 4065
+
+[crystal_ball2_fire_mystic]
+id = 4066

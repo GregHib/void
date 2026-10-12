@@ -142,9 +142,7 @@ class HouseCombatRoom : Script {
         if (equipped(EquipSlot.Weapon).isEmpty() && equipped(EquipSlot.Shield).isEmpty()) {
             return true
         }
-        val text = "You must free your hands so you can wield the pugel stick."
-        message(text, ChatType.Broadcast)
-        statement(text)
+        statement("You must free your hands so you can wield the pugel stick.")
         for (slot in listOf(EquipSlot.Weapon, EquipSlot.Shield)) {
             if (equipped(slot).isNotEmpty() && !equipment.move(slot.index, inventory)) {
                 inventoryFull()
@@ -211,7 +209,7 @@ class HouseCombatRoom : Script {
             "boxing" -> {
                 val gloves = equipped(EquipSlot.Weapon).id
                 if (gloves != "boxing_gloves_red" && gloves != "boxing_gloves_blue") {
-                    message("You need to wear boxing gloves to box.") // TODO proper message
+                    message("You can't wear weapons or armour in the boxing ring (except boxing gloves).")
                     return false
                 }
                 if (equipment.items.any { it.isNotEmpty() && it.id != gloves }) {

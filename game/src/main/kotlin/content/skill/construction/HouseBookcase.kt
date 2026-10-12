@@ -50,11 +50,11 @@ class HouseBookcase : Script {
                 return@interfaceOption
             }
             if (inventory.contains(book)) {
-                message("You already have that book.") // TODO proper message
+                message("You're already carrying a copy of that book.")
                 return@interfaceOption
             }
             if (!inventory.add(book)) {
-                inventoryFull()
+                inventoryFull("to do that")
             }
         }
     }

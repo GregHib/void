@@ -8,11 +8,11 @@ import content.skill.construction.House.Companion.inOwnHouse
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -56,7 +57,6 @@ class HousePrizeChest : Script {
             else -> "The prize will be awarded to the winner of the ${if (id == "hoop") "hoop and stick" else id} game."
         }
         val text = "You must have a prize key or be in building mode to take the prize. Prize amount: <col=7f0000>${prize.toDigitGroupString()}</col>. $status"
-        message(text, ChatType.Broadcast)
         item("prize_key", text)
         val own = inOwnHouse()
         val canTake = prize > 0 && (carriesItem("prize_key") || (own && get("house_build_mode", false)))
@@ -82,7 +82,7 @@ class HousePrizeChest : Script {
         }
     }
 
-    private fun Player.takePrize(owner: Player, chest: GameObject) {
+    private suspend fun Player.takePrize(owner: Player, chest: GameObject) {
         val prize = owner["house_prize_money", 0]
         if (prize <= 0) {
             return
@@ -93,30 +93,33 @@ class HousePrizeChest : Script {
         }
         owner["house_prize_money"] = 0
         inventory.remove("prize_key")
-        message("You take the prize.", ChatType.Broadcast)
+        item("coins_7", "You take the prize.")
         openChest(chest)
     }
 
     private suspend fun Player.addCoins(chest: GameObject, capacity: Int) {
         val last = get("house_prize_added", 0)
         if (last != 0 && GameLoop.tick - last < TimeUnit.MINUTES.toTicks(cooldownMinutes)) {
-            message("After you add coins to a chest, you must wait a few minutes before doing so again.", ChatType.Broadcast)
+            item("coins_7", "After you add coins to a chest, you must wait a few minutes before doing so again.")
+            return
+        }
+        if (!inventory.contains("coins")) {
+            item("coins_7", "You don't have any money on you!")
             return
         }
         val stored = get("house_prize_money", 0)
-
-        val amount = intEntry("How much would you like to deposit?").coerceAtMost(capacity - stored) // TODO proper message
+        val amount = intEntry("Enter amount:").coerceAtMost(capacity - stored)
         if (amount <= 0) {
             message("The prize chest can't hold any more coins.") // TODO proper message
             return
         }
-        if (!inventory.remove("coins", amount)) {
-            message("You don't have enough coins.") // TODO proper message
+        val deposited = inventory.removeToLimit("coins", amount)
+        if (deposited == 0) {
             return
         }
-        set("house_prize_money", stored + amount)
+        set("house_prize_money", stored + deposited)
         set("house_prize_added", GameLoop.tick)
-        message("You add ${amount.toDigitGroupString()} coins.", ChatType.Broadcast)
+        item("coins_7", "You add ${deposited.toDigitGroupString()} ${"coin".plural(deposited)}.")
         openChest(chest)
         sound("coins_jingle_1")
     }

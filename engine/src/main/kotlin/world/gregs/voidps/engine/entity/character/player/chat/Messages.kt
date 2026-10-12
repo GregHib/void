@@ -16,3 +16,5 @@ fun Character.obstacle(level: Int) = message("You need an Agility level of $leve
 fun Character.noAid() = message("That player is not accepting aid.")
 
 fun Character.notImplemented() = message("<purple>Not yet implemented.")
+
+fun Character.buildingMode() = message("You can only do that in building mode.")

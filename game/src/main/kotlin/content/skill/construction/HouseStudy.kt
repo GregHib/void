@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -105,22 +106,35 @@ class HouseStudy : Script {
     /**
      * Swaps the element of the staff in [slot] for [cost] runes of the new element, combination staves can't be changed
      */
-    private fun Player.changeElement(slot: Int, old: String, new: String, rune: String, cost: Int) {
+    private suspend fun Player.changeElement(slot: Int, old: String, new: String, rune: String, cost: Int) {
         inventory.transaction {
             if (cost > 0) {
                 remove(rune, cost)
             }
             replace(slot, old, new)
         }
+//        statement("That crystal ball can only change ordinary staffs.")
         when (inventory.transaction.error) {
             TransactionError.None -> {
-                anim("study_lectern") // TODO proper anim
-                message("The crystal of power changes your staff.") // TODO proper message
+                val type = if (new.startsWith("mystic")) "_mystic" else if (new.endsWith("battlestaff")) "_battlestaff" else ""
+                anim("crystal_ball1_${element(old)}${type}")
+                message("The staff feels very ${
+                   when (element(new)) {
+                       "earth" -> "heavy"
+                       "water" -> "damp"
+                       "air" -> "light"
+                       else -> "hot"
+                   }
+                } for a moment.", ChatType.Filter)
+                delay(1)
+                anim("crystal_ball2_${element(new)}${type}")
             }
             is TransactionError.Deficient -> message("You need $cost ${ItemDefinitions.get(rune).name.lowercase()}s to change that staff.") // TODO proper message
             else -> {}
         }
     }
+
+    private fun element(id: String) = id.replace("_staff", "").replace("mystic_", "").replace("_battlestaff", "").replace("staff_of_", "")
 
     /**
      * Makes [amount] of [tablet] from soft clay and the runes for its spell, one every [ticks]

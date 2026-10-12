@@ -2,6 +2,8 @@ package content.skill.construction
 
 import content.area.asgarnia.falador.openDressingRoom
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -53,8 +55,9 @@ class HouseBedroom : Script {
     }
 
     private suspend fun Player.changeHair() {
-        if (equipped(EquipSlot.Hat).isNotEmpty()) {
-            message("You need to take off your hat before changing your hair.") // TODO proper message
+        val hat = equipped(EquipSlot.Hat)
+        if (hat.isNotEmpty()) {
+            item(hat.id, "You should take off your hat if you want to get a haircut!")
             return
         }
         openDressingRoom("hairdressers_salon")

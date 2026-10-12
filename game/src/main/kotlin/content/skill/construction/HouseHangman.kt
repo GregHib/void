@@ -138,7 +138,6 @@ class HouseHangman : Script {
     private suspend fun Player.select(letter: Char) {
         val selected = get("hangman_selected", "")
         if (selected.length >= maxSelected) {
-            message("You can only guess five letters.", ChatType.Broadcast)
             statement("You can only guess five letters.")
             return
         }

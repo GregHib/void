@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.notImplemented
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -47,10 +48,12 @@ class HouseStairs : Script {
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
             val below = roomBelow(position)
             val connected = owner.houseRoom(below)?.let { Tables.objOrNull("house_rooms.$it.stairs") } != null
-            travel(base, position, below, connected, stairRooms, "This entrance does not lead anywhere.", "below") // TODO proper message
+            travel(base, position, below, connected, stairRooms, "These stairs do not lead anywhere.", "at the bottom")
         }
 
         objectOperate("Open", "oak_trapdoor,teak_trapdoor,mahogany_trapdoor") { (target) ->
+            notImplemented()
+            return@objectOperate
             val base = houseBase() ?: return@objectOperate
             val owner = houseOwner() ?: return@objectOperate
             if (!inOwnHouse()) {
@@ -60,7 +63,7 @@ class HouseStairs : Script {
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
             val below = roomBelow(position)
             anim("climb_down")
-            travel(base, position, below, owner.houseLadder(below) != null, listOf("oubliette" to "Oubliette"), "This trapdoor does not lead anywhere.", "below") // TODO proper message
+            travel(base, position, below, owner.houseLadder(below) != null, listOf("oubliette" to "Oubliette"), "These stairs do not lead anywhere.", "below the throne room")
         }
 
         objectOperate("Climb", "oak_ladder,teak_ladder,mahogany_ladder") { (target) ->
@@ -69,7 +72,7 @@ class HouseStairs : Script {
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
             val above = roomAbove(position)
             anim("climb_up")
-            travel(base, position, above, owner.houseTrapdoor(above) != null, listOf("throne_room" to "Throne room"), "This ladder does not lead anywhere.", "above") // TODO proper message
+            travel(base, position, above, owner.houseTrapdoor(above) != null, listOf("throne_room" to "Throne room"), "These stairs do not lead anywhere.", "below the throne room")// TODO "Do you want to build an oubliette below the throne room?"
         }
 
         objectOperate("Climb-up", staircases) { (target) ->
@@ -118,7 +121,11 @@ class HouseStairs : Script {
             return
         }
         if (staircase && roomLevel(position) != DUNGEON_LEVEL && roomLevel(connected) != DUNGEON_LEVEL) {
-            statement("<red>Warning: <black>If you remove this room you may be unable to access the upper floor from the ground.")
+            if (up) {
+                statement("<red>Warning: <black>If you remove this room you may be unable to access the upper floor from the ground.")
+            } else {
+                statement("<red>Warning: <black>If you remove this room you may be unable to access the room below.")
+            }
         }
         removeRoom(connected, room) {
             if (staircase) {

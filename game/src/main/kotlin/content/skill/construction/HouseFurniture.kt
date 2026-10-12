@@ -55,6 +55,10 @@ class HouseFurniture : Script {
             }
         }
 
+        itemOnObjectOperate("magic_logs,yew_logs,maple_logs,willow_logs,mahogany_logs,teak_logs", lights) { (target, item) ->
+            message("Only ordinary logs can be used to light the fireplace.")
+        }
+
         objectOperate("Read", "oak_clock,teak_clock,gilded_clock") {
             message(clockTime(LocalTime.now(ZoneOffset.UTC).minute))
         }
@@ -73,12 +77,16 @@ class HouseFurniture : Script {
             return
         }
         if (!inventory.contains("tinderbox")) {
-            message("You need a tinderbox to light that.") // TODO proper message
+            message("You need a tinderbox to light the fire.")
             return
         }
         val item = row.itemOrNull("item")
         if (item != null && !inventory.remove(item)) {
-            message("You need ${ItemDefinitions.get(item).name.lowercase()} to light that.") // TODO proper message
+            if (item == "logs") {
+                message("You don't have any normal logs to light a fire with.")
+            } else {
+                message("You need ${ItemDefinitions.get(item).name.lowercase()} to light that.") // TODO proper message
+            }
             return
         }
         val ticks = row.int("ticks")

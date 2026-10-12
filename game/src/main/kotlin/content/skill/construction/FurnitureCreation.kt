@@ -1,6 +1,7 @@
 package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import content.skill.construction.House.Companion.freeBuild
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.inOwnHouse
@@ -36,6 +37,8 @@ import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.buildingMode
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -76,7 +79,7 @@ class FurnitureCreation : Script {
                 return@objectOperate
             }
             if (!get("house_build_mode", false)) {
-                message("You can only do that in building mode.") // TODO proper message
+                buildingMode()
                 return@objectOperate
             }
             val original = GameObjects.original(target) ?: return@objectOperate
@@ -143,7 +146,7 @@ class FurnitureCreation : Script {
                 return@objectApproach
             }
             if (!get("house_build_mode", false)) {
-                message("You can only do that in building mode.") // TODO proper message
+                buildingMode()
                 return@objectApproach
             }
             approachRange(1)
@@ -159,12 +162,12 @@ class FurnitureCreation : Script {
         val original = GameObjects.original(target) ?: return
         val hotspot = hotspot(original) ?: return
         if (!get("house_build_mode", false)) {
-            message("You can only do that in building mode.") // TODO proper message
+            buildingMode()
             return
         }
         val position = roomPosition(base, target.tile.zone) ?: return
         if (houseFurniture(position, hotspot) == "exit_portal" && exitPortals() <= 1) {
-            message("Your house must have at least one exit portal.") // TODO proper message
+            statement("Your house must have at least one exit portal.")
             return
         }
         choice("Really remove it?") {
@@ -224,7 +227,7 @@ class FurnitureCreation : Script {
     }
 
     /**
-     * Text for each of the menu's [materialRows] material lines, the last lines hold two materials each when there are too many for one per line
+     * Text for each of the menu's [materials] lines, the last lines hold two materials each when there are too many for one per line
      */
     private fun materialLines(materials: List<Item>): List<String> {
         val leading = (8 - materials.size).coerceIn(0, 4)
@@ -232,28 +235,28 @@ class FurnitureCreation : Script {
         return lines.map { line -> line.joinToString(", ") { "${it.amount} ${it.def.name}" } }
     }
 
-    private fun Player.makeFlatpack(workbench: String, furniture: String) {
+    private suspend fun Player.makeFlatpack(workbench: String, furniture: String) {
         val row = Rows.getOrNull("house_furniture.$furniture") ?: return
         val flatpack = row.itemOrNull("flatpack") ?: return
         if (row.int("level") > Tables.int("house_workbenches.$workbench.level")) {
-            message("You need a better workbench to make that.") // TODO proper message
             return
         }
         if (!has(Skill.Construction, row.int("level"), message = true)) {
             return
         }
         if (!inventory.contains("hammer", "saw")) {
-            message("You need a hammer and saw to make furniture.") // TODO proper message
+            message("You need a saw and a hammer in order to make furniture.")
             return
         }
+        val materials = materials(row)
         inventory.transaction {
-            for (item in materials(row)) {
+            for (item in materials) {
                 remove(item.id, item.amount)
             }
             add(flatpack)
         }
         if (inventory.transaction.error != TransactionError.None) {
-            message("You don't have the right materials.") // TODO proper message
+            missingMaterials(materials)
             return
         }
         anim("construction_build")
@@ -290,7 +293,7 @@ class FurnitureCreation : Script {
      * Builds [furniture] on [hotspot] in the room at [position], replacing any furniture it's upgrading.
      * Staircases are built on both floors.
      */
-    private fun Player.build(base: Zone, target: GameObject, position: Int, hotspot: String, furniture: String) {
+    private suspend fun Player.build(base: Zone, target: GameObject, position: Int, hotspot: String, furniture: String) {
         if (houseBase() != base || !GameObjects.contains(target)) {
             return
         }
@@ -299,13 +302,14 @@ class FurnitureCreation : Script {
             return
         }
         val flatpack = row.itemOrNull("flatpack")
-        val packed = !freeBuild && flatpack != null && !inventory.contains(materials(row)) && inventory.contains(flatpack)
+        val materials = materials(row)
+        val packed = !freeBuild && flatpack != null && !inventory.contains(materials) && inventory.contains(flatpack)
         if (packed) {
             if (!inventory.remove(flatpack)) {
                 return
             }
-        } else if (!freeBuild && !inventory.remove(materials(row))) {
-            message("You don't have the right materials.") // TODO proper message
+        } else if (!freeBuild && !inventory.remove(materials)) {
+            missingMaterials(materials)
             return
         }
         val upgrade = houseFurniture(position, hotspot) != null
@@ -333,6 +337,11 @@ class FurnitureCreation : Script {
         }
     }
 
+    private suspend fun Player.missingMaterials(materials: List<Item>) {
+        val items = materials.joinToString { "<${if (inventory.contains(it.id, it.amount)) "black" else "red"}>${it.amount}x ${it.def.name}" }
+        statement("You don't have the right materials:<br>$items")
+    }
+
     /**
      * Moves the player out of a combat ring built around them, to the nearest free tile on the edge of the room
      */
@@ -350,7 +359,6 @@ class FurnitureCreation : Script {
         val current = houseFurniture(position, hotspot)
         val required = row.itemOrNull("upgrade")
         if (required != null && current != required) {
-            message("You need to upgrade a ${ItemDefinitions.get(required).name.lowercase()} to build that.") // TODO proper message
             return false
         }
         if (current == null) {
@@ -360,7 +368,7 @@ class FurnitureCreation : Script {
         return furniture.indexOf(row.rowId) > furniture.indexOf(current)
     }
 
-    private fun Player.canBuild(row: RowDefinition): Boolean {
+    private suspend fun Player.canBuild(row: RowDefinition): Boolean {
         if (freeBuild) {
             return true
         }
@@ -372,11 +380,12 @@ class FurnitureCreation : Script {
             return true
         }
         if (!inventory.contains("hammer", "saw")) {
-            message("You need a hammer and saw to build furniture.") // TODO proper message
+            message("You need a saw and a hammer in order to make furniture.")
             return false
         }
-        if (!inventory.contains(materials(row))) {
-            message("You don't have the right materials.") // TODO proper message
+        val materials = materials(row)
+        if (!inventory.contains(materials)) {
+            missingMaterials(materials)
             return false
         }
         return true
