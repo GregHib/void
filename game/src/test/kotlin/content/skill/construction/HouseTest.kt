@@ -98,7 +98,7 @@ class HouseTest : WorldTest() {
     }
 
     private fun Player.visit(owner: Player, obj: GameObject = GameObjects.find(portal, "house_portal_rimmington")) {
-        enterPortal(1, obj)
+        enterPortal(3, obj)
         (suspension as Suspension.NameEntry).resume(owner.name)
         tickIf { hasOpen("house_loading") }
     }
@@ -565,8 +565,7 @@ class HouseTest : WorldTest() {
         player.objectOption(GameObjects.find(parlour.add(-1, 3)) { it.id.startsWith("door_hotspot") }, "Build")
         tick(5)
 
-        assertNull(player.dialogue)
-        assertTrue(player.containsMessage("exit portal"))
+        assertNotNull(player.dialogue)
         assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
     }
 

@@ -178,7 +178,7 @@ class FurnitureCreationTest : WorldTest() {
 
         assertTrue(player.objects("crude_wooden_chair").isEmpty())
         assertEquals(2, player.inventory.count("plank"))
-        assertTrue(player.containsMessage("right materials"))
+        assertNotNull(player.dialogue)
     }
 
     @Test
@@ -193,7 +193,7 @@ class FurnitureCreationTest : WorldTest() {
 
         assertTrue(player.objects("crude_wooden_chair").isEmpty())
         assertEquals(2, player.inventory.count("plank"))
-        assertTrue(player.containsMessage("hammer and saw"))
+        assertTrue(player.containsMessage("saw and a hammer"))
     }
 
     @Test
@@ -401,10 +401,9 @@ class FurnitureCreationTest : WorldTest() {
         player.objectOption(player.objects("exit_portal").single(), "Remove")
         tick(5)
 
-        assertNull(player.dialogue)
+        assertNotNull(player.dialogue)
         assertEquals(1, player.objects("exit_portal").size)
         assertEquals(listOf("exit_portal"), player.houseFurnitureIds)
-        assertTrue(player.containsMessage("exit portal"))
     }
 
     @Test

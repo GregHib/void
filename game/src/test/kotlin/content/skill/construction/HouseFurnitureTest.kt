@@ -10,6 +10,7 @@ import content.skill.summoning.follower
 import content.skill.summoning.pet.pet
 import dialogueContinue
 import dialogueOption
+import intEntry
 import interfaceOption
 import itemOnObject
 import itemOption
@@ -506,7 +507,7 @@ class HouseFurnitureTest : WorldTest() {
         val easel = createObject("banner_easel", emptyTile.addY(1))
 
         player.objectOption(easel, "Use")
-        tickIf { !player.containsMessage("family crest") }
+        tickIf { player.dialogue == null }
 
         assertEquals(1, player.inventory.count("plank"))
     }
@@ -610,6 +611,7 @@ class HouseFurnitureTest : WorldTest() {
         player.dialogueContinue()
         tickIf { player.dialogue == null }
         player.dialogueOption("line1")
+        player.intEntry(10000)
         tick()
 
         assertEquals(10000, player["house_prize_money", 0])
@@ -967,6 +969,7 @@ class HouseFurnitureTest : WorldTest() {
         player["house_owner"] = player.accountName // Moving leaves the house
         player.npcOption(npc, "Banish")
         tickIf { player.dialogue == null }
+        player.dialogueContinue()
         player.dialogueOption("line1")
         tick(2)
 
@@ -1098,15 +1101,14 @@ class HouseFurnitureTest : WorldTest() {
     }
 
     @Test
-    fun `Hoop on the stick isn't thrown again`() {
+    fun `Hoop can be thrown again while on the stick`() {
         val player = createPlayer(emptyTile)
         val hoop = createObject("hoop_and_stick", emptyTile.addY(1))
 
         player.objectOption(hoop, "Hoop")
-        tick(6)
+        tickIf { player["ranging_shots", 0] == 0 }
 
-        assertEquals(0, player["ranging_shots", 0])
-        assertNotNull(GameObjects.findOrNull(hoop.tile, "hoop_and_stick"))
+        assertEquals(1, player["ranging_shots", 0])
     }
 
     @Test

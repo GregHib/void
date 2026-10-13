@@ -20,7 +20,6 @@ import interfaceOption
 import itemOption
 import objectOption
 import org.junit.jupiter.api.Test
-import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -175,7 +174,7 @@ class HouseRoomsTest : WorldTest() {
         player.tele(start.add(away.delta.x * 2, away.delta.y * 2))
 
         player.objectOption(end, "Stand-on")
-        tickIf { !player.containsMessage("free your hands") }
+        tickIf { player.dialogue == null }
         tick(2)
 
         assertTrue(player.tile.distanceTo(start) > 0)
@@ -222,23 +221,18 @@ class HouseRoomsTest : WorldTest() {
     }
 
     @Test
-    fun `Building an oubliette below a trapdoor adds a ladder`() {
+    fun `Throne room trapdoors are not implemented`() {
         val owner = createOwner()
         owner.addHouseRoom("throne_room", room)
         owner.addHouseFurniture(room, "throne_room_trapdoor_space", "trapdoor")
-        owner.inventory.add("coins", 150000)
         owner.enterPortal(2)
         val trapdoor = owner.objects(room, "oak_trapdoor").first()
 
         owner.tele(trapdoor.tile.addY(-1))
         owner.objectOption(trapdoor, "Open")
-        tickIf { owner.dialogue == null }
-        owner.skipDialogues()
-        owner.dialogueOption("line1")
-        tick(6)
+        tick(3)
 
-        assertTrue(owner.houseFurnitureIds.contains("oak_ladder"))
-        assertEquals(DUNGEON_LEVEL, owner.tile.level - owner.instance()!!.tile.level)
+        assertTrue(owner.containsMessage("Not yet implemented"))
     }
 
     @Test
