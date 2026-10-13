@@ -6,6 +6,7 @@ import content.quest.quest
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class TouristInfoCentre : Script {
@@ -30,7 +31,7 @@ class TouristInfoCentre : Script {
         itemOption("Read", "book_on_baxtorian") {
             openBook("book_on_baxtorian")
             if (quest("waterfall_quest") == "found_hudon") {
-                set("waterfall_quest", "read_book")
+                set("waterfall_quest", if (carriesItem("glarials_pebble")) "found_pebble" else "read_book")
             }
         }
     }

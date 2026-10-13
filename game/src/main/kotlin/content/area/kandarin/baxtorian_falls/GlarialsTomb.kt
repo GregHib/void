@@ -1,34 +1,21 @@
 package content.area.kandarin.baxtorian_falls
 
-import content.entity.combat.hit.damage
-import content.entity.gfx.areaGfx
 import content.entity.obj.door.Door
-import content.entity.player.AdventurersLogs
 import content.entity.player.inv.item.addOrDrop
 import content.quest.quest
-import content.quest.questComplete
 import content.quest.questStage
-import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Tile
 
 class GlarialsTomb : Script {
     init {
@@ -65,7 +52,6 @@ class GlarialsTomb : Script {
             }
         }
 
-
         objectOperate("Search", "crate_11") {
             message("You search the crate")
             delay(2)
@@ -88,8 +74,9 @@ class GlarialsTomb : Script {
             message("You search the chest and find a small amulet.")
         }
 
-        objectOperate("Open", "glarials_chest_closed") {
-            // TODO open
+        objectOperate("Open", "glarials_chest_closed") { (target) ->
+            message("You open the chest.")
+            target.replace("glarials_chest_opened", ticks = 50)
         }
 
         objectOperate("Search", "glarials_tomb") {
@@ -109,15 +96,14 @@ class GlarialsTomb : Script {
         objectOperate("Open", "door_29_closed") { (target) -> enterChamberDoor(target) }
 
         itemOnObjectOperate("a_key_waterfall_dungeon", "door_29_closed") { (target) -> enterChamberDoor(target) }
-
     }
 
     internal fun Player.canEnterTomb(): Boolean = questStage("waterfall_quest") >= 4 &&
-            inventory.contains("glarials_pebble") &&
-            (inventory.items + equipment.items).none { item ->
-                val slot: EquipSlot = item.def.getOrNull("slot") ?: EquipSlot.None
-                !item.isEmpty() && (item.id.endsWith("_rune") || slot in setOf(EquipSlot.Weapon, EquipSlot.Shield, EquipSlot.Ammo) || COMBAT_BONUSES.any { item.def[it, 0] != 0 }) // TODO tidy
-            }
+        inventory.contains("glarials_pebble") &&
+        (inventory.items + equipment.items).none { item ->
+            val slot: EquipSlot = item.def.getOrNull("slot") ?: EquipSlot.None
+            !item.isEmpty() && (item.id.endsWith("_rune") || slot in setOf(EquipSlot.Weapon, EquipSlot.Shield, EquipSlot.Ammo) || COMBAT_BONUSES.any { item.def[it, 0] != 0 }) // TODO tidy
+        }
 
     private suspend fun Player.enterChamberDoor(target: GameObject) {
         if (!inventory.contains("a_key_waterfall_dungeon")) {

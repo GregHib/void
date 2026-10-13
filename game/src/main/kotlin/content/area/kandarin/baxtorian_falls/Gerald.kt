@@ -18,7 +18,7 @@ class Gerald : Script {
                 return@npcOperate
             }
             player<Idle>("Hello.")
-            when (quest("waterfall_quest") ) {
+            when (quest("waterfall_quest")) {
                 "unstarted", "started" -> {
                     npc<Idle>("Hello there.")
                     player<Idle>("Have you seen a small boy?")
@@ -36,5 +36,4 @@ class Gerald : Script {
             }
         }
     }
-
 }

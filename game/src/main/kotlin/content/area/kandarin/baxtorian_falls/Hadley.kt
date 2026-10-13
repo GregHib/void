@@ -37,7 +37,8 @@ class Hadley : Script {
     }
 
     private fun ChoiceOption.elfKing() {
-        option("Can you tell me what happened to the elf king?") { // TODO
+        option("Can you tell me what happened to the elf king?") {
+            // TODO
             npc<Idle>("There are many myths about Baxtorian. One popular story is that after defending his kingdom against the invading dark forces from the west, Baxtorian returned to find his wife Glarial had been captured by the")
             npc<Idle>("enemy!")
             npc<Idle>("This destroyed Baxtorian, after years of searching he became a recluse. In the secret home had had made for Glarial under the waterfall, he never came out and it is told that only Glarial could enter.")
@@ -47,7 +48,8 @@ class Hadley : Script {
     }
 
     private fun ChoiceOption.treasure() {
-        option<Neutral>("Is there treasure under the waterfall?") { // TODO not here when unstarted?
+        option<Neutral>("Is there treasure under the waterfall?") {
+            // TODO not here when unstarted?
             npc<Neutral>("Ha ha... Another treasure hunter. Well if there is no one's been able to get to it. They've been searching that river for decades, all to no avail.")
             choice {
                 elfKing()
