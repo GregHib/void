@@ -9,20 +9,20 @@ import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotAtTile
+import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import content.bot.behaviour.condition.BotInArea
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.setRandom
 
 class BotManagerTest {
