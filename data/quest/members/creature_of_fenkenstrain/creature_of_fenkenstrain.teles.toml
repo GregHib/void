@@ -47,3 +47,13 @@ to = { x = 3548, y = 3553, level = 2 }
 option = "Climb-down"
 tile = { x = 3548, y = 3554, level = 2 }
 to = { x = 3548, y = 3553, level = 1 }
+
+[ladder_from_cellar_directional]
+option = "Climb-up"
+tile = { x = 3578, y = 9927 }
+to = { x = 3577, y = 3527 }
+
+[ladder_from_cellar_directional]
+option = "Climb-up"
+tile = { x = 3504, y = 9970 }
+to = { x = 3504, y = 3569 }
