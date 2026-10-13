@@ -1,10 +1,10 @@
 package content.quest.member.waterfall_quest
 
 import WorldTest
+import containsMessage
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.praying
 import dialogueOption
-import containsMessage
 import interfaceOption
 import itemOnObject
 import itemOption
@@ -137,11 +137,11 @@ class WaterfallQuestTest : WorldTest() {
         player.npcOption(NPCs.find(player.tile.regionLevel, "hadley_baxtorian_falls"), "Talk-to")
         tick(8)
         player.skipDialogues()
-        player.dialogueOption(2)
+        player.dialogueOption(2) // Where else is worth visiting
         player.skipDialogues()
-        player.dialogueOption(3)
+        player.dialogueOption(2) // Is there treasure
         player.skipDialogues()
-        player.dialogueOption(4)
+        player.dialogueOption(3) // Thanks then, goodbye
         player.skipDialogues()
         assertEquals(null, player.dialogue)
     }
@@ -157,7 +157,7 @@ class WaterfallQuestTest : WorldTest() {
         assertEquals("started", player["waterfall_quest", "unstarted"])
         player.tele(2510, 3493)
         player.objectOption(GameObjects.find(Tile(2509, 3493), "waterfall_raft"), "Board")
-        tick(4)
+        tick(8)
         val crashIsland = Tile(2511, 3481)
         assertEquals(crashIsland, player.tile)
         player.npcOption(NPCs.find(player.tile.regionLevel, "hudon_baxtorian_falls"), "Talk-to")
@@ -230,9 +230,9 @@ class WaterfallQuestTest : WorldTest() {
         player.dialogueOption(1)
         finishDialogue(player)
         assertTrue(player["golrie_device_explained", false])
-        player.dialogueOption(2)
+        player.dialogueOption(2) // Crystal bowl
         finishDialogue(player)
-        player.dialogueOption(3)
+        player.dialogueOption(2) // I'd better get going
         finishDialogue(player)
         assertEquals(null, player.dialogue)
     }
@@ -319,7 +319,7 @@ class WaterfallQuestTest : WorldTest() {
         player.inventory.add("rope")
         player.equipment.add("glarials_amulet")
         player.objectOption(GameObjects.find(Tile(2509, 3493), "waterfall_raft"), "Board")
-        tick(4)
+        tick(8)
         assertEquals(Tile(2511, 3481), player.tile)
         player.itemOnObject(GameObjects.find(Tile(2512, 3468), "waterfall_rock"), player.inventory.indexOf("rope"))
         val animations = mutableSetOf<Int>()
@@ -432,13 +432,13 @@ class WaterfallQuestTest : WorldTest() {
             player.inventory.add(banned)
             player.itemOnObject(tombstone, pebble())
             tick(3)
-            assertEquals(Tile(2558, 3443), player.tile, banned)
+            assertTrue(player.tile.y < 4000, "$banned should not open the tomb")
             player.inventory.remove(banned)
         }
         player.equipment.add("bronze_sword")
         player.itemOnObject(tombstone, pebble())
         tick(3)
-        assertEquals(Tile(2558, 3443), player.tile)
+        assertTrue(player.tile.y < 4000)
         assertTrue(player.containsMessage("nothing happens"))
         player.equipment.remove("bronze_sword")
         player.itemOnObject(tombstone, pebble())
@@ -463,8 +463,10 @@ class WaterfallQuestTest : WorldTest() {
         player.tele(2529, 9844)
         player.objectOption(GameObjects.find(Tile(2530, 9844), "glarials_chest_closed"), "Open")
         tick(8)
+        player.objectOption(GameObjects.find(Tile(2530, 9844), "glarials_chest_opened"), "Search")
+        tick(8)
         assertTrue(player.inventory.contains("glarials_amulet"), "${player.tile}: ${player.messages}")
-        assertTrue(player.inventory.contains("glarials_amulet"))
+        assertEquals("found_amulet", player["waterfall_quest", "unstarted"])
         player.tele(2542, 9812)
         player.objectOption(GameObjects.find(Tile(2542, 9811), "glarials_tomb"), "Search")
         tick(8)

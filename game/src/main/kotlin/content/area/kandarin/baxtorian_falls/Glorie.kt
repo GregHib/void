@@ -121,7 +121,8 @@ class Glorie : Script {
 
     private fun ChoiceOption.device(player: Player) {
         if (!player["golrie_device_explained", false]) {
-            option<Idle>("I managed to find that device.") { // TODO expressions
+            option<Idle>("I managed to find that device.") {
+                // TODO expressions
                 npc<Idle>("Wonderful! Though you know, I don't think you ever actually mentioned what the device does.")
                 player<Idle>("It counteracts illusion magic in the surrounding area. This one should cover the whole of the Tree Gnome Village. It might be useful for someone to remember that in case it's needed again.")
                 npc<Idle>("Oh, well I'll be sure to keep that in mind.")
@@ -133,7 +134,8 @@ class Glorie : Script {
                 }
             }
         } else {
-            option<Idle>("I have a question about your storeroom.") { // TODO expressions
+            option<Idle>("I have a question about your storeroom.") {
+                // TODO expressions
                 choice {
                     diary()
                     crystalBow()
@@ -145,7 +147,8 @@ class Glorie : Script {
 
     private fun ChoiceOption.lostPebble(player: Player) {
         if (!player.inventory.contains("glarials_pebble")) {
-            option<Idle>("I lost that pebble.") { // TODO expressions
+            option<Idle>("I lost that pebble.") {
+                // TODO expressions
                 npc<Idle>("Not to worry. It turned up here again.")
                 addOrDrop("glarials_pebble")
                 message("Golrie gives you the pebble.")
@@ -164,7 +167,8 @@ class Glorie : Script {
         if (player.inventory.contains("a_key")) {
             return
         }
-        option<Idle>("Can I use your key?") { // TODO expressions
+        option<Idle>("Can I use your key?") {
+            // TODO expressions
             npc<Idle>("If you wanna go in there with them hob-gobs, that's your business.")
             addOrDrop("a_key")
             message("Golrie gives you a key.")
@@ -179,7 +183,8 @@ class Glorie : Script {
     }
 
     private fun ChoiceOption.leaveItToYou() {
-        option<Idle>("I'll leave you to it.") { // TODO expressions
+        option<Idle>("I'll leave you to it.") {
+            // TODO expressions
             npc<Idle>("Yes, lots to do. Them hob-gobs left my stuff out here in a right mess. Until next time.")
         }
     }
@@ -188,7 +193,8 @@ class Glorie : Script {
         if (player.inventory.contains("cadarn_lineage")) {
             return
         }
-        option<Idle>("Found anything interesting recently?") { // TODO expressions
+        option<Idle>("Found anything interesting recently?") {
+            // TODO expressions
             npc<Idle>("It just so happens I have. Take a look at this book.")
             addOrDrop("cadarn_lineage")
             message("Golrie gives you a book.")
@@ -203,7 +209,8 @@ class Glorie : Script {
     }
 
     private fun ChoiceOption.getGoing() {
-        option<Idle>("I'd better get going.") { // TODO expressions
+        option<Idle>("I'd better get going.") {
+            // TODO expressions
             npc<Idle>("See you later.")
         }
     }
@@ -223,7 +230,8 @@ class Glorie : Script {
     }
 
     private fun ChoiceOption.diary() {
-        option<Idle>("I found Bolrie's diary. Do you know anything about it?") { // TODO expressions
+        option<Idle>("I found Bolrie's diary. Do you know anything about it?") {
+            // TODO expressions
             npc<Idle>("Of course! Bolrie is my grandfather... assuming he's still alive, at least.")
             player<Idle>("Bolrie... Golrie... I should have guessed. You seem to like giving your children similar names, just to be confusing.")
             npc<Idle>("Certainly, in our family that's true. King Bolren is also Bolrie's younger brother, in case you didn't know.")
@@ -279,5 +287,4 @@ class Glorie : Script {
         npc<Idle>("golrie", "Oh, don't worry, I'm totally fine. I locked myself in here for protection, but I've left the key somewhere.")
         player<Idle>("Okay... I'll have a look for a key.")
     }
-
 }

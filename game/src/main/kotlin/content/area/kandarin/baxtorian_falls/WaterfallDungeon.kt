@@ -88,7 +88,6 @@ class WaterfallDungeon : Script {
         }
     }
 
-
     private suspend fun Player.floodChamber(text: String) {
         message(text)
         delay(2)
@@ -116,17 +115,7 @@ class WaterfallDungeon : Script {
         refreshQuestJournal()
         jingle("quest_complete_1")
         longQueue("quest_complete", 1) {
-            questComplete(
-                "Waterfall Quest",
-                "1 Quest Point",
-                "13,750 Attack XP",
-                "13,750 Strength XP",
-                "2 gold bars",
-                "2 diamonds",
-                "40 mithril seeds",
-                "Access to the Waterfall Dungeon",
-                item = "glarials_urn"
-            )
+            questComplete("Waterfall Quest", "1 Quest Point", "13,750 Attack XP", "13,750 Strength XP", "2 gold bars", "2 diamonds", "40 mithril seeds", "Access to the Waterfall Dungeon", item = "glarials_urn")
         }
         return true
     }
