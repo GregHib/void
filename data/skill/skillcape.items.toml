@@ -631,188 +631,20 @@ type = "Hair"
 examine = "Quest point cape hood."
 kept = "Reclaim"
 
-[attack_cape_2]
-id = 10639
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by masters of Attack."
-kept = "Reclaim"
-
-[strength_cape_2]
-id = 10640
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by only the strongest people."
-kept = "Reclaim"
-
-[defence_cape_2]
-id = 10641
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by masters of the art of Defence."
-kept = "Reclaim"
-
 [ranging_cape]
 id = 10642
 slot = "Cape"
 examine = "The cape worn by master archers."
-
-[prayer_cape_2]
-id = 10643
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the most pious of heroes."
-kept = "Reclaim"
-
-[magic_cape_2]
-id = 10644
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the most powerful mages."
-kept = "Reclaim"
 
 [runecraft_cape]
 id = 10645
 slot = "Cape"
 examine = "The cape worn by master runecrafters."
 
-[hunter_cape_2]
-id = 10646
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master hunters."
-kept = "Reclaim"
-
-[constitution_cape_2]
-id = 10647
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by well-constituted adventurers."
-kept = "Reclaim"
-
-[agility_cape_2]
-id = 10648
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the most agile of heroes."
-kept = "Reclaim"
-
-[herblore_cape_2]
-id = 10649
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the most skilled at the art of Herblore."
-kept = "Reclaim"
-
-[thieving_cape_2]
-id = 10650
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master thieves."
-kept = "Reclaim"
-
-[crafting_cape_2]
-id = 10651
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master craftworkers."
-kept = "Reclaim"
-
-[fletching_cape_2]
-id = 10652
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the best of fletchers."
-kept = "Reclaim"
-
-[slayer_cape_2]
-id = 10653
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by Slayer masters."
-kept = "Reclaim"
-
 [construct_cape]
 id = 10654
 slot = "Cape"
 examine = "The cape worn by master builders."
-
-[mining_cape_2]
-id = 10655
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the most skilled miners."
-kept = "Reclaim"
-
-[smithing_cape_2]
-id = 10656
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master smiths."
-kept = "Reclaim"
-
-[fishing_cape_2]
-id = 10657
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the best fishermen."
-kept = "Reclaim"
-
-[cooking_cape_2]
-id = 10658
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the world's best chefs."
-kept = "Reclaim"
-
-[firemaking_cape_2]
-id = 10659
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master firelighters."
-kept = "Reclaim"
-
-[woodcutting_cape_2]
-id = 10660
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master woodcutters."
-kept = "Reclaim"
-
-[farming_cape_2]
-id = 10661
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by master farmers."
-kept = "Reclaim"
-
-[quest_point_cape_2]
-id = 10662
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by only the most experienced adventurers."
-kept = "Reclaim"
 
 [summoning_cape]
 id = 12169
@@ -837,22 +669,6 @@ weight = 0.453
 slot = "Hat"
 type = "Hair"
 examine = "Summoning skillcape hood."
-kept = "Reclaim"
-
-[summoning_cape_2]
-id = 12524
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by masters of Summoning."
-kept = "Reclaim"
-
-[dungeoneering_cape_2]
-id = 15706
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by veterans of Daemonheim."
 kept = "Reclaim"
 
 [dungeoneering_cape]
@@ -907,14 +723,6 @@ kept = "Reclaim"
 
 [dungeoneering_master_cape]
 id = 19709
-tradeable = false
-weight = 0.453
-slot = "Cape"
-examine = "The cape worn by the true masters of Daemonheim."
-kept = "Reclaim"
-
-[dungeoneering_master_cape_2]
-id = 19710
 tradeable = false
 weight = 0.453
 slot = "Cape"

@@ -2,6 +2,7 @@
 
 package content.entity.player.command
 
+import content.skill.construction.House.Companion.createHouse
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -28,7 +29,7 @@ class TeleportCommands(
 
     init {
         val coords = command(intArg("x"), intArg("y"), intArg("level", optional = true), desc = "Teleport to given coordinates", handler = ::coords)
-        val place = command(stringArg("name", autofill = { Tables.get("locations").rows().mapTo(mutableSetOf()) { it.rowId } + Areas.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
+        val place = command(stringArg("name", autofill = { Tables.get("locations").rows().mapTo(mutableSetOf()) { it.rowId } + Areas.names + "home" }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
         val region = command(intArg("region", desc = "Region ID"), desc = "Teleport to given region id") { args ->
             tele(Region(args[0].toInt()).tile.add(32, 32))
             set("world_map_centre", tile.id)
@@ -74,6 +75,14 @@ class TeleportCommands(
 
     fun area(player: Player, args: List<String>) {
         val name = args.joinToString(" ").lowercase().replace(" ", "_")
+        if (name == "home") {
+            if (!player.contains("house_location")) {
+                player.message("You don't have a house to teleport to.", ChatType.Console)
+                return
+            }
+            player.tele(player.createHouse(buildMode = false))
+            return
+        }
         val place = location(name)
         if (place != null) {
             player.tele(place)

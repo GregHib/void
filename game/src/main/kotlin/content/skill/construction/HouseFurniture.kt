@@ -3,6 +3,7 @@ package content.skill.construction
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -27,33 +27,41 @@ import java.time.ZoneOffset
  * Furniture which can be used once built: storage to take items from, barrels to pour drinks, fireplaces and lamps to light and clocks to read.
  */
 class HouseFurniture : Script {
+    private val lights = "clay_fireplace,stone_fireplace,marble_fireplace,wooden_torches,steel_torches,steel_candlesticks,gold_candlesticks,incense_burners,mahogany_burners,marble_burners"
+
     init {
-        objectOperate("Search", STORAGE) { (target) ->
+        objectOperate("Search", "wooden_larder,oak_larder,teak_larder,wooden_shelves_*,oak_shelves_*,teak_shelves_*,tool_store_*,glove_rack,weapons_rack,extra_weapons_rack") { (target) ->
             val items = Tables.itemListOrNull("house_storage.${target.id}.items") ?: return@objectOperate
-            take(items)
+            take(items, Rows.getOrNull("house_storage.${target.id}")?.stringOrNull("title"))
         }
 
-        itemOnObjectOperate("beer_glass", BARRELS) { (target) ->
+        itemOnObjectOperate("beer_glass", "beer_barrel,cider_barrel,asgarnian_ale_barrel,greenmans_ale_barrel,dragon_bitter_barrel,chefs_delight_barrel") { (target) ->
             val row = Rows.getOrNull("house_barrels.${target.id}") ?: return@itemOnObjectOperate
             val drink = row.item("drink")
             if (!inventory.replace("beer_glass", drink)) {
                 return@itemOnObjectOperate
             }
+            anim("fill_glass_barrel")
+            delay(1)
             anim(row.string("anim"))
-            message("You fill the glass with ${ItemDefinitions.get(drink).name.lowercase()}.") // TODO proper message
+            message("You fill the glass with ${ItemDefinitions.get(drink).name.lowercase()}.")
         }
 
-        objectOperate("Light", LIGHTS) { (target) ->
+        objectOperate("Light", lights) { (target) ->
             light(target)
         }
 
-        itemOnObjectOperate("tinderbox,logs,clean_marrentill", LIGHTS) { (target, item) ->
+        itemOnObjectOperate("tinderbox,logs,clean_marrentill", lights) { (target, item) ->
             if (item.id == "tinderbox" || item.id == Tables.itemOrNull("house_lights.${target.id}.item")) {
                 light(target)
             }
         }
 
-        objectOperate("Read", CLOCKS) {
+        itemOnObjectOperate("magic_logs,yew_logs,maple_logs,willow_logs,mahogany_logs,teak_logs", lights) { (target, item) ->
+            message("Only ordinary logs can be used to light the fireplace.")
+        }
+
+        objectOperate("Read", "oak_clock,teak_clock,gilded_clock") {
             message(clockTime(LocalTime.now(ZoneOffset.UTC).minute))
         }
     }
@@ -64,19 +72,23 @@ class HouseFurniture : Script {
     private fun Player.light(target: GameObject) {
         val row = Rows.getOrNull("house_lights.${target.id}") ?: return
         if (get("house_build_mode", false)) {
-            message("You can't do that in building mode.") // TODO proper message
+            message("You can't light the fire in building mode.")
             return
         }
         if (!has(Skill.Firemaking, row.int("level"), message = true)) {
             return
         }
         if (!inventory.contains("tinderbox")) {
-            message("You need a tinderbox to light that.") // TODO proper message
+            message("You need a tinderbox to light the fire.")
             return
         }
         val item = row.itemOrNull("item")
         if (item != null && !inventory.remove(item)) {
-            message("You need ${ItemDefinitions.get(item).name.lowercase()} to light that.") // TODO proper message
+            if (item == "logs") {
+                message("You don't have any normal logs to light a fire with.")
+            } else {
+                message("You need ${ItemDefinitions.get(item).name.lowercase()} to light that.") // TODO proper message
+            }
             return
         }
         val ticks = row.int("ticks")
@@ -86,35 +98,41 @@ class HouseFurniture : Script {
         exp(Skill.Firemaking, row.int("xp") / 10.0)
     }
 
-    private suspend fun Player.take(items: List<String>) {
-        val index = pick(items.map { ItemDefinitions.get(it).name })
+    private suspend fun Player.take(items: List<String>, title: String? = null) {
+        val index = pick(title = title, options = items.map { Rows.getOrNull("house_storage_items.$it")?.string("option") ?: ItemDefinitions.get(it).name })
         if (index == -1) {
             return
         }
-        if (!inventory.add(items[index])) {
+        val item = items[index]
+        if (!inventory.add(item)) {
             inventoryFull()
+            return
+        }
+        val name = ItemDefinitions.get(item).name.lowercase()
+        val message = Rows.getOrNull("house_storage_items.$item")?.stringOrNull("message") ?: "You take${name.an()} $name.".replace("  ", " ")
+        if (message.isNotEmpty()) {
+            message(message)
         }
     }
 
     companion object {
-        private const val STORAGE = "wooden_larder,oak_larder,teak_larder,wooden_shelves_*,oak_shelves_*,teak_shelves_*,tool_store_*,glove_rack,weapons_rack,extra_weapons_rack"
-        private const val BARRELS = "beer_barrel,cider_barrel,asgarnian_ale_barrel,greenmans_ale_barrel,dragon_bitter_barrel,chefs_delight_barrel"
-        private const val LIGHTS = "clay_fireplace,stone_fireplace,marble_fireplace,wooden_torches,steel_torches,steel_candlesticks,gold_candlesticks,incense_burners,mahogany_burners,marble_burners"
         private val burners = setOf("incense_burners_lit", "mahogany_burners_lit", "marble_burners_lit")
-        private const val CLOCKS = "oak_clock,teak_clock,gilded_clock"
 
         /**
          * Pick one of [options], four at a time with a "More..." option when there are too many for one choice.
          * Returns the index picked or -1 if none were.
          */
-        suspend fun Player.pick(options: List<String>, offset: Int = 0): Int {
+        suspend fun Player.pick(options: List<String>, offset: Int = 0, title: String? = null): Int {
+            if (options.size == 1) {
+                return 0
+            }
             val remaining = options.size - offset
             val count = if (remaining > 5) 4 else remaining
             val lines = options.subList(offset, offset + count)
-            val choice = choice(if (count < remaining) lines + "More..." else lines)
+            val choice = choice(if (count < remaining) lines + "More..." else lines, title)
             return when {
                 choice == -1 -> -1
-                choice > count -> pick(options, offset + count)
+                choice > count -> pick(options, offset + count, title)
                 else -> offset + choice - 1
             }
         }
