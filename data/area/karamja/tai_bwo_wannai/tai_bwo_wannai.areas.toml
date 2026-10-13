@@ -6,3 +6,21 @@ tags = ["teleport", "scroll"]
 [tai_bwo_wannai_wanji_fishing_area]
 x = [2791, 3017]
 y = [3010, 3021]
+
+[tai_bwo_wannai_jungle_store]
+# nav-editor: named area only
+x = [2765, 2769]
+y = [3120, 3123]
+level = 0
+
+[tai_bwo_wannai_calquat_patch]
+# nav-editor: named area only
+x = [2794, 2798]
+y = [3099, 3103]
+level = 0
+
+[tai_bwo_wannai_hardwood_grove]
+# nav-editor: named area only
+x = [2818, 2828]
+y = [3078, 3089]
+level = 0

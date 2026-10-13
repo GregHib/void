@@ -459,3 +459,15 @@ fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbrid
 template = "woodcutting_fletching_sell_template"
 capacity = 1
 fields = { shop_area = "lumbridge_general_store", shop_npc = "shopkeeper_lumbridge,shop_assistant_lumbridge", location = "lumbridge_north_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }
+
+[shear_lumbridge_sheep]
+capacity = 2
+timeout = 300
+setup = [
+    { inventory = [{ id = "shears" }, { id = "empty", min = 27 }] },
+    { area = { id = "lumbridge_sheep_pen" } },
+]
+actions = [
+    { npc = { option = "Shear", id = "sheep,sheep_2,sheep_light_2,sheep_light_5,sheep_light_6", radius = 20, delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [{ item = "wool" }]
