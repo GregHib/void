@@ -362,7 +362,9 @@ class BotManager(
         AuditLog.event(bot, "completed", frame.behaviour.id)
         bot.frames.pop()
         if (!bot.noTask()) {
-            bot.frame().blocked.remove(behaviour.id)
+            val parent = bot.frame()
+            parent.blocked.remove(behaviour.id)
+            parent.timeout = 0
         }
         if (behaviour is BotActivity) {
             bot.blocked.remove(behaviour.id)
