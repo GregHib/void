@@ -2,9 +2,9 @@ package content.quest.member.waterfall_quest
 
 import WorldTest
 import content.skill.prayer.PrayerConfigs
-import content.skill.prayer.list.QuickPrayers
 import content.skill.prayer.praying
 import dialogueOption
+import containsMessage
 import interfaceOption
 import itemOnObject
 import itemOption
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,7 +33,9 @@ import kotlin.test.assertTrue
 class WaterfallQuestTest : WorldTest() {
     override var loadNpcs = true
 
-    private val questScript get() = scripts.filterIsInstance<WaterfallQuest>().single()
+    private val pillars = listOf(Tile(2562, 9910), Tile(2562, 9912), Tile(2562, 9914), Tile(2569, 9910), Tile(2569, 9912), Tile(2569, 9914))
+    private val runes = listOf("air_rune", "water_rune", "earth_rune")
+    private val allRunes = (1 shl 18) - 1
 
     private fun finishDialogue(player: Player) {
         repeat(12) {
@@ -56,14 +59,14 @@ class WaterfallQuestTest : WorldTest() {
     fun `Hudon cannot hear from bank and Gerald waits for Talk-to after swimming downstream`() {
         val player = createPlayer(Tile(2511, 3483))
         player["god_mode"] = true
-        player[WaterfallQuest.QUEST] = "started"
+        player["waterfall_quest"] = "started"
         player.npcOption(NPCs.find(player.tile.regionLevel, "hudon_baxtorian_falls"), "Talk-to")
         tick(2)
         assertEquals(null, player.dialogue)
-        assertEquals("started", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("started", player["waterfall_quest", "unstarted"])
         assertTrue(player.messages.any { it.contains("Hudon can't hear you") })
         player.tele(2511, 3481)
-        player[WaterfallQuest.QUEST] = "found_hudon"
+        player["waterfall_quest"] = "found_hudon"
         player.objectOption(GameObjects.find(Tile(2512, 3468), "waterfall_rock"), "Swim to")
         tick(6)
         assertEquals(Tile(2527, 3413), player.tile)
@@ -74,7 +77,7 @@ class WaterfallQuestTest : WorldTest() {
         finishDialogue(player)
         assertEquals(null, player.dialogue)
         assertTrue(player.messages.any { it.contains("washing you downstream") })
-        assertEquals("found_hudon", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("found_hudon", player["waterfall_quest", "unstarted"])
     }
 
     @Test
@@ -83,23 +86,23 @@ class WaterfallQuestTest : WorldTest() {
         val almera = NPCs.find(player.tile.regionLevel, "almera_baxtorian_falls")
         for (stage in listOf("started", "found_hudon", "read_book", "found_amulet", "entered_dungeon", "completed")) {
             player.tele(2522, 3497)
-            player[WaterfallQuest.QUEST] = stage
+            player["waterfall_quest"] = stage
             player.npcOption(almera, "Talk-to")
             tick(2)
             player.skipDialogues()
-            assertEquals(stage, player[WaterfallQuest.QUEST, "unstarted"])
+            assertEquals(stage, player["waterfall_quest", "unstarted"])
             player.tele(2511, 3481)
             player.npcOption(NPCs.find(player.tile.regionLevel, "hudon_baxtorian_falls"), "Talk-to")
             tick(2)
             player.skipDialogues()
-            assertEquals(if (stage == "started") "found_hudon" else stage, player[WaterfallQuest.QUEST, "unstarted"])
+            assertEquals(if (stage == "started") "found_hudon" else stage, player["waterfall_quest", "unstarted"])
         }
     }
 
     @Test
     fun `Waterfall entrance requires wearing amulet`() {
         val player = createPlayer(Tile(2511, 3463))
-        player[WaterfallQuest.QUEST] = "found_urn"
+        player["waterfall_quest"] = "found_urn"
         player["god_mode"] = true
         player.inventory.add("glarials_amulet")
         val entrance = GameObjects.find(Tile(2511, 3464), "waterfall_entrance")
@@ -120,16 +123,16 @@ class WaterfallQuestTest : WorldTest() {
         player.npcOption(NPCs.find(player.tile.regionLevel, "almera_baxtorian_falls"), "Talk-to")
         tick(2)
         player.skipDialogues()
-        player.dialogueOption(1)
+        player.dialogueOption(2)
         player.skipDialogues()
-        assertEquals("unstarted", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("unstarted", player["waterfall_quest", "unstarted"])
         assertEquals(null, player.dialogue)
         player.npcOption(NPCs.find(player.tile.regionLevel, "almera_baxtorian_falls"), "Talk-to")
         tick(2)
         player.skipDialogues()
-        player.dialogueOption(2)
+        player.dialogueOption(1)
         player.skipDialogues()
-        assertEquals("started", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("started", player["waterfall_quest", "unstarted"])
         player.tele(2520, 3427)
         player.npcOption(NPCs.find(player.tile.regionLevel, "hadley_baxtorian_falls"), "Talk-to")
         tick(8)
@@ -149,9 +152,9 @@ class WaterfallQuestTest : WorldTest() {
         player.npcOption(NPCs.find(player.tile.regionLevel, "almera_baxtorian_falls"), "Talk-to")
         tick(2)
         player.skipDialogues()
-        player.dialogueOption(2)
+        player.dialogueOption(1)
         player.skipDialogues()
-        assertEquals("started", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("started", player["waterfall_quest", "unstarted"])
         player.tele(2510, 3493)
         player.objectOption(GameObjects.find(Tile(2509, 3493), "waterfall_raft"), "Board")
         tick(4)
@@ -160,14 +163,14 @@ class WaterfallQuestTest : WorldTest() {
         player.npcOption(NPCs.find(player.tile.regionLevel, "hudon_baxtorian_falls"), "Talk-to")
         tick(2)
         player.skipDialogues()
-        assertEquals("found_hudon", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("found_hudon", player["waterfall_quest", "unstarted"])
         assertEquals(crashIsland, player.tile)
     }
 
     @Test
     fun `Read history free Golrie and recover lost pebble`() {
         val player = createPlayer(Tile(2520, 3429, 1))
-        player[WaterfallQuest.QUEST] = "found_hudon"
+        player["waterfall_quest"] = "found_hudon"
         player.objectOption(GameObjects.find(Tile(2520, 3430, 1), "waterfall_bookcase"), "Search")
         tick(6)
         assertTrue(player.inventory.contains("book_on_baxtorian"), "${player.tile}: ${player.messages}")
@@ -179,7 +182,7 @@ class WaterfallQuestTest : WorldTest() {
         player.itemOption("Read", "book_on_baxtorian")
         tick(2)
         assertEquals("book_on_baxtorian", player["book", ""])
-        assertEquals("read_book", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("read_book", player["waterfall_quest", "unstarted"])
         player.tele(2548, 9564, 0)
         player.objectOption(GameObjects.find(Tile(2548, 9565), "crate_10"), "Search")
         tick(12)
@@ -193,7 +196,7 @@ class WaterfallQuestTest : WorldTest() {
         player.npcOption(golrie, "Talk-to")
         tick(8)
         finishDialogue(player)
-        assertEquals("found_pebble", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("found_pebble", player["waterfall_quest", "unstarted"])
         assertTrue(player.inventory.contains("glarials_pebble"))
         assertFalse(player.inventory.contains("a_key"))
         assertTrue(player["waterfall_golrie_key_given", false])
@@ -237,7 +240,7 @@ class WaterfallQuestTest : WorldTest() {
     @Test
     fun `Golrie gate visibly opens closes and always requires key`() {
         val player = createPlayer(Tile(2515, 9575))
-        player[WaterfallQuest.QUEST] = "started"
+        player["waterfall_quest"] = "started"
         val gate = GameObjects.find(Tile(2515, 9575), "gate_33_closed")
         player.objectOption(gate, "Open")
         tick(2)
@@ -279,7 +282,7 @@ class WaterfallQuestTest : WorldTest() {
         assertFalse(player["waterfall_golrie_freed", false])
         assertTrue(player.inventory.contains("a_key"))
         player.inventory.remove("a_key")
-        player[WaterfallQuest.QUEST] = "completed"
+        player["waterfall_quest"] = "completed"
         player["waterfall_golrie_key_given"] = true
         player.objectOption(gate, "Open")
         tick(2)
@@ -290,7 +293,7 @@ class WaterfallQuestTest : WorldTest() {
     @Test
     fun `Golrie gives pebble before book reading without skipping book progress`() {
         val player = createPlayer(Tile(2515, 9576))
-        player[WaterfallQuest.QUEST] = "found_hudon"
+        player["waterfall_quest"] = "found_hudon"
         player["waterfall_golrie_freed"] = true
         player.inventory.add("a_key")
         val golrie = NPCs.find(player.tile.regionLevel, "golrie")
@@ -298,7 +301,7 @@ class WaterfallQuestTest : WorldTest() {
         tick(2)
         finishDialogue(player)
         assertTrue(player.inventory.contains("glarials_pebble"))
-        assertEquals("found_hudon", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("found_hudon", player["waterfall_quest", "unstarted"])
         player.npcOption(golrie, "Talk-to")
         tick(2)
         finishDialogue(player)
@@ -306,13 +309,13 @@ class WaterfallQuestTest : WorldTest() {
         player.inventory.add("book_on_baxtorian")
         player.itemOption("Read", "book_on_baxtorian")
         tick(2)
-        assertEquals("found_pebble", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("found_pebble", player["waterfall_quest", "unstarted"])
     }
 
     @Test
     fun `Rope route enters waterfall and exit returns to ledge`() {
         val player = createPlayer(Tile(2510, 3493))
-        player[WaterfallQuest.QUEST] = "found_urn"
+        player["waterfall_quest"] = "found_urn"
         player.inventory.add("rope")
         player.equipment.add("glarials_amulet")
         player.objectOption(GameObjects.find(Tile(2509, 3493), "waterfall_raft"), "Board")
@@ -368,19 +371,21 @@ class WaterfallQuestTest : WorldTest() {
     @Test
     fun `All eighteen rune placements persist and duplicates cost nothing`() {
         val player = createPlayer(Tile(2565, 9910))
-        player[WaterfallQuest.QUEST] = "entered_dungeon"
-        WaterfallQuest.RUNES.forEach { player.inventory.add(it, 6) }
-        with(questScript) {
-            assertFalse(player.placeRune(Tile(2600, 9909), "air_rune"))
-            for (pillar in WaterfallQuest.PILLARS) {
-                for (rune in WaterfallQuest.RUNES) {
-                    assertTrue(player.placeRune(pillar, rune))
-                    assertFalse(player.placeRune(pillar, rune))
-                }
+        player["waterfall_quest"] = "entered_dungeon"
+        runes.forEach { player.inventory.add(it, 6) }
+        for (pillar in pillars) {
+            player.tele(pillar.x, pillar.y - 1)
+            val obj = GameObjects.find(pillar) { it.id.startsWith("pillar") }
+            for (rune in runes) {
+                player.itemOnObject(obj, player.inventory.indexOf(rune))
+                tick(4)
+                player.itemOnObject(obj, player.inventory.indexOf(rune))
+                tick(2)
             }
         }
-        assertEquals(WaterfallQuest.ALL_RUNES, player["waterfall_pillars", 0])
-        WaterfallQuest.RUNES.forEach { assertEquals(0, player.inventory.count(it)) }
+        assertEquals(allRunes, player["waterfall_pillars", 0])
+        runes.forEach { assertEquals(0, player.inventory.count(it)) }
+        assertTrue(player.containsMessage("You have already placed this type of rune on this pillar."))
     }
 
     @Test
@@ -417,27 +422,34 @@ class WaterfallQuestTest : WorldTest() {
 
     @Test
     fun `Tomb rejects weapons equipment and runes but permits food`() {
-        val player = createPlayer(Tile(2558, 3444))
-        player[WaterfallQuest.QUEST] = "found_pebble"
+        val player = createPlayer(Tile(2558, 3443))
+        player["waterfall_quest"] = "found_pebble"
         player.inventory.add("glarials_pebble")
         player.inventory.add("lobster")
-        with(questScript) {
-            assertTrue(player.canEnterTomb())
-            player.inventory.add("air_rune")
-            assertFalse(player.canEnterTomb())
-            player.inventory.remove("air_rune")
-            player.inventory.add("bronze_sword")
-            assertFalse(player.canEnterTomb())
-            player.inventory.remove("bronze_sword")
-            player.equipment.add("bronze_sword")
-            assertFalse(player.canEnterTomb())
+        val tombstone = GameObjects.find(Tile(2558, 3444), "glarials_tombstone")
+        val pebble = { player.inventory.indexOf("glarials_pebble") }
+        for (banned in listOf("air_rune", "bronze_sword")) {
+            player.inventory.add(banned)
+            player.itemOnObject(tombstone, pebble())
+            tick(3)
+            assertEquals(Tile(2558, 3443), player.tile, banned)
+            player.inventory.remove(banned)
         }
+        player.equipment.add("bronze_sword")
+        player.itemOnObject(tombstone, pebble())
+        tick(3)
+        assertEquals(Tile(2558, 3443), player.tile)
+        assertTrue(player.containsMessage("nothing happens"))
+        player.equipment.remove("bronze_sword")
+        player.itemOnObject(tombstone, pebble())
+        tick(10)
+        assertEquals(Tile(2555, 9844), player.tile)
     }
 
     @Test
     fun `Enter tomb collect relics and leave by ladder`() {
         val player = createPlayer(Tile(2558, 3443))
-        player[WaterfallQuest.QUEST] = "found_pebble"
+        player["waterfall_quest"] = "found_pebble"
         player["god_mode"] = true
         player.inventory.add("glarials_pebble")
         player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "thick_skin")
@@ -445,9 +457,8 @@ class WaterfallQuestTest : WorldTest() {
         tick(10)
         assertEquals(Tile(2555, 9844), player.tile)
         assertFalse(player.praying("thick_skin"))
-        with(scripts.filterIsInstance<QuickPrayers>().single()) {
-            player.togglePrayer(0, PrayerConfigs.ACTIVE_PRAYERS, false)
-        }
+        player.open("prayer_list")
+        player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)
         assertFalse(player.praying("thick_skin"))
         player.tele(2529, 9844)
         player.objectOption(GameObjects.find(Tile(2530, 9844), "glarials_chest_closed"), "Open")
@@ -458,7 +469,7 @@ class WaterfallQuestTest : WorldTest() {
         player.objectOption(GameObjects.find(Tile(2542, 9811), "glarials_tomb"), "Search")
         tick(8)
         assertTrue(player.inventory.contains("glarials_urn"))
-        assertEquals("found_urn", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("found_urn", player["waterfall_quest", "unstarted"])
         player.tele(2555, 9844)
         player.objectOption(GameObjects.find(Tile(2556, 9844)) { it.intId == 1757 }, "Climb-up")
         tick(12)
@@ -468,20 +479,20 @@ class WaterfallQuestTest : WorldTest() {
     @Test
     fun `Statue transports to raised chamber and urn awards treasure once`() {
         val player = createPlayer(Tile(2565, 9915))
-        player[WaterfallQuest.QUEST] = "entered_dungeon"
-        player["waterfall_pillars"] = WaterfallQuest.ALL_RUNES
+        player["waterfall_quest"] = "entered_dungeon"
+        player["waterfall_pillars"] = allRunes
         player.inventory.add("glarials_amulet")
         player.inventory.add("glarials_urn")
         val statue = GameObjects.find(Tile(2565, 9916), "waterfall_glarial_statue")
         player.itemOnObject(statue, player.inventory.indexOf("glarials_amulet"))
         tick(8)
-        assertEquals("restored_amulet", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("restored_amulet", player["waterfall_quest", "unstarted"])
         assertEquals(Tile(2603, 9914), player.tile)
         assertEquals(null, GameObjects.findOrNull(player.tile, "waterfall_glarial_statue"))
         val chalice = GameObjects.find(Tile(2603, 9910), "waterfall_chalice")
         player.itemOnObject(chalice, player.inventory.indexOf("glarials_urn"))
         tick(12)
-        assertEquals("completed", player[WaterfallQuest.QUEST, "unstarted"])
+        assertEquals("completed", player["waterfall_quest", "unstarted"])
         assertEquals(1, player["quest_points", 0])
         assertEquals(2, player.inventory.count("gold_bar"))
         assertEquals(2, player.inventory.count("diamond"))
@@ -489,21 +500,27 @@ class WaterfallQuestTest : WorldTest() {
         assertTrue(player.inventory.contains("glarials_urn_empty"))
         assertEquals(13750.0, player.experience.get(Skill.Attack))
         assertEquals(13750.0, player.experience.get(Skill.Strength))
-        with(questScript) { assertFalse(player.completeQuest()) }
+        player.itemOnObject(chalice, player.inventory.indexOf("glarials_urn_empty"))
+        tick(12)
         assertEquals(1, player["quest_points", 0])
+        assertEquals(2, player.inventory.count("gold_bar"))
     }
 
     @Test
     fun `Full inventory preserves urn and rewards for retry`() {
         val player = createPlayer(Tile(2603, 9915))
-        player[WaterfallQuest.QUEST] = "restored_amulet"
+        player["waterfall_quest"] = "restored_amulet"
         player.inventory.add("glarials_urn")
-        player.inventory.add("lobster", 23)
-        with(questScript) { assertFalse(player.completeQuest()) }
-        assertEquals("restored_amulet", player[WaterfallQuest.QUEST, "unstarted"])
+        player.inventory.add("lobster", 27)
+        val chalice = GameObjects.find(Tile(2603, 9910), "waterfall_chalice")
+        player.itemOnObject(chalice, player.inventory.indexOf("glarials_urn"))
+        tick(4)
+        assertEquals("restored_amulet", player["waterfall_quest", "unstarted"])
         assertTrue(player.inventory.contains("glarials_urn"))
-        player.inventory.remove("lobster")
-        with(questScript) { assertTrue(player.completeQuest()) }
-        assertEquals("completed", player[WaterfallQuest.QUEST, "unstarted"])
+        assertTrue(player.containsMessage("5 free slots"))
+        player.inventory.remove("lobster", 6)
+        player.itemOnObject(chalice, player.inventory.indexOf("glarials_urn"))
+        tick(12)
+        assertEquals("completed", player["waterfall_quest", "unstarted"])
     }
 }

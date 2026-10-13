@@ -286,17 +286,6 @@ class CreatureOfFenkenstrain : Script {
             }
         }
 
-        objectOperate("Climb-up", "tithe_roof_g") { (target) ->
-            // Object 1757 is verified correct: a Ladder placed at exactly these two cave
-            //  tiles. Only the name is wrong - loctypes.txt has 1750-1762 as Tithe Farm
-            //  roofs, so it carries no 634-era name for this id.
-            if (target.tile.x == 3578 && target.tile.y == 9927) {
-                tele(3577, 3527, 0)
-            } else if (target.tile.x == 3504 && target.tile.y == 9970) {
-                tele(3504, 3569, 0)
-            }
-        }
-
         itemOnObjectOperate("fenk_star_amulet", "fenk_coffin") { interaction ->
             if (interaction.target.tile.x != 3578 || interaction.target.tile.y != 3527) {
                 return@itemOnObjectOperate message("Nothing interesting happens.")
