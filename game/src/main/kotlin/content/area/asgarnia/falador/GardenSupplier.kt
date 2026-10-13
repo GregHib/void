@@ -9,7 +9,7 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.skill.construction.House.Companion.hasHouse
+import content.skill.construction.HouseRooms.hasHouse
 import world.gregs.voidps.engine.Script
 
 class GardenSupplier : Script {
