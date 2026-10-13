@@ -72,7 +72,7 @@ class HouseStairs : Script {
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
             val above = roomAbove(position)
             anim("climb_up")
-            travel(base, position, above, owner.houseTrapdoor(above) != null, listOf("throne_room" to "Throne room"), "These stairs do not lead anywhere.", "below the throne room")// TODO "Do you want to build an oubliette below the throne room?"
+            travel(base, position, above, owner.houseTrapdoor(above) != null, listOf("throne_room" to "Throne room"), "These stairs do not lead anywhere.", "below the throne room") // TODO "Do you want to build an oubliette below the throne room?"
         }
 
         objectOperate("Climb-up", staircases) { (target) ->

@@ -3,7 +3,6 @@ package content.skill.construction
 import content.area.asgarnia.falador.openDressingRoom
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
