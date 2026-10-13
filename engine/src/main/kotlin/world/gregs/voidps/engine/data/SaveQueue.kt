@@ -12,12 +12,14 @@ import java.util.concurrent.TimeUnit
 class SaveQueue(
     private val storage: Storage,
     private val fallback: Storage = storage,
+    private val botStorage: Storage = storage,
     // SupervisorJob so a failed save doesn't cancel the scope and kill future saves
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
     private val retryMillis: Long = TimeUnit.MINUTES.toMillis(Settings["storage.save.retryMinutes", 5].toLong()),
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
     private val failing = ConcurrentHashMap<String, Long>()
+    private val bots = ConcurrentHashMap.newKeySet<String>()
     private val logger = InlineLogger()
     private var job: Job? = null
 
@@ -37,7 +39,9 @@ class SaveQueue(
     }
 
     fun direct(): Job {
-        val online = Players.filter { !it.contains("bot") }.map { it.copy() }
+        val online = Players.filter { !it.contains("bot") || saveBots() }.map { player ->
+            player.copy().also { if (player.contains("bot")) bots.add(it.name) }
+        }
         val names = online.mapTo(HashSet()) { it.name }
         val queued = pending.values.filter { it.name !in names }
         return scope.save(online + queued, retry = false)
@@ -51,7 +55,13 @@ class SaveQueue(
         withContext(NonCancellable) {
             val start = System.currentTimeMillis()
             try {
-                storage.save(accounts)
+                val (botAccounts, playerAccounts) = accounts.partition { it.name in bots }
+                if (playerAccounts.isNotEmpty() || botAccounts.isEmpty()) {
+                    storage.save(playerAccounts)
+                }
+                if (botAccounts.isNotEmpty()) {
+                    botStorage.save(botAccounts)
+                }
             } catch (e: Exception) {
                 failed(accounts, e, retry)
                 return@withContext
@@ -84,13 +94,14 @@ class SaveQueue(
     }
 
     private fun clearFailing(accounts: List<PlayerSave>) {
-        for (account in accounts) {
-            failing.remove(account.name)
+        for ((name) in accounts) {
+            failing.remove(name)
         }
     }
 
     private fun clearPending(accounts: List<PlayerSave>) {
         for (account in accounts) {
+            bots.remove(account.name)
             pending.computeIfPresent(account.name) { _, current ->
                 if (current === account) null else current
             }
@@ -98,11 +109,28 @@ class SaveQueue(
     }
 
     fun save(player: Player) {
-        if (player.contains("bot") || Settings["storage.disabled", false]) {
+        val bot = player.contains("bot")
+        if ((bot && !saveBots()) || Settings["storage.disabled", false]) {
             return
         }
-        pending[player.accountName] = player.copy()
+        val save = player.copy()
+        if (bot) {
+            bots.add(save.name)
+        }
+        pending[player.accountName] = save
     }
+
+    /**
+     * Loads a previously saved bot account, if bots are being saved and one exists with this [name].
+     */
+    fun loadBot(name: String): PlayerSave? {
+        if (!saveBots() || saving(name)) {
+            return null
+        }
+        return botStorage.load(name)
+    }
+
+    private fun saveBots() = Settings["storage.bots.save", false]
 
     fun saving(name: String) = pending.containsKey(name)
 

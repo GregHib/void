@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
@@ -61,6 +62,7 @@ class BotCommands(
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
+    private val saveQueue: SaveQueue,
     accountDefinitions: AccountDefinitions,
 ) : Script {
 
@@ -344,11 +346,14 @@ class BotCommands(
                 "${prefix}$selected"
             }
             val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport")
-            val player = Player(tile = Areas[areas.random()].random(), accountName = name)
+            val saved = saveQueue.loadBot(name)?.toPlayer()
+            val player = saved ?: Player(tile = Areas[areas.random()].random(), accountName = name)
             val bot = player.initBot()
             loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
-            setAppearance(player)
-            player.inventory.add("coins", 10000)
+            if (saved == null) {
+                setAppearance(player)
+                player.inventory.add("coins", 10000)
+            }
             player.viewport?.loaded = true
             delay(3)
             manager.add(bot)
@@ -388,9 +393,12 @@ class BotCommands(
             counter++
             val name = pickBotName()
             val spawn = context.arenaSpawn(arenaKey) ?: return@launch
-            val bot = Player(tile = spawn, accountName = name).initBot()
+            val saved = saveQueue.loadBot(name)?.toPlayer()
+            val bot = (saved?.apply { tile = spawn } ?: Player(tile = spawn, accountName = name)).initBot()
             loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])
-            setAppearance(bot.player)
+            if (saved == null) {
+                setAppearance(bot.player)
+            }
             delay(3)
             val tiers = context.arenaTiers(arenaKey)
             if (tiers.isEmpty()) return@launch
