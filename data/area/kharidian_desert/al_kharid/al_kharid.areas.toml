@@ -29,10 +29,12 @@ y = [3121, 3125]
 [al_kharid_mine]
 x = [3291, 3308]
 y = [3281, 3320]
+bot_capacity = 5
 
 [al_kharid_mine_north]
 x = [3291, 3308]
 y = [3309, 3320]
+bot_capacity = 6
 
 [greater_al_kharid]
 x = [3264,3264,3391,3391,3423,3423,3455,3455]

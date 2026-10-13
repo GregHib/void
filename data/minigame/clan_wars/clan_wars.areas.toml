@@ -10,6 +10,7 @@ y = [5490, 5640]
 [clan_wars_ffa_safe_arena]
 x = [2756, 2878]
 y = [5512, 5630]
+bot_capacity = 24
 
 [clan_wars_ffa_safe_multi]
 x = [2756, 2878]
@@ -19,6 +20,7 @@ tags = ["multi_combat"]
 [clan_wars_ffa_dangerous_arena]
 x = [2948, 3071]
 y = [5512, 5631]
+bot_capacity = 12
 
 [clan_wars_ffa_dangerous_multi]
 x = [2948, 3071]
