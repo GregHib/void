@@ -57,10 +57,6 @@ class HouseCostumeRoom : Script {
                 "oak_fancy_dress_box,teak_fancy_dress_box,mahogany_fancy_dress_box,oak_armour_case,teak_armour_case,mahogany_armour_case",
         ) { (target) ->
             if (target.id.endsWith("treasure_chest")) {
-                if (!inOwnHouse()) {
-                    message("You can only do that in your own house.") // TODO proper message
-                    return@objectOperate
-                }
                 choice("Take which level of Treasure Trail reward?") {
                     for (level in 1..4) {
                         option("Level $level") {
@@ -99,6 +95,10 @@ class HouseCostumeRoom : Script {
             val items = slots(get("house_costume_storage") ?: return@interfaceOption)
             val page: Int = get("house_costume_page") ?: 0
             val row = it.component.removePrefix("select_").toInt() - 1
+            if (!inOwnHouse()) {
+                message("You can only store stuff in your own house.")
+                return@interfaceOption
+            }
             if (row == pageRow(items, page)) {
                 set("house_costume_page", if (hasNextPage(items, page)) page + 1 else 0)
                 val scrollbar = InterfaceDefinitions.getComponent(it.id, "scrollbar")!!.id

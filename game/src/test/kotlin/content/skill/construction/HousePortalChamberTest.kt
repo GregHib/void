@@ -23,7 +23,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class PortalChamberTest : WorldTest() {
+class HousePortalChamberTest : WorldTest() {
 
     private val portal = Tile(2951, 3222)
     private val exit = Tile(2953, 3224)

@@ -32,6 +32,10 @@ class HouseBookcase : Script {
             open("poh_bookcase")
         }
 
+        /*
+            You can only store stuff in your own house.
+         */
+
         interfaceOpened("poh_bookcase") { id ->
             interfaces.sendText(id, "title", "Bookcase")
             interfaceOptions.send(id, "books")

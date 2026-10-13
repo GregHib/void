@@ -1,6 +1,7 @@
 package content.skill.construction
 
 import content.entity.player.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -71,10 +72,11 @@ class HouseWorkshop : Script {
     /**
      * Paints the players family crest onto the item made by the heraldry [stand]
      */
-    private fun Player.paint(stand: GameObject) {
+    private suspend fun Player.paint(stand: GameObject) {
         val row = Rows.getOrNull("house_heraldry.${stand.id}") ?: return
-        val crest: Int = get("heraldry_crest") ?: run {
-            message("You need a family crest before you can do that.") // TODO proper message
+        val crest: Int? = get("heraldry_crest")
+        if (crest == null) {
+            statement("You must speak to the chief herald of Falador before you can make heraldic items.")
             return
         }
         if (!has(Skill.Crafting, row.int("level"), message = true)) {

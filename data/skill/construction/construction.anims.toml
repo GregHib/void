@@ -8,6 +8,9 @@ id = 3685
 [light_fireplace]
 id = 3658
 
+[fill_glass_barrel]
+id = 3660
+
 [fill_beer_barrel]
 id = 3661
 

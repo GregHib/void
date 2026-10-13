@@ -48,7 +48,7 @@ class HouseOptions : Script {
 
         interfaceOption("Expel guests", "house_options:expel_guests") {
             if (!inOwnHouse()) {
-                message("You can only expel guests when you are in your own house.")
+                message("You do not appear to have a house that's open to guests at the moment.")
                 return@interfaceOption
             }
             expelGuests()
@@ -64,6 +64,10 @@ class HouseOptions : Script {
     }
 
     private suspend fun Player.buildMode(enabled: Boolean) {
+        if (!inOwnHouse()) {
+            message("You can only enter building mode in your own house.")
+            return
+        }
         if (get("house_build_mode", false) == enabled) {
             return
         }

@@ -4,6 +4,7 @@ import content.activity.shooting_star.ShootingStarHandler
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.statement
+import content.quest.questCompleted
 import content.skill.magic.spell.SpellRunes
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.GameLoop
@@ -85,6 +86,14 @@ class HouseStudy : Script {
                 message("You can't make that tablet on this lectern.") // TODO proper message
                 return@interfaceOption
             }
+            if (!questCompleted("plague_city") && tablet == "ardougne_teleport") {
+                message("You need to have completed Plague City quest to create this tablet.") // TODO proper message
+                return@interfaceOption
+            }
+            if (!questCompleted("watchtower") && tablet == "watchtower_teleport") {
+                message("You need to have completed Watchtower quest to create this tablet.") // TODO proper message
+                return@interfaceOption
+            }
             makeTablets(tablet, Tables.int("house_lecterns.$lectern.ticks"), amount)
         }
 
@@ -116,18 +125,27 @@ class HouseStudy : Script {
 //        statement("That crystal ball can only change ordinary staffs.")
         when (inventory.transaction.error) {
             TransactionError.None -> {
-                val type = if (new.startsWith("mystic")) "_mystic" else if (new.endsWith("battlestaff")) "_battlestaff" else ""
-                anim("crystal_ball1_${element(old)}${type}")
-                message("The staff feels very ${
-                   when (element(new)) {
-                       "earth" -> "heavy"
-                       "water" -> "damp"
-                       "air" -> "light"
-                       else -> "hot"
-                   }
-                } for a moment.", ChatType.Filter)
+                val type = if (new.startsWith("mystic")) {
+                    "_mystic"
+                } else if (new.endsWith("battlestaff")) {
+                    "_battlestaff"
+                } else {
+                    ""
+                }
+                anim("crystal_ball1_${element(old)}$type")
+                message(
+                    "The staff feels very ${
+                        when (element(new)) {
+                            "earth" -> "heavy"
+                            "water" -> "damp"
+                            "air" -> "light"
+                            else -> "hot"
+                        }
+                    } for a moment.",
+                    ChatType.Filter,
+                )
                 delay(1)
-                anim("crystal_ball2_${element(new)}${type}")
+                anim("crystal_ball2_${element(new)}$type")
             }
             is TransactionError.Deficient -> message("You need $cost ${ItemDefinitions.get(rune).name.lowercase()}s to change that staff.") // TODO proper message
             else -> {}
@@ -138,7 +156,6 @@ class HouseStudy : Script {
 
     /**
      * Makes [amount] of [tablet] from soft clay and the runes for its spell, one every [ticks]
-     * TODO quest requirements for Ardougne (Plague City) and Watchtower (Watchtower)
      */
     private fun Player.makeTablets(tablet: String, ticks: Int, amount: Int) {
         if (amount <= 0) {

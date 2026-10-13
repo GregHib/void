@@ -55,6 +55,10 @@ class HouseThroneRoom : Script {
         }
 
         objectOperate("Challenge-mode", levers) { (target) ->
+            if (!inOwnHouse()) {
+                message("You can only do that in your own house.")
+                return@objectOperate
+            }
             if (!canPull()) {
                 return@objectOperate
             }
@@ -88,10 +92,8 @@ class HouseThroneRoom : Script {
             notImplemented()
             return false
         }
-        if (!inOwnHouse()) {
-            message("You can only do that in your own house.") // TODO proper message
-            return false
-        }
+        // TODO link to floor decor
+        message("There is no fiendish mechanism for the level to activate.")
         if (get("house_build_mode", false)) {
             message("You can't do that in building mode.") // TODO proper message
             return false

@@ -50,7 +50,7 @@ class HouseMenagerie : Script {
     init {
         objectOperate("Store", "oak_pet_house,teak_pet_house,mahogany_pet_house,consecrated_pet_house,desecrated_pet_house,natural_pet_house") {
             if (!inOwnHouse()) {
-                message("You can only do that in your own house.") // TODO proper message
+                message("You can only do that in your own house.")
                 return@objectOperate
             }
             if (get("house_build_mode", false)) {

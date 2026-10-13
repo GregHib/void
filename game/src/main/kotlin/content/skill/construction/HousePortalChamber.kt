@@ -40,7 +40,7 @@ import world.gregs.voidps.type.Zone
  * Each portal hotspot's variant stores the destination so the room is furnished with the directed portal.
  * https://oldschool.runescape.wiki/w/Portal_chamber
  */
-class PortalChamber : Script {
+class HousePortalChamber : Script {
     private val runeMultiplier = 100
     private val scryLocations = listOf("Varrock", "Camelot", "Falador", "Entrance portal")
     private val portalSpaces = listOf("portal_chamber_portal_space", "portal_chamber_portal_space_2", "portal_chamber_portal_space_3")
@@ -75,7 +75,7 @@ class PortalChamber : Script {
         objectOperate("Direct-portal", "teleport_focus,greater_teleport_focus,scrying_pool") { (target) ->
             val base = houseBase() ?: return@objectOperate
             if (!inOwnHouse()) {
-                message("You can only do that in your own house.") // TODO proper message
+                message("Only the house owner can do that.")
                 return@objectOperate
             }
             val position = roomPosition(base, target.tile.zone) ?: return@objectOperate
@@ -89,7 +89,7 @@ class PortalChamber : Script {
             if (portal == -1) {
                 return@objectOperate
             }
-            val destinations = Tables.get("house_portals").rows()
+            val destinations = Tables.get("house_portals").rows() // TODO dest should be based on the portals setup
             val index = pick(destinations.map { it.string("name") })
             if (index == -1) {
                 return@objectOperate
@@ -136,6 +136,8 @@ class PortalChamber : Script {
             message("That portal is already directed there.") // TODO proper message
             return
         }
+        // You see one adventurer in the area.
+        // You see 20 adventurers in the area.
         val book = destination.string("spellbook")
         val spell = destination.string("spell")
         val level = SpellRunes.magicLevel(book, spell) ?: return

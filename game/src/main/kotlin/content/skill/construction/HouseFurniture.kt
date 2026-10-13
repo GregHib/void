@@ -41,8 +41,10 @@ class HouseFurniture : Script {
             if (!inventory.replace("beer_glass", drink)) {
                 return@itemOnObjectOperate
             }
+            anim("fill_glass_barrel")
+            delay(1)
             anim(row.string("anim"))
-            message("You fill the glass with ${ItemDefinitions.get(drink).name.lowercase()}.") // TODO proper message
+            message("You fill the glass with ${ItemDefinitions.get(drink).name.lowercase()}.")
         }
 
         objectOperate("Light", lights) { (target) ->

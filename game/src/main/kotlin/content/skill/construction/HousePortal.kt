@@ -10,6 +10,7 @@ import content.skill.construction.House.Companion.createHouse
 import content.skill.construction.House.Companion.houseLoading
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -26,15 +27,12 @@ class HousePortal : Script {
     init {
         objectOperate("Enter", "house_portal_*") { (target) ->
             val location = target.id.removePrefix("house_portal_")
-            val owned = get("house_location", "") == location
             choice {
-                if (owned) {
-                    option("Go to your house.") {
-                        enterOwnHouse(buildMode = false)
-                    }
-                    option("Go to your house (building mode).") {
-                        enterOwnHouse(buildMode = true)
-                    }
+                option("Go to your house.") {
+                    enterOwnHouse(location, buildMode = false)
+                }
+                option("Go to your house (building mode).") {
+                    enterOwnHouse(location, buildMode = true)
                 }
                 option("Go to a friend's house.") {
                     visitFriend(location)
@@ -49,7 +47,7 @@ class HousePortal : Script {
 
         objectOperate("Lock", "exit_portal") {
             if (!inOwnHouse()) {
-                message("You can only lock your own house.") // TODO proper message
+                statement("You can only lock your own house.")
                 return@objectOperate
             }
             val locked = !get("house_locked", false)
@@ -84,7 +82,12 @@ class HousePortal : Script {
         }
     }
 
-    private suspend fun Player.enterOwnHouse(buildMode: Boolean) {
+    private suspend fun Player.enterOwnHouse(location: String, buildMode: Boolean) {
+        val actual = get("house_location", "")
+        if (actual != location) {
+            message("Your house is in ${actual.toSentenceCase()}.")
+            return
+        }
         tele(createHouse(buildMode))
         houseLoading()
     }
@@ -112,11 +115,12 @@ class HousePortal : Script {
     private suspend fun Player.visitFriend(location: String) {
         val owner = Players.find(nameEntry("Enter name:"))
         if (owner == null || !owner.inOwnHouse()) {
-            message("That player is offline, or has privacy mode enabled.") // TODO proper messages
+            message("That player is offline, or has privacy mode enabled.")
             return
         }
-        if (owner["house_location", ""] != location) {
-            message("That player's house isn't here.") // TODO proper messages
+        val actual = owner["house_location", ""]
+        if (actual != location) {
+            message("Their house is in ${actual.toSentenceCase()}.")
             return
         }
         if (owner["house_build_mode", false]) {

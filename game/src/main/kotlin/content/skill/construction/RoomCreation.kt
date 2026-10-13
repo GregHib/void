@@ -161,7 +161,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
          */
         suspend fun Player.removeRoom(position: Int, room: String, onRemove: Player.() -> Unit = {}) {
             if (exitPortals(position) > 0 && exitPortals() <= exitPortals(position)) {
-                message("Your house must have at least one exit portal.") // TODO proper message
+                statement("Your house must have at least one exit portal.")
                 return
             }
             choice("Remove the ${room.replace('_', ' ')}?") {

@@ -16,11 +16,11 @@ import content.skill.construction.HouseHotspots.houseFurnitureRooms
 import content.skill.construction.HouseLoader.loadHouse
 import content.skill.construction.HouseMenagerie.Companion.despawnHousePets
 import content.skill.construction.HouseMenagerie.Companion.spawnHousePets
+import content.skill.construction.HousePortalChamber.Companion.stopScrying
 import content.skill.construction.HouseRooms.hasHouse
 import content.skill.construction.HouseRooms.houseRoomIds
 import content.skill.construction.HouseRooms.houseRoomPositions
 import content.skill.construction.HouseRooms.newHouse
-import content.skill.construction.PortalChamber.Companion.stopScrying
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -73,8 +73,8 @@ class House : Script {
         }
 
         val doors = "basic_wood_door_left_closed,basic_wood_door_right_closed,large_door_45_closed,large_door_47_closed," +
-                "whitewashed_stone_door_left_closed,whitewashed_stone_door_right_closed,fremennik_wood_door_left_closed,fremennik_wood_door_right_closed," +
-                "tropical_wood_door_left_closed,tropical_wood_door_right_closed,fancy_stone_door_left_closed,fancy_stone_door_right_closed"
+            "whitewashed_stone_door_left_closed,whitewashed_stone_door_right_closed,fremennik_wood_door_left_closed,fremennik_wood_door_right_closed," +
+            "tropical_wood_door_left_closed,tropical_wood_door_right_closed,fancy_stone_door_left_closed,fancy_stone_door_right_closed"
 
         objectOperate("Open", doors) { (target) ->
             openHouseDoor(target)
