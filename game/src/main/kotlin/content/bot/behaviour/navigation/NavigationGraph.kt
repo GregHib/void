@@ -284,14 +284,13 @@ class NavigationGraph(
                                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                                     }
                                 }
-                                when {
-                                    actions.isEmpty() -> {
-                                        val cost = Distance.manhattan(from.x, from.y, to.x, to.y)
-                                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotWalkTo(to.x, to.y)), null)
-                                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotWalkTo(from.x, from.y)), null)
-                                    }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), null)
-                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), Condition.parse(requirements, exception()))
+                                val conditions = if (requirements.isEmpty()) null else Condition.parse(requirements, exception())
+                                if (actions.isEmpty()) {
+                                    val weight = if (cost > 0) cost else Distance.manhattan(from.x, from.y, to.x, to.y)
+                                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), weight, listOf(BotWalkTo(to.x, to.y)), conditions)
+                                    builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), weight, listOf(BotWalkTo(from.x, from.y)), conditions)
+                                } else {
+                                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), conditions)
                                 }
                             }
                         }
