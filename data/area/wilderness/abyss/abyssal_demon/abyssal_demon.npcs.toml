@@ -11,8 +11,3 @@ slayer_level = 85
 drop_table = "abyssal_demon"
 categories = ["abyssal_demon", "demon"]
 examine = "A denizen of the Abyss!"
-
-[abyssal_demon_1]
-id = 4230
-clone = "abyssal_demon"
-

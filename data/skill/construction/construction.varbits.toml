@@ -1,3 +1,10 @@
 [house_build_mode]
 id = 2176
 format = "boolean"
+
+[house_teleport_arrival]
+id = 6450
+format = "map"
+persist = true
+default = "in_house"
+values = { in_house = 0, at_portal = 1 }

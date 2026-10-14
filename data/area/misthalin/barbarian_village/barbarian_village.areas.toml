@@ -7,3 +7,15 @@ tags = ["multi_combat"]
 [barbarian_village_fishing_spot]
 x = [3104, 3110]
 y = [3424, 3434]
+
+[barbarian_village_longhall]
+# nav-editor: named area only
+x = [3075, 3082]
+y = [3436, 3445]
+level = 0
+
+[barbarian_village_helmet_shop]
+# nav-editor: named area only
+x = [3074, 3076]
+y = [3427, 3430]
+level = 0

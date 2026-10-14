@@ -36,3 +36,59 @@ tags = ["teleport"]
 x = [2931, 2933]
 y = [3296, 3299]
 tags = ["teleport"]
+
+[falador_allotment_patch]
+# nav-editor: named area only
+x = [3050, 3059]
+y = [3303, 3312]
+level = 0
+
+[falador_south_cows]
+# nav-editor: named area only
+x = [3022, 3043]
+y = [3299, 3313]
+level = 0
+
+[falador_south_chickens]
+# nav-editor: named area only
+x = [3014, 3020]
+y = [3282, 3296]
+level = 0
+
+[falador_east_bank]
+# nav-editor: named area only
+x = [3010, 3015]
+y = [3355, 3358]
+level = 0
+tags = ["bank"]
+
+[falador_tree_patch]
+# nav-editor: named area only
+x = [3002, 3006]
+y = [3371, 3375]
+level = 0
+
+[falador_general_store]
+# nav-editor: named area only
+x = [2957, 2959]
+y = [3386, 3388]
+level = 0
+
+[falador_west_bank]
+# nav-editor: named area only
+x = [2944, 2947]
+y = [3369, 3371]
+level = 0
+tags = ["bank"]
+
+[falador_chainmail_shop]
+# nav-editor: named area only
+x = [2970, 2974]
+y = [3311, 3314]
+level = 0
+
+[falador_mace_shop]
+# nav-editor: named area only
+x = [2949, 2951]
+y = [3385, 3388]
+level = 0

@@ -3,19 +3,19 @@ package content.skill.construction
 import WorldTest
 import containsMessage
 import content.quest.instance
-import content.skill.construction.House.Companion.DUNGEON_LEVEL
-import content.skill.construction.House.Companion.GROUND_LEVEL
-import content.skill.construction.House.Companion.START_ROOM
-import content.skill.construction.House.Companion.UPPER_LEVEL
-import content.skill.construction.House.Companion.addHouseFurniture
-import content.skill.construction.House.Companion.addHouseRoom
-import content.skill.construction.House.Companion.houseRoomIds
-import content.skill.construction.House.Companion.houseRoomPositions
-import content.skill.construction.House.Companion.houseRoomRotations
-import content.skill.construction.House.Companion.houseStairs
-import content.skill.construction.House.Companion.roomPosition
-import content.skill.construction.House.Companion.roomZone
-import content.skill.construction.House.Companion.stairsDown
+import content.skill.construction.HouseConnections.houseStairs
+import content.skill.construction.HouseConnections.stairsDown
+import content.skill.construction.HouseGrid.DUNGEON_LEVEL
+import content.skill.construction.HouseGrid.GROUND_LEVEL
+import content.skill.construction.HouseGrid.START_ROOM
+import content.skill.construction.HouseGrid.UPPER_LEVEL
+import content.skill.construction.HouseGrid.roomPosition
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseHotspots.addHouseFurniture
+import content.skill.construction.HouseRooms.addHouseRoom
+import content.skill.construction.HouseRooms.houseRoomIds
+import content.skill.construction.HouseRooms.houseRoomPositions
+import content.skill.construction.HouseRooms.houseRoomRotations
 import dialogueOption
 import interfaceOption
 import objectOption
@@ -153,7 +153,7 @@ class HouseStairsTest : WorldTest() {
 
         player.use(entrance, "Enter")
         player.skipDialogues()
-        player.dialogueOption("line3")
+        player.dialogueOption("line1")
         tick(4)
 
         assertEquals("dungeon_stairs", player.houseRoomIds.last())
@@ -317,7 +317,7 @@ class HouseStairsTest : WorldTest() {
 
         player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
         player.skipDialogues()
-        player.dialogueOption("line3")
+        player.dialogueOption("line1")
         tick(4)
 
         assertEquals("dungeon_stairs", player.houseRoomIds.last())
@@ -544,7 +544,7 @@ class HouseStairsTest : WorldTest() {
     }
 
     @Test
-    fun `Rooms with stairs are offered below the entrance`() {
+    fun `Only a dungeon stairs room is offered below the entrance`() {
         val player = createOwner()
         player.addEntrance()
         player.inventory.add("coins", 7500)
@@ -553,7 +553,7 @@ class HouseStairsTest : WorldTest() {
         player.use(player.find(hall, "dungeon_entrance"), "Enter")
         player.skipDialogues()
 
-        assertEquals("dialogue_multi4", player.dialogue)
+        assertEquals("dialogue_multi2", player.dialogue)
     }
 
     @Test
@@ -574,7 +574,7 @@ class HouseStairsTest : WorldTest() {
     }
 
     @Test
-    fun `Can't build a hall underground below the stairs`() {
+    fun `Only a dungeon stairs room is offered below the stairs`() {
         val player = createOwner()
         player.addHouseRoom("skill_hall", hall)
         player.addHouseFurniture(hall, "skill_hall_stair_space_down", "oak_staircase")
@@ -583,11 +583,10 @@ class HouseStairsTest : WorldTest() {
 
         player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
         player.skipDialogues()
-        player.dialogueOption("line1")
+        player.dialogueOption("line2")
 
         assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
         assertEquals(25000, player.inventory.count("coins"))
-        assertTrue(player.containsMessage("That room can't be built underground."))
     }
 
     @Test

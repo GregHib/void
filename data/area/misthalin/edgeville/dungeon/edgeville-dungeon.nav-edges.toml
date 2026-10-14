@@ -1,0 +1,27 @@
+edges = [
+    { from = { x = 3096, y = 9867 }, to = { x = 3096, y = 9883 } },
+
+    { from = { x = 3096, y = 9883 }, to = { x = 3095, y = 9897 } },
+    { from = { x = 3095, y = 9897 }, to = { x = 3102, y = 9909 } },
+    { from = { x = 3102, y = 9909 }, to = { x = 3105, y = 9909 }, actions = [{ object = { option = "Open", id = "metal_door_10_closed", x = 3104, y = 9909, radius = 0, success = { object = { id = "edgeville_dungeon_wilderness_east_metal_door_opened", x = 3103, y = 9909 } } } }, { tile = { x = 3105, y = 9909, radius = 1 } }], cost = 4 },
+    { from = { x = 3105, y = 9909 }, to = { x = 3102, y = 9909 }, actions = [{ object = { option = "Open", id = "metal_door_10_closed", x = 3104, y = 9909, radius = 0, success = { object = { id = "edgeville_dungeon_wilderness_east_metal_door_opened", x = 3103, y = 9909 } } } }, { tile = { x = 3102, y = 9909, radius = 1 } }], cost = 4 },
+    { from = { x = 3105, y = 9909 }, to = { x = 3127, y = 9909 } },
+    { from = { x = 3127, y = 9909 }, to = { x = 3132, y = 9915 } },
+    { from = { x = 3132, y = 9915 }, to = { x = 3146, y = 9914 } },
+    { from = { x = 3146, y = 9914 }, to = { x = 3147, y = 9906 } },
+    { from = { x = 3147, y = 9906 }, to = { x = 3150, y = 9891 } },
+    { from = { x = 3147, y = 9906 }, to = { x = 3156, y = 9906 } },
+    { from = { x = 3147, y = 9906 }, to = { x = 3155, y = 9906 }, actions = [{ object = { option = "Squeeze-through", id = "varrock_dungeon_pipe", x = 3150, y = 9906, radius = 0, success = { tile = { x = 3155, y = 9906, level = 0 } } } }, { tile = { x = 3155, y = 9906, radius = 1 } }], cost = 9 },
+    { from = { x = 3155, y = 9906 }, to = { x = 3147, y = 9906 }, actions = [{ object = { option = "Squeeze-through", id = "varrock_dungeon_pipe", x = 3153, y = 9906, radius = 0, success = { tile = { x = 3149, y = 9906, level = 0 } } } }, { tile = { x = 3147, y = 9906, radius = 1 } }], cost = 9 },
+    { from = { x = 3150, y = 9891 }, to = { x = 3147, y = 9870 } },
+    { from = { x = 3147, y = 9870 }, to = { x = 3144, y = 9870 }, actions = [{ object = { option = "Open", id = "metal_door_10_closed", x = 3146, y = 9870, radius = 0, success = { object = { id = "edgeville_dungeon_wilderness_east_metal_door_opened", x = 3145, y = 9870 } } } }, { tile = { x = 3144, y = 9870, radius = 1 } }], cost = 4 },
+    { from = { x = 3144, y = 9870 }, to = { x = 3147, y = 9870 }, actions = [{ object = { option = "Open", id = "metal_door_10_closed", x = 3146, y = 9870, radius = 0, success = { object = { id = "edgeville_dungeon_wilderness_east_metal_door_opened", x = 3145, y = 9870 } } } }, { tile = { x = 3147, y = 9870, radius = 1 } }], cost = 4 },
+    { from = { x = 3144, y = 9870 }, to = { x = 3134, y = 9874 } },
+    { from = { x = 3134, y = 9874 }, to = { x = 3123, y = 9875 } },
+    { from = { x = 3123, y = 9875 }, to = { x = 3117, y = 9862 } },
+    { from = { x = 3117, y = 9862 }, to = { x = 3130, y = 9862 } },
+    { from = { x = 3117, y = 9862 }, to = { x = 3117, y = 9852 } },
+
+    { from = { x = 3132, y = 9915 }, to = { x = 3132, y = 9918 }, actions = [ { object = { id = "edgeville_dungeon_wilderness_east_metal_door_closed", option = "Open", x = 3132, y = 9918, radius = 1 , success = { any = [{ interface_open = { id = "warning_wilderness" } }, { tile = { x = 3132, y = 9918, level = 0 } }] } } }, { wait = { ticks = 2 } }, { interface = { id = "warning_wilderness:yes", option = "Ok", if = { interface_open = { id = "warning_wilderness" } } } }, { wait = { ticks = 2 } } , { tile = { x = 3132, y = 9918, radius = 1 } } ], requires = [], cost = 4 },
+    { from = { x = 3132, y = 9918 }, to = { x = 3132, y = 9915 }, actions = [{ object = { id = "edgeville_dungeon_wilderness_east_metal_door_closed", option = "Open", x = 3132, y = 9918, radius = 0, success = { tile = { x = 3132, y = 9917, level = 0 } } } }, { tile = { x = 3132, y = 9915, radius = 0 } }], cost = 4 },
+]

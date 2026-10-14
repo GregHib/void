@@ -3,10 +3,10 @@ package content.skill.construction
 import content.skill.construction.House.Companion.expelGuests
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseLoading
-import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.leaveHouse
-import content.skill.construction.House.Companion.loadHouse
+import content.skill.construction.HouseLoader.loadHouse
+import content.skill.construction.HouseRooms.houseRoomIds
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
@@ -38,9 +38,17 @@ class HouseOptions : Script {
             buildMode(false)
         }
 
+        interfaceOption("When teleporting, arrive at portal", "house_options:arrive_at_portal") {
+            set("house_teleport_arrival", "at_portal")
+        }
+
+        interfaceOption("When teleporting, arrive in house", "house_options:arrive_in_house") {
+            set("house_teleport_arrival", "in_house")
+        }
+
         interfaceOption("Expel guests", "house_options:expel_guests") {
             if (!inOwnHouse()) {
-                message("You can only expel guests when you are in your own house.")
+                message("You do not appear to have a house that's open to guests at the moment.")
                 return@interfaceOption
             }
             expelGuests()
@@ -56,6 +64,10 @@ class HouseOptions : Script {
     }
 
     private suspend fun Player.buildMode(enabled: Boolean) {
+        if (!inOwnHouse()) {
+            message("You can only enter building mode in your own house.")
+            return
+        }
         if (get("house_build_mode", false) == enabled) {
             return
         }

@@ -613,7 +613,7 @@ id = 4281
 [expression_cat_neutral]
 id = 8373
 
-[expression_cat_quiz]
+[expression_cat_old_quiz]
 id = 8375
 
 [expression_cat_angry]
@@ -621,6 +621,36 @@ id = 9178
 
 [expression_cat_unamused]
 id = 9187
+
+[expression_cat_idle]
+id = 8581
+
+[expression_cat_sad]
+id = 8582
+
+[expression_cat_happy]
+id = 9179
+
+[expression_cat_quiz]
+id = 9180
+
+[expression_cat_shocked]
+id = 9181
+
+[expression_cat_scared]
+id = 9183
+
+[expression_cat_hungry_thirsty]
+id = 9189
+
+[expression_cat_confused]
+id = 9190
+
+[expression_cat_hypnotised]
+id = 9192
+
+[expression_cat_fussy]
+id = 9202
 
 [expression_dog_down]
 id = 6550

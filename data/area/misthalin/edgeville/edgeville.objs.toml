@@ -1,3 +1,26 @@
+[garden_roses_red]
+id = 9260
+examine = "Some red roses."
+
+[garden_roses_pink]
+id = 9261
+examine = "Some pink roses."
+
+[garden_roses_white]
+id = 9262
+examine = "Some white roses."
+
+[100_goblin_ladder_down]
+id = 12389
+
+[surok_bandit_camp_tent]
+id = 23061
+examine = "A tent."
+
+[surok_bandit_camp_tent_diag]
+id = 23062
+examine = "A tent."
+
 [furnace_edgeville]
 id = 26814
 examine = "A hot furnace."
@@ -7,9 +30,28 @@ id = 1814
 land_message = "... and teleport into the Wilderness."
 examine = "I wonder what this does."
 
+[atvar_smithy_woodscraps]
+id = 26825
+
+[edge_door2_open]
+id = 26916
+examine = "The door is open."
+
 [bank_booth_edgeville]
 id = 26972
 examine = "For accessing your bank account."
+
+[edge_ladder_up]
+id = 26982
+examine = "I can climb up this."
+
+[edge_ladder_down]
+id = 26983
+examine = "I can climb down this."
+
+[edge_banner_l]
+id = 27006
+examine = "A decorative banner."
 
 [edgeville_monkey_bars]
 id = 29375
@@ -134,6 +176,25 @@ examine = "Storage for all needs."
 [edgeville_cart]
 id = 307
 examine = "One horsepower; wooden suspension: a beauty."
+
+[icemt_monastery_bookcase_wide]
+id = 30817
+examine = "A good source of books."
+
+[icemt_monastery_drawers1]
+id = 30823
+examine = "A chest of drawers."
+
+[firedup_multi_5]
+id = 38452
+
+[firedup_multi_6]
+id = 38453
+examine = "Probably used as a warning beacon."
+
+[firedup_multi_7]
+id = 38454
+examine = "Probably used as a warning beacon."
 
 [edgeville_chest]
 id = 55349

@@ -2,27 +2,27 @@ package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.skill.construction.House.Companion.DUNGEON_LEVEL
-import content.skill.construction.House.Companion.GROUND_LEVEL
-import content.skill.construction.House.Companion.HOUSE_CENTRE
-import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.buildLevel
-import content.skill.construction.House.Companion.connectStairs
-import content.skill.construction.House.Companion.exitPortals
 import content.skill.construction.House.Companion.freeBuild
 import content.skill.construction.House.Companion.houseBase
-import content.skill.construction.House.Companion.houseRoom
-import content.skill.construction.House.Companion.houseRoomIds
-import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.inOwnHouse
-import content.skill.construction.House.Companion.loadHouse
-import content.skill.construction.House.Companion.removeHouseRoom
-import content.skill.construction.House.Companion.roomBelow
-import content.skill.construction.House.Companion.roomLevel
-import content.skill.construction.House.Companion.roomPosition
-import content.skill.construction.House.Companion.roomSide
-import content.skill.construction.House.Companion.roomTemplate
-import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.HouseConnections.connectStairs
+import content.skill.construction.HouseGrid.DUNGEON_LEVEL
+import content.skill.construction.HouseGrid.GROUND_LEVEL
+import content.skill.construction.HouseGrid.HOUSE_CENTRE
+import content.skill.construction.HouseGrid.roomBelow
+import content.skill.construction.HouseGrid.roomLevel
+import content.skill.construction.HouseGrid.roomPosition
+import content.skill.construction.HouseGrid.roomSide
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseHotspots.exitPortals
+import content.skill.construction.HouseLoader.loadHouse
+import content.skill.construction.HouseLoader.roomTemplate
+import content.skill.construction.HouseRooms.addHouseRoom
+import content.skill.construction.HouseRooms.houseRoom
+import content.skill.construction.HouseRooms.houseRoomIds
+import content.skill.construction.HouseRooms.houseRoomPositions
+import content.skill.construction.HouseRooms.removeHouseRoom
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -38,6 +38,9 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Zone
 
 class RoomCreation(val dynamicZones: DynamicZones) : Script {
+    // Levels at which the buildable area grows from 3x3 up to 7x7 rooms
+    private val sizeLevels = intArrayOf(15, 30, 45, 60)
+
     init {
         objectOperate("Build", "door_hotspot*") { (target) ->
             val base = houseBase()
@@ -45,12 +48,11 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
                 return@objectOperate
             }
             val zone = target.tile.zone
-            // Doors lead to the room on the opposite side to the player
             val room = if (tile.zone == zone) zone.add(roomSide(target.tile)) else zone
             val position = roomPosition(base, room)
-            val index = houseRoomPositions.indexOf(position ?: -1)
-            if (index != -1) {
-                removeRoom(houseRoomPositions[index], houseRoomIds[index])
+            val existing = position?.let { houseRoom(it) }
+            if (position != null && existing != null) {
+                removeRoom(position, existing)
                 return@objectOperate
             }
             val range = buildRange()
@@ -62,10 +64,10 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
                 message("Your house is already at the maximum height.")
                 return@objectOperate
             }
-            if (!hasRoomSpace()) {
+            if (position == null || !hasRoomSpace()) {
                 return@objectOperate
             }
-            if (roomLevel(position ?: return@objectOperate) > GROUND_LEVEL && roomBelow(position) !in houseRoomPositions) {
+            if (roomLevel(position) > GROUND_LEVEL && roomBelow(position) !in houseRoomPositions) {
                 statement("You can't build a room that would have no room to support it.")
                 return@objectOperate
             }
@@ -91,7 +93,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
     }
 
     /**
-     * Range of room grid coordinates the players level allows building in
+     * Range of room grid coordinates the players level allows building in.
      * Sizes grow from the south-west, so even sizes extend one further north and east of the [HOUSE_CENTRE]
      */
     private fun Player.buildRange(): IntRange {
@@ -141,9 +143,6 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
         buildRoom(base, room, position, rotation)
     }
 
-    /**
-     * Remove the room being previewed
-     */
     private fun Player.clearPreview() {
         clearWalkTrigger()
         clear("house_preview_room")
@@ -154,12 +153,15 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
     }
 
     companion object {
+        // Levels at which the maximum number of rooms increases from 21 up to 33
+        private val roomLevels = intArrayOf(1, 38, 44, 50, 56, 62, 68, 74, 80, 86, 92, 96, 99)
+
         /**
          * Asks to remove [room] at [position] and its furniture, calling [onRemove] before the house is reloaded
          */
         suspend fun Player.removeRoom(position: Int, room: String, onRemove: Player.() -> Unit = {}) {
             if (exitPortals(position) > 0 && exitPortals() <= exitPortals(position)) {
-                message("Your house must have at least one exit portal.") // TODO proper message
+                statement("Your house must have at least one exit portal.")
                 return
             }
             choice("Remove the ${room.replace('_', ' ')}?") {
@@ -196,6 +198,10 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             if (!freeBuild && !has(Skill.Construction, row.int("level"), message = true)) {
                 return false
             }
+            if (row.bool("unique") && room in houseRoomIds) {
+                message("You can only have one ${room.replace('_', ' ')}, remove the existing one to build it somewhere else.") // TODO proper message
+                return false
+            }
             val dungeon = row.bool("dungeon")
             if (dungeon && roomLevel(position) != DUNGEON_LEVEL) {
                 message("That room can only be built underground.") // TODO proper messages
@@ -228,11 +234,5 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             }
             loadHouse(base, buildMode = true)
         }
-
-        // Levels at which the buildable area grows from 3x3 up to 7x7 rooms
-        private val sizeLevels = intArrayOf(15, 30, 45, 60)
-
-        // Levels at which the maximum number of rooms increases from 21 up to 33
-        private val roomLevels = intArrayOf(1, 38, 44, 50, 56, 62, 68, 74, 80, 86, 92, 96, 99)
     }
 }
