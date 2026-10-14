@@ -57,6 +57,7 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.text.toIntOrNull
+import kotlin.time.Duration.Companion.milliseconds
 
 class BotCommands(
     val loader: PlayerAccountLoader,
@@ -69,6 +70,8 @@ class BotCommands(
     private val combatBotsLogger = InlineLogger("CombatBots")
     val bots = mutableListOf<Player>()
     val names = mutableListOf<String>()
+    private val allNames = mutableSetOf<String>()
+    private val loading = mutableSetOf<String>()
     private val combatBotTiers = mutableMapOf<String, CombatTier>()
 
     var counter = 0
@@ -228,6 +231,8 @@ class BotCommands(
         if (!Settings["bots.numberedNames", false]) {
             names.clear()
             names.addAll(File(Settings["bots.names"]).readLines())
+            allNames.clear()
+            allNames.addAll(names.map { it.lowercase() })
         }
         for (context in contexts) {
             context.load()
@@ -331,7 +336,7 @@ class BotCommands(
     fun spawn() {
         GlobalScope.launch(Contexts.Game) {
             counter++
-            val name = if (Settings["bots.numberedNames", false]) {
+            val name = pickSavedBot() ?: if (Settings["bots.numberedNames", false]) {
                 "Bot $counter"
             } else {
                 val prefix = Settings["bots.namePrefix", ""].trim('"')
@@ -355,10 +360,43 @@ class BotCommands(
                 player.inventory.add("coins", 10000)
             }
             player.viewport?.loaded = true
-            delay(3)
+            delay(3.milliseconds)
             manager.add(bot)
             player.running = true
+            loading.remove(name)
         }
+    }
+
+    /**
+     * Has a `bots.spawnSavedChance` of returning username of a saved bots which isn't already online.
+     */
+    private fun pickSavedBot(): String? {
+        val chance = Settings["bots.spawnSavedChance", 0]
+        if (chance <= 0 || random.nextInt(100) >= chance) {
+            return null
+        }
+        val name = saveQueue.savedBotNames()
+            .filter { isBotName(it) && Players.findByAccount(it) == null && it !in loading }
+            .randomOrNull(random) ?: return null
+        loading.add(name)
+        // Stop the same name being picked randomly
+        val prefix = Settings["bots.namePrefix", ""].trim('"')
+        names.removeIf { "$prefix$it".equals(name, ignoreCase = true) }
+        return name
+    }
+
+    /**
+     * Checks if a saved account is a bot account or not.
+     */
+    private fun isBotName(name: String): Boolean {
+        if (Settings["storage.bots.save", false] && Settings["storage.bots.separate", false] && Settings["storage.type", "files"] == "files") {
+            return true
+        }
+        if (Settings["bots.numberedNames", false]) {
+            return name.matches(NUMBERED_NAME)
+        }
+        val prefix = Settings["bots.namePrefix", ""].trim('"')
+        return name.startsWith(prefix, ignoreCase = true) && allNames.contains(name.substring(prefix.length).lowercase())
     }
 
     fun Player.initBot(): Bot {
@@ -399,7 +437,7 @@ class BotCommands(
             if (saved == null) {
                 setAppearance(bot.player)
             }
-            delay(3)
+            delay(3.milliseconds)
             val tiers = context.arenaTiers(arenaKey)
             if (tiers.isEmpty()) return@launch
             val tier = tiers.random(random)
@@ -523,6 +561,10 @@ class BotCommands(
         player.appearance.emote = 1426
         return player
     }
-}
 
-private const val LOOT_PENDING_TICKS = 60
+    companion object {
+        private const val LOOT_PENDING_TICKS = 60
+
+        private val NUMBERED_NAME = Regex("Bot \\d+")
+    }
+}

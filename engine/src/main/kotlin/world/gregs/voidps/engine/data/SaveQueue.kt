@@ -39,7 +39,7 @@ class SaveQueue(
     }
 
     fun direct(): Job {
-        val online = Players.filter { !it.contains("bot") || saveBots() }.map { player ->
+        val online = Players.filter { !it.contains("bot") || saveBots }.map { player ->
             player.copy().also { if (player.contains("bot")) bots.add(it.name) }
         }
         val names = online.mapTo(HashSet()) { it.name }
@@ -110,7 +110,7 @@ class SaveQueue(
 
     fun save(player: Player) {
         val bot = player.contains("bot")
-        if ((bot && !saveBots()) || Settings["storage.disabled", false]) {
+        if ((bot && !saveBots) || Settings["storage.disabled", false]) {
             return
         }
         val save = player.copy()
@@ -124,15 +124,27 @@ class SaveQueue(
      * Loads a previously saved bot account, if bots are being saved and one exists with this [name].
      */
     fun loadBot(name: String): PlayerSave? {
-        if (!saveBots() || saving(name)) {
+        if (!saveBots || saving(name)) {
             return null
         }
         return botStorage.load(name)
     }
 
-    private fun saveBots() = Settings["storage.bots.save", false]
+    /**
+     * Account names saved in the bot storage, empty if bots aren't being saved.
+     */
+    fun savedBotNames(): List<String> {
+        if (!saveBots) {
+            return emptyList()
+        }
+        return botStorage.names().values.map { it.accountName }
+    }
 
     fun saving(name: String) = pending.containsKey(name)
 
     fun empty(): Boolean = pending.isEmpty()
+
+    companion object {
+        private val saveBots: Boolean by Settings.bool("storage.bots.save", false)
+    }
 }
