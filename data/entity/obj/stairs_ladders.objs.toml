@@ -54,6 +54,10 @@ examine = "They go up."
 id = 4620
 examine = "They go down."
 
+[fai_varrock_manhole_ladder]
+id = 24366
+examine = "I can climb up this."
+
 [fist_of_guthix_stairs]
 id = 30203
 examine = "Warning: leads into the wilderness."

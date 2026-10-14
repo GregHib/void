@@ -44,3 +44,42 @@ fields = { location = "varrock_south_west_mine" }
 [varrock_palace_yew_trees]
 template = "yew_tree_template"
 fields = { location = "varrock_palace_yew_trees" }
+
+[varrock_west_smith_bronze_dagger]
+template = "varrock_smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 1,
+    level_max = 14,
+    name = "Daggers",
+    type = "dagger",
+    item = "bronze_dagger"
+}
+
+[varrock_west_smith_iron_dagger]
+template = "varrock_smith_bar"
+capacity = 1
+fields = {
+    bar = "iron_bar",
+    left_over_bars = 0,
+    level_min = 15,
+    level_max = 29,
+    name = "Daggers",
+    type = "dagger",
+    item = "iron_dagger"
+}
+
+[varrock_west_smith_steel_dagger]
+template = "varrock_smith_bar"
+capacity = 1
+fields = {
+    bar = "steel_bar",
+    left_over_bars = 0,
+    level_min = 30,
+    level_max = 49,
+    name = "Daggers",
+    type = "dagger",
+    item = "steel_dagger"
+}

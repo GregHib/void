@@ -1,0 +1,13 @@
+edges = [
+    { from = { x = 3237, y = 9858 }, to = { x = 3237, y = 9865 } },
+    { from = { x = 3237, y = 9865 }, to = { x = 3228, y = 9870 } },
+    { from = { x = 3228, y = 9870 }, to = { x = 3226, y = 9874 } },
+    { from = { x = 3226, y = 9874 }, to = { x = 3219, y = 9866 } },
+    { from = { x = 3237, y = 9865 }, to = { x = 3244, y = 9868 } },
+    { from = { x = 3244, y = 9868 }, to = { x = 3244, y = 9879 } },
+    { from = { x = 3244, y = 9879 }, to = { x = 3244, y = 9892 } },
+    { from = { x = 3244, y = 9892 }, to = { x = 3248, y = 9892 }, actions = [{ object = { option = "Open", id = "metal_door_7_closed", x = 3247, y = 9892, radius = 0, success = { object = { id = "metal_door_2_opened", x = 3246, y = 9892 } } } }, { tile = { x = 3248, y = 9892, radius = 1 } }], cost = 5 },
+    { from = { x = 3248, y = 9892 }, to = { x = 3244, y = 9892 }, actions = [{ object = { option = "Open", id = "metal_door_7_closed", x = 3247, y = 9892, radius = 0, success = { object = { id = "metal_door_2_opened", x = 3246, y = 9892 } } } }, { tile = { x = 3244, y = 9892, radius = 1 } }], cost = 5 },
+    { from = { x = 3248, y = 9892 }, to = { x = 3259, y = 9892 } },
+    { from = { x = 3259, y = 9892 }, to = { x = 3270, y = 9893 } },
+]

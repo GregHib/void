@@ -67,3 +67,16 @@ hint = "in the north of the kingdom of Misthalin."
 [varrock_sword_shop]
 x = [3202, 3209]
 y = [3395, 3403]
+
+[champions_guild_bush_patch]
+# nav-editor: named area only
+x = [3180, 3183]
+y = [3356, 3359]
+level = 0
+
+[varrock_anvils_west]
+# nav-editor: named area only
+x = [3185, 3190]
+y = [3423, 3427]
+level = 0
+tags = ["smithing_anvils"]
