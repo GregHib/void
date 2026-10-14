@@ -192,3 +192,22 @@ x = [3193, 3212]
 y = [3260, 3276]
 level = 0
 bot_capacity = 2
+
+[lumbridge_bronze_pickaxe_spawn]
+# nav-editor: named area only
+x = [3229, 3229]
+y = [3222, 3225]
+level = 2
+
+[lumbridge_prayer_altar]
+# nav-editor: named area only
+x = [3243, 3244]
+y = [3206, 3207]
+level = 0
+tags = ["prayer_altar"]
+
+[lumbridge_hops_patch]
+# nav-editor: named area only
+x = [3226, 3232]
+y = [3312, 3318]
+level = 0

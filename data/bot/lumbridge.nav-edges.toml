@@ -22,7 +22,7 @@ edges = [
     { from = { x = 3215, y = 3216 }, to = { x = 3222, y = 3218 } }, # lumbridge_castle_south_entrance_to_courtyard_south
     { from = { x = 3205, y = 3209, level = 1 }, to = { x = 3205, y = 3209 }, cost = 1, actions = [{ object = { option = "Climb-down", id = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207, success = { tile = { level = 0 } } } }] }, # lumbridge_castle_1st_floor_south_stairs_to_ground_floor
     { from = { x = 3205, y = 3209, level = 1 }, to = { x = 3205, y = 3209, level = 2 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207, success = { tile = { level = 2 } } } }] }, # lumbridge_castle_1st_floor_south_stairs_to_2nd_floor
-    { from = { x = 3209, y = 3205 }, to = { x = 3199, y = 3218 } }, # lumbridge_castle_grounds_south_to_tower_west
+     # lumbridge_castle_grounds_south_to_tower_west
     { from = { x = 3199, y = 3218 }, to = { x = 3184, y = 3225 } }, # lumbridge_castle_tower_west_to_yew_trees
     { from = { x = 3199, y = 3218 }, to = { x = 3195, y = 3236 } }, # lumbridge_castle_tower_west_to_tree_patch
     { from = { x = 3184, y = 3225 }, to = { x = 3168, y = 3221 } }, # lumbridge_castle_yew_trees_to_yew_trees_west
@@ -79,10 +79,10 @@ edges = [
     { from = { x = 3136, y = 3219 }, to = { x = 3119, y = 3228 } }, # lumbridge_swamp_west_wall_to_draynor_jail_path_south
     { from = { x = 3222, y = 3218 }, to = { x = 3226, y = 3214 } }, # lumbridge_courtyard_south_to_tower_door
     { from = { x = 3222, y = 3218 }, to = { x = 3222, y = 3219 } }, # lumbridge_courtyard_south_to_north
-    { from = { x = 3222, y = 3218 }, to = { x = 3236, y = 3218 } }, # lumbridge_courtyard_south_to_gate_north
-    { from = { x = 3222, y = 3219 }, to = { x = 3236, y = 3219 } }, # lumbridge_courtyard_north_to_gate_north
+     # lumbridge_courtyard_south_to_gate_north
+     # lumbridge_courtyard_north_to_gate_north
     { from = { x = 3236, y = 3218 }, to = { x = 3236, y = 3219 } }, # lumbridge_courtyard_gate_south_to_gate_north
-    { from = { x = 3222, y = 3218 }, to = { x = 3209, y = 3205 } }, # lumbridge_courtyard_south_to_grounds_south
+     # lumbridge_courtyard_south_to_grounds_south
     { from = { x = 3230, y = 3232 }, to = { x = 3222, y = 3241 } }, # lumbridge_unstable_house_to_general_store_east
     { from = { x = 3222, y = 3241 }, to = { x = 3217, y = 3241 }, cost = 6, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3219, y = 3241, success = { object = { id = "door_720_opened", x = 3218, y = 3241 } } } }, { tile = { x = 3217, y = 3241 } }] }, # lumbridge_general_store_east_to_general_store
     { from = { x = 3217, y = 3241 }, to = { x = 3222, y = 3241 }, cost = 6, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3219, y = 3241, success = { object = { id = "door_720_opened", x = 3218, y = 3241 } } } }, { tile = { x = 3222, y = 3241 } }] }, # lumbridge_general_store_to_general_store_east
@@ -152,7 +152,7 @@ edges = [
     { from = { x = 3215, y = 3216 }, to = { x = 3215, y = 3221 } },
     { from = { x = 3215, y = 3221 }, to = { x = 3222, y = 3219 } },
     { from = { x = 3215, y = 3221 }, to = { x = 3214, y = 3227 } },
-    { from = { x = 3214, y = 3227 }, to = { x = 3206, y = 3228 } },
+    { from = { x = 3214, y = 3227 }, to = { x = 3205, y = 3228 } },
     { from = { x = 3195, y = 3236 }, to = { x = 3204, y = 3247 } },
     { from = { x = 3212, y = 3247 }, to = { x = 3222, y = 3241 } },
     { from = { x = 3211, y = 3252 }, to = { x = 3204, y = 3252 } },
