@@ -5,9 +5,9 @@ import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotCloseInterface
 import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.action.BotGoToNearest
+import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.action.BotIntEntry
 import content.bot.behaviour.action.BotInteractNpc
-import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
@@ -164,7 +164,7 @@ object DynamicResolvers {
     private fun withdraw(player: Player, items: List<BotItem>): Resolver? {
         val actions = mutableListOf<BotAction>()
         actions.add(BotGoToNearest("bank"))
-        actions.add(BotInteractObject("Use-quickly", "bank_booth*", success = BotInterfaceOpen("bank")))
+        actions.add(BotOpenBank())
         actions.add(BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))))
         var found = false
         for (entry in items) {
@@ -192,7 +192,7 @@ object DynamicResolvers {
         }
         val actions = mutableListOf(
             BotGoToNearest("bank"),
-            BotInteractObject("Use-quickly", "bank_booth*", success = BotInterfaceOpen("bank")),
+            BotOpenBank(),
             BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))),
             BotCloseInterface,
         )
