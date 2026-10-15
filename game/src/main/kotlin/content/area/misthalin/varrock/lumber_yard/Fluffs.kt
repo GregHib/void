@@ -1,4 +1,4 @@
-package content.area.misthalin.varrock
+package content.area.misthalin.varrock.lumber_yard
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -230,6 +231,7 @@ class Fluffs : Script {
             val crate = kittenCrates.random(random)
             set(KITTENS_HIDING_SPOT, crate.id)
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
+            areaSound("kittens_mew", Tile(3310, 3509, 1), radius = 10)
             return
         }
         statement("Fluffs hisses but clearly wants something - maybe she is thirsty?")

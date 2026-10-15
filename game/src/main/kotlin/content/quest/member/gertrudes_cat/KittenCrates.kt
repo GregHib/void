@@ -1,6 +1,6 @@
 package content.quest.member.gertrudes_cat
 
-import content.area.misthalin.varrock.Fluffs.Companion.KITTENS_HIDING_SPOT
+import content.area.misthalin.varrock.lumber_yard.Fluffs.Companion.KITTENS_HIDING_SPOT
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

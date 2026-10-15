@@ -1,7 +1,7 @@
 package content.area.misthalin.varrock
 
-import content.area.misthalin.varrock.Fluffs.Companion.FLUFFS_FED_VAR
-import content.area.misthalin.varrock.Fluffs.Companion.FLUFFS_MILK_VAR
+import content.area.misthalin.varrock.lumber_yard.Fluffs.Companion.FLUFFS_FED_VAR
+import content.area.misthalin.varrock.lumber_yard.Fluffs.Companion.FLUFFS_MILK_VAR
 import content.entity.player.AdventurersLogs
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.Angry
