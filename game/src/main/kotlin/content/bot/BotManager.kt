@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
@@ -138,20 +139,20 @@ class BotManager(
     }
 
     private fun runReactive(bot: Bot) {
-        val rootFrame = bot.frames.firstOrNull() ?: return
-        val reactive = rootFrame.behaviour.reactive
+        val activityFrame = bot.frames.lastOrNull { it.behaviour is BotActivity } ?: bot.frames.firstOrNull() ?: return
+        val reactive = activityFrame.behaviour.reactive
         if (reactive.isEmpty()) return
         for (action in reactive) {
             try {
-                action.update(bot, world, rootFrame)
+                action.update(bot, world, activityFrame)
             } catch (exception: Exception) {
-                logger.error(exception) { "Reactive action failed for bot '${bot.player.accountName}' activity=${rootFrame.behaviour.id} action=$action." }
+                logger.error(exception) { "Reactive action failed for bot '${bot.player.accountName}' activity=${activityFrame.behaviour.id} action=$action." }
             }
         }
     }
 
     private fun updateCombatContext(bot: Bot) {
-        val activity = bot.frames.firstOrNull()?.behaviour
+        val activity = (bot.frames.lastOrNull { it.behaviour is BotActivity } ?: bot.frames.firstOrNull())?.behaviour
         if (activity != null && activity.reactive.isNotEmpty()) {
             bot.combatContext = BotCombatContext(bot)
         } else if (bot.combatContext != null) {
@@ -295,12 +296,12 @@ class BotManager(
     }
 
     internal fun trainingActivity(bot: Bot, skill: BotSkillLevel): BotActivity? = activities.values
-        .filter { it.produces.any(skill.keys()::contains) && TrainingResolver.finite(it) && hasRequirements(bot, it) }
+        .filter { it.produces.any(skill.keys()::contains) && hasRequirements(bot, it) }
         // Ordinary setup may stack, but v1 never plans another unmet training skill.
         .filter { it.setup.none { condition -> condition is BotSkillLevel && !condition.check(bot.player) } }
         .randomOrNull(random)
 
-    internal fun assign(bot: Bot, unbound: BotActivity, nested: Boolean = false): Boolean {
+    internal fun assign(bot: Bot, unbound: BotActivity, nested: Boolean = false, completionCondition: Condition? = null): Boolean {
         // Another bot may have taken the last slot since the resolver was queued.
         if (nested && !hasRequirements(bot, unbound)) return false
         val activity = bind(bot, unbound)
@@ -312,7 +313,7 @@ class BotManager(
         if (!nested && !(activity == idle && bot.previous?.setup?.any { it is BotSkillLevel } == true)) {
             bot.previous = activity
         }
-        bot.queue(BehaviourFrame(activity))
+        bot.queue(BehaviourFrame(activity, completionCondition = completionCondition))
         return true
     }
 
@@ -377,6 +378,16 @@ class BotManager(
      */
     private fun execute(bot: Bot) {
         val frame = bot.frame()
+        if (frame.state !is BehaviourState.Failed && frame.completionCondition?.check(bot.player) == true) {
+            // End interactions and queued skilling work before returning to the caller.
+            bot.player.mode = EmptyMode
+            bot.player.steps.clear()
+            bot.player.queue.clearWeak()
+            bot.player.suspension = null
+            bot.player.clearAnim()
+            complete(bot, frame)
+            return
+        }
         when (val state = frame.state) {
             BehaviourState.Running -> frame.update(bot, world)
             BehaviourState.Pending -> start(bot, frame)
@@ -424,7 +435,7 @@ class BotManager(
                     bot.player.levels.getMax(requirement.skill) < requirement.min &&
                     bot.frames.none { ancestor -> ancestor.behaviour.actions.any { it is BotTrain } }
                 ) {
-                    trainingActivity(bot, requirement)?.let { add(TrainingResolver.resolver(this@BotManager, it)) }
+                    trainingActivity(bot, requirement)?.let { add(TrainingResolver.resolver(this@BotManager, it, requirement)) }
                 }
                 DynamicResolvers.resolver(bot.player, requirement)?.also { add(it) }
                 requirement.keys()
@@ -475,6 +486,12 @@ class BotManager(
         if (debug) {
             logger.debug { "Completed action: ${frame.action()} for ${behaviour.id}." }
         }
+        complete(bot, frame)
+    }
+
+    private fun complete(bot: Bot, frame: BehaviourFrame) {
+        frame.success()
+        val behaviour = frame.behaviour
         AuditLog.event(bot, "completed", frame.behaviour.id)
         bot.frames.pop()
         if (!bot.noTask()) {

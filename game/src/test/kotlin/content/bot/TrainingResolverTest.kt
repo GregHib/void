@@ -3,7 +3,8 @@ package content.bot
 import FakeRandom
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
-import content.bot.behaviour.action.BotInteractNpc
+import content.bot.behaviour.action.BotFightPlayer
+import content.bot.behaviour.action.BotFiremaking
 import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotRestart
 import content.bot.behaviour.action.BotWait
@@ -14,7 +15,6 @@ import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.BotVariable
 import content.bot.behaviour.setup.Resolver
-import content.bot.behaviour.setup.TrainingResolver
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -152,6 +152,8 @@ class TrainingResolverTest {
         bot.player.levels.set(skill, 99)
         manager.tick(bot)
         startBatch(manager, bot)
+        manager.tick(bot)
+        assertEquals(3, bot.frames.size, "A boosted current level must not complete the base-level goal")
         assertEquals("trees", bot.frame().behaviour.id)
     }
 
@@ -282,7 +284,7 @@ class TrainingResolverTest {
     }
 
     @Test
-    fun `Candidates must pass requirements setup skills capacity blocking and finite batch checks`() {
+    fun `Candidates must pass requirements setup skills capacity and blocking checks`() {
         setArea()
         val trees = batch(area = "trees")
         val manager = BotManager(mutableMapOf("trees" to trees), world = FakeWorld())
@@ -299,7 +301,6 @@ class TrainingResolverTest {
         for (invalid in listOf(
             trees.copy(requires = listOf(goal)),
             trees.copy(setup = listOf(goal)),
-            trees.copy(actions = trees.actions + BotRestart(emptyList(), BotVariable("loop", false, true))),
             trees.copy(produces = setOf("skill:mining")),
         )) {
             val filtered = BotManager(mutableMapOf("trees" to invalid), world = FakeWorld())
@@ -308,11 +309,31 @@ class TrainingResolverTest {
     }
 
     @Test
-    fun `Inventory bounded npc gathering and processing restart loops are finite candidates`() {
-        val fishing = batch().copy(actions = listOf(BotInteractNpc("Net", "fishing_spot", success = full)))
-        val processing = batch().copy(actions = listOf(BotWait(1), BotRestart(emptyList(), full)))
-        assertTrue(TrainingResolver.finite(fishing))
-        assertTrue(TrainingResolver.finite(processing))
+    fun `Unbounded combat processing and restart activities can train with an injected goal`() {
+        for (actions in listOf(
+            listOf(BotFightPlayer()),
+            listOf(BotFiremaking("logs", "trees")),
+            listOf(BotWait(1), BotRestart(emptyList(), BotVariable("loop", false, true))),
+        )) {
+            val training = batch().copy(actions = actions)
+            val manager = BotManager(mutableMapOf("yews" to parent, "trees" to training), world = FakeWorld())
+            val bot = testBot()
+            assertEquals(training, manager.trainingActivity(bot, goal))
+            manager.tick(bot)
+            val selected = bot.previous
+            startBatch(manager, bot)
+            assertEquals(goal.copy(max = null), bot.frame().completionCondition)
+            bot.frame().state = BehaviourState.Wait(100, BehaviourState.Running)
+            level(bot, 60)
+            manager.tick(bot)
+            assertEquals(2, bot.frames.size)
+            manager.tick(bot)
+            manager.tick(bot)
+            manager.tick(bot)
+            assertSame(selected, bot.activity)
+            assertSame(selected, bot.previous)
+            assertTrue(bot.frame().state is BehaviourState.Wait)
+        }
     }
 
     @Test
