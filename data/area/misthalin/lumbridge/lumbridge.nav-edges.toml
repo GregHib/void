@@ -34,7 +34,7 @@ edges = [
     { from = { x = 3210, y = 3216 }, to = { x = 3208, y = 9616 }, actions = [{ object = { option = "Climb-down", id = "trapdoor_109_opened", x = 3209, y = 3216, radius = 0, success = { tile = { x = 3208, y = 9616, level = 0 } } } }, { tile = { x = 3208, y = 9616, radius = 1 } }], cost = 3 },
     { from = { x = 3208, y = 9616 }, to = { x = 3210, y = 3216 }, actions = [{ object = { option = "Climb-up", id = "29355", x = 3209, y = 9616, radius = 0, success = { tile = { x = 3210, y = 3216, level = 0 } } } }, { tile = { x = 3210, y = 3216, radius = 1 } }], cost = 3 },
     { from = { x = 3208, y = 9616 }, to = { x = 3212, y = 9620 } },
-    { from = { x = 3212, y = 9620 }, to = { x = 3218, y = 9623 } },
+    { from = { x = 3212, y = 9620 }, to = { x = 3218, y = 9623 } , requires = [{ any = [{ variable = { id = "recipe_for_disaster", equals = "stage3", default = "unstarted" } }, { variable = { id = "recipe_for_disaster", equals = "stage4", default = "unstarted" } }, { variable = { id = "recipe_for_disaster", equals = "completed", default = "unstarted" } }] }]},
     { from = { x = 3212, y = 9620 }, to = { x = 3219, y = 9618 } },
 
     { from = { x = 3229, y = 3214, level = 2 }, to = { x = 3229, y = 3225, level = 2 } },

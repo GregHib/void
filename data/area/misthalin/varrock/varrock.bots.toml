@@ -47,7 +47,6 @@ fields = { location = "varrock_palace_yew_trees" }
 
 [varrock_west_smith_bronze_dagger]
 template = "varrock_smith_bar"
-capacity = 1
 fields = {
     bar = "bronze_bar",
     left_over_bars = 0,
@@ -60,7 +59,6 @@ fields = {
 
 [varrock_west_smith_iron_dagger]
 template = "varrock_smith_bar"
-capacity = 1
 fields = {
     bar = "iron_bar",
     left_over_bars = 0,
@@ -73,7 +71,6 @@ fields = {
 
 [varrock_west_smith_steel_dagger]
 template = "varrock_smith_bar"
-capacity = 1
 fields = {
     bar = "steel_bar",
     left_over_bars = 0,
