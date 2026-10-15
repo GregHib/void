@@ -98,6 +98,18 @@ examine = "I can climb up or down these stairs."
 id = 36773
 examine = "I can climb up these stairs."
 
+[fai_lumbridge_windmill_ladder_up]
+id = 36795
+examine = "I can climb up this."
+
+[fai_lumbridge_windmill_ladder_updown]
+id = 36796
+examine = "I can climb this."
+
+[fai_lumbridge_windmill_ladder_down]
+id = 36797
+examine = "I can climb down this."
+
 [chaos_altar_ladder_up]
 id = 38221
 examine = "I can climb this."

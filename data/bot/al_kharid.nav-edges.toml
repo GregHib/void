@@ -1,5 +1,5 @@
 edges = [
-    { from = { x = 3283, y = 3331 }, to = { x = 3284, y = 3313 } }, # al_kharid_mine_north_entrance_to_west_path
+     # al_kharid_mine_north_entrance_to_west_path
     { from = { x = 3284, y = 3313 }, to = { x = 3287, y = 3294 } }, # al_kharid_mine_west_path_to_south
     { from = { x = 3287, y = 3294 }, to = { x = 3298, y = 3280 } }, # al_kharid_mine_west_path_to_entrance
     { from = { x = 3298, y = 3280 }, to = { x = 3299, y = 3294 } },
@@ -10,10 +10,10 @@ edges = [
     { from = { x = 3278, y = 3228 }, to = { x = 3268, y = 3228 } }, # al_kharid_crossroad_to_tollgate_north
     { from = { x = 3278, y = 3228 }, to = { x = 3268, y = 3227 } }, # al_kharid_crossroad_to_tollgate
     { from = { x = 3278, y = 3228 }, to = { x = 3280, y = 3216 } }, # al_kharid_crossroad_to_glider
-    { from = { x = 3267, y = 3228 }, to = { x = 3268, y = 3228 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_north", x = 3268, y = 3228, success = { tile = { x = 3268, y = 3228 } } } }], requires = [{ inventory = [{ id = "coins", amount = 10 }] }] }, # lumbridge_tollgate_north_to_al_kharid_tollgate
-    { from = { x = 3268, y = 3228 }, to = { x = 3267, y = 3228 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_north", x = 3268, y = 3228, success = { tile = { x = 3267, y = 3228 } } } }], requires = [{ inventory = [{ id = "coins", amount = 10 }] }] }, # al_kharid_tollgate_north_to_lumbridge_tollgate
-    { from = { x = 3267, y = 3227 }, to = { x = 3268, y = 3227 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_south", x = 3268, y = 3227, success = { tile = { x = 3268, y = 3227 } } } }], requires = [{ inventory = [{ id = "coins", amount = 10 }] }] }, # lumbridge_tollgate_to_al_kharid
-    { from = { x = 3268, y = 3227 }, to = { x = 3267, y = 3227 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_south", x = 3268, y = 3227, success = { tile = { x = 3267, y = 3227 } } } }], requires = [{ inventory = [{ id = "coins", amount = 10 }] }] }, # al_kharid_tollgate_to_lumbridge
+    { from = { x = 3267, y = 3228 }, to = { x = 3268, y = 3228 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_north", x = 3268, y = 3228, success = { tile = { x = 3268, y = 3228 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # lumbridge_tollgate_north_to_al_kharid_tollgate
+    { from = { x = 3268, y = 3228 }, to = { x = 3267, y = 3228 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_north", x = 3268, y = 3228, success = { tile = { x = 3267, y = 3228 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # al_kharid_tollgate_north_to_lumbridge_tollgate
+    { from = { x = 3267, y = 3227 }, to = { x = 3268, y = 3227 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_south", x = 3268, y = 3227, success = { tile = { x = 3268, y = 3227 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # lumbridge_tollgate_to_al_kharid
+    { from = { x = 3268, y = 3227 }, to = { x = 3267, y = 3227 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_south", x = 3268, y = 3227, success = { tile = { x = 3267, y = 3227 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # al_kharid_tollgate_to_lumbridge
     { from = { x = 3268, y = 3227 }, to = { x = 3280, y = 3216 } }, # al_kharid_tollgate_to_glider
     { from = { x = 3268, y = 3228 }, to = { x = 3280, y = 3216 } }, # al_kharid_tollgate_north_to_glider
     { from = { x = 3280, y = 3216 }, to = { x = 3292, y = 3215 } }, # al_kharid_glider_to_musician
@@ -43,7 +43,7 @@ edges = [
     { from = { x = 3278, y = 3177 }, to = { x = 3266, y = 3176 } },
     { from = { x = 3266, y = 3176 }, to = { x = 3276, y = 3168 } },
     { from = { x = 3266, y = 3176 }, to = { x = 3255, y = 3173 } },
-    { from = { x = 3294, y = 3242 }, to = { x = 3310, y = 3234 } },
+    
     { from = { x = 3310, y = 3234 }, to = { x = 3302, y = 3222 } },
     { from = { x = 3302, y = 3222 }, to = { x = 3299, y = 3215 } },
     { from = { x = 3299, y = 3215 }, to = { x = 3292, y = 3215 } },
@@ -52,4 +52,27 @@ edges = [
     { from = { x = 3278, y = 3228 }, to = { x = 3293, y = 3231 } },
     { from = { x = 3293, y = 3231 }, to = { x = 3310, y = 3234 } },
     { from = { x = 3293, y = 3231 }, to = { x = 3294, y = 3242 } },
+
+    { from = { x = 3268, y = 3228 }, to = { x = 3272, y = 3239 } },
+    { from = { x = 3272, y = 3239 }, to = { x = 3278, y = 3228 } },
+    { from = { x = 3272, y = 3239 }, to = { x = 3272, y = 3250 } },
+    { from = { x = 3272, y = 3250 }, to = { x = 3272, y = 3261 } },
+    { from = { x = 3272, y = 3261 }, to = { x = 3272, y = 3272 } },
+    { from = { x = 3272, y = 3272 }, to = { x = 3272, y = 3283 } },
+    { from = { x = 3272, y = 3283 }, to = { x = 3272, y = 3294 } },
+    { from = { x = 3272, y = 3294 }, to = { x = 3271, y = 3305 } },
+    { from = { x = 3271, y = 3305 }, to = { x = 3271, y = 3316 } },
+    { from = { x = 3272, y = 3272 }, to = { x = 3285, y = 3276 } },
+    { from = { x = 3285, y = 3276 }, to = { x = 3298, y = 3280 } },
+    { from = { x = 3271, y = 3316 }, to = { x = 3276, y = 3324 } },
+    { from = { x = 3276, y = 3324 }, to = { x = 3283, y = 3331 } },
+    { from = { x = 3283, y = 3331 }, to = { x = 3284, y = 3324 } },
+    { from = { x = 3284, y = 3324 }, to = { x = 3284, y = 3313 } },
+
+    { from = { x = 3299, y = 3263 }, to = { x = 3310, y = 3252 } },
+    { from = { x = 3310, y = 3252 }, to = { x = 3310, y = 3234 } },
+    { from = { x = 3294, y = 3242 }, to = { x = 3302, y = 3238 } },
+    { from = { x = 3302, y = 3238 }, to = { x = 3310, y = 3234 } },
+    { from = { x = 3302, y = 3238 }, to = { x = 3293, y = 3231 } },
+    { from = { x = 3302, y = 3238 }, to = { x = 3310, y = 3252 } },
 ]

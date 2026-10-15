@@ -83,3 +83,7 @@ fields = {
     type = "dagger",
     item = "steel_dagger"
 }
+
+[varrock_west_oaks]
+template = "oak_tree_template"
+fields = { location = "varrock_west_oaks" }

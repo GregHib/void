@@ -7,3 +7,10 @@ tags = ["teleport"]
 x = [3311, 3391]
 y = [3199, 3290]
 tags = ["no_cannon"]
+
+[duel_arena_bank]
+# nav-editor: named area only
+x = [3381, 3381]
+y = [3268, 3269]
+level = 0
+tags = ["bank"]

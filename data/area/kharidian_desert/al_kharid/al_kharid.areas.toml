@@ -50,3 +50,9 @@ y = [3135, 3166]
 x = [3288, 3308]
 y = [3155, 3180]
 tags = ["no_cannon"]
+
+[mysterious_ruins_air]
+# nav-editor: named area only
+x = [3311, 3315]
+y = [3253, 3257]
+level = 0

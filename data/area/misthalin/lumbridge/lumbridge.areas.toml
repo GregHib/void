@@ -7,21 +7,25 @@ x = [3220, 3234]
 y = [3244, 3249]
 bot_capacity = 7
 
+tags = ["woodcutting_normal"]
 [lumbridge_west_yew_tree]
 x = [3164, 3168]
 y = [3218, 3222]
 bot_capacity = 1
 
+tags = ["woodcutting_yews"]
 [lumbridge_north_west_yew_tree]
 x = [3183, 3187]
 y = [3225, 3229]
 bot_capacity = 1
 
+tags = ["woodcutting_yews"]
 [lumbridge_west_trees]
 x = [3186, 3197]
 y = [3238, 3250]
 bot_capacity = 4
 
+tags = ["woodcutting_normal"]
 [lumbridge_east_trees]
 x = [3260, 3267]
 y = [3214, 3226]
@@ -172,6 +176,7 @@ x = [3220, 3225]
 y = [3236, 3242]
 bot_capacity = 2
 
+tags = ["thieving_man"]
 [lumbridge_west_cow_field]
 x = [3156, 3202]
 y = [3316, 3341]

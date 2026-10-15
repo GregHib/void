@@ -32,7 +32,7 @@ edges = [
     { from = { x = 3280, y = 3428 }, to = { x = 3274, y = 3428 } },
     { from = { x = 3280, y = 3428 }, to = { x = 3287, y = 3414 } }, # varrock_east_crossroad_to_east_path_south
     { from = { x = 3287, y = 3414 }, to = { x = 3291, y = 3399 } }, # varrock_east_path_to_south
-    { from = { x = 3291, y = 3399 }, to = { x = 3293, y = 3384 } }, # varrock_east_path_south_to_east_border
+    { from = { x = 3291, y = 3399 }, to = { x = 3292, y = 3386 } }, # varrock_east_path_south_to_east_border
     { from = { x = 3280, y = 3428 }, to = { x = 3286, y = 3442 } }, # varrock_east_crossroad_to_path_north
     { from = { x = 3286, y = 3442 }, to = { x = 3287, y = 3457 } }, # varrock_east_path_to_north
     { from = { x = 3287, y = 3457 }, to = { x = 3296, y = 3462 } }, # varrock_east_path_north_to_sawmill_crossroad
@@ -55,8 +55,8 @@ edges = [
     { from = { x = 3299, y = 3346 }, to = { x = 3298, y = 3359 } }, # varrock_south_east_path_to_east_mine_path_south
     { from = { x = 3298, y = 3359 }, to = { x = 3295, y = 3372 } }, # varrock_south_east_mine_south_to_path
     { from = { x = 3295, y = 3372 }, to = { x = 3286, y = 3371 } }, # varrock_south_east_mine_path_to_east
-    { from = { x = 3286, y = 3371 }, to = { x = 3293, y = 3384 } }, # varrock_south_east_mine_to_border
-    { from = { x = 3295, y = 3372 }, to = { x = 3293, y = 3384 } }, # varrock_south_east_mine_path_to_border
+     # varrock_south_east_mine_to_border
+     # varrock_south_east_mine_path_to_border
     { from = { x = 3211, y = 3420 }, to = { x = 3210, y = 3407 } }, # varrock_centre_south_to_dirt_crossroads
     { from = { x = 3210, y = 3407 }, to = { x = 3211, y = 3395 } }, # varrock_south_dirt_crossroads_to_blue_moon_inn
     { from = { x = 3210, y = 3407 }, to = { x = 3209, y = 3399 } },
@@ -65,7 +65,7 @@ edges = [
     { from = { x = 3211, y = 3395 }, to = { x = 3209, y = 3399 } }, # varrock_sword_shop
     { from = { x = 3211, y = 3395 }, to = { x = 3211, y = 3381 } }, # varrock_blue_moon_inn_to_south_border
     { from = { x = 3211, y = 3381 }, to = { x = 3214, y = 3367 } }, # varrock_south_border_to_dark_mages
-    { from = { x = 3214, y = 3367 }, to = { x = 3226, y = 3352 } }, # varrock_south_dark_mages_to_south
+     # varrock_south_dark_mages_to_south
     { from = { x = 3214, y = 3367 }, to = { x = 3206, y = 3376 } },
     { from = { x = 3211, y = 3381 }, to = { x = 3206, y = 3376 } },
     { from = { x = 3206, y = 3376 }, to = { x = 3197, y = 3373 } },
@@ -203,9 +203,9 @@ edges = [
     { from = { x = 3238, y = 3458 }, to = { x = 3245, y = 3462 } },
     { from = { x = 3245, y = 3462 }, to = { x = 3246, y = 3449 } },
     { from = { x = 3296, y = 3462 }, to = { x = 3298, y = 3476 } },
-    { from = { x = 3298, y = 3476 }, to = { x = 3303, y = 3486 } },
-    { from = { x = 3303, y = 3486 }, to = { x = 3304, y = 3491 } },
-    { from = { x = 3303, y = 3486 }, to = { x = 3304, y = 3474 } },
+    { from = { x = 3298, y = 3476 }, to = { x = 3302, y = 3486 } },
+    { from = { x = 3302, y = 3486 }, to = { x = 3304, y = 3491 } },
+    { from = { x = 3302, y = 3486 }, to = { x = 3304, y = 3474 } },
     { from = { x = 3304, y = 3474 }, to = { x = 3298, y = 3476 } },
     { from = { x = 3138, y = 3516 }, to = { x = 3144, y = 3514 }, cost = 8, actions = [{ object = { option = "Climb-into", id = "edgeville_underwall_tunnel", x = 3139, y = 3516, success = { tile = { x = 3144, y = 3514 } } } }] },
     { from = { x = 3144, y = 3514 }, to = { x = 3138, y = 3516 }, cost = 8, actions = [{ object = { option = "Climb-into", id = "edgeville_underwall_tunnel", x = 3143, y = 3514, success = { tile = { x = 3148, y = 3516 } } } }] },
@@ -216,7 +216,7 @@ edges = [
     
     
     
-    { from = { x = 3201, y = 3355 }, to = { x = 3197, y = 3373 } },
+    
     { from = { x = 3191, y = 3367 }, to = { x = 3201, y = 3355 } },
     
     
@@ -330,4 +330,102 @@ edges = [
     { from = { x = 3239, y = 3438 }, to = { x = 3234, y = 3451 } },
     { from = { x = 3234, y = 3451 }, to = { x = 3238, y = 3458 } },
     { from = { x = 3237, y = 9858 }, to = { x = 3238, y = 3458 }, actions = [{ object = { option = "Climb-up", id = "fai_varrock_manhole_ladder", x = 3237, y = 9858, radius = 0, success = { tile = { x = 3238, y = 3458, level = 0 } } } }, { tile = { x = 3238, y = 3458, radius = 1 } }], cost = 1 },
+
+    { from = { x = 3212, y = 3446 }, to = { x = 3220, y = 3450 } },
+    { from = { x = 3220, y = 3450 }, to = { x = 3227, y = 3458 } },
+    { from = { x = 3227, y = 3458 }, to = { x = 3226, y = 3464 } },
+    { from = { x = 3227, y = 3458 }, to = { x = 3238, y = 3464 } },
+    { from = { x = 3245, y = 3462 }, to = { x = 3245, y = 3474 } },
+    { from = { x = 3245, y = 3474 }, to = { x = 3245, y = 3480 } },
+    { from = { x = 3245, y = 3480 }, to = { x = 3253, y = 3480 } },
+    { from = { x = 3253, y = 3480 }, to = { x = 3253, y = 3485 } },
+    { from = { x = 3253, y = 3480 }, to = { x = 3255, y = 3469 } },
+    { from = { x = 3255, y = 3469 }, to = { x = 3245, y = 3462 } },
+    { from = { x = 3245, y = 3480 }, to = { x = 3246, y = 3491 } },
+    { from = { x = 3246, y = 3491 }, to = { x = 3245, y = 3499 } },
+    { from = { x = 3245, y = 3499 }, to = { x = 3245, y = 3503 }, actions = [{ object = { option = "Open", id = "gate_west_varrock_closed", x = 3245, y = 3501, radius = 0, success = { tile = { x = 3245, y = 3503, level = 0 } } } }, { tile = { x = 3245, y = 3503, radius = 1 } }], cost = 5 },
+    { from = { x = 3245, y = 3503 }, to = { x = 3245, y = 3499 }, actions = [{ object = { option = "Open", id = "gate_west_varrock_closed", x = 3245, y = 3501, radius = 0, success = { tile = { x = 3245, y = 3500, level = 0 } } } }, { tile = { x = 3245, y = 3499, radius = 1 } }], cost = 5 },
+
+    { from = { x = 3244, y = 3418 }, to = { x = 3232, y = 3417 } },
+    { from = { x = 3232, y = 3417 }, to = { x = 3223, y = 3429 } },
+    { from = { x = 3217, y = 3421 }, to = { x = 3232, y = 3417 } },
+    { from = { x = 3232, y = 3417 }, to = { x = 3221, y = 3410 } },
+    { from = { x = 3221, y = 3410 }, to = { x = 3210, y = 3407 } },
+    { from = { x = 3232, y = 3417 }, to = { x = 3235, y = 3406 } },
+    { from = { x = 3235, y = 3406 }, to = { x = 3235, y = 3396 } },
+    { from = { x = 3250, y = 3390 }, to = { x = 3255, y = 3388 } },
+    { from = { x = 3255, y = 3388 }, to = { x = 3259, y = 3383 }, actions = [{ object = { option = "Open", id = "door_448_closed", x = 3255, y = 3388, radius = 0, success = { object = { id = "door_46_2_opened", x = 3256, y = 3388 } } } }, { tile = { x = 3259, y = 3383, radius = 1 } }], cost = 10 },
+    { from = { x = 3259, y = 3383 }, to = { x = 3255, y = 3388 }, actions = [{ object = { option = "Open", id = "door_448_closed", x = 3255, y = 3388, radius = 0, success = { object = { id = "door_46_2_opened", x = 3256, y = 3388 } } } }, { tile = { x = 3255, y = 3388, radius = 1 } }], cost = 10 },
+    { from = { x = 3287, y = 3457 }, to = { x = 3284, y = 3463 } },
+    { from = { x = 3284, y = 3463 }, to = { x = 3284, y = 3467 } },
+    { from = { x = 3284, y = 3463 }, to = { x = 3274, y = 3466 } },
+    { from = { x = 3274, y = 3466 }, to = { x = 3276, y = 3474 } },
+    { from = { x = 3276, y = 3474 }, to = { x = 3268, y = 3478 } },
+    { from = { x = 3268, y = 3478 }, to = { x = 3284, y = 3480 } },
+    { from = { x = 3284, y = 3480 }, to = { x = 3276, y = 3474 } },
+    { from = { x = 3268, y = 3478 }, to = { x = 3268, y = 3489 } },
+    { from = { x = 3268, y = 3489 }, to = { x = 3263, y = 3496 } },
+    { from = { x = 3268, y = 3489 }, to = { x = 3272, y = 3497 } },
+    { from = { x = 3272, y = 3497 }, to = { x = 3274, y = 3507 } },
+    { from = { x = 3263, y = 3496 }, to = { x = 3258, y = 3503 } },
+    { from = { x = 3245, y = 3503 }, to = { x = 3258, y = 3503 } },
+    { from = { x = 3258, y = 3503 }, to = { x = 3274, y = 3507 } },
+    { from = { x = 3245, y = 3503 }, to = { x = 3244, y = 3512 } },
+    { from = { x = 3245, y = 3503 }, to = { x = 3233, y = 3505 } },
+    { from = { x = 3233, y = 3505 }, to = { x = 3222, y = 3511 } },
+    { from = { x = 3244, y = 3512 }, to = { x = 3243, y = 3519 } },
+    { from = { x = 3243, y = 3519 }, to = { x = 3224, y = 3519 } },
+    { from = { x = 3243, y = 3519 }, to = { x = 3259, y = 3520 } },
+    { from = { x = 3259, y = 3520 }, to = { x = 3270, y = 3520 } },
+    { from = { x = 3270, y = 3520 }, to = { x = 3275, y = 3520 } },
+    { from = { x = 3275, y = 3520 }, to = { x = 3274, y = 3515 } },
+    { from = { x = 3274, y = 3515 }, to = { x = 3274, y = 3507 } },
+    { from = { x = 3274, y = 3515 }, to = { x = 3280, y = 3515 } },
+    { from = { x = 3280, y = 3515 }, to = { x = 3280, y = 3502 } },
+    { from = { x = 3280, y = 3502 }, to = { x = 3280, y = 3491 } },
+    { from = { x = 3280, y = 3515 }, to = { x = 3275, y = 3520 } },
+    { from = { x = 3280, y = 3515 }, to = { x = 3290, y = 3509 } },
+    { from = { x = 3258, y = 3503 }, to = { x = 3265, y = 3511 } },
+    { from = { x = 3265, y = 3511 }, to = { x = 3274, y = 3515 } },
+    { from = { x = 3275, y = 3520 }, to = { x = 3289, y = 3520 } },
+    { from = { x = 3289, y = 3520 }, to = { x = 3301, y = 3520 } },
+    { from = { x = 3301, y = 3520 }, to = { x = 3313, y = 3520 } },
+    { from = { x = 3313, y = 3520 }, to = { x = 3324, y = 3520 } },
+    { from = { x = 3290, y = 3509 }, to = { x = 3291, y = 3498 } },
+    { from = { x = 3291, y = 3498 }, to = { x = 3304, y = 3491 } },
+    { from = { x = 3291, y = 3498 }, to = { x = 3292, y = 3486 } },
+    { from = { x = 3292, y = 3486 }, to = { x = 3298, y = 3476 } },
+    { from = { x = 3296, y = 3462 }, to = { x = 3306, y = 3462 } },
+    { from = { x = 3295, y = 3428 }, to = { x = 3287, y = 3414 } },
+    { from = { x = 3295, y = 3428 }, to = { x = 3286, y = 3442 } },
+    { from = { x = 3280, y = 3428 }, to = { x = 3287, y = 3428 } },
+    { from = { x = 3287, y = 3428 }, to = { x = 3295, y = 3428 } },
+    { from = { x = 3287, y = 3428 }, to = { x = 3286, y = 3442 } },
+    { from = { x = 3287, y = 3428 }, to = { x = 3287, y = 3414 } },
+    { from = { x = 3280, y = 3428 }, to = { x = 3280, y = 3417 } },
+    { from = { x = 3280, y = 3417 }, to = { x = 3287, y = 3414 } },
+    { from = { x = 3292, y = 3386 }, to = { x = 3292, y = 3382 } },
+
+    { from = { x = 3286, y = 3371 }, to = { x = 3292, y = 3382 } },
+    { from = { x = 3295, y = 3372 }, to = { x = 3292, y = 3382 } },
+    { from = { x = 3286, y = 3371 }, to = { x = 3275, y = 3371 } },
+    { from = { x = 3275, y = 3371 }, to = { x = 3262, y = 3371 } },
+    { from = { x = 3262, y = 3371 }, to = { x = 3254, y = 3367 } },
+    { from = { x = 3254, y = 3367 }, to = { x = 3244, y = 3369 } },
+    { from = { x = 3244, y = 3369 }, to = { x = 3237, y = 3359 } },
+    { from = { x = 3237, y = 3359 }, to = { x = 3229, y = 3359 } },
+    { from = { x = 3229, y = 3359 }, to = { x = 3226, y = 3352 } },
+    { from = { x = 3214, y = 3367 }, to = { x = 3219, y = 3358 } },
+    { from = { x = 3219, y = 3358 }, to = { x = 3226, y = 3352 } },
+    { from = { x = 3229, y = 3359 }, to = { x = 3219, y = 3358 } },
+    { from = { x = 3219, y = 3358 }, to = { x = 3209, y = 3362 } },
+    { from = { x = 3209, y = 3362 }, to = { x = 3214, y = 3367 } },
+    { from = { x = 3209, y = 3362 }, to = { x = 3197, y = 3373 } },
+    { from = { x = 3201, y = 3355 }, to = { x = 3201, y = 3361 } },
+    { from = { x = 3201, y = 3361 }, to = { x = 3197, y = 3373 } },
+    { from = { x = 3201, y = 3355 }, to = { x = 3219, y = 3358 } },
+    { from = { x = 3166, y = 3363 }, to = { x = 3168, y = 3375 } },
+    { from = { x = 3168, y = 3375 }, to = { x = 3170, y = 3382 } },
+    { from = { x = 3170, y = 3382 }, to = { x = 3179, y = 3381 } },
+    { from = { x = 3170, y = 3382 }, to = { x = 3171, y = 3397 } },
 ]

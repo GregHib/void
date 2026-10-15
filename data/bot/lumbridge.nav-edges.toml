@@ -91,7 +91,7 @@ edges = [
     { from = { x = 3222, y = 3241 }, to = { x = 3204, y = 3247 } }, # lumbridge_general_store_east_to_task_building
     { from = { x = 3217, y = 3241 }, to = { x = 3204, y = 3247 } }, # lumbridge_general_store_to_task_building
     { from = { x = 3204, y = 3247 }, to = { x = 3194, y = 3247 } }, # lumbridge_task_building_to_fishing_shop_entrance
-    { from = { x = 3194, y = 3247 }, to = { x = 3172, y = 3239 } }, # lumbridge_fishing_shop_entrance_to_west_path
+     # lumbridge_fishing_shop_entrance_to_west_path
     { from = { x = 3194, y = 3247 }, to = { x = 3195, y = 3236 } }, # lumbridge_fishing_shop_entrance_to_tree_patch
     { from = { x = 3194, y = 3247 }, to = { x = 3195, y = 3251 } }, # lumbridge_fishing_shop_entrance_to_fishing_shop
     { from = { x = 3172, y = 3239 }, to = { x = 3157, y = 3234 } }, # lumbridge_west_path_to_ham_path
@@ -108,7 +108,7 @@ edges = [
     { from = { x = 3225, y = 3252 }, to = { x = 3222, y = 3255 } }, # lumbridge_smiths_south_to_west
     { from = { x = 3222, y = 3255 }, to = { x = 3218, y = 3255 } }, # lumbridge_smiths_west_to_smiths_crossroad
     { from = { x = 3218, y = 3255 }, to = { x = 3219, y = 3247 } }, # lumbridge_smiths_crossroad_to_west_crossroad
-    { from = { x = 3218, y = 3255 }, to = { x = 3223, y = 3260 } },
+    
     { from = { x = 3223, y = 3260 }, to = { x = 3235, y = 3261 } },
     { from = { x = 3218, y = 3255 }, to = { x = 3217, y = 3268 } },
     { from = { x = 3217, y = 3268 }, to = { x = 3213, y = 3277 } },

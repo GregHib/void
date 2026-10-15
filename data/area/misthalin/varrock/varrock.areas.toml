@@ -80,3 +80,44 @@ x = [3185, 3190]
 y = [3423, 3427]
 level = 0
 tags = ["smithing_anvils"]
+
+[varrock_west_oaks]
+# nav-editor: named area only
+x = [3162, 3168]
+y = [3412, 3421]
+level = 0
+tags = ["woodcutting_oaks"]
+
+[varrock_tree_patch]
+# nav-editor: named area only
+x = [3227, 3231]
+y = [3457, 3461]
+level = 0
+
+[varrock_church_altar]
+# nav-editor: named area only
+x = [3253, 3254]
+y = [3485, 3486]
+level = 0
+tags = ["prayer_altar"]
+
+[varrock_chaos_altar]
+# nav-editor: named area only
+x = [3259, 3260]
+y = [3381, 3382]
+level = 0
+tags = ["prayer_altar"]
+
+[varrock_east_oaks]
+# nav-editor: named area only
+x = [3279, 3283]
+y = [3413, 3431]
+level = 0
+tags = ["woodcutting_oaks"]
+
+[varrock_south_oaks]
+# nav-editor: named area only
+x = [3200, 3214]
+y = [3358, 3371]
+level = 0
+tags = ["woodcutting_oaks"]
