@@ -38,9 +38,3 @@ x = [2846, 2851]
 y = [3030, 3037]
 level = 0
 
-[karamja_fairy_ring_ckr]
-# nav-editor: named area only
-x = [2800, 2802]
-y = [3002, 3004]
-level = 0
-tags = ["fairy_ring"]

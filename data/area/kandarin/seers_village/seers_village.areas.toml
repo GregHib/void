@@ -31,3 +31,9 @@ bot_capacity = 4
 x = [2719, 2735]
 y = [3494, 3505]
 bot_capacity = 4
+
+[seers_village_yews]
+# nav-editor: named area only
+x = [2753, 2767]
+y = [3427, 3436]
+level = 0

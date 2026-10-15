@@ -74,13 +74,6 @@ y = [3631, 3632]
 level = 0
 tags = ["house_portal"]
 
-[fremennik_fairy_ring_ajr]
-# nav-editor: named area only
-x = [2779, 2781]
-y = [3612, 3614]
-level = 0
-tags = ["fairy_ring"]
-
 [keldagrim_entrance_mine]
 # nav-editor: named area only
 x = [2722, 2728]
@@ -93,9 +86,3 @@ x = [2691, 2722]
 y = [3714, 3731]
 level = 0
 
-[fremennik_fairy_ring_dks]
-# nav-editor: named area only
-x = [2743, 2745]
-y = [3718, 3720]
-level = 0
-tags = ["fairy_ring"]

@@ -2,3 +2,15 @@
 x = [2634, 2636]
 y = [3167, 3169]
 tags = ["teleport"]
+
+[port_khazard_mine_south]
+# nav-editor: named area only
+x = [2626, 2634]
+y = [3136, 3150]
+level = 0
+
+[port_khazard_charter_ship]
+# nav-editor: named area only
+x = [2673, 2674]
+y = [3145, 3148]
+level = 0
