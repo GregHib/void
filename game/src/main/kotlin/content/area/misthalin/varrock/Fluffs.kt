@@ -7,7 +7,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
+import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.quest
 import content.quest.setInstanceLogout
 import content.quest.startCutscene
@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
 const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
@@ -42,11 +43,10 @@ class Fluffs : Script {
     private var kittenCrates = mutableSetOf<Tile>()
 
     init {
-
         itemOnNPCOperate("*", FLUFFS_STRING_ID) { interact ->
             val item = interact.item.id
             foundCatCheck()
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
+            when (quest(GERTRUDES_CAT)) {
                 "completed" -> dontBotherCat()
                 "attempt_fluffs_pickup" -> when (item) {
                     "doogle_sardine" -> checkCanFeed()
@@ -60,30 +60,33 @@ class Fluffs : Script {
                 }
             }
         }
+
         npcOperate("Talk-to", FLUFFS_STRING_ID) { interact ->
             foundCatCheck()
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
+            when (quest(GERTRUDES_CAT)) {
                 "completed" -> talkPostQuest(interact.target, interact.player.name)
                 "found_fluffs" -> talkCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> talkCatFoundFluffs(interact.target)
                 else -> dontBotherCat()
             }
         }
+
         npcOperate("Pick-up", FLUFFS_STRING_ID) { interact ->
             foundCatCheck()
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
+            when (quest(GERTRUDES_CAT)) {
                 "found_fluffs" -> yoinkCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> yoinkCatFoundFluffs(interact.target)
                 else -> dontBotherCat()
             }
         }
+
         npcOperate("Stroke", FLUFFS_STRING_ID) { interact ->
             foundCatCheck()
             if (get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false)) {
                 strokeCatFedFluffs(interact.target)
                 return@npcOperate
             }
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
+            when (quest(GERTRUDES_CAT)) {
                 "found_fluffs" -> strokeCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> strokeCatFoundFluffs(interact.target)
                 else -> dontBotherCat()
@@ -129,7 +132,7 @@ class Fluffs : Script {
         val cutsceneStartTile = Tile(3309, 3509, 1)
 
         inventory.remove("three_little_kittens")
-        set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned")
+        set(GERTRUDES_CAT, "fluffs_returned")
 
         open("fade_out")
         val cutscene = startCutscene("fluffs_kittens_reunite", region)
@@ -192,8 +195,8 @@ class Fluffs : Script {
     }
 
     private fun Player.foundCatCheck() {
-        when (quest(GERTRUDES_CAT_STRING_NAME)) {
-            "found_the_boys" -> set(GERTRUDES_CAT_STRING_NAME, "found_fluffs")
+        when (quest(GERTRUDES_CAT)) {
+            "found_the_boys" -> set(GERTRUDES_CAT, "found_fluffs")
         }
     }
 
@@ -217,19 +220,20 @@ class Fluffs : Script {
         }
         cat.say("Miaoww")
     }
+
     private fun talkCatFoundFluffs(cat: NPC) {
         cat.say("Miaoww")
     }
 
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
-        doNotTheCat(cat)
+        grumpyCat(cat)
         if (inventory.contains("three_little_kittens")) {
             statement("Fluffs looks pitifully towards your backpack.")
             return
         }
         if (get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)) {
             discoverKittenCrates()
-            val crate = kittenCrates.random()
+            val crate = kittenCrates.random(random)
             set(KITTENS_HIDING_SPOT, crate.id)
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
             return
@@ -247,12 +251,12 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.strokeCatFoundFluffs(cat: NPC) {
-        doNotTheCat(cat)
+        grumpyCat(cat)
         statement("Perhaps Fluffs wants something - food or drink, maybe?")
     }
 
-    private suspend fun Player.doNotTheCat(cat: NPC) {
-        set(GERTRUDES_CAT_STRING_NAME, "attempt_fluffs_pickup")
+    private suspend fun Player.grumpyCat(cat: NPC) {
+        set(GERTRUDES_CAT, "attempt_fluffs_pickup")
         animDelay("climb_down")
         delay(1)
         cat.say("Hiss!")
@@ -262,4 +266,5 @@ class Fluffs : Script {
         say("Ouch!")
         delay(1)
     }
+
 }

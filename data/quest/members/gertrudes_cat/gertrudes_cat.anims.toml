@@ -1,0 +1,11 @@
+[gertrude_gives_kitten_to_player]
+id = 9212
+
+[player_recieves_cat]
+id = 9213
+
+[gertrude_gets_excited]
+id = 9214
+
+[player_gets_his_hand_shook]
+id = 9215

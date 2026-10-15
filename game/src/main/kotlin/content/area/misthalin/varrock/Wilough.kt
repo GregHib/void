@@ -13,7 +13,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
+import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -29,7 +29,7 @@ const val WILOUGH_STRING_NAME = "wilough"
 class Wilough : Script {
     init {
         npcOperate("Talk-to", WILOUGH_STRING_NAME) {
-            when (quest(GERTRUDES_CAT_STRING_NAME)) {
+            when (quest(GERTRUDES_CAT)) {
                 "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()
                 "found_the_boys" -> gertrudeWhereFluffs()
@@ -95,7 +95,7 @@ class Wilough : Script {
         npc<Happy>("It's a deal.")
         if (inventory.contains("coins", 100)) {
             inventory.remove("coins", 100)
-            set(GERTRUDES_CAT_STRING_NAME, "found_the_boys")
+            set(GERTRUDES_CAT, "found_the_boys")
             set("gertrudes_cat_know_where_fluffs_is", true)
             statement("You give the lad 100 coins.")
             player<Idle>("There you go, now where did you see Fluffs?")

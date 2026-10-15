@@ -3,10 +3,10 @@ package content.area.misthalin.varrock
 import content.entity.player.AdventurersLogs
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Bored
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Disheartened
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -15,12 +15,13 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
+import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -38,7 +39,7 @@ import world.gregs.voidps.engine.queue.longQueue
 class Gertrude : Script {
 
     init {
-        npcOperate("Talk-to", "gertrude") {
+        npcOperate("Talk-to", "gertrude") { (gertrude) ->
             if (get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false) && quest("gertrudes_cat") == "attempt_fluffs_pickup") {
                 mustBeAReason()
                 return@npcOperate
@@ -49,13 +50,13 @@ class Gertrude : Script {
                 "found_the_boys" -> findingFluffs()
                 "found_fluffs" -> hungryAndThirsty()
                 "attempt_fluffs_pickup" -> hungryAndThirsty()
-                "fluffs_returned" -> finishQuest()
+                "fluffs_returned" -> finishQuest(gertrude)
                 else -> unstarted()
             }
         }
     }
 
-    private suspend fun Player.finishQuest() {
+    private suspend fun Player.finishQuest(gertrude: NPC) {
         if (!get("gertrudes_cat_talked_about_reward", false)) {
             player<Happy>("Hello, Gertrude. Fluffs had run off with her kittens, lost them and I have now returned them to her.")
             statement("Gertrude thanks you heartily.")
@@ -74,6 +75,8 @@ class Gertrude : Script {
         npc<Happy>("I would sell one to my cousin in West Ardougne. I hear there's a rat epidemic there but it's too far for me to travel, what with my boys and all.")
         npc<Happy>("Here you go. Look after her and thank you again.")
         npc<Neutral>("Oh, by the way, the kitten can live in your backpack but, to ensure it grows, you must take it out, feed it and stroke it often.")
+        gertrude.anim("gertrude_gives_kitten_to_player")
+        anim("player_recieves_cat")
         statement("Gertrude gives you a kitten.")
         questComplete()
     }
@@ -81,7 +84,7 @@ class Gertrude : Script {
     suspend fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "gertrudes_cat")
         AdventurersLogs.questCompleted(this, "gertrudes_cat", points = 1)
-        set(GERTRUDES_CAT_STRING_NAME, "completed")
+        set(GERTRUDES_CAT, "completed")
         jingle("quest_complete_1")
         exp(Skill.Cooking, 1525.0)
         giveKitten()
@@ -98,7 +101,7 @@ class Gertrude : Script {
                 "A chocolate cake",
                 "A bowl of stew",
                 "The ability to raise cats",
-                item = "pet_cat", // TODO: Find cat id
+                item = "pet_kitten",
             )
         }
     }
@@ -135,6 +138,7 @@ class Gertrude : Script {
         player<Neutral>("He does seem quite a handful.")
         npc<Laugh>("You have no idea! Did he help at all?")
     }
+
     private suspend fun Player.postQuest() {
         npc<Happy>("Hello dear. How are my kittens treating you?")
         choice {
@@ -153,10 +157,12 @@ class Gertrude : Script {
             return
         }
         if (get("pet_active_item", "") == "pet_kitten") {
+            // rs3: Aren't you still raising that other kitten?
             npc<Sad>("You've already got one of my kittens following you about. Look after that one first.")
             return
         }
         if (!inventory.add("pet_kitten")) {
+            // rs3: "You don't have room to hold one anyway."
             npc<Sad>("Come back when you've got room in your backpack, dear.")
             return
         }
@@ -164,28 +170,28 @@ class Gertrude : Script {
     }
 
     private suspend fun Player.unstarted() {
-        player<Quiz>("Hello, are you okay?")
+        player<Happy>("Hello, are you okay?")
         npc<Angry>("Do I look okay? Those kids drive me crazy.")
         npc<Sad>("I'm sorry. It's just that I've lost her.")
-        player<Quiz>("Lost whom?")
+        player<Confused>("Lost whom?")
         npc<Sad>("Fluffs, poor Fluffs. She never hurt anyone.")
-        player<Quiz>("Who's Fluffs?")
+        player<Confused>("Who's Fluffs?")
         npc<Sad>("My beloved feline friend, Fluffs. She's been purring by my side for almost a decade. Please, could you go and search for her while I take care of the children?")
         choice {
-            option<Idle>("Well, I suppose I could, though I'd need more details.") {
+            option<Neutral>("Well, I suppose I could, though I'd need more details.") {
                 questAccepted()
             }
-            option<Quiz>("What's in it for me?") {
+            option<Confused>("What's in it for me?") {
                 npc<Sad>("I'm sorry, I'm too poor to pay you anything, the best I could offer is a warm meal.")
-                npc<Quiz>("So, can you help?")
+                npc<Neutral>("So, can you help?")
                 player<Quiz>("Just a meal? It's not the best offer I've had, but I suppose I can help.")
-                npc<Happy>("I suppose I could give you some nice, yummy chocolate cake; maybe even a kitten too, if you seem like a nice sort.")
+                npc<Sad>("I suppose I could give you some nice, yummy chocolate cake; maybe even a kitten too, if you seem like a nice sort.")
                 npc<Quiz>("Is that something you could be persuaded with?")
                 choice {
                     option<Neutral>("Well, I suppose I could, though I'd need more details.") {
                         questAccepted()
                     }
-                    option<Neutral>("Sorry, I'm too busy to play pet rescue.") {
+                    option<Bored>("Sorry, I'm too busy to play pet rescue.") {
                         questRejected()
                     }
                 }
@@ -195,11 +201,13 @@ class Gertrude : Script {
             }
         }
     }
+
     private suspend fun Player.questRejected() {
         npc<Sad>("Well, okay then. I'll have to find someone else; someone less heartless. It will be on your conscience if a poor kitty is lost in the wilds, though.")
     }
+
     private suspend fun Player.questAccepted() {
-        set(GERTRUDES_CAT_STRING_NAME, "spoke_to_gertrude")
+        set(GERTRUDES_CAT, "spoke_to_gertrude")
         npc<Happy>("Really? Thank you so much! I really have no idea where she could be!")
         npc<Neutral>("I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the marketplace.")
         player<Quiz>("The marketplace? Which one would that be? It would help to know what they get up to, as well.")

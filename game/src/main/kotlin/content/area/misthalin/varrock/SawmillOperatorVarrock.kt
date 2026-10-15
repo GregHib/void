@@ -8,7 +8,7 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
+import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
 
@@ -26,7 +26,7 @@ class SawmillOperatorVarrock : Script {
                     npc<Happy>("Of course!")
                     openShop(target.def["shop"])
                 }
-                if (questStage(GERTRUDES_CAT_STRING_NAME) == 2 && get("gertrudes_cat_know_where_fluffs_is", false)) {
+                if (questStage(GERTRUDES_CAT) == 2 && get("gertrudes_cat_know_where_fluffs_is", false)) {
                     option<Neutral>("I have some questions about a cat.") {
                         npc<Quiz>("A cat? What makes you ask about that?")
                         player<Neutral>("I'm looking for a cat named Fluffs and my sources tell me she may be in your sawmill.")
