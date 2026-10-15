@@ -2,7 +2,15 @@ package content.quest.member.tree_gnome_village
 
 import content.entity.combat.Combat
 import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Bored
+import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.Shifty
+import content.entity.player.dialogue.Shock
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
@@ -31,7 +39,7 @@ internal const val ELKOY = "elkoy_tree_gnome_village_4"
 internal suspend fun Player.gnomeEscort(out: Boolean, text: String) {
     // Moving happens immediately after Continue on Bolren's assistant line.
     tele(if (out) Tile(2504, 3192) else Tile(2514, 3160))
-    npc<Neutral>(ELKOY, text)
+    npc<Happy>(ELKOY, text)
 }
 
 class TreeGnomeVillageDialogue : Script {
@@ -83,20 +91,22 @@ class TreeGnomeVillageDialogue : Script {
         when (quest("tree_gnome_village")) {
             "unstarted" -> {
                 player<Neutral>("Hello.")
-                npc<Neutral>(BOLREN, "Well hello stranger. My name's Bolren, I'm the king of the tree gnomes.")
-                npc<Neutral>(BOLREN, "I'm surprised you made it in, maybe I made the maze too easy.")
+                npc<Happy>(BOLREN, "Well hello stranger. My name's Bolren, I'm the king of the tree gnomes.")
+                npc<Shock>(BOLREN, "I'm surprised you made it in, maybe I made the maze too easy.")
                 player<Neutral>("Maybe.")
-                npc<Neutral>(BOLREN, "I'm afraid I have more serious concerns at the moment. Very serious.")
+                npc<Sad>(BOLREN, "I'm afraid I have more serious concerns at the moment. Very serious.")
                 choice {
-                    option<Neutral>("Can I help at all?") {
-                        npc<Neutral>(BOLREN, "I'm glad you asked.")
-                        npc<Neutral>(BOLREN, "The truth is my people are in grave danger. We have always been protected by the Spirit Tree. No creature of dark can harm us while its three orbs are in place.")
-                        npc<Neutral>(BOLREN, "We are not a violent race, but we fight when we must. Many gnomes have fallen battling the dark forces of Khazard to the North.")
-                        npc<Neutral>(BOLREN, "We became desperate, so we took one orb of protection to the battlefield. It was a foolish move.")
-                        npc<Neutral>(BOLREN, "Khazard troops seized the orb. Now we are completely defenceless.")
-                        player<Neutral>("How can I help?")
+                    option<Quiz>("Can I help at all?") {
+                        npc<Happy>(BOLREN, "I'm glad you asked.")
+                        npc<Sad>(BOLREN, "The truth is my people are in grave danger. We have always been protected by the Spirit Tree. No creature of dark can harm us while its three orbs are in place.")
+                        npc<Sad>(BOLREN, "We are not a violent race, but we fight when we must. Many gnomes have fallen battling the dark forces of Khazard to the North.")
+                        npc<Sad>(BOLREN, "We became desperate, so we took one orb of protection to the battlefield. It was a foolish move.")
+                        npc<Sad>(BOLREN, "Khazard troops seized the orb. Now we are completely defenceless.")
+                        player<Quiz>("How can I help?")
                         npc<Neutral>(BOLREN, "You would be a huge benefit on the battlefield. If you would go there and try to retrieve the orb, my people and I will be forever grateful.")
-                        if (combatLevel < 45) statement("Before starting this quest, be aware that your combat level is lower than the recommended level of 45.")
+                        if (combatLevel < 45) {
+                            statement("Before starting this quest, be aware that your combat level is lower than the recommended level of 45.")
+                        }
                         choice {
                             option("I would be glad to help.") {
                                 player<Neutral>("I would be glad to help.")
@@ -113,36 +123,40 @@ class TreeGnomeVillageDialogue : Script {
                             }
                         }
                     }
-                    option<Neutral>("I'll leave you to it then.") { npc<Neutral>(BOLREN, "Ok, take care.") }
+                    option<Bored>("I'll leave you to it then.") { npc<Neutral>(BOLREN, "Ok, take care.") }
                 }
             }
             "orb_recovered" -> {
                 if (!inventory.contains("orb_of_protection")) {
-                    player<Neutral>("Hello Bolren.")
+                    player<Neutral>("Hello Bolren.") // TODO proper expressions
                     npc<Neutral>(BOLREN, "Do you have the orb?")
                     player<Neutral>("No, I'm afraid not.")
                     npc<Neutral>(BOLREN, "Please, we must have the orb if we are to survive.")
                     return
                 }
-                player<Neutral>("I have the orb.")
-                npc<Neutral>(BOLREN, "Oh my... The misery, the horror!")
-                player<Neutral>("King Bolren, are you OK?")
-                npc<Neutral>(BOLREN, "Thank you traveller, but it's too late. We're all doomed.")
-                player<Neutral>("What happened?")
-                npc<Neutral>(BOLREN, "They came in the night. I don't know how many, but enough.")
-                player<Neutral>("Who?")
-                npc<Neutral>(BOLREN, "Khazard troops. They slaughtered anyone who got in their way. Women, children, my wife.")
-                player<Neutral>("I'm sorry.")
-                npc<Neutral>(BOLREN, "They took the other orbs, now we are defenceless.")
-                player<Neutral>("Where did they take them?")
-                npc<Neutral>(BOLREN, "They headed north of the stronghold. A warlord carries the orbs.")
+                player<Happy>("I have the orb.")
+                npc<Sad>(BOLREN, "Oh my... The misery, the horror!")
+                player<Quiz>("King Bolren, are you OK?")
+                npc<Sad>(BOLREN, "Thank you traveller, but it's too late. We're all doomed.")
+                player<Quiz>("What happened?")
+                npc<Sad>(BOLREN, "They came in the night. I don't know how many, but enough.")
+                player<Quiz>("Who?")
+                npc<Sad>(BOLREN, "Khazard troops. They slaughtered anyone who got in their way. Women, children, my wife.")
+                player<Sad>("I'm sorry.")
+                npc<Sad>(BOLREN, "They took the other orbs, now we are defenceless.")
+                player<Quiz>("Where did they take them?")
+                npc<Sad>(BOLREN, "They headed north of the stronghold. A warlord carries the orbs.")
                 choice {
                     option<Neutral>("I will find the warlord and bring back the orbs.") {
                         npc<Neutral>(BOLREN, "You are brave, but this task will be tough even for you. I wish you the best of luck. Once again you are our only hope.")
                         npc<Neutral>(BOLREN, "I will safeguard this orb and pray for your safe return. My assistant will guide you out.")
-                        if (TreeGnomeVillageProgress.returnOrb(this)) gnomeEscort(true, "Good luck friend.")
+                        if (TreeGnomeVillageProgress.returnOrb(this)) {
+                            gnomeEscort(true, "Good luck friend.")
+                        }
                     }
-                    option<Neutral>("I'm sorry but I can't help.") { npc<Neutral>(BOLREN, "I understand, this isn't your battle.") }
+                    option<Neutral>("I'm sorry but I can't help.") {
+                        npc<Sad>(BOLREN, "I understand, this isn't your battle.")
+                    }
                 }
             }
             "hunt_warlord", "warlord_defeated" -> {
@@ -264,73 +278,81 @@ class TreeGnomeVillageDialogue : Script {
 
     private suspend fun Player.montai() {
         when {
+            // TODO reorder
             questStage("tree_gnome_village") >= 6 -> {
-                player<Neutral>("Hello Montai, how are you?")
+                player<Neutral>("Hello Montai, how are you?") // TODO proper expressions
                 npc<Neutral>(MONTAI, "I'm ok, this battle is going to take longer to win than I expected. The Khazard troops won't give up even without the orb.")
                 player<Neutral>("Hang in there.")
             }
             quest("tree_gnome_village") == "orb_recovered" -> {
-                player<Neutral>("I have the orb of protection.")
-                npc<Neutral>(MONTAI, "Incredible, for a human you really are something.")
-                player<Neutral>("Thanks... I think!")
-                npc<Neutral>(MONTAI, "I'll stay here with my troops and try and hold Khazard's men back. You return the orb to the gnome village. Go as quick as you can, the village is still unprotected.")
+                player<Happy>("I have the orb of protection.")
+                npc<Happy>(MONTAI, "Incredible, for a human you really are something.")
+                player<Happy>("Thanks... I think!")
+                npc<Happy>(MONTAI, "I'll stay here with my troops and try and hold Khazard's men back. You return the orb to the gnome village. Go as quick as you can, the village is still unprotected.")
             }
             quest("tree_gnome_village") == "stronghold_open" -> {
-                player<Neutral>("I've breached the stronghold.")
-                npc<Neutral>(MONTAI, "I saw, that was a beautiful sight. The Khazard troops didn't know what hit them.")
+                player<Happy>("I've breached the stronghold.")
+                npc<Happy>(MONTAI, "I saw, that was a beautiful sight. The Khazard troops didn't know what hit them.")
                 npc<Neutral>(MONTAI, "Now is the time to retrieve the orb. It's all in your hands. I'll be praying for you.")
             }
             get("tree_gnome_village_briefed", false) -> {
-                player<Neutral>("Hello.")
+                player<Neutral>("Hello.") // TODO proper expressions
                 npc<Neutral>(MONTAI, "Hello warrior. We need the coordinates for a direct hit from the ballista. Once you have a direct hit you will be able to enter the stronghold and retrieve the orb.")
             }
             quest("tree_gnome_village") == "logs_delivered" -> {
                 player<Neutral>("How are you doing Montai?")
-                npc<Neutral>(MONTAI, "We're hanging in there soldier. For the next phase of our attack we need to breach their stronghold.")
-                npc<Neutral>(MONTAI, "The ballista can break through the stronghold wall, and then we can advance and seize back the orb.")
-                player<Neutral>("So what's the problem?")
-                npc<Neutral>(MONTAI, "From this distance we can't get an accurate enough shot. We need the correct coordinates of the stronghold for a direct hit. I've sent out three tracker gnomes to gather them.")
-                player<Neutral>("Have they returned?")
-                npc<Neutral>(MONTAI, "I'm afraid not, and we're running out of time. I need you to go into the heart of the battlefield, find the trackers, and bring back the coordinates.")
-                npc<Neutral>(MONTAI, "Do you think you can do it?")
+                npc<Bored>(MONTAI, "We're hanging in there soldier. For the next phase of our attack we need to breach their stronghold.")
+                npc<Bored>(MONTAI, "The ballista can break through the stronghold wall, and then we can advance and seize back the orb.")
+                player<Quiz>("So what's the problem?")
+                npc<Bored>(MONTAI, "From this distance we can't get an accurate enough shot. We need the correct coordinates of the stronghold for a direct hit. I've sent out three tracker gnomes to gather them.")
+                player<Quiz>("Have they returned?")
+                npc<Sad>(MONTAI, "I'm afraid not, and we're running out of time. I need you to go into the heart of the battlefield, find the trackers, and bring back the coordinates.")
+                npc<Quiz>(MONTAI, "Do you think you can do it?")
                 TreeGnomeVillageProgress.brief(this)
                 choice {
-                    option<Neutral>("No, I've had enough of your battle.") { npc<Neutral>(MONTAI, "I understand, this isn't your fight.") }
+                    option<Sad>("No, I've had enough of your battle.") {
+                        npc<Sad>(MONTAI, "I understand, this isn't your fight.")
+                    }
                     option<Neutral>("I'll try my best.") {
-                        npc<Neutral>(MONTAI, "Thank you, you're braver than most.")
-                        npc<Neutral>(MONTAI, "I don't know how long I will be able to hold out. Once you have the coordinates come back and fire the ballista right into those monsters.")
-                        npc<Neutral>(MONTAI, "If you can retrieve the orb and bring safety back to my people, none of the blood spilled on this field will be in vain.")
+                        npc<Happy>(MONTAI, "Thank you, you're braver than most.")
+                        npc<Bored>(MONTAI, "I don't know how long I will be able to hold out. Once you have the coordinates come back and fire the ballista right into those monsters.")
+                        npc<Bored>(MONTAI, "If you can retrieve the orb and bring safety back to my people, none of the blood spilled on this field will be in vain.")
                     }
                 }
             }
             quest("tree_gnome_village") == "unstarted" -> {
-                player<Neutral>("Hello.")
+                player<Neutral>("Hello.") // TODO proper expressions
                 npc<Neutral>(MONTAI, "I can't talk now. Can't you see we're trying to win a battle here? If we can't hold back Khazard's men we're all doomed.")
             }
             !get("tree_gnome_village_montai_met", false) -> {
                 player<Neutral>("Hello.")
                 npc<Neutral>(MONTAI, "Hello traveller, are you here to help or just to watch?")
                 player<Neutral>("I've been sent by King Bolren to retrieve the orb of protection.")
-                npc<Neutral>(MONTAI, "Excellent we need all the help we can get.")
+                npc<Happy>(MONTAI, "Excellent we need all the help we can get.")
                 npc<Neutral>(MONTAI, "I'm commander Montai. The orb is in the Khazard stronghold to the north, but until we weaken their defences we can't get close.")
-                player<Neutral>("What can I do?")
+                player<Quiz>("What can I do?")
                 npc<Neutral>(MONTAI, "Firstly we need to strengthen our own defences. We desperately need wood to make more battlements, once the battlements are gone it's all over. Six loads of normal logs should do it.")
                 set("tree_gnome_village_montai_met", true)
                 refreshQuestJournal()
                 choice {
-                    option<Neutral>("Sorry, I no longer want to be involved.") { npc<Neutral>(MONTAI, "That's a shame, we could have done with your help.") }
-                    option<Neutral>("Ok, I'll gather some wood.") { npc<Neutral>(MONTAI, "Please be as quick as you can, I don't know how much longer we can hold out.") }
+                    option<Neutral>("Ok, I'll gather some wood.") {
+                        npc<Neutral>(MONTAI, "Please be as quick as you can, I don't know how much longer we can hold out.")
+                    }
+                    option<Sad>("Sorry, I no longer want to be involved.") {
+                        npc<Sad>(MONTAI, "That's a shame, we could have done with your help.")
+                    }
                 }
             }
             else -> {
                 player<Neutral>("Hello.")
                 if (inventory.contains("logs", 6)) {
                     npc<Neutral>(MONTAI, "Hello again, we're still desperate for wood soldier.")
-                    player<Neutral>("I have some here.<br><col=ffffff>(You give six loads of logs to the commander.)</col>")
+                    player<Happy>("I have some here.<br><red>(You give six loads of logs to the commander.)</col>")
                     if (TreeGnomeVillageProgress.deliverLogs(this)) {
-                        npc<Neutral>(MONTAI, "That's excellent, now we can make more defensive battlements. Give me a moment to organise the troops and then come speak to me. I'll inform you of our next phase of attack.")
+                        npc<Happy>(MONTAI, "That's excellent, now we can make more defensive battlements. Give me a moment to organise the troops and then come speak to me. I'll inform you of our next phase of attack.")
                     }
                 } else {
+                    // TODO proper expressions
                     npc<Neutral>(MONTAI, "Hello again, we're still desperate for wood soldier. We need six loads of normal logs.")
                     player<Neutral>("I'll see what I can do.")
                     npc<Neutral>(MONTAI, "Thank you.")
@@ -339,7 +361,7 @@ class TreeGnomeVillageDialogue : Script {
         }
     }
 
-    private suspend fun Player.tracker(number: Int, id: String) {
+    private suspend fun Player.tracker(number: Int, id: String) { // TODO split into individual dialogues
         val stage = questStage("tree_gnome_village")
         if (stage == 0) {
             player<Neutral>("Hello.")
@@ -351,81 +373,81 @@ class TreeGnomeVillageDialogue : Script {
                 else -> "I feel dizzy, where am I? Oh dear, oh dear I need some rest."
             }
             player<Neutral>("Hello.")
-            npc<Neutral>(id, text)
+            npc<Neutral>(id, text)// TODO proper expressions
             if (number == 3) player<Neutral>("I think you do.")
         } else if (stage >= 4) {
             if (number == 3) {
-                player<Neutral>("Hello again.")
+                player<Neutral>("Hello again.")// TODO proper expressions
                 npc<Neutral>(id, "Don't talk to me, you can't see me. No one can, just the demons.")
             } else if (stage == 5) {
-                player<Neutral>("How are you tracker?")
+                player<Neutral>("How are you tracker?")// TODO proper expressions
                 npc<Neutral>(id, if (number == 1) "Now we have the orb I'm much better. They won't stand a chance without it." else "Now we have the orb I'm much better. Soon my comrades will come and free me.")
             } else {
-                player<Neutral>("Hello again.")
+                player<Neutral>("Hello again.")// TODO proper expressions
                 npc<Neutral>(id, "Well done, you've broken down their defences. This battle must be ours.")
             }
         } else if (get("tree_gnome_village_briefed", false)) {
             when (number) {
                 1 -> {
-                    player<Neutral>("Do you know the coordinates of the Khazard stronghold?")
-                    npc<Neutral>(id, "I managed to get one, although it wasn't easy.")
+                    player<Quiz>("Do you know the coordinates of the Khazard stronghold?")
+                    npc<Happy>(id, "I managed to get one, although it wasn't easy.")
                     statement("The gnome tells you the height coordinate.")
                     TreeGnomeVillageProgress.recordTracker(this, 1)
-                    player<Neutral>("Well done.")
+                    player<Happy>("Well done.")
                     npc<Neutral>(id, "The other two tracker gnomes should have the other coordinates if they're still alive.")
                     player<Neutral>("OK, take care.")
                 }
                 2 -> {
-                    player<Neutral>("Are you OK?")
-                    npc<Neutral>(id, "They caught me spying on the stronghold. They beat and tortured me.")
-                    npc<Neutral>(id, "But I didn't crack. I told them nothing. They can't break me!")
-                    player<Neutral>("I'm sorry little man.")
-                    npc<Neutral>(id, "Don't be. I have the position of the stronghold!")
-                    statement("The gnome tells you the y coordinate.")
+                    player<Quiz>("Are you OK?")
+                    npc<Bored>(id, "They caught me spying on the stronghold. They beat and tortured me.")
+                    npc<Angry>(id, "But I didn't crack. I told them nothing. They can't break me!")
+                    player<Sad>("I'm sorry.")
+                    npc<Shifty>(id, "Don't be. I have the position of the stronghold!")
+                    statement("The gnome tells you the <col=003366>y</col> coordinate.")
                     TreeGnomeVillageProgress.recordTracker(this, 2)
-                    player<Neutral>("Well done.")
-                    npc<Neutral>(id, "Now leave before they find you and all is lost.")
+                    player<Happy>("Well done.")
+                    npc<Shifty>(id, "Now leave before they find you and all is lost.")
                     player<Neutral>("Hang in there.")
-                    npc<Neutral>(id, "Go!")
+                    npc<Angry>(id, "Go!")
                 }
                 3 -> {
-                    player<Neutral>("Are you OK?")
-                    npc<Neutral>(id, "OK? Who's OK? Not me! Hee hee!")
-                    player<Neutral>("What's wrong?")
-                    npc<Neutral>(id, "You can't see me, no one can. Monsters, demons, they're all around me!")
-                    player<Neutral>("What do you mean?")
-                    npc<Neutral>(id, "They're dancing, all of them, hee hee.")
+                    player<Quiz>("Are you OK?")
+                    npc<Confused>(id, "OK? Who's OK? Not me! Hee hee!")
+                    player<Quiz>("What's wrong?")
+                    npc<Confused>(id, "You can't see me, no one can. Monsters, demons, they're all around me!")
+                    player<Quiz>("What do you mean?")
+                    npc<Confused>(id, "They're dancing, all of them, hee hee.")
                     statement("He's clearly lost the plot.")
-                    player<Neutral>("Do you have the coordinate for the Khazard stronghold?")
-                    npc<Neutral>(id, "Who holds the stronghold?")
-                    player<Neutral>("What?")
+                    player<Quiz>("Do you have the coordinate for the Khazard stronghold?")
+                    npc<Confused>(id, "Who holds the stronghold?")
+                    player<Confused>("What?")
                     val clue = when (get("tree_gnome_village_coordinate", 1)) {
                         1 -> "Less than my hands."
                         2 -> "More than my head, less than my fingers."
                         3 -> "More than we, less than our feet."
                         else -> "My legs and your legs, ha ha ha!"
                     }
-                    npc<Neutral>(id, clue)
+                    npc<Confused>(id, clue)
                     TreeGnomeVillageProgress.recordTracker(this, 3)
-                    player<Neutral>("You're mad.")
-                    npc<Neutral>(id, "Dance with me, and Khazard's men are beat.")
+                    player<Confused>("You're mad.")
+                    npc<Confused>(id, "Dance with me, and Khazard's men are beat.")
                     statement("The toll of war has affected his mind.")
-                    player<Neutral>("I'll pray for you little man.")
-                    npc<Neutral>(id, "All day we pray in the hay, hee hee.")
+                    player<Sad>("I'll pray for you.")
+                    npc<Confused>(id, "All day we pray in the hay, hee hee.")
                 }
             }
         } else {
             when (number) {
                 1 -> {
-                    player<Neutral>("Hello.")
+                    player<Neutral>("Hello.")// TODO proper expressions
                     npc<Neutral>(id, "I can't talk now. Can't you see we're trying to win a battle here?")
                 }
                 2 -> {
-                    player<Neutral>("Hi there.")
+                    player<Neutral>("Hi there.")// TODO proper expressions
                     npc<Neutral>(id, "The battle is far from over. If you have a pure heart you will help us win.")
                 }
                 3 -> {
-                    player<Neutral>("Hi there.")
+                    player<Neutral>("Hi there.")// TODO proper expressions
                     npc<Neutral>(id, "I can't stand this war. The misery, the pain, it's driving me crazy! When will it end?")
                 }
             }

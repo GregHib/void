@@ -161,7 +161,99 @@ class TreeGnomeVillage : Script {
         }
 
         questJournalOpen("tree_gnome_village") {
-            questJournal("Tree Gnome Village", treeGnomeVillageJournal())
+            val lines = mutableListOf<String>()
+            val stage = questStage("tree_gnome_village")
+            if (stage == 0) {
+                lines.add("<navy>I can start this quest by speaking to <maroon>Bolren<navy> at the center of the")
+                lines.add("<navy><maroon>Tree Gnome maze<navy>, West of <maroon>Port Khazard<navy>.")
+            } else if (stage >= 1) {
+                lines.add("<str>I spoke to King Bolren who told me that one of their orbs of")
+                lines.add("<str>protection has been stolen by Khazard troops.")
+                lines.add("")
+            }
+            if (stage == 1) {
+                lines.add("<maroon>Commander Montai<navy>, <maroon>North<navy> of the maze, can help me get it")
+            } else if (stage >= 2) {
+                lines.add("<str>I spoke to Montai. The orb was in the Khazard stronghold North of")
+                lines.add("<str>the battlefield, but it was secure in there.")
+                lines.add("")
+            }
+            if (stage == 2) {
+                lines.add("<navy>I need to bring Montai <maroon>logs<navy> to fortify their defences")
+            } else if (stage == 3) {
+                lines.add("<str>I brought Montai logs to help fortify their defences.")
+                lines.add("<navy>I should speak to <maroon>Montai<navy> again and see what to do next")
+            } else if (stage >= 4) {
+                lines.add("<str>I brought Montai logs to help fortify their defences.")
+                lines.add("<str>Now their defences were secure, they were ready to use the")
+                lines.add("<str>Gnome Ballista to break through the enemy defences.")
+                lines.add("")
+            }
+            if (stage == 4) {
+                lines.add("<navy>I need to head into the <maroon>battlefield<navy> and find the <maroon>three Gnome")
+                lines.add("<maroon>trackers<navy> who have the <maroon>firing coordinates<navy> and then fire the <maroon>ballista!")
+            } else if (stage == 5) {
+                lines.add("<navy>I need to head into the <maroon>battlefield<navy> and find the <maroon>three Gnome")
+                lines.add("<maroon>trackers<navy> who have the <maroon>firing coordinates<navy> and then fire the <maroon>ballista!")
+                lines.add("<navy>Unfortunately the tracker who knew the <maroon>x<navy> coordinate has gone")
+                lines.add("<navy>insane, so I'll have to guess that coordinate myself")
+            } else if (stage == 6) {
+                lines.add("<navy>I need to head into the <maroon>battlefield<navy> and find the <maroon>three Gnome")
+                lines.add("<maroon>trackers<navy> who have the <maroon>firing coordinates<navy> and then fire the <maroon>ballista!")
+                lines.add("<navy>I know the <maroon>height<navy> coordinate")
+                lines.add("<navy>Unfortunately the tracker who knew the <maroon>x<navy> coordinate has gone")
+                lines.add("<navy>insane, so I'll have to guess that coordinate myself")
+            } else if (stage == 7) {
+                lines.add("<navy>I need to head into the <maroon>battlefield<navy> and find the <maroon>three Gnome")
+                lines.add("<maroon>trackers<navy> who have the <maroon>firing coordinates<navy> and then fire the <maroon>ballista!")
+                lines.add("<navy>I know the <maroon>y<navy> coordinate")
+                lines.add("<navy>I know the <maroon>height<navy> coordinate")
+                lines.add("<navy>Unfortunately the tracker who knew the <maroon>x<navy> coordinate has gone")
+                lines.add("<navy>insane, so I'll have to guess that coordinate myself")
+            } else if (stage == 8) {
+                lines.add("<str>I found the three trackers and used their coordinates to fire the")
+                lines.add("<str>ballista straight into the Khazard stronghold.")
+                lines.add("<navy>With the <maroon>Khazard stronghold<navy> exposed I should get inside and")
+                lines.add("<navy>retrieve the gnomes' <maroon>orb of protection")
+            } else if (stage >= 9) {
+                lines.add("<str>I found the three trackers and used their coordinates to fire the")
+                lines.add("<str>ballista straight into the Khazard stronghold.")
+                lines.add("<str>With the stronghold breached by ballista fire, I was able to make")
+                lines.add("<str>my way inside and recover the orb of protection.")
+                lines.add("")
+            }
+            if (stage == 9) {
+                lines.add("<navy>I should return the <maroon>orb<navy> to <maroon>King Bolren<navy> immediately")
+            } else if (stage >= 10) {
+                lines.add("<str>I returned the orb to King Bolren, but while I was busy getting it")
+                lines.add("<str>the Khazard troops invaded the village and stole the remaining two")
+                lines.add("<str>orbs before heading north.")
+                lines.add("")
+            }
+            if (stage == 10) {
+                lines.add("<str>After a fierce battle I defeated the warlord who'd stolen the orbs,")
+                lines.add("<str>and reclaimed them for the gnome people.")
+                lines.add("<navy>I should return them now to <maroon>King Bolren<navy> where they belong")
+            } else if (stage == 11) {
+                lines.add("<str>After a fierce battle I defeated the warlord who'd stolen the orbs,")
+                lines.add("<str>and reclaimed them for the gnome people.")
+                lines.add("<navy>I should speak to King Bolren now - hopefully he will reward me")
+            } else if (stage >= 12) {
+                lines.add("<str>After a fierce battle I defeated the warlord who'd stolen the orbs,")
+                lines.add("<str>and reclaimed them for the gnome people.")
+                lines.add("<str>I returned them to King Bolren, and was rewarded for all of my")
+                lines.add("<str>help to the Gnome people in recovering the orbs.")
+                lines.add("")
+            }
+            if (stage >= 12) {
+                lines.add("<str>I can now use the gnome's spirit tree to teleport around the world")
+                lines.add("<str>to places that are linked to the spirit tree!")
+                lines.add("")
+            }
+            if (stage == 12) {
+                lines.add("<red>QUEST COMPLETE!")
+            }
+            questJournal("Tree Gnome Village", lines)
         }
     }
 
