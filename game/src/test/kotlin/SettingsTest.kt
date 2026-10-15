@@ -14,5 +14,6 @@ internal class SettingsTest {
         assertTrue(Settings["world.npcs.collision", false])
         assertFalse(Settings["web.server.enabled", false])
         assertEquals(30, Settings["bots.count", 0])
+        assertTrue(Settings["storage.cache.download.url", ""].startsWith("https://"))
     }
 }
