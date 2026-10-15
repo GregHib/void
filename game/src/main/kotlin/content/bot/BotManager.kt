@@ -8,15 +8,18 @@ import content.bot.behaviour.BotGameWorld
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
+import content.bot.behaviour.action.BotTrain
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotInArea
+import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
 import content.bot.behaviour.perception.BotCombatContext
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
+import content.bot.behaviour.setup.TrainingResolver
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -187,7 +190,13 @@ class BotManager(
         if (bot.player["debug", false]) {
             logger.trace { "Picking new activity from ${bot.available} for bot ${bot.player.accountName}." }
         }
-        var activity = if (bot.previous != idle && hasRequirements(bot, bot.previous)) {
+        val trainingChance = Settings["bots.trainingGoalChance", 10].coerceIn(0, 100)
+        val trainingGoal = if (random.nextInt(100) < trainingChance) {
+            activities.values.mapNotNull { adaptSkillGoal(bot, it) }.randomOrNull(random)
+        } else {
+            null
+        }
+        var activity = trainingGoal ?: if (bot.previous != idle && hasRequirements(bot, bot.previous)) {
             bot.previous!!
         } else {
             bot.available
@@ -209,6 +218,10 @@ class BotManager(
      * When no available activity is found either idle or spawn requirements for a bot
      */
     private fun activityFallback(bot: Bot): BotActivity {
+        // A failed training goal must never be fulfilled by the debug stat/item grants.
+        if (bot.previous?.setup?.any { it is BotSkillLevel } == true) {
+            return idle
+        }
         if (bot.pinned != null) {
             return idle
         }
@@ -216,6 +229,9 @@ class BotManager(
             return idle
         }
         for (activity in activities.values) {
+            if (activity.setup.any { it is BotSkillLevel && !it.check(bot.player) }) {
+                continue
+            }
             if (!slots.hasFree(activity)) {
                 continue
             }
@@ -270,15 +286,34 @@ class BotManager(
 
     private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
-    private fun assign(bot: Bot, unbound: BotActivity) {
+    internal fun adaptSkillGoal(bot: Bot, activity: BotActivity): BotActivity? {
+        val unmet = activity.requires.filter { !it.check(bot.player) }
+        val skill = unmet.singleOrNull() as? BotSkillLevel ?: return null
+        if (skill.current || skill.min == null || bot.player.levels.getMax(skill.skill) >= skill.min) return null
+        val adapted = activity.copy(requires = activity.requires - skill, setup = listOf(skill.copy(max = null)) + activity.setup)
+        return adapted.takeIf { hasRequirements(bot, it) }
+    }
+
+    internal fun trainingActivity(bot: Bot, skill: BotSkillLevel): BotActivity? = activities.values
+        .filter { it.produces.any(skill.keys()::contains) && TrainingResolver.finite(it) && hasRequirements(bot, it) }
+        // Ordinary setup may stack, but v1 never plans another unmet training skill.
+        .filter { it.setup.none { condition -> condition is BotSkillLevel && !condition.check(bot.player) } }
+        .randomOrNull(random)
+
+    internal fun assign(bot: Bot, unbound: BotActivity, nested: Boolean = false): Boolean {
+        // Another bot may have taken the last slot since the resolver was queued.
+        if (nested && !hasRequirements(bot, unbound)) return false
         val activity = bind(bot, unbound)
         AuditLog.event(bot, "assigned", activity.id)
         if (bot.player["debug", false]) {
             logger.info { "Assigned task '${activity.id}' area=${activity.boundArea} to bot '${bot.player.accountName}'." }
         }
         slots.occupy(activity)
-        bot.previous = activity
+        if (!nested && !(activity == idle && bot.previous?.setup?.any { it is BotSkillLevel } == true)) {
+            bot.previous = activity
+        }
         bot.queue(BehaviourFrame(activity))
+        return true
     }
 
     /**
@@ -383,6 +418,14 @@ class BotManager(
             }
             frame.blocked.removeAll(DynamicResolvers.ids())
             val resolvers = buildList {
+                if (requirement is BotSkillLevel &&
+                    !requirement.current &&
+                    requirement.min != null &&
+                    bot.player.levels.getMax(requirement.skill) < requirement.min &&
+                    bot.frames.none { ancestor -> ancestor.behaviour.actions.any { it is BotTrain } }
+                ) {
+                    trainingActivity(bot, requirement)?.let { add(TrainingResolver.resolver(this@BotManager, it)) }
+                }
                 DynamicResolvers.resolver(bot.player, requirement)?.also { add(it) }
                 requirement.keys()
                     .flatMap { resolvers[it].orEmpty() }
