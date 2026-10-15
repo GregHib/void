@@ -1,0 +1,23 @@
+[gertrude_gives_kitten_to_player]
+id = 9212
+
+[player_recieves_cat]
+id = 9213
+
+[gertrude_gets_excited]
+id = 9214
+
+[player_gets_his_hand_shook]
+id = 9215
+
+[kittens_greet_mother]
+id = 9207
+
+[cat_happy_fluffs]
+id = 9205
+
+[cat_fluffs_greets_kittens]
+id = 9206
+
+[kitten_cutscene_blend]
+id = 9209

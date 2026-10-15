@@ -273,6 +273,8 @@ examine = "He tries to keep order around here."
 
 [sawmill_operator]
 id = 4250
+shop = "construction_supplies"
+examine = "He changes the shape of wood."
 
 [assistant_serf]
 id = 5066
@@ -429,10 +431,12 @@ examine = "A busy housewife."
 
 [philop]
 id = 782
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [kanel]
 id = 784
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [rogue]
@@ -608,10 +612,12 @@ examine = "A retired vampyre hunter."
 
 [shilop]
 id = 781
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [wilough]
 id = 783
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [treznor]
