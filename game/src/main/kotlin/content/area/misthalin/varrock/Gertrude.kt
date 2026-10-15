@@ -1,5 +1,7 @@
 package content.area.misthalin.varrock
 
+import content.area.misthalin.varrock.Fluffs.Companion.FLUFFS_FED_VAR
+import content.area.misthalin.varrock.Fluffs.Companion.FLUFFS_MILK_VAR
 import content.entity.player.AdventurersLogs
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.Angry
@@ -30,12 +32,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.longQueue
 
-/**
- * Minimal Gertrude dialogue. Once Gertrude's Cat quest is completed, lets the
- * player request a replacement kitten (the canonical post-quest pet acquisition
- * path). The quest itself is not yet implemented in Void; this dialogue is
- * inert until the quest sets `quest("gertrudes_cat")` to `"completed"`.
- */
 class Gertrude : Script {
 
     init {

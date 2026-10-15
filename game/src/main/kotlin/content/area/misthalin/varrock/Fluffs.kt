@@ -2,7 +2,6 @@ package content.area.misthalin.varrock
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -24,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -34,20 +34,13 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-private const val FLUFFS_STRING_ID = "fluffs_normal"
-const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
-const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
-const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
-
 class Fluffs : Script {
-    private var kittenCrates = mutableSetOf<Tile>()
-
     init {
         itemOnNPCOperate("*", FLUFFS_STRING_ID) { interact ->
             val item = interact.item.id
             foundCatCheck()
             when (quest(GERTRUDES_CAT)) {
-                "completed" -> dontBotherCat()
+                "completed" -> noInterest()
                 "attempt_fluffs_pickup" -> when (item) {
                     "doogle_sardine" -> checkCanFeed()
                     "bucket_of_milk" -> milkFluffs()
@@ -61,13 +54,13 @@ class Fluffs : Script {
             }
         }
 
-        npcOperate("Talk-to", FLUFFS_STRING_ID) { interact ->
+        npcOperate("Talk-to", FLUFFS_STRING_ID) { (target) ->
             foundCatCheck()
             when (quest(GERTRUDES_CAT)) {
-                "completed" -> talkPostQuest(interact.target, interact.player.name)
-                "found_fluffs" -> talkCatFoundFluffs(interact.target)
-                "attempt_fluffs_pickup" -> talkCatFoundFluffs(interact.target)
-                else -> dontBotherCat()
+                "completed" -> talkPostQuest(target)
+                "found_fluffs" -> talkCatFoundFluffs(target)
+                "attempt_fluffs_pickup" -> talkCatFoundFluffs(target)
+                else -> return@npcOperate
             }
         }
 
@@ -76,7 +69,7 @@ class Fluffs : Script {
             when (quest(GERTRUDES_CAT)) {
                 "found_fluffs" -> yoinkCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> yoinkCatFoundFluffs(interact.target)
-                else -> dontBotherCat()
+                else -> player<Neutral>("Oh, it looks like Fluffs has returned. I'd better leave her alone in case she runs off again.")
             }
         }
 
@@ -89,26 +82,23 @@ class Fluffs : Script {
             when (quest(GERTRUDES_CAT)) {
                 "found_fluffs" -> strokeCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> strokeCatFoundFluffs(interact.target)
-                else -> dontBotherCat()
+                else -> statement("Fluffs isn't interested.")
             }
         }
     }
 
-    private fun discoverKittenCrates() {
-        kittenCrates += Areas["kitten_search_area"]
-            .flatMap { tile ->
-                GameObjects.at(tile)
-                    .filter { it.id == "crate_17" }
-                    .map { it.tile }
-            }
-    }
+    private fun discoverKittenCrates(): List<Tile> = Areas["kitten_search_area"]
+        .flatMap { tile ->
+            GameObjects.at(tile)
+                .filter { it.id == "crate_17" }
+                .map { it.tile }
+        }
 
     private suspend fun Player.checkCanFeed() {
-        // check player variable if you already fed the cat
         if (get(FLUFFS_FED_VAR, false)) {
-            dontBotherCat()
-        } else {
             feedFluffs()
+        } else {
+            // TODO
         }
     }
     private suspend fun Player.feedFluffs() {
@@ -161,25 +151,33 @@ class Fluffs : Script {
         // Scene start
         open("fade_in")
         anim("climb_down")
-        npc<Idle>("Purr...")
+        npc<Happy>("Purr...")
         kittens.walkToDelay(cutscene.tile(3309, 3511, 1))
         kittens.mode = PauseMode // They just wanna zoom around!
-        kittens.animDelay("9207")
-        delay(15)
-        fluffs.animDelay("9205")
+        kittens.anim("kittens_greet_mother")
+        delay(2)
+        fluffs.anim("cat_fluffs_greets_kittens")
+        delay(2)
         kittens.say("Purr...")
-        delay(6)
+        delay(1)
+        fluffs.anim("cat_happy_fluffs")
+        delay(2)
+        kittens.anim("kitten_cutscene_blend")
+        delay(3)
+        // TODO kittens.face(?)
+        delay(3)
+        // TODO fluffs.face(?)
+        delay(1)
         kittens.walkToDelay(cutscene.tile(3310, 3510, 1), true)
         kittens.despawn(1) // Added small delay to let the kittens get to the final tile
         fluffs.walkToDelay(cutscene.tile(3309, 3510, 1), true)
         fluffs.despawn()
         statement("Fluffs has run off home with her offspring.")
-
         cutscene.end()
     }
 
     private suspend fun Player.mildInterest(item: String) {
-        var itemName = item.replace("_", " ")
+        val itemName = item.replace("_", " ")
         npc<Angry>("Hiss!")
         player<Neutral>("She seems to be a very fussy cat.")
         statement("Fluffs looks vaguely interested at the $itemName but doesn't want it. A similar type of food or drink might be worth a try.")
@@ -200,11 +198,7 @@ class Fluffs : Script {
         }
     }
 
-    private fun Player.dontBotherCat() {
-        message("You decide it best to not bother the cat.") // Going off of memory here.
-    }
-
-    private suspend fun Player.talkPostQuest(cat: NPC, playerName: String) {
+    private suspend fun Player.talkPostQuest(cat: NPC) {
         // TODO: Dialogue when the player has a kitten either following or in the player's inventory
         if (hasCatspeakAmulet()) {
             player<Neutral>("Hello Fluffs.")
@@ -216,7 +210,7 @@ class Fluffs : Script {
             statement("Fluffs looks proud.")
             npc<Neutral>("My children have always been popular with adventurers. They inherit their father's adventurous spirit. He's always travelling the world, when he can find some kind person to help him open doors!")
             player<Neutral>("Look after yourself, Fluffs.")
-            npc<Neutral>("You too, $playerName.")
+            npc<Neutral>("You too, $name.")
         }
         cat.say("Miaoww")
     }
@@ -232,7 +226,7 @@ class Fluffs : Script {
             return
         }
         if (get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)) {
-            discoverKittenCrates()
+            val kittenCrates = discoverKittenCrates()
             val crate = kittenCrates.random(random)
             set(KITTENS_HIDING_SPOT, crate.id)
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
@@ -267,4 +261,10 @@ class Fluffs : Script {
         delay(1)
     }
 
+    companion object {
+        private const val FLUFFS_STRING_ID = "fluffs_normal"
+        const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
+        const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
+        const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
+    }
 }
