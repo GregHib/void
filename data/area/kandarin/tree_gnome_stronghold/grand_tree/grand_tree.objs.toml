@@ -9,3 +9,7 @@ examine = "A rocky outcrop."
 [gnome_stronghold_shortcut_rock_bottom]
 id = 9317
 examine = "A rocky outcrop."
+
+[fai_alka_gnome_glider]
+id = 35439
+examine = "Fly Gnome Air."

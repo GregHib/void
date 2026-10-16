@@ -3,7 +3,7 @@ edges = [
     { from = { x = 3284, y = 3313 }, to = { x = 3287, y = 3294 } }, # al_kharid_mine_west_path_to_south
     { from = { x = 3287, y = 3294 }, to = { x = 3298, y = 3280 } }, # al_kharid_mine_west_path_to_entrance
     { from = { x = 3298, y = 3280 }, to = { x = 3299, y = 3294 } },
-    { from = { x = 3299, y = 3294 }, to = { x = 3300, y = 3311 } },
+
     { from = { x = 3298, y = 3280 }, to = { x = 3299, y = 3263 } }, # al_kharid_mine_entrance_to_mine_south
     { from = { x = 3299, y = 3263 }, to = { x = 3294, y = 3242 } }, # al_kharid_mine_south_to_north_path
     { from = { x = 3294, y = 3242 }, to = { x = 3278, y = 3228 } }, # al_kharid_north_path_to_crossroad
@@ -27,27 +27,27 @@ edges = [
     { from = { x = 3278, y = 3177 }, to = { x = 3276, y = 3167 } }, # al_kharid_bank_crossroad_to_entrance
     { from = { x = 3278, y = 3177 }, to = { x = 3274, y = 3180 } }, # al_kharid_bank_crossroad_to_kebab_shop
     { from = { x = 3276, y = 3167 }, to = { x = 3270, y = 3167 } }, # al_kharid_bank_entrance_to_bank
-    { from = { x = 3282, y = 3185 }, to = { x = 3278, y = 3186 } },
+    { from = { x = 3282, y = 3185 }, to = { x = 3278, y = 3185 } },
     { from = { x = 3282, y = 3185 }, to = { x = 3280, y = 3191 } },
     { from = { x = 3280, y = 3191 }, to = { x = 3276, y = 3191 } },
     { from = { x = 3280, y = 3191 }, to = { x = 3280, y = 3200 } },
-    { from = { x = 3282, y = 3185 }, to = { x = 3292, y = 3182 } },
-    { from = { x = 3292, y = 3182 }, to = { x = 3308, y = 3182 } },
-    { from = { x = 3308, y = 3182 }, to = { x = 3313, y = 3183 } },
+    { from = { x = 3282, y = 3185 }, to = { x = 3292, y = 3183 } },
+    { from = { x = 3292, y = 3183 }, to = { x = 3308, y = 3182 } },
+    { from = { x = 3308, y = 3182 }, to = { x = 3313, y = 3183 } , actions = [{ object = { option = "Open", id = "door_499_closed", x = 3311, y = 3183, radius = 0, success = { object = { id = "door_494_opened", x = 3312, y = 3183 } } } }, { tile = { x = 3313, y = 3183, radius = 1 } }], cost = 7},
     { from = { x = 3308, y = 3182 }, to = { x = 3310, y = 3192 } },
     { from = { x = 3310, y = 3192 }, to = { x = 3319, y = 3193 } },
-    { from = { x = 3292, y = 3182 }, to = { x = 3288, y = 3189 } },
-    { from = { x = 3292, y = 3182 }, to = { x = 3294, y = 3194 } },
+    { from = { x = 3292, y = 3183 }, to = { x = 3288, y = 3189 } },
+    { from = { x = 3292, y = 3183 }, to = { x = 3294, y = 3194 } },
     { from = { x = 3294, y = 3194 }, to = { x = 3300, y = 3198 } },
     { from = { x = 3294, y = 3194 }, to = { x = 3280, y = 3200 } },
     { from = { x = 3278, y = 3177 }, to = { x = 3266, y = 3176 } },
     { from = { x = 3266, y = 3176 }, to = { x = 3276, y = 3167 } },
     { from = { x = 3266, y = 3176 }, to = { x = 3255, y = 3173 } },
-    
+
     { from = { x = 3310, y = 3234 }, to = { x = 3302, y = 3222 } },
     { from = { x = 3302, y = 3222 }, to = { x = 3299, y = 3215 } },
     { from = { x = 3299, y = 3215 }, to = { x = 3292, y = 3215 } },
-    
+
     { from = { x = 3310, y = 3234 }, to = { x = 3317, y = 3235 } },
     { from = { x = 3278, y = 3228 }, to = { x = 3293, y = 3231 } },
     { from = { x = 3293, y = 3231 }, to = { x = 3310, y = 3234 } },
@@ -98,4 +98,36 @@ edges = [
     { from = { x = 3266, y = 3188 }, to = { x = 3269, y = 3200 } },
     { from = { x = 3269, y = 3200 }, to = { x = 3275, y = 3210 } },
     { from = { x = 3275, y = 3210 }, to = { x = 3280, y = 3216 } },
+
+    { from = { x = 3292, y = 3183 }, to = { x = 3292, y = 3175 } },
+
+    { from = { x = 3313, y = 3183 }, to = { x = 3308, y = 3182 }, actions = [{ object = { option = "Open", id = "door_499_closed", x = 3311, y = 3183, radius = 0, success = { object = { id = "door_494_opened", x = 3312, y = 3183 } } } }, { tile = { x = 3308, y = 3182, radius = 1 } }], cost = 7 },
+
+    { from = { x = 3308, y = 3182 }, to = { x = 3308, y = 3175 } },
+    { from = { x = 3308, y = 3175 }, to = { x = 3315, y = 3175 } },
+
+    { from = { x = 3308, y = 3175 }, to = { x = 3315, y = 3164 } },
+    { from = { x = 3308, y = 3175 }, to = { x = 3308, y = 3161 } },
+    { from = { x = 3308, y = 3161 }, to = { x = 3315, y = 3164 } },
+    { from = { x = 3308, y = 3161 }, to = { x = 3305, y = 3150 } },
+    { from = { x = 3305, y = 3150 }, to = { x = 3318, y = 3149 } },
+    { from = { x = 3318, y = 3149 }, to = { x = 3321, y = 3139 } },
+    { from = { x = 3318, y = 3149 }, to = { x = 3308, y = 3161 } },
+    { from = { x = 3305, y = 3150 }, to = { x = 3304, y = 3139 } },
+    { from = { x = 3304, y = 3139 }, to = { x = 3291, y = 3150 } },
+    { from = { x = 3291, y = 3150 }, to = { x = 3277, y = 3156 } },
+    { from = { x = 3304, y = 3139 }, to = { x = 3304, y = 3127 } },
+    { from = { x = 3304, y = 3127 }, to = { x = 3304, y = 3123 } },
+    { from = { x = 3299, y = 3294 }, to = { x = 3300, y = 3306 } },
+    { from = { x = 3300, y = 3306 }, to = { x = 3300, y = 3311 } },
+    { from = { x = 3300, y = 3306 }, to = { x = 1182, y = 4515 }, actions = [{ object = { option = "Enter", id = "rand_sr_above_ground_dungeon_entrance_alkharid_mine", x = 3296, y = 3306, radius = 0, success = { tile = { x = 1182, y = 4515, level = 0 } } } }, { tile = { x = 1182, y = 4515, radius = 1 } }], requires = [{ skill = { id = "dungeoneering", min = 75 } }], cost = 6 },
+    { from = { x = 1182, y = 4515 }, to = { x = 3300, y = 3306 }, actions = [{ object = { option = "Exit", id = "rand_sr_below_ground_dungeon_entrance_alkharidmine", x = 1181, y = 4516, radius = 0, success = { tile = { x = 3298, y = 3307, level = 0 } } } }, { tile = { x = 3300, y = 3306, radius = 1 } }], requires = [{ skill = { id = "dungeoneering", min = 75 } }], cost = 7 },
+    { from = { x = 1182, y = 4515 }, to = { x = 1175, y = 4515 } },
+    { from = { x = 1175, y = 4515 }, to = { x = 1182, y = 4511 } },
+    { from = { x = 1182, y = 4511 }, to = { x = 1191, y = 4514 } },
+    { from = { x = 1191, y = 4514 }, to = { x = 1182, y = 4515 } },
+
+    { from = { x = 3310, y = 3192 }, to = { x = 3314, y = 3201 } },
+    { from = { x = 3314, y = 3201 }, to = { x = 3312, y = 3214 } },
+    { from = { x = 3312, y = 3214 }, to = { x = 3310, y = 3234 } },
 ]
