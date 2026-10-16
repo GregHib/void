@@ -32,7 +32,6 @@ class WaterfallDungeon : Script {
                 delay(2)
                 message("The rune stone disappears in a puff of smoke.")
             }
-            // TODO if not during quest? - Can't access without amulet
         }
 
         itemOnObjectOperate("glarials_amulet", "waterfall_glarial_statue") {

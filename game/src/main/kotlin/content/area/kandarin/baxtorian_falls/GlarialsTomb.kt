@@ -38,9 +38,9 @@ class GlarialsTomb : Script {
         }
 
         itemOnObjectOperate("glarials_pebble", "glarials_tombstone") {
+            message("You place the pebble in the gravestone's small indent.")
+            delay(2)
             if (canEnterTomb()) {
-                message("You place the pebble in the gravestone's small indent.")
-                delay(2)
                 message("You hear a loud creak.")
                 delay(2)
                 message("The stone slab slides back revealing a ladder down.")
@@ -48,7 +48,7 @@ class GlarialsTomb : Script {
                 tele(2555, 9844)
                 message("You climb down to an underground passage.")
             } else {
-                message("You place the pebble in the gravestone's small indent but nothing happens.")
+                message("It fits perfectly, but nothing happens.")
             }
         }
 
