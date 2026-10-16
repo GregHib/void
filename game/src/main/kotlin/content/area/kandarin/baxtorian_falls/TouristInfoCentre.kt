@@ -12,19 +12,19 @@ import world.gregs.voidps.engine.inv.inventory
 class TouristInfoCentre : Script {
     init {
         objectOperate("Search", "waterfall_bookcase,waterfall_bookcase_2") { (target) ->
+            message("You search the books...")
+            delay(2)
             if (target.tile.level == 1 && target.tile.x in 2516..2521 && target.tile.y in 3423..3431) {
-                message("You search the bookcase.")
-                delay(2)
-                if (questStage("waterfall_quest") < 2) {
-                    // TODO need non-quest responses
+                if (questStage("waterfall_quest") >= 2 && !inventory.contains("book_on_baxtorian")) {
+                    addOrDrop("book_on_baxtorian")
+                    message("You find a book named 'Book on Baxtorian' on the bookcase.")
                     return@objectOperate
                 }
-                if (inventory.contains("book_on_baxtorian")) {
-                    // TODO
-                    return@objectOperate
-                }
-                addOrDrop("book_on_baxtorian")
-                message("You find a book named 'Book on Baxtorian' on the bookcase.")
+            }
+            if (target.id == "waterfall_bookcase") {
+                message("You find nothing of interest.")
+            } else {
+                message("You don't find anything that you'd ever want to read.")
             }
         }
 

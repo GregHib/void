@@ -1,6 +1,6 @@
 package content.area.kandarin.baxtorian_falls
 
-import content.entity.obj.door.Door
+import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.ChoiceOption
@@ -14,15 +14,10 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.type.Tile
 
-/*
-    TODO lots of duplicate dialogues here
- */
 class Glorie : Script {
     init {
         npcOperate("Talk-to", "golrie") { golrieDialogue() }
@@ -91,9 +86,9 @@ class Glorie : Script {
         message("You look amongst the junk on the floor.")
         delay(2)
         message("Mixed with the junk on the floor you find Glarial's pebble.")
-        delay(2)
         player<Neutral>("Could I take this old pebble?")
         npc<Neutral>("Oh that, yes have it, it's just some old elven junk I believe.")
+        delay(2)
         addOrDrop("glarials_pebble")
         if (quest("waterfall_quest") == "read_book") {
             set("waterfall_quest", "found_pebble")
@@ -102,9 +97,9 @@ class Glorie : Script {
             message("You give Golrie the key.")
             set("waterfall_golrie_key_given", true)
             delay(2)
+            npc<Neutral>("Thanks a lot for the key traveler. I think I'll wait in here until those goblins get bored and leave.")
+            player<Neutral>("OK... Take care Golrie.")
         }
-        npc<Neutral>("Thanks a lot for the key traveler. I think I'll wait in here until those goblins get bored and leave.")
-        player<Neutral>("OK... Take care Golrie.")
     }
 
     private suspend fun Player.golrieAfterGlouphrie() {
@@ -262,7 +257,7 @@ class Glorie : Script {
             npc<Idle>("golrie", "What are you doing down here? Leave before you get yourself into trouble.") // TODO expressions
             return
         }
-        if (questCompleted("waterfall_quest") && !inventory.contains("a_key")) {
+        if (get("waterfall_golrie_key_given", false) && !inventory.contains("a_key")) {
             message("Golrie has locked himself in.")
             return
         }
@@ -271,20 +266,18 @@ class Glorie : Script {
             lockedGolrieDialogue()
             return
         }
-        val destination = Tile(target.tile.x, if (tile.y <= target.tile.y) target.tile.y + 1 else target.tile.y - 1, target.tile.level)
-        if (!Door.openDoor(this, target, ticks = 10)) return
-        set("waterfall_golrie_freed", true)
-        try {
-            delay()
-            walkOverDelay(destination)
-        } finally {
-            GameObjects.timers.execute(target)
+        if (inventory.contains("a_key")) {
+            player<Neutral>("I found a key.")
+            npc<Neutral>("Well don't wait all day, give it a try!")
+            player<Neutral>("OK...")
         }
+        set("waterfall_golrie_freed", true)
+        enterDoor(target)
     }
 
     private suspend fun Player.lockedGolrieDialogue() {
-        player<Idle>("Hello, are you okay?") // TODO expressions
-        npc<Idle>("golrie", "Oh, don't worry, I'm totally fine. I locked myself in here for protection, but I've left the key somewhere.")
-        player<Idle>("Okay... I'll have a look for a key.")
+        player<Neutral>("Hello, are you okay?")
+        npc<Neutral>("golrie", "Oh, don't worry, I'm totally fine. I locked myself in here for protection, but I've left the key somewhere.")
+        player<Neutral>("Okay... I'll have a look for a key.")
     }
 }

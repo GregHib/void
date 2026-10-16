@@ -1,12 +1,12 @@
 package content.area.kandarin.baxtorian_falls
 
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.quest.questStage
+import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inv.inventory
@@ -14,14 +14,10 @@ import world.gregs.voidps.engine.inv.inventory
 class Hadley : Script {
     init {
         npcOperate("Talk-to", "hadley_baxtorian_falls") {
-            if (questStage("waterfall_quest") >= 3) {
-                player<Idle>("Hello there.") // TODO
-                npc<Idle>("I hope you're enjoying your stay, there should be lots of useful information in that book: places to go, people to see.")
-            } else if (inventory.contains("book_on_baxtorian")) {
-                player<Idle>("Hello there.") // TODO
-                npc<Idle>("I hope you're enjoying your stay, there should be lots of useful infomation in that book you've got. Make sure you give it a read.")
+            player<Neutral>("Hello there.")
+            if (inventory.contains("book_on_baxtorian")) {
+                npc<Neutral>("I hope you're enjoying your stay, there should be lots of useful information in that book: places to go, people to see.")
             } else {
-                player<Neutral>("Hello there.")
                 npc<Neutral>("Are you on holiday? If so you've come to the right place. I'm Hadley the tourist guide, anything you need to know just ask me we have some of the most unspoilt wildlife and scenery in RuneScape.")
                 npc<Neutral>("People come from miles around to fish in the clear lakes or to wander the beautiful hillsides.")
                 player<Neutral>("It is quite pretty.")
@@ -30,32 +26,43 @@ class Hadley : Script {
             choice {
                 elfKing()
                 worthVisit()
-                treasure()
+                if (quest("waterfall_quest") != "unstarted") {
+                    treasure()
+                }
                 thanks()
             }
         }
     }
 
     private fun ChoiceOption.elfKing() {
-        option("Can you tell me what happened to the elf king?") {
-            // TODO
-            npc<Idle>("There are many myths about Baxtorian. One popular story is that after defending his kingdom against the invading dark forces from the west, Baxtorian returned to find his wife Glarial had been captured by the")
-            npc<Idle>("enemy!")
-            npc<Idle>("This destroyed Baxtorian, after years of searching he became a recluse. In the secret home had had made for Glarial under the waterfall, he never came out and it is told that only Glarial could enter.")
-            player<Idle>("What happened to him?")
-            npc<Idle>("Oh, I don't know. I believe we have some pages on him upstairs in our archives. If you wish to look at them please be careful, they're all pretty delicate.")
+        option<Neutral>("Can you tell me what happened to the elf king?") {
+            npc<Sad>("Baxtorian, I guess he died a long, long time ago; it's quite sad really. After defending his kingdom against the invading dark forces from the west,")
+            npc<Neutral>("Baxtorian returned to find his wife, Glarial, had been captured by the enemy. This destroyed Baxtorian, after years of searching he became a recluse. In the secret home he had made for Glarial under the waterfall, he")
+            npc<Neutral>("never came out and to this day no one has managed to get in.")
+            player<Neutral>("What happened to him?")
+            npc<Neutral>("No one knows.")
+            choice {
+                worthVisit()
+                nature()
+                thanks()
+            }
         }
     }
 
     private fun ChoiceOption.treasure() {
         option<Neutral>("Is there treasure under the waterfall?") {
-            // TODO not here when unstarted?
             npc<Neutral>("Ha ha... Another treasure hunter. Well if there is no one's been able to get to it. They've been searching that river for decades, all to no avail.")
             choice {
                 elfKing()
                 worthVisit()
                 thanks()
             }
+        }
+    }
+
+    private fun ChoiceOption.nature() {
+        option<Neutral>("I don't like nature, it gives me a rash!") {
+            npc<Neutral>("That's just silly talk")
         }
     }
 

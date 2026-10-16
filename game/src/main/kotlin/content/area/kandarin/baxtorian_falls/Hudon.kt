@@ -2,13 +2,13 @@ package content.area.kandarin.baxtorian_falls
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -18,7 +18,7 @@ class Hudon : Script {
         npcApproach("Talk-to", "hudon_baxtorian_falls") {
             approachRange(5)
             if (tile.x !in 2510..2513 || tile.y !in 3476..3482) {
-                message("Hudon can't hear you because of the noise of the waterfall. Perhaps the acoustics would be better from that island?")
+                statement("Hudon can't hear you because of the noise of the waterfall. Perhaps the acoustics would be better from that island?")
                 return@npcApproach
             }
             when (quest("waterfall_quest")) {
@@ -37,14 +37,14 @@ class Hudon : Script {
                     }
                 }
                 "found_hudon" -> {
-                    player<Idle>("So you're still there.") // TODO expression
-                    npc<Idle>("I'll find that treasure soon, just you wait and see.")
+                    player<Neutral>("So you're still there.")
+                    npc<Angry>("I'll find that treasure soon, just you wait and see.")
                 }
                 "read_book", "found_pebble", "found_amulet", "found_urn" -> {
-                    player<Idle>("Hello Hudon.") // TODO expression
-                    npc<Idle>("Oh it's you, trying to find my treasure again are you?")
-                    player<Idle>("I didn't know it belonged to you.")
-                    npc<Idle>("It will do when I find it. I just need to get into this blasted waterfall I've been washed downstream three times already.")
+                    player<Neutral>("Hello Hudon.")
+                    npc<Angry>("Oh it's you, trying to find my treasure again are you?")
+                    player<Neutral>("I didn't know it belonged to you.")
+                    npc<Angry>("It will do when I find it. I just need to get into this blasted waterfall I've been washed downstream three times already.")
                 }
                 "entered_dungeon", "restored_amulet" -> {
                     player<Neutral>("Hello again.")
