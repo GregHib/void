@@ -128,10 +128,10 @@ class TreeGnomeVillageDialogue : Script {
             }
             "orb_recovered" -> {
                 if (!inventory.contains("orb_of_protection")) {
-                    player<Neutral>("Hello Bolren.") // TODO proper expressions
-                    npc<Neutral>(BOLREN, "Do you have the orb?")
-                    player<Neutral>("No, I'm afraid not.")
-                    npc<Neutral>(BOLREN, "Please, we must have the orb if we are to survive.")
+                    player<Neutral>("Hello Bolren.")
+                    npc<Quiz>(BOLREN, "Do you have the orb?")
+                    player<Sad>("No, I'm afraid not.")
+                    npc<Sad>(BOLREN, "Please, we must have the orb if we are to survive.")
                     return
                 }
                 player<Happy>("I have the orb.")
@@ -280,15 +280,15 @@ class TreeGnomeVillageDialogue : Script {
         when {
             // TODO reorder
             questStage("tree_gnome_village") >= 6 -> {
-                player<Neutral>("Hello Montai, how are you?") // TODO proper expressions
-                npc<Neutral>(MONTAI, "I'm ok, this battle is going to take longer to win than I expected. The Khazard troops won't give up even without the orb.")
-                player<Neutral>("Hang in there.")
+                player<Quiz>("Hello Montai, how are you?")
+                npc<Bored>(MONTAI, "I'm ok, this battle is going to take longer to win than I expected. The Khazard troops won't give up even without the orb.")
+                player<Happy>("Hang in there.")
             }
             quest("tree_gnome_village") == "orb_recovered" -> {
                 player<Happy>("I have the orb of protection.")
                 npc<Happy>(MONTAI, "Incredible, for a human you really are something.")
-                player<Happy>("Thanks... I think!")
-                npc<Happy>(MONTAI, "I'll stay here with my troops and try and hold Khazard's men back. You return the orb to the gnome village. Go as quick as you can, the village is still unprotected.")
+                player<Confused>("Thanks... I think!")
+                npc<Neutral>(MONTAI, "I'll stay here with my troops and try and hold Khazard's men back. You return the orb to the gnome village. Go as quick as you can, the village is still unprotected.")
             }
             quest("tree_gnome_village") == "stronghold_open" -> {
                 player<Happy>("I've breached the stronghold.")
@@ -296,8 +296,8 @@ class TreeGnomeVillageDialogue : Script {
                 npc<Neutral>(MONTAI, "Now is the time to retrieve the orb. It's all in your hands. I'll be praying for you.")
             }
             get("tree_gnome_village_briefed", false) -> {
-                player<Neutral>("Hello.") // TODO proper expressions
-                npc<Neutral>(MONTAI, "Hello warrior. We need the coordinates for a direct hit from the ballista. Once you have a direct hit you will be able to enter the stronghold and retrieve the orb.")
+                player<Neutral>("Hello.")
+                npc<Bored>(MONTAI, "Hello warrior. We need the coordinates for a direct hit from the ballista. Once you have a direct hit you will be able to enter the stronghold and retrieve the orb.")
             }
             quest("tree_gnome_village") == "logs_delivered" -> {
                 player<Neutral>("How are you doing Montai?")
@@ -321,8 +321,8 @@ class TreeGnomeVillageDialogue : Script {
                 }
             }
             quest("tree_gnome_village") == "unstarted" -> {
-                player<Neutral>("Hello.") // TODO proper expressions
-                npc<Neutral>(MONTAI, "I can't talk now. Can't you see we're trying to win a battle here? If we can't hold back Khazard's men we're all doomed.")
+                player<Neutral>("Hello.")
+                npc<Angry>(MONTAI, "I can't talk now. Can't you see we're trying to win a battle here? If we can't hold back Khazard's men we're all doomed.")
             }
             !get("tree_gnome_village_montai_met", false) -> {
                 player<Neutral>("Hello.")
@@ -352,7 +352,6 @@ class TreeGnomeVillageDialogue : Script {
                         npc<Happy>(MONTAI, "That's excellent, now we can make more defensive battlements. Give me a moment to organise the troops and then come speak to me. I'll inform you of our next phase of attack.")
                     }
                 } else {
-                    // TODO proper expressions
                     npc<Neutral>(MONTAI, "Hello again, we're still desperate for wood soldier. We need six loads of normal logs.")
                     player<Neutral>("I'll see what I can do.")
                     npc<Neutral>(MONTAI, "Thank you.")
@@ -367,23 +366,24 @@ class TreeGnomeVillageDialogue : Script {
             player<Neutral>("Hello.")
             npc<Neutral>(id, if (number == 2) "I can't talk now. If the guards catch me I'll be dead gnome meat." else "I can't talk now. Can't you see we're trying to win a battle here?")
         } else if (stage >= 6) {
-            val text = when (number) {
-                1 -> "When will this battle end? I feel like I've been fighting forever."
-                2 -> "When will this battle end? I feel like I've been locked up my whole life."
-                else -> "I feel dizzy, where am I? Oh dear, oh dear I need some rest."
-            }
             player<Neutral>("Hello.")
-            npc<Neutral>(id, text)// TODO proper expressions
-            if (number == 3) player<Neutral>("I think you do.")
+            when (number) {
+                1 -> npc<Bored>(id, "When will this battle end? I feel like I've been fighting forever.")
+                2 -> npc<Bored>(id, "When will this battle end? I feel like I've been locked up my whole life.")
+                else -> {
+                    npc<Confused>(id, "I feel dizzy, where am I? Oh dear, oh dear I need some rest.")
+                    player<Confused>("I think you do.")
+                }
+            }
         } else if (stage >= 4) {
             if (number == 3) {
-                player<Neutral>("Hello again.")// TODO proper expressions
-                npc<Neutral>(id, "Don't talk to me, you can't see me. No one can, just the demons.")
+                player<Neutral>("Hello again.")
+                npc<Confused>(id, "Don't talk to me, you can't see me. No one can, just the demons.")
             } else if (stage == 5) {
-                player<Neutral>("How are you tracker?")// TODO proper expressions
+                player<Neutral>("How are you tracker?")
                 npc<Neutral>(id, if (number == 1) "Now we have the orb I'm much better. They won't stand a chance without it." else "Now we have the orb I'm much better. Soon my comrades will come and free me.")
             } else {
-                player<Neutral>("Hello again.")// TODO proper expressions
+                player<Neutral>("Hello again.")
                 npc<Neutral>(id, "Well done, you've broken down their defences. This battle must be ours.")
             }
         } else if (get("tree_gnome_village_briefed", false)) {
@@ -439,15 +439,15 @@ class TreeGnomeVillageDialogue : Script {
         } else {
             when (number) {
                 1 -> {
-                    player<Neutral>("Hello.")// TODO proper expressions
-                    npc<Neutral>(id, "I can't talk now. Can't you see we're trying to win a battle here?")
+                    player<Neutral>("Hello.")
+                    npc<Angry>(id, "I can't talk now. Can't you see we're trying to win a battle here?")
                 }
                 2 -> {
-                    player<Neutral>("Hi there.")// TODO proper expressions
+                    player<Neutral>("Hi there.")
                     npc<Neutral>(id, "The battle is far from over. If you have a pure heart you will help us win.")
                 }
                 3 -> {
-                    player<Neutral>("Hi there.")// TODO proper expressions
+                    player<Neutral>("Hi there.")
                     npc<Neutral>(id, "I can't stand this war. The misery, the pain, it's driving me crazy! When will it end?")
                 }
             }
