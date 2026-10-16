@@ -39,6 +39,7 @@ val quests = setOf(
     "lost_city",
     "one_small_favour",
     "tears_of_guthix",
+    "tree_gnome_village",
     "the_golem",
     "zogre_flesh_eaters",
     // mini-quests
