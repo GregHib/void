@@ -10,14 +10,14 @@ edges = [
     { from = { x = 3278, y = 3228 }, to = { x = 3268, y = 3228 } }, # al_kharid_crossroad_to_tollgate_north
     { from = { x = 3278, y = 3228 }, to = { x = 3268, y = 3227 } }, # al_kharid_crossroad_to_tollgate
     { from = { x = 3278, y = 3228 }, to = { x = 3280, y = 3216 } }, # al_kharid_crossroad_to_glider
-    { from = { x = 3267, y = 3228 }, to = { x = 3268, y = 3228 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_north", x = 3268, y = 3228, success = { tile = { x = 3268, y = 3228 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # lumbridge_tollgate_north_to_al_kharid_tollgate
-    { from = { x = 3268, y = 3228 }, to = { x = 3267, y = 3228 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_north", x = 3268, y = 3228, success = { tile = { x = 3267, y = 3228 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # al_kharid_tollgate_north_to_lumbridge_tollgate
-    { from = { x = 3267, y = 3227 }, to = { x = 3268, y = 3227 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_south", x = 3268, y = 3227, success = { tile = { x = 3268, y = 3227 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # lumbridge_tollgate_to_al_kharid
-    { from = { x = 3268, y = 3227 }, to = { x = 3267, y = 3227 }, cost = 1, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid_south", x = 3268, y = 3227, success = { tile = { x = 3267, y = 3227 } } } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # al_kharid_tollgate_to_lumbridge
+    { from = { x = 3267, y = 3228 }, to = { x = 3268, y = 3228 }, cost = 10, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid*north*", x = 3268, y = 3228, radius = 0, success = { tile = { x = 3268, y = 3228, level = 0 } } } }, { tile = { x = 3268, y = 3228, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # lumbridge_tollgate_north_to_al_kharid_tollgate
+    { from = { x = 3268, y = 3228 }, to = { x = 3267, y = 3228 }, cost = 10, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid*north*", x = 3268, y = 3228, radius = 0, success = { tile = { x = 3267, y = 3228, level = 0 } } } }, { tile = { x = 3267, y = 3228, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # al_kharid_tollgate_north_to_lumbridge_tollgate
+    { from = { x = 3267, y = 3227 }, to = { x = 3268, y = 3227 }, cost = 10, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid*south*", x = 3268, y = 3227, radius = 0, success = { tile = { x = 3268, y = 3227, level = 0 } } } }, { tile = { x = 3268, y = 3227, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # lumbridge_tollgate_to_al_kharid
+    { from = { x = 3268, y = 3227 }, to = { x = 3267, y = 3227 }, cost = 10, actions = [{ object = { option = "Pay-toll(10gp)", id = "toll_gate_al_kharid*south*", x = 3268, y = 3227, radius = 0, success = { tile = { x = 3267, y = 3227, level = 0 } } } }, { tile = { x = 3267, y = 3227, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }] }, # al_kharid_tollgate_to_lumbridge
     { from = { x = 3268, y = 3227 }, to = { x = 3280, y = 3216 } }, # al_kharid_tollgate_to_glider
     { from = { x = 3268, y = 3228 }, to = { x = 3280, y = 3216 } }, # al_kharid_tollgate_north_to_glider
     { from = { x = 3280, y = 3216 }, to = { x = 3292, y = 3215 } }, # al_kharid_glider_to_musician
-    { from = { x = 3292, y = 3215 }, to = { x = 3300, y = 3198 } }, # al_kharid_musician_to_silk_path
+     # al_kharid_musician_to_silk_path
     { from = { x = 3300, y = 3198 }, to = { x = 3288, y = 3189 } }, # al_kharid_silk_path_to_scimitar_shop
     { from = { x = 3280, y = 3216 }, to = { x = 3280, y = 3200 } }, # al_kharid_glider_to_west_shortcut
     { from = { x = 3280, y = 3200 }, to = { x = 3288, y = 3189 } }, # al_kharid_west_shortcut_to_scimitar_shop
@@ -47,7 +47,7 @@ edges = [
     { from = { x = 3310, y = 3234 }, to = { x = 3302, y = 3222 } },
     { from = { x = 3302, y = 3222 }, to = { x = 3299, y = 3215 } },
     { from = { x = 3299, y = 3215 }, to = { x = 3292, y = 3215 } },
-    { from = { x = 3299, y = 3215 }, to = { x = 3300, y = 3198 } },
+    
     { from = { x = 3310, y = 3234 }, to = { x = 3317, y = 3235 } },
     { from = { x = 3278, y = 3228 }, to = { x = 3293, y = 3231 } },
     { from = { x = 3293, y = 3231 }, to = { x = 3310, y = 3234 } },
@@ -75,4 +75,18 @@ edges = [
     { from = { x = 3302, y = 3238 }, to = { x = 3310, y = 3234 } },
     { from = { x = 3302, y = 3238 }, to = { x = 3293, y = 3231 } },
     { from = { x = 3302, y = 3238 }, to = { x = 3310, y = 3252 } },
+
+    { from = { x = 3280, y = 3216 }, to = { x = 3284, y = 3213 } },
+    { from = { x = 3284, y = 3213 }, to = { x = 3292, y = 3215 } },
+    { from = { x = 3292, y = 3215 }, to = { x = 3299, y = 3208 } },
+    { from = { x = 3299, y = 3208 }, to = { x = 3300, y = 3198 } },
+    { from = { x = 3299, y = 3215 }, to = { x = 3299, y = 3208 } },
+    { from = { x = 3284, y = 3213 }, to = { x = 3299, y = 3208 } },
+    { from = { x = 3284, y = 3213 }, to = { x = 3280, y = 3200 } },
+    { from = { x = 3300, y = 3198 }, to = { x = 3310, y = 3192 } },
+
+    { from = { x = 3267, y = 3228 }, to = { x = 3268, y = 3228 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid_north_closed", x = 3268, y = 3228, radius = 0, success = { tile = { x = 3268, y = 3228, level = 0 } } } }, { tile = { x = 3268, y = 3228, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
+    { from = { x = 3268, y = 3228 }, to = { x = 3267, y = 3228 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid_north_closed", x = 3268, y = 3228, radius = 0, success = { tile = { x = 3267, y = 3228, level = 0 } } } }, { tile = { x = 3267, y = 3228, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
+    { from = { x = 3267, y = 3227 }, to = { x = 3268, y = 3227 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid*south*", x = 3268, y = 3227, radius = 0, success = { tile = { x = 3268, y = 3227, level = 0 } } } }, { tile = { x = 3268, y = 3227, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
+    { from = { x = 3268, y = 3227 }, to = { x = 3267, y = 3227 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid*south*", x = 3268, y = 3227, radius = 0, success = { tile = { x = 3267, y = 3227, level = 0 } } } }, { tile = { x = 3267, y = 3227, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
 ]
