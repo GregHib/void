@@ -11,6 +11,7 @@ y = [3187, 3192]
 x = [3271, 3275]
 y = [3179, 3183]
 
+tags = ["cooking_range_preferred"]
 [al_kharid_multi_area]
 x = [3264, 3327]
 y = [3136, 3199]

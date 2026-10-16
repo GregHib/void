@@ -24,9 +24,9 @@ edges = [
     { from = { x = 3288, y = 3189 }, to = { x = 3282, y = 3185 } }, # al_kharid_scimitar_shop_to_furnace_entrance
     { from = { x = 3280, y = 3200 }, to = { x = 3282, y = 3185 } }, # al_kharid_west_shortcut_to_furnace_to_entrance
     { from = { x = 3282, y = 3185 }, to = { x = 3278, y = 3177 } }, # al_kharid_furnace_entrance_to_bank_crossroads
-    { from = { x = 3278, y = 3177 }, to = { x = 3276, y = 3168 } }, # al_kharid_bank_crossroad_to_entrance
+    { from = { x = 3278, y = 3177 }, to = { x = 3276, y = 3167 } }, # al_kharid_bank_crossroad_to_entrance
     { from = { x = 3278, y = 3177 }, to = { x = 3274, y = 3180 } }, # al_kharid_bank_crossroad_to_kebab_shop
-    { from = { x = 3276, y = 3168 }, to = { x = 3270, y = 3167 } }, # al_kharid_bank_entrance_to_bank
+    { from = { x = 3276, y = 3167 }, to = { x = 3270, y = 3167 } }, # al_kharid_bank_entrance_to_bank
     { from = { x = 3282, y = 3185 }, to = { x = 3278, y = 3186 } },
     { from = { x = 3282, y = 3185 }, to = { x = 3280, y = 3191 } },
     { from = { x = 3280, y = 3191 }, to = { x = 3276, y = 3191 } },
@@ -41,7 +41,7 @@ edges = [
     { from = { x = 3294, y = 3194 }, to = { x = 3300, y = 3198 } },
     { from = { x = 3294, y = 3194 }, to = { x = 3280, y = 3200 } },
     { from = { x = 3278, y = 3177 }, to = { x = 3266, y = 3176 } },
-    { from = { x = 3266, y = 3176 }, to = { x = 3276, y = 3168 } },
+    { from = { x = 3266, y = 3176 }, to = { x = 3276, y = 3167 } },
     { from = { x = 3266, y = 3176 }, to = { x = 3255, y = 3173 } },
     
     { from = { x = 3310, y = 3234 }, to = { x = 3302, y = 3222 } },
@@ -89,4 +89,13 @@ edges = [
     { from = { x = 3268, y = 3228 }, to = { x = 3267, y = 3228 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid_north_closed", x = 3268, y = 3228, radius = 0, success = { tile = { x = 3267, y = 3228, level = 0 } } } }, { tile = { x = 3267, y = 3228, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
     { from = { x = 3267, y = 3227 }, to = { x = 3268, y = 3227 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid*south*", x = 3268, y = 3227, radius = 0, success = { tile = { x = 3268, y = 3227, level = 0 } } } }, { tile = { x = 3268, y = 3227, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
     { from = { x = 3268, y = 3227 }, to = { x = 3267, y = 3227 }, actions = [{ object = { option = "Open", id = "toll_gate_al_kharid*south*", x = 3268, y = 3227, radius = 0, success = { tile = { x = 3267, y = 3227, level = 0 } } } }, { tile = { x = 3267, y = 3227, radius = 1 } }], requires = [{ variable = { id = "prince_ali_rescue", equals = "completed", default = "unstarted" } }], cost = 2 },
+
+    { from = { x = 3276, y = 3167 }, to = { x = 3277, y = 3156 } },
+    { from = { x = 3277, y = 3156 }, to = { x = 3264, y = 3156 } },
+    { from = { x = 3264, y = 3156 }, to = { x = 3261, y = 3163 } },
+    { from = { x = 3261, y = 3163 }, to = { x = 3255, y = 3173 } },
+    { from = { x = 3266, y = 3176 }, to = { x = 3266, y = 3188 } },
+    { from = { x = 3266, y = 3188 }, to = { x = 3269, y = 3200 } },
+    { from = { x = 3269, y = 3200 }, to = { x = 3275, y = 3210 } },
+    { from = { x = 3275, y = 3210 }, to = { x = 3280, y = 3216 } },
 ]

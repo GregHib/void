@@ -16,3 +16,15 @@ y = [3693, 3698]
 x = [3454, 3465]
 y = [3717, 3724]
 level = 1
+
+[rewards_trader_shop]
+# nav-editor: named area only
+x = [3442, 3444]
+y = [3697, 3699]
+level = 0
+
+[daemonheim_bank]
+# nav-editor: named area only
+x = [3448, 3449]
+y = [3719, 3720]
+level = 0
