@@ -11,7 +11,7 @@ y = [3187, 3192]
 x = [3271, 3275]
 y = [3179, 3183]
 
-tags = ["cooking_range", "cooking_range_preferred"]
+tags = ["cooking_range"]
 [al_kharid_multi_area]
 x = [3264, 3327]
 y = [3136, 3199]
@@ -63,14 +63,14 @@ level = 0
 x = [3272, 3279]
 y = [3185, 3187]
 level = 0
-tags = ["smithing_furnace", "smithing_furnace_preferred"]
+tags = ["smithing_furnace"]
 
 [al_kharid_tanner]
 # nav-editor: named area only
 x = [3271, 3276]
 y = [3190, 3193]
 level = 0
-tags = ["tanner", "tanner_preferred"]
+tags = ["tanner"]
 
 [alis_discount_wares]
 # nav-editor: named area only

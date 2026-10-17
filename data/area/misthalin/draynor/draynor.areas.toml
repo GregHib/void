@@ -12,6 +12,7 @@ hint = "around a village between a great tower and a vampyre's manor."
 x = [3083, 3090]
 y = [3227, 3238]
 bot_capacity = 8
+tags = ["woodcutting_willows"]
 
 [draynor_oak_trees]
 x = [3098, 3103]
@@ -35,6 +36,7 @@ tags = ["bank"]
 [draynor_fishing_area]
 x = [3085, 3086]
 y = [3227, 3231]
+tags = ["fishing_small_net"]
 
 [draynor_village_multi_area]
 x = [3112, 3136, 3136, 3104, 3104, 3112]
@@ -58,3 +60,10 @@ y = [3246, 3257, 3257, 3255, 3255, 3246]
 [draynor_potter_house]
 x = [3085, 3097]
 y = [3278, 3287]
+
+[draynor_bank_deposit_box]
+# nav-editor: named area only
+x = [3094, 3094]
+y = [3240, 3241]
+level = 0
+tags = ["bank_deposit_box"]

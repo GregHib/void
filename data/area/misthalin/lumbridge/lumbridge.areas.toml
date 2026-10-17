@@ -151,6 +151,7 @@ x = [3205, 3212]
 y = [3212, 3217]
 level = 0
 bot_capacity = 12
+tags = ["cooking_range"]
 
 [lumbridge_south_cooking_range]
 x = [3230, 3237]
