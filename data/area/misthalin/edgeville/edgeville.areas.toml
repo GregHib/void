@@ -52,3 +52,17 @@ level = 0
 x = [3130, 3132]
 y = [9862, 9862]
 level = 0
+
+[edgeville_yews]
+# nav-editor: named area only
+x = [3085, 3087]
+y = [3468, 3482]
+level = 0
+tags = ["woodcutting_yews"]
+bot_capacity = 3
+
+[edgeville_general_store]
+# nav-editor: named area only
+x = [3077, 3083]
+y = [3507, 3511]
+level = 0

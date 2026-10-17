@@ -18,11 +18,13 @@ bot_capacity = 6
 x = [3281, 3290]
 y = [3360, 3371]
 bot_capacity = 10
+tags = ["mining_tin", "mining_iron", "mining_copper"]
 
 [varrock_south_west_mine]
 x = [3171, 3184]
 y = [3364, 3380]
 bot_capacity = 11
+tags = ["mining_iron", "mining_tin", "mining_copper", "mining_silver", "mining_clay"]
 
 [varrock_east_bank]
 x = [3250, 3257]
@@ -93,6 +95,7 @@ tags = ["woodcutting_oaks"]
 x = [3227, 3231]
 y = [3457, 3461]
 level = 0
+tags = ["farming_tree_patch"]
 
 [varrock_church_altar]
 # nav-editor: named area only
@@ -121,3 +124,21 @@ x = [3200, 3214]
 y = [3358, 3371]
 level = 0
 tags = ["woodcutting_oaks"]
+
+[varrock_east_anvils]
+# nav-editor: named area only
+x = [3227, 3232]
+y = [3433, 3441]
+level = 0
+
+[zaffs_superior_spellcasting]
+# nav-editor: named area only
+x = [3201, 3204]
+y = [3431, 3437]
+level = 0
+
+[thessalias_fine_clothes]
+# nav-editor: named area only
+x = [3204, 3208]
+y = [3414, 3418]
+level = 0

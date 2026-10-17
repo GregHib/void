@@ -221,6 +221,7 @@ id = 538
 shop = "peksas_helmet_shop"
 collision = "indoors"
 examine = "Always up-to-date with the latest helmet fashions."
+area = "peksas_helmet_shop"
 
 [student_barbarian_village]
 id = 7152
