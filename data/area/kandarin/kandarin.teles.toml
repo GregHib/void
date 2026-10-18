@@ -25,7 +25,7 @@ tile = { x = 2626, y = 3392 }
 to = { x = 2620, y = 9797 }
 
 #10549
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2677, y = 3405 }
 delta = { y = 6400 }
@@ -128,7 +128,7 @@ option = "Climb-down"
 tile = { x = 2769, y = 3399, level = 2 }
 delta = { y = -4, level = -1 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2621, y = 3261 }
 delta = { y = 6400 }

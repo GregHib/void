@@ -22,6 +22,10 @@ examine = "I can climb up these stairs."
 id = 1744
 examine = "I can climb down these stairs."
 
+[ladder_cellar]
+id = 1754
+examine = "I can climb down this."
+
 [spooky_stairs]
 id = 2522
 examine = "It's a flight of stairs."

@@ -18,12 +18,12 @@ option = "Climb-down"
 tile = { x = 2572, y = 3241, level = 2 }
 to = { x = 2571, y = 3241, level = 1 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2566, y = 3242 }
 delta = { y = 6400 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2566, y = 3231 }
 delta = { y = 6400 }
@@ -33,17 +33,17 @@ option = "Climb-down"
 tile = { x = 2569, y = 3231 }
 delta = { y = 6400 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2566, y = 3227 }
 delta = { y = 6400 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2569, y = 3227 }
 delta = { y = 6400 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2572, y = 3227 }
 delta = { y = 6400 }
