@@ -96,7 +96,7 @@ class Fluffs : Script {
         }
 
     private suspend fun Player.checkCanFeed() {
-        if (get(FLUFFS_FED_VAR, false)) {
+        if (get(FLUFFS_MILK_VAR, false)) {
             feedFluffs()
         } else {
             // TODO
