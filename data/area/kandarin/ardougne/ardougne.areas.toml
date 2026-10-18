@@ -49,9 +49,10 @@ y = [3365, 3374]
 
 [ardougne_north_farming_patch]
 # nav-editor: named area only
-x = [2664, 2671]
-y = [3372, 3377]
+x = [2662, 2671]
+y = [3370, 3379]
 level = 0
+tags = ["farming_allotment_patch"]
 
 [ardougne_east_bank]
 # nav-editor: named area only
@@ -60,7 +61,7 @@ y = [3282, 3285]
 level = 0
 tags = ["bank"]
 
-[ardougne_east_general_store]
+[aemads_adventuring_supplies]
 # nav-editor: named area only
 x = [2613, 2615]
 y = [3292, 3294]
@@ -102,3 +103,48 @@ level = 0
 x = [2616, 2619]
 y = [3224, 3227]
 level = 0
+
+[richards_farming_shop]
+# nav-editor: named area only
+x = [2641, 2649]
+y = [3361, 3365]
+level = 0
+
+[ardougne_east_church]
+# nav-editor: named area only
+x = [2614, 2615]
+y = [3307, 3308]
+level = 0
+tags = ["prayer_altar"]
+
+[ardougne_east_mine_coal_west]
+# nav-editor: named area only
+x = [2690, 2697]
+y = [3331, 3336]
+level = 0
+tags = ["mining_coal"]
+bot_capacity = 1
+
+[ardougne_east_mine_coal_east]
+# nav-editor: named area only
+x = [2704, 2710]
+y = [3328, 3333]
+level = 0
+tags = ["mining_coal"]
+bot_capacity = 2
+
+[ardougne_east_mine_iron_west]
+# nav-editor: named area only
+x = [2691, 2697]
+y = [3328, 3334]
+level = 0
+tags = ["mining_iron"]
+bot_capacity = 1
+
+[ardougne_east_mine_iron_east]
+# nav-editor: named area only
+x = [2710, 2715]
+y = [3328, 3332]
+level = 0
+tags = ["mining_iron"]
+bot_capacity = 2
