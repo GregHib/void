@@ -46,4 +46,7 @@ edges = [
 
     { from = { x = 2994, y = 3220 }, to = { x = 3004, y = 3233 } },
     { from = { x = 3004, y = 3233 }, to = { x = 2994, y = 3232 } },
+
+    { from = { x = 2956, y = 3206 }, to = { x = 2956, y = 3204 }, actions = [{ object = { option = "Open", id = "door_closed", x = 2956, y = 3206, radius = 0, success = { object = { id = "door_opened", x = 2956, y = 3205 } } } }, { tile = { x = 2956, y = 3204, radius = 1 } }], cost = 3 },
+    { from = { x = 2956, y = 3204 }, to = { x = 2956, y = 3206 }, actions = [{ object = { option = "Open", id = "door_closed", x = 2956, y = 3206, radius = 0, success = { object = { id = "door_opened", x = 2956, y = 3205 } } } }, { tile = { x = 2956, y = 3206, radius = 1 } }], cost = 3 },
 ]

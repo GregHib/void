@@ -171,6 +171,7 @@ id = 13106
 shop = "bettamaxs_shop"
 collision = "outdoors"
 examine = "A botanist in training."
+area = "bettamaxs_shop"
 
 [wilbur]
 id = 13107

@@ -39,6 +39,7 @@ tags = ["pet_shop"]
 x = [2573, 2578]
 y = [3102, 3107]
 level = 0
+tags = ["farming_hops_patch"]
 
 [magic_guild_shop]
 # nav-editor: named area only
@@ -72,3 +73,9 @@ y = [3117, 3124]
 level = 0
 tags = ["cow_field"]
 
+
+[frenitas_cookery_shop]
+# nav-editor: named area only
+x = [2563, 2570]
+y = [3095, 3100]
+level = 0

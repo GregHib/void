@@ -72,3 +72,9 @@ x = [2939, 2942]
 y = [3220, 3223]
 level = 0
 tags = ["farming_bush_patch"]
+
+[brians_archery_supplies]
+# nav-editor: named area only
+x = [2954, 2958]
+y = [3202, 3205]
+level = 0

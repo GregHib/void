@@ -179,6 +179,7 @@ id = 1860
 shop = "brians_archery_supplies"
 collision = "indoors"
 examine = "He sells ranged equipment."
+area = "brians_archery_supplies"
 
 [anja]
 id = 2684
