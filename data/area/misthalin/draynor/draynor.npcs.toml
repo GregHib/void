@@ -105,6 +105,7 @@ examine = "He looks scared."
 id = 2233
 shop = "draynor_seed_market"
 examine = "She's a seed merchant."
+area = "draynor_village_teleport"
 
 [piglet]
 id = 2241

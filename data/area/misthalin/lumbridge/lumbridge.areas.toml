@@ -217,3 +217,9 @@ tags = ["prayer_altar"]
 x = [3226, 3232]
 y = [3312, 3318]
 level = 0
+
+[beefy_bills_supplies]
+# nav-editor: named area only
+x = [3177, 3180]
+y = [3319, 3323]
+level = 0

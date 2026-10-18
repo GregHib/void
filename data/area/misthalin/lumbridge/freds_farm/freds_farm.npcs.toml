@@ -30,6 +30,7 @@ clone = "ram_freds_farm"
 id = 246
 shop = "beefy_bills_supplies"
 examine = "Specialist meat transporter."
+area = "beefy_bills_supplies"
 
 [larry_farmer]
 id = 5423
