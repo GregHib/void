@@ -269,3 +269,7 @@ examine = "I wonder where they will take me."
 [player_safety_stairs_2nd_floor_down_north_west]
 id = 29659
 examine = "I wonder where they will take me."
+
+[icemt_mine_ladder_top]
+id = 30942
+examine = "I can climb this."

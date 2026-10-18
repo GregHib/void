@@ -1,0 +1,7 @@
+edges = [
+    { from = { x = 3012, y = 9832 }, to = { x = 3651, y = 5122 }, actions = [ { object = { id = "living_rock_caverns_entrance", option = "Climb", x = 3012, y = 9831, radius = 1 , success = { any = [{ interface_open = { id = "warning_living_rock_caverns" } }, { tile = { x = 3651, y = 5122, level = 0 } }] } } }, { wait = { ticks = 2 } }, { interface = { id = "warning_living_rock_caverns:yes", option = "Yes", if = { interface_open = { id = "warning_living_rock_caverns" } } } }, { wait = { ticks = 2 } } , { tile = { x = 3651, y = 5122, radius = 1 } } ], requires = [], cost = 4 },
+
+    { from = { x = 3651, y = 5122 }, to = { x = 3654, y = 5114 } },
+
+    { from = { x = 3651, y = 5122 }, to = { x = 3012, y = 9832 }, actions = [{ object = { option = "Climb", id = "living_rock_caverns_rope", x = 3651, y = 5123, radius = 0, success = { tile = { x = 3012, y = 9832, level = 0 } } } }, { tile = { x = 3012, y = 9832, radius = 1 } }], cost = 3 },
+]

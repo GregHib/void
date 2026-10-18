@@ -4,7 +4,7 @@ option = "Climb-down"
 tile = { x = 3058, y = 3356, level = 1 }
 delta = { level = -1 }
 
-[30942]
+[icemt_mine_ladder_top]
 option = "Climb-down"
 tile = { x = 3019, y = 3450 }
 delta = { y = 6400 }

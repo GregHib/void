@@ -128,4 +128,10 @@ edges = [
 
     { from = { x = 2975, y = 3262 }, to = { x = 2974, y = 3270 } },
     { from = { x = 2982, y = 3276 }, to = { x = 2974, y = 3270 } },
+
+
+    { from = { x = 3061, y = 3376 }, to = { x = 3058, y = 9776 }, actions = [{ object = { option = "Climb-down", id = "stairs_falador", x = 3059, y = 3376, radius = 0, success = { tile = { x = 3058, y = 9776, level = 0 } } } }, { tile = { x = 3058, y = 9776, radius = 1 } }], cost = 4 },
+    { from = { x = 3058, y = 9776 }, to = { x = 3061, y = 3376 }, actions = [{ object = { option = "Climb-up", id = "stairs_dwarven_mine", x = 3059, y = 9776, radius = 0, success = { tile = { x = 3061, y = 3376, level = 0 } } } }, { tile = { x = 3061, y = 3376, radius = 1 } }], cost = 3 },
+
+    { from = { x = 3058, y = 9776 }, to = { x = 3052, y = 9775 } },
 ]

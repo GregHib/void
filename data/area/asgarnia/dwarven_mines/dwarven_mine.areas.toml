@@ -3,3 +3,82 @@
 x = [2944, 3071]
 y = [9728, 9855]
 tags = ["no_cannon", "no_cannon_black_guard"]
+
+[dwarven_mines_tin1]
+# nav-editor: named area only
+x = [3051, 3057]
+y = [9779, 9783]
+level = 0
+tags = ["mining_tin"]
+bot_capacity = 2
+
+[dwarven_mines_coal1]
+# nav-editor: named area only
+x = [3036, 3042]
+y = [9760, 9764]
+level = 0
+tags = ["mining_coal"]
+bot_capacity = 2
+
+[dwarven_mines_adamantite1]
+# nav-editor: named area only
+x = [3035, 3042]
+y = [9764, 9774]
+level = 0
+tags = ["mining_adamantite", "mining_mithril"]
+bot_capacity = 2
+
+[dwarven_mines_iron1]
+# nav-editor: named area only
+x = [3036, 3039]
+y = [9775, 9777]
+level = 0
+tags = ["mining_iron"]
+bot_capacity = 1
+
+[dwarven_mines_copper1]
+# nav-editor: named area only
+x = [3038, 3040]
+y = [9780, 9784]
+level = 0
+tags = ["mining_copper"]
+
+[dwarven_mines_coal2]
+# nav-editor: named area only
+x = [3048, 3052]
+y = [9775, 9777]
+level = 0
+tags = ["mining_coal"]
+bot_capacity = 1
+
+[dwarven_mines_coal3]
+# nav-editor: named area only
+x = [3037, 3039]
+y = [9798, 9800]
+level = 0
+tags = ["mining_coal"]
+bot_capacity = 1
+
+[dwarven_shopping_store]
+# nav-editor: named area only
+x = [2995, 3001]
+y = [9823, 9833]
+level = 0
+
+[pickaxe_is_mine_iron]
+# nav-editor: named area only
+x = [2992, 3002]
+y = [9842, 9849]
+level = 0
+
+[crossbow_shop_dwarven_mine]
+# nav-editor: named area only
+x = [3001, 3005]
+y = [9796, 9802]
+level = 0
+
+[nulodions_multicannon_parts]
+# nav-editor: named area only
+x = [3009, 3014]
+y = [3452, 3454]
+level = 0

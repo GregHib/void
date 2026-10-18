@@ -2,6 +2,7 @@
 id = 209
 shop = "nulodions_multicannon_parts"
 examine = "The Dwarven armoury engineer."
+area = "nulodions_multicannon_parts"
 
 [black_guard]
 id = 3276
