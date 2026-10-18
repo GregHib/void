@@ -1,9 +1,7 @@
 package content.quest.member.hand_in_the_sand
 
 import content.entity.player.bank.ownsItem
-import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.quest.messageScroll
