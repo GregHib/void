@@ -273,3 +273,7 @@ examine = "I wonder where they will take me."
 [icemt_mine_ladder_top]
 id = 30942
 examine = "I can climb this."
+
+[di1_ladder_outside_to_underground]
+id = 29358
+examine = "I can climb down this."

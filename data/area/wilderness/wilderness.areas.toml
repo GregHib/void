@@ -119,3 +119,17 @@ tags = ["safe_zone"]
 x = [3072, 3135]
 y = [10112, 10175]
 tags = ["no_cannon"]
+
+[obelisk_of_air]
+# nav-editor: named area only
+x = [3087, 3089]
+y = [3569, 3570]
+level = 0
+
+[south_wilderness_mine]
+# nav-editor: named area only
+x = [3102, 3106]
+y = [3565, 3570]
+level = 0
+bot_capacity = 1
+tags = ["mining_coal", "mining_iron"]

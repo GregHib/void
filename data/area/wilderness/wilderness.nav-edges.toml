@@ -1,0 +1,13 @@
+edges = [
+    { from = { x = 3088, y = 9970 }, to = { x = 3089, y = 3571 }, actions = [{ object = { option = "Climb-up", id = "29355", x = 3088, y = 9971, radius = 0, success = { tile = { x = 3089, y = 3571, level = 0 } } } }, { tile = { x = 3089, y = 3571, radius = 1 } }], cost = 3 },
+    { from = { x = 3089, y = 3571 }, to = { x = 3088, y = 9970 }, actions = [{ object = { option = "Climb-down", id = "di1_ladder_outside_to_underground", x = 3088, y = 3571, radius = 0, success = { tile = { x = 3089, y = 9971, level = 0 } } } }, { tile = { x = 3088, y = 9970, radius = 1 } }], cost = 5 },
+    { from = { x = 3102, y = 3565 }, to = { x = 3102, y = 3556 } },
+    { from = { x = 3102, y = 3556 }, to = { x = 3102, y = 3543 } },
+    { from = { x = 3102, y = 3543 }, to = { x = 3105, y = 3554 } },
+    { from = { x = 3105, y = 3554 }, to = { x = 3113, y = 3557 } },
+    { from = { x = 3102, y = 3543 }, to = { x = 3103, y = 3533 } },
+    { from = { x = 3103, y = 3533 }, to = { x = 3102, y = 3523 } },
+    { from = { x = 3102, y = 3523 }, to = { x = 3102, y = 3520 }, actions = [{ object = { option = "Cross", id = "wilderness_wall_5", x = 3102, y = 3521, radius = 0, success = { tile = { x = 3102, y = 3520, level = 0 } } } }, { tile = { x = 3102, y = 3520, radius = 1 } }], cost = 1 },
+    { from = { x = 3102, y = 3520 }, to = { x = 3102, y = 3523 }, actions = [{ object = { option = "Cross", id = "wilderness_wall_5", x = 3102, y = 3521, radius = 0, success = { tile = { x = 3102, y = 3523, level = 0 } } } }, { tile = { x = 3102, y = 3523, radius = 1 } }], cost = 1 },
+    { from = { x = 3102, y = 3520 }, to = { x = 3108, y = 3506 } },
+]
