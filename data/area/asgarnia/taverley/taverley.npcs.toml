@@ -4,6 +4,7 @@ categories = ["human"]
 collision = "indoors"
 examine = "He's a very important druid."
 shop = "summoning_supplies"
+area = "taverly_summoning_shop"
 
 [pikkupstix_normal]
 id = 6971
@@ -47,6 +48,8 @@ examine = "A terrier puppy."
 [pet_shop_owner_taverley]
 id = 6893
 examine = "The man of the pet shop."
+shop = "pet_shop"
+area = "taverly_pet_shop"
 
 [lady_of_the_lake]
 id = 250
@@ -161,6 +164,7 @@ id = 587
 shop = "jatixs_herblore_shop"
 collision = "indoors"
 examine = "Master of herbs and potions."
+area = "taverly_herblore_shop"
 
 [bettamax]
 id = 13106

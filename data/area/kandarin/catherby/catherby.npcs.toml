@@ -4,6 +4,7 @@ categories = ["human"]
 shop = "harrys_fishing_shop"
 collision = "indoors"
 examine = "Something fishy about him."
+area = "harrys_fishing_shop"
 
 [candle_maker]
 id = 562

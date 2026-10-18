@@ -83,14 +83,20 @@ y = [3369, 3371]
 level = 0
 tags = ["bank"]
 
-[falador_chainmail_shop]
+[waynes_chains_chainmail_specialist]
 # nav-editor: named area only
 x = [2970, 2974]
 y = [3311, 3314]
 level = 0
 
-[falador_mace_shop]
+[flynns_mace_market]
 # nav-editor: named area only
 x = [2949, 2951]
 y = [3385, 3388]
+level = 0
+
+[cassies_shield_shop]
+# nav-editor: named area only
+x = [2972, 2977]
+y = [3382, 3384]
 level = 0
