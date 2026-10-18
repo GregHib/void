@@ -120,3 +120,11 @@ fields = {
     name = "Platebodies",
     type = "platebody"
 }
+
+[kill_hill_giants_attack]
+timeout = 100
+requires = [{ combat_level = { min = 30 } }, { skill = { id = "attack", min = 30 } }, { skill = { id = "defence", min = 20 } }, { skill = { id = "strength", min = 30 } }]
+setup = [{ inventory = { id = "brass_key" } }, { equipment = { legs = { id = "steel_platelegs,mithril_platelegs" }, shield = { id = "steel_kiteshield,mithril_kiteshield" }, chest = { id = "steel_platebody,mithril_platebody" }, hat = { id = "steel_full_helm,mithril_full_helm" }, weapon = { id = "adamant_scimitar,mithril_scimitar" } } }, { area = { id = "edgeville_dungeon_hill_giants" } }, { inventory = { id = "salmon,trout", min = 2 } }]
+actions = [{ interface = { option = "Select", id = "combat_styles:style1" } }, { npc = { option = "Attack", id = "hill_giant*", radius = 15, delay = 5, success = { inventory = { id = "empty", max = 0 } } } }]
+produces = [{ skill = "attack" }, { item = "big_bones" }]
+reactive = [{ eat = { heal_percent = 50 } }]
