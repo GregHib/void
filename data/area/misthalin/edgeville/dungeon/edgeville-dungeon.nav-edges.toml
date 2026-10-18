@@ -19,7 +19,7 @@ edges = [
     { from = { x = 3144, y = 9870 }, to = { x = 3134, y = 9874 } },
     { from = { x = 3134, y = 9874 }, to = { x = 3123, y = 9875 } },
     { from = { x = 3123, y = 9875 }, to = { x = 3117, y = 9862 } },
-    { from = { x = 3117, y = 9862 }, to = { x = 3130, y = 9862 } },
+
     { from = { x = 3117, y = 9862 }, to = { x = 3117, y = 9853 } },
 
     { from = { x = 3132, y = 9915 }, to = { x = 3132, y = 9918 }, actions = [ { object = { id = "edgeville_dungeon_wilderness_east_metal_door_closed", option = "Open", x = 3132, y = 9918, radius = 1 , success = { any = [{ interface_open = { id = "warning_wilderness" } }, { tile = { x = 3132, y = 9918, level = 0 } }] } } }, { wait = { ticks = 2 } }, { interface = { id = "warning_wilderness:yes", option = "Ok", if = { interface_open = { id = "warning_wilderness" } } } }, { wait = { ticks = 2 } } , { tile = { x = 3132, y = 9918, radius = 1 } } ], requires = [], cost = 4 },
@@ -61,4 +61,7 @@ edges = [
     { from = { x = 3088, y = 9970 }, to = { x = 3083, y = 9956 } },
     { from = { x = 3094, y = 9956 }, to = { x = 3089, y = 9947 } },
     { from = { x = 3089, y = 9947 }, to = { x = 3087, y = 9935 } },
+
+    { from = { x = 3117, y = 9862 }, to = { x = 3123, y = 9862 } },
+    { from = { x = 3123, y = 9862 }, to = { x = 3129, y = 9862 } },
 ]

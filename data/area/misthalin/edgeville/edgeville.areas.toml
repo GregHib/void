@@ -49,8 +49,8 @@ level = 0
 
 [edgeville_dungeon_brass_key]
 # nav-editor: named area only
-x = [3130, 3132]
-y = [9862, 9862]
+x = [3127, 3132]
+y = [9861, 9863]
 level = 0
 
 [edgeville_yews]
