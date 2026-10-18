@@ -38,6 +38,10 @@ examine = "I wonder what that's there for"
 id = 6434
 examine = "I wonder what that's there for"
 
+[roguesden_trapdoor_entrance]
+id = 7257
+examine = "I wonder where it leads."
+
 [trapdoor_38_opened]
 id = 7435
 examine = "I wonder what's down there?"

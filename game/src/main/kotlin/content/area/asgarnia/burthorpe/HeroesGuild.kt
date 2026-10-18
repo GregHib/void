@@ -1,5 +1,6 @@
 package content.area.asgarnia.burthorpe
 
+import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -42,6 +43,10 @@ class HeroesGuild : Script {
             player<Quiz>("I'm a hero. May I apply to join?")
             npc<Confused>("You're a hero? I've never heard of you.")
             statement("You do not meet all of the requirements to start the Heroes' Quest.")
+        }
+
+        objectOperate("Open", "door_75_closed,door_74_closed") { (target) ->
+            enterDoor(target, ticks = 3, delay = 2)
         }
     }
 }

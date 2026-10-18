@@ -15,8 +15,27 @@ y = [3520, 3647]
 tags = ["penguin_area"]
 hint = "where the Imperial Guard train."
 
-[burthorpe_general_store]
+[burthorpe_supplies]
 # nav-editor: named area only
 x = [2925, 2930]
 y = [3545, 3548]
 level = 0
+
+[slayer_master_turael]
+# nav-editor: named area only
+x = [2930, 2933]
+y = [3535, 3538]
+level = 0
+tags = ["slayer_master"]
+
+[toad_and_chicken]
+# nav-editor: named area only
+x = [2905, 2915]
+y = [3536, 3543]
+level = 0
+
+[happy_heroes_hemporium]
+# nav-editor: named area only
+x = [2892, 2898]
+y = [3509, 3513]
+level = 1

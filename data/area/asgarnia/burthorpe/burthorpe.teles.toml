@@ -61,12 +61,12 @@ option = "Climb-down"
 tile = { x = 2929, y = 3544, level = 1 }
 delta = { level = -1 }
 
-[7257]
+[roguesden_trapdoor_entrance]
 option = "Enter"
 tile = { x = 2905, y = 3537 }
 to = { x = 3061, y = 4985, level = 1 }
 
-[7258]
+[roguesden_passage_to_pub]
 option = "Enter"
 tile = { x = 3061, y = 4986, level = 1 }
 to = { x = 2906, y = 3537 }
