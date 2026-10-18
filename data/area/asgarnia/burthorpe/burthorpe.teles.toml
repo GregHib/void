@@ -132,3 +132,8 @@ delta = { level = -1 }
 option = "Climb-down"
 tile = { x = 2840, y = 3538, level = 2 }
 delta = { level = -1 }
+
+[tithe_roof_g]
+option = "Climb-up"
+tile = { x = 2892, y = 9907, level = 0 }
+to = { x = 2892, y = 3508, level = 0 }
