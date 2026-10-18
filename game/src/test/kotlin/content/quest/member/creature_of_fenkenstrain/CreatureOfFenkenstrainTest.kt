@@ -22,6 +22,22 @@ import kotlin.test.assertTrue
 class CreatureOfFenkenstrainTest : WorldTest() {
 
     @Test
+    fun `Shared ladder preserves quest exits and uses configured teleports elsewhere`() {
+        val exits = listOf(
+            Tile(3578, 9927) to Tile(3577, 3527),
+            Tile(3504, 9970) to Tile(3504, 3569),
+            Tile(2892, 9907) to Tile(2892, 3508),
+        )
+        for ((source, destination) in exits) {
+            val player = createPlayer(source.addX(1))
+            val ladder = GameObjects.find(source, "tithe_roof_g")
+            player.objectOption(ladder, "Climb-up")
+            tick(12)
+            assertEquals(destination, player.tile, "Ladder at $source")
+        }
+    }
+
+    @Test
     fun `Complete creature of fenkenstrain quest`() {
         val player = createPlayer(Tile(3488, 3486))
         player.experience.set(Skill.Thieving, Level.experience(25))

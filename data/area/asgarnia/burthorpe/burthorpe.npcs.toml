@@ -109,6 +109,7 @@ id = 1079
 shop = "toad_and_chicken"
 collision = "indoors"
 examine = "Barman of the Toad and Chicken."
+area = "toad_and_chicken"
 
 [guard_burthorpe]
 id = 1076
@@ -207,6 +208,7 @@ id = 1083
 shop = "burthorpe_supplies"
 collision = "indoors"
 examine = "Shopkeeper for Burthorpe."
+area = "burthorpe_supplies"
 
 [achietties]
 id = 796
@@ -229,6 +231,7 @@ drop_table = "white_knight"
 id = 797
 shop = "happy_heroes_hemporium"
 examine = "A retired hero."
+area = "happy_heroes_hemporium"
 
 [turael]
 id = 8461

@@ -1,0 +1,12 @@
+
+[asgarnia_ice_dungeon_wyverns_entrance]
+# nav-editor: named area only
+x = [3055, 3057]
+y = [9562, 9563]
+level = 0
+
+[asgarnia_ice_dungeon_wyverns_exit]
+# nav-editor: named area only
+x = [3055, 3057]
+y = [9554, 9555]
+level = 0

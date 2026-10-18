@@ -4,6 +4,7 @@ categories = ["human"]
 shop = "rimmington_general_store"
 collision = "indoors"
 examine = "Has an interesting assortment of items for sale."
+area = "rimmington_general_store"
 
 [shop_assistant_rimmington]
 id = 531
@@ -11,6 +12,7 @@ categories = ["human"]
 shop = "rimmington_general_store"
 collision = "indoors"
 examine = "Works on commission."
+area = "rimmington_general_store"
 
 [wise_old_man_rimmington]
 id = 11597
@@ -170,12 +172,14 @@ id = 585
 shop = "rommiks_crafty_supplies"
 collision = "indoors"
 examine = "If Crafting's your thing, he's your man."
+area = "rommiks_crafty_supplies"
 
 [brian_rimmington]
 id = 1860
 shop = "brians_archery_supplies"
 collision = "indoors"
 examine = "He sells ranged equipment."
+area = "brians_archery_supplies"
 
 [anja]
 id = 2684

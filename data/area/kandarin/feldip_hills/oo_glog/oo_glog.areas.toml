@@ -1,0 +1,14 @@
+
+[oo_glog_bank]
+# nav-editor: named area only
+x = [2556, 2558]
+y = [2837, 2840]
+level = 0
+tags = ["bank"]
+
+[oo_glog_small_obelisk]
+# nav-editor: named area only
+x = [2498, 2500]
+y = [2831, 2833]
+level = 0
+tags = ["small_obelisk"]

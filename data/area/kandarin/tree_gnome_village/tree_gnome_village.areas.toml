@@ -1,0 +1,23 @@
+
+[tree_gnome_village_maze_outside]
+# nav-editor: named area only
+x = [2501, 2505]
+y = [3190, 3193]
+level = 0
+
+[tree_gnome_village]
+# nav-editor: navigation region
+x = [2496, 2558]
+y = [3136, 3200]
+
+[tree_gnome_village_fruit_tree_patch]
+# nav-editor: named area only
+x = [2488, 2491]
+y = [3178, 3181]
+level = 0
+
+[tree_gnome_village_maze_inside]
+# nav-editor: named area only
+x = [2514, 2517]
+y = [3158, 3159]
+level = 0

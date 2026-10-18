@@ -14,6 +14,7 @@ id = 6077
 id = 836
 shop = "shantay_pass_shop"
 examine = "He's in control of the Shantay Pass."
+area = "shantay_pass_shop"
 
 [ugthanki]
 id = 840

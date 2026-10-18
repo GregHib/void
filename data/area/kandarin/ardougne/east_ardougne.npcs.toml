@@ -125,6 +125,7 @@ id = 2306
 shop = "richards_farming_shop"
 collision = "indoors"
 examine = "He sells Farming equipment."
+area = "richards_farming_shop"
 
 [kragen_ardougne]
 id = 2325
@@ -284,6 +285,7 @@ id = 5445
 id = 569
 shop = "ardougne_silver_stall"
 examine = "Looks fairly well fed."
+area = "ardougne_teleport"
 
 [gem_merchant_ardougne]
 id = 570
@@ -298,11 +300,13 @@ examine = "So where are the butcher and the candlestick-maker?"
 id = 572
 shop = "ardougne_spice_stall"
 examine = "Has a very exotic aroma about him."
+area = "ardougne_teleport"
 
 [fur_trader_ardougne]
 id = 573
 shop = "ardougne_fur_stall"
 examine = "Knows how to keep warm in the winter."
+area = "ardougne_teleport"
 
 [silk_merchant_ardougne]
 id = 574
@@ -319,6 +323,7 @@ id = 590
 shop = "aemads_adventuring_supplies"
 collision = "indoors"
 examine = "He runs the adventurers' shop."
+area = "aemads_adventuring_supplies"
 
 [kortan]
 id = 591

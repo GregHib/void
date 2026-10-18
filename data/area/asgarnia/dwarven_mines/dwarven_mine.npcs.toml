@@ -46,6 +46,7 @@ examine = "Keeps the line clear of traffic."
 id = 4563
 shop = "crossbow_shop_dwarven_mine"
 examine = "A seller of crossbow parts."
+area = "crossbow_shop_dwarven_mine"
 
 [drogo_dwarf]
 id = 579
@@ -56,11 +57,13 @@ examine = "He runs a Mining store."
 id = 582
 shop = "dwarven_shopping_store"
 examine = "I wonder if he wants to buy my junk?"
+area = "dwarven_shopping_store"
 
 [nurmof]
 id = 594
 shop = "nurmofs_pickaxe_shop"
 examine = "He runs a pickaxe store."
+area = "pickaxe_is_mine_iron"
 
 [boot_dwarven_mine]
 id = 665

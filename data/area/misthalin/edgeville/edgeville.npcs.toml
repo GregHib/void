@@ -4,6 +4,7 @@ categories = ["human"]
 shop = "edgeville_general_store"
 collision = "indoors"
 examine = "If he doesn't have it, he can't sell it."
+area = "edgeville_general_store"
 
 [shop_assistant_edgeville]
 id = 529
@@ -11,6 +12,7 @@ categories = ["human"]
 shop = "edgeville_general_store"
 collision = "indoors"
 examine = "She's here on work experience."
+area = "edgeville_general_store"
 
 [hari]
 id = 3330

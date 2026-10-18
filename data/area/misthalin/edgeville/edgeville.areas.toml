@@ -49,6 +49,81 @@ level = 0
 
 [edgeville_dungeon_brass_key]
 # nav-editor: named area only
-x = [3130, 3132]
-y = [9862, 9862]
+x = [3127, 3132]
+y = [9861, 9863]
 level = 0
+
+[edgeville_yews]
+# nav-editor: named area only
+x = [3085, 3087]
+y = [3468, 3482]
+level = 0
+tags = ["woodcutting_yews"]
+bot_capacity = 3
+
+[edgeville_general_store]
+# nav-editor: named area only
+x = [3077, 3083]
+y = [3507, 3511]
+level = 0
+
+[edgeville_dungeon_hill_giants]
+# nav-editor: named area only
+x = [3123, 3124, 3124, 3125, 3125, 3122, 3122, 3119, 3116, 3114, 3110, 3110, 3106, 3105, 3101, 3100, 3098, 3097, 3097, 3095, 3095, 3097, 3098, 3101, 3104, 3106, 3107, 3108, 3109, 3110, 3123]
+y = [9850, 9849, 9847, 9846, 9844, 9841, 9834, 9831, 9831, 9828, 9828, 9824, 9824, 9826, 9826, 9827, 9827, 9828, 9829, 9830, 9834, 9836, 9838, 9839, 9839, 9842, 9843, 9847, 9850, 9851, 9851]
+level = 0
+tags = ["combat_hill_giants"]
+bot_capacity = 5
+
+[edgeville_dungeon_chaos_druids]
+# nav-editor: named area only
+x = [3104, 3111]
+y = [9934, 9944]
+level = 0
+tags = ["combat_chaos_druids"]
+bot_capacity = 3
+
+[edgeville_dungeon_red_spiders]
+# nav-editor: named area only
+x = [3115, 3129]
+y = [9948, 9960]
+level = 0
+tags = ["collect_red_spider_eggs", "combat_red_spiders"]
+bot_capacity = 4
+
+[edgeville_dungeon_earth_warriors]
+# nav-editor: named area only
+x = [3115, 3127]
+y = [9970, 10000]
+level = 0
+tags = ["combat_earth_warriors"]
+bot_capacity = 3
+
+[edgeville_dungeon_black_demons]
+# nav-editor: named area only
+x = [3082, 3096]
+y = [9951, 9961]
+level = 0
+tags = ["combat_black_demons"]
+
+[obelisk_of_earth]
+# nav-editor: named area only
+x = [3086, 3088]
+y = [9933, 9935]
+level = 0
+
+[edgeville_men]
+# nav-editor: named area only
+x = [3092, 3099]
+y = [3508, 3513]
+level = 0
+tags = ["combat_man", "thieving_man"]
+bot_capacity = 2
+
+[edgeville_furnace]
+# nav-editor: named area only
+x = [3106, 3110]
+y = [3498, 3502]
+level = 0
+bot_capacity = 8
+tags = ["smithing_furnace"]

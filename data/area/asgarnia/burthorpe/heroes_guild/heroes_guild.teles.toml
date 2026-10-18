@@ -4,11 +4,6 @@ option = "Climb-up"
 tile = { x = 2884, y = 9797 }
 delta = { y = -6398 }
 
-[1757]
-option = "Climb-up"
-tile = { x = 2892, y = 9907 }
-delta = { y = -6400 }
-
 [24717]
 option = "Climb-up"
 tile = { x = 2907, y = 9876 }
@@ -54,7 +49,7 @@ option = "Climb-down"
 tile = { x = 2896, y = 3513, level = 1 }
 to = { x = 2896, y = 3512 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2892, y = 3507 }
 delta = { y = 6400 }

@@ -1,0 +1,83 @@
+[fairy_ring_ajr]
+# nav-editor: named area only
+x = [2779, 2781]
+y = [3612, 3614]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_aks]
+# nav-editor: named area only
+x = [2570, 2572]
+y = [2955, 2957]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_bjq]
+# nav-editor: named area only
+x = [1736, 1738]
+y = [5341, 5343]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_bkp]
+# nav-editor: named area only
+x = [2384, 2386]
+y = [3034, 3036]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_blr]
+# nav-editor: named area only
+x = [2739, 2741]
+y = [3350, 3352]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_ciq]
+# nav-editor: named area only
+x = [2527, 2529]
+y = [3126, 3128]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_ckr]
+# nav-editor: named area only
+x = [2800, 2802]
+y = [3002, 3004]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_cls]
+# nav-editor: named area only
+x = [2681, 2683]
+y = [3080, 3082]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_djp]
+# nav-editor: named area only
+x = [2657, 2659]
+y = [3229, 3231]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_dks]
+# nav-editor: named area only
+x = [2743, 2745]
+y = [3718, 3720]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_aiq]
+# nav-editor: named area only
+x = [2995, 2997]
+y = [3113, 3115]
+level = 0
+tags = ["fairy_ring"]
+
+[fairy_ring_dkr]
+# nav-editor: named area only
+x = [3128, 3130]
+y = [3495, 3497]
+level = 0
+tags = ["fairy_ring"]

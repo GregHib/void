@@ -44,12 +44,12 @@ option = "Climb-down"
 tile = { x = 2932, y = 3240 }
 delta = { y = 6400 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2924, y = 3250 }
 delta = { y = 6400 }
 
-[1754]
+[ladder_cellar]
 option = "Climb-down"
 tile = { x = 2939, y = 3257 }
 delta = { y = 6400 }

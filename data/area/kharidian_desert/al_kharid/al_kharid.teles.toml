@@ -1,5 +1,5 @@
 # 13105 al_kharid
-[24366]
+[fai_varrock_manhole_ladder]
 option = "Climb-up"
 tile = { x = 3237, y = 9858 }
 to = { x = 3238, y = 3458 }

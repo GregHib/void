@@ -25,3 +25,18 @@ y = [3256, 3261]
 x = [3026, 3028]
 y = [3216, 3219]
 level = 0
+
+[port_sarim_spirit_tree_patch]
+# nav-editor: named area only
+x = [3058, 3062]
+y = [3256, 3260]
+level = 0
+tags = ["farming_spirit_tree_patch"]
+bot_capacity = 2
+
+[port_sarim_prayer_altar]
+# nav-editor: named area only
+x = [2995, 2996]
+y = [3177, 3178]
+level = 0
+tags = ["prayer_altar"]

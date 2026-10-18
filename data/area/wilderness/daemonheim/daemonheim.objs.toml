@@ -26,3 +26,19 @@ examine = "It goes down to the floor below."
 [tent_daemonheim]
 id = 48404
 examine = "A tent."
+
+[rand_sr_above_ground_dungeon_entrance_alkharid_mine]
+id = 52860
+examine = "I wonder where this leads."
+
+[rand_sr_above_ground_dungeon_entrance_daemonheim1]
+id = 52861
+examine = "I wonder where this leads."
+
+[rand_sr_above_ground_dungeon_entrance_daemonheim2]
+id = 52862
+examine = "I wonder where this leads."
+
+[rand_sr_below_ground_dungeon_entrance_alkharidmine]
+id = 52872
+examine = "Looks like the way out of this place."

@@ -8,6 +8,7 @@ hint = "in a town of druids."
 x = [2933, 2939]
 y = [3435, 3441]
 level = 0
+tags = ["farming_tree_patch"]
 
 [taverly_herblore_shop]
 # nav-editor: named area only
@@ -31,4 +32,10 @@ level = 0
 # nav-editor: named area only
 x = [2883, 2886]
 y = [3448, 3451]
+level = 0
+
+[bettamaxs_shop]
+# nav-editor: named area only
+x = [2886, 2891]
+y = [3440, 3446]
 level = 0

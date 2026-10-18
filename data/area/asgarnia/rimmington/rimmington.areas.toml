@@ -1,0 +1,80 @@
+
+[rommiks_crafty_supplies]
+# nav-editor: named area only
+x = [2947, 2951]
+y = [3202, 3207]
+level = 0
+
+[rimmington_general_store]
+# nav-editor: named area only
+x = [2947, 2950]
+y = [3212, 3217]
+level = 0
+
+[rimmington_house_portal]
+# nav-editor: named area only
+x = [2953, 2954]
+y = [3223, 3225]
+level = 0
+tags = ["house_portal"]
+
+[rimmington_mine_iron_west]
+# nav-editor: named area only
+x = [2968, 2969]
+y = [3239, 3242]
+level = 0
+tags = ["mining_iron"]
+bot_capacity = 1
+
+[rimmington_mine_iron_southeast]
+# nav-editor: named area only
+x = [2981, 2982]
+y = [3233, 3234]
+level = 0
+tags = ["mining_iron"]
+bot_capacity = 1
+
+[rimmington_mine_clay_east]
+# nav-editor: named area only
+x = [2986, 2987]
+y = [3239, 3240]
+level = 0
+tags = ["mining_clay"]
+bot_capacity = 1
+
+[rimmington_mine_gold]
+# nav-editor: named area only
+x = [2975, 2977]
+y = [3233, 3234]
+level = 0
+tags = ["mining_gold"]
+bot_capacity = 1
+
+[rimmington_mine_silver]
+# nav-editor: named area only
+x = [2984, 2986]
+y = [3235, 3237]
+level = 0
+tags = ["mining_silver"]
+bot_capacity = 1
+
+[rimmington_mine_copper]
+# nav-editor: named area only
+x = [2975, 2980]
+y = [3245, 3249]
+level = 0
+tags = ["mining_copper"]
+bot_capacity = 2
+
+[rimmington_bush_patch]
+# nav-editor: named area only
+x = [2939, 2942]
+y = [3220, 3223]
+level = 0
+tags = ["farming_bush_patch"]
+
+[brians_archery_supplies]
+# nav-editor: named area only
+x = [2954, 2958]
+y = [3202, 3205]
+level = 0

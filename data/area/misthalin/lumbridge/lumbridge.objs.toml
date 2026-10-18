@@ -2,6 +2,10 @@
 id = 114
 examine = "Ideal for cooking on."
 
+[lumbridge_sc_fencejump]
+id = 9300
+examine = "There's a gap in the fence."
+
 [table_lumbridge_kitchen]
 id = 36821
 examine = "Generally used for putting things on."

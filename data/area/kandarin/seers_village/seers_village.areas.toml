@@ -21,6 +21,7 @@ x = [2709, 2715]
 y = [3469, 3473]
 level = 1
 bot_capacity = 2
+tags = ["crafting_spinning_wheel"]
 
 [sorcerers_tower_magic_trees]
 x = [2696, 2709]
@@ -31,3 +32,32 @@ bot_capacity = 4
 x = [2719, 2735]
 y = [3494, 3505]
 bot_capacity = 4
+
+[seers_village_yews]
+# nav-editor: named area only
+x = [2753, 2767]
+y = [3427, 3436]
+level = 0
+
+[seers_village_church_yews]
+# nav-editor: named area only
+x = [2704, 2717]
+y = [3459, 3466]
+level = 0
+tags = ["woodcutting_yews"]
+bot_capacity = 2
+
+[seers_village_prayer_altar]
+# nav-editor: named area only
+x = [2694, 2695]
+y = [3462, 3463]
+level = 0
+tags = ["prayer_altar"]
+
+[seers_village_anvils]
+# nav-editor: named area only
+x = [2712, 2714]
+y = [3492, 3495]
+level = 0
+tags = ["smithing_anvils"]
+bot_capacity = 2

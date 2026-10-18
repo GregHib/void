@@ -65,3 +65,27 @@ produces = [
     { skill = "smithing" },
     { item = "$item" },
 ]
+
+[varrock_smith_bar]
+requires = [
+    { owns = { id = "$bar", min = 50 } },
+    { skill = { id = "smithing", min = "$level_min", max = "$level_max" } },
+]
+setup = [
+    {
+        inventory = [
+            { id = "hammer", min = 1 },
+            { id = "$bar", min = 27 }
+        ]
+    },
+    { area = { id = "varrock_anvils_west" } },
+]
+actions = [
+    { item_on_object = { id = "$bar", object = "anvil", delay = 2, success = { interface_open = { id = "smithing" } } } },
+    { interface = { option = "Make All $name", id = "smithing:${type}_all", success = { interface_closed = { id = "smithing" } } } },
+    { restart = { wait_if = { queue = { id = "smithing" } }, success = { inventory = { id = "$bar", max = "$left_over_bars" } } } }
+]
+produces = [
+    { skill = "smithing" },
+    { item = "$item" },
+]

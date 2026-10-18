@@ -145,7 +145,9 @@ object DynamicResolvers {
     }
 
     private fun resolveEquipment(player: Player, equipment: Map<EquipSlot, BotItem>): Resolver? {
-        val equipment = equipment.toMutableMap()
+        val equipment = equipment.filter { (slot, entry) ->
+            !BotEquipmentSetup(mapOf(slot to entry)).check(player)
+        }.toMutableMap()
         var resolver = unequipItems(player, equipment)
         if (resolver != null) {
             return resolver

@@ -4,6 +4,7 @@ categories = ["human"]
 shop = "falador_general_store"
 collision = "indoors"
 examine = "A product of a consumerist society."
+area = "falador_general_store"
 
 [shop_assistant_falador]
 id = 527
@@ -11,6 +12,7 @@ categories = ["human"]
 shop = "falador_general_store"
 collision = "indoors"
 examine = "Likes you more, the more you spend."
+area = "falador_general_store"
 
 [wyson_the_gardener]
 id = 36
@@ -472,12 +474,14 @@ id = 577
 shop = "cassies_shield_shop"
 collision = "indoors"
 examine = "Nice eyes."
+area = "cassies_shield_shop"
 
 [flynn]
 id = 580
 shop = "flynns_mace_market"
 collision = "indoors"
 examine = "The mace salesman."
+area = "flynns_mace_market"
 
 [herquin]
 id = 584
@@ -624,6 +628,7 @@ id = 581
 shop = "waynes_chains_chainmail_specialist"
 collision = "indoors"
 examine = "An armourer."
+area = "waynes_chains_chainmail_specialist"
 
 [estate_agent]
 id = 4247

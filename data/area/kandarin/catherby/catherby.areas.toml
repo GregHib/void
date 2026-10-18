@@ -42,10 +42,10 @@ x = [2858, 2861]
 y = [3431, 3434]
 level = 0
 
-[catherby_fishing_store]
+[harrys_fishing_shop]
 # nav-editor: named area only
-x = [2832, 2835]
-y = [3440, 3443]
+x = [2830, 2837]
+y = [3440, 3446]
 level = 0
 
 [catherby_farming_patch]
@@ -53,9 +53,34 @@ level = 0
 x = [2806, 2814]
 y = [3461, 3466]
 level = 0
+tags = ["farming_allotment_patch"]
 
-[catherby_farming_shop]
+[vanessas_farming_shop]
 # nav-editor: named area only
 x = [2818, 2821]
 y = [3460, 3462]
+level = 0
+
+[hicktons_archery_emporium]
+# nav-editor: named area only
+x = [2821, 2825]
+y = [3441, 3445]
+level = 0
+
+[candle_shop]
+# nav-editor: named area only
+x = [2798, 2800]
+y = [3437, 3440]
+level = 0
+
+[arheins_store]
+# nav-editor: named area only
+x = [2803, 2806]
+y = [3429, 3432]
+level = 0
+
+[trader_stans_catherby]
+# nav-editor: named area only
+x = [2791, 2797]
+y = [3413, 3416]
 level = 0

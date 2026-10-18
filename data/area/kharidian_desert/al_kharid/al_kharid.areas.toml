@@ -11,6 +11,7 @@ y = [3187, 3192]
 x = [3271, 3275]
 y = [3179, 3183]
 
+tags = ["cooking_range"]
 [al_kharid_multi_area]
 x = [3264, 3327]
 y = [3136, 3199]
@@ -50,3 +51,73 @@ y = [3135, 3166]
 x = [3288, 3308]
 y = [3155, 3180]
 tags = ["no_cannon"]
+
+[mysterious_ruins_air]
+# nav-editor: named area only
+x = [3311, 3315]
+y = [3253, 3257]
+level = 0
+
+[al_kharid_furnace]
+# nav-editor: named area only
+x = [3272, 3279]
+y = [3185, 3187]
+level = 0
+tags = ["smithing_furnace"]
+
+[al_kharid_tanner]
+# nav-editor: named area only
+x = [3271, 3276]
+y = [3190, 3193]
+level = 0
+tags = ["tanner"]
+
+[alis_discount_wares]
+# nav-editor: named area only
+x = [3301, 3305]
+y = [3209, 3214]
+level = 0
+
+[al_kharid_gnome_glider]
+# nav-editor: named area only
+x = [3279, 3284]
+y = [3211, 3215]
+level = 0
+tags = ["gnome_glider"]
+
+[dommiks_crafting_store]
+# nav-editor: named area only
+x = [3318, 3322]
+y = [3192, 3196]
+level = 0
+
+[al_kharid_general_store]
+# nav-editor: named area only
+x = [3313, 3317]
+y = [3180, 3185]
+level = 0
+
+[louies_armoured_legs_bazaar]
+# nav-editor: named area only
+x = [3314, 3317]
+y = [3174, 3176]
+level = 0
+
+[ranaeils_super_skirt_store]
+# nav-editor: named area only
+x = [3314, 3317]
+y = [3161, 3165]
+level = 0
+
+[al_kharid_cactus_patch]
+# nav-editor: named area only
+x = [3314, 3317]
+y = [3201, 3204]
+level = 0
+tags = ["farming_cactus_patch"]
+
+[shantay_pass_shop]
+# nav-editor: named area only
+x = [3302, 3306]
+y = [3118, 3123]
+level = 0

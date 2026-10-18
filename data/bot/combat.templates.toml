@@ -113,3 +113,10 @@ produces = [
     { item = "coins" },
     { skill = "$skill" },
 ]
+
+[kill_hill_giants_edgeville_dungeon_template]
+requires = [{ combat_level = { min = 30 } }, { skill = { id = "attack", min = 50 } }, { skill = { id = "defence", min = 40 } }, { skill = { id = "strength", min = 50 } }, { skill = { id = "constitution", min = 35 } }]
+setup = [{ inventory = [{ id = "empty", min = 27 }, { id = "brass_key" }] }, { equipment = { legs = { id = "steel_platelegs,mithril_platelegs" }, shield = { id = "steel_kiteshield,mithril_kiteshield" }, chest = { id = "steel_platebody,mithril_platebody" }, hat = { id = "steel_full_helm,mithril_full_helm" }, weapon = { id = "adamant_scimitar,mithril_scimitar" } } }, { area = { id = "edgeville_dungeon_hill_giants" } }]
+actions = [{ interface = { option = "Select", id = "combat_styles:${style}" } }, { npc = { option = "Attack", id = "hill_giant*", radius = 15, delay = 5, success = { inventory = { id = "empty", max = 0 } } } }]
+produces = [{ skill = "${skill}" }, { item = "big_bones" }]
+reactive = [{ eat = { heal_percent = 50 } }]

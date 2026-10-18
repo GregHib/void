@@ -54,9 +54,9 @@ data class BotInteractFloorItem(
         if (index == -1) {
             return null
         }
-        val valid = world.execute(player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index + 1))
+        val valid = world.execute(player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index))
         if (!valid) {
-            return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item ${index + 1}"))
+            return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item $index"))
         }
         return BehaviourState.Running
     }

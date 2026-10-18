@@ -5,3 +5,7 @@ examine = "It's the floor..."
 [roguesden_trap_floor_explosion]
 id = 7230
 examine = "It's the floor..."
+
+[roguesden_passage_to_pub]
+id = 7258
+examine = "An opening into the crumbling wall."

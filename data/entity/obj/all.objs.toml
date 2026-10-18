@@ -738,6 +738,10 @@ examine = "A ruined old pillar."
 id = 18258
 examine = "A ruined old pillar."
 
+[atvar_cookguild_bankbooth]
+id = 19230
+examine = "Used to access your bank account."
+
 [fern_6]
 id = 19839
 examine = "The almost fractal style of these plants is fascinating."

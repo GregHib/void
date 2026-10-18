@@ -18,11 +18,13 @@ bot_capacity = 6
 x = [3281, 3290]
 y = [3360, 3371]
 bot_capacity = 10
+tags = ["mining_tin", "mining_iron", "mining_copper"]
 
 [varrock_south_west_mine]
 x = [3171, 3184]
 y = [3364, 3380]
 bot_capacity = 11
+tags = ["mining_iron", "mining_tin", "mining_copper", "mining_silver", "mining_clay"]
 
 [varrock_east_bank]
 x = [3250, 3257]
@@ -38,6 +40,7 @@ tags = ["bank"]
 x = [3201, 3225]
 y = [3499, 3508]
 bot_capacity = 3
+tags = ["woodcutting_yews"]
 
 [lumber_yard_teleport]
 x = [3300, 3302]
@@ -67,3 +70,122 @@ hint = "in the north of the kingdom of Misthalin."
 [varrock_sword_shop]
 x = [3202, 3209]
 y = [3395, 3403]
+
+[champions_guild_bush_patch]
+# nav-editor: named area only
+x = [3180, 3183]
+y = [3356, 3359]
+level = 0
+tags = ["farming_bush_patch"]
+
+[varrock_anvils_west]
+# nav-editor: named area only
+x = [3185, 3190]
+y = [3423, 3427]
+level = 0
+tags = ["smithing_anvils"]
+
+[varrock_west_oaks]
+# nav-editor: named area only
+x = [3162, 3168]
+y = [3412, 3421]
+level = 0
+tags = ["woodcutting_oaks"]
+
+[varrock_tree_patch]
+# nav-editor: named area only
+x = [3227, 3231]
+y = [3457, 3461]
+level = 0
+tags = ["farming_tree_patch"]
+
+[varrock_church_altar]
+# nav-editor: named area only
+x = [3253, 3254]
+y = [3485, 3486]
+level = 0
+tags = ["prayer_altar"]
+
+[varrock_chaos_altar]
+# nav-editor: named area only
+x = [3259, 3260]
+y = [3381, 3382]
+level = 0
+tags = ["prayer_altar"]
+
+[varrock_east_oaks]
+# nav-editor: named area only
+x = [3279, 3283]
+y = [3413, 3431]
+level = 0
+tags = ["woodcutting_oaks"]
+
+[varrock_south_oaks]
+# nav-editor: named area only
+x = [3200, 3214]
+y = [3358, 3371]
+level = 0
+tags = ["woodcutting_oaks"]
+
+[varrock_east_anvils]
+# nav-editor: named area only
+x = [3227, 3232]
+y = [3433, 3441]
+level = 0
+
+[zaffs_superior_spellcasting]
+# nav-editor: named area only
+x = [3201, 3204]
+y = [3431, 3437]
+level = 0
+
+[thessalias_fine_clothes]
+# nav-editor: named area only
+x = [3204, 3208]
+y = [3414, 3418]
+level = 0
+
+[cooking_guild_bank]
+# nav-editor: named area only
+x = [3147, 3148]
+y = [3450, 3451]
+level = 0
+tags = ["bank"]
+
+[cooking_guild]
+# nav-editor: named area only
+x = [3146, 3141, 3137, 3137, 3140, 3147, 3149, 3149]
+y = [3444, 3444, 3448, 3451, 3454, 3454, 3452, 3447]
+bot_capacity = 4
+
+[pie_shop]
+# nav-editor: named area only
+x = [3139, 3143]
+y = [3447, 3451]
+level = 0
+
+[cooking_guild_bank_range]
+# nav-editor: named area only
+x = [3145, 3146]
+y = [3452, 3453]
+level = 0
+tags = ["cooking_range"]
+
+[fancy_clothes_store]
+# nav-editor: named area only
+x = [3278, 3283]
+y = [3395, 3400]
+level = 0
+
+[champions_guild_upstairs]
+# nav-editor: named area only
+x = [3188, 3194]
+y = [3350, 3362]
+level = 1
+
+[champions_guild_chickens]
+# nav-editor: named area only
+x = [3195, 3198]
+y = [3352, 3359]
+level = 0
+tags = ["combat_chickens"]

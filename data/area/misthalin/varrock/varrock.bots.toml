@@ -44,3 +44,102 @@ fields = { location = "varrock_south_west_mine" }
 [varrock_palace_yew_trees]
 template = "yew_tree_template"
 fields = { location = "varrock_palace_yew_trees" }
+
+[varrock_west_smith_bronze_dagger]
+template = "varrock_smith_bar"
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 1,
+    level_max = 14,
+    name = "Daggers",
+    type = "dagger",
+    item = "bronze_dagger"
+}
+
+[varrock_west_smith_iron_dagger]
+template = "varrock_smith_bar"
+fields = {
+    bar = "iron_bar",
+    left_over_bars = 0,
+    level_min = 15,
+    level_max = 29,
+    name = "Daggers",
+    type = "dagger",
+    item = "iron_dagger"
+}
+
+[varrock_west_smith_steel_dagger]
+template = "varrock_smith_bar"
+fields = {
+    bar = "steel_bar",
+    left_over_bars = 0,
+    level_min = 30,
+    level_max = 49,
+    name = "Daggers",
+    type = "dagger",
+    item = "steel_dagger"
+}
+
+[varrock_west_oaks]
+template = "oak_tree_template"
+fields = { location = "varrock_west_oaks" }
+
+[varrock_west_smith_bronze_platebodies]
+template = "varrock_smith_bar"
+fields = {
+    bar = "bronze_bar",
+    item = "bronze_platebody",
+    left_over_bars = 4,
+    level_max = 33,
+    level_min = 18,
+    name = "Platebodies",
+    type = "platebody"
+}
+
+[varrock_west_smith_iron_platebodies]
+template = "varrock_smith_bar"
+fields = {
+    bar = "iron_bar",
+    item = "iron_platebody",
+    left_over_bars = 4,
+    level_max = 48,
+    level_min = 33,
+    name = "Platebodies",
+    type = "platebody"
+}
+
+[varrock_west_smith_steel_platebodies]
+template = "varrock_smith_bar"
+fields = {
+    bar = "steel_bar",
+    item = "steel_platebody",
+    left_over_bars = 4,
+    level_max = 99,
+    level_min = 48,
+    name = "Platebodies",
+    type = "platebody"
+}
+
+
+[kill_hill_giants_edgeville_dungeon_defense]
+template = "kill_hill_giants_edgeville_dungeon_template"
+fields = {
+    skill = "defence",
+    style = "style4"
+}
+
+[kill_hill_giants_edgeville_dungeon_strength]
+template = "kill_hill_giants_edgeville_dungeon_template"
+fields = {
+    skill = "strength",
+    style = "style2"
+}
+
+[kill_hill_giants_edgeville_dungeon_attack]
+timeout = 100
+template = "kill_hill_giants_edgeville_dungeon_template"
+fields = {
+    style = "style1",
+    skill = "attack"
+}

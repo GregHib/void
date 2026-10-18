@@ -8,6 +8,7 @@ tags = ["multi_combat"]
 x = [3104, 3110]
 y = [3424, 3434]
 bot_capacity = 2
+tags = ["fishing_fly"]
 
 [barbarian_village_longhall]
 # nav-editor: named area only
@@ -16,8 +17,22 @@ y = [3436, 3445]
 level = 0
 bot_capacity = 6
 
-[barbarian_village_helmet_shop]
+[peksas_helmet_shop]
 # nav-editor: named area only
 x = [3074, 3076]
 y = [3427, 3430]
 level = 0
+
+[barbarian_village_mine]
+# nav-editor: named area only
+x = [3078, 3084]
+y = [3418, 3423]
+level = 0
+tags = ["mining_coal", "mining_tin"]
+
+[barbarian_village_pottery_oven]
+# nav-editor: named area only
+x = [3082, 3087]
+y = [3407, 3411]
+level = 0
+tags = ["crafting_pottery_oven", "crafting_potters_wheel"]

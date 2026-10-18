@@ -1,3 +1,10 @@
 [living_rock_caverns]
 x = [3584, 3710]
 y = [5056, 5182]
+
+[living_rock_caverns_bank_deposit_box]
+# nav-editor: named area only
+x = [3652, 3654]
+y = [5113, 5115]
+level = 0
+tags = ["bank_deposit_box"]

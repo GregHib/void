@@ -1,0 +1,7 @@
+[pick_up_brass_key]
+weight = 25
+timeout = 100
+setup = [{ inventory = { id = "empty", min = 1 } }, { area = { id = "edgeville_dungeon_brass_key" } }]
+actions = [{ floor_item = { option = "Take", id = "brass_key", radius = 10, delay = 5, success = { inventory = { id = "brass_key", min = 1 } } } }]
+produces = [{ item = "brass_key" }]
+requires = [{ inventory = { id = "empty", min = 1 } }]

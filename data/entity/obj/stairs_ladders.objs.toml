@@ -1,3 +1,31 @@
+[stairs]
+id = 1722
+examine = "I can climb these stairs."
+
+[stairstop]
+id = 1723
+examine = "They go down."
+
+[yanillestairsdown]
+id = 1728
+examine = "I can climb down this."
+
+[yanillestairsup]
+id = 1729
+examine = "I can climb this."
+
+[spiralstairs_wooden]
+id = 1742
+examine = "I can climb up these stairs."
+
+[spiralstairstop_wooden]
+id = 1744
+examine = "I can climb down these stairs."
+
+[ladder_cellar]
+id = 1754
+examine = "I can climb down this."
+
 [spooky_stairs]
 id = 2522
 examine = "It's a flight of stairs."
@@ -30,12 +58,48 @@ examine = "They go up."
 id = 4620
 examine = "They go down."
 
+[fai_varrock_mill_spiralstairs]
+id = 24073
+examine = "I can climb these stairs."
+
+[fai_varrock_mill_spiralstairs_middle]
+id = 24074
+examine = "I can climb these stairs."
+
+[fai_varrock_stairs_taller]
+id = 24357
+examine = "I can climb up these stairs."
+
+[fai_varrock_stairs_top]
+id = 24359
+examine = "They go down."
+
+[fai_varrock_manhole_ladder]
+id = 24366
+examine = "I can climb up this."
+
+[di1_ladder_outside_to_underground]
+id = 29358
+examine = "I can climb down this."
+
 [fist_of_guthix_stairs]
 id = 30203
 examine = "Warning: leads into the wilderness."
 
 [wizards_tower_staircase]
 id = 12537
+examine = "I can climb these stairs."
+
+[icemt_mine_ladder_top]
+id = 30942
+examine = "I can climb this."
+
+[di2_stairs]
+id = 32270
+examine = "I can climb these stairs."
+
+[di2_stairs_above_ground]
+id = 32271
 examine = "I can climb these stairs."
 
 [lumbridge_castle_staircase_north]
@@ -61,6 +125,18 @@ examine = "I can climb up or down these stairs."
 [lumbridge_staircase]
 id = 36773
 examine = "I can climb up these stairs."
+
+[fai_lumbridge_windmill_ladder_up]
+id = 36795
+examine = "I can climb up this."
+
+[fai_lumbridge_windmill_ladder_updown]
+id = 36796
+examine = "I can climb this."
+
+[fai_lumbridge_windmill_ladder_down]
+id = 36797
+examine = "I can climb down this."
 
 [chaos_altar_ladder_up]
 id = 38221

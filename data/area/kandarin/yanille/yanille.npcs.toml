@@ -56,11 +56,13 @@ examine = "A visiting gnome mage."
 id = 461
 shop = "magic_guild_store_runes_and_staves"
 examine = "A Supplier of Magical items."
+area = "magic_guild_shop"
 
 [aleck]
 id = 5110
 shop = "alecks_hunter_emporium"
 examine = "He acts as if he owns the place."
+area = "yanille_hunter_shop"
 
 [leon]
 id = 5111
@@ -82,10 +84,13 @@ examine = "A wizard."
 id = 593
 shop = "frenitas_cookery_shop"
 examine = "A recipe for success- in Cooking."
+area = "frenitas_cookery_shop"
 
 [pet_shop_owner_yanille]
 id = 6892
 examine = "The lady of the pet shop."
+shop = "pet_shop"
+area = "yanille_pet_shop"
 
 [dalmatian]
 id = 6896

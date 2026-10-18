@@ -225,27 +225,29 @@ id = 558
 shop = "gerrants_fishy_business"
 collision = "indoors"
 examine = "A Fishing expert."
+area = "gerrants_fish_shop"
 
 [gerrant_1]
 id = 11699
+clone = "gerrant"
 
 [gerrant_2]
 id = 12261
-shop = "gerrants_fishy_business"
-collision = "indoors"
-examine = "A Fishing expert."
+clone = "gerrant"
 
 [brian_port_sarim]
 id = 559
 shop = "brians_battleaxe_bazaar"
 collision = "indoors"
 examine = "An axe expert."
+area = "brians_battleaxe_shop"
 
 [betty_port_sarim]
 id = 583
 shop = "bettys_magic_emporium"
 collision = "indoors"
 examine = "She seems like a nice sort of person."
+area = "betties_magic_shop"
 
 [ned_port_sarim]
 id = 6082

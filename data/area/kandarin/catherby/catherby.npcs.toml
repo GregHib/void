@@ -4,6 +4,7 @@ categories = ["human"]
 shop = "harrys_fishing_shop"
 collision = "indoors"
 examine = "Something fishy about him."
+area = "harrys_fishing_shop"
 
 [candle_maker]
 id = 562
@@ -11,12 +12,14 @@ categories = ["human"]
 collision = "indoors"
 shop = "candle_shop"
 examine = "HHas an odd smell about him."
+area = "candle_shop"
 
 [arhein]
 id = 563
 categories = ["human"]
 shop = "arheins_store"
 examine = "He looks fairly well-to-do."
+area = "arheins_store"
 
 [hickton]
 id = 575
@@ -36,6 +39,7 @@ categories = ["human"]
 shop = "vanessas_farming_shop"
 collision = "indoors"
 examine = "She sells farming equipment."
+area = "vanessas_farming_shop"
 
 [ellena]
 id = 2331

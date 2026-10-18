@@ -18,6 +18,7 @@ shop = "thessalias_fine_clothes"
 categories = ["human"]
 collision = "indoors"
 examine = "Interesting assortment of clothes on offer..."
+area = "thessalias_fine_clothes"
 
 [aubury]
 id = 553
@@ -25,6 +26,7 @@ shop = "auburys_rune_shop"
 categories = ["human"]
 collision = "indoors"
 examine = "Runes are his passion."
+area = "aubury_return"
 
 [mage_of_zamorak_normal]
 id = 2261
@@ -231,6 +233,7 @@ examine = "Obviously punches above his weight."
 id = 3205
 shop = "pie_shop"
 examine = "A family baker, from the North."
+area = "pie_shop"
 
 [martina_scorsby]
 id = 3326
@@ -281,17 +284,20 @@ id = 5066
 id = 536
 shop = "valaines_shop_of_champions"
 examine = "A champion saleswoman!"
+area = "champions_guild_upstairs"
 
 [scavvo]
 id = 537
 shop = "scavvos_rune_store"
 examine = "He's got the best armour around."
+area = "champions_guild_upstairs"
 
 [fancy_dress_shop_owner]
 id = 554
 shop = "fancy_clothes_store"
 collision = "indoors"
 examine = "For the interesting clothing items you just can't find elsewhere."
+area = "fancy_clothes_store"
 
 [rat_burgiss]
 id = 5833
@@ -510,12 +516,14 @@ id = 546
 shop = "zaffs_superior_spellcasting"
 collision = "indoors"
 examine = "Sells superior staffs."
+area = "zaffs_superior_spellcasting"
 
 [horvik]
 id = 549
 shop = "horviks_armour_shop"
 collision = "indoors"
 examine = "The man with the armour."
+area = "varrock_east_anvils"
 
 [lowe]
 id = 550
