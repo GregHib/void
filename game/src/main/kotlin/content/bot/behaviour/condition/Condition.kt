@@ -296,11 +296,28 @@ sealed class Condition(val priority: Int) {
 
         private fun parseArea(list: List<Map<String, Any>>): Condition? {
             val map = list.single()
-            if (map.containsKey("id")) {
-                val present = map["present"] as? Boolean ?: true
-                return BotInArea(id = map["id"] as String, present = present)
+            val ids = buildList {
+                val id = map["id"] as? String
+                if (id != null) {
+                    add(id)
+                }
+                addAll(strings(map["ids"]))
             }
-            return null
+            val tags = strings(map["tags"]).toSet()
+            if (ids.isEmpty() && tags.isEmpty()) {
+                return null
+            }
+            val present = map["present"] as? Boolean ?: true
+            return BotInArea(ids = ids, tags = tags, present = present)
+        }
+
+        /**
+         * Accepts a list or comma separated string
+         */
+        private fun strings(value: Any?): List<String> = when (value) {
+            is String -> value.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+            is List<*> -> value.map { it as String }
+            else -> emptyList()
         }
 
         private fun parseCombat(list: List<Map<String, Any>>): Condition? {

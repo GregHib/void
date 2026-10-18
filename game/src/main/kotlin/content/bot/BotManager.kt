@@ -19,9 +19,13 @@ import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import java.util.IdentityHashMap
 import java.util.concurrent.TimeUnit
 import kotlin.collections.filter
 
@@ -49,23 +53,35 @@ class BotManager(
 
     fun load(files: ConfigFiles): BotManager {
         loadBehaviours(files, activities, resolvers)
+        validateAreas()
         reloadGroups()
         return this
+    }
+
+    /**
+     * Check activities with multiple areas or tags only reference areas which exist
+     */
+    internal fun validateAreas() {
+        for (activity in activities.values) {
+            val area = activity.area ?: continue
+            if (area.multiple) {
+                area.validate(activity.id)
+            }
+        }
     }
 
     internal fun reloadGroups() {
         groups.clear()
         // Group activities by requirement types
-        var total = 0
         for (activity in activities.values) {
             for (req in activity.requires) {
                 for (key in req.events()) {
                     groups.getOrPut(key) { mutableListOf() }.add(activity.id)
                 }
             }
-            total += activity.capacity
         }
-        logger.info { "Total bot activity capacity: $total" }
+        val total = Areas.getAll().sumOf { ActivitySlots.capacity(it.name) ?: 0 }
+        logger.info { "Total bot area capacity: $total" }
     }
 
     fun add(bot: Bot) {
@@ -250,18 +266,75 @@ class BotManager(
         }
     }
 
-    private val idle = BotActivity("idle", 2048, timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotWait(TimeUnit.SECONDS.toTicks(30))))
+    private val idle = BotActivity("idle", timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotWait(TimeUnit.SECONDS.toTicks(30))))
 
     private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
-    private fun assign(bot: Bot, activity: BotActivity) {
+    private fun assign(bot: Bot, unbound: BotActivity) {
+        val activity = bind(bot, unbound)
         AuditLog.event(bot, "assigned", activity.id)
         if (bot.player["debug", false]) {
-            logger.info { "Assigned task '${activity.id}' to bot '${bot.player.accountName}'." }
+            logger.info { "Assigned task '${activity.id}' area=${activity.boundArea} to bot '${bot.player.accountName}'." }
         }
         slots.occupy(activity)
         bot.previous = activity
         bot.queue(BehaviourFrame(activity))
+    }
+
+    /**
+     * Limit an activity to one of its areas, picking randomly from those with free slots weighted towards the closest.
+     * Activities already bound (i.e. repeating the previous activity) keep their area.
+     */
+    internal fun bind(bot: Bot, activity: BotActivity): BotActivity {
+        if (activity.boundArea != null) {
+            return activity
+        }
+        val all = activity.area?.areas()
+        if (all.isNullOrEmpty()) {
+            return activity
+        }
+        val free = all.filter { slots.hasFree(it) }
+        val candidates = free.ifEmpty { all }
+        if (candidates.size == 1) {
+            return activity.bind(candidates.first())
+        }
+        val weights = candidates.map { weight(bot, it) }
+        var roll = random.nextInt(weights.sum())
+        for ((index, weight) in weights.withIndex()) {
+            roll -= weight
+            if (roll < 0) {
+                return activity.bind(candidates[index])
+            }
+        }
+        return activity.bind(candidates.last())
+    }
+
+    private val centres = IdentityHashMap<AreaDefinition, Tile?>()
+
+    private fun weight(bot: Bot, area: String): Int {
+        val definition = Areas.getOrNull(area) ?: return 1
+        val centre = centres.getOrPut(definition) { centre(definition) } ?: return 1
+        val distance = bot.tile.distanceTo(centre)
+        if (distance < 0) {
+            return 1 // Different level
+        }
+        val steps = 1 + distance / DISTANCE_FALLOFF
+        return (WEIGHT_SCALE / (steps * steps)).coerceAtLeast(1)
+    }
+
+    private fun centre(definition: AreaDefinition): Tile? {
+        var count = 0
+        var x = 0L
+        var y = 0L
+        var level = 0
+        for (tile in definition.area) {
+            if (count++ == 0) {
+                level = tile.level
+            }
+            x += tile.x
+            y += tile.y
+        }
+        return if (count == 0) null else Tile((x / count).toInt(), (y / count).toInt(), level)
     }
 
     /**
@@ -362,7 +435,9 @@ class BotManager(
         AuditLog.event(bot, "completed", frame.behaviour.id)
         bot.frames.pop()
         if (!bot.noTask()) {
-            bot.frame().blocked.remove(behaviour.id)
+            val parent = bot.frame()
+            parent.blocked.remove(behaviour.id)
+            parent.timeout = 0
         }
         if (behaviour is BotActivity) {
             bot.blocked.remove(behaviour.id)
@@ -448,5 +523,11 @@ class BotManager(
 
     private companion object {
         val PERMANENT_GROUPS = listOf("clock", "tile", "mode", "queue", "timer", "object")
+
+        /**
+         * Distance in tiles per step of falloff in an area's chance of being picked (1/steps²), see [BotManager.bind]
+         */
+        const val DISTANCE_FALLOFF = 50
+        const val WEIGHT_SCALE = 10_000
     }
 }

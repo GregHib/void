@@ -11,6 +11,7 @@ hint = "around a village between a great tower and a vampyre's manor."
 [draynor_willow_trees]
 x = [3083, 3090]
 y = [3227, 3238]
+bot_capacity = 8
 
 [draynor_oak_trees]
 x = [3098, 3103]
@@ -19,10 +20,12 @@ y = [3241, 3253]
 [draynor_west_oak_trees]
 x = [3068, 3072]
 y = [3248, 3260]
+bot_capacity = 3
 
 [draynor_north_trees]
 x = [3075, 3085]
 y = [3265, 3274]
+bot_capacity = 4
 
 [draynor_bank]
 x = [3092, 3095]

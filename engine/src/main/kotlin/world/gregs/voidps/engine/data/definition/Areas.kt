@@ -65,6 +65,7 @@ object Areas {
                                 else -> params[Params.id(key)] = value()
                             }
                         }
+                        require(x.size == y.size) { "Area '$name' must have the same number of x and y values (x=${x.size}, y=${y.size}) in '$path'." }
                         val area: Area = if (x.size <= 2) {
                             if (level == null) {
                                 Rectangle(x.min(), y.min(), x.max(), y.max())

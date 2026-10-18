@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -29,7 +30,13 @@ fun engineModule(files: ConfigFiles) = module {
     // Entities
     single { Hunting(get(), get()) }
     single {
-        SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
+        val storage: Storage = get()
+        val bots = if (Settings["storage.bots.save", false] && Settings["storage.bots.separate", false] && Settings["storage.type", "files"] == "files") {
+            FileStorage(File(Settings["storage.bots.path"]).apply { mkdirs() })
+        } else {
+            storage
+        }
+        SaveQueue(storage, SafeStorage(File(Settings["storage.players.errors"])), botStorage = bots)
     }
     single { AccountManager(get(), get(), get(), AppearanceOverrides().apply { load() }) }
     single { AccountDefinitionsReloader(get(), get(), get()) }
