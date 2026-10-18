@@ -48,12 +48,14 @@ level = 0
 x = [3022, 3043]
 y = [3299, 3313]
 level = 0
+bot_capacity = 6
 
 [falador_south_chickens]
 # nav-editor: named area only
 x = [3014, 3020]
 y = [3282, 3296]
 level = 0
+bot_capacity = 6
 
 [falador_east_bank]
 # nav-editor: named area only

@@ -1,57 +1,46 @@
 # Combat
 [kill_varrock_sewer_giant_rats_attack]
 template = "kill_giant_rats"
-capacity = 2
 fields = { skill = "attack", location = "varrock_sewers_multi_area", style = "style1" }
 
 [kill_varrock_sewer_giant_rats_strength]
 template = "kill_giant_rats"
-capacity = 2
 fields = { skill = "strength", location = "varrock_sewers_multi_area", style = "style2" }
 
 [kill_varrock_sewer_giant_rats_defence]
 template = "kill_giant_rats"
-capacity = 2
 fields = { skill = "attack", location = "varrock_sewers_multi_area", style = "style4" }
 
 # Mining
 [varrock_copper_mining]
 template = "copper_ore_template"
-capacity = 4
 fields = { location = "varrock_south_east_mine" }
 
 [varrock_tin_mining]
 template = "tin_ore_template"
-capacity = 4
 fields = { location = "varrock_south_east_mine" }
 
 [varrock_iron_mining]
 template = "iron_ore_template"
-capacity = 2
 fields = { location = "varrock_south_east_mine" }
 
 [varrock_clay_mining]
 template = "clay_template"
-capacity = 2
 fields = { location = "varrock_south_west_mine" }
 
 [varrock_east_tin_mining]
 template = "tin_ore_template"
-capacity = 4
 fields = { location = "varrock_south_west_mine" }
 
 [varrock_silver_mining]
 template = "silver_ore_template"
-capacity = 3
 fields = { location = "varrock_south_west_mine" }
 
 [varrock_east_iron_mining]
 template = "iron_ore_template"
-capacity = 2
 fields = { location = "varrock_south_west_mine" }
 
 # Woodcutting
 [varrock_palace_yew_trees]
 template = "yew_tree_template"
-capacity = 3
 fields = { location = "varrock_palace_yew_trees" }
