@@ -54,9 +54,29 @@ examine = "They go up."
 id = 4620
 examine = "They go down."
 
+[fai_varrock_mill_spiralstairs]
+id = 24073
+examine = "I can climb these stairs."
+
+[fai_varrock_mill_spiralstairs_middle]
+id = 24074
+examine = "I can climb these stairs."
+
+[fai_varrock_stairs_taller]
+id = 24357
+examine = "I can climb up these stairs."
+
+[fai_varrock_stairs_top]
+id = 24359
+examine = "They go down."
+
 [fai_varrock_manhole_ladder]
 id = 24366
 examine = "I can climb up this."
+
+[di1_ladder_outside_to_underground]
+id = 29358
+examine = "I can climb down this."
 
 [fist_of_guthix_stairs]
 id = 30203
@@ -65,6 +85,10 @@ examine = "Warning: leads into the wilderness."
 [wizards_tower_staircase]
 id = 12537
 examine = "I can climb these stairs."
+
+[icemt_mine_ladder_top]
+id = 30942
+examine = "I can climb this."
 
 [di2_stairs]
 id = 32270
@@ -269,11 +293,3 @@ examine = "I wonder where they will take me."
 [player_safety_stairs_2nd_floor_down_north_west]
 id = 29659
 examine = "I wonder where they will take me."
-
-[icemt_mine_ladder_top]
-id = 30942
-examine = "I can climb this."
-
-[di1_ladder_outside_to_underground]
-id = 29358
-examine = "I can climb down this."

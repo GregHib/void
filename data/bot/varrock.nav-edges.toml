@@ -129,7 +129,7 @@ edges = [
     { from = { x = 3100, y = 3504 }, to = { x = 3108, y = 3506 } },
     { from = { x = 3108, y = 3506 }, to = { x = 3101, y = 3509 } },
     { from = { x = 3093, y = 3501 }, to = { x = 3087, y = 3502 } },
-    { from = { x = 3087, y = 3502 }, to = { x = 3087, y = 3491 } },
+
     { from = { x = 3087, y = 3502 }, to = { x = 3080, y = 3507 } },
     { from = { x = 3095, y = 3443 }, to = { x = 3087, y = 3440 } },
     { from = { x = 3095, y = 3443 }, to = { x = 3090, y = 3449 } },
@@ -213,14 +213,14 @@ edges = [
     { from = { x = 3149, y = 3504 }, to = { x = 3159, y = 3494 } },
     { from = { x = 3250, y = 3397 }, to = { x = 3253, y = 3397 } },
     { from = { x = 3238, y = 3304 }, to = { x = 3229, y = 3309 } },
-    
-    
-    
-    
+
+
+
+
     { from = { x = 3191, y = 3367 }, to = { x = 3201, y = 3355 } },
-    
-    
-    
+
+
+
     { from = { x = 3197, y = 3373 }, to = { x = 3179, y = 3381 } },
     { from = { x = 3191, y = 3367 }, to = { x = 3178, y = 3364 } },
     { from = { x = 3170, y = 3488 }, to = { x = 3183, y = 3488 } },
@@ -271,8 +271,8 @@ edges = [
     { from = { x = 3184, y = 3450 }, to = { x = 3184, y = 3468 } },
     { from = { x = 3184, y = 3468 }, to = { x = 3183, y = 3487 } },
     { from = { x = 3183, y = 3487 }, to = { x = 3185, y = 3506 } },
-    { from = { x = 3185, y = 3506 }, to = { x = 3207, y = 3506 } }, # palace_yews_west
-    { from = { x = 3207, y = 3506 }, to = { x = 3220, y = 3506 } }, # palace_yews_east
+     # palace_yews_west
+    { from = { x = 3207, y = 3506 }, to = { x = 3219, y = 3502 } }, # palace_yews_east
 
     { from = { x = 3087, y = 3440 }, to = { x = 3079, y = 3433 } },
     { from = { x = 3079, y = 3433 }, to = { x = 3080, y = 3423 } },
@@ -441,19 +441,48 @@ edges = [
     { from = { x = 3051, y = 3471 }, to = { x = 3052, y = 3460 } },
     { from = { x = 3052, y = 3460 }, to = { x = 3059, y = 3451 } },
     { from = { x = 3059, y = 3451 }, to = { x = 3068, y = 3441 } },
+
     { from = { x = 3115, y = 3449 }, to = { x = 3115, y = 3450 }, actions = [{ object = { option = "Open", id = "edgeville_dungeon_door_closed", x = 3115, y = 3450, radius = 0, success = { tile = { x = 3115, y = 3450, level = 0 } } } }, { tile = { x = 3115, y = 3450, radius = 1 } }], requires = [{ inventory = { id = "brass_key", min = 1 } }], cost = 2 },
     { from = { x = 3115, y = 3450 }, to = { x = 3115, y = 3449 }, actions = [{ object = { option = "Open", id = "edgeville_dungeon_door_closed", x = 3115, y = 3450, radius = 0, success = { tile = { x = 3115, y = 3449, level = 0 } } } }, { tile = { x = 3115, y = 3449, radius = 1 } }], requires = [{ inventory = { id = "brass_key", min = 1 } }], cost = 2 },
     { from = { x = 3115, y = 3450 }, to = { x = 3115, y = 9852 }, actions = [{ object = { option = "Climb-Down", id = "100_goblin_ladder_down", x = 3116, y = 3452, radius = 0, success = { tile = { x = 3115, y = 9852, level = 0 } } } }, { tile = { x = 3115, y = 9852, radius = 1 } }], cost = 5 },
     { from = { x = 3115, y = 9852 }, to = { x = 3115, y = 3450 }, actions = [{ object = { option = "Climb-up", id = "29355", x = 3116, y = 9852, radius = 0, success = { tile = { x = 3115, y = 3452, level = 0 } } } }, { tile = { x = 3115, y = 3450, radius = 1 } }], cost = 5 },
+
     { from = { x = 3115, y = 9852 }, to = { x = 3111, y = 9844 } },
     { from = { x = 3101, y = 3509 }, to = { x = 3102, y = 3520 } },
     { from = { x = 3101, y = 3509 }, to = { x = 3100, y = 3509 }, actions = [{ object = { option = "Open", id = "large_door_86_closed", x = 3101, y = 3509, radius = 0, success = { object = { id = "large_door_86_opened", x = 3100, y = 3509 } } } }, { tile = { x = 3100, y = 3509, radius = 1 } }], cost = 2 },
     { from = { x = 3100, y = 3509 }, to = { x = 3101, y = 3509 }, actions = [{ object = { option = "Open", id = "large_door_86_closed", x = 3101, y = 3509, radius = 0, success = { object = { id = "large_door_86_opened", x = 3100, y = 3509 } } } }, { tile = { x = 3101, y = 3509, radius = 1 } }], cost = 2 },
     { from = { x = 3100, y = 3509 }, to = { x = 3095, y = 3509 } },
     { from = { x = 3069, y = 3513 }, to = { x = 3069, y = 3514 } , actions = [{ object = { option = "Open", id = "door_494_closed", x = 3069, y = 3513, radius = 0, success = { object = { id = "door_494_opened", x = 3069, y = 3514 } } } }, { tile = { x = 3069, y = 3514, radius = 1 } }], requires = [{ any = [{ variable = { id = "dragon_slayer", equals = "received_shield", default = "unstarted" } }, { variable = { id = "dragon_slayer", equals = "completed", default = "unstarted" } }] }], cost = 2},
+
     { from = { x = 3069, y = 3514 }, to = { x = 3069, y = 3513 }, actions = [{ object = { option = "Open", id = "door_494_closed", x = 3069, y = 3513, radius = 0, success = { object = { id = "door_494_opened", x = 3069, y = 3514 } } } }, { tile = { x = 3069, y = 3513, radius = 1 } }], requires = [], cost = 2 },
     { from = { x = 3087, y = 3502 }, to = { x = 3087, y = 3496 } },
     { from = { x = 3087, y = 3496 }, to = { x = 3087, y = 3491 } },
     { from = { x = 3136, y = 3508 }, to = { x = 3129, y = 3497 } },
     { from = { x = 3129, y = 3497 }, to = { x = 3136, y = 3496 } },
+    { from = { x = 3143, y = 3443 }, to = { x = 3143, y = 3444 }, actions = [{ object = { option = "Open", id = "door_cooks_guild_closed", x = 3143, y = 3443, radius = 0, success = { tile = { x = 3143, y = 3444, level = 0 } } } }, { tile = { x = 3143, y = 3444, radius = 1 } }], requires = [{ skill = { id = "cooking", min = 32 } }, { any = [{ equipment = { hat = { id = "chefs_hat" } } }, { equipment = { hat = { id = "cooking_hood" } } }, { equipment = { cape = { id = "cooking_cape" } } }, { equipment = { cape = { id = "cooking_cape_t" } } }] }], cost = 2 },
+    { from = { x = 3143, y = 3444 }, to = { x = 3143, y = 3443 }, actions = [{ object = { option = "Open", id = "door_cooks_guild_closed", x = 3143, y = 3443, radius = 0, success = { tile = { x = 3143, y = 3443, level = 0 } } } }, { tile = { x = 3143, y = 3443, radius = 1 } }], requires = [{ skill = { id = "cooking", min = 32 } }, { any = [{ equipment = { hat = { id = "chefs_hat" } } }, { equipment = { hat = { id = "cooking_hood" } } }, { equipment = { cape = { id = "cooking_cape" } } }, { equipment = { cape = { id = "cooking_cape_t" } } }] }], cost = 2 },
+    { from = { x = 3143, y = 3444 }, to = { x = 3144, y = 3449 } },
+    { from = { x = 3144, y = 3449 }, to = { x = 3144, y = 3449, level = 1 }, actions = [{ object = { option = "Climb-up", id = "fai_varrock_mill_spiralstairs", x = 3144, y = 3447, radius = 0, success = { tile = { x = 3144, y = 3449, level = 1 } } } }, { tile = { x = 3144, y = 3449, radius = 1 } }], cost = 2 },
+    { from = { x = 3144, y = 3449, level = 1 }, to = { x = 3144, y = 3449 }, actions = [{ object = { option = "Climb-down", id = "fai_varrock_mill_spiralstairs_middle", x = 3144, y = 3447, radius = 0, success = { tile = { x = 3144, y = 3449, level = 0 } } } }, { tile = { x = 3144, y = 3449, radius = 1 } }], cost = 2 },
+    { from = { x = 3143, y = 3444 }, to = { x = 3143, y = 3451 } },
+    { from = { x = 3143, y = 3451 }, to = { x = 3144, y = 3449 } },
+    { from = { x = 3143, y = 3451 }, to = { x = 3147, y = 3450 }, actions = [{ object = { option = "Open", id = "door_cooks_guild_achievement_closed", x = 3144, y = 3451, radius = 0, success = { tile = { x = 3144, y = 3451, level = 0 } } } }, { tile = { x = 3147, y = 3450, radius = 1 } }], requires = [{ skill = { id = "cooking", min = 99 } }], cost = 1 },
+    { from = { x = 3147, y = 3450 }, to = { x = 3143, y = 3451 }, actions = [{ object = { option = "Open", id = "door_cooks_guild_achievement_closed", x = 3144, y = 3451, radius = 0, success = { tile = { x = 3143, y = 3451, level = 0 } } } }, { tile = { x = 3143, y = 3451, radius = 1 } }], requires = [{ skill = { id = "cooking", min = 99 } }], cost = 1 },
+    { from = { x = 3147, y = 3450 }, to = { x = 3146, y = 3452 } },
+
+    { from = { x = 3219, y = 3502 }, to = { x = 3206, y = 3502 } },
+    { from = { x = 3258, y = 3405 }, to = { x = 3263, y = 3405 } },
+    { from = { x = 3263, y = 3405 }, to = { x = 3262, y = 3415 } },
+    { from = { x = 3263, y = 3405 }, to = { x = 3265, y = 3405 }, actions = [{ object = { option = "Open", id = "guidor_gate_left_closed", x = 3264, y = 3405, radius = 0, success = { tile = { x = 3264, y = 3405, level = 0 } } } }, { tile = { x = 3265, y = 3405, radius = 1 } }], cost = 1 },
+    { from = { x = 3265, y = 3405 }, to = { x = 3263, y = 3405 }, actions = [{ object = { option = "Open", id = "guidor_gate_left_closed", x = 3264, y = 3405, radius = 0, success = { tile = { x = 3263, y = 3405, level = 0 } } } }, { tile = { x = 3263, y = 3405, radius = 1 } }], cost = 1 },
+    { from = { x = 3265, y = 3405 }, to = { x = 3268, y = 3400 } },
+    { from = { x = 3268, y = 3400 }, to = { x = 3278, y = 3397 } },
+    { from = { x = 3191, y = 3367 }, to = { x = 3191, y = 3361 }, actions = [{ object = { option = "Open", id = "door_champions_guild_closed", x = 3191, y = 3363, radius = 0, success = { tile = { x = 3191, y = 3362, level = 0 } } } }, { tile = { x = 3191, y = 3361, radius = 1 } }], requires = [{ variable = { id = "quest_points", default = 0, min = 32 } }], cost = 7 },
+    { from = { x = 3191, y = 3361 }, to = { x = 3191, y = 3367 }, actions = [{ object = { option = "Open", id = "door_champions_guild_closed", x = 3191, y = 3363, radius = 0, success = { tile = { x = 3191, y = 3363, level = 0 } } } }, { tile = { x = 3191, y = 3367, radius = 1 } }], requires = [{ variable = { id = "quest_points", default = 0, min = 32 } }], cost = 7 },
+    { from = { x = 3191, y = 3361 }, to = { x = 3189, y = 3358 } },
+    { from = { x = 3189, y = 3358 }, to = { x = 3189, y = 3354, level = 1 }, actions = [{ object = { option = "Climb-up", id = "fai_varrock_stairs_taller", x = 3188, y = 3355, radius = 0, success = { tile = { x = 3189, y = 3354, level = 1 } } } }, { tile = { x = 3189, y = 3354, radius = 1 } }], cost = 5 },
+    { from = { x = 3189, y = 3354, level = 1 }, to = { x = 3189, y = 3358 }, actions = [{ object = { option = "Climb-down", id = "fai_varrock_stairs_top", x = 3188, y = 3355, radius = 0, success = { tile = { x = 3189, y = 3358, level = 0 } } } }, { tile = { x = 3189, y = 3358, radius = 1 } }], cost = 5 },
+    { from = { x = 3191, y = 3361 }, to = { x = 3194, y = 3357 } },
+    { from = { x = 3194, y = 3357 }, to = { x = 3196, y = 3357 }, actions = [{ object = { option = "Open", id = "door_333_closed", x = 3195, y = 3357, radius = 0, success = { object = { id = "door_333_opened", x = 3194, y = 3357 } } } }, { tile = { x = 3196, y = 3357, radius = 1 } }], cost = 3 },
+    { from = { x = 3196, y = 3357 }, to = { x = 3194, y = 3357 }, actions = [{ object = { option = "Open", id = "door_333_closed", x = 3195, y = 3357, radius = 0, success = { object = { id = "door_333_opened", x = 3194, y = 3357 } } } }, { tile = { x = 3194, y = 3357, radius = 1 } }], cost = 3 },
 ]

@@ -74,3 +74,10 @@ x = [2995, 2997]
 y = [3113, 3115]
 level = 0
 tags = ["fairy_ring"]
+
+[fairy_ring_dkr]
+# nav-editor: named area only
+x = [3128, 3130]
+y = [3495, 3497]
+level = 0
+tags = ["fairy_ring"]

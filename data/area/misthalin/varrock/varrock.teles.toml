@@ -10,12 +10,12 @@ option = "Climb-down"
 tile = { x = 3140, y = 3305, level = 1 }
 delta = { level = -1 }
 
-[24357]
+[fai_varrock_stairs_taller]
 option = "Climb-up"
 tile = { x = 3188, y = 3355 }
 delta = { y = -4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3188, y = 3355, level = 1 }
 delta = { y = 4, level = -1 }
@@ -25,7 +25,7 @@ option = "Climb-up"
 tile = { x = 3188, y = 3389 }
 delta = { y = 4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3188, y = 3390, level = 1 }
 delta = { y = -4, level = -1 }
@@ -36,17 +36,17 @@ option = "Climb-down"
 tile = { x = 3190, y = 3355 }
 delta = { x = -1, y = 6410 }
 
-[24073]
+[fai_varrock_mill_spiralstairs]
 option = "Climb-up"
 tile = { x = 3144, y = 3447 }
 delta = { level = 1 }
 
-[24074]
+[fai_varrock_mill_spiralstairs_middle]
 option = "Climb-down"
 tile = { x = 3144, y = 3447, level = 1 }
 delta = { level = -1 }
 
-[24074]
+[fai_varrock_mill_spiralstairs_middle]
 option = "Climb-up"
 tile = { x = 3144, y = 3447, level = 1 }
 delta = { y = -3, level = 1 }
@@ -56,12 +56,12 @@ option = "Climb-down"
 tile = { x = 3144, y = 3447, level = 2 }
 delta = { y = 3, level = -1 }
 
-[24357]
+[fai_varrock_stairs_taller]
 option = "Climb-up"
 tile = { x = 3156, y = 3435 }
 delta = { x = -4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3156, y = 3435, level = 1 }
 delta = { x = 4, level = -1 }
@@ -138,12 +138,12 @@ option = "Climb-down"
 tile = { x = 3223, y = 3387, level = 1 }
 delta = { x = -2, level = -1 }
 
-[24357]
+[fai_varrock_stairs_taller]
 option = "Climb-up"
 tile = { x = 3230, y = 3383 }
 delta = { y = -4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3230, y = 3383, level = 1 }
 delta = { y = 4, level = -1 }
@@ -244,12 +244,12 @@ option = "Walk-down"
 tile = { x = 3255, y = 3451 }
 to = { x = 1759, y = 4958 }
 
-[24357]
+[fai_varrock_stairs_taller]
 option = "Climb-up"
 tile = { x = 3253, y = 3443, level = 1 }
 delta = { y = 4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3253, y = 3444, level = 2 }
 delta = { y = -4, level = -1 }
@@ -335,7 +335,7 @@ option = "Climb-up"
 tile = { x = 3212, y = 3473 }
 delta = { y = 4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3212, y = 3474, level = 1 }
 delta = { y = -4, level = -1 }
@@ -360,12 +360,12 @@ option = "Climb-down"
 tile = { x = 3221, y = 3472, level = 3 }
 delta = { x = -1, y = -1, level = -1 }
 
-[24357]
+[fai_varrock_stairs_taller]
 option = "Climb-up"
 tile = { x = 3241, y = 3489 }
 delta = { x = 4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3242, y = 3489, level = 1 }
 delta = { x = -4, level = -1 }
@@ -434,7 +434,7 @@ option = "Climb-up"
 tile = { x = 3266, y = 3452 }
 delta = { y = 4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3266, y = 3453, level = 1 }
 delta = { y = -4, level = -1 }
@@ -460,12 +460,12 @@ option = "Enter"
 tile = { x = 3305, y = 3473 }
 to = { x = 2655, y = 4830 }
 
-[24357]
+[fai_varrock_stairs_taller]
 option = "Climb-up"
 tile = { x = 3285, y = 3493 }
 delta = { y = -4, level = 1 }
 
-[24359]
+[fai_varrock_stairs_top]
 option = "Climb-down"
 tile = { x = 3285, y = 3493, level = 1 }
 delta = { y = 4, level = -1 }

@@ -233,6 +233,7 @@ examine = "Obviously punches above his weight."
 id = 3205
 shop = "pie_shop"
 examine = "A family baker, from the North."
+area = "pie_shop"
 
 [martina_scorsby]
 id = 3326
@@ -283,17 +284,20 @@ id = 5066
 id = 536
 shop = "valaines_shop_of_champions"
 examine = "A champion saleswoman!"
+area = "champions_guild_upstairs"
 
 [scavvo]
 id = 537
 shop = "scavvos_rune_store"
 examine = "He's got the best armour around."
+area = "champions_guild_upstairs"
 
 [fancy_dress_shop_owner]
 id = 554
 shop = "fancy_clothes_store"
 collision = "indoors"
 examine = "For the interesting clothing items you just can't find elsewhere."
+area = "fancy_clothes_store"
 
 [rat_burgiss]
 id = 5833
