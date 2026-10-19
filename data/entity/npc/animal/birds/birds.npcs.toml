@@ -77,7 +77,6 @@ examine = "Waddle waddle waddle quack."
 [wimpy_bird]
 id = 7031
 categories = ["birds"]
-collision = "sky"
 respawn_delay = 5
 examine = "An ogre snack with wings."
 

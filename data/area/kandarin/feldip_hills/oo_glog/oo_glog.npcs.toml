@@ -40,10 +40,12 @@ id = 7050
 
 [chief_tess]
 id = 7051
+collision = "indoors"
 examine = "She walks as if she owns the place."
 
 [seegud]
 id = 7052
+collision = "indoors"
 examine = "An ogress shaman."
 
 [chargurr]
@@ -54,10 +56,12 @@ id = 7056
 
 [snurgh]
 id = 7057
+collision = "indoors"
 examine = "Rather unconvincing as a hotelier."
 
 [muggh]
 id = 7062
+collision = "indoors"
 examine = "Up to her arms in mud."
 
 [glum]
@@ -81,6 +85,7 @@ id = 7103
 
 [dawg]
 id = 7104
+collision = "indoors"
 examine = "Ferocious larupia with a dainty collar."
 
 [chargurr_3]
@@ -91,15 +96,20 @@ id = 7054
 
 [kringk_3]
 id = 7058
+collision = "indoors"
+examine = "Deadly with a comb or brush."
 
 [thump_3]
 id = 7060
+examine = "Unoccupied torture device?"
 
 [thump_4]
 id = 7059
 
 [thump_2_2]
 id = 7061
+collision = "indoors"
+examine = "I wouldn't want to get on her bad side."
 
 [kringk_2_2]
 id = 7063

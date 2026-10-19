@@ -9,3 +9,15 @@ examine = "A water pipe. Plain and simple."
 [eyeglo_torch]
 id = 17237
 examine = "A wooden torch."
+
+[tol_bookcase]
+id = 6894
+examine = "A good source of books!"
+
+[tol_bed]
+id = 432
+examine = "I don't think anyone's slept here for a long time."
+
+[tol_table]
+id = 616
+examine = "A creepy looking table."

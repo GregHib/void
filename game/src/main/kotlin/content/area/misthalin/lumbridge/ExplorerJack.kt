@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 class ExplorerJack : Script {
 
     init {
-        npcOperate("Talk-to", "explorer_jack") {
+        npcOperate("Talk-to", "explorer_jack*") {
             if (get("introducing_explorer_jack_task", "uncompleted") == "uncompleted") {
                 npc<Neutral>("Ah! Welcome to ${Settings["server.name"]}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
                 player<Quiz>("Taskmaster? What Tasks are you Master of?")

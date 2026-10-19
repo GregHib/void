@@ -1,0 +1,227 @@
+[table_khazard_fight_arena]
+id = 24013
+examine = "The umbrella would be handy if it were sunny."
+
+[table_khazard_fight_arena_2]
+id = 24014
+examine = "There's a hole in the table for an umbrella to go through."
+
+[cart_khazard_fight_arena]
+id = 41118
+examine = "It doesn't look like this will be going anywhere soon."
+
+[stocks_khazard_fight_arena]
+id = 648
+examine = "A bit large for a bracelet!"
+
+[turkey_platter_khazard_fight_arena]
+id = 41480
+examine = "That's one big bird."
+
+[hogs_legs_khazard_fight_arena]
+id = 37290
+examine = "I think the hog misses them."
+
+[hogs_head_khazard_fight_arena]
+id = 41479
+examine = "The hog definitely misses this."
+
+[chess_set_khazard_fight_arena]
+id = 41482
+examine = "Not to be used in conjuction with strong drinks."
+
+[tall_bar_table_khazard_fight_arena]
+id = 41502
+examine = "Good for putting driks on when sitting."
+
+[bar_stool_khazard_fight_arena]
+id = 41483
+examine = "Looks comfortable."
+
+[scuttle_khazard_fight_arena]
+id = 23988
+examine = "A coal scuttle for storing coal."
+
+[pokers_khazard_fight_arena]
+id = 23989
+examine = "To stoke the fire."
+
+[bar_khazard_fight_arena]
+id = 24001
+examine = "Eat, drink and be merry, for tomorrow we die."
+
+[bar_khazard_fight_arena_7]
+id = 23994
+examine = "Excessive consumption of alcohol is bad for you."
+
+[bar_khazard_fight_arena_6]
+id = 23996
+examine = "Drinks for sale here."
+
+[bar_khazard_fight_arena_2]
+id = 23997
+examine = "Where everybody knows your username."
+
+[bar_khazard_fight_arena_3]
+id = 23998
+examine = "Have a drop a-fore ye go..."
+
+[bar_khazard_fight_arena_4]
+id = 23999
+examine = "Always drink responsibly."
+
+[bar_khazard_fight_arena_5]
+id = 24000
+examine = "Wine and whisky don't mix."
+
+[table_khazard_fight_arena_3]
+id = 41106
+examine = "A wooden table."
+
+[washing_basket_khazard_fight_arena]
+id = 41109
+examine = "Basket of washing."
+
+[washing_khazard_fight_arena]
+id = 41111
+examine = "Pile of washing."
+
+[washing_khazard_fight_arena_2]
+id = 41112
+examine = "Pile of washing."
+
+[washing_khazard_fight_arena_3]
+id = 41110
+examine = "Pile of washing."
+
+[washing_basket_khazard_fight_arena_2]
+id = 41108
+examine = "Basket of washing."
+
+[compost_khazard_fight_arena]
+id = 303
+examine = "In the city we would call this mouldy rubbish."
+
+[animal_skull_khazard_fight_arena]
+id = 697
+examine = "Dead animal head. Lovely."
+
+[fallen_tree_khazard_fight_arena]
+id = 1297
+examine = "This tree was either the victim of weather or mankind."
+
+[table_khazard_fight_arena_4]
+id = 41107
+examine = "It's a bit broken."
+
+[table_khazard_fight_arena_5]
+id = 41105
+examine = "A wooden table."
+
+[stool_khazard_fight_arena]
+id = 41115
+examine = "A wooden stool."
+
+[broken_cart_khazard_fight_arena]
+id = 43050
+examine = "A used cart seller will probably try and sell it later."
+
+[bed_khazard_fight_arena]
+id = 32031
+examine = "I guess I could sleep in it if I were really tired."
+
+[shelves_khazard_fight_arena]
+id = 37172
+examine = "Storage for all needs."
+
+[counter_khazard_fight_arena]
+id = 41104
+examine = "Items are for sale here."
+
+[mangle_khazard_fight_arena]
+id = 41114
+examine = "Used to squeeze moisture from hides."
+
+[tanning_line_khazard_fight_arena]
+id = 41113
+examine = "Prepared hides hang here drying."
+
+[coal_khazard_fight_arena]
+id = 37282
+examine = "Several lumps of coal."
+
+[cart_khazard_fight_arena_2]
+id = 41080
+examine = "Cart with iron bars."
+
+[lathe_khazard_fight_arena]
+id = 37275
+examine = "A lathe for cutting and drilling."
+
+[whetstone_khazard_fight_arena]
+id = 43047
+examine = "A whetstone for sharpening tools."
+
+[shield_khazard_fight_arena]
+id = 37284
+examine = "A nice piece of craftsmanship."
+
+[supply_khazard_fight_arena]
+id = 37285
+examine = "Several different kinds of metal."
+
+[bellows_khazard_fight_arena]
+id = 37276
+examine = "A pair of blacksmiths' bellows."
+
+[furnace_khazard_fight_arena]
+id = 26828
+examine = "It's very hot."
+
+[suit_of_armour_khazard_fight_arena]
+id = 41492
+examine = "This suit looks fairly ordinary."
+
+[suit_of_armour_khazard_fight_arena_2]
+id = 41493
+examine = "This suit looks fairly ordinary."
+
+[suit_of_armour_khazard_fight_arena_3]
+id = 41491
+examine = "This suit looks fairly ordinary."
+
+[suit_of_armour_khazard_fight_arena_4]
+id = 37291
+examine = "This suit looks like a perfect disguise."
+
+[suit_of_armour_khazard_fight_arena_5]
+id = 817
+examine = "I always wonder if someone's hiding inside when I see these."
+
+[magical_symbol_khazard_fight_arena]
+id = 32324
+examine = "A magical wall decoration."
+
+[smashed_chair_khazard_fight_arena]
+id = 41117
+examine = "Not so good for sitting on."
+
+[rack_khazard_fight_arena]
+id = 41120
+examine = "It can make you taller."
+
+[cart_khazard_fight_arena_3]
+id = 41119
+examine = "One horsepower and wooden suspension; a beauty."
+
+[danger_sign_khazard_fight_arena]
+id = 29373
+examine = "Warning! Danger of death."
+
+[small_obelisk_khazard_fight_arena]
+id = 29954
+examine = "Contains traces of summoning energy."
+
+[animal_skull_khazard_fight_arena_2]
+id = 736
+examine = "Dead animal head. Lovely."

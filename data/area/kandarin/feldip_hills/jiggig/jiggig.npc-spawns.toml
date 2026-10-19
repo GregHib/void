@@ -14,8 +14,8 @@ spawns = [
   { id = "zogre_jiggig_4", x = 2464, y = 3045, members = true },
   { id = "zogre_jiggig_5", x = 2467, y = 3049, members = true },
   { id = "zogre_jiggig_6", x = 2468, y = 3046, members = true },
-  { id = "zogre_jiggig_7", x = 2470, y = 3055, members = true },
-  { id = "skogre_jiggig_2", x = 2469, y = 3039, members = true },
+  { id = "zogre_jiggig_7", x = 2470, y = 3055, direction = "SOUTH_WEST", members = true },
+  { id = "skogre_jiggig_2", x = 2469, y = 3039, direction = "NORTH_WEST", members = true },
   { id = "skogre_jiggig_3", x = 2480, y = 3046, members = true },
   { id = "ogre_cook_jiggig", x = 2450, y = 3056, members = true },
 ]
