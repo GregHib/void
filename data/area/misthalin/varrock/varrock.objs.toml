@@ -56,3 +56,899 @@ examine = "A pub local."
 [clive_dresdon]
 id = 12966
 examine = "A pub local."
+
+[combat_scroll]
+id = 24192
+examine = "'A Beginner's Guide to Killing Things', by Ali Morrisane."
+
+[dummy]
+id = 23921
+examine = "I can train on this."
+
+[varrock_crafting_stall]
+id = 51655
+examine = "The parts and tools of this stall are bewilderingly complex."
+
+[varrock_shop_counter]
+id = 24124
+examine = "The shop counter."
+
+[varrock_stool]
+id = 18312
+examine = "A wooden stool."
+
+[varrock_stool_2]
+id = 18485
+examine = "A poorly made stool."
+
+[varrock_stool_3]
+id = 17098
+examine = "A poorly made stool."
+
+[varrock_shelf]
+id = 17095
+examine = "Shelves for storing stuff."
+
+[varrock_shelves]
+id = 18483
+examine = "Pots and pans."
+
+[varrock_shelves_2]
+id = 24085
+examine = "There are some containers of chemicals here."
+
+[varrock_shelves_3]
+id = 24086
+examine = "There are some containers of chemicals here."
+
+[varrock_stepladder]
+id = 24122
+examine = "Lets you reach things on high shelves."
+
+[varrock_boxes]
+id = 24206
+examine = "Small wooden boxes."
+
+[varrock_table]
+id = 17099
+examine = "A nice sturdy-looking table."
+
+[varrock_bed]
+id = 24290
+examine = "Good for sleeping in."
+
+[varrock_shelf_2]
+id = 18155
+examine = "There are a few good books on this shelf."
+
+[varrock_shelf_3]
+id = 17096
+examine = "Shelves for storing stuff."
+
+[varrock_shelf_4]
+id = 17097
+examine = "Shelves for storing stuff."
+
+[varrock_shelf_5]
+id = 17467
+examine = "A shelf of esoteric junk."
+
+[varrock_shelf_6]
+id = 17468
+examine = "Nicely fitted shelves."
+
+[varrock_painting]
+id = 24183
+examine = "A watermill, how charming."
+
+[varrock_painting_2]
+id = 24184
+examine = "A sunset."
+
+[varrock_table_2]
+id = 24028
+examine = "Odd bits of fabric lie on this table."
+
+[varrock_sewing_machine]
+id = 24027
+examine = "Powered by a pedal."
+
+[varrock_mirror]
+id = 18318
+examine = "It looks like me."
+
+[varrock_rack]
+id = 24036
+examine = "Fabric hanging off a rack."
+
+[varrock_rack_2]
+id = 23940
+examine = "A nice selection of staves."
+
+[varrock_rack_3]
+id = 23944
+examine = "A selection of staves."
+
+[varrock_clothes]
+id = 24050
+examine = "I'm guessing it's for making men's clothes."
+
+[varrock_clothes_model]
+id = 694
+examine = "I'm guessing it's for making women's clothes.."
+
+[varrock_clothes_model_2]
+id = 695
+examine = "Helps make human clothing."
+
+[varrock_clothes_2]
+id = 24030
+examine = "Fine clothes for sale."
+
+[varrock_cloth]
+id = 24031
+examine = "Some fabric ready for making clothing."
+
+[varrock_fabric]
+id = 24035
+examine = "Rolled up fabric."
+
+[varrock_fabric_2]
+id = 24034
+examine = "Rolled up fabric."
+
+[varrock_hanger]
+id = 18317
+examine = "It must have fallen to the floor."
+
+[varrock_bed_2]
+id = 24043
+examine = "Looks comfy."
+
+[varrock_bed_3]
+id = 24338
+examine = "A single bed."
+
+[varrock_bed_4]
+id = 17465
+examine = "For being tucked up as snug as a bug in a rug."
+
+[varrock_bed_5]
+id = 35766
+examine = "A single bed."
+
+[varrock_bed_6]
+id = 24288
+examine = "Looks comfy."
+
+[varrock_bed_7]
+id = 24299
+examine = "Great for sleeping in."
+
+[varrock_bed_8]
+id = 24291
+examine = "Good for sleeping in."
+
+[varrock_bed_9]
+id = 14872
+examine = "Neatly made up."
+
+[varrock_bed_10]
+id = 24289
+examine = "Looks snug."
+
+[varrock_drawers_closed]
+id = 24294
+examine = "For keeping things in."
+
+[varrock_drawers_closed_2]
+id = 17466
+examine = "For clothes and handy stuff."
+
+[varrock_clothes_3]
+id = 24046
+examine = "Are these clean or dirty?"
+
+[varrock_clothes_4]
+id = 24044
+examine = "Some kind of outfit has been chucked on the floor."
+
+[varrock_clothes_5]
+id = 24049
+examine = "I'm guessing it's for making women's clothes."
+
+[varrock_clothes_6]
+id = 24048
+examine = "Tatty trousers and an odd sandal."
+
+[varrock_clothes_7]
+id = 24047
+examine = "Someone's really untidy!"
+
+[varrock_clothes_8]
+id = 24045
+examine = "A little black dress and some smelly socks."
+
+[varrock_table_3]
+id = 18314
+examine = "A small wooden table."
+
+[varrock_table_4]
+id = 24104
+examine = "A nice selection of swords."
+
+[varrock_table_5]
+id = 18486
+examine = "A dirty table covered with used pots and plates."
+
+[varrock_table_6]
+id = 24336
+examine = "A large table."
+
+[varrock_table_7]
+id = 24301
+examine = "Simple but stylish"
+
+[varrock_table_8]
+id = 24335
+examine = "A tatty table."
+
+[varrock_table_9]
+id = 24084
+examine = "For putting things on."
+
+[varrock_table_10]
+id = 24011
+examine = "A tall table."
+
+[varrock_table_11]
+id = 24012
+examine = "A low table."
+
+[varrock_table_12]
+id = 23942
+examine = "A nice selection of staves."
+
+[varrock_table_13]
+id = 24088
+examine = "Covered in junk."
+
+[varrock_table_14]
+id = 24308
+examine = "A nice table."
+
+[varrock_table_15]
+id = 24307
+examine = "A nice table."
+
+[varrock_table_16]
+id = 24302
+examine = "Fit for a king."
+
+[varrock_table_17]
+id = 24320
+examine = "It's got soap on it."
+
+[varrock_table_18]
+id = 24309
+examine = "A nice table."
+
+[varrock_bookcase]
+id = 15541
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_2]
+id = 35754
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_3]
+id = 24281
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_4]
+id = 35751
+examine = "All books about runes..."
+
+[varrock_bookcase_5]
+id = 15544
+examine = "A good source of books!"
+
+[varrock_bookcase_6]
+id = 35755
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_7]
+id = 35756
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_8]
+id = 15543
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_9]
+id = 15542
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_10]
+id = 35763
+examine = "A good source of books!"
+
+[varrock_bookcase_11]
+id = 6916
+examine = "A good source of books!"
+
+[varrock_bookcase_12]
+id = 23102
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_13]
+id = 31207
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_14]
+id = 24282
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_15]
+id = 23091
+examine = "A mountain of knowledge."
+
+[varrock_bookcase_16]
+id = 23092
+examine = "A mountain of knowledge."
+
+[varrock_sword_case]
+id = 24109
+examine = "A display case containing weapons."
+
+[varrock_sword_case_2]
+id = 24116
+examine = "A display case containing weapons."
+
+[varrock_sword_cabinet]
+id = 24105
+examine = "Break glass in case of emergency."
+
+[varrock_sword_case_3]
+id = 24110
+examine = "A display case containing weapons."
+
+[varrock_sword_case_4]
+id = 24111
+examine = "A display case containing weapons."
+
+[varrock_barrel]
+id = 24207
+examine = "Gielinor; land of a thousand barrels."
+
+[varrock_poster]
+id = 24118
+examine = "Fine combat kit for the discerning customer."
+
+[varrock_poster_2]
+id = 24117
+examine = "Fine armour for the discerning customer."
+
+[varrock_poster_3]
+id = 24119
+examine = "Fine swords for the discerning customer."
+
+[varrock_poster_4]
+id = 24143
+examine = "Tells you roughly where to aim."
+
+[varrock_poster_5]
+id = 24144
+examine = "Tells you roughly where to aim."
+
+[varrock_poster_6]
+id = 23965
+examine = "Health & Safety in the Workplace."
+
+[varrock_dishes]
+id = 24114
+examine = "A pile of dirty dishes."
+
+[varrock_dishes_2]
+id = 24115
+examine = "A pile of dirty dishes."
+
+[varrock_sword_in_stone]
+id = 24106
+examine = "An interesting new way to display swords for sale."
+
+[varrock_sink]
+id = 24112
+examine = "Far too dirty to use."
+
+[varrock_barrel_2]
+id = 24212
+examine = "A wooden barrel for storage."
+
+[varrock_barrel_3]
+id = 24211
+examine = "A splendid barrel."
+
+[varrock_barrel_4]
+id = 24209
+examine = "Somewhere there's a very busy cooper."
+
+[varrock_barrel_5]
+id = 23941
+examine = "Staves in a barrel."
+
+[varrock_barrel_6]
+id = 11766
+examine = "Smells alcoholic."
+
+[varrock_bar]
+id = 157
+examine = "Wine and whisky don't mix."
+
+[varrock_bar_2]
+id = 136
+examine = "Drinks are for sale here."
+
+[varrock_bar_3]
+id = 23993
+examine = "Never drink and drive. Of course, what could you possibly drive."
+
+[varrock_bar_4]
+id = 132
+examine = "Do you know what 'cirrhosis of the liver' means?"
+
+[varrock_bar_5]
+id = 23995
+examine = "Do you know what 'cirrhosis of the liver' means?"
+
+[varrock_fireplace]
+id = 24285
+examine = "A fire burns cosily in the grate."
+
+[varrock_fireplace_2]
+id = 24329
+examine = "Warm, but the draughts don't help very much."
+
+[varrock_painting_3]
+id = 25742
+examine = "A really bad portrait of the king."
+
+[varrock_painting_4]
+id = 15559
+examine = "A view of mountains."
+
+[varrock_painting_5]
+id = 15560
+examine = "A river winding through a valley."
+
+[varrock_wine_rack]
+id = 24016
+examine = "Smells distressingly of vinegar."
+
+[varrock_wardrobe]
+id = 24293
+examine = "For keeping clothes in."
+
+[varrock_wardrobe_2]
+id = 35757
+examine = "A fancy place to store clothes."
+
+[varrock_wardrobe_3]
+id = 24297
+examine = "A fancy place to store clothes."
+
+[varrock_chest]
+id = 24292
+examine = "For keeping things in."
+
+[varrock_chest_2]
+id = 24337
+examine = "Too scruffy to be of much use."
+
+[varrock_chest_3]
+id = 23925
+examine = "Contains quite a lot of someone else's property."
+
+[varrock_chest_4]
+id = 23926
+examine = "This chest looks strong."
+
+[varrock_cabinet]
+id = 24311
+examine = "The perfect place to store things."
+
+[varrock_cabinet_2]
+id = 24312
+examine = "The perfect place to store things."
+
+[varrock_cabinet_3]
+id = 24092
+examine = "Doesn't seem to be keeping the herbs fresh."
+
+[varrock_cabinet_4]
+id = 24093
+examine = "Contains apparently useful items, mostly pickled in jars."
+
+[varrock_cabinet_5]
+id = 35759
+examine = "The perfect place to store things."
+
+[varrock_cabinet_6]
+id = 35761
+examine = "The perfect place to store things."
+
+[varrock_cabinet_7]
+id = 35760
+examine = "The perfect place to store things."
+
+[varrock_cabinet_8]
+id = 35758
+examine = "The perfect place to store things."
+
+[varrock_smashed_table]
+id = 18154
+examine = "Very broken."
+
+[varrock_cannon]
+id = 821
+examine = "Not suitable for children. Aim away from face."
+
+[varrock_helmet_rack]
+id = 850
+examine = "Headwear in a convenient location."
+
+[varrock_altar_slab]
+id = 1876
+examine = "I shudder to think what has taken place here."
+
+[varrock_oak_chair]
+id = 15546
+examine = "A basic oak chair."
+
+[varrock_workbench]
+id = 23960
+examine = "Handy for a workman."
+
+[varrock_workbench_2]
+id = 24135
+examine = "A workbench for making and repairing bows."
+
+[varrock_cooking_pot]
+id = 24328
+examine = "A fire with a thin stew cooking in a pot."
+
+[varrock_teak_table]
+id = 24306
+examine = "A teak dining table."
+
+[varrock_teak_table_2]
+id = 24305
+examine = "A teak dining table."
+
+[varrock_mannequin]
+id = 24147
+examine = "Maybe it's for shooting at?"
+
+[varrock_desk]
+id = 15551
+examine = "A very untidy workplace."
+
+[varrock_desk_2]
+id = 35764
+examine = "A very untidy workplace."
+
+[varrock_desk_3]
+id = 17464
+examine = "A very untidy workplace."
+
+[varrock_desk_4]
+id = 14873
+examine = "A very untidy workplace."
+
+[varrock_sacks]
+id = 10313
+examine = "A pair of sacks."
+
+[varrock_sacks_2]
+id = 12115
+examine = "Full of grain."
+
+[varrock_sack]
+id = 10314
+examine = "Rat infested."
+
+[varrock_hay_bales]
+id = 10362
+examine = "I bet there's a needle in it somewhere."
+
+[varrock_hay_bales_2]
+id = 299
+examine = "I bet there's a needle in it somewhere."
+
+[varrock_bank_table]
+id = 23928
+examine = "A handy place for filling in forms and paperwork."
+
+[varrock_statue]
+id = 23930
+examine = "A gilt sculpture of a monarch."
+
+[varrock_statue_2]
+id = 575
+examine = "A carving of a figure from history."
+
+[varrock_statue_3]
+id = 576
+examine = "A carving of a figure from history."
+
+[varrock_statue_4]
+id = 23057
+examine = "A statue of Saradomin."
+
+[varrock_gold]
+id = 23929
+examine = "They say money can't buy happiness."
+
+[varrock_bow_cabinet]
+id = 24134
+examine = "A display case containing longbows."
+
+[varrock_bow_case]
+id = 24138
+examine = "A display case containing weapons."
+
+[varrock_wood]
+id = 24141
+examine = "A pile of wood used for making bows."
+
+[varrock_lathe]
+id = 23961
+examine = "A powerful lathe."
+
+[varrock_metal_pieces]
+id = 23951
+examine = "These would make fine shoes for ... um... unicorns."
+
+[varrock_mould]
+id = 23964
+examine = "For casting large swords."
+
+[varrock_drill]
+id = 23962
+examine = "A powerful drill."
+
+[varrock_hearth]
+id = 23963
+examine = "A powerful hearth."
+
+[varrock_bellows]
+id = 23947
+examine = "The bellows pump air to the fire and make it hotter."
+
+[varrock_stand]
+id = 23632
+examine = "Many newspapers."
+
+[varrock_newspapers]
+id = 23633
+examine = "A wheelbarrow filled with the latest news."
+
+[varrock_market_stall]
+id = 23987
+examine = "A market stall."
+
+[varrock_fur_stall]
+id = 632
+examine = "These will keep you warm."
+
+[varrock_shield]
+id = 24200
+examine = "Decorated in the colours of Varrock."
+
+[varrock_shield_2]
+id = 35753
+examine = "Decorated in the colours of Varrock."
+
+[varrock_card_table]
+id = 12975
+examine = "Where fortunes are revealed."
+
+[varrock_lamp]
+id = 14870
+examine = "What a strange glow..."
+
+[varrock_drain]
+id = 24234
+examine = "Hopefully this leads to a sewer."
+
+[varrock_drain_2]
+id = 24235
+examine = "Hopefully this leads to a sewer."
+
+[varrock_mangle]
+id = 24920
+examine = "Used to squeeze the moisture from the hide."
+
+[varrock_noticeboard]
+id = 962
+examine = "Some helpful people have placed notes on here, how nice."
+
+[varrock_study_desk]
+id = 24087
+examine = "Antique desk."
+
+[varrock_herbs]
+id = 24091
+examine = "These might have healing properties, or they might just smell funny."
+
+[varrock_dead_bat]
+id = 24090
+examine = "He must be very wise if he keeps a dead bat in his shop."
+
+[varrock_cupboard_closed]
+id = 2400
+examine = "Might be worth searching."
+
+[varrock_leaflets]
+id = 45562
+examine = "'Pay back all your debts by borrowing more money from us!' Clever."
+
+[varrock_chandelier]
+id = 23933
+examine = "Fancy."
+
+[varrock_dresser]
+id = 24296
+examine = "Bedroom furniture."
+
+[varrock_dresser_2]
+id = 24316
+examine = "To help you do your hair."
+
+[varrock_saradomin_star]
+id = 24342
+examine = "A wallhanging of the Saradomin star."
+
+[varrock_papers]
+id = 24233
+examine = "Someone should really try tidying this place."
+
+[varrock_study_desk_2]
+id = 14415
+examine = "The ideal place to study."
+
+[varrock_display_board]
+id = 15465
+examine = "Maybe you could own a house like this."
+
+[varrock_clock]
+id = 15547
+examine = "No little mouse to be seen."
+
+[varrock_noticeboard_2]
+id = 11756
+examine = "'Customers are reminded NEVER to tell ANYONE their password.'"
+
+[varrock_scrolls]
+id = 7099
+examine = "A stack of scrolls with a faintly magical aura."
+
+[varrock_picture]
+id = 15464
+examine = "A picture of a particularly splendid house."
+
+[varrock_spear_wall]
+id = 24167
+examine = "Rows of sharp pointy spears."
+
+[varrock_standard]
+id = 24216
+examine = "A wallhanging."
+
+[varrock_axe_cabinet]
+id = 838
+examine = "Break glass in case of emergency."
+
+[varrock_suit_of_armour]
+id = 24215
+examine = "A suit of armour with a Varrock shield."
+
+[varrock_throne]
+id = 24310
+examine = "The seat of power."
+
+[varrock_larder]
+id = 24315
+examine = "A nicely carved larder to keep food cool."
+
+[varrock_varrock_census]
+id = 37209
+examine = "Varrock Census - Year 160."
+
+[varrock_statue_of_a_king]
+id = 563
+examine = "A monarch chiselled in stone."
+
+[varrock_bunk_bed]
+id = 35767
+examine = "Neatly made up."
+
+[varrock_bunk_bed_2]
+id = 24339
+examine = "Neatly made up."
+
+[varrock_chess]
+id = 17451
+examine = "A civilized game of chess."
+
+[varrock_tree_trunk]
+id = 15488
+examine = "A tree trunk."
+
+[varrock_bath_screen]
+id = 24318
+examine = "A privacy aid!"
+
+[varrock_trunk]
+id = 24340
+examine = "A trunk for the guards to keep their things in."
+
+[varrock_closed_chest]
+id = 24203
+examine = "I wonder what's inside."
+
+[varrock_locker]
+id = 24341
+examine = "A wooden locker for the guards to store their things in."
+
+[varrock_church_pew]
+id = 24344
+examine = "The sort of bench you get in churches."
+
+[varrock_banner]
+id = 24260
+examine = "The colours of Varrock."
+
+[varrock_cannon_2]
+id = 24259
+examine = "Not suitable for indoor use."
+
+[varrock_sunflower]
+id = 1190
+examine = "Is this the biggest flower aorund?"
+
+[varrock_sunflower_2]
+id = 1191
+examine = "These are huge!"
+
+[varrock_skeleton]
+id = 16074
+examine = "Looks like he could do with a drink and a mop."
+
+[varrock_skeleton_2]
+id = 16075
+examine = "These bones have been picked clean... something around here is hungry!"
+
+[varrock_statue_plinth]
+id = 9248
+examine = "An empty plinth for a statue."
+
+[varrock_plantpot]
+id = 9203
+examine = "An empty plantpot."
+
+[varrock_picnic_bench]
+id = 9291
+examine = "Sit back and enjoy the view."
+
+[varrock_rubble]
+id = 2508
+examine = "Broken parts of an old temple."
+
+[varrock_rubble_2]
+id = 2509
+examine = "Broken parts of an old temple."
+
+[varrock_target]
+id = 829
+examine = "For private use only!"

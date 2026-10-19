@@ -1,0 +1,16 @@
+spawns = [
+    { id = "head_registrar", x = 3367, y = 3267 },
+    { id = "registrar_1", x = 3222, y = 5086, direction = "SOUTH" },
+    { id = "registrar_2", x = 3227, y = 5086, direction = "SOUTH" },
+    { id = "registrar_3", x = 3232, y = 5086, direction = "SOUTH" },
+    { id = "registrar_4", x = 3237, y = 5086, direction = "SOUTH" },
+    { id = "registrar_5", x = 3242, y = 5086, direction = "SOUTH" },
+    { id = "spectator_1", x = 3224, y = 5102 },
+    { id = "spectator_2", x = 3218, y = 5092 },
+    { id = "spectator_3", x = 3224, y = 5080 },
+    { id = "spectator_4", x = 3242, y = 5102 },
+    { id = "spectator_5", x = 3228, y = 5092 },
+    { id = "spectator_6", x = 3236, y = 5092 },
+    { id = "spectator_7", x = 3242, y = 5080 },
+    { id = "spectator_8", x = 3233, y = 5102 },
+]

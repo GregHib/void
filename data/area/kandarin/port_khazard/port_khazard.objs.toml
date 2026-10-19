@@ -1,0 +1,23 @@
+[shelves_port_khazard]
+id = 1014
+examine = "Storage for all needs."
+
+[table_port_khazard]
+id = 599
+examine = "At one time it was for putting things on."
+
+[pile_of_ropes_port_khazard]
+id = 227
+examine = "Barnacle infested rope."
+
+[swordshop_sign_port_khazard]
+id = 5826
+examine = "This shop deals in antique swords."
+
+[boxes_port_khazard]
+id = 3686
+examine = "A pile of boxes for storage."
+
+[counter_port_khazard]
+id = 612
+examine = "Items are for sale here."

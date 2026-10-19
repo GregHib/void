@@ -13,9 +13,11 @@ examine = "Perhaps this gardener might look after your crops for you."
 
 [tramp_yanille]
 id = 2794
+examine = "A man down on his luck."
 
 [bert]
 id = 3108
+examine = "Bert seems to be covered in sand from head to toe."
 
 [guard_captain]
 id = 3109

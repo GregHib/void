@@ -82,12 +82,19 @@ examine = "Is it male or female?"
 
 [effigy_2]
 id = 5578
+examine = "He knows anything is possible."
 
 [homunculus_4]
 id = 5583
 
 [transmute_the_alchemist_2]
 id = 5585
+examine = "He wants to create everything from nothing."
 
 [currency_the_alchemist_2]
 id = 5587
+examine = "All he wants is gold."
+
+[the_guns]
+id = 5592
+examine = "He likes to weightlift a little too much."

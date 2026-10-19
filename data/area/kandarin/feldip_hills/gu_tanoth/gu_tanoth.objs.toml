@@ -8,3 +8,35 @@ examine = "An ogre is selling cakes here."
 [counter_empty]
 id = 2792
 examine = "A counter made from a stone block."
+
+[cave_entrance_gu_tanoth]
+id = 2805
+examine = "I think I can squeeze through here..."
+
+[broken_bridge_gu_tanoth]
+id = 2834
+examine = "Looks like I'll have to find another way across."
+
+[rope_bridge_support_gu_tanoth]
+id = 20004
+examine = "A scary rope bridge."
+
+[rope_bridge_support_gu_tanoth_2]
+id = 20006
+examine = "A scary rope bridge."
+
+[rope_bridge_support_gu_tanoth_3]
+id = 20007
+examine = "A scary rope bridge."
+
+[ladder_down_gu_tanoth]
+id = 2812
+examine = "This leads downwards."
+
+[broken_cart_gu_tanoth]
+id = 306
+examine = "A used cart seller will probably try and sell it later."
+
+[boxes_gu_tanoth]
+id = 359
+examine = "A pile of boxes for storage."

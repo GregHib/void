@@ -99,4 +99,4 @@ clone = "zogre_jiggig"
 
 [ogre_cook_jiggig]
 id = 791
-
+examine = "I bet he can't wait until it's cooked."

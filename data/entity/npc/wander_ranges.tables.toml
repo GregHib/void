@@ -19933,7 +19933,7 @@ wander_range = 1
 #wander_range = 0
 
 [.explorer_jack_lumbridge]
-wander_range = 0
+wander_range = 5
 max_range = 5
 
 #[.7970]
@@ -22179,6 +22179,15 @@ max_range = 30
 
 [.arianwyn_2]
 max_range = 10
+
+[.serjeant_cole]
+wander_range = 0
+
+[.commander_loman]
+wander_range = 0
+
+[.war_chief_reeves]
+wander_range = 0
 
 #[.8928]
 #wander_range = 0

@@ -62,18 +62,20 @@ combat_def = "gorad"
 [ogre_guard_gu_tanoth]
 id = 858
 categories = ["ogres"]
-examine = "These ogres protect the city."
+examine = "These ogres guard the city."
 
 [ogre_guard_gu_tanoth_2]
 id = 859
 categories = ["ogres"]
-examine = "An ogre that guards."
+examine = "These ogres guard the city."
 
 [ogre_guard_gu_tanoth_3]
 id = 860
+examine = "These ogres guard the city."
 
 [ogre_guard_gu_tanoth_4]
 id = 861
+examine = "These ogres guard the city."
 
 [city_guard_gu_tanoth]
 id = 862

@@ -6,6 +6,7 @@ id = 451
 
 [depleted_rocks_old_2_2]
 id = 452
+examine = "Stoney!"
 
 [copper_rocks_old_1]
 id = 2090

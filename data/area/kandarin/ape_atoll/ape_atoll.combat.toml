@@ -7,10 +7,10 @@ target_hit = { offense = "slash", max = 10 }
 impact_poison = 10
 
 [jungle_spider_ape_atoll]
-clone = "spider"
+clone = "giant_spider"
 
 [jungle_spider_ape_atoll.melee]
-clone = "spider.melee"
+clone = "giant_spider.melee"
 target_hit = { offense = "stab", max = 100 }
 impact_poison = 10
 
