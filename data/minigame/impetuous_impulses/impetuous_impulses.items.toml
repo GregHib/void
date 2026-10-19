@@ -285,9 +285,3 @@ examine = "The amulet of royalty!"
 
 [royal_amulet_noted]
 id = 15512
-
-[royal_shirt_2]
-id = 15519
-limit = 2
-weight = 1.0
-examine = "The shirt of royalty!"

@@ -86,3 +86,30 @@ produces = [
     { item = "raw_beef" },
     { skill = "$skill" }
 ]
+
+# Mid-level melee training with food gathered from the longhall tables.
+[kill_longhall_barbarians]
+requires = [
+    { combat_level = { min = 20 } },
+    { skill = { id = "$skill", min = 10, max = 39 } },
+]
+setup = [
+    { equipment = { weapon = { id = "steel_sword,steel_scimitar" } } },
+    { area = { id = "barbarian_village_longhall" } },
+    { inventory = { id = "empty", min = 26 } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { go_to = { area = "barbarian_village_longhall" } },
+    { floor_item = { option = "Take", id = "cooked_meat", x = 3078, y = 3442, radius = 3, delay = 5, success = { inventory = { id = "cooked_meat", min = 2 } } } },
+    { npc = { option = "Attack", id = "barbarian_*", radius = 6, delay = 5, success = { any = [{ inventory = { id = "cooked_meat", max = 0 } }, { inventory = { id = "empty", max = 0 } }, { skill = { id = "$skill", min = 40 } }] } } },
+    { restart = { success = { any = [{ inventory = { id = "empty", max = 0 } }, { skill = { id = "$skill", min = 40 } }] } } },
+]
+reactive = [
+    { eat = { heal_percent = 50 } },
+]
+produces = [
+    { item = "bones" },
+    { item = "coins" },
+    { skill = "$skill" },
+]

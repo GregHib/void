@@ -31,10 +31,11 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Cooking : Script {
 
-    val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
+    val GameObject.cookingRange: Boolean
+        get() = id.startsWith("cooking_range") || id == "steel_range" || id == "fancy_range"
 
     init {
-        itemOnObjectOperate(obj = "fire_*,cooking_range*") { (target, item) ->
+        itemOnObjectOperate(obj = "fire_*,cooking_range*,firepit,firepit_with_hook,firepit_with_pot,small_oven,large_oven,steel_range,fancy_range") { (target, item) ->
             val start = GameLoop.tick
             var sinew = false
             if (item.id == "raw_beef" && target.id.startsWith("cooking_range")) {

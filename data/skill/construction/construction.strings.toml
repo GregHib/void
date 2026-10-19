@@ -1,0 +1,12 @@
+# Games room score board player names, each name component runs a script reading its string
+[ranging_name_1]
+id = 220
+
+[ranging_name_2]
+id = 221
+
+[ranging_name_3]
+id = 222
+
+[ranging_name_4]
+id = 223

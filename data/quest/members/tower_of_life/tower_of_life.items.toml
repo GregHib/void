@@ -183,13 +183,3 @@ weight = 0.15
 slot = "Shield"
 examine = "I can keep my grub in here!"
 kept = "Reclaim"
-
-[hard_hat_2]
-id = 10883
-tradeable = false
-weight = 2.0
-slot = "Hat"
-type = "HairLow"
-destroy = "You'll have to find another within the Tower of Life!"
-examine = "Can't get any safer than this."
-kept = "Vanish"

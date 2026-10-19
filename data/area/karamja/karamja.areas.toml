@@ -12,3 +12,35 @@ hint = "deep in the jungle."
 [karamja_dungeon]
 x = [2827, 2867]
 y = [9546, 9599]
+
+[karamja_harpy_bug_swarms]
+# nav-editor: named area only
+x = [2854, 2887]
+y = [3102, 3117]
+level = 0
+
+[karamja_mysterious_ruins_nature]
+# nav-editor: named area only
+x = [2867, 2871]
+y = [3017, 3021]
+level = 0
+
+[karamja_small_obelisk]
+# nav-editor: named area only
+x = [2850, 2852]
+y = [3026, 3028]
+level = 0
+tags = ["small_obelisk"]
+
+[karamja_central_mine]
+# nav-editor: named area only
+x = [2846, 2851]
+y = [3030, 3037]
+level = 0
+
+[karamja_fairy_ring_ckr]
+# nav-editor: named area only
+x = [2800, 2802]
+y = [3002, 3004]
+level = 0
+tags = ["fairy_ring"]

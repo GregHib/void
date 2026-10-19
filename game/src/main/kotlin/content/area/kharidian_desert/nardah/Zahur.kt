@@ -8,7 +8,7 @@ import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.chat.notImplemented
 
 class Zahur : Script {
     init {
@@ -47,14 +47,14 @@ class Zahur : Script {
     private fun ChoiceOption.decantPotions() {
         option("Please decant my potions.") {
             npc<Sad>("I didn't find anything that I could decant.")
-            message("<purple>Not yet implemented.") // TODO
+            notImplemented()
         }
     }
 
     private fun ChoiceOption.cleanHerbs() {
         option("Please clean all my herbs.") {
             npc<Sad>("I didn't find anything that I could clean.")
-            message("<purple>Not yet implemented.") // TODO
+            notImplemented()
         }
     }
 }

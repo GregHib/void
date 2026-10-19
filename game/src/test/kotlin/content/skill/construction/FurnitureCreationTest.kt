@@ -3,17 +3,17 @@ package content.skill.construction
 import WorldTest
 import containsMessage
 import content.quest.instance
-import content.skill.construction.House.Companion.GROUND_LEVEL
-import content.skill.construction.House.Companion.START_ROOM
-import content.skill.construction.House.Companion.addHouseFurniture
-import content.skill.construction.House.Companion.addHouseRoom
-import content.skill.construction.House.Companion.houseFurnitureHotspots
-import content.skill.construction.House.Companion.houseFurnitureIds
-import content.skill.construction.House.Companion.houseFurnitureRooms
-import content.skill.construction.House.Companion.houseRoomIds
-import content.skill.construction.House.Companion.houseRoomPositions
-import content.skill.construction.House.Companion.removeHouseRoom
-import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.HouseGrid.GROUND_LEVEL
+import content.skill.construction.HouseGrid.START_ROOM
+import content.skill.construction.HouseGrid.roomZone
+import content.skill.construction.HouseHotspots.addHouseFurniture
+import content.skill.construction.HouseHotspots.houseFurnitureHotspots
+import content.skill.construction.HouseHotspots.houseFurnitureIds
+import content.skill.construction.HouseHotspots.houseFurnitureRooms
+import content.skill.construction.HouseRooms.addHouseRoom
+import content.skill.construction.HouseRooms.houseRoomIds
+import content.skill.construction.HouseRooms.houseRoomPositions
+import content.skill.construction.HouseRooms.removeHouseRoom
 import dialogueOption
 import interfaceOption
 import objectOption
@@ -178,7 +178,7 @@ class FurnitureCreationTest : WorldTest() {
 
         assertTrue(player.objects("crude_wooden_chair").isEmpty())
         assertEquals(2, player.inventory.count("plank"))
-        assertTrue(player.containsMessage("right materials"))
+        assertNotNull(player.dialogue)
     }
 
     @Test
@@ -193,7 +193,7 @@ class FurnitureCreationTest : WorldTest() {
 
         assertTrue(player.objects("crude_wooden_chair").isEmpty())
         assertEquals(2, player.inventory.count("plank"))
-        assertTrue(player.containsMessage("hammer and saw"))
+        assertTrue(player.containsMessage("saw and a hammer"))
     }
 
     @Test
@@ -401,10 +401,9 @@ class FurnitureCreationTest : WorldTest() {
         player.objectOption(player.objects("exit_portal").single(), "Remove")
         tick(5)
 
-        assertNull(player.dialogue)
+        assertNotNull(player.dialogue)
         assertEquals(1, player.objects("exit_portal").size)
         assertEquals(listOf("exit_portal"), player.houseFurnitureIds)
-        assertTrue(player.containsMessage("exit portal"))
     }
 
     @Test
@@ -473,5 +472,87 @@ class FurnitureCreationTest : WorldTest() {
         player.dialogueOption("line3")
 
         assertEquals("throne_room", player.houseRoomIds.last())
+    }
+
+    @Test
+    fun `Make a flatpack at a workbench`() {
+        val player = createBuilder()
+        player.inventory.add("plank", 2)
+        player.inventory.add("bronze_nails", 2)
+        val bench = createObject("wooden_workbench", exit.addY(1))
+
+        player.objectOption(bench, "Work-at")
+        tickIf { !player.hasOpen("flatpack_creation") }
+        player.interfaceOption("flatpack_creation", "armchairs", "Select")
+        player.interfaceOption("furniture_creation", "items", "Build", item = Item("crude_wooden_chair"), slot = 0)
+
+        assertEquals(1, player.inventory.count("crude_wooden_chair_flatpack"))
+        assertEquals(0, player.inventory.count("plank"))
+        assertEquals(58.0, player.experience.get(Skill.Construction))
+    }
+
+    @Test
+    fun `Can't make flatpacks better than the workbench`() {
+        val player = createBuilder()
+        player.levels.set(Skill.Construction, 99)
+        player.inventory.add("oak_plank", 3)
+        val bench = createObject("wooden_workbench", exit.addY(1))
+
+        player.objectOption(bench, "Work-at")
+        tickIf { !player.hasOpen("flatpack_creation") }
+        player.interfaceOption("flatpack_creation", "armchairs", "Select")
+        player.interfaceOption("furniture_creation", "items", "Build", item = Item("oak_armchair"), slot = 1)
+
+        assertEquals(0, player.inventory.count("oak_armchair_flatpack"))
+        assertEquals(3, player.inventory.count("oak_plank"))
+    }
+
+    @Test
+    fun `Build furniture from a flatpack`() {
+        val player = createBuilder()
+        player.inventory.remove("hammer")
+        player.inventory.add("crude_wooden_chair_flatpack")
+        player.enterPortal(2)
+
+        player.build("parlour_chair_space", "crude_wooden_chair")
+
+        assertEquals(1, player.objects("crude_wooden_chair").size)
+        assertEquals(0, player.inventory.count("crude_wooden_chair_flatpack"))
+        assertEquals(0.0, player.experience.get(Skill.Construction))
+    }
+
+    @Test
+    fun `Upgrade a workbench`() {
+        val player = createBuilder("workshop")
+        player.levels.set(Skill.Construction, 62)
+        player.addHouseFurniture(START_ROOM, "workshop_workbench_space", "steel_framed_bench")
+        player.inventory.add("oak_plank", 2)
+        player.inventory.add("steel_bar", 1)
+        player.enterPortal(2)
+
+        player.objectOption(player.objects("steel_framed_bench").single(), "Upgrade")
+        tickIf { !player.hasOpen("furniture_creation") }
+        val menu = player.inventories.inventory("poh_furniture_menu_inv")
+        assertEquals("bench_with_vice", menu[0].id)
+        player.interfaceOption("furniture_creation", "items", "Build", item = Item("bench_with_vice"), slot = 0)
+
+        assertTrue(player.objects("steel_framed_bench").isEmpty())
+        assertEquals(1, player.objects("bench_with_vice").size)
+        assertEquals(listOf("bench_with_vice"), player.houseFurnitureIds)
+        assertEquals(0, player.inventory.count("oak_plank"))
+    }
+
+    @Test
+    fun `Can't build upgrades without what they upgrade`() {
+        val player = createBuilder("workshop")
+        player.levels.set(Skill.Construction, 62)
+        player.inventory.add("oak_plank", 2)
+        player.inventory.add("steel_bar", 1)
+        player.enterPortal(2)
+
+        player.build("workshop_workbench_space", "bench_with_vice")
+
+        assertTrue(player.objects("bench_with_vice").isEmpty())
+        assertTrue(player.houseFurnitureIds.isEmpty())
     }
 }

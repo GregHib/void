@@ -438,21 +438,3 @@ tradeable = false
 weight = 0.453
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
-
-[runecrafter_hat_2]
-id = 13657
-tradeable = false
-weight = 0.453
-slot = "Hat"
-type = "HairLow"
-examine = "Comes with goggles, for extra safety while Runecrafting."
-kept = "Reclaim"
-
-[runecrafter_hat_3]
-id = 13658
-tradeable = false
-weight = 0.453
-slot = "Hat"
-type = "HairLow"
-examine = "Comes with goggles, for extra safety while Runecrafting."
-kept = "Reclaim"

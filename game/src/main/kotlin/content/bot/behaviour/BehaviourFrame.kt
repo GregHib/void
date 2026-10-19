@@ -38,6 +38,7 @@ data class BehaviourFrame(
             return false
         }
         index++
+        timeout = 0
         state = BehaviourState.Running
         return true
     }

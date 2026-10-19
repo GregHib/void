@@ -364,3 +364,6 @@ logs = "yew_logs"
 
 [.yew_tree_fullygrown_2]
 logs = "yew_logs"
+
+[.willow_6]
+logs = "willow_logs"

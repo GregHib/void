@@ -266,12 +266,14 @@ object Params {
     const val CLOSED = 5271
     const val STUMP = 5272
     const val DEPLETED = 5273
+    const val BOT_CAPACITY = 5274
 
     private fun custom(name: String) = when (name) {
         "opened" -> OPENED
         "closed" -> CLOSED
         "stump" -> STUMP
         "depleted" -> DEPLETED
+        "bot_capacity" -> BOT_CAPACITY
         "disengage" -> DISENGAGE
         "summoning_beast_of_burden_essence" -> SUMMONING_BEAST_OF_BURDEN_ESSENCE
         "summoning_special_cost" -> SUMMONING_SPECIAL_COST
