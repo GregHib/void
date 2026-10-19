@@ -16,12 +16,8 @@ private const val COAL_TRUCK_DEFAULT_CAPACITY = 120
 private const val COAL_TRUCK_HEADBAND_1_CAPACITY = 140
 private const val COAL_TRUCK_HEADBAND_2_CAPACITY = 168
 private const val COAL_TRUCK_HEADBAND_3_CAPACITY = 196
-private const val COAL_TRUCK_DISPLAY_SOME = 1
-private const val COAL_TRUCK_DISPLAY_ALMOST_HALF = 40
-private const val COAL_TRUCK_DISPLAY_NEARLY_FULL = 80
 private const val COAL_TRUCK_DISPLAY_FULL = 140
-private const val COAL_TRUCK_DISPLAY_IMPRESSIVELY_STACKED = 168
-private const val COAL_TRUCK_DISPLAY_MAXIMUM_STACK = 196
+private const val COAL_TRUCK_BASE_DISPLAY_OFFSET = COAL_TRUCK_DISPLAY_FULL - COAL_TRUCK_DEFAULT_CAPACITY
 private const val ACTIVE_COAL_TRUCKS =
     "coal_truck,coal_truck_with_some_coal,coal_truck_almost_half_full,coal_truck_nearly_full,coal_truck_full,coal_truck_impressively_stacked,coal_truck_maximum_stack"
 
@@ -98,18 +94,19 @@ class CoalTrucks : Script {
     }
 
     private fun Player.normaliseCoalTruckState(): Int {
-        val display = get(COAL_TRUCK_DISPLAY_KEY, 0)
+        val display = get(COAL_TRUCK_DISPLAY_KEY, 0).coerceIn(0, COAL_TRUCK_HEADBAND_3_CAPACITY)
         val count = get(COAL_TRUCK_COUNT, 0)
-        val stored = when (count) {
-            0 -> legacyCoalTruckCount(display)
-            else -> count.coerceIn(0, COAL_TRUCK_HEADBAND_3_CAPACITY)
+        val capacity = coalTruckCapacity()
+        val stored = when {
+            count > 0 -> count.coerceIn(0, COAL_TRUCK_HEADBAND_3_CAPACITY)
+            else -> coalTruckCountValue(display, capacity)
         }
-        val transformed = coalTruckDisplayValue(stored, coalTruckCapacity())
-        if (stored != count) {
-            set(COAL_TRUCK_COUNT, stored)
-        }
+        val transformed = coalTruckDisplayValue(stored, capacity)
         if (transformed != display) {
             set(COAL_TRUCK_DISPLAY_KEY, transformed)
+        }
+        if (count != 0) {
+            set(COAL_TRUCK_COUNT, 0)
         }
         return stored
     }
@@ -118,12 +115,8 @@ class CoalTrucks : Script {
 
     private fun Player.storeCoalTruckCount(stored: Int) {
         val amount = stored.coerceIn(0, COAL_TRUCK_HEADBAND_3_CAPACITY)
-        set(COAL_TRUCK_COUNT, amount)
-        syncCoalTruckDisplay(amount)
-    }
-
-    private fun Player.syncCoalTruckDisplay(stored: Int) {
-        set(COAL_TRUCK_DISPLAY_KEY, coalTruckDisplayValue(stored, coalTruckCapacity()))
+        set(COAL_TRUCK_COUNT, 0)
+        set(COAL_TRUCK_DISPLAY_KEY, coalTruckDisplayValue(amount, coalTruckCapacity()))
     }
 
     private fun Player.coalTruckCapacity(): Int = coalTruckTier().capacity
@@ -154,20 +147,14 @@ class CoalTrucks : Script {
     // }
 }
 
-private fun legacyCoalTruckCount(legacy: Int): Int = when {
-    legacy <= 0 -> 0
-    legacy >= COAL_TRUCK_DISPLAY_FULL -> COAL_TRUCK_DEFAULT_CAPACITY
-    else -> legacy.coerceIn(0, COAL_TRUCK_DEFAULT_CAPACITY)
+private fun coalTruckCountValue(display: Int, capacity: Int): Int = when {
+    display <= 0 -> 0
+    else -> (display - coalTruckDisplayOffset(capacity)).coerceIn(1, COAL_TRUCK_HEADBAND_3_CAPACITY)
 }
 
 private fun coalTruckDisplayValue(stored: Int, capacity: Int): Int = when {
     stored <= 0 -> 0
-    capacity < COAL_TRUCK_HEADBAND_3_CAPACITY && stored >= capacity -> COAL_TRUCK_DISPLAY_FULL
-    stored < capacity / 4 -> COAL_TRUCK_DISPLAY_SOME
-    stored < capacity / 2 -> COAL_TRUCK_DISPLAY_ALMOST_HALF
-    capacity < COAL_TRUCK_HEADBAND_3_CAPACITY -> COAL_TRUCK_DISPLAY_NEARLY_FULL
-    stored < COAL_TRUCK_DISPLAY_FULL -> COAL_TRUCK_DISPLAY_NEARLY_FULL
-    stored < COAL_TRUCK_DISPLAY_IMPRESSIVELY_STACKED -> COAL_TRUCK_DISPLAY_FULL
-    stored < COAL_TRUCK_DISPLAY_MAXIMUM_STACK -> COAL_TRUCK_DISPLAY_IMPRESSIVELY_STACKED
-    else -> COAL_TRUCK_DISPLAY_MAXIMUM_STACK
+    else -> (stored + coalTruckDisplayOffset(capacity)).coerceIn(1, COAL_TRUCK_HEADBAND_3_CAPACITY)
 }
+
+private fun coalTruckDisplayOffset(capacity: Int): Int = if (capacity == COAL_TRUCK_DEFAULT_CAPACITY) COAL_TRUCK_BASE_DISPLAY_OFFSET else 0
