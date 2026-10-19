@@ -557,10 +557,6 @@ examine = "Too scruffy to be of much use."
 id = 23925
 examine = "Contains quite a lot of someone else's property."
 
-[varrock_chest_4]
-id = 23926
-examine = "This chest looks strong."
-
 [varrock_cabinet]
 id = 24311
 examine = "The perfect place to store things."
@@ -900,10 +896,6 @@ examine = "A privacy aid!"
 [varrock_trunk]
 id = 24340
 examine = "A trunk for the guards to keep their things in."
-
-[varrock_closed_chest]
-id = 24203
-examine = "I wonder what's inside."
 
 [varrock_locker]
 id = 24341
