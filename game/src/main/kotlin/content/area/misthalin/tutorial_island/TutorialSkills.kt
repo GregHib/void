@@ -42,7 +42,11 @@ class TutorialSkills : Script {
             equippedSwordAndShield()
         }
 
-        experience { skill, _, _ ->
+        experience { skill, from, to ->
+            // Login/interface refreshes publish unchanged XP through this same event.
+            if (to <= from) {
+                return@experience
+            }
             when (skill) {
                 Skill.Firemaking -> advanceTutorial(7)
                 Skill.Attack, Skill.Strength, Skill.Defence -> advanceTutorial(47)
