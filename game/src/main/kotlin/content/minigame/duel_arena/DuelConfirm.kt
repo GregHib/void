@@ -46,6 +46,10 @@ class DuelConfirm : Script {
             for (index in 0 until DURING_LINES) {
                 player.interfaces.sendText(screen, "during_$index", during.getOrElse(index) { "" })
             }
+            if (duel.staked) {
+                player.interfaces.sendVisibility(screen, "stake", player.stake.isEmpty())
+                player.interfaces.sendVisibility(screen, "other_stake", player.otherStake.isEmpty())
+            }
             player.interfaces.sendText(screen, "status", "")
         }
 
