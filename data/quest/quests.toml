@@ -3961,7 +3961,7 @@ start_path = [
 req_items = "Beer (or 2 coins to purchase a pint)."
 req_combat = "You will need to defeat a level 28 enemy."
 points = 3
-xp = "4,825 combat XP lamp"
+xp = "4,825 Attack XP"
 
 [void_dance]
 id = 173

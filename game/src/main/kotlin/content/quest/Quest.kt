@@ -23,6 +23,7 @@ val quests = setOf(
     "prince_ali_rescue",
     "imp_catcher",
     "pirates_treasure",
+    "vampire_slayer",
     // members
     "biohazard",
     "creature_of_fenkenstrain",

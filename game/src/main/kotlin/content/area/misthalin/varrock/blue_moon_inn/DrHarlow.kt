@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.quest.free.vampire_slayer.harlowVampireSlayer
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.inv.remove
 class DrHarlow : Script {
     init {
         npcOperate("Talk-to", "dr_harlow") {
+            if (harlowVampireSlayer()) return@npcOperate
             npc<Drunk>("Buy me a drrink pleassh.")
             choice {
                 option<Neutral>("No, you've had enough. ") {
