@@ -2,6 +2,14 @@
 id = 3203
 examine = "Access to the duel arena."
 
+[duel_arena_forfeit_flag]
+id = 3111
+examine = "Flags marking the entrance to the arena."
+
+[duel_arena_forfeit_flag_left]
+id = 3113
+examine = "Flags marking the entrance to the arena."
+
 [duel_arena_scoreboard]
 id = 3192
 examine = "You can see the last 50 fights on here."
