@@ -506,6 +506,12 @@ id = 33
 id = 632
 type = "main_screen"
 
+[.subtitle]
+id = 13
+
+[.title]
+id = 14
+
 [.list]
 id = 15
 
