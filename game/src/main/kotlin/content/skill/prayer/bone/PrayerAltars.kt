@@ -1,5 +1,6 @@
 package content.skill.prayer.bone
 
+import content.entity.player.dialogue.type.statement
 import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import content.skill.prayer.getActivePrayerVarKey
@@ -37,7 +38,7 @@ class PrayerAltars : Script {
         }
     }
 
-    fun Player.pray() {
+    private fun Player.pray() {
         if (levels.getOffset(Skill.Prayer) >= 0) {
             message("You already have full Prayer points.")
         } else {
@@ -48,21 +49,17 @@ class PrayerAltars : Script {
         }
     }
 
-    private fun Player.prayAtZaros() {
+    private suspend fun Player.prayAtZaros() {
         if (levels.getOffset(Skill.Prayer) < 0) {
             levels.set(Skill.Prayer, levels.getMax(Skill.Prayer))
             set("prayer_point_power_task", true)
             message("You recharge your Prayer points.")
         }
-        switchPrayerBook()
-    }
-
-    private fun Player.switchPrayerBook() {
         clear(getActivePrayerVarKey())
         this[USING_QUICK_PRAYERS] = false
         val curses = !isCurses()
         set(PRAYERS, if (curses) "curses" else "normal")
-        anim("altar_pray")
-        message(if (curses) "You switch to the Ancient Curses." else "You switch to the normal Prayer book.")
+        anim("mah4_reward_stand_and_pray")
+        statement(if (curses) "You switch to the Ancient Curses." else "You switch to the normal Prayer book.") // https://youtu.be/qXRRQresxCs?t=92
     }
 }
