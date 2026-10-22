@@ -11,8 +11,16 @@ import messages
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
+import org.koin.test.inject
 import skipDialogues
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
+import world.gregs.voidps.cache.definition.decoder.AnimationDecoderFull
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -176,6 +184,39 @@ class VampireSlayerTest : WorldTest() {
         player.skipDialogues()
         assertFalse(player.inventory.contains("beer"))
         assertEquals("unstarted", player.quest("vampire_slayer"))
+    }
+
+    @Test
+    fun `Count combat animations share the skeleton used by his cached idle and walk`() {
+        val cache: Cache by inject()
+        val combats: CombatDefinitions by inject()
+        val combat = combats.get("count_draynor_normal")
+        val attack = AnimationDefinitions.get(combat.attacks.getValue("melee").anim).id
+        val death = AnimationDefinitions.get(combat.deathAnim).id
+        assertEquals(3331, attack)
+        assertEquals(3332, death)
+        assertEquals("", combat.defendAnim) // No generic humanoid/vampyre defence animation.
+        val render = NPCDefinitions.get("count_draynor_normal").renderEmote
+        val basDecoder = RenderAnimationDecoder()
+        val bases = basDecoder.create(render + 1)
+        basDecoder.load(bases, cache, render)
+        val bas = bases[render]
+        val ids = listOf(bas.primaryIdle, bas.primaryWalk, attack, death)
+        val decoder = AnimationDecoderFull()
+        val sequences = decoder.create(ids.max() + 1)
+        fun skeletons(id: Int): Set<Int> {
+            decoder.load(sequences, cache, id)
+            val frames = sequences[id].frames!!
+            assertTrue(frames.isNotEmpty())
+            return frames.map { frame ->
+                val bytes = cache.data(Index.ANIMATION_FRAMES, frame ushr 16, frame and 0xffff)!!
+                assertEquals(1, bytes[0].toInt()) // revision-634 frame format version
+                ((bytes[1].toInt() and 0xff) shl 8) or (bytes[2].toInt() and 0xff)
+            }.toSet()
+        }
+        val idleSkeletons = skeletons(bas.primaryIdle)
+        assertEquals(setOf(2688), idleSkeletons)
+        ids.forEach { assertEquals(idleSkeletons, skeletons(it), "Sequence $it uses the wrong skeleton") }
     }
 
     private fun Player.talk(id: String) {
