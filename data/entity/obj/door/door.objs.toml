@@ -184,6 +184,7 @@ id = 1522
 
 [magic_guild_door_closed]
 id = 1600
+opened = "magic_guild_door_opened"
 examine = "The doors to the Magic Guild."
 
 [door_74_closed]

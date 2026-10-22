@@ -1,5 +1,5 @@
 edges = [
-    { from = { x = 2776, y = 3215 }, to = { x = 2834, y = 2951 }, actions = [{ object = { option = "Pay-fare", id = "travel_cart_brimhaven", x = 2777, y = 3211, radius = 0, success = { tile = { x = 2834, y = 2951, level = 0 } } } }, { tile = { x = 2834, y = 2951, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }, { variable = { id = "shilo_village", equals = "completed", default = "unstarted" } }], cost = 323 },
+    { from = { x = 2776, y = 3215 }, to = { x = 2834, y = 2951 }, actions = [{ object = { option = "Pay-fare", id = "travel_cart_brimhaven", x = 2777, y = 3211, radius = 0, success = { tile = { x = 2834, y = 2951, level = 0 } } } }, { tile = { x = 2834, y = 2951, radius = 1 } }], requires = [{ inventory = { id = "coins", min = 10 } }, { variable = { id = "shilo_village", equals = "completed", default = "unstarted" } }], cost = 7 },
 
     { from = { x = 2772, y = 3140 }, to = { x = 2772, y = 3133 } },
     { from = { x = 2772, y = 3133 }, to = { x = 2772, y = 3125 } },
@@ -31,8 +31,8 @@ edges = [
     { from = { x = 2881, y = 3052 }, to = { x = 2873, y = 3031 } },
     { from = { x = 2873, y = 3031 }, to = { x = 2851, y = 3073 } },
     { from = { x = 2873, y = 3031 }, to = { x = 2871, y = 3022 } },
-    { from = { x = 2871, y = 3022 }, to = { x = 2400, y = 4835 }, actions = [{ object = { option = "Enter", id = "nature_altar_ruins", x = 2868, y = 3018, radius = 0, success = { tile = { x = 2400, y = 4835, level = 0 } } } }, { tile = { x = 2400, y = 4835, radius = 1 } }], cost = 2285 , requires = [{ equipment = { hat = { id = "nature_tiara", min = 1 } } }]},
-    { from = { x = 2400, y = 4835 }, to = { x = 2871, y = 3022 }, actions = [{ object = { option = "Enter", id = "nature_altar_portal", x = 2400, y = 4834, radius = 0, success = { tile = { x = 2867, y = 3020, level = 0 } } } }, { tile = { x = 2871, y = 3022, radius = 1 } }], cost = 2285 , requires = []},
+    { from = { x = 2871, y = 3022 }, to = { x = 2400, y = 4835 }, actions = [{ object = { option = "Enter", id = "nature_altar_ruins", x = 2868, y = 3018, radius = 0, success = { tile = { x = 2400, y = 4835, level = 0 } } } }, { tile = { x = 2400, y = 4835, radius = 1 } }], cost = 9 , requires = [{ equipment = { hat = { id = "nature_tiara", min = 1 } } }]},
+    { from = { x = 2400, y = 4835 }, to = { x = 2871, y = 3022 }, actions = [{ object = { option = "Enter", id = "nature_altar_portal", x = 2400, y = 4834, radius = 0, success = { tile = { x = 2867, y = 3020, level = 0 } } } }, { tile = { x = 2871, y = 3022, radius = 1 } }], cost = 9 , requires = []},
     { from = { x = 2400, y = 4835 }, to = { x = 2400, y = 4839 } },
 
     { from = { x = 2871, y = 3022 }, to = { x = 2865, y = 3023 } },

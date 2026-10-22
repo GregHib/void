@@ -17,3 +17,89 @@ tags = ["no_random_events", "no_cannon"]
 x = [1664, 1791]
 y = [5248, 5311]
 tags = ["no_cannon"]
+
+[ancient_cavern_waterfiends_north]
+# nav-editor: named area only
+x = [1756, 1767]
+y = [5354, 5361]
+level = 0
+
+[ancient_cavern_waterfiends_west]
+# nav-editor: named area only
+x = [1749, 1749, 1742, 1741, 1737, 1737, 1735, 1735]
+y = [5335, 5342, 5342, 5355, 5359, 5353, 5350, 5335]
+level = 0
+
+[ancient_cavern_slayer_master]
+# nav-editor: named area only
+x = [1736, 1741]
+y = [5310, 5314]
+level = 1
+tags = ["slayer_master"]
+
+[dragon_forge]
+# nav-editor: named area only
+x = [1748, 1753]
+y = [5284, 5290]
+level = 1
+
+[kuradal_dungeon_small_obelisk]
+# nav-editor: named area only
+x = [1657, 1659]
+y = [5258, 5259]
+level = 0
+tags = ["small_obelisk"]
+
+[kuradals_dungeon_hellhounds]
+# nav-editor: named area only
+x = [1639, 1649]
+y = [5253, 5257]
+level = 0
+
+[kuradals_dungeon_greater_demons]
+# nav-editor: named area only
+x = [1609, 1627]
+y = [5253, 5260]
+level = 0
+
+[kuradals_dungeon_blue_dragons]
+# nav-editor: named area only
+x = [1605, 1613]
+y = [5271, 5283]
+level = 0
+
+[kuradals_dungeon_gargoyles]
+# nav-editor: named area only
+x = [1608, 1617]
+y = [5294, 5305]
+level = 0
+
+[kuradals_dungeon_abyssal_demons]
+# nav-editor: named area only
+x = [1631, 1643]
+y = [5298, 5307]
+level = 0
+
+[kuradals_dungeon_dark_beasts]
+# nav-editor: named area only
+x = [1648, 1657]
+y = [5287, 5296]
+level = 0
+
+[kuradals_dungeon_iron_dragons]
+# nav-editor: named area only
+x = [1644, 1656]
+y = [5267, 5277]
+level = 0
+
+[kuradals_dungeon_steel_dragons]
+# nav-editor: named area only
+x = [1623, 1636]
+y = [5276, 5285]
+level = 0
+
+[ancient_cavern_mithril_dragons]
+# nav-editor: named area only
+x = [1765, 1782]
+y = [5331, 5353]
+level = 1
