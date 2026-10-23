@@ -141,7 +141,7 @@ spawns = [
   { id = "musician_lumbridge", x = 3233, y = 3233, direction = "WEST" },
   { id = "duke_horacio", x = 3212, y = 3220, level = 1 },
   { id = "barfy_bill", x = 3231, y = 3252 },
-  { id = "shopkeeper_lumbridge", x = 3214, y = 3240 },
+  { id = "shopkeeper_lumbridge", x = 3214, y = 3240, direction = "NORTH" },
   { id = "shop_assistant_lumbridge", x = 3214, y = 3243 },
   { id = "bob", x = 3228, y = 3203 },
   { id = "banker_3", x = 3208, y = 3222, level = 2, direction = "SOUTH" },
@@ -191,7 +191,7 @@ spawns = [
   { id = "goblin_turquoise_topless_mohawk", x = 3251, y = 3238 },
   { id = "goblin_turquoise_topless_mohawk", x = 3259, y = 3254 },
   { id = "goblin_turquoise_topless_mohawk", x = 3257, y = 3248 },
-  { id = "explorer_jack", x = 3204, y = 3241 },
+  { id = "explorer_jack_lumbridge", x = 3204, y = 3241 },
   { id = "doomsayer", x = 3237, y = 3227, direction = "EAST" },
   # 12851
   { id = "lumbridge_guardsman_attackable", x = 3253, y = 3238 },

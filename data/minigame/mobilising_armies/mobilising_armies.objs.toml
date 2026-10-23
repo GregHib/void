@@ -1,0 +1,33 @@
+[mobilising_armies_stairs_up]
+id = 43897
+
+[mobilising_armies_stairs_up_2]
+id = 43790
+
+[mobilising_armies_stairs_down]
+id = 43885
+
+[mobilising_armies_stairs_down_2]
+id = 43898
+
+[mobilising_armies_stairs_down_3]
+id = 43899
+
+[mobilising_armies_officer_tower_door]
+id = 43859
+opened = "mobilising_armies_officer_tower_door_opened"
+
+[mobilising_armies_officer_tower_door_right_closed]
+id = 43860
+
+[mobilising_armies_officer_tower_door_left_closed]
+id = 43861
+
+[mobilising_armies_officer_tower_door_right_opened]
+id = 43862
+
+[mobilising_armies_officer_tower_door_left_opened]
+id = 43863
+
+[mobilising_armies_officer_tower_door_opened]
+id = 43864

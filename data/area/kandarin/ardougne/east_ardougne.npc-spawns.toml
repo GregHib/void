@@ -214,7 +214,7 @@ spawns = [
   { id = "larry_ardougne", x = 2596, y = 3266, members = true },
   { id = "ceril_carnillean", x = 2565, y = 3268, members = true },
   { id = "guard_ardougne_3", x = 2570, y = 3275, members = true },
-  { id = "philipe_carnillean", x = 2573, y = 3268, members = true },
+  { id = "philipe_carnillean", x = 2566, y = 3275, members = true },
   { id = "henryeta_carnillean", x = 2574, y = 3273, members = true },
   { id = "unicorn", x = 2629, y = 3266 },
   { id = "unicorn", x = 2634, y = 3265 },

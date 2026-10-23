@@ -1,3 +1,127 @@
 [bank_booth_oo_glog]
 id = 29085
 examine = "The bank teller will serve you from here."
+
+[post_oo_glog]
+id = 29141
+examine = "That's not very friendly!"
+
+[pennant_oo_glog]
+id = 29142
+examine = "Whose ugly mug is that?"
+
+[pennant_oo_glog_2]
+id = 29143
+examine = "Whose ugly mug is that?"
+
+[oil_lamp_oo_glog]
+id = 29132
+examine = "Very oily and very lampy."
+
+[oil_lamp_oo_glog_2]
+id = 29133
+examine = "Very oily and very lampy."
+
+[pile_of_stones_oo_glog]
+id = 29157
+examine = "A pile of long brown, purple tall and green gumdrop stones."
+
+[pile_of_stones_oo_glog_2]
+id = 29158
+examine = "A pile of long brown, red sphere, purple tall and orange squarish stones."
+
+[fire_pit_oo_glog]
+id = 29152
+examine = "Aromatic materials have been burnt here."
+
+[rocks_oo_glog]
+id = 29057
+examine = "I can climb over these."
+
+[rocks_oo_glog_2]
+id = 29058
+examine = "I can climb over these."
+
+[logs_oo_glog]
+id = 29129
+examine = "Solid construction materials."
+
+[barrel_oo_glog]
+id = 29125
+examine = "Full with construction materials."
+
+[ogre_roof_leaves_oo_glog]
+id = 29124
+examine = "The leaves the ogre roofs are made with."
+
+[shop_counter_oo_glog]
+id = 29144
+examine = "Primitive but functional."
+
+[shelves_oo_glog]
+id = 29146
+examine = "They're full of things."
+
+[shelves_oo_glog_2]
+id = 29147
+examine = "They're full of things."
+
+[spikes_oo_glog]
+id = 29140
+examine = "Decoration or a warning?"
+
+[fire_oo_glog]
+id = 29139
+examine = "Very, very hot."
+
+[cooking_utensils_oo_glog]
+id = 29134
+examine = "A pan and plate."
+
+[throne_oo_glog]
+id = 29138
+examine = "Pretty grand by ogre standards."
+
+[table_oo_glog]
+id = 29131
+examine = "Stone table."
+
+[barrel_oo_glog_2]
+id = 29151
+examine = "Is it ogre wine?"
+
+[shelves_oo_glog_3]
+id = 29130
+examine = "For all her storage needs."
+
+[fire_pit_oo_glog_2]
+id = 29096
+examine = "I could build a fire here."
+
+[pile_of_stones_oo_glog_3]
+id = 29159
+examine = "A pile of long brown, red sphere and green gumdrop stones."
+
+[shelves_oo_glog_4]
+id = 29145
+examine = "Empty."
+
+[barrels_oo_glog]
+id = 29150
+examine = "What do ogres keep in barrels, anyway?"
+
+[pile_of_stones_oo_glog_4]
+id = 29160
+examine = "A pile of long brown and yellow egg-shaped stones."
+
+[glorious_mud_oo_glog]
+id = 29109
+examine = "Nothing quite like it for cooling the blood."
+
+[hairdryer_oo_glog]
+id = 29104
+examine = "A hairdryer."
+
+[hotel_bed_oo_glog]
+id = 29087
+examine = "A crude bed with a meat pillow."

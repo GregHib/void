@@ -21,4 +21,5 @@ spawns = [
   { id = "imp", x = 2639, y = 3206 },
   { id = "imp", x = 2639, y = 3230 },
   { id = "homunculus_3", x = 3038, y = 4395, members = true },
+  { id = "the_guns", x = 2643, y = 3226 },
 ]
