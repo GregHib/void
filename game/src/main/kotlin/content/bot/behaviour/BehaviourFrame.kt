@@ -2,7 +2,6 @@ package content.bot.behaviour
 
 import content.bot.Bot
 import content.bot.behaviour.action.BotAction
-import content.bot.behaviour.condition.Condition
 
 /**
  * Tracks an ongoing [behaviour], it's [state] which action [index] is in progress
@@ -14,8 +13,6 @@ data class BehaviourFrame(
     var index: Int = 0,
     var blocked: MutableSet<String> = mutableSetOf(),
     var timeout: Int = 0,
-    /** Caller-supplied goal for this execution; ends the whole behaviour when satisfied. */
-    val completionCondition: Condition? = null,
 ) {
 
     fun action(): BotAction = behaviour.actions[index]
