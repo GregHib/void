@@ -25,9 +25,9 @@ class FogScoreboard : Script {
         ?: listOf("Read")
 
     private fun Player.openScoreboard() {
-        open("fist_of_guthix_scoreboard")
-        interfaces.sendText("fist_of_guthix_scoreboard", "title", "Scoreboard")
-        interfaces.sendText("fist_of_guthix_scoreboard", "subtitle", "Last fifty games on this world:")
+        open("duel_scoreboard")
+        interfaces.sendText("duel_scoreboard", "title", "Scoreboard")
+        interfaces.sendText("duel_scoreboard", "subtitle", "Last fifty games on this world:")
         sendScoreboardLines(
             listOf(
                 "No games have taken place yet.",
