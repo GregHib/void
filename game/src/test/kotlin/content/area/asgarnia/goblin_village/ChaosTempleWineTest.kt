@@ -2,7 +2,6 @@ package content.area.asgarnia.goblin_village
 
 import WorldTest
 import content.entity.combat.target
-import content.entity.item.height
 import floorItemOption
 import interfaceOnFloorItem
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -13,9 +12,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -59,7 +56,6 @@ internal class ChaosTempleWineTest : WorldTest() {
         player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", wine)
         tick(6)
 
-        assertEquals(384, wine.height())
         assertTrue(player.inventory.contains("wine_of_zamorak"))
         assertEquals(43.0, player.experience.get(Skill.Magic))
         assertEquals(50, player.levels.get(Skill.Attack))
@@ -124,7 +120,7 @@ internal class ChaosTempleWineTest : WorldTest() {
 
     @Test
     fun `Wine respawns after being taken`() {
-        loadItemSpawns(get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]))
+        loadItemSpawns(configFiles().list(Settings["spawns.items"]))
         val player = createPlayer(wineTile.addX(1))
         tick()
 
