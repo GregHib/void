@@ -72,7 +72,7 @@ class SummoningCraftingTest : WorldTest() {
             player.objectOption(obelisk, "Infuse-pouch")
             tick()
 
-            player.interfaceOption("summoning_pouch_creation", "pouches", "Infuse", item = pouch, slot = interactingSlot)
+            player.interfaceOption("summoning_creation", "pouches", "Infuse", item = pouch, slot = interactingSlot)
             tick()
 
             assertEquals(0, player.inventory.count(charm.id))
@@ -104,10 +104,10 @@ class SummoningCraftingTest : WorldTest() {
             player.objectOption(obelisk, "Infuse-pouch")
             tick()
 
-            player.interfaceOption("summoning_pouch_creation", "scroll_creation_tab", "Transform Scrolls")
+            player.interfaceOption("summoning_creation", "scroll_creation_tab", "Transform Scrolls")
             tick()
 
-            player.interfaceOption("summoning_scroll_creation", "scrolls", "Transform", item = scroll, slot = interactingSlot)
+            player.interfaceOption("summoning_creation", "scrolls", "Transform", item = scroll, slot = interactingSlot)
             tick()
 
             assertEquals(0, player.inventory.count(pouch.id))

@@ -21,11 +21,12 @@ import kotlin.math.min
 
 class SummoningCrafting : Script {
 
-    val pouchInterfaceId = 672
+    val interfaceId = 79
     val pouchComponentId = 16
+    val scrollComponentId = 17
 
-    val scrollInterfaceId = 666
-    val scrollComponentId = 16
+    private val pouchModeComponents = listOf("pouch_title", "pouches", "pouch_scrollbar", "scroll_creation_tab", "pouch_tab_selected", "scroll_tab_icon", "pouch_tab_icon_selected")
+    private val scrollModeComponents = listOf("scroll_title", "scrolls", "scroll_scrollbar", "pouch_creation_tab", "scroll_tab_selected", "pouch_tab_icon", "scroll_tab_icon_selected")
 
     val width = 8
     val height = 10
@@ -41,15 +42,15 @@ class SummoningCrafting : Script {
             openPouchCraftingInterface(this)
         }
 
-        interfaceOption("Transform Scrolls", "summoning_pouch_creation:scroll_creation_tab") {
-            openScrollCraftingInterface(this)
+        interfaceOption("Transform Scrolls", "summoning_creation:scroll_creation_tab") {
+            showTab(this, scrolls = true)
         }
 
-        interfaceOption("Infuse Pouches", "summoning_scroll_creation:pouch_creation_tab") {
-            openPouchCraftingInterface(this)
+        interfaceOption("Infuse Pouches", "summoning_creation:pouch_creation_tab") {
+            showTab(this, scrolls = false)
         }
 
-        interfaceOption(id = "summoning_pouch_creation:pouches") { (item, itemSlot, option) ->
+        interfaceOption(id = "summoning_creation:pouches") { (item, itemSlot, option) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
 
@@ -70,13 +71,13 @@ class SummoningCrafting : Script {
             }
         }
 
-        interfaceOption("List", "summoning_pouch_creation:pouches") { (_, itemSlot) ->
+        interfaceOption("List", "summoning_creation:pouches") { (_, itemSlot) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
             sendIngredientMessage(this, enumIndex)
         }
 
-        interfaceOption(id = "summoning_scroll_creation:scrolls") { (_, itemSlot, option) ->
+        interfaceOption(id = "summoning_creation:scrolls") { (_, itemSlot, option) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
 
@@ -269,15 +270,16 @@ class SummoningCrafting : Script {
     }
 
     /**
-     * Opens the interface used for crafting summoning pouches.
+     * Opens the interface used for crafting summoning pouches and scrolls.
+     * Both lists are populated up front and [showTab] swaps which one is visible.
      *
      * @param player: The [Player] to open the interface for
      */
     fun openPouchCraftingInterface(player: Player) {
-        player.interfaces.open("summoning_pouch_creation")
+        player.interfaces.open("summoning_creation")
         player.sendScript(
             "populate_summoning_pouch_creation",
-            InterfaceDefinition.pack(pouchInterfaceId, pouchComponentId),
+            InterfaceDefinition.pack(interfaceId, pouchComponentId),
             width,
             height,
             // TODO: Use starting/endingDungeoneeringIndex if the player is in a dungeon
@@ -290,19 +292,9 @@ class SummoningCrafting : Script {
             "Infuse-All<col=FF9040>",
             "List<col=FF9040>",
         )
-        player.interfaceOptions.unlockAll("summoning_pouch_creation", "pouches", 0..400)
-    }
-
-    /**
-     * Opens the interface used for crafting summoning scrolls.
-     *
-     * @param player: The [Player] to open the interface for
-     */
-    fun openScrollCraftingInterface(player: Player) {
-        player.interfaces.open("summoning_scroll_creation")
         player.sendScript(
             "populate_summoning_scroll_creation",
-            InterfaceDefinition.pack(scrollInterfaceId, scrollComponentId),
+            InterfaceDefinition.pack(interfaceId, scrollComponentId),
             width,
             height,
             // TODO: Use starting/endingDungeoneeringIndex if the player is in a dungeon
@@ -314,6 +306,20 @@ class SummoningCrafting : Script {
             "Transform-X<col=FF9040>",
             "Transform-All<col=FF9040>",
         )
-        player.interfaceOptions.unlockAll("summoning_scroll_creation", "scrolls", 0..400)
+        player.interfaceOptions.unlockAll("summoning_creation", "pouches", 0..400)
+        player.interfaceOptions.unlockAll("summoning_creation", "scrolls", 0..400)
+        showTab(player, scrolls = false)
+    }
+
+    /**
+     * Shows either the pouch or the scroll half of the combined creation interface.
+     */
+    fun showTab(player: Player, scrolls: Boolean) {
+        for (component in pouchModeComponents) {
+            player.interfaces.sendVisibility("summoning_creation", component, !scrolls)
+        }
+        for (component in scrollModeComponents) {
+            player.interfaces.sendVisibility("summoning_creation", component, scrolls)
+        }
     }
 }
