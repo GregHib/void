@@ -96,7 +96,8 @@ class Party : Script {
         invites[target] = Invite(player, GameLoop.tick + INVITE_TICKS)
         setName(target, "party_invite", player.name)
         player.message("You invite ${target.name} to your party.")
-        target.message("${player.name} invites you to their party. Type ::party accept to join.")
+        // in the request colour of a trade or duel line; the 634 client's Party plugin makes the line's left click accept
+        target.message("<col=800080>${player.name} wishes to join you in a party.</col>")
     }
 
     fun accept(player: Player) {
