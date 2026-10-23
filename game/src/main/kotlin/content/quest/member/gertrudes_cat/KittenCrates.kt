@@ -47,7 +47,6 @@ class KittenCrates : Script {
             }
         }
 
-
         npcSpawn("fluffs") {
             if (tile.level == 1) {
                 softTimers.start("fluffs_kittens")
