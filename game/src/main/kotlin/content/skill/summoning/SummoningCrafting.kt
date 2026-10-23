@@ -70,7 +70,7 @@ class SummoningCrafting : Script {
             }
         }
 
-        interfaceOption("List", ":summoning_pouch_creationpouches") { (_, itemSlot) ->
+        interfaceOption("List", "summoning_pouch_creation:pouches") { (_, itemSlot) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
             sendIngredientMessage(this, enumIndex)
