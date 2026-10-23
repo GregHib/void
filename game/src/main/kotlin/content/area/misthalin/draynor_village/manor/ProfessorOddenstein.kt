@@ -6,6 +6,7 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.free.ernest_the_chicken.oddensteinErnest
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -13,8 +14,8 @@ import world.gregs.voidps.engine.entity.character.move.tele
 class ProfessorOddenstein : Script {
     init {
         npcOperate("Talk-to", "professor_oddenstein") { (target) ->
+            if (oddensteinErnest()) return@npcOperate
             if (!questCompleted("ernest_the_chicken")) {
-                // TODO quest
                 npc<Neutral>("Be careful in here, there's lots of dangerous equipment.")
                 choice {
                     option<Quiz>("What does this machine do?") {
