@@ -418,6 +418,7 @@ id = 7744
 
 [fluffs_normal]
 id = 7742
+dialogue = "cat"
 
 [will]
 id = 7737
