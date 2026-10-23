@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
@@ -23,13 +24,14 @@ import world.gregs.voidps.type.Tile
 internal class PrayerTest : WorldTest() {
 
     @Test
-    fun `Home Zaros altar recharges and switches prayers`() {
+    fun `Falador castle altar can be used to switch prayers with the ancient hymnal`() {
         val player = createPlayer()
         player.experience.set(Skill.Prayer, Experience.MAXIMUM_EXPERIENCE)
         player.levels.set(Skill.Prayer, 1)
+        player.inventory.add("ancient_hymnal")
         val altar = GameObjects.add("prayer_altar_zaros", player.tile)
 
-        player.interactObject(altar, "Convert")
+        player.itemOnObject(altar, 0)
         tick()
 
         assertEquals(player.levels.getMax(Skill.Prayer), player.levels.get(Skill.Prayer))
