@@ -4,3 +4,6 @@ examine = "Three little kittens."
 
 [fluffs_cutscene]
 id = 7743
+
+[fluffs_kittens]
+id = 7740
