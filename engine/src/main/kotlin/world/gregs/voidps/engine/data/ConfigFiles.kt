@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.timedLoad
 import java.nio.file.Files
 import java.nio.file.NoSuchFileException
@@ -25,7 +26,7 @@ data class ConfigFiles(
         val modified = Path.of(Settings["storage.data.modified"])
         val writer = ArrayWriter(9)
         writer.writeLong(System.currentTimeMillis())
-        writer.writeByte(if (storeUnused()) STORE_UNUSED else 0)
+        writer.writeByte(storeUnused().toInt())
         modified.writeBytes(writer.toArray())
     }
 }
@@ -36,7 +37,7 @@ fun configFiles(path: String = Settings["storage.data"], temp: String = Settings
     val modified = Path.of(temp)
     modified.createParentDirectories()
     val lastUpdated = loadLastUpdate(modified)
-    val settingsChanged = loadFlags(modified) != (if (storeUnused()) STORE_UNUSED else 0)
+    val settingsChanged = loadFlags(modified) != storeUnused().toInt()
     val extensions = mutableSetOf<String>()
     timedLoad("config file path") {
         val dirs = data.resolve("dirs.txt").toFile().readLines()
@@ -69,8 +70,6 @@ private fun loadFlags(path: Path): Int {
     }
     return -1
 }
-
-private const val STORE_UNUSED = 0x1
 
 private fun storeUnused() = Settings["development.loadAllObjects", false]
 
