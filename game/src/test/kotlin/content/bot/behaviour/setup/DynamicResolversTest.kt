@@ -2,10 +2,9 @@ package content.bot.behaviour.setup
 
 import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.action.BotGoToNearest
-import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.action.BotInteractNpc
-import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
+import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen

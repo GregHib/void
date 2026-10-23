@@ -54,7 +54,10 @@ class BankAccessTest {
             GameObjects.reset()
             GameObjects.add(id, player.tile, collision = false)
             var instruction: InteractObject? = null
-            val world = FakeWorld(execute = { _, command -> instruction = command as InteractObject; true })
+            val world = FakeWorld(execute = { _, command ->
+                instruction = command as InteractObject
+                true
+            })
             assertEquals(BehaviourState.Running, BotOpenBank().update(Bot(player), world, BehaviourFrame(FakeBehaviour())))
             assertEquals(option, instruction?.option)
         }
@@ -66,5 +69,4 @@ class BankAccessTest {
         val bot = Bot(player)
         assertEquals(BehaviourState.Running, BotOpenBank().update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour())))
     }
-
 }

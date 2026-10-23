@@ -17,9 +17,7 @@ class BotOpenBank : BotAction {
     private val bankOpen = BotInterfaceOpen("bank")
     private var nearest: BotInteractObject? = null
 
-    override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
-        return if (bankOpen.check(bot.player)) BehaviourState.Success else BehaviourState.Running
-    }
+    override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState = if (bankOpen.check(bot.player)) BehaviourState.Success else BehaviourState.Running
 
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState? {
         if (bankOpen.check(bot.player)) {
