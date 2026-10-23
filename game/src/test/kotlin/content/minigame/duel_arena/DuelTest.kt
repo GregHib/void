@@ -2,7 +2,6 @@ package content.minigame.duel_arena
 
 import WorldTest
 import containsMessage
-import content.entity.combat.dead
 import content.entity.combat.hit.hit
 import content.entity.player.bank.bank
 import content.entity.player.inv.item.tradeable
