@@ -1,5 +1,5 @@
 # 11574 burthorpe
-[trapdoor_83_opened]
+[trapdoor_wolf_whistle_opened]
 option = "Climb-down"
 tile = { x = 2927, y = 3444 }
 to = { x = 2209, y = 5348 }

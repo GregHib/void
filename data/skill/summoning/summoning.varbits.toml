@@ -151,3 +151,7 @@ persist = true
 id = 6455
 format = "int"
 persist = true
+
+[pikkupstix_trapdoor]
+id = 4303
+format = "int"
