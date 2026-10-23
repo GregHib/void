@@ -1,0 +1,98 @@
+[sawmill]
+id = 403
+
+[.wood_planks]
+id = 12
+
+[.oak_planks]
+id = 13
+
+[.teak_planks]
+id = 14
+
+[.mahogany_planks]
+id = 15
+
+[.poh_sawmill_wood]
+id = 16
+
+[.poh_sawmill_oak]
+id = 17
+
+[.poh_sawmill_teak]
+id = 18
+
+[.poh_sawmill_mag]
+id = 19
+
+[.wood_buy]
+id = 24
+
+[.wood_buy_all]
+id = 25
+
+[.wood_buy_x]
+id = 26
+
+[.wood_buy_10]
+id = 27
+
+[.wood_buy_5]
+id = 28
+
+[.wood_buy_1]
+id = 30
+
+[.oak_buy]
+id = 31
+
+[.oak_buy_all]
+id = 32
+
+[.oak_buy_x]
+id = 33
+
+[.oak_buy_10]
+id = 34
+
+[.oak_buy_5]
+id = 35
+
+[.oak_buy_1]
+id = 36
+
+[.teak_buy]
+id = 37
+
+[.teak_buy_all]
+id = 38
+
+[.teak_buy_x]
+id = 39
+
+[.teak_buy_10]
+id = 40
+
+[.teak_buy_5]
+id = 41
+
+[.teak_buy_1]
+id = 42
+
+[.mahogany_buy]
+id = 43
+
+[.mahogany_buy_all]
+id = 44
+
+[.mahogany_buy_x]
+id = 45
+
+[.mahogany_buy_10]
+id = 46
+
+[.mahogany_buy_5]
+id = 47
+
+[.mahogany_buy_1]
+id = 48

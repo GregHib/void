@@ -1,0 +1,10 @@
+spawns = [
+    { id = "will", x = 3316, y = 3513, members = true },
+    { id = "phil", x = 3319, y = 3504, members = true },
+    { id = "fluffs", x = 3306, y = 3512, level = 1, members = true },
+    { id = "fluffs_kittens", x = 3307, y = 3506 },
+    { id = "fluffs_kittens", x = 3304, y = 3506 },
+    { id = "fluffs_kittens", x = 3298, y = 3514 },
+    { id = "fluffs_kittens", x = 3310, y = 3499 },
+    { id = "fluffs_kittens", x = 3305, y = 3500 },
+]

@@ -58,10 +58,6 @@ examine = "A wooden container."
 id = 2365
 examine = "A wooden container."
 
-[crate_17]
-id = 2620
-examine = "An old crate for storage."
-
 [crate_18]
 id = 2707
 examine = "A wooden crate for storage."
