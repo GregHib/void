@@ -22,7 +22,8 @@ import kotlin.test.*
 class BankAccessTest {
     private lateinit var player: Player
 
-    @BeforeEach fun setup() {
+    @BeforeEach
+    fun setup() {
         Areas.clear()
         GameObjects.reset()
         player = Player()
@@ -34,18 +35,21 @@ class BankAccessTest {
         ObjectDefinitions.set(ids.mapIndexed { index, id -> ObjectDefinition(id = index, stringId = id, options = options[index]) }.toTypedArray(), ids.withIndex().associate { it.value to it.index })
     }
 
-    @Test fun `bank access uses actual options and excludes unsupported chests`() {
+    @Test
+    fun `bank access uses actual options and excludes unsupported chests`() {
         val expected = mapOf("bank_booth_test" to "Use-quickly", "bank_chest_duel_arena" to "Bank", "bank_chest_castle_wars" to "Use", "shantay_chest" to "Open")
+        val bank = BotOpenBank()
         for ((id, option) in expected) {
             val obj = GameObjects.add(id, player.tile, collision = false)
-            assertEquals(option, BankAccess.option(player, obj))
+            assertEquals(option, bank.option(player, obj))
         }
         for (id in listOf("culinaromancers_chest", "fai_varrock_bank_chest", "bank_chest_unusable")) {
-            assertNull(BankAccess.option(player, GameObjects.add(id, player.tile, collision = false)))
+            assertNull(bank.option(player, GameObjects.add(id, player.tile, collision = false)))
         }
     }
 
-    @Test fun `open bank sends the correct chest interaction`() {
+    @Test
+    fun `open bank sends the correct chest interaction`() {
         for ((id, option) in listOf("bank_chest_duel_arena" to 2, "bank_chest_castle_wars" to 1, "shantay_chest" to 1)) {
             GameObjects.reset()
             GameObjects.add(id, player.tile, collision = false)
@@ -56,7 +60,8 @@ class BankAccessTest {
         }
     }
 
-    @Test fun `no supported bank waits for the normal resolver timeout`() {
+    @Test
+    fun `no supported bank waits for the normal resolver timeout`() {
         GameObjects.add("bank_chest_unusable", player.tile, collision = false)
         val bot = Bot(player)
         assertEquals(BehaviourState.Running, BotOpenBank().update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour())))
