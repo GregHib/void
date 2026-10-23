@@ -6,7 +6,6 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.quest
 import content.quest.setInstanceLogout
 import content.quest.startCutscene
@@ -37,7 +36,7 @@ class Fluffs : Script {
         itemOnNPCOperate("*", "fluffs_normal") { interact ->
             val item = interact.item.id
             foundCatCheck()
-            when (quest(GERTRUDES_CAT)) {
+            when (quest("gertrudes_cat")) {
                 "completed" -> noInterest()
                 "attempt_fluffs_pickup" -> when (item) {
                     "doogle_sardine" -> feedFluffs()
@@ -56,7 +55,7 @@ class Fluffs : Script {
 
         npcOperate("Talk-to", "fluffs_normal") { (target) ->
             foundCatCheck()
-            when (quest(GERTRUDES_CAT)) {
+            when (quest("gertrudes_cat")) {
                 "completed" -> talkPostQuest(target)
                 "found_fluffs" -> talkCatFoundFluffs(target)
                 "attempt_fluffs_pickup" -> talkCatFoundFluffs(target)
@@ -66,7 +65,7 @@ class Fluffs : Script {
 
         npcOperate("Pick-up", "fluffs_normal") { interact ->
             foundCatCheck()
-            when (quest(GERTRUDES_CAT)) {
+            when (quest("gertrudes_cat")) {
                 "found_fluffs" -> yoinkCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> yoinkCatFoundFluffs(interact.target)
                 else -> player<Neutral>("Oh, it looks like Fluffs has returned. I'd better leave her alone in case she runs off again.")
@@ -79,7 +78,7 @@ class Fluffs : Script {
                 strokeCatFedFluffs(interact.target)
                 return@npcOperate
             }
-            when (quest(GERTRUDES_CAT)) {
+            when (quest("gertrudes_cat")) {
                 "found_fluffs" -> strokeCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> strokeCatFoundFluffs(interact.target)
                 else -> statement("Fluffs isn't interested.")
@@ -100,7 +99,7 @@ class Fluffs : Script {
         val cutsceneStartTile = Tile(3309, 3509, 1)
 
         inventory.remove("three_little_kittens")
-        set(GERTRUDES_CAT, "fluffs_returned")
+        set("gertrudes_cat", "fluffs_returned")
 
         open("fade_out")
         val cutscene = startCutscene("fluffs_kittens_reunite", region)
@@ -171,8 +170,8 @@ class Fluffs : Script {
     }
 
     private fun Player.foundCatCheck() {
-        when (quest(GERTRUDES_CAT)) {
-            "found_the_boys" -> set(GERTRUDES_CAT, "found_fluffs")
+        when (quest("gertrudes_cat")) {
+            "found_the_boys" -> set("gertrudes_cat", "found_fluffs")
         }
     }
 
@@ -226,7 +225,7 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.grumpyCat(cat: NPC) {
-        set(GERTRUDES_CAT, "attempt_fluffs_pickup")
+        set("gertrudes_cat", "attempt_fluffs_pickup")
         animDelay("climb_down")
         delay(1)
         cat.say("Hiss!")

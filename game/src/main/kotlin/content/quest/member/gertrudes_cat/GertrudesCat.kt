@@ -6,12 +6,10 @@ import world.gregs.voidps.engine.Script
 
 // Source: https://runescape.wiki/w/Transcript:Gertrude%27s_Cat/Journal
 // https://www.youtube.com/watch?v=_pZcnvI1l_Q from 2011 using a mix of RS3 and OSRS transcript and going as best as I can off of memory and videos.
-const val GERTRUDES_CAT = "gertrudes_cat"
-
 class GertrudesCat : Script {
     init {
-        questJournalOpen(GERTRUDES_CAT) {
-            val stage = questStage(GERTRUDES_CAT)
+        questJournalOpen("gertrudes_cat") {
+            val stage = questStage("gertrudes_cat")
             val lines = mutableListOf<String>()
 
             // Unstarted

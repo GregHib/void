@@ -17,7 +17,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
@@ -80,7 +79,7 @@ class Gertrude : Script {
     suspend fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "gertrudes_cat")
         AdventurersLogs.questCompleted(this, "gertrudes_cat", points = 1)
-        set(GERTRUDES_CAT, "completed")
+        set("gertrudes_cat", "completed")
         jingle("quest_complete_1")
         exp(Skill.Cooking, 1525.0)
         giveKitten()
@@ -203,7 +202,7 @@ class Gertrude : Script {
     }
 
     private suspend fun Player.questAccepted() {
-        set(GERTRUDES_CAT, "spoke_to_gertrude")
+        set("gertrudes_cat", "spoke_to_gertrude")
         npc<Happy>("Really? Thank you so much! I really have no idea where she could be!")
         npc<Neutral>("I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the marketplace.")
         player<Quiz>("The marketplace? Which one would that be? It would help to know what they get up to, as well.")

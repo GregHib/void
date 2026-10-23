@@ -15,7 +15,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.quest.member.gertrudes_cat.GERTRUDES_CAT
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -28,7 +27,7 @@ import world.gregs.voidps.engine.inv.remove
 class WiloughAndShilop : Script {
     init {
         npcOperate("Talk-to", "wilough,shilop") { (target) ->
-            when (quest(GERTRUDES_CAT)) {
+            when (quest("gertrudes_cat")) {
                 "completed" -> gertrudePostQuest(target)
                 "spoke_to_gertrude" -> lookingForInformationBranch(target)
                 "found_the_boys" -> gertrudeWhereFluffs()
@@ -122,7 +121,7 @@ class WiloughAndShilop : Script {
         player<Neutral>("I'll want you to tell your mother what a nice person I am so she rewards me for this search.")
         npc<Happy>("It's a deal.")
         if (inventory.remove("coins", 100)) {
-            set(GERTRUDES_CAT, "found_the_boys")
+            set("gertrudes_cat", "found_the_boys")
             set("gertrudes_cat_know_where_fluffs_is", true)
             statement("You give the lad 100 coins.")
             player<Neutral>("There you go, now where did you see Fluffs?")
