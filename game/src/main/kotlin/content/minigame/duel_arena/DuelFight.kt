@@ -86,11 +86,9 @@ class DuelFight : Script {
             true
         }
 
-        // No Movement duels can't reach the trapdoor so clicking it from anywhere brings up the prompt.
-        // Trapdoors sit just outside the 17 wide arenas so a frozen player can be up to 12 tiles away.
-        objectApproach("Forfeit", "duel_arena_forfeit_trapdoor", range = 16) {
-            val duel = duel
-            if (duel?.active != true || !duel.hasRule("no_movement")) {
+        objectApproach("Forfeit", "duel_arena_forfeit_trapdoor,duel_arena_forfeit_flag,duel_arena_forfeit_flag_left", range = 16) {
+            val duel = duel ?: return@objectApproach
+            if (!duel.active || !duel.hasRule("no_movement")) {
                 approachRange(-1)
             }
             forfeitDuel()
