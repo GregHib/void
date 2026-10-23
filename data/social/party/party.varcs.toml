@@ -1,0 +1,255 @@
+# The 634 client's Party plugin: what the server shows a party's members of each other (content/social/party/Party.kt).
+# Ids past the cache's varcs (1436), in the range the client keeps for Void (up to 2435). Not saved.
+
+# member count | local slot << 4 | leader slot << 8 | version << 12; 0 when not in a party
+[party_meta]
+id = 2300
+format = "int"
+
+# the name, base-37, high and low halves
+[party_0_name_hi]
+id = 2301
+format = "int"
+
+[party_0_name_lo]
+id = 2302
+format = "int"
+
+# current << 16 | max (life points)
+[party_0_hp]
+id = 2303
+format = "int"
+
+# current << 16 | max
+[party_0_prayer]
+id = 2304
+format = "int"
+
+# special attack << 8 | run, 0-100 each
+[party_0_energy]
+id = 2305
+format = "int"
+
+# level << 28 | x << 14 | y; -1 hidden (PvP)
+[party_0_tile]
+id = 2306
+format = "int"
+
+# bit 0: in a PvP area
+[party_0_flags]
+id = 2307
+format = "int"
+
+[party_1_name_hi]
+id = 2308
+format = "int"
+
+[party_1_name_lo]
+id = 2309
+format = "int"
+
+[party_1_hp]
+id = 2310
+format = "int"
+
+[party_1_prayer]
+id = 2311
+format = "int"
+
+[party_1_energy]
+id = 2312
+format = "int"
+
+[party_1_tile]
+id = 2313
+format = "int"
+
+[party_1_flags]
+id = 2314
+format = "int"
+
+[party_2_name_hi]
+id = 2315
+format = "int"
+
+[party_2_name_lo]
+id = 2316
+format = "int"
+
+[party_2_hp]
+id = 2317
+format = "int"
+
+[party_2_prayer]
+id = 2318
+format = "int"
+
+[party_2_energy]
+id = 2319
+format = "int"
+
+[party_2_tile]
+id = 2320
+format = "int"
+
+[party_2_flags]
+id = 2321
+format = "int"
+
+[party_3_name_hi]
+id = 2322
+format = "int"
+
+[party_3_name_lo]
+id = 2323
+format = "int"
+
+[party_3_hp]
+id = 2324
+format = "int"
+
+[party_3_prayer]
+id = 2325
+format = "int"
+
+[party_3_energy]
+id = 2326
+format = "int"
+
+[party_3_tile]
+id = 2327
+format = "int"
+
+[party_3_flags]
+id = 2328
+format = "int"
+
+[party_4_name_hi]
+id = 2329
+format = "int"
+
+[party_4_name_lo]
+id = 2330
+format = "int"
+
+[party_4_hp]
+id = 2331
+format = "int"
+
+[party_4_prayer]
+id = 2332
+format = "int"
+
+[party_4_energy]
+id = 2333
+format = "int"
+
+[party_4_tile]
+id = 2334
+format = "int"
+
+[party_4_flags]
+id = 2335
+format = "int"
+
+[party_5_name_hi]
+id = 2336
+format = "int"
+
+[party_5_name_lo]
+id = 2337
+format = "int"
+
+[party_5_hp]
+id = 2338
+format = "int"
+
+[party_5_prayer]
+id = 2339
+format = "int"
+
+[party_5_energy]
+id = 2340
+format = "int"
+
+[party_5_tile]
+id = 2341
+format = "int"
+
+[party_5_flags]
+id = 2342
+format = "int"
+
+[party_6_name_hi]
+id = 2343
+format = "int"
+
+[party_6_name_lo]
+id = 2344
+format = "int"
+
+[party_6_hp]
+id = 2345
+format = "int"
+
+[party_6_prayer]
+id = 2346
+format = "int"
+
+[party_6_energy]
+id = 2347
+format = "int"
+
+[party_6_tile]
+id = 2348
+format = "int"
+
+[party_6_flags]
+id = 2349
+format = "int"
+
+[party_7_name_hi]
+id = 2350
+format = "int"
+
+[party_7_name_lo]
+id = 2351
+format = "int"
+
+[party_7_hp]
+id = 2352
+format = "int"
+
+[party_7_prayer]
+id = 2353
+format = "int"
+
+[party_7_energy]
+id = 2354
+format = "int"
+
+[party_7_tile]
+id = 2355
+format = "int"
+
+[party_7_flags]
+id = 2356
+format = "int"
+
+# the latest ping: its tile, and slot << 24 | a count that changes with every ping
+[party_ping_tile]
+id = 2357
+format = "int"
+
+[party_ping_seq]
+id = 2358
+format = "int"
+
+# a pending invite: the inviter's name, base-37; 0 when none
+[party_invite_hi]
+id = 2359
+format = "int"
+
+[party_invite_lo]
+id = 2360
+format = "int"
