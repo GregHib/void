@@ -13,15 +13,19 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 class PrayerAltars : Script {
 
     init {
-        objectOperate("Pray", "prayer_altar_zaros,prayer_altar_zaros_senntisten") {
+        itemOnObjectOperate("ancient_hymnal", "prayer_altar_zaros") {
             prayAtZaros()
         }
 
-        objectOperate("Pray-at", "prayer_altar_zaros,prayer_altar_zaros_senntisten") {
+        objectOperate("Pray", "prayer_altar_zaros_senntisten") {
             prayAtZaros()
         }
 
-        objectOperate("Convert", "prayer_altar_zaros,prayer_altar_zaros_senntisten") {
+        objectOperate("Pray-at", "prayer_altar_zaros_senntisten") {
+            prayAtZaros()
+        }
+
+        objectOperate("Convert", "prayer_altar_zaros_senntisten") {
             prayAtZaros()
         }
 
