@@ -1,6 +1,5 @@
 package content.area.asgarnia.goblin_village
 
-import content.entity.combat.dead
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer

@@ -190,10 +190,6 @@ examine = "The chemist's basement is through this trapdoor."
 id = 9667
 examine = "Disturbingly man-like."
 
-[rimmington_table_3]
-id = 595
-examine = "A nice sturdy looking table."
-
 [rimmington_workbench]
 id = 610
 examine = "A handy workbench for a handy person."
