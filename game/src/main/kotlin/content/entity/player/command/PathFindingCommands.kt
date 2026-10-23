@@ -107,12 +107,11 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
         }
 
         adminCommand("col") {
-            val collisions: Collisions = get()
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and CollisionFlag.WALL_NORTH == 0}")
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
-            println(collisions[tile.x, tile.y, tile.level])
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and CollisionFlag.WALL_NORTH == 0}")
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
+            println(Collisions[tile.x, tile.y + 1, tile.level])
             println(tile.minus(y = 1))
 
             println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
