@@ -90,14 +90,6 @@ examine = "I wonder what's down there."
 id = 26933
 examine = "I wonder what's under it."
 
-[trapdoor_83_opened]
-id = 28676
-examine = "Where does it go?"
-
-[trapdoor_83_closed]
-id = 28675
-examine = "Where does it go?"
-
 [trapdoor_85_opened]
 id = 28742
 examine = "Allows access to the level below."
@@ -157,7 +149,7 @@ examine = "This trapdoor is tightly shut."
 
 [trapdoor_107_closed]
 id = 4039
-opened = "trapdoor_83_opened"
+opened = "trapdoor_wolf_whistle_opened"
 examine = "Where does it go?"
 
 [trapdoor_108_closed]

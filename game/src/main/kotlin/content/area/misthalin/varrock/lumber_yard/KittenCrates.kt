@@ -14,7 +14,7 @@ class KittenCrates : Script {
             message("You find nothing.")
         }
 
-        npcOperate("Search", "") {
+        npcOperate("Search", "fluffs_kittens") {
             if (get("three_little_kittens_found", false)) {
                 message("You search the crate.")
                 pause(1)
