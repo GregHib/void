@@ -33,3 +33,75 @@ plank = "teak_plank"
 [.mahogany]
 log = "mahogany_logs"
 plank = "mahogany_plank"
+
+[lumber_crates]
+tile = "tile"
+
+[.create_0]
+tile = { x = 3299, y = 3516, level = 0 }
+
+[.create_1]
+tile = { x = 3300, y = 3516, level = 0 }
+
+[.create_2]
+tile = { x = 3301, y = 3500, level = 0 }
+
+[.create_3]
+tile = { x = 3301, y = 3502, level = 0 }
+
+[.create_4]
+tile = { x = 3301, y = 3507, level = 0 }
+
+[.create_5]
+tile = { x = 3301, y = 3515, level = 0 }
+
+[.create_6]
+tile = { x = 3302, y = 3499, level = 0 }
+
+[.create_7]
+tile = { x = 3302, y = 3501, level = 0 }
+
+[.create_8]
+tile = { x = 3302, y = 3503, level = 0 }
+
+[.create_9]
+tile = { x = 3302, y = 3508, level = 0 }
+
+[.create_10]
+tile = { x = 3302, y = 3509, level = 0 }
+
+[.create_11]
+tile = { x = 3302, y = 3514, level = 0 }
+
+[.create_12]
+tile = { x = 3302, y = 3515, level = 0 }
+
+[.create_13]
+tile = { x = 3303, y = 3500, level = 0 }
+
+[.create_14]
+tile = { x = 3303, y = 3509, level = 0 }
+
+[.create_15]
+tile = { x = 3303, y = 3511, level = 0 }
+
+[.create_16]
+tile = { x = 3304, y = 3500, level = 0 }
+
+[.create_17]
+tile = { x = 3309, y = 3503, level = 0 }
+
+[.create_18]
+tile = { x = 3310, y = 3498, level = 0 }
+
+[.create_19]
+tile = { x = 3310, y = 3513, level = 0 }
+
+[.create_20]
+tile = { x = 3310, y = 3514, level = 0 }
+
+[.create_21]
+tile = { x = 3311, y = 3500, level = 0 }
+
+[.create_22]
+tile = { x = 3311, y = 3501, level = 0 }

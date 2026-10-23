@@ -8,18 +8,16 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
-private const val THREE_LITTLE_KITTENS_STRING_NAME = "three_little_kittens"
-
 class ThreeLittleKittens : Script {
     init {
-        itemOption("Drop", THREE_LITTLE_KITTENS_STRING_NAME) {
+        itemOption("Drop", "three_little_kittens") {
             val playerLoc = this.tile
-            inventory.remove(THREE_LITTLE_KITTENS_STRING_NAME)
-            set(KITTENS_FOUND, false)
+            inventory.remove("three_little_kittens")
+            set("three_little_kittens_found", false)
             message("You place the kittens on the floor.")
 
             delay(2)
-            val threeLittleKittens: NPC = NPCs.add(THREE_LITTLE_KITTENS_STRING_NAME, playerLoc)
+            val threeLittleKittens: NPC = NPCs.add("three_little_kittens", playerLoc)
             threeLittleKittens.walkTo(Tile(3294, 3507))
             threeLittleKittens.say("Mew!")
 
