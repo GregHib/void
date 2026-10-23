@@ -3,8 +3,8 @@ package content.bot.behaviour.setup
 import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.action.BotInteractNpc
-import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
+import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
@@ -78,7 +78,8 @@ class DynamicResolversTest {
 
         val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
-        assertTrue(resolver!!.actions.any { it is BotGoToNearest || it is BotInteractObject })
+        assertTrue(resolver!!.actions[0] is BotGoToNearest)
+        assertTrue(resolver.actions[1] is BotOpenBank)
     }
 
     @Test
