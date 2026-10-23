@@ -25,7 +25,7 @@ class GertrudesCat : Script {
 
             // spoke_to_gertrude
             if (stage == 1) {
-                lines += "I need to speak to Gertrude's sons, <maroon>Shilop and Wilough<navy>, in <maroon>Varrock"
+                lines += "<navy>I need to speak to Gertrude's sons, <maroon>Shilop and Wilough<navy>, in <maroon>Varrock"
                 lines += "<maroon>Marketplace<navy>."
             } else if (stage in 2..4) {
                 lines += "<str>I need to speak to Gertrude's sons, Shilop and Wilough, in Varrock"
@@ -36,15 +36,7 @@ class GertrudesCat : Script {
             if (stage == 2) {
                 lines += "<navy>I need to go to <maroon>Shilop <navy>and <maroon>Wilough<navy>'s secret hideout in an abandoned"
                 lines += "<maroon>Lumber Mill<navy>, to the <maroon>north-east<navy> and find <maroon>Fluffs<navy>, then return"
-                lines += "her to <maroon>Gertrude<navy>."
-            } else if (stage in 3..4) {
-                lines += "<str>I need to go to Shilop and Wilough's secret hideout in an abandoned"
-                lines += "<str>Lumber Mill, to the north-east and find Fluffs, then return"
-                lines += "<str>her to Gertrude."
-                lines.add("<str>I had a poke round the abandoned Lumber Mill near to the")
-                lines.add("<str>north-east and found Fluffs up a ladder. I now need to return Fluffs")
-                lines.add("<str>to Gertrude. I think Fluffs may be hungry or thirsty but I am not")
-                lines.add("<str>sure what she wants; perhaps Gertrude can help?")
+                lines += "<navy>her to <maroon>Gertrude<navy>."
             }
 
             // found_fluffs
@@ -58,22 +50,30 @@ class GertrudesCat : Script {
 
             // attempt_fluffs_pickup
             if (stage == 4) {
-                if (!get("gertrudes_cat_fluffs_milk", false)) {
-                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
-                    lines += "<navy>Now I should feed her some <maroon>milk<navy>."
-                } else if (!get("gertrudes_cat_fluffs_fed", false)) {
-                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
-                    lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
-                } else if (get("three_little_kittens_found", false)) {
-                    lines += "<navy>I have found some <maroon>kittens<navy>. "
-                    lines += "<navy>I think I should see whether <maroon>Fluffs<navy> is looking for them."
-                } else if (get("gertrudes_cat_fluffs_milk", false) && get("gertrudes_cat_fluffs_fed", false)) {
-                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> and <maroon>doogle sardine,"
-                    lines += "<navy>but she still won't come back. I should look around the <maroon>Lumbermill Yard<navy>"
-                    lines += "<navy>for a reason for this behaviour."
-                } else {
-                    lines += "<navy>I think <maroon>Fluffs<navy> may be hungry or thirsty but I am not sure what"
-                    lines += "<navy>she wants; perhaps <maroon>Gertrude<navy> can help?"
+                val milk = get("gertrudes_cat_fluffs_milk", false)
+                val food = get("gertrudes_cat_fluffs_fed", false)
+                when {
+                    get("three_little_kittens_found", false) -> {
+                        lines += "<navy>I have found some <maroon>kittens<navy>. "
+                        lines += "<navy>I think I should see whether <maroon>Fluffs<navy> is looking for them."
+                    }
+                    milk && food -> {
+                        lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> and <maroon>doogle sardine<navy>,"
+                        lines += "<navy>but she still won't come back. I should look around the"
+                        lines += "<maroon>Lumbermill Yard<navy> for a reason for this behaviour."
+                    }
+                    milk -> {
+                        lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
+                        lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
+                    }
+                    food -> {
+                        lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy>"
+                        lines += "<navy>but she still won't come back. Now I should feed her some <maroon>milk<navy>."
+                    }
+                    else -> {
+                        lines += "<navy>I think <maroon>Fluffs<navy> may be hungry or thirsty but I am not sure what"
+                        lines += "<navy>she wants; perhaps <maroon>Gertrude<navy> can help?"
+                    }
                 }
             }
 
@@ -88,11 +88,11 @@ class GertrudesCat : Script {
             if (stage == 6) {
                 lines += "<str>I helped Gertrude to find her lost cat, Fluffs, by finding Fluffs's"
                 lines += "<str>kittens. With her kittens safe, Fluffs returned to Gertrude."
+                lines += "<str>Gertrude gave me my very own pet for a reward."
+                lines += ""
+                lines += "<red>QUEST COMPLETE!"
             }
 
-            lines += "<str>Gertrude gave me my very own pet for a reward."
-            lines += ""
-            lines += "<red>QUEST COMPLETE!"
             questJournal("Gertrude's Cat", lines)
         }
     }
