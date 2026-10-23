@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.network.client.instruction.EnterName
 import world.gregs.voidps.network.client.instruction.ExecuteCommand
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
@@ -113,6 +114,31 @@ internal class PartyTest : WorldTest() {
         alice.command("party kick carol")
         assertEquals(2, count(alice))
         assertEquals(0, carol.meta())
+    }
+
+    @Test
+    fun `Invite without a name asks for one in the name box`() = runTest {
+        val alice = createPlayer(Tile(3200, 3200), "alice")
+        val bob = createPlayer(Tile(3201, 3200), "bob")
+        alice.command("party invite")
+        alice.instructions.send(EnterName("bob"))
+        tick()
+        assertEquals(Party.base37("alice").second, bob["party_invite_lo", 0])
+    }
+
+    @Test
+    fun `The leader can hand the party over`() = runTest {
+        val alice = createPlayer(Tile(3200, 3200), "alice")
+        val bob = createPlayer(Tile(3201, 3200), "bob")
+        val carol = createPlayer(Tile(3202, 3200), "carol")
+        party(alice, bob, carol)
+        bob.command("party leader carol")
+        assertEquals(0, alice.meta() shr 8 and 0xF, "only the leader can")
+        alice.command("party leader carol")
+        assertEquals(2, alice.meta() shr 8 and 0xF, "carol, slot 2, leads")
+        assertEquals(2, bob.meta() shr 8 and 0xF)
+        carol.command("party kick alice")
+        assertEquals(2, count(carol), "and the new leader can kick")
     }
 
     @Test

@@ -4,6 +4,7 @@ import content.area.wilderness.inPvp
 import content.area.wilderness.inWilderness
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.dialogue.type.nameEntry
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.GameLoop
@@ -19,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.Timer
 
 /**
@@ -41,18 +43,29 @@ class Party : Script {
     val invites = mutableMapOf<Player, Invite>()
 
     init {
-        playerCommand("party", stringArg("action", autofill = setOf("invite", "accept", "decline", "leave", "kick")), stringArg("player-name", optional = true), desc = "Invite to, join or leave a party (the 634 client's Party plugin)") { args ->
+        playerCommand("party", stringArg("action", autofill = setOf("invite", "accept", "decline", "leave", "kick", "leader")), stringArg("player-name", optional = true), desc = "Invite to, join or leave a party (the 634 client's Party plugin)") { args ->
             if (!Settings["party.enabled", true]) {
                 message("Parties are not available on this world.")
                 return@playerCommand
             }
             when (args[0].lowercase()) {
-                "invite" -> invite(this, args.getOrNull(1) ?: return@playerCommand message("Usage: ::party invite <name>"))
+                "invite" -> {
+                    val name = args.getOrNull(1)
+                    if (name != null) {
+                        invite(this, name)
+                    } else {
+                        // without a name, the game's name box asks for one (the 634 client's panel: Invite player...)
+                        strongQueue("party_invite") {
+                            invite(this, nameEntry("Enter the name of the player to invite:"))
+                        }
+                    }
+                }
                 "accept" -> accept(this)
                 "decline" -> decline(this)
                 "leave" -> leave(this)
                 "kick" -> kick(this, args.getOrNull(1) ?: return@playerCommand message("Usage: ::party kick <name>"))
-                else -> message("Usage: ::party invite|accept|decline|leave|kick")
+                "leader" -> makeLeader(this, args.getOrNull(1) ?: return@playerCommand message("Usage: ::party leader <name>"))
+                else -> message("Usage: ::party invite|accept|decline|leave|kick|leader")
             }
         }
 
@@ -180,6 +193,24 @@ class Party : Script {
         }
         target.message("You have been removed from the party.")
         leave(target, silent = true)
+    }
+
+    fun makeLeader(player: Player, name: String) {
+        val group = parties[player]
+        if (group == null || group.leader !== player) {
+            player.message("Only the party leader can choose a new leader.")
+            return
+        }
+        val target = group.members.firstOrNull { it.name.equals(name.replace('_', ' '), ignoreCase = true) }
+        if (target == null || target === player) {
+            player.message("There is no one called ${name.replace('_', ' ')} in your party.")
+            return
+        }
+        group.leader = target
+        refresh(group)
+        for (member in group.members) {
+            member.message(if (member === target) "You are now the party leader." else "${target.name} is now the party leader.")
+        }
     }
 
     fun ping(player: Player, x: Int, y: Int, level: Int) {
