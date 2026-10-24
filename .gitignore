@@ -59,6 +59,3 @@ gradle-app.setting
 /gradle/
 *.lock
 /game.properties
-
-# Local development notes and runtime artifacts
-/dev/
