@@ -145,3 +145,16 @@ id = 47401
 
 [ernest_puzzle_door_9_unlocked]
 id = 47402
+
+# Revision-634 stone leaves of the sconce-operated secret passage.
+[ernest_secret_wall_south_closed]
+id = 47529
+
+[ernest_secret_wall_south_opened]
+id = 47530
+
+[ernest_secret_wall_north_closed]
+id = 47531
+
+[ernest_secret_wall_north_opened]
+id = 47532

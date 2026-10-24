@@ -312,14 +312,51 @@ class ErnestTheChickenTest : WorldTest() {
     }
 
     @Test
-    fun `Candle sconce and inner lever pass between the manor and secret room`() {
+    fun `Candle sconce and inner lever open the walls westward and close behind the player`() {
         val p = createPlayer(Tile(3098, 3360))
-        p.objectOption(GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce"), "Search")
+        fun cross(trigger: Tile, id: String, option: String, destination: Tile) {
+            p.objectOption(GameObjects.find(trigger, id), option)
+            var sawOpen = false
+            repeat(12) {
+                tick()
+                val south = GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened")
+                val north = GameObjects.findOrNull(Tile(3096, 3359), "ernest_secret_wall_north_opened")
+                if (south != null || north != null) {
+                    sawOpen = true
+                    assertNotNull(south)
+                    assertNotNull(north)
+                    assertEquals(3, south.rotation)
+                    assertEquals(1, north.rotation)
+                    assertNull(GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed"))
+                    assertNull(GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed"))
+                }
+            }
+            assertTrue(sawOpen, "Both triggers should visibly open the wall into the western room")
+            assertEquals(destination, p.tile, p.messages.joinToString())
+            assertNotNull(GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed"))
+            assertNotNull(GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed"))
+            assertNull(GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened"))
+            assertNull(GameObjects.findOrNull(Tile(3096, 3359), "ernest_secret_wall_north_opened"))
+        }
+        cross(Tile(3097, 3360), "ernest_candle_sconce", "Search", Tile(3095, 3359))
+        cross(Tile(3096, 3357), "ernest_secret_exit_lever", "Pull", Tile(3100, 3359))
+    }
+
+    @Test
+    fun `Interrupted passage closes and can be used again`() {
+        val p = createPlayer(Tile(3098, 3360))
+        val sconce = GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce")
+        p.objectOption(sconce, "Search")
+        tickIf(6) { GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened") == null }
+        assertNotNull(GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened"))
+        p.walk(p.tile.addY(1))
+        tick(14)
+        assertNotNull(GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed"))
+        assertNotNull(GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed"))
+        p.tele(3098, 3360)
+        p.objectOption(sconce, "Search")
         tick(12)
         assertEquals(Tile(3095, 3359), p.tile, p.messages.joinToString())
-        p.objectOption(GameObjects.find(Tile(3096, 3357), "ernest_secret_exit_lever"), "Pull")
-        tick(12)
-        assertEquals(Tile(3100, 3359), p.tile, p.messages.joinToString())
     }
 
     @Test

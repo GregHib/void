@@ -1,16 +1,20 @@
 package content.quest.free.ernest_the_chicken
 
 import content.entity.obj.ObjectTeleports
+import content.entity.obj.Replace
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 
 /** Six personal switches and nine doors reproducing the historical quest puzzle.
  * IDs and variables come from the revision-634 cache. */
 class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
+    private var passageBusy = false
+
     init {
         playerSpawn { setErnestPuzzle(get("ernest_levers", 0)) }
         for (index in 0..5) {
@@ -35,14 +39,11 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
         }
         objectOperate("Search", "ernest_candle_sconce") { (target) ->
             if (target.tile != Tile(3097, 3360)) return@objectOperate
-            message("You find a hidden catch. A secret passage opens.")
-            walkOverDelay(Tile(3095, 3359))
+            passSecretWall(entering = true)
         }
         objectOperate("Pull", "ernest_secret_exit_lever") { (target) ->
             if (target.tile != Tile(3096, 3357)) return@objectOperate
-            anim("human_lever_down")
-            delay()
-            walkOverDelay(Tile(3100, 3359))
+            passSecretWall(entering = false)
         }
         objectOperate("Climb-down", "ernest_cellar_ladder_down") { (target) ->
             if (target.tile != Tile(3092, 3362)) return@objectOperate
@@ -71,6 +72,32 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             } else {
                 item.id
             }
+        }
+    }
+
+    private suspend fun Player.passSecretWall(entering: Boolean) {
+        if (passageBusy) {
+            message("The secret passage is already moving. Please wait a moment.")
+            return
+        }
+        val south = GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed") ?: return
+        val north = GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed") ?: return
+        passageBusy = true
+        // Always hinge into the western room, including when the inner lever is used.
+        Replace.objects(
+            south, "ernest_secret_wall_south_opened", Tile(3096, 3358), 3,
+            north, "ernest_secret_wall_north_opened", Tile(3096, 3359), 1,
+            ticks = 12,
+            onRevert = { passageBusy = false },
+        )
+        try {
+            anim(if (entering) "take" else "human_lever_down")
+            if (entering) message("You find a hidden catch. A secret passage opens.")
+            delay()
+            walkOverDelay(if (entering) Tile(3095, 3359) else Tile(3100, 3359))
+        } finally {
+            // The world timer also closes it if UI/movement discards the suspended interaction.
+            GameObjects.timers.execute(south)
         }
     }
 }
