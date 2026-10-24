@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.type.Tile
 
 /** Six personal switches and nine doors reproducing the historical quest puzzle.
- * See docs/ernest-the-chicken.md. IDs and variables come from the revision-634 cache. */
+ * IDs and variables come from the revision-634 cache. */
 class ErnestLeverPuzzle : Script {
     init {
         playerSpawn { setErnestPuzzle(get("ernest_levers", 0)) }
