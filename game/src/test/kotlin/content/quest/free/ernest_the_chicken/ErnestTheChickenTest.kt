@@ -239,6 +239,30 @@ class ErnestTheChickenTest : WorldTest() {
         assertEquals(Tile(3100, 3359), p.tile, p.messages.joinToString())
     }
 
+    @Test
+    fun `Non-cellar basic ladders retain their configured teleport without resetting the puzzle`() {
+        val p = createPlayer(Tile(3104, 9576))
+        p["ernest_levers"] = 22
+        p.objectOption(GameObjects.find(Tile(3103, 9576), "basic_ladder_up"), "Climb-up")
+        tick(10)
+        assertEquals(Tile(3104, 3161), p.tile, p.messages.joinToString())
+        assertEquals(22, p["ernest_levers", 0])
+    }
+
+    @Test
+    fun `One distant click approaches and crosses an unlocked puzzle door from either side`() {
+        val p = createPlayer(Tile(3108, 9766))
+        p.objectOption(GameObjects.find(Tile(3108, 9767), "ernest_lever_d"), "Pull")
+        tick(6)
+        val door = GameObjects.find(Tile(3100, 9760), "ernest_puzzle_door_4")
+        for ((from, to) in listOf(Tile(3103, 9760) to Tile(3099, 9760), Tile(3097, 9760) to Tile(3101, 9760))) {
+            p.tele(from)
+            p.objectOption(door, "Open")
+            tick(15)
+            assertEquals(to, p.tile, "A single click from $from should cross: ${p.messages}")
+        }
+    }
+
     private fun Player.talk(id: String) {
         npcOption(NPCs.find(tile.regionLevel, id), "Talk-to")
         tickIf(30) { dialogue == null }

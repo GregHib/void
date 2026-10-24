@@ -1,5 +1,6 @@
 package content.quest.free.ernest_the_chicken
 
+import content.entity.obj.ObjectTeleports
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -9,7 +10,7 @@ import world.gregs.voidps.type.Tile
 
 /** Six personal switches and nine doors reproducing the historical quest puzzle.
  * IDs and variables come from the revision-634 cache. */
-class ErnestLeverPuzzle : Script {
+class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
     init {
         playerSpawn { setErnestPuzzle(get("ernest_levers", 0)) }
         for (index in 0..5) {
@@ -48,8 +49,16 @@ class ErnestLeverPuzzle : Script {
             setErnestPuzzle(0)
             tele(3117, 9753)
         }
-        objectOperate("Climb-up", "basic_ladder_up") { (target) ->
-            if (target.tile != Tile(3117, 9754)) return@objectOperate
+        objectOperate("Climb-up", "basic_ladder_up") { (target, option) ->
+            if (target.tile != Tile(3117, 9754)) {
+                val def = target.def(this)
+                val id = def.stringId.ifEmpty { def.id.toString() }
+                if (teleports.contains(id, target.tile, option)) {
+                    delay()
+                    teleports.teleport(this, target, option, def)
+                }
+                return@objectOperate
+            }
             setErnestPuzzle(0)
             tele(3092, 3361)
         }
@@ -101,7 +110,7 @@ private fun Player.setErnestPuzzle(mask: Int) {
 private suspend fun Player.passErnestDoor(index: Int, target: GameObject) {
     if (tile.distanceTo(target.tile) > 1) {
         approachRange(1)
-        return
+        if (tile.distanceTo(target.tile) > 1) return
     }
     if (ernestDoorMask(get("ernest_levers", 0) shr 1) and (1 shl index) == 0) {
         message("This door is locked.")
