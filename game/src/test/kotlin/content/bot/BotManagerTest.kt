@@ -250,6 +250,59 @@ class BotManagerTest {
     }
 
     @Test
+    fun `Completed activity is remembered as last successful`() {
+        val activity = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bot = testBot(activity)
+
+        repeat(10) { manager.tick(bot) }
+
+        assertEquals(activity, bot.lastSuccessful)
+    }
+
+    @Test
+    fun `Failed activity isn't remembered as last successful`() {
+        val activity = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bot = testBot(activity)
+
+        manager.tick(bot)
+        manager.tick(bot)
+        bot.frame().fail(Reason.Requirement(BotAtTile()))
+        manager.tick(bot)
+
+        assertNull(bot.lastSuccessful)
+    }
+
+    @Test
+    fun `Bot favours the skill of its last successful activity once it can't repeat it`() {
+        val fish = skillActivity("fish", "fishing")
+        val copper = skillActivity("copper", "mining")
+        val mine = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(fish.id to fish, copper.id to copper, mine.id to mine), world = FakeWorld())
+        // Random picks the first eligible activity, which is fishing
+        val bot = testBot(fish, copper, mine)
+        bot.lastSuccessful = mine
+
+        bot.blocked.add(mine.id)
+        manager.tick(bot)
+
+        assertEquals(copper, bot.previous)
+    }
+
+    @Test
+    fun `Bot picks at random without a last successful activity`() {
+        val fish = skillActivity("fish", "fishing")
+        val mine = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(fish.id to fish, mine.id to mine), world = FakeWorld())
+        val bot = testBot(fish, mine)
+
+        manager.tick(bot)
+
+        assertEquals(fish, bot.previous)
+    }
+
+    @Test
     fun `Behaviour without requirements isn't started`() {
         val activity = testActivity(
             id = "test",
@@ -559,6 +612,8 @@ class BotManagerTest {
         val tag = testActivity("b", plan = listOf(BotWait(1)), setup = listOf(BotInArea(emptyList(), setOf("no_tag"))))
         assertThrows(IllegalArgumentException::class.java) { BotManager(mutableMapOf(tag.id to tag), world = FakeWorld()).validateAreas() }
     }
+
+    private fun skillActivity(id: String, skill: String) = BotActivity(id = id, timeout = 50, actions = listOf(BotWait(1)), produces = setOf("skill:$skill"))
 
     fun testActivity(
         id: String,
