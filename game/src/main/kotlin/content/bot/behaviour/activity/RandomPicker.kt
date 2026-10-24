@@ -7,8 +7,8 @@ import world.gregs.voidps.type.random
  * Pick any [Bot.available] activity at random.
  */
 object RandomPicker : ActivityPicker {
-    override fun pick(bot: Bot, pool: ActivityPool): BotActivity? = bot.available
-        .filter { pool.hasRequirements(bot, pool.activity(it)) }
+    override fun pick(bot: Bot, activities: Map<String, BotActivity>, idle: BotActivity, eligible: (BotActivity?) -> Boolean): BotActivity? = bot.available
+        .filter { eligible(activities[it]) }
         .randomOrNull(random)
-        ?.let { pool.activity(it) }
+        ?.let { activities[it] }
 }

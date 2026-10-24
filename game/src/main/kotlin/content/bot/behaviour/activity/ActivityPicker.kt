@@ -8,9 +8,12 @@ import content.bot.Bot
  */
 fun interface ActivityPicker {
     /**
+     * @param activities every activity by id
+     * @param idle activity assigned when nothing else can be done
+     * @param eligible whether an activity has free slots, isn't blocked for the bot and has its requirements met
      * @return the activity to assign or null to defer to the next picker
      */
-    fun pick(bot: Bot, pool: ActivityPool): BotActivity?
+    fun pick(bot: Bot, activities: Map<String, BotActivity>, idle: BotActivity, eligible: (BotActivity?) -> Boolean): BotActivity?
 }
 
 val DEFAULT_PICKERS: List<ActivityPicker> = listOf(PinnedPicker, RepeatPreviousPicker, SameSkillPicker(), RandomPicker)

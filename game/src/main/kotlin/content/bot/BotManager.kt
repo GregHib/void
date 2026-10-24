@@ -10,7 +10,6 @@ import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivityPicker
-import content.bot.behaviour.activity.ActivityPool
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.activity.DEFAULT_PICKERS
@@ -182,7 +181,7 @@ class BotManager(
         if (bot.player["debug", false]) {
             logger.trace { "Picking new activity from ${bot.available} for bot ${bot.player.accountName}." }
         }
-        var activity = pickers.firstNotNullOfOrNull { it.pick(bot, pool) }
+        var activity = pickers.firstNotNullOfOrNull { it.pick(bot, activities, idle) { activity -> hasRequirements(bot, activity) } }
         if (activity == null) {
             if (bot.player["debug", false]) {
                 logger.debug { "No activities with requirements met for bot: ${bot.player.accountName}." }
@@ -255,15 +254,6 @@ class BotManager(
     }
 
     private val idle = BotActivity("idle", timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotWait(TimeUnit.SECONDS.toTicks(30))))
-
-    private val pool = object : ActivityPool {
-        override val idle: BotActivity
-            get() = this@BotManager.idle
-
-        override fun activity(id: String): BotActivity? = activities[id]
-
-        override fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = this@BotManager.hasRequirements(bot, activity)
-    }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
