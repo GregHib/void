@@ -1,6 +1,7 @@
 package content.quest.free.ernest_the_chicken
 
 import WorldTest
+import content.entity.effect.stunned
 import content.quest.quest
 import content.quest.questStage
 import dialogueOption
@@ -11,8 +12,14 @@ import messages
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import skipDialogues
+import walk
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -39,8 +46,59 @@ class ErnestTheChickenTest : WorldTest() {
         assertEquals(1, p.questStage(ERNEST))
         p.tele(3110, 3366, 2)
         p.talk("professor_oddenstein")
+        p.dialogueOption(1)
+        p.skipDialogues()
+        p.dialogueOption(1)
+        p.skipDialogues()
         assertEquals("parts", p.quest(ERNEST))
         assertEquals(2, p.questStage(ERNEST))
+    }
+
+    @Test
+    fun `Demanding Ernest be changed back also opens the parts stage`() {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        p[ERNEST] = "started"
+        p.talk("professor_oddenstein")
+        p.dialogueOption(1)
+        p.skipDialogues()
+        p.dialogueOption(2)
+        p.skipDialogues()
+        assertEquals("parts", p.quest(ERNEST))
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6])
+    fun `Every incomplete parts conversation leaves the carried parts untouched`(mask: Int) {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        p[ERNEST] = "parts"
+        val parts = listOf("pressure_gauge", "rubber_tube", "oil_can")
+        for ((i, part) in parts.withIndex()) if (mask and (1 shl i) != 0) p.inventory.add(part)
+        p.talk("professor_oddenstein")
+        assertEquals("parts", p.quest(ERNEST))
+        for ((i, part) in parts.withIndex()) assertEquals(if (mask and (1 shl i) != 0) 1 else 0, p.inventory.count(part))
+        assertEquals(0, p["quest_points", 0])
+        assertNull(p.get<kotlinx.coroutines.Job>("ernest_restore_job"))
+    }
+
+    @Test
+    fun `Veronica discusses the transformation without changing the parts stage`() {
+        val p = createPlayer(Tile(3110, 3330))
+        p[ERNEST] = "parts"
+        p.talk("veronica")
+        assertEquals("parts", p.quest(ERNEST))
+        assertNull(p.dialogue)
+    }
+
+    @Test
+    fun `Professor ordinary conversations remain available before the quest`() {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        for (option in 1..2) {
+            p.talk("professor_oddenstein")
+            p.dialogueOption(option)
+            p.skipDialogues()
+            assertEquals("unstarted", p.quest(ERNEST))
+            assertNull(p.dialogue)
+        }
     }
 
     @Test
@@ -48,6 +106,7 @@ class ErnestTheChickenTest : WorldTest() {
         val p = createPlayer(Tile(3110, 3330))
         p.talk("veronica")
         p.dialogueOption(2)
+        p.skipDialogues()
         assertEquals("unstarted", p.quest(ERNEST))
     }
 
@@ -58,6 +117,7 @@ class ErnestTheChickenTest : WorldTest() {
         val f = GameObjects.find(Tile(3087, 3334), "fountain")
         p.objectOption(f, "Search")
         tick(3)
+        p.skipDialogues()
         assertFalse(p.inventory.contains("pressure_gauge"))
         p.inventory.add("fish_food")
         p.inventory.add("poison")
@@ -70,14 +130,37 @@ class ErnestTheChickenTest : WorldTest() {
         assertFalse(other["ernest_fountain_poisoned", false])
         p.objectOption(f, "Search")
         tick(3)
+        p.skipDialogues()
         assertEquals(1, p.inventory.count("pressure_gauge"))
         p.objectOption(f, "Search")
         tick(3)
+        p.skipDialogues()
         assertEquals(1, p.inventory.count("pressure_gauge"))
         p.inventory.remove("pressure_gauge")
         p.objectOption(f, "Search")
         tick(3)
+        p.skipDialogues()
         assertEquals(1, p.inventory.count("pressure_gauge"))
+    }
+
+    @Test
+    fun `Manor fountain bites item users and refuses poisoned water without filling containers`() {
+        val p = createPlayer(Tile(3086, 3335))
+        val fountain = GameObjects.find(Tile(3087, 3334), "fountain")
+        p.inventory.add("bucket")
+        p.itemOnObject(fountain, p.inventory.indexOf("bucket"))
+        tick(3)
+        p.skipDialogues()
+        assertTrue(p.messages.contains("Something in the water bites you."))
+        assertTrue(p.inventory.contains("bucket"))
+        assertFalse(p.inventory.contains("bucket_of_water"))
+        p["ernest_fountain_poisoned"] = true
+        p.itemOnObject(fountain, p.inventory.indexOf("bucket"))
+        tick(3)
+        assertNotNull(p.dialogue)
+        p.skipDialogues()
+        assertTrue(p.inventory.contains("bucket"))
+        assertFalse(p.inventory.contains("bucket_of_water"))
     }
 
     @Test
@@ -263,9 +346,108 @@ class ErnestTheChickenTest : WorldTest() {
         }
     }
 
+    @Test
+    fun `Restoration uses one existing chicken and only transforms it for the quest player`() {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        val other = createPlayer(Tile(3109, 3366, 2))
+        p[ERNEST] = "parts"
+        other[ERNEST] = "parts"
+        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
+        val professor = NPCs.find(p.tile.regionLevel, "professor_oddenstein")
+        professor.tele(3110, 3367, 2)
+        val chicken = NPCs.find(p.tile.regionLevel, "chicken_draynor")
+        val count = NPCs.count()
+        p.npcOption(professor, "Talk-to")
+        tickIf(30) { p.dialogue == null }
+        p.skipDialogues()
+        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertFalse(p.inventory.contains(part))
+        val graphics = mutableListOf<Int>()
+        var placed = false
+        var sawHuman = false
+        var ticks = 0
+        while (p.dialogue == null && ticks++ < 40) {
+            for (graphic in listOf(chicken.visuals.secondaryGraphic.id, chicken.visuals.primaryGraphic.id)) {
+                if (graphic >= 0 && graphics.lastOrNull() != graphic) graphics.add(graphic)
+            }
+            if (professor.visuals.animation.stand == AnimationDefinitions.get("take").id) {
+                placed = true
+                assertEquals(Tile(3111, 3367, 2), professor.tile)
+            }
+            if (chicken.def(p).stringId == "ernest_human") sawHuman = true
+            assertNotEquals("ernest_human", chicken.def(other).stringId)
+            assertFalse(chicken.stunned)
+            assertEquals(count, NPCs.count())
+            assertEquals("parts", p.quest(ERNEST))
+            tick()
+        }
+        assertTrue(placed)
+        assertTrue(sawHuman || chicken.def(p).stringId == "ernest_human")
+        val impact = graphics.indexOf(GraphicDefinitions.get("weaken_impact").id)
+        val birds = graphics.indexOf(GraphicDefinitions.get("stun_long").id)
+        assertTrue(impact >= 0 && birds > impact, graphics.toString())
+        assertTrue(chicken.tile.distanceTo(p.tile) <= 1, "Ernest should approach the player")
+        assertNotNull(p.dialogue)
+        p.skipDialogues()
+        assertEquals("completed", p.quest(ERNEST))
+        assertEquals(4, p["quest_points", 0])
+        assertTrue(p.viewport!!.npcForms.isEmpty())
+        assertEquals(count, NPCs.count())
+    }
+
+    @Test
+    fun `Walking away during hand-in refunds the parts without spawning actors`() {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        p[ERNEST] = "parts"
+        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
+        val count = NPCs.count()
+        p.npcOption(NPCs.find(p.tile.regionLevel, "professor_oddenstein"), "Talk-to")
+        tickIf(30) { p.dialogue == null }
+        p.skipDialogues()
+        p.walk(p.tile.addX(-1))
+        tick(3)
+        assertEquals(count, NPCs.count())
+        assertTrue(p.viewport!!.npcForms.isEmpty())
+        assertEquals("parts", p.quest(ERNEST))
+        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertTrue(p.inventory.contains(part))
+        assertEquals(0, p["quest_points", 0])
+    }
+
+    @Test
+    fun `Repeatedly dismissing human Ernest restores the chicken and never duplicates rewards or NPCs`() {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        p[ERNEST] = "parts"
+        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
+        val professor = NPCs.find(p.tile.regionLevel, "professor_oddenstein")
+        val chicken = NPCs.find(p.tile.regionLevel, "chicken_draynor")
+        val count = NPCs.count()
+        repeat(3) {
+            p.npcOption(professor, "Talk-to")
+            tickIf(30) { p.dialogue == null }
+            p.skipDialogues()
+            tickIf(40) { p.dialogue == null }
+            assertEquals("ernest_human", chicken.def(p).stringId)
+            p.closeInterfaces()
+            tick(3)
+            assertTrue(p.viewport!!.npcForms.isEmpty())
+            assertNotEquals("ernest_human", chicken.def(p).stringId)
+            assertEquals(count, NPCs.count())
+            assertEquals("parts", p.quest(ERNEST))
+            for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertEquals(1, p.inventory.count(part))
+            assertEquals(0, p["quest_points", 0])
+        }
+    }
+
     private fun Player.talk(id: String) {
         npcOption(NPCs.find(tile.regionLevel, id), "Talk-to")
         tickIf(30) { dialogue == null }
-        skipDialogues()
+        repeat(60) {
+            if (dialogue != null) {
+                skipDialogues()
+                if (dialogue != null) return
+            }
+            if (suspension == null) return
+            tick()
+        }
+        fail("Dialogue or timed quest sequence did not settle")
     }
 }
