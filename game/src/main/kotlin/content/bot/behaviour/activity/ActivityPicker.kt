@@ -6,7 +6,7 @@ import content.bot.Bot
  * Chooses which [BotActivity] an idle [Bot] should do next.
  * Pickers are tried in order, the first to return a non-null activity wins.
  */
-fun interface ActivityPicker {
+interface ActivityPicker {
     /**
      * @param activities every activity by id
      * @param idle activity assigned when nothing else can be done
@@ -14,6 +14,8 @@ fun interface ActivityPicker {
      * @return the activity to assign or null to defer to the next picker
      */
     fun pick(bot: Bot, activities: Map<String, BotActivity>, idle: BotActivity, eligible: (BotActivity?) -> Boolean): BotActivity?
-}
 
-val DEFAULT_PICKERS: List<ActivityPicker> = listOf(PinnedPicker, RepeatPreviousPicker, SameSkillPicker, RandomPicker)
+    companion object {
+        val DEFAULT_PICKERS: List<ActivityPicker> = listOf(PinnedPicker, RepeatPreviousPicker, SameSkillPicker, RandomPicker)
+    }
+}

@@ -10,9 +10,9 @@ import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivityPicker
+import content.bot.behaviour.activity.ActivityPicker.Companion.DEFAULT_PICKERS
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
-import content.bot.behaviour.activity.DEFAULT_PICKERS
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours

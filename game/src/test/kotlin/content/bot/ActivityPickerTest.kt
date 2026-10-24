@@ -5,9 +5,9 @@ import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.activity.RandomPicker
 import content.bot.behaviour.activity.RepeatPreviousPicker
 import content.bot.behaviour.activity.SameSkillPicker
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
