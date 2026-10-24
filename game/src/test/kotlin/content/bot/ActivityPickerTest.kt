@@ -1,0 +1,92 @@
+package content.bot
+
+import FakeRandom
+import content.bot.behaviour.activity.ActivityPool
+import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.activity.RandomPicker
+import content.bot.behaviour.activity.RepeatPreviousPicker
+import content.bot.behaviour.activity.SameSkillPicker
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.type.setRandom
+
+class ActivityPickerTest {
+
+    private val mining = BotActivity("mining", produces = setOf("skill:mining"))
+    private val copper = BotActivity("copper", produces = setOf("skill:mining"))
+    private val fishing = BotActivity("fishing", produces = setOf("skill:fishing"))
+    private val idle = BotActivity("idle")
+    private val all = listOf(mining, copper, fishing).associateBy { it.id }
+    private var unavailable = emptySet<String>()
+    private val pool = object : ActivityPool {
+        override val idle = this@ActivityPickerTest.idle
+        override fun activity(id: String) = all[id]
+        override fun hasRequirements(bot: Bot, activity: BotActivity?) = activity != null && activity.id !in unavailable
+    }
+    private var roll = 0
+
+    @BeforeEach
+    fun setup() {
+        roll = 0
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = roll.coerceAtMost(until - 1)
+        })
+    }
+
+    private fun bot(last: BotActivity? = null) = Bot(Player(accountName = "bot")).also {
+        it.available.addAll(all.keys)
+        it.lastSuccessful = last
+    }
+
+    @Test
+    fun `Same skill picker favours activities training the last successful skill`() {
+        val bot = bot(last = fishing)
+
+        assertEquals(fishing, SameSkillPicker { 100 }.pick(bot, pool))
+    }
+
+    @Test
+    fun `Same skill picker skips unavailable activities`() {
+        unavailable = setOf("fishing")
+
+        assertNull(SameSkillPicker { 100 }.pick(bot(last = fishing), pool))
+    }
+
+    @Test
+    fun `Same skill picker defers when chance fails`() {
+        roll = 50
+
+        assertNull(SameSkillPicker { 50 }.pick(bot(last = mining), pool))
+    }
+
+    @Test
+    fun `Same skill picker defers without a previous success`() {
+        assertNull(SameSkillPicker { 100 }.pick(bot(), pool))
+    }
+
+    @Test
+    fun `Same skill picker defers for activities without a skill`() {
+        assertNull(SameSkillPicker { 100 }.pick(bot(last = idle), pool))
+    }
+
+    @Test
+    fun `Repeat previous picker ignores idle and blocked activities`() {
+        val bot = bot()
+        bot.previous = idle
+        assertNull(RepeatPreviousPicker.pick(bot, pool))
+        bot.previous = mining
+        assertEquals(mining, RepeatPreviousPicker.pick(bot, pool))
+        unavailable = setOf("mining")
+        assertNull(RepeatPreviousPicker.pick(bot, pool))
+    }
+
+    @Test
+    fun `Random picker only picks activities with requirements met`() {
+        unavailable = setOf("mining", "copper")
+
+        assertEquals(fishing, RandomPicker.pick(bot(), pool))
+    }
+}

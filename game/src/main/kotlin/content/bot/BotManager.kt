@@ -438,6 +438,7 @@ class BotManager(
         }
         if (behaviour is BotActivity) {
             bot.blocked.remove(behaviour.id)
+            bot.lastSuccessful = behaviour
             slots.release(behaviour)
         }
     }

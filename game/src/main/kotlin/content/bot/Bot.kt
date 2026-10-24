@@ -18,6 +18,11 @@ import java.util.Stack
 data class Bot(val player: Player) : Character by player {
     val blocked: MutableSet<String> = mutableSetOf()
     var previous: BotActivity? = null
+
+    /**
+     * The last activity to run to completion, used to favour related activities when picking the next one
+     */
+    var lastSuccessful: BotActivity? = null
     val frames = Stack<BehaviourFrame>()
     val available = mutableSetOf<String>()
     var evaluate = mutableSetOf<String>()
