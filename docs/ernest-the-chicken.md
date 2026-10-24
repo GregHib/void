@@ -73,16 +73,15 @@ searching afterwards gives a gauge if there is room and no existing carried or
 banked gauge. Lost gauges and keys can be replaced. Compost requires a spade
 and supports Search, spade-on-heap and Dig nearby.
 
-## Puzzle provenance
+## Historical references
 
-The gate-condition logic is adapted from the MIT-licensed Lost City quest
-script in the local rs-sdk reference repository, under
-`server/content/scripts/quests/quest_haunted/scripts/quest_haunted.rs2`.
-Its copyright and permission notice is retained in `LICENSES/lost-city.txt`.
-The handler structure, 634 object IDs, transforms, state encoding and other
-quest content use this server's APIs and cache. The 2009scape implementation
-was inspected as a behavioral reference, but its Java code was not copied or
-mechanically translated.
+The older Lost City quest script in the local rs-sdk reference repository,
+`server/content/scripts/quests/quest_haunted/scripts/quest_haunted.rs2`, was
+consulted as a reference for the historical puzzle's behavior. It is not a
+runtime or SDK dependency. The six-lever/nine-door conditions describe the
+quest's puzzle rules; this implementation uses Kotlin server handlers and
+revision-634 object IDs, cache transforms and state variables. The 2009scape
+quest was also inspected as a behavioral reference.
 
 ## Validation and deployment
 
