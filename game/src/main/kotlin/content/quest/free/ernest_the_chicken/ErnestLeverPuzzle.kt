@@ -80,17 +80,18 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             message("The secret passage is already moving. Please wait a moment.")
             return
         }
-        if (!entering) {
-            anim("human_lever_down")
-            delay()
-            // Line up before opening: the western leaf would otherwise obstruct this approach.
-            val approach = Tile(tile.x, 3359)
-            walkToDelay(approach, forceWalk = true)
-            if (tile != approach) return
-            if (passageBusy) {
-                message("The secret passage is already moving. Please wait a moment.")
-                return
-            }
+        anim(if (entering) "take" else "human_lever_down")
+        delay()
+        // Reach the opening in two cardinal legs while the wall is still closed.
+        val approachRow = Tile(tile.x, 3359)
+        walkToDelay(approachRow, forceWalk = true)
+        if (tile != approachRow) return
+        val approach = Tile(if (entering) 3097 else 3096, 3359)
+        walkToDelay(approach, forceWalk = true)
+        if (tile != approach) return
+        if (passageBusy) {
+            message("The secret passage is already moving. Please wait a moment.")
+            return
         }
         val south = GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed") ?: return
         val north = GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed") ?: return
@@ -103,18 +104,12 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             onRevert = { passageBusy = false },
         )
         try {
-            if (entering) {
-                anim("take")
-                message("You find a hidden catch. A secret passage opens.")
-            }
+            if (entering) message("You find a hidden catch. A secret passage opens.")
             delay()
-            // Step along this side of the wall before crossing it; a single route cuts diagonally.
-            if (entering) {
-                val approach = Tile(tile.x, 3359)
-                walkToDelay(approach, forceWalk = true)
-                if (tile != approach) return
-            }
-            walkOverDelay(if (entering) Tile(3096, 3359) else Tile(3097, 3359))
+            val destination = Tile(if (entering) 3096 else 3097, 3359)
+            walkOverDelay(destination)
+            // Let the client finish rendering the last step before replacing the wall leaves.
+            if (tile == destination) delay()
         } finally {
             // The world timer also closes it if UI/movement discards the suspended interaction.
             GameObjects.timers.execute(south)

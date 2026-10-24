@@ -317,13 +317,16 @@ class ErnestTheChickenTest : WorldTest() {
         fun cross(trigger: Tile, id: String, option: String, destination: Tile) {
             p.objectOption(GameObjects.find(trigger, id), option)
             var sawOpen = false
+            var sawCloseAfterCrossing = false
             val passageSteps = mutableListOf(p.tile)
-            repeat(12) {
+            repeat(16) {
+                val previousTile = p.tile
                 tick()
                 if (passageSteps.lastOrNull() != p.tile) passageSteps.add(p.tile)
                 val south = GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened")
                 val north = GameObjects.findOrNull(Tile(3096, 3359), "ernest_secret_wall_north_opened")
                 if (south != null || north != null) {
+                    if (!sawOpen) assertEquals(Tile(if (option == "Search") 3097 else 3096, 3359), p.tile, "Line up before the wall opens")
                     sawOpen = true
                     assertNotNull(south)
                     assertNotNull(north)
@@ -331,8 +334,13 @@ class ErnestTheChickenTest : WorldTest() {
                     assertEquals(1, north.rotation)
                     assertNull(GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed"))
                     assertNull(GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed"))
+                } else if (sawOpen && !sawCloseAfterCrossing) {
+                    sawCloseAfterCrossing = true
+                    assertEquals(destination, p.tile, "Close only after crossing")
+                    assertEquals(destination, previousTile, "Allow the client a tick to finish the last step before closing")
                 }
             }
+            assertTrue(sawCloseAfterCrossing, "Close behind the player in both directions")
             assertTrue(sawOpen, "Both triggers should visibly open the wall into the western room")
             if (passageSteps.lastOrNull() != p.tile) passageSteps.add(p.tile)
             for ((from, to) in passageSteps.zipWithNext()) {
@@ -354,7 +362,7 @@ class ErnestTheChickenTest : WorldTest() {
         val p = createPlayer(Tile(3098, 3360))
         val sconce = GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce")
         p.objectOption(sconce, "Search")
-        tickIf(6) { GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened") == null }
+        tickIf(12) { GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened") == null }
         assertNotNull(GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened"))
         p.walk(p.tile.addY(1))
         tick(14)
