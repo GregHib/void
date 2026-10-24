@@ -338,8 +338,8 @@ class ErnestTheChickenTest : WorldTest() {
             assertNull(GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened"))
             assertNull(GameObjects.findOrNull(Tile(3096, 3359), "ernest_secret_wall_north_opened"))
         }
-        cross(Tile(3097, 3360), "ernest_candle_sconce", "Search", Tile(3095, 3359))
-        cross(Tile(3096, 3357), "ernest_secret_exit_lever", "Pull", Tile(3100, 3359))
+        cross(Tile(3097, 3360), "ernest_candle_sconce", "Search", Tile(3096, 3359))
+        cross(Tile(3096, 3357), "ernest_secret_exit_lever", "Pull", Tile(3097, 3359))
     }
 
     @Test
@@ -356,7 +356,7 @@ class ErnestTheChickenTest : WorldTest() {
         p.tele(3098, 3360)
         p.objectOption(sconce, "Search")
         tick(12)
-        assertEquals(Tile(3095, 3359), p.tile, p.messages.joinToString())
+        assertEquals(Tile(3096, 3359), p.tile, p.messages.joinToString())
     }
 
     @Test

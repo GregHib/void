@@ -94,7 +94,7 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             anim(if (entering) "take" else "human_lever_down")
             if (entering) message("You find a hidden catch. A secret passage opens.")
             delay()
-            walkOverDelay(if (entering) Tile(3095, 3359) else Tile(3100, 3359))
+            walkOverDelay(if (entering) Tile(3096, 3359) else Tile(3097, 3359))
         } finally {
             // The world timer also closes it if UI/movement discards the suspended interaction.
             GameObjects.timers.execute(south)
