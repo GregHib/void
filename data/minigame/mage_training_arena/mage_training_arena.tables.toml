@@ -1,0 +1,556 @@
+[mta_rooms]
+portal = "obj"
+level = "int"
+enter = "tile"
+exit = "tile"
+overlay = "string"
+area = "string"
+name = "string"
+spell = "string"
+
+[.telekinetic]
+portal = "telekinetic_portal"
+level = 33
+enter = { x = 3363, y = 3316 }
+exit = { x = 3363, y = 3316 }
+overlay = "mage_training_arena_telekinetic"
+area = "mage_training_arena_telekinetic_theatre"
+name = "Telekinetic Theatre"
+spell = "Telekinetic Grab"
+
+[.alchemist]
+portal = "alchemists_portal"
+level = 21
+enter = { x = 3366, y = 9623, level = 2 }
+exit = { x = 3363, y = 3320 }
+overlay = "mage_training_arena_alchemist"
+area = "mage_training_arena_alchemists_playground"
+name = "Alchemists' Playground"
+spell = "Low Alchemy"
+
+[.enchanting]
+portal = "enchanters_portal"
+level = 7
+enter = { x = 3363, y = 9649 }
+exit = { x = 3361, y = 3318 }
+overlay = "mage_training_arena_enchanting"
+area = "mage_training_arena_enchanting_chamber"
+name = "Enchanting Chamber"
+spell = "Lvl-1 Enchant"
+
+[.graveyard]
+portal = "graveyard_portal"
+level = 15
+enter = { x = 3363, y = 9639, level = 1 }
+exit = { x = 3365, y = 3318 }
+overlay = "mage_training_arena_graveyard"
+area = "mage_training_arena_creature_graveyard"
+name = "Creature Graveyard"
+spell = "Bones to Bananas"
+
+# Tiles are offsets from the south-west corner of region 13463 (3328, 9664).
+# north/south are local y thresholds, west/east local x thresholds used to pick the statue direction.
+[mta_mazes]
+index = "int"
+base = "tile"
+statue = "tile"
+guardian = "tile"
+end = "tile"
+camera = "tile"
+north = "int"
+south = "int"
+west = "int"
+east = "int"
+
+[.maze_1]
+index = 0
+base = { x = 8, y = 54 }
+statue = { x = 15, y = 41 }
+guardian = { x = 8, y = 39 }
+end = { x = 19, y = 50 }
+camera = { x = 15, y = 45 }
+north = 51
+south = 40
+west = 9
+east = 20
+
+[.maze_2]
+index = 1
+base = { x = 34, y = 49, level = 1 }
+statue = { x = 22, y = 53, level = 1 }
+guardian = { x = 26, y = 48, level = 1 }
+end = { x = 13, y = 44, level = 1 }
+camera = { x = 17, y = 48, level = 1 }
+north = 54
+south = 43
+west = 12
+east = 23
+
+[.maze_3]
+index = 2
+base = { x = 54, y = 34, level = 1 }
+statue = { x = 48, y = 22, level = 1 }
+guardian = { x = 45, y = 15, level = 1 }
+end = { x = 57, y = 22, level = 1 }
+camera = { x = 53, y = 17, level = 1 }
+north = 23
+south = 12
+west = 47
+east = 58
+
+[.maze_4]
+index = 3
+base = { x = 50, y = 42, level = 1 }
+statue = { x = 46, y = 49, level = 1 }
+guardian = { x = 57, y = 41, level = 1 }
+end = { x = 55, y = 49, level = 1 }
+camera = { x = 50, y = 53, level = 1 }
+north = 59
+south = 48
+west = 45
+east = 56
+
+[.maze_5]
+index = 4
+base = { x = 46, y = 32 }
+statue = { x = 45, y = 14 }
+guardian = { x = 45, y = 23 }
+end = { x = 47, y = 18 }
+camera = { x = 45, y = 13 }
+north = 19
+south = 8
+west = 40
+east = 51
+
+[.maze_6]
+index = 5
+base = { x = 26, y = 26 }
+statue = { x = 15, y = 16 }
+guardian = { x = 23, y = 24 }
+end = { x = 14, y = 20 }
+camera = { x = 14, y = 15 }
+north = 21
+south = 10
+west = 9
+east = 10
+
+[.maze_7]
+index = 6
+base = { x = 51, y = 52 }
+statue = { x = 40, y = 48 }
+guardian = { x = 55, y = 50 }
+end = { x = 39, y = 56 }
+camera = { x = 43, y = 51 }
+north = 57
+south = 46
+west = 37
+east = 48
+
+[.maze_8]
+index = 7
+base = { x = 31, y = 37, level = 2 }
+statue = { x = 18, y = 54, level = 2 }
+guardian = { x = 28, y = 41, level = 2 }
+end = { x = 17, y = 54, level = 2 }
+camera = { x = 19, y = 49, level = 2 }
+north = 55
+south = 44
+west = 14
+east = 25
+
+[.maze_9]
+index = 8
+base = { x = 40, y = 16, level = 2 }
+statue = { x = 20, y = 10, level = 2 }
+guardian = { x = 34, y = 15, level = 2 }
+end = { x = 11, y = 19, level = 2 }
+camera = { x = 16, y = 14, level = 2 }
+north = 20
+south = 9
+west = 10
+east = 21
+
+[.maze_10]
+index = 9
+base = { x = 27, y = 29, level = 1 }
+statue = { x = 23, y = 20, level = 1 }
+guardian = { x = 31, y = 25, level = 1 }
+end = { x = 25, y = 16, level = 1 }
+camera = { x = 23, y = 20, level = 1 }
+north = 26
+south = 15
+west = 17
+east = 28
+
+# Cupboards ring clockwise from the entrance: slot 0-7, only slots 0-4 hold an item after rotation.
+[mta_alchemist_items]
+item = "item"
+slot = "int"
+name = "string"
+
+[.leather_boots]
+item = "leather_boots_mage_training_arena"
+slot = 0
+name = "leather boots"
+
+[.adamant_kiteshield]
+item = "adamant_kiteshield_mage_training_arena"
+slot = 1
+name = "adamant kiteshield"
+
+[.adamant_helm]
+item = "adamant_helm_mage_training_arena"
+slot = 2
+name = "adamant helm"
+
+[.emerald]
+item = "emerald_mage_training_arena"
+slot = 3
+name = "emerald"
+
+[.rune_longsword]
+item = "rune_longsword_mage_training_arena"
+slot = 4
+name = "rune longsword"
+
+[mta_alchemist]
+values = "list<int>"
+interval = "int"
+reward_cap = "int"
+eject_amount = "int"
+
+[.settings]
+values = [1, 5, 8, 15, 30]
+interval = 70
+reward_cap = 1000
+eject_amount = 12000
+
+[mta_shapes]
+pile = "obj"
+item = "item"
+
+[.cube]
+pile = "cube_pile"
+item = "cube"
+
+[.cylinder]
+pile = "cylinder_pile"
+item = "cylinder"
+
+[.icosahedron]
+pile = "icosahedron_pile"
+item = "icosahedron"
+
+[.pentamid]
+pile = "pentamid_pile"
+item = "pentamid"
+
+[mta_enchanting]
+dragonstones = "list<tile>"
+bonus_interval = "int"
+dragonstone_respawn = "int"
+orbs_per_reward = "int"
+rune_rewards = "list<item>"
+rune_amount = "int"
+shapes_per_reward = "int"
+
+[.settings]
+dragonstones = [
+    { x = 3354, y = 9645 },
+    { x = 3353, y = 9635 },
+    { x = 3359, y = 9632 },
+    { x = 3375, y = 9633 },
+    { x = 3374, y = 9643 },
+    { x = 3373, y = 9651 },
+]
+bonus_interval = 40
+dragonstone_respawn = 500
+orbs_per_reward = 20
+rune_rewards = ["death_rune", "blood_rune", "cosmic_rune"]
+rune_amount = 3
+shapes_per_reward = 10
+
+[mta_bones]
+pile = "obj"
+item = "item"
+multiplier = "int"
+next = "obj"
+
+[.bones_1]
+pile = "bones_mage_training_arena_1"
+item = "animals_bones_1"
+multiplier = 1
+next = "bones_mage_training_arena_2"
+
+[.bones_2]
+pile = "bones_mage_training_arena_2"
+item = "animals_bones_2"
+multiplier = 2
+next = "bones_mage_training_arena_3"
+
+[.bones_3]
+pile = "bones_mage_training_arena_3"
+item = "animals_bones_3"
+multiplier = 3
+next = "bones_mage_training_arena_4"
+
+[.bones_4]
+pile = "bones_mage_training_arena_4"
+item = "animals_bones_4"
+multiplier = 4
+next = "bones_mage_training_arena_1"
+
+[mta_graveyard]
+bone_drops = "list<tile>"
+fruit_per_reward = "int"
+xp = "int"
+rune_rewards = "list<item>"
+hit = "int"
+interval = "int"
+death_penalty = "int"
+pile_lives = "int"
+
+[.settings]
+bone_drops = [
+    { x = 3370, y = 9634, level = 1 },
+    { x = 3359, y = 9634, level = 1 },
+    { x = 3360, y = 9643, level = 1 },
+    { x = 3363, y = 9643, level = 1 },
+    { x = 3363, y = 9633, level = 1 },
+    { x = 3367, y = 9637, level = 1 },
+    { x = 3366, y = 9642, level = 1 },
+    { x = 3380, y = 9647, level = 1 },
+    { x = 3375, y = 9648, level = 1 },
+    { x = 3370, y = 9649, level = 1 },
+    { x = 3372, y = 9644, level = 1 },
+    { x = 3379, y = 9646, level = 1 },
+    { x = 3381, y = 9651, level = 1 },
+    { x = 3379, y = 9656, level = 1 },
+    { x = 3373, y = 9658, level = 1 },
+    { x = 3353, y = 9648, level = 1 },
+    { x = 3356, y = 9653, level = 1 },
+    { x = 3346, y = 9657, level = 1 },
+    { x = 3347, y = 9655, level = 1 },
+    { x = 3354, y = 9634, level = 1 },
+    { x = 3352, y = 9631, level = 1 },
+    { x = 3355, y = 9627, level = 1 },
+    { x = 3345, y = 9631, level = 1 },
+    { x = 3345, y = 9627, level = 1 },
+    { x = 3347, y = 9623, level = 1 },
+    { x = 3351, y = 9621, level = 1 },
+    { x = 3368, y = 9624, level = 1 },
+    { x = 3368, y = 9631, level = 1 },
+    { x = 3375, y = 9630, level = 1 },
+    { x = 3375, y = 9635, level = 1 },
+    { x = 3371, y = 9621, level = 1 },
+    { x = 3377, y = 9621, level = 1 },
+    { x = 3381, y = 9624, level = 1 },
+    { x = 3382, y = 9629, level = 1 },
+    { x = 3371, y = 9635, level = 1 },
+    { x = 3365, y = 9634, level = 1 },
+    { x = 3361, y = 9641, level = 1 },
+    { x = 3363, y = 9644, level = 1 },
+]
+fruit_per_reward = 16
+xp = 500
+rune_rewards = ["nature_rune", "water_rune", "earth_rune"]
+hit = 20
+interval = 10
+death_penalty = 10
+pile_lives = 4
+
+# Pizazz costs: telekinetic, alchemist, enchanting, graveyard. Wands consume the previous tier.
+[mta_rewards]
+item = "item"
+telekinetic = "int"
+alchemist = "int"
+enchanting = "int"
+graveyard = "int"
+coins = "int"
+requires = "item"
+
+[.beginner_wand]
+item = "beginner_wand"
+telekinetic = 30
+alchemist = 30
+enchanting = 300
+graveyard = 30
+
+[.apprentice_wand]
+item = "apprentice_wand"
+telekinetic = 60
+alchemist = 60
+enchanting = 600
+graveyard = 60
+requires = "beginner_wand"
+
+[.teacher_wand]
+item = "teacher_wand"
+telekinetic = 150
+alchemist = 200
+enchanting = 1500
+graveyard = 150
+requires = "apprentice_wand"
+
+[.master_wand]
+item = "master_wand"
+telekinetic = 240
+alchemist = 240
+enchanting = 2400
+graveyard = 240
+requires = "teacher_wand"
+
+[.infinity_top]
+item = "infinity_top"
+telekinetic = 400
+alchemist = 450
+enchanting = 4000
+graveyard = 400
+
+[.infinity_hat]
+item = "infinity_hat"
+telekinetic = 350
+alchemist = 400
+enchanting = 3000
+graveyard = 350
+
+[.infinity_boots]
+item = "infinity_boots"
+telekinetic = 120
+alchemist = 120
+enchanting = 1200
+graveyard = 120
+
+[.infinity_gloves]
+item = "infinity_gloves"
+telekinetic = 175
+alchemist = 225
+enchanting = 1500
+graveyard = 175
+
+[.infinity_bottoms]
+item = "infinity_bottoms"
+telekinetic = 450
+alchemist = 500
+enchanting = 5000
+graveyard = 450
+
+[.mages_book]
+item = "mages_book"
+telekinetic = 500
+alchemist = 550
+enchanting = 6000
+graveyard = 500
+
+[.bones_to_peaches_spell]
+item = "bones_to_peaches_spell"
+telekinetic = 200
+alchemist = 300
+enchanting = 2000
+graveyard = 200
+
+[.battlestaff]
+item = "battlestaff"
+telekinetic = 1
+alchemist = 2
+enchanting = 20
+graveyard = 2
+
+[.mist_rune]
+item = "mist_rune"
+telekinetic = 1
+alchemist = 1
+enchanting = 15
+graveyard = 1
+
+[.dust_rune]
+item = "dust_rune"
+telekinetic = 1
+alchemist = 1
+enchanting = 15
+graveyard = 1
+
+[.mud_rune]
+item = "mud_rune"
+telekinetic = 1
+alchemist = 1
+enchanting = 15
+graveyard = 1
+
+[.smoke_rune]
+item = "smoke_rune"
+telekinetic = 1
+alchemist = 1
+enchanting = 15
+graveyard = 1
+
+[.steam_rune]
+item = "steam_rune"
+telekinetic = 1
+alchemist = 1
+enchanting = 15
+graveyard = 1
+
+[.lava_rune]
+item = "lava_rune"
+telekinetic = 1
+alchemist = 1
+enchanting = 15
+graveyard = 1
+
+[.cosmic_rune]
+item = "cosmic_rune"
+telekinetic = 0
+alchemist = 0
+enchanting = 5
+graveyard = 0
+
+[.chaos_rune]
+item = "chaos_rune"
+telekinetic = 0
+alchemist = 1
+enchanting = 5
+graveyard = 1
+
+[.nature_rune]
+item = "nature_rune"
+telekinetic = 0
+alchemist = 1
+enchanting = 0
+graveyard = 1
+
+[.death_rune]
+item = "death_rune"
+telekinetic = 2
+alchemist = 1
+enchanting = 20
+graveyard = 1
+
+[.law_rune]
+item = "law_rune"
+telekinetic = 2
+alchemist = 0
+enchanting = 0
+graveyard = 0
+
+[.soul_rune]
+item = "soul_rune"
+telekinetic = 2
+alchemist = 2
+enchanting = 25
+graveyard = 2
+
+[.blood_rune]
+item = "blood_rune"
+telekinetic = 2
+alchemist = 2
+enchanting = 25
+graveyard = 2
+
+[.arena_book]
+item = "arena_book"
+telekinetic = 0
+alchemist = 0
+enchanting = 0
+graveyard = 0
+coins = 200
