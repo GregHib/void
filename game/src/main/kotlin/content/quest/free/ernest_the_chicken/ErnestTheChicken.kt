@@ -247,11 +247,11 @@ suspend fun Player.oddensteinErnest(professor: NPC): Boolean {
                     }
                 }
                 option<Neutral>("What does this machine do?") {
-                    npc<Neutral>("Nothing at the moment... It's broken. It's meant to be\na transmutation machine.")
-                    npc<Neutral>("It has also spent time as a time travel machine, and a\ndramatic lightning generator, and a thing for generating\nmonsters.")
+                    npc<Neutral>("Nothing at the moment... It's broken. It's meant to be a transmutation machine.")
+                    npc<Neutral>("It has also spent time as a time travel machine, and a dramatic lightning generator, and a thing for generating monsters.")
                 }
                 option<Neutral>("Is this your house?") {
-                    npc<Neutral>("No, I'm just one of the tenants. It belongs to the count\nwho lives in the basement.")
+                    npc<Neutral>("No, I'm just one of the tenants. It belongs to the count who lives in the basement.")
                 }
             }
             return true
@@ -370,7 +370,7 @@ private suspend fun Player.restoreErnest(professor: NPC): Boolean {
         while (chicken.tile.distanceTo(tile) > 1 && attempts++ < 12) delay(1, cancellable = true)
         chicken.mode = Face(chicken, this)
         chicken.face(this)
-        npc<Happy>("ernest_human", "Thank you, ${if (male) "sir" else "m'lady"}. It was dreadfully irritating being a\nchicken. How can *cluck* I ever thank you?")
+        npc<Happy>("ernest_human", "Thank you, ${if (male) "sir" else "m'lady"}. It was dreadfully irritating being a chicken. How can *cluck* I ever thank you?")
         player<Neutral>("Well a cash reward is always nice...")
         npc<Happy>("ernest_human", "Of course, of course.")
         if (quest(ERNEST) != "parts") return true

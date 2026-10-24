@@ -19,11 +19,11 @@ class ProfessorOddenstein : Script {
                 npc<Neutral>("Be careful in here, there's lots of dangerous equipment.")
                 choice {
                     option<Quiz>("What does this machine do?") {
-                        npc<Neutral>("Nothing at the moment... It's broken. It's meant to be\na transmutation machine.")
-                        npc<Neutral>("It has also spent time as a time travel machine, and a\ndramatic lightning generator, and a thing for generating\nmonsters.")
+                        npc<Neutral>("Nothing at the moment... It's broken. It's meant to be a transmutation machine.")
+                        npc<Neutral>("It has also spent time as a time travel machine, and a dramatic lightning generator, and a thing for generating monsters.")
                     }
                     option<Quiz>("Is this your house?") {
-                        npc<Neutral>("No, I'm just one of the tenants. It belongs to the count\nwho lives in the basement.")
+                        npc<Neutral>("No, I'm just one of the tenants. It belongs to the count who lives in the basement.")
                     }
                 }
                 return@npcOperate
