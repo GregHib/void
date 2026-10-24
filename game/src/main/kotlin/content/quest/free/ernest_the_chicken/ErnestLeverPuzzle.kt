@@ -94,6 +94,12 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             anim(if (entering) "take" else "human_lever_down")
             if (entering) message("You find a hidden catch. A secret passage opens.")
             delay()
+            // Step along this side of the wall before crossing it; a single route cuts diagonally.
+            if (entering) {
+                val approach = Tile(tile.x, 3359)
+                walkToDelay(approach, forceWalk = true)
+                if (tile != approach) return
+            }
             walkOverDelay(if (entering) Tile(3096, 3359) else Tile(3097, 3359))
         } finally {
             // The world timer also closes it if UI/movement discards the suspended interaction.

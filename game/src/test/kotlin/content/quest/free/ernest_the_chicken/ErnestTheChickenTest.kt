@@ -317,11 +317,13 @@ class ErnestTheChickenTest : WorldTest() {
         fun cross(trigger: Tile, id: String, option: String, destination: Tile) {
             p.objectOption(GameObjects.find(trigger, id), option)
             var sawOpen = false
+            val passageSteps = mutableListOf<Tile>()
             repeat(12) {
                 tick()
                 val south = GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened")
                 val north = GameObjects.findOrNull(Tile(3096, 3359), "ernest_secret_wall_north_opened")
                 if (south != null || north != null) {
+                    if (passageSteps.lastOrNull() != p.tile) passageSteps.add(p.tile)
                     sawOpen = true
                     assertNotNull(south)
                     assertNotNull(north)
@@ -332,6 +334,13 @@ class ErnestTheChickenTest : WorldTest() {
                 }
             }
             assertTrue(sawOpen, "Both triggers should visibly open the wall into the western room")
+            if (passageSteps.lastOrNull() != p.tile) passageSteps.add(p.tile)
+            if (option == "Search") {
+                for ((from, to) in passageSteps.zipWithNext()) {
+                    assertTrue(from.x == to.x || from.y == to.y, "Sconce movement must turn before crossing: $passageSteps")
+                }
+                assertTrue(passageSteps.any { it.y == 3359 && it.x != destination.x }, "Visit the tile in front of the opening first: $passageSteps")
+            }
             assertEquals(destination, p.tile, p.messages.joinToString())
             assertNotNull(GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed"))
             assertNotNull(GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed"))
