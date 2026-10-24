@@ -80,6 +80,18 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             message("The secret passage is already moving. Please wait a moment.")
             return
         }
+        if (!entering) {
+            anim("human_lever_down")
+            delay()
+            // Line up before opening: the western leaf would otherwise obstruct this approach.
+            val approach = Tile(tile.x, 3359)
+            walkToDelay(approach, forceWalk = true)
+            if (tile != approach) return
+            if (passageBusy) {
+                message("The secret passage is already moving. Please wait a moment.")
+                return
+            }
+        }
         val south = GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed") ?: return
         val north = GameObjects.findOrNull(Tile(3097, 3359), "ernest_secret_wall_north_closed") ?: return
         passageBusy = true
@@ -91,8 +103,10 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             onRevert = { passageBusy = false },
         )
         try {
-            anim(if (entering) "take" else "human_lever_down")
-            if (entering) message("You find a hidden catch. A secret passage opens.")
+            if (entering) {
+                anim("take")
+                message("You find a hidden catch. A secret passage opens.")
+            }
             delay()
             // Step along this side of the wall before crossing it; a single route cuts diagonally.
             if (entering) {
