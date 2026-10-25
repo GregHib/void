@@ -39,3 +39,4 @@ Applies to anything under `game/.../content` (scripts, dialogue, quests, skills,
 - Row: `val row = Rows.get("cooking.${itemId}")`
 - All rows: `Tables.get("barrows_brothers").rows()` (search these when needed)
 - Fields: `row.int("level")`, `row.string("type")`, etc. — read from the `Row` directly.
+

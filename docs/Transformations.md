@@ -73,3 +73,4 @@ This changes the npc's [visuals](npcs#npc-data) which are sent to every nearby p
 
 > [!NOTE]
 > `transform()` also works on players, turning them into an npc. This has nothing to do with the cache transform list and is only for effects like the `::tfm` command.
+
