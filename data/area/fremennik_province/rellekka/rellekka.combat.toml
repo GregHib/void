@@ -1,10 +1,8 @@
 [agnar_rellekka]
-retreat_range = 8
 
 [agnar_rellekka.melee]
 clone = "man.melee"
 anim = "axe_smash"
-target_hit = { offense = "crush", max = 10 }
 
 [pontak]
 clone = "man"
