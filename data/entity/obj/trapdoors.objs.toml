@@ -46,6 +46,10 @@ examine = "I wonder what's down there?"
 id = 7434
 examine = "I wonder what's under it?"
 
+[fai_trapdoor]
+id = 9472
+examine = "What could be down here?"
+
 [trapdoor_44_opened]
 id = 10559
 examine = "I wonder what's down there?"
@@ -85,14 +89,6 @@ examine = "I wonder what's down there."
 [trapdoor_80_closed]
 id = 26933
 examine = "I wonder what's under it."
-
-[trapdoor_83_opened]
-id = 28676
-examine = "Where does it go?"
-
-[trapdoor_83_closed]
-id = 28675
-examine = "Where does it go?"
 
 [trapdoor_85_opened]
 id = 28742
@@ -153,7 +149,7 @@ examine = "This trapdoor is tightly shut."
 
 [trapdoor_107_closed]
 id = 4039
-opened = "trapdoor_83_opened"
+opened = "trapdoor_wolf_whistle_opened"
 examine = "Where does it go?"
 
 [trapdoor_108_closed]

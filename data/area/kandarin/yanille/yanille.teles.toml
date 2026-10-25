@@ -3,7 +3,7 @@ option = "Climb-up"
 tile = { x = 2537, y = 3096 }
 delta = { y = 4, level = 1 }
 
-[1723]
+[stairstop]
 option = "Climb-down"
 tile = { x = 2537, y = 3097, level = 1  }
 delta = { y = -4, level = -1 }
@@ -13,7 +13,7 @@ option = "Climb-up"
 tile = { x = 2537, y = 3085 }
 delta = { y = -4, level = 1 }
 
-[1723]
+[stairstop]
 option = "Climb-down"
 tile = { x = 2537, y = 3085, level = 1  }
 delta = { y = 4, level = -1 }
@@ -48,22 +48,22 @@ option = "Climb-down"
 tile = { x = 2597, y = 3107, level = 1  }
 delta = { level = -1 }
 
-[1722]
+[stairs]
 option = "Climb-up"
 tile = { x = 2590, y = 3089 }
 delta = { y = 4, level = 1 }
 
-[1723]
+[stairstop]
 option = "Climb-down"
 tile = { x = 2590, y = 3090, level = 1  }
 delta = { y = -4, level = -1 }
 
-[1722]
+[stairs]
 option = "Climb-up"
 tile = { x = 2590, y = 3084, level = 1 }
 delta = { y = 4, level = 1 }
 
-[1723]
+[stairstop]
 option = "Climb-down"
 tile = { x = 2590, y = 3085, level = 2  }
 delta = { y = -4, level = -1 }
@@ -81,12 +81,12 @@ tile = { x = 2593, y = 9488 }
 option = "Open"
 tile = { x = 2594, y = 9488 }
 
-[32271]
+[di2_stairs_above_ground]
 option = "Climb-down"
 tile = { x = 2603, y = 3078 }
 delta = { x = -4, y = 6400 }
 
-[32270]
+[di2_stairs]
 option = "Climb-up"
 tile = { x = 2603, y = 9478 }
 delta = { x = 4, y = -6400 }
@@ -96,17 +96,17 @@ option = "Climb-down"
 tile = { x = 2568, y = 3122 }
 delta = { y = 6404 }
 
-[32270]
+[di2_stairs]
 option = "Climb-up"
 tile = { x = 2569, y = 9522 }
 delta = { y = -6404 }
 
-[1728]
+[yanillestairsdown]
 option = "Climb-down"
 tile = { x = 2620, y = 9497 }
 delta = { y = 68 }
 
-[1729]
+[yanillestairsup]
 option = "Climb-up"
 tile = { x = 2620, y = 9562 }
 delta = { y = -68 }

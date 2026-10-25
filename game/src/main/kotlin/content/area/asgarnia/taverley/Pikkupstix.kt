@@ -31,8 +31,17 @@ class Pikkupstix : Script {
         npcOperate("Enchant", "pikkupstix") {
             npc<Neutral>("Bring me a piece of headwear and I'll enchant it to hold Summoning scrolls, free of charge. Just use the helm on me.")
         }
+
         itemOnNPCOperate("*", "pikkupstix") { (_, item) ->
             enchantHeadgear(item)
+        }
+
+        objectOperate("Open", "trapdoor_wolf_whistle_closed") { (target) ->
+            set("pikkupstix_trapdoor", 2)
+        }
+
+        objectOperate("Close", "trapdoor_wolf_whistle_opened") { (target) ->
+            clear("pikkupstix_trapdoor")
         }
     }
 

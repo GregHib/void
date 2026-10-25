@@ -952,3 +952,7 @@ examine = "Broken parts of an old temple."
 [varrock_target]
 id = 829
 examine = "For private use only!"
+
+[fence_varrock_lumbermill]
+id = 31149
+examine = "A damaged wooden fence" # Source: https://classic.runescape.wiki/w/Low_Fence_%28Lumber_Mill%29

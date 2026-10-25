@@ -1,0 +1,35 @@
+[sawmill_prices]
+row_id = "item"
+cost = "int"
+
+[.logs]
+cost = 100
+
+[.oak_logs]
+cost = 250
+
+[.teak_logs]
+cost = 500
+
+[.mahogany_logs]
+cost = 1500
+
+[planks]
+log = "item"
+plank = "item"
+
+[.wood]
+log = "logs"
+plank = "plank"
+
+[.oak]
+log = "oak_logs"
+plank = "oak_plank"
+
+[.teak]
+log = "teak_logs"
+plank = "teak_plank"
+
+[.mahogany]
+log = "mahogany_logs"
+plank = "mahogany_plank"

@@ -169,7 +169,7 @@ sealed class Condition(val priority: Int) {
                     min = 1
                 }
                 val ids = toIds(id)
-                items.add(BotItem(ids, min, max))
+                items.add(BotItem(ids, min, max, usable = map["usable"] as? Boolean ?: false, equippable = map["equippable"] as? Boolean ?: false))
             }
             return items
         }
@@ -194,6 +194,8 @@ sealed class Condition(val priority: Int) {
                         ids = toIds(id),
                         min = min,
                         max = max,
+                        usable = value["usable"] as? Boolean ?: false,
+                        equippable = value["equippable"] as? Boolean ?: false,
                     )
                 }
             }

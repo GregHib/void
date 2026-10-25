@@ -2,9 +2,11 @@ package content.skill.magic.book.modern
 
 import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.take.ItemTake
+import content.entity.proj.ShootProjectile
 import content.entity.proj.shoot
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -21,6 +23,8 @@ import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.queue.queue
 
 class TelekineticGrab : Script {
@@ -31,7 +35,7 @@ class TelekineticGrab : Script {
             val spell = "telekinetic_grab"
             val floorItem = it.target
             face(floorItem.tile)
-            val item = Items.takeable(this, floorItem) ?: return@onFloorItemApproach
+            val item = Items.takeable(this, floorItem, telegrab = true) ?: return@onFloorItemApproach
             if (hasClock("action_delay")) {
                 return@onFloorItemApproach
             }
@@ -52,17 +56,20 @@ class TelekineticGrab : Script {
             sound("tele_grab_cast")
             exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
 
-            val clientTicks = shoot("tele_grab_travel", floorItem.tile)
+            val height = if (Collisions.check(floorItem.tile, BLOCKED)) 384 else 0
+            val clientTicks = shoot("tele_grab_travel", floorItem.tile, endHeight = height / ShootProjectile.HEIGHT_UNIT)
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
-            areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks)
+            areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks, height = height)
 
-            delay(3)
-            queue("tele_grab", 3) {
+            // Take the item as the projectile lands; client ticks are 20ms, game ticks 600ms
+            val ticks = (clientTicks + 15) / 30
+            start("action_delay", ticks)
+            queue("tele_grab", ticks) {
                 if (tile.level != floorItem.tile.level) {
                     message("Your telegrab fizzles as you move too far away.")
                     return@queue
                 }
-                if (!ItemTake.take(this, floorItem)) {
+                if (!ItemTake.take(this, floorItem, telegrab = true)) {
                     return@queue
                 }
                 start("action_delay", 3)
@@ -81,5 +88,9 @@ class TelekineticGrab : Script {
                 true
             }
         }
+    }
+
+    companion object {
+        private const val BLOCKED = CollisionFlag.WALL_NORTH or CollisionFlag.WALL_EAST or CollisionFlag.WALL_SOUTH or CollisionFlag.WALL_WEST
     }
 }

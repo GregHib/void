@@ -4,7 +4,7 @@ option = "Climb-up"
 tile = { x = 3005, y = 10363 }
 delta = { y = -6400 }
 
-[9472]
+[fai_trapdoor]
 option = "Climb-down"
 tile = { x = 3008, y = 3150 }
 delta = { y = 6400 }
