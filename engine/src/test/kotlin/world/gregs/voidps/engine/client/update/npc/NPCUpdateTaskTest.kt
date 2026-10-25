@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
-import world.gregs.voidps.network.login.protocol.visual.encode.npc.TransformEncoder
 import world.gregs.voidps.network.login.protocol.visual.update.Animation
 import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Tile
@@ -314,59 +313,5 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @AfterEach
     fun teardown() {
         unmockkObject(NPCs)
-    }
-
-    @Test
-    fun `Entering view uses the personal form without changing the shared npc`() {
-        val view = Viewport()
-        val npc: NPC = mockk(relaxed = true)
-        val visuals = NPCVisuals()
-        every { npc.visuals } returns visuals
-        every { npc.index } returns 1
-        every { npc.tile } returns value(Tile(5, 3))
-        every { npc.def.id } returns 3290
-        every { player.tile } returns value(Tile(0, 0))
-        val map = CharacterIndexMap(4)
-        map.add(player.tile.regionLevel.id, 1)
-        every { NPCs.regionMap } returns map
-        every { NPCs.indexed(1) } returns npc
-        view.npcForm(npc, 287)
-        val sync: Writer = mockk(relaxed = true)
-        val updates: Writer = mockk(relaxed = true)
-        NPCUpdateTask(arrayOf(TransformEncoder())).processAdditions(player, view, sync, updates, view.npcs)
-        verify(exactly = 1) { sync.writeBits(14, 287) }
-        Assertions.assertTrue(view.npcFormChanges.isEmpty())
-        Assertions.assertEquals(-1, visuals.transform.id)
-    }
-
-    @Test
-    fun `Personal forms update one viewer and restore the original without mutating shared visuals`() {
-        val view = Viewport()
-        val npc: NPC = mockk(relaxed = true)
-        val visuals = NPCVisuals()
-        every { npc.visuals } returns visuals
-        every { npc.tile } returns value(Tile(5, 5))
-        every { npc.transformDef.id } returns 3290
-        every { player.tile } returns value(Tile(5, 4))
-        every { NPCs.indexed(1) } returns npc
-        view.npcs.add(1)
-        view.npcForm(npc, 287)
-        val sync: Writer = mockk(relaxed = true)
-        val updates: Writer = mockk(relaxed = true)
-        val task = NPCUpdateTask(arrayOf(TransformEncoder()))
-        task.processLocals(player, view, sync, updates, view.npcs)
-        verify { updates.writeShortAdd(287) }
-        Assertions.assertEquals(-1, visuals.transform.id)
-        Assertions.assertTrue(view.npcFormChanges.isEmpty())
-        clearMocks(updates)
-        val other = Viewport()
-        other.npcs.add(1)
-        task.processLocals(player, other, sync, updates, other.npcs)
-        verify(exactly = 0) { updates.writeShortAdd(any()) }
-        view.npcForm(npc, null)
-        task.processLocals(player, view, sync, updates, view.npcs)
-        verify { updates.writeShortAdd(3290) }
-        Assertions.assertTrue(view.npcForms.isEmpty())
-        Assertions.assertEquals(-1, visuals.transform.id)
     }
 }

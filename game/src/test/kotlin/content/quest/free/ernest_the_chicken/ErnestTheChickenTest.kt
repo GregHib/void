@@ -4,6 +4,7 @@ import WorldTest
 import content.entity.effect.stunned
 import content.quest.quest
 import content.quest.questStage
+import dialogueContinue
 import dialogueOption
 import itemOnItem
 import itemOnObject
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -77,7 +79,7 @@ class ErnestTheChickenTest : WorldTest() {
         assertEquals("parts", p.quest(ERNEST))
         for ((i, part) in parts.withIndex()) assertEquals(if (mask and (1 shl i) != 0) 1 else 0, p.inventory.count(part))
         assertEquals(0, p["quest_points", 0])
-        assertNull(p.get<kotlinx.coroutines.Job>("ernest_restore_job"))
+        assertFalse(p["ernest_parts_returned", false])
     }
 
     @Test
@@ -221,7 +223,7 @@ class ErnestTheChickenTest : WorldTest() {
         p.inventory.add("logs", 25)
         p.talk("professor_oddenstein")
         assertEquals("completed", p.quest(ERNEST))
-        assertEquals(3, p.questStage(ERNEST))
+        assertEquals(4, p.questStage(ERNEST))
         assertEquals(4, p["quest_points", 0])
         assertEquals(3000, p.inventory.count("coins"))
         assertEquals(10, p.inventory.count("egg_noted"))
@@ -418,7 +420,32 @@ class ErnestTheChickenTest : WorldTest() {
     }
 
     @Test
-    fun `Restoration uses one existing chicken and only transforms it for the quest player`() {
+    fun `Cache NPC forms use quest varp 32 to show the chicken then Ernest and hide both on completion`() {
+        val p = createPlayer(Tile(3110, 3366, 2))
+        val other = createPlayer(Tile(3109, 3366, 2))
+        val chicken = NPCs.find(p.tile.regionLevel, "chicken_draynor")
+        val ernest = NPCs.find(p.tile.regionLevel, "ernest")
+        assertEquals(32, NPCDefinitions.get("ernest").varp)
+        assertEquals(32, NPCDefinitions.get("chicken_draynor").varp)
+        for (stage in listOf("unstarted", "started", "parts")) {
+            p[ERNEST] = stage
+            assertEquals(288, chicken.def(p).id)
+            assertEquals(-1, ernest.def(p).id)
+        }
+        p[ERNEST] = "restored"
+        assertEquals(3, p.questStage(ERNEST))
+        assertEquals(-1, chicken.def(p).id)
+        assertEquals(287, ernest.def(p).id)
+        assertEquals(288, chicken.def(other).id)
+        assertEquals(-1, ernest.def(other).id)
+        p[ERNEST] = "completed"
+        assertEquals(4, p.questStage(ERNEST))
+        assertEquals(-1, chicken.def(p).id)
+        assertEquals(-1, ernest.def(p).id)
+    }
+
+    @Test
+    fun `Restoration uses the cache NPC pair and only changes the quest player's forms`() {
         val p = createPlayer(Tile(3110, 3366, 2))
         val other = createPlayer(Tile(3109, 3366, 2))
         p[ERNEST] = "parts"
@@ -427,14 +454,15 @@ class ErnestTheChickenTest : WorldTest() {
         val professor = NPCs.find(p.tile.regionLevel, "professor_oddenstein")
         professor.tele(3110, 3367, 2)
         val chicken = NPCs.find(p.tile.regionLevel, "chicken_draynor")
+        val ernest = NPCs.find(p.tile.regionLevel, "ernest")
         val count = NPCs.count()
         p.npcOption(professor, "Talk-to")
         tickIf(30) { p.dialogue == null }
         p.skipDialogues()
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertFalse(p.inventory.contains(part))
+        assertTrue(p["ernest_parts_returned", false])
         val graphics = mutableListOf<Int>()
         var placed = false
-        var sawHuman = false
         var ticks = 0
         while (p.dialogue == null && ticks++ < 40) {
             for (graphic in listOf(chicken.visuals.secondaryGraphic.id, chicken.visuals.primaryGraphic.id)) {
@@ -444,68 +472,81 @@ class ErnestTheChickenTest : WorldTest() {
                 placed = true
                 assertEquals(Tile(3111, 3367, 2), professor.tile)
             }
-            if (chicken.def(p).stringId == "ernest_human") sawHuman = true
-            assertNotEquals("ernest_human", chicken.def(other).stringId)
+            assertEquals(288, chicken.def(other).id)
+            assertEquals(-1, ernest.def(other).id)
             assertFalse(chicken.stunned)
             assertEquals(count, NPCs.count())
-            assertEquals("parts", p.quest(ERNEST))
             tick()
         }
         assertTrue(placed)
-        assertTrue(sawHuman || chicken.def(p).stringId == "ernest_human")
+        assertEquals("restored", p.quest(ERNEST))
+        assertEquals(-1, chicken.def(p).id)
+        assertEquals(287, ernest.def(p).id)
         val impact = graphics.indexOf(GraphicDefinitions.get("weaken_impact").id)
         val birds = graphics.indexOf(GraphicDefinitions.get("stun_long").id)
         assertTrue(impact >= 0 && birds > impact, graphics.toString())
-        assertTrue(chicken.tile.distanceTo(p.tile) <= 1, "Ernest should approach the player")
+        assertTrue(ernest.tile.distanceTo(p.tile) <= 1, "Ernest should approach the player")
         assertNotNull(p.dialogue)
         p.skipDialogues()
         assertEquals("completed", p.quest(ERNEST))
         assertEquals(4, p["quest_points", 0])
-        assertTrue(p.viewport!!.npcForms.isEmpty())
+        assertEquals(-1, ernest.def(p).id)
         assertEquals(count, NPCs.count())
     }
 
     @Test
-    fun `Walking away during hand-in refunds the parts without spawning actors`() {
+    fun `Dismissing the professor after hand-in preserves the returned parts and resumes the repair`() {
         val p = createPlayer(Tile(3110, 3366, 2))
         p[ERNEST] = "parts"
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
         val count = NPCs.count()
         p.npcOption(NPCs.find(p.tile.regionLevel, "professor_oddenstein"), "Talk-to")
         tickIf(30) { p.dialogue == null }
-        p.skipDialogues()
+        p.dialogueContinue(3)
+        assertTrue(p["ernest_parts_returned", false])
         p.walk(p.tile.addX(-1))
         tick(3)
         assertEquals(count, NPCs.count())
-        assertTrue(p.viewport!!.npcForms.isEmpty())
         assertEquals("parts", p.quest(ERNEST))
-        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertTrue(p.inventory.contains(part))
+        for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertEquals(0, p.inventory.count(part))
         assertEquals(0, p["quest_points", 0])
+        p.talk("professor_oddenstein")
+        assertEquals("completed", p.quest(ERNEST))
+        assertEquals(3000, p.inventory.count("coins"))
+        assertEquals(count, NPCs.count())
     }
 
     @Test
-    fun `Repeatedly dismissing human Ernest restores the chicken and never duplicates rewards or NPCs`() {
+    fun `Repeatedly dismissing human Ernest preserves restoration without duplicating NPCs or rewards`() {
         val p = createPlayer(Tile(3110, 3366, 2))
         p[ERNEST] = "parts"
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
         val professor = NPCs.find(p.tile.regionLevel, "professor_oddenstein")
         val chicken = NPCs.find(p.tile.regionLevel, "chicken_draynor")
+        val ernest = NPCs.find(p.tile.regionLevel, "ernest")
         val count = NPCs.count()
         repeat(3) {
             p.npcOption(professor, "Talk-to")
             tickIf(30) { p.dialogue == null }
-            p.skipDialogues()
-            tickIf(40) { p.dialogue == null }
-            assertEquals("ernest_human", chicken.def(p).stringId)
+            if (p.quest(ERNEST) == "parts") {
+                p.skipDialogues()
+                tickIf(40) { p.dialogue == null }
+            }
+            assertEquals(287, ernest.def(p).id)
             p.closeInterfaces()
             tick(3)
-            assertTrue(p.viewport!!.npcForms.isEmpty())
-            assertNotEquals("ernest_human", chicken.def(p).stringId)
+            assertEquals(-1, chicken.def(p).id)
+            assertEquals(287, ernest.def(p).id)
             assertEquals(count, NPCs.count())
-            assertEquals("parts", p.quest(ERNEST))
-            for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertEquals(1, p.inventory.count(part))
+            assertEquals("restored", p.quest(ERNEST))
+            for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertEquals(0, p.inventory.count(part))
             assertEquals(0, p["quest_points", 0])
         }
+        p.talk("professor_oddenstein")
+        assertEquals("completed", p.quest(ERNEST))
+        assertEquals(4, p["quest_points", 0])
+        assertEquals(3000, p.inventory.count("coins"))
+        assertEquals(-1, ernest.def(p).id)
     }
 
     private fun Player.talk(id: String) {

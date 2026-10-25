@@ -3,7 +3,7 @@ id = 32
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1, parts = 2, completed = 3 }
+values = { unstarted = 0, started = 1, parts = 2, restored = 3, completed = 4 }
 
 [ernest_levers]
 id = 33

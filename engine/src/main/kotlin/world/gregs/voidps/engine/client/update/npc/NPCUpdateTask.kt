@@ -57,8 +57,7 @@ class NPCUpdateTask(
             npc = NPCs.indexed(index)
 
             // Movement must always be sent but visuals are dropped once the update block is full
-            val personalChange = npc != null && viewport.npcFormChanges.contains(npc)
-            val flag = if (npc == null || updates.position() >= MAX_UPDATE_SIZE) 0 else npc.visuals.flag or if (personalChange) TRANSFORM_MASK else 0
+            val flag = if (npc == null || updates.position() >= MAX_UPDATE_SIZE) 0 else npc.visuals.flag
             val change = localChange(client, viewport, npc, flag)
             sync.writeBits(1, change != LocalChange.None)
             if (change == LocalChange.None) {
@@ -72,9 +71,7 @@ class NPCUpdateTask(
             }
 
             encodeMovement(change, sync, npc, flag)
-            val form = viewport.npcForms[npc] ?: if (personalChange) npc.transformDef.id else null
-            encodeVisuals(updates, flag, npc.visuals, client.index, form)
-            if (flag and TRANSFORM_MASK != 0) viewport.npcFormChanges.remove(npc)
+            encodeVisuals(updates, flag, npc.visuals, client.index)
         }
     }
 
@@ -142,9 +139,8 @@ class NPCUpdateTask(
                 val bitsToWrite = (roundedSector - 4) and 0x7
                 sync.writeBits(3, bitsToWrite)
                 sync.writeBits(1, flag != 0)
-                sync.writeBits(14, viewport.npcForms[npc] ?: npc.def.id)
-                encodeVisuals(updates, flag, visuals, client.index, viewport.npcForms[npc])
-                viewport.npcFormChanges.remove(npc)
+                sync.writeBits(14, npc.def.id)
+                encodeVisuals(updates, flag, visuals, client.index)
             }
         }
         sync.writeBits(15, -1)
@@ -163,7 +159,7 @@ class NPCUpdateTask(
         return set.size < LOCAL_NPC_CAP && !set.contains(index) && npc.tile.within(client.tile, viewport.radius)
     }
 
-    private fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, index: Int, personalForm: Int? = null) {
+    private fun encodeVisuals(updates: Writer, flag: Int, visuals: NPCVisuals, index: Int) {
         if (flag == 0) {
             return
         }
@@ -172,13 +168,7 @@ class NPCUpdateTask(
             if (flag and encoder.mask == 0) {
                 continue
             }
-            if (encoder.mask == TRANSFORM_MASK && personalForm != null) {
-                val personal = NPCVisuals()
-                personal.transform.id = personalForm
-                encoder.encode(updates, personal, index)
-            } else {
-                encoder.encode(updates, visuals, index)
-            }
+            encoder.encode(updates, visuals, index)
         }
     }
 

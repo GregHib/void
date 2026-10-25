@@ -9,23 +9,19 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import content.entity.proj.shoot
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.questJournal
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.job
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.jingle
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.Face
-import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
+import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -44,19 +40,6 @@ private val PARTS = listOf("pressure_gauge", "rubber_tube", "oil_can")
 
 class ErnestTheChicken : Script {
     init {
-        timerStart("ernest_restore_watchdog") { 1 }
-        timerTick("ernest_restore_watchdog") {
-            val job: Job? = get("ernest_restore_job")
-            if (job == null || !job.isActive) {
-                -1
-            } else {
-                // Normal movement/dialogue dismissal can discard a suspension without cancelling it.
-                if (suspension == null && dialogue == null) job.cancel()
-                1
-            }
-        }
-        playerDespawn { get<Job>("ernest_restore_job")?.cancel() }
-
         npcOperate("Talk-to", "veronica") {
             when (quest(ERNEST)) {
                 "unstarted" -> {
@@ -164,7 +147,14 @@ class ErnestTheChicken : Script {
         questJournalOpen(ERNEST) {
             val lines = when (quest(ERNEST)) {
                 "completed" -> listOf("<str>I found the missing machine parts and helped restore Ernest.", "", "<red>QUEST COMPLETE!")
+                "restored" -> listOf("<navy>Ernest is human again. I should speak to Professor", "<navy>Oddenstein to finish helping him.")
                 "parts" -> buildList {
+                    if (get("ernest_parts_returned", false)) {
+                        add("<str>I found the three missing machine parts.")
+                        add("<navy>I returned them to Professor Oddenstein.")
+                        add("<navy>I should speak to him to finish repairing the machine.")
+                        return@buildList
+                    }
                     add("<navy>Professor Oddenstein turned Ernest into a chicken.")
                     add("<navy>I must find three parts to repair his machine:")
                     for (part in PARTS) add("${if (ownsErnestPart(part)) "<str>" else "<maroon>"}${part.replace('_', ' ')}")
@@ -213,7 +203,6 @@ private fun Player.ownsErnestPart(id: String) = inventory.contains(id) || bank.c
 
 /** Return false to retain the professor's ordinary and post-quest dialogue. */
 suspend fun Player.oddensteinErnest(professor: NPC): Boolean {
-    get<Job>("ernest_restore_job")?.cancel()
     when (quest(ERNEST)) {
         "started" -> {
             npc<Neutral>("Be careful in here, there's lots of dangerous equipment.")
@@ -247,6 +236,10 @@ suspend fun Player.oddensteinErnest(professor: NPC): Boolean {
             return true
         }
         "parts" -> return restoreErnest(professor)
+        "restored" -> {
+            finishErnest()
+            return true
+        }
         else -> return false
     }
 }
@@ -292,105 +285,89 @@ private suspend fun Player.reportErnestParts(missing: List<String>) {
     }
 }
 
-/** The shared quest chicken keeps its identity; only this player's model is overridden. */
+/** Cache varp 32 selects the chicken at 0-2, human Ernest at 3, and neither at 4. */
 private suspend fun Player.restoreErnest(professor: NPC): Boolean {
-    val busy: Job? = professor.get("ernest_restore_job")
-    if (busy?.isActive == true) {
+    if (professor.hasClock("ernest_machine")) {
         message("The professor is busy with the machine. Please wait a moment.")
         return true
     }
-    npc<Neutral>("Have you found anything yet?")
-    val missing = PARTS.filterNot { inventory.contains(it) }
-    if (missing.isNotEmpty()) {
-        reportErnestParts(missing)
-        return true
-    }
-    player<Neutral>("I have everything!")
-    npc<Neutral>("Give 'em here then.")
-    val chicken = NPCs.findOrNull(professor.tile.regionLevel, "chicken_draynor") ?: run {
-        message("Ernest isn't nearby. Please try again in a moment.")
-        return true
-    }
-    val active: Job? = professor.get("ernest_restore_job")
-    if (active?.isActive == true) {
-        message("The professor is busy with the machine. Please wait a moment.")
-        return true
-    }
-    val job = currentCoroutineContext().job
-    val oldProfessorMode = professor.mode
-    val oldProfessorDelay = professor.delay
-    val oldChickenMode = chicken.mode
-    var heldParts = false
-    set("ernest_restore_job", job)
-    professor["ernest_restore_job"] = job
-    softTimers.start("ernest_restore_watchdog")
-    try {
+    if (!get("ernest_parts_returned", false)) {
+        npc<Neutral>("Have you found anything yet?")
+        val missing = PARTS.filterNot { inventory.contains(it) }
+        if (missing.isNotEmpty()) {
+            reportErnestParts(missing)
+            return true
+        }
+        player<Neutral>("I have everything!")
+        npc<Neutral>("Give 'em here then.")
         if (!inventory.transaction { for (part in PARTS) remove(part) }) return true
-        heldParts = true
+        // Remember the hand-in before any further dialogue can be dismissed or the player logs out.
+        set("ernest_parts_returned", true)
         message("You give the rubber tube, a pressure gauge, and a can of oil to the professor.")
-        npc<Neutral>("Let's get this fixed then.")
-        val machine = Tile(3112, 3367, 2)
-        val machineSide = Tile(3111, 3367, 2)
-        professor.walkTo(machineSide, forceWalk = true)
-        var attempts = 0
-        while (professor.tile != machineSide && attempts++ < 12) delay(1, cancellable = true)
-        if (professor.tile != machineSide) {
-            message("The professor can't reach the machine. Please try again.")
-            return true
-        }
-        professor.mode = EmptyMode
-        professor.face(machine)
-        professor.anim("take")
-        professor.delay = 12
-        delay(2, cancellable = true)
-        message("Oddenstein starts up the machine.")
-        message("The machine hums and shakes.")
-        areaGfx("weaken_cast", machine, height = 80)
-        val flight = machine.shoot("weaken", chicken, delay = 0, height = 40)
-        delay(((flight + 29) / 30).coerceAtLeast(1), cancellable = true)
-        chicken.gfx("weaken_impact")
-        chicken.sound("weaken_impact")
-        delay(1, cancellable = true)
-        chicken.gfx("stun_long")
-        delay(3, cancellable = true)
-        chicken.clearGfx()
-        viewport?.npcForm(chicken, NPCDefinitions.get("ernest_human").id)
-        chicken.mode = Follow(chicken, this)
-        attempts = 0
-        while (chicken.tile.distanceTo(tile) > 1 && attempts++ < 12) delay(1, cancellable = true)
-        chicken.mode = Face(chicken, this)
-        chicken.face(this)
-        npc<Happy>("ernest_human", "Thank you, ${if (male) "sir" else "m'lady"}. It was dreadfully irritating being a chicken. How can *cluck* I ever thank you?")
-        player<Neutral>("Well a cash reward is always nice...")
-        npc<Happy>("ernest_human", "Of course, of course.")
-        if (quest(ERNEST) != "parts") return true
-        if (!inventory.transaction {
-                add("coins", 3000)
-                add("egg_noted", 10)
-                add("feather", 300)
-            }
-        ) {
-            message("Make room for your reward, then talk to the professor again.")
-            return true
-        }
-        heldParts = false
-        set(ERNEST, "completed")
-        inc("quest_points", 4)
-        jingle("quest_complete_1")
-        questComplete("Ernest the Chicken", "4 Quest Points", "3,000 coins", "10 noted eggs", "300 feathers", item = "feather")
-    } catch (_: CancellationException) {
-        // Routine dismissal/movement ends this quest interaction; never continue into other dialogue.
-        return true
-    } finally {
-        if (heldParts) for (part in PARTS) addOrDrop(part)
-        viewport?.npcForm(chicken, null)
-        chicken.clearGfx()
-        chicken.clearWatch()
-        chicken.mode = oldChickenMode
-        professor.mode = oldProfessorMode
-        professor.delay = oldProfessorDelay
-        if (get<Job>("ernest_restore_job") === job) clear("ernest_restore_job")
-        if (professor.get<Job>("ernest_restore_job") === job) professor.clear("ernest_restore_job")
     }
+    npc<Neutral>("Let's get this fixed then.")
+    if (professor.hasClock("ernest_machine")) {
+        message("The professor is busy with the machine. Please wait a moment.")
+        return true
+    }
+    val chicken = NPCs.findOrNull(professor.tile.regionLevel, "chicken_draynor") ?: return true
+    val ernest = NPCs.findOrNull(professor.tile.regionLevel, "ernest") ?: return true
+    // A standard expiring clock also releases the machine if the player logs out mid-sequence.
+    professor.start("ernest_machine", 40)
+    val machine = Tile(3112, 3367, 2)
+    val machineSide = Tile(3111, 3367, 2)
+    professor.walkTo(machineSide, forceWalk = true)
+    var attempts = 0
+    while (professor.tile != machineSide && attempts++ < 12) delay()
+    if (professor.tile != machineSide) {
+        professor.stop("ernest_machine")
+        message("The professor can't reach the machine. Please try again.")
+        return true
+    }
+    professor.face(machine)
+    professor.anim("take")
+    professor.delay = 8
+    delay(2)
+    message("Oddenstein starts up the machine.")
+    message("The machine hums and shakes.")
+    areaGfx("weaken_cast", machine, height = 80)
+    val flight = machine.shoot("weaken", chicken, delay = 0, height = 40)
+    delay(((flight + 29) / 30).coerceAtLeast(1))
+    chicken.gfx("weaken_impact")
+    chicken.sound("weaken_impact")
+    delay()
+    chicken.gfx("stun_long")
+    delay(3)
+    chicken.clearGfx()
+    ernest.tele(chicken.tile)
+    set(ERNEST, "restored")
+    // Ordinary NPC movement stops on arrival; no follower or temporary actor needs cleanup.
+    ernest.mode = Movement(ernest, CharacterTargetStrategy(this))
+    attempts = 0
+    while (ernest.tile.distanceTo(tile) > 1 && attempts++ < 12) delay()
+    ernest.face(this)
+    professor.stop("ernest_machine")
+    finishErnest()
     return true
+}
+
+private suspend fun Player.finishErnest() {
+    npc<Happy>("ernest_human", "Thank you, ${if (male) "sir" else "m'lady"}. It was dreadfully irritating being a chicken. How can *cluck* I ever thank you?")
+    player<Neutral>("Well a cash reward is always nice...")
+    npc<Happy>("ernest_human", "Of course, of course.")
+    if (quest(ERNEST) != "restored") return
+    if (!inventory.transaction {
+            add("coins", 3000)
+            add("egg_noted", 10)
+            add("feather", 300)
+        }
+    ) {
+        message("Make room for your reward, then talk to the professor again.")
+        return
+    }
+    set(ERNEST, "completed")
+    clear("ernest_parts_returned")
+    inc("quest_points", 4)
+    jingle("quest_complete_1")
+    questComplete("Ernest the Chicken", "4 Quest Points", "3,000 coins", "10 noted eggs", "300 feathers", item = "feather")
 }

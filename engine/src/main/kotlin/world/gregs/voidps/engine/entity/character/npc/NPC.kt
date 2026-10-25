@@ -106,7 +106,6 @@ data class NPC(
     var huntCounter = 0
 
     fun def(player: Player): NPCDefinition {
-        player.viewport?.npcForms?.get(this)?.let { return NPCDefinitions.get(it) }
         if (transformed) {
             return transformDef
         }

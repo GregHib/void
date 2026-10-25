@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.update.view
 import it.unimi.dsi.fastutil.ints.IntLinkedOpenHashSet
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -12,16 +11,6 @@ class Viewport {
 
     val players: PlayerTrackingSet = PlayerTrackingSet()
     val npcs = IntLinkedOpenHashSet(LOCAL_NPC_CAP)
-
-    // Temporary, viewer-specific forms; keyed by entity identity so reused indices cannot inherit them.
-    val npcForms = mutableMapOf<NPC, Int>()
-    val npcFormChanges = mutableSetOf<NPC>()
-
-    fun npcForm(npc: NPC, definition: Int?) {
-        if (definition == null) npcForms.remove(npc) else npcForms[npc] = definition
-        npcFormChanges.add(npc)
-    }
-
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
     private val lastSeen = IntArray(MAX_PLAYERS)
     val hints = IntArray(8)
