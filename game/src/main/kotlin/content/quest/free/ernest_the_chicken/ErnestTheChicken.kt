@@ -92,16 +92,6 @@ class ErnestTheChicken : Script {
                 }
             }
         }
-        itemOnItem("poison", "fish_food") { _, _ ->
-            if (inventory.transaction {
-                    remove("poison")
-                    remove("fish_food")
-                    add("poisoned_fish_food")
-                }
-            ) {
-                message("You poison the fish food.")
-            }
-        }
         objectOperate("Search", "fountain") { (target) ->
             if (target.tile != Tile(3087, 3334)) return@objectOperate
             if (!get("ernest_fountain_poisoned", false)) {

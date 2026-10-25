@@ -1,10 +1,8 @@
 package content.quest.free.ernest_the_chicken
 
-import content.entity.obj.ObjectTeleports
 import content.entity.obj.Replace
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -12,31 +10,28 @@ import world.gregs.voidps.type.Tile
 
 /** Six personal switches and nine doors reproducing the historical quest puzzle.
  * IDs and variables come from the revision-634 cache. */
-class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
+class ErnestLeverPuzzle : Script {
     private var passageBusy = false
 
     init {
         playerSpawn { setErnestPuzzle(get("ernest_levers", 0)) }
-        for (index in 0..5) {
-            objectOperate("Pull", "ernest_lever_${'a' + index}*") {
-                val mask = get("ernest_levers", 0) xor (1 shl (index + 1))
-                val raised = mask and (1 shl (index + 1)) != 0
-                anim(if (raised) "ernest_lever_up" else "ernest_lever_down")
-                delay()
-                setErnestPuzzle(mask)
-                message("You pull lever ${'A' + index} ${if (raised) "up" else "down"}.")
-                message("You hear a clunk.")
-            }
-            objectOperate("Inspect", "ernest_lever_${'a' + index}*") {
-                message("The lever is ${if (get("ernest_levers", 0) and (1 shl (index + 1)) != 0) "up" else "down"}.")
-            }
+        objectOperate("Pull", "ernest_lever_*") { (target) ->
+            val index = target.id.removePrefix("ernest_lever_").first() - 'a'
+            val mask = get("ernest_levers", 0) xor (1 shl (index + 1))
+            val raised = mask and (1 shl (index + 1)) != 0
+            anim(if (raised) "ernest_lever_up" else "ernest_lever_down")
+            delay()
+            setErnestPuzzle(mask)
+            message("You pull lever ${'A' + index} ${if (raised) "up" else "down"}.")
+            message("You hear a clunk.")
         }
-        for (index in 0..8) {
-            val id = "ernest_puzzle_door_${index + 1}*"
-            objectOperate("Open", id) { (target) -> passErnestDoor(index, target) }
-            // These are solid area-object gates; their own collision can prevent melee reach.
-            objectApproach("Open", id) { (target) -> passErnestDoor(index, target) }
+        objectOperate("Inspect", "ernest_lever_*") { (target) ->
+            val index = target.id.removePrefix("ernest_lever_").first() - 'a'
+            message("The lever is ${if (get("ernest_levers", 0) and (1 shl (index + 1)) != 0) "up" else "down"}.")
         }
+        objectOperate("Open", "ernest_puzzle_door_*") { (target) -> passErnestDoor(target) }
+        // These are solid area-object gates; their own collision can prevent melee reach.
+        objectApproach("Open", "ernest_puzzle_door_*") { (target) -> passErnestDoor(target) }
         objectOperate("Search", "ernest_candle_sconce") { (target) ->
             if (target.tile != Tile(3097, 3360)) return@objectOperate
             passSecretWall(entering = true)
@@ -45,23 +40,9 @@ class ErnestLeverPuzzle(val teleports: ObjectTeleports) : Script {
             if (target.tile != Tile(3096, 3357)) return@objectOperate
             passSecretWall(entering = false)
         }
-        objectOperate("Climb-down", "ernest_cellar_ladder_down") { (target) ->
-            if (target.tile != Tile(3092, 3362)) return@objectOperate
-            setErnestPuzzle(0)
-            tele(3117, 9753)
-        }
-        objectOperate("Climb-up", "basic_ladder_up") { (target, option) ->
-            if (target.tile != Tile(3117, 9754)) {
-                val def = target.def(this)
-                val id = def.stringId.ifEmpty { def.id.toString() }
-                if (teleports.contains(id, target.tile, option)) {
-                    delay()
-                    teleports.teleport(this, target, option, def)
-                }
-                return@objectOperate
-            }
-            setErnestPuzzle(0)
-            tele(3092, 3361)
+        objTeleportLand("Climb-down", "ernest_cellar_ladder_down") { _, _ -> setErnestPuzzle(0) }
+        objTeleportLand("Climb-up", "basic_ladder_up") { target, _ ->
+            if (target.tile == Tile(3117, 9754)) setErnestPuzzle(0)
         }
         takeable("oil_can") { item, telegrab ->
             if (item.tile != Tile(3092, 9755)) {
@@ -149,7 +130,8 @@ private fun Player.setErnestPuzzle(mask: Int) {
     for (index in 0..8) set("ernest_door_${index + 1}_unlocked", (doors shr index) and 1)
 }
 
-private suspend fun Player.passErnestDoor(index: Int, target: GameObject) {
+private suspend fun Player.passErnestDoor(target: GameObject) {
+    val index = target.id.removePrefix("ernest_puzzle_door_").substringBefore('_').toInt() - 1
     if (tile.distanceTo(target.tile) > 1) {
         approachRange(1)
         if (tile.distanceTo(target.tile) > 1) return

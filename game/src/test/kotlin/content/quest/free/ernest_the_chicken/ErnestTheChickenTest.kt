@@ -110,6 +110,23 @@ class ErnestTheChickenTest : WorldTest() {
         assertEquals("unstarted", p.quest(ERNEST))
     }
 
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `Poisoned fish food recipe handles both item orders and makes one portion without a menu`(reverse: Boolean) {
+        val p = createPlayer()
+        p.inventory.add("fish_food", 2)
+        p.inventory.add("poison", 2)
+        p.inventory.add("logs", 24)
+        p.itemOnItem(if (reverse) "fish_food" else "poison", if (reverse) "poison" else "fish_food")
+        tick(3)
+        assertEquals(1, p.inventory.count("poisoned_fish_food"))
+        assertEquals(1, p.inventory.count("fish_food"))
+        assertEquals(1, p.inventory.count("poison"))
+        assertEquals(24, p.inventory.count("logs"))
+        assertEquals(1, p.inventory.spaces)
+        assertNull(p.dialogue)
+    }
+
     @Test
     fun `Poisoned fountain is personal and replaces lost gauges without duplicates`() {
         val p = createPlayer(Tile(3086, 3335))
@@ -121,6 +138,8 @@ class ErnestTheChickenTest : WorldTest() {
         assertFalse(p.inventory.contains("pressure_gauge"))
         p.inventory.add("fish_food")
         p.inventory.add("poison")
+        // Let the pending area-achievement action finish before the weak queued recipe starts.
+        tick()
         p.itemOnItem("fish_food", "poison")
         tick(3)
         assertTrue(p.inventory.contains("poisoned_fish_food"))
