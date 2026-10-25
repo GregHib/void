@@ -9,3 +9,11 @@ range = 1
 anim = "thug_attack"
 target_sound = "thug_attack"
 target_hit = { offense = "stab", max = 20 }
+
+[menaphite_thug]
+clone = "thug"
+
+[menaphite_thug.melee]
+clone = "thug.melee"
+anim = "axe_hack"
+target_hit = { offense = "crush", max = 70 }

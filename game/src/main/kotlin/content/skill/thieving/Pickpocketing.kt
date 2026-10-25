@@ -108,7 +108,9 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
         } else {
             target.face(this)
             target.say("What do you think you're doing?")
-            target.anim(combatDefinitions.get(target["combat_def", target.id]).defendAnim)
+            val combat = combatDefinitions.get(target.transformDef["combat_def", target.id])
+            target.anim(combat.attacks.values.first().anim)
+            anim(combatDefinitions.get("human").defendAnim)
             message("You fail to pick the $name's pocket.", ChatType.Filter)
             val ticks = pickpocket.int("stun_ticks")
             val damage = pickpocket.intRange("damage")

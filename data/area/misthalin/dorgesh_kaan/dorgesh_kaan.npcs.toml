@@ -53,6 +53,7 @@ id = 443
 
 [cave_goblin_dorgesh_kaan]
 id = 5752
+combat_def = "cave_goblin"
 examine = "One of the many citizens of Dorgesh-Kaan."
 
 [cave_goblin_dorgesh_kaan_2]
@@ -103,8 +104,24 @@ clone = "cave_goblin_dorgesh_kaan"
 id = 5768
 clone = "cave_goblin_dorgesh_kaan"
 
+[cave_goblin_dorgesh_kaan_19]
+id = 5754
+clone = "cave_goblin_dorgesh_kaan"
+
+[cave_goblin_dorgesh_kaan_20]
+id = 5760
+clone = "cave_goblin_dorgesh_kaan"
+
 [cave_goblin_dorgesh_kaan_16]
 id = 5769
+clone = "cave_goblin_dorgesh_kaan"
+
+[cave_goblin_dorgesh_kaan_17]
+id = 5762
+clone = "cave_goblin_dorgesh_kaan"
+
+[cave_goblin_dorgesh_kaan_18]
+id = 5763
 clone = "cave_goblin_dorgesh_kaan"
 
 [ur_zek_dorgesh_kaan]
