@@ -16,6 +16,8 @@ on:
       - 'docs/**'
 env:
   CACHE_VERSION: 1.4.5
+  # Skip compiling tool modules which have no tests (tools:render & tools:avatar are still built for web:server)
+  SKIP_TOOLS: -x :tools:test -x :tools:app:test -x :tools:icon:test
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -99,11 +101,11 @@ jobs:
 
       - name: Run all tests
         if: steps.check-cache-files.outputs.cache_exists == 'true'
-        run: ./gradlew test -Pcoverage --profile
+        run: ./gradlew test -Pcoverage --profile ${{ env.SKIP_TOOLS }}
 
       - name: Run unit tests
         if: steps.check-cache-files.outputs.cache_exists != 'true'
-        run: ./gradlew test -x :game:test -Pcoverage --profile
+        run: ./gradlew test -x :game:test -Pcoverage --profile ${{ env.SKIP_TOOLS }}
 
       - name: Upload build profile
         if: ${{ !cancelled() }}
