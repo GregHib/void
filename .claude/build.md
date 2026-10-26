@@ -5,6 +5,7 @@
 ./gradlew test                 # all tests
 ./gradlew test --tests "content.skill.firemaking.FiremakingTest"
 ./gradlew :game:test           # single module
+./gradlew test -Pcoverage      # all tests with jacoco coverage reports (off by default)
 ./gradlew spotlessApply        # format (required before committing)
 ./gradlew shadowJar            # distributable JAR
 ./gradlew run                  # start server (working dir = root)

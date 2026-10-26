@@ -54,6 +54,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.13.4")
 }
 
+val coverage = providers.gradleProperty("coverage").isPresent
+
 if (name != "tools") {
     tasks.test {
         maxHeapSize = "5120m"
@@ -63,10 +65,16 @@ if (name != "tools") {
             events("passed", "skipped", "failed")
             exceptionFormat = TestExceptionFormat.FULL
         }
-        finalizedBy(tasks.jacocoTestReport)
+        extensions.configure<JacocoTaskExtension> {
+            isEnabled = coverage
+        }
+        if (coverage) {
+            finalizedBy(tasks.jacocoTestReport)
+        }
     }
 
     tasks.jacocoTestReport {
+        enabled = coverage
         dependsOn(tasks.test)
         reports {
             xml.required = true
