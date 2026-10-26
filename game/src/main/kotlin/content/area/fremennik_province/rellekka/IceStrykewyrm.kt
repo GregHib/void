@@ -6,6 +6,8 @@ import content.skill.slayer.slayerTask
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class IceStrykewyrm : Script {
     init {
@@ -31,6 +33,9 @@ class IceStrykewyrm : Script {
         canAttack("mound_ice_strykewyrm") {
             if (Settings["slayer.strykewyrmReqTask", false] && slayerTask != "ice_strykewyrm") {
                 message("You need to have strykewyrm assigned as a task in order to fight them.")
+                false
+            } else if (equipped(EquipSlot.Cape).id != "fire_cape" && !get("strike_wyrms", false)) {
+                message("The strykewyrm numbs your hands and freezes your attack.")
                 false
             } else {
                 true

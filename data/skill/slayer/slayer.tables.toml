@@ -4,6 +4,7 @@ combat_level = "int"
 skill = "pair<skill, int>"
 quest = "string"
 variable = "string"
+item = "string"
 tip = "string"
 
 [.aberrant_spectre]
@@ -181,6 +182,8 @@ skill = ["firemaking", 33]
 
 [.ice_strykewyrm]
 npc = "mound_ice_strykewyrm"
+item = "fire_cape"
+variable = "strike_wyrms"
 
 [.infernal_mage]
 npc = "infernal_mage"
