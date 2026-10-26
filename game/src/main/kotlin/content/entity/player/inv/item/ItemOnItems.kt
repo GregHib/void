@@ -87,6 +87,14 @@ class ItemOnItems(val itemOnItemDefs: ItemOnItemDefinitions) : Script {
             return
         }
 
+        if (def.variable.isNotEmpty() && player[def.variable, 0] <= 0) {
+            if (def.variableMessage.isNotEmpty()) {
+                player.message(def.variableMessage)
+            }
+            player.softTimers.stop("item_on_item")
+            return
+        }
+
         val transaction = player.inventory.transaction
         transaction.start()
         val message = transaction.removeItems(def, success = true)

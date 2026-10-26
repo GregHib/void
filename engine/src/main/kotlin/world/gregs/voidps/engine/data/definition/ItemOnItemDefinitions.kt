@@ -52,6 +52,8 @@ class ItemOnItemDefinitions {
                         var question: String? = null
                         var maximum: Int = -1
                         var members: Boolean = false
+                        var variable = ""
+                        var variableMessage = ""
 
                         while (nextPair()) {
                             val key = key()
@@ -77,6 +79,8 @@ class ItemOnItemDefinitions {
                                 "question" -> question = string()
                                 "maximum" -> maximum = int()
                                 "members" -> members = boolean()
+                                "variable" -> variable = string()
+                                "variable_message" -> variableMessage = string()
                                 else -> throw IllegalArgumentException("Unexpected item on item key: '$key' ${exception()}")
                             }
                         }
@@ -103,6 +107,8 @@ class ItemOnItemDefinitions {
                             question = question ?: "How many would you like to $type?",
                             maximum = maximum,
                             members = members,
+                            variable = variable,
+                            variableMessage = variableMessage,
                         )
                         requires.addAll(definition.one)
                         requires.addAll(definition.remove)
