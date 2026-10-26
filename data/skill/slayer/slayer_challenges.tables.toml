@@ -32,3 +32,8 @@ points = 35
 challenge = "fight_cave"
 xp = 25000
 points = 0
+
+[.turael]
+challenge = "turaels_dungeon"
+xp = 1000
+points = 0

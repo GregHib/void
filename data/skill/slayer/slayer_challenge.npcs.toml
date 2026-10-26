@@ -25,3 +25,28 @@ combat_def = "ravenous_snail"
 drop_table = "ravenous_snail"
 hunt_mode = "aggressive"
 examine = "It looks hungry!"
+
+# Turael's dungeon, identical in the cache to their Stronghold of Security counterparts
+[goblin_turaels_dungeon]
+id = 11260
+clone = "stronghold_of_security_goblin_armed"
+
+[goblin_turaels_dungeon_2]
+id = 11259
+clone = "stronghold_of_security_goblin_green_hat"
+
+[goblin_turaels_dungeon_3]
+id = 11261
+clone = "stronghold_of_security_goblin_helmet"
+
+[wolf_turaels_dungeon]
+id = 11263
+clone = "wolf_stronghold_of_security_2"
+
+[wolf_turaels_dungeon_2]
+id = 11262
+clone = "wolf_stronghold_of_security"
+
+[minotaur_turaels_dungeon]
+id = 11258
+clone = "minotaur"

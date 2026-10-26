@@ -34,11 +34,3 @@ def = 15
 examine = "He doesn't look very pleased to see you."
 categories = ["minotaurs"]
 
-[minotaur_3]
-id = 11258
-hitpoints = 100
-att = 12
-str = 10
-def = 10
-examine = "He doesn't look very pleased to see you."
-categories = ["minotaurs"]
