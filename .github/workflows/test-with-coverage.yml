@@ -35,10 +35,9 @@ jobs:
           java-version: "21"
           distribution: "temurin"
           architecture: x64
-          cache: "gradle"
 
-      - name: Validate Gradle wrapper
-        uses: gradle/actions/wrapper-validation@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Check formatting
         run: ./gradlew spotlessCheck
