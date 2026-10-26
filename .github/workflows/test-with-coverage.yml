@@ -16,6 +16,8 @@ on:
       - 'docs/**'
 env:
   CACHE_VERSION: 1.4.5
+  # Skip compiling tool modules which have no tests (tools:render & tools:avatar are still built for web:server)
+  SKIP_TOOLS: -x :tools:test -x :tools:app:test -x :tools:icon:test
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -35,10 +37,18 @@ jobs:
           java-version: "21"
           distribution: "temurin"
           architecture: x64
-          cache: "gradle"
 
-      - name: Validate Gradle wrapper
-        uses: gradle/actions/wrapper-validation@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # Fit the 16gb runner: kotlin compiler peaks ~3gb live, gradle daemon ~300mb, game test forks 3gb each
+      - name: Configure Gradle memory
+        run: |
+          mkdir -p "${GRADLE_USER_HOME:-$HOME/.gradle}"
+          cat >> "${GRADLE_USER_HOME:-$HOME/.gradle}/gradle.properties" <<'EOF'
+          org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8
+          kotlin.daemon.jvmargs=-Xmx5g -XX:MaxMetaspaceSize=1g
+          EOF
 
       - name: Check formatting
         run: ./gradlew spotlessCheck
@@ -91,13 +101,11 @@ jobs:
 
       - name: Run all tests
         if: steps.check-cache-files.outputs.cache_exists == 'true'
-        run: ./gradlew test
-        env:
-          GRADLE_OPTS: -Xmx5g -Xms1g -XX:MaxMetaspaceSize=1g
+        run: ./gradlew test -Pcoverage ${{ env.SKIP_TOOLS }}
 
       - name: Run unit tests
         if: steps.check-cache-files.outputs.cache_exists != 'true'
-        run: ./gradlew test -x :game:test
+        run: ./gradlew test -x :game:test -Pcoverage ${{ env.SKIP_TOOLS }}
 
       - name: Upload coverage report to Codecov
         if: steps.check_secret.outputs.exists == 'true'

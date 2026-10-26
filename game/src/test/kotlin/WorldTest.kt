@@ -59,23 +59,30 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import java.io.File
+import java.nio.channels.FileChannel
+import java.nio.channels.FileLock
+import java.nio.file.StandardOpenOption
 import java.util.*
 import kotlin.system.measureTimeMillis
 
 /**
  * Sets up a fully functioning game test environment (without networking)
- * Each class re-loads all config files so use sparingly
+ * The world is booted once and shared between consecutive [WorldTest] classes,
+ * [WorldTestListener] shuts it down before any other test class runs.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
-    private lateinit var engine: GameLoop
-    private lateinit var accountDefs: AccountDefinitions
-    private lateinit var accounts: AccountManager
-    private var saves: File? = null
+    private val engine: GameLoop
+        get() = world!!.engine
+    private val accountDefs: AccountDefinitions
+        get() = world!!.accountDefinitions
+    private val accounts: AccountManager
+        get() = world!!.accounts
     lateinit var settings: Properties
-    lateinit var scripts: List<Script>
+    val scripts: List<Script>
+        get() = world!!.scripts
 
     open var loadNpcs: Boolean = false
 
@@ -149,6 +156,13 @@ abstract class WorldTest : KoinTest {
     @BeforeAll
     fun beforeAll() {
         settings = Settings.load(properties)
+        if (world == null) {
+            world = boot()
+        }
+        File(properties["storage.players.path"] as String).mkdirs()
+    }
+
+    private fun boot(): SharedWorld {
         stopKoin()
         val (ids, components) = interfaceIds
         InterfaceDefinitions.set(interfaceDefinitions, ids, components)
@@ -223,10 +237,9 @@ abstract class WorldTest : KoinTest {
         NPCDefinitions.set(npcDefinitions, npcIds)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
-        scripts = ContentLoader().load()
+        val scripts = ContentLoader().load()
         Wildcards.clear()
-        saves = File(Settings["storage.players.path"])
-        saves?.mkdirs()
+        val engine: GameLoop
         val millis = measureTimeMillis {
             val tickStages = getTickStages(
                 get<ConnectionQueue>(),
@@ -238,14 +251,13 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages)
             Spawn.world(configFiles)
         }
-        accountDefs = get()
-        accounts = get()
         logger.info { "World startup took ${millis}ms" }
         for (x in 0 until 24 step 8) {
             for (y in 0 until 24 step 8) {
                 Collisions.allocateIfAbsent(x, y, 0)
             }
         }
+        return SharedWorld(engine, scripts, get(), get())
     }
 
     @BeforeEach
@@ -271,13 +283,54 @@ abstract class WorldTest : KoinTest {
 
     @AfterAll
     fun afterAll() {
-        saves?.deleteRecursively()
-        Script.clear()
-        stopKoin()
+        File(properties["storage.players.path"] as String).deleteRecursively()
     }
+
+    private class SharedWorld(
+        val engine: GameLoop,
+        val scripts: List<Script>,
+        val accountDefinitions: AccountDefinitions,
+        val accounts: AccountManager,
+    )
 
     companion object {
         private const val TIME: Long = 43_200_000 // 12:00:00
+        private var world: SharedWorld? = null
+
+        /**
+         * Tear down the shared world so non-[WorldTest] classes start without koin or content scripts loaded
+         */
+        fun shutdown() {
+            if (world == null) {
+                return
+            }
+            world = null
+            Script.clear()
+            stopKoin()
+        }
+
+        private var forkLock: FileLock? = null
+
+        /**
+         * Claims a temp directory unique to this test JVM so parallel forks don't share files.
+         * Slots are reused between runs so cached files (e.g. bot chat model) persist.
+         */
+        private val forkDirectory: String by lazy {
+            generateSequence(0) { it + 1 }.firstNotNullOf { slot ->
+                val dir = File("../temp/data/test-fork-$slot/")
+                dir.mkdirs()
+                val channel = FileChannel.open(dir.resolve(".lock").toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE)
+                val lock = channel.tryLock()
+                if (lock == null) {
+                    channel.close()
+                    null
+                } else {
+                    forkLock = lock
+                    "../temp/data/test-fork-$slot/"
+                }
+            }
+        }
+
         private val properties: Properties by lazy {
             val properties = Properties()
             properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
@@ -286,16 +339,19 @@ abstract class WorldTest : KoinTest {
                     properties[key] = value.replace("./", "../")
                 }
             }
-            properties["storage.players.path"] = "../temp/data/test-saves/"
-            properties["storage.players.logs"] = "../temp/data/test-logs/"
+            properties["storage.players.path"] = "${forkDirectory}saves/"
+            properties["storage.players.logs"] = "${forkDirectory}logs/"
+            properties["storage.players.errors"] = "${forkDirectory}errors/"
             properties["storage.players.logs.seconds"] = Int.MAX_VALUE
-            properties["storage.grand.exchange.offers.buy.path"] = "../temp/data/test-grand_exchange/buy_offers/"
-            properties["storage.grand.exchange.offers.sell.path"] = "../temp/data/test-grand_exchange/sell_offers/"
-            properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
-            properties["storage.grand.exchange.offers.path"] = "../temp/data/test-grand_exchange/offers.toml"
-            properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
+            properties["storage.grand.exchange.offers.buy.path"] = "${forkDirectory}grand_exchange/buy_offers/"
+            properties["storage.grand.exchange.offers.sell.path"] = "${forkDirectory}grand_exchange/sell_offers/"
+            properties["storage.grand.exchange.offers.claim.path"] = "${forkDirectory}grand_exchange/claimable_offers.toml"
+            properties["storage.grand.exchange.offers.path"] = "${forkDirectory}grand_exchange/offers.toml"
+            properties["storage.grand.exchange.history.path"] = "${forkDirectory}grand_exchange/price_history/"
+            // Don't write map caches as parallel forks would clash
+            properties["storage.caching.active"] = false
             properties["storage.caching.path"] = "../data/.temp/"
-            properties["bots.chat.model"] = "../temp/data/test-bot_chat.model"
+            properties["bots.chat.model"] = "${forkDirectory}bot_chat.model"
             properties["quests.requirements.skipMissing"] = false
             properties["construction.freeBuild"] = false
             properties["grandExchange.priceLimit"] = true
