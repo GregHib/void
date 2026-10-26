@@ -2,6 +2,7 @@ package content.bot.behaviour.condition
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
@@ -25,6 +26,9 @@ data class BotEquipmentSetup(val items: Map<EquipSlot, BotItem>) : Condition(90)
                 return false
             }
             if (entry.usable && item.amount > 0 && !player.hasRequirementsToUse(item)) {
+                return false
+            }
+            if (entry.equippable && item.amount > 0 && !player.hasRequirements(item)) {
                 return false
             }
         }

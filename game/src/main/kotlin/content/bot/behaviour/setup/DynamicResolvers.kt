@@ -64,10 +64,13 @@ object DynamicResolvers {
     private fun buyItems(player: Player, items: List<BotItem>): Resolver? {
         for (entry in items) {
             val amount = entry.min ?: 1
-            if (entry.ids.any { id -> player.inventory.contains(id, amount) }) {
+            if (entry.ids.any { id -> player.inventory.contains(id, amount) && valid(player, Item(id), entry) }) {
                 continue
             }
             for (id in entry.ids) {
+                if (!valid(player, Item(id), entry)) {
+                    continue
+                }
                 for ((location, npc) in sampleItems[id] ?: emptyList()) {
                     val actions = mutableListOf<BotAction>()
                     actions.add(BotGoTo(location))
@@ -208,7 +211,7 @@ object DynamicResolvers {
                 continue
             }
             val entry = equipment[slot] ?: continue
-            if (!entry.ids.contains(item.id)) {
+            if (!valid(player, item, entry)) {
                 continue
             }
             actions.add(BotInterfaceOption("Equip", "inventory:inventory:${item.id}", success = BotEquipmentSetup(mapOf(slot to entry))))
