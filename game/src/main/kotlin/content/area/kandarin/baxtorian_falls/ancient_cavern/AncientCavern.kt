@@ -2,6 +2,7 @@ package content.area.kandarin.baxtorian_falls.ancient_cavern
 
 import content.entity.combat.hit.directHit
 import content.entity.player.inv.item.addOrDrop
+import content.quest.miniquest.barbarian_training.barbarianTrainingStarted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
@@ -29,6 +30,18 @@ class AncientCavern(val drops: DropTables) : Script {
             delay(4)
             open("fade_out")
             delay(6)
+            if (!barbarianTrainingStarted("pyre")) {
+                // Without Otto's guidance the spirits don't steer you into the cavern
+                message("You are swept, out of control, through horrific underwater currents.", type = ChatType.Filter)
+                tele(2531, 3446)
+                delay(1)
+                message("You are swirled beneath the water, dashed against sharp rocks.", type = ChatType.Filter)
+                directHit(60)
+                delay(3)
+                open("fade_in")
+                message("You find yourself on the banks of the river, far below the lake.", type = ChatType.Filter)
+                return@objectApproach
+            }
             message("You dive into the swirling maelstrom of the whirlpool.", type = ChatType.Filter)
             tele(1763, 5365, 1)
             delay(1)
