@@ -9,7 +9,7 @@ respawn_delay = 25
 slayer_xp = 75.0
 slayer_level = 83
 drop_table = "spiritual_mage"
-categories = ["spiritual_creatures"]
+categories = ["spiritual_mages"]
 god = "zamorak"
 examine = "A deadly servant of Zamorak."
 
@@ -25,7 +25,7 @@ respawn_delay = 25
 slayer_xp = 85.0
 slayer_level = 83
 drop_table = "spiritual_mage"
-categories = ["spiritual_creatures"]
+categories = ["spiritual_mages"]
 god = "saradomin"
 examine = "Saradomin's holy mage."
 
@@ -40,7 +40,7 @@ respawn_delay = 25
 slayer_xp = 106.0
 slayer_level = 83
 drop_table = "spiritual_mage"
-categories = ["spiritual_creatures"]
+categories = ["spiritual_mages"]
 god = "bandos"
 examine = "One of Bandos's chosen."
 
@@ -55,5 +55,5 @@ respawn_delay = 25
 slayer_xp = 75.0
 slayer_level = 83
 drop_table = "spiritual_mage"
-categories = ["spiritual_creatures"]
+categories = ["spiritual_mages"]
 examine = "A mage who serves Armadyl above all else - even death."

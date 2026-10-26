@@ -254,6 +254,7 @@ mage = 65
 range = 65
 combat_def = "adolescent_zygomite"
 examine = "A bouncy fungus."
+slayer_level = 57
 
 [zygomite_large]
 id = 3347
@@ -266,3 +267,4 @@ mage = 75
 range = 75
 combat_def = "zygomite"
 examine = "A fun guy. No wait, that's awful.."
+slayer_level = 57

@@ -5,6 +5,7 @@ import content.entity.combat.hit.directHit
 import content.skill.slayer.slayerTask
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 
 class IceStrykewyrm : Script {
     init {
@@ -28,7 +29,7 @@ class IceStrykewyrm : Script {
         }
 
         canAttack("mound_ice_strykewyrm") {
-            if (slayerTask != "ice_strykewyrm") {
+            if (Settings["slayer.strykewyrmReqTask", false] && slayerTask != "ice_strykewyrm") {
                 message("You need to have strykewyrm assigned as a task in order to fight them.")
                 false
             } else {

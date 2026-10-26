@@ -64,7 +64,7 @@ style = "crush"
 max_hit_melee = 70
 hunt_mode = "cowardly"
 slayer_xp = 100.0
-categories = ["hill_giants"]
+categories = ["hill_giants", "cyclopes"]
 respawn_delay = 30
 examine = "A one-eyed woman eater."
 drop_table = "cyclops"
@@ -80,7 +80,7 @@ style = "crush"
 max_hit_melee = 60
 hunt_mode = "cowardly"
 slayer_xp = 55.0
-categories = ["hill_giants"]
+categories = ["hill_giants", "cyclopes"]
 respawn_delay = 30
 examine = "A one-eyed man eater."
 drop_table = "cyclops"
@@ -93,6 +93,7 @@ hitpoints = 750
 def = 26
 drop_table = "cyclops"
 combat_def = "cyclops"
+categories = ["cyclopes", "hill_giants"]
 
 [cyclopse_club]
 id = 6080
@@ -103,18 +104,21 @@ str = 50
 def = 26
 drop_table = "cyclops"
 combat_def = "cyclops"
+categories = ["cyclopes", "hill_giants"]
 
 [cyclopse_club_mohawk]
 id = 6079
 clone = "cyclopse_hammer"
 drop_table = "cyclops"
 combat_def = "cyclops"
+categories = ["cyclopes", "hill_giants"]
 
 [cyclopse_knife]
 id = 4292
 clone = "cyclopse_hammer"
 drop_table = "cyclops"
 combat_def = "cyclops"
+categories = ["cyclopes", "hill_giants"]
 
 [harrallak_menarous_2]
 id = 8268

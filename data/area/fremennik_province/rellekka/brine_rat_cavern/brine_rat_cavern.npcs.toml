@@ -88,6 +88,7 @@ categories = ["brine_rats", "rats"]
 respawn_delay = 30
 drop_table = "brine_rat"
 examine = "Eww, a bald rat!"
+slayer_level = 47
 
 [olaf_cave_boulder]
 id = 3708
