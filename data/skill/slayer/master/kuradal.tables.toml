@@ -136,6 +136,7 @@ tip = "Suqahs can only be found on the mystical Lunar Isle. They use melee and m
 [.terror_dogs]
 amount = [60, 70]
 weight = 6
+tip = "Terror dogs are, unsurprisingly, dogs that terrorise the weak. You'll find them in the Haunted Mine, near Tarn's lair."
 
 [.tzhaar]
 amount = [70, 110]
