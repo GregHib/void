@@ -155,7 +155,7 @@ private fun hasRequirements(player: Player, row: Int): Boolean {
     // Tasks unlocked by a reward or by owning an item; either is enough when a task lists both
     val variable = Tables.stringOrNull("slayer_tasks.$category.variable")
     val item = Tables.stringOrNull("slayer_tasks.$category.item")
-    if ((variable != null || item != null) && !(variable != null && player.contains(variable)) && !(item != null && player.ownsItem(item))) {
+    if ((variable != null || item != null) && !(variable != null && player[variable, false]) && !(item != null && player.ownsItem(item))) {
         return false
     }
     val quest = Tables.stringOrNull("slayer_tasks.$category.quest") ?: return true

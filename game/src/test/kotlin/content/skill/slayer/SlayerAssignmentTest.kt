@@ -50,6 +50,26 @@ class SlayerAssignmentTest : WorldTest() {
     }
 
     @Test
+    fun `Mithril dragons need barbarian training`() {
+        val player = maxedPlayer(Tile(3200, 3200))
+
+        assertFalse("mithril_dragons" in player.possibleTasks("kuradal"))
+
+        player["barbarian_training_pyre_unlocked"] = true
+        assertTrue("mithril_dragons" in player.possibleTasks("kuradal"))
+    }
+
+    @Test
+    fun `Spiritual creatures need troll stronghold`() {
+        val player = maxedPlayer(Tile(3200, 3200))
+
+        assertFalse("spiritual_mages" in player.possibleTasks("kuradal"))
+
+        player["troll_stronghold"] = "completed"
+        assertTrue("spiritual_mages" in player.possibleTasks("kuradal"))
+    }
+
+    @Test
     fun `Blocked tasks are never assigned`() {
         val player = createPlayer(Tile(3200, 3200))
         player["blocked_task_0"] = "birds"
