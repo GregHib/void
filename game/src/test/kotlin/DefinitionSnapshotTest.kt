@@ -132,6 +132,39 @@ internal class DefinitionSnapshotTest {
     }
 
     @Test
+    fun `Full definition snapshots match the loaded definitions`() {
+        val items = files.list(Settings["definitions.items"])
+        ItemDefinitions.init(ItemDecoder().load(cache)).load(items)
+        val itemDump = dump(ItemDefinitions.definitions.asList(), ItemDefinitions.ids)
+        val itemDefinitions = ItemDefinitions.definitions.toList()
+        ItemDefinitions.saveDefinitions(files.snapshot("items.all", items)!!)
+        ItemDefinitions.clear()
+        assertTrue(ItemDefinitions.restoreDefinitions(files.snapshot("items.all", items)!!))
+        assertEquals(itemDefinitions, ItemDefinitions.definitions.toList())
+        assertEquals(itemDump, dump(ItemDefinitions.definitions.asList(), ItemDefinitions.ids))
+
+        val npcs = files.list(Settings["definitions.npcs"])
+        NPCDefinitions.init(NPCDecoder(member = true).load(cache)).load(npcs)
+        val npcDump = dump(NPCDefinitions.definitions.asList(), NPCDefinitions.ids)
+        val npcDefinitions = NPCDefinitions.definitions.toList()
+        NPCDefinitions.saveDefinitions(files.snapshot("npcs.all", npcs)!!)
+        NPCDefinitions.clear()
+        assertTrue(NPCDefinitions.restoreDefinitions(files.snapshot("npcs.all", npcs)!!))
+        assertEquals(npcDefinitions, NPCDefinitions.definitions.toList())
+        assertEquals(npcDump, dump(NPCDefinitions.definitions.asList(), NPCDefinitions.ids))
+
+        val objects = files.list(Settings["definitions.objects"])
+        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(objects)
+        val objectDump = dump(ObjectDefinitions.definitions.asList(), ObjectDefinitions.ids)
+        val objectDefinitions = ObjectDefinitions.definitions.toList()
+        ObjectDefinitions.saveDefinitions(files.snapshot("objects.all", objects)!!)
+        ObjectDefinitions.clear()
+        assertTrue(ObjectDefinitions.restoreDefinitions(files.snapshot("objects.all", objects)!!))
+        assertEquals(objectDefinitions, ObjectDefinitions.definitions.toList())
+        assertEquals(objectDump, dump(ObjectDefinitions.definitions.asList(), ObjectDefinitions.ids))
+    }
+
+    @Test
     fun `Snapshot is ignored when a file changes`() {
         val paths = files.list(Settings["definitions.objects"])
         ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(paths, files.snapshot("objects", paths))

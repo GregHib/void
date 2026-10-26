@@ -208,4 +208,67 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
         loaded = true
         this.ids = ids
     }
+
+    /**
+     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     */
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            string(definition.name)
+            int(definition.spriteScale)
+            int(definition.stackable)
+            int(definition.cost)
+            boolean(definition.members)
+            nullableStrings(definition.floorOptions)
+            nullableStrings(definition.options)
+            boolean(definition.exchangeable)
+            int(definition.dummyItem)
+            int(definition.noteId)
+            int(definition.notedTemplateId)
+            int(definition.lendId)
+            int(definition.lendTemplateId)
+            int(definition.equipIndex)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        int(ids.size)
+        for ((stringId, id) in ids) {
+            string(stringId)
+            int(id)
+        }
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            ItemDefinition(
+                id = reader.int(),
+                name = reader.string(),
+                spriteScale = reader.int(),
+                stackable = reader.int(),
+                cost = reader.int(),
+                members = reader.boolean(),
+                floorOptions = reader.nullableStrings()!!,
+                options = reader.nullableStrings()!!,
+                exchangeable = reader.boolean(),
+                dummyItem = reader.int(),
+                noteId = reader.int(),
+                notedTemplateId = reader.int(),
+                lendId = reader.int(),
+                lendTemplateId = reader.int(),
+                equipIndex = reader.int(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = Object2IntOpenHashMap<String>(18_000)
+        ids.defaultReturnValue(-1)
+        repeat(reader.int()) {
+            val stringId = reader.string()
+            ids[stringId] = reader.int()
+        }
+        init(definitions)
+        this.ids = ids
+    }
 }

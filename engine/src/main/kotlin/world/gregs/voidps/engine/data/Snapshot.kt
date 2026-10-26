@@ -132,6 +132,25 @@ class SnapshotWriter {
         }
     }
 
+    fun nullableStrings(values: Array<String?>?) {
+        if (values == null) {
+            int(-1)
+            return
+        }
+        int(values.size)
+        for (value in values) {
+            nullableString(value)
+        }
+    }
+
+    fun nullableInts(values: IntArray?) {
+        if (values == null) {
+            int(-1)
+            return
+        }
+        ints(values)
+    }
+
     fun ints(values: IntArray) {
         int(values.size)
         for (value in values) {
@@ -274,6 +293,16 @@ class SnapshotReader(bytes: ByteArray) {
     fun nullableString(): String? = if (boolean()) string() else null
 
     fun ints(): IntArray = IntArray(int()) { int() }
+
+    fun nullableInts(): IntArray? {
+        val size = int()
+        return if (size == -1) null else IntArray(size) { int() }
+    }
+
+    fun nullableStrings(): Array<String?>? {
+        val size = int()
+        return if (size == -1) null else Array(size) { nullableString() }
+    }
 
     fun params(): Int2ObjectOpenHashMap<Any>? {
         val size = int()

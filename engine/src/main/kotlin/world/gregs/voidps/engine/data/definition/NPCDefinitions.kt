@@ -249,4 +249,81 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         }
         this.ids = ids
     }
+
+    /**
+     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     */
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            string(definition.name)
+            int(definition.size)
+            nullableStrings(definition.options)
+            int(definition.combat)
+            int(definition.varbit)
+            int(definition.varp)
+            nullableInts(definition.transforms)
+            byte(definition.walkMode.toInt())
+            int(definition.renderEmote)
+            int(definition.idleSound)
+            int(definition.crawlSound)
+            int(definition.walkSound)
+            int(definition.runSound)
+            int(definition.soundDistance)
+            string(definition.stringId)
+            params(definition.params)
+            boolean(definition.allowedUnder)
+            boolean(definition.solid)
+            boolean(definition.blocksPlayers)
+            int(definition.huntRange)
+            nullableString(definition.huntMode)
+            int(definition.regenRate)
+            int(definition.hitpoints)
+        }
+        int(ids.size)
+        for ((stringId, id) in ids) {
+            string(stringId)
+            int(id)
+        }
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            NPCDefinition(
+                id = reader.int(),
+                name = reader.string(),
+                size = reader.int(),
+                options = reader.nullableStrings()!!,
+                combat = reader.int(),
+                varbit = reader.int(),
+                varp = reader.int(),
+                transforms = reader.nullableInts(),
+                walkMode = reader.byte().toByte(),
+                renderEmote = reader.int(),
+                idleSound = reader.int(),
+                crawlSound = reader.int(),
+                walkSound = reader.int(),
+                runSound = reader.int(),
+                soundDistance = reader.int(),
+                stringId = reader.string(),
+                params = reader.params(),
+                allowedUnder = reader.boolean(),
+                solid = reader.boolean(),
+                blocksPlayers = reader.boolean(),
+                huntRange = reader.int(),
+                huntMode = reader.nullableString(),
+                regenRate = reader.int(),
+                hitpoints = reader.int(),
+            )
+        }
+        val ids = Object2IntOpenHashMap<String>()
+        ids.defaultReturnValue(-1)
+        repeat(reader.int()) {
+            val stringId = reader.string()
+            ids[stringId] = reader.int()
+        }
+        init(definitions)
+        this.ids = ids
+    }
 }

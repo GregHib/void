@@ -153,6 +153,8 @@ object Main {
 
     private fun cache(cache: Cache, files: ConfigFiles): Module {
         val members = Settings["world.members", false]
+        // Whether to snapshot the definitions themselves, instead of only the parsed configs
+        val fullSnapshots = Settings["storage.snapshots.full", true]
         val module = module {
             single(createdAtStart = true) {
                 get<ObjectDefinitions>()
@@ -161,15 +163,30 @@ object Main {
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
             single(createdAtStart = true) {
                 val paths = files.list(Settings["definitions.objects"])
-                ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(paths, files.snapshot("objects", paths))
+                val all = if (fullSnapshots) files.snapshot("objects.all", paths) else null
+                if (all == null || !ObjectDefinitions.restoreDefinitions(all)) {
+                    ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(paths, if (all == null) files.snapshot("objects", paths) else null)
+                    all?.let { ObjectDefinitions.saveDefinitions(it) }
+                }
+                ObjectDefinitions
             }
             single(createdAtStart = true) {
                 val paths = files.list(Settings["definitions.npcs"])
-                NPCDefinitions.init(NPCDecoder(members).load(cache)).load(paths, get(), files.snapshot("npcs", paths))
+                val all = if (fullSnapshots) files.snapshot("npcs.all", paths) else null
+                if (all == null || !NPCDefinitions.restoreDefinitions(all)) {
+                    NPCDefinitions.init(NPCDecoder(members).load(cache)).load(paths, get<DropTables>(), if (all == null) files.snapshot("npcs", paths) else null)
+                    all?.let { NPCDefinitions.saveDefinitions(it) }
+                }
+                NPCDefinitions
             }
             single(createdAtStart = true) {
                 val paths = files.list(Settings["definitions.items"])
-                ItemDefinitions.init(ItemDecoder().load(cache)).load(paths, files.snapshot("items", paths))
+                val all = if (fullSnapshots) files.snapshot("items.all", paths) else null
+                if (all == null || !ItemDefinitions.restoreDefinitions(all)) {
+                    ItemDefinitions.init(ItemDecoder().load(cache)).load(paths, if (all == null) files.snapshot("items", paths) else null)
+                    all?.let { ItemDefinitions.saveDefinitions(it) }
+                }
+                ItemDefinitions
             }
             single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) {
