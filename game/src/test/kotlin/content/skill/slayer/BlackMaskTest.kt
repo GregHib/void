@@ -3,9 +3,14 @@ package content.skill.slayer
 import FakeRandom
 import WorldTest
 import itemOption
-import npcOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -16,57 +21,102 @@ import kotlin.test.assertEquals
 
 class BlackMaskTest : WorldTest() {
 
-    @Test
-    fun `Charged black mask lowers defence when starting combat`() {
-        setRandom(object : FakeRandom() {
-            override fun nextInt(until: Int): Int = 0
-            override fun nextInt(from: Int, until: Int): Int = from
-        })
+    private fun alwaysTrigger() = setRandom(object : FakeRandom() {
+        override fun nextInt(until: Int): Int = 0
+        override fun nextDouble(): Double = 0.0
+    })
+
+    private fun hit(player: Player, npc: NPC) = CombatApi.damage(player, CombatDamage(npc, "melee", 10, Item.EMPTY, "", false))
+
+    private fun setup(): Pair<Player, NPC> {
         val player = createPlayer(Tile(3200, 3200))
-        player.levels.set(Skill.Attack, 1)
         player.equipment.set(EquipSlot.Hat.index, "black_mask_10")
         val npc = createNPC("hill_giant", player.tile.addY(1))
-        val defence = npc.levels.get(Skill.Defence)
+        npc["initiated_combat"] = player.index
+        return player to npc
+    }
 
-        player.npcOption(npc, "Attack")
-        tick(2)
+    @Test
+    fun `Charged black mask lowers the defence of a monster which attacked first`() {
+        alwaysTrigger()
+        val (player, npc) = setup()
+        val defence = npc.levels.getMax(Skill.Defence)
 
-        assertEquals(defence - 3, npc.levels.get(Skill.Defence))
+        hit(player, npc)
+
+        assertEquals(defence - (2 + (defence * 0.07).toInt()), npc.levels.get(Skill.Defence))
         assertEquals("black_mask_9", player.equipment[EquipSlot.Hat.index].id)
+    }
 
-        tick(10)
+    @Test
+    fun `Defence is only lowered once`() {
+        alwaysTrigger()
+        val (player, npc) = setup()
+
+        hit(player, npc)
+        hit(player, npc)
 
         assertEquals("black_mask_9", player.equipment[EquipSlot.Hat.index].id)
     }
 
     @Test
-    fun `Charged black mask doesn't use a charge every fight`() {
-        setRandom(object : FakeRandom() {
-            override fun nextInt(until: Int): Int = 1
-        })
-        val player = createPlayer(Tile(3200, 3200))
-        player.equipment.set(EquipSlot.Hat.index, "black_mask_10")
-        val npc = createNPC("hill_giant", player.tile.addY(1))
-        val defence = npc.levels.get(Skill.Defence)
+    fun `Black mask doesn't trigger on monsters the player attacked first`() {
+        alwaysTrigger()
+        val (player, npc) = setup()
+        npc.clear("initiated_combat")
 
-        player.npcOption(npc, "Attack")
-        tick(2)
+        hit(player, npc)
 
-        assertEquals(defence, npc.levels.get(Skill.Defence))
+        assertEquals(npc.levels.getMax(Skill.Defence), npc.levels.get(Skill.Defence))
         assertEquals("black_mask_10", player.equipment[EquipSlot.Hat.index].id)
     }
 
     @Test
-    fun `Uncharged black mask doesn't lower defence`() {
+    fun `Black mask doesn't trigger on monsters below half health`() {
+        alwaysTrigger()
+        val (player, npc) = setup()
+        npc.levels.set(Skill.Constitution, npc.levels.getMax(Skill.Constitution) / 2 - 1)
+
+        hit(player, npc)
+
+        assertEquals("black_mask_10", player.equipment[EquipSlot.Hat.index].id)
+    }
+
+    @Test
+    fun `Black mask only triggers one hit in ten`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 1
+            override fun nextDouble(): Double = 0.0
+        })
+        val (player, npc) = setup()
+
+        hit(player, npc)
+
+        assertEquals("black_mask_10", player.equipment[EquipSlot.Hat.index].id)
+    }
+
+    @Test
+    fun `Black mask needs a successful magic roll`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 0
+            override fun nextDouble(): Double = 0.9999
+        })
+        val (player, npc) = setup()
+
+        hit(player, npc)
+
+        assertEquals("black_mask_10", player.equipment[EquipSlot.Hat.index].id)
+    }
+
+    @Test
+    fun `Monsters which attack first are remembered`() {
         val player = createPlayer(Tile(3200, 3200))
-        player.equipment.set(EquipSlot.Hat.index, "black_mask")
         val npc = createNPC("hill_giant", player.tile.addY(1))
-        val defence = npc.levels.get(Skill.Defence)
 
-        player.npcOption(npc, "Attack")
-        tick(2)
+        npc.interactPlayer(player, "Attack")
+        tick(3)
 
-        assertEquals(defence, npc.levels.get(Skill.Defence))
+        assertEquals(player.index, npc["initiated_combat", -1])
     }
 
     @Test
