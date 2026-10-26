@@ -101,19 +101,11 @@ jobs:
 
       - name: Run all tests
         if: steps.check-cache-files.outputs.cache_exists == 'true'
-        run: ./gradlew test -Pcoverage --profile ${{ env.SKIP_TOOLS }}
+        run: ./gradlew test -Pcoverage ${{ env.SKIP_TOOLS }}
 
       - name: Run unit tests
         if: steps.check-cache-files.outputs.cache_exists != 'true'
-        run: ./gradlew test -x :game:test -Pcoverage --profile ${{ env.SKIP_TOOLS }}
-
-      - name: Upload build profile
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-profile
-          path: build/reports/profile/
-          retention-days: 14
+        run: ./gradlew test -x :game:test -Pcoverage ${{ env.SKIP_TOOLS }}
 
       - name: Upload coverage report to Codecov
         if: steps.check_secret.outputs.exists == 'true'
