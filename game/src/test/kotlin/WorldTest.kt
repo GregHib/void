@@ -59,6 +59,9 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import java.io.File
+import java.nio.channels.FileChannel
+import java.nio.channels.FileLock
+import java.nio.file.StandardOpenOption
 import java.util.*
 import kotlin.system.measureTimeMillis
 
@@ -278,6 +281,28 @@ abstract class WorldTest : KoinTest {
 
     companion object {
         private const val TIME: Long = 43_200_000 // 12:00:00
+        private var forkLock: FileLock? = null
+
+        /**
+         * Claims a temp directory unique to this test JVM so parallel forks don't share files.
+         * Slots are reused between runs so cached files (e.g. bot chat model) persist.
+         */
+        private val forkDirectory: String by lazy {
+            generateSequence(0) { it + 1 }.firstNotNullOf { slot ->
+                val dir = File("../temp/data/test-fork-$slot/")
+                dir.mkdirs()
+                val channel = FileChannel.open(dir.resolve(".lock").toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE)
+                val lock = channel.tryLock()
+                if (lock == null) {
+                    channel.close()
+                    null
+                } else {
+                    forkLock = lock
+                    "../temp/data/test-fork-$slot/"
+                }
+            }
+        }
+
         private val properties: Properties by lazy {
             val properties = Properties()
             properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
@@ -286,16 +311,19 @@ abstract class WorldTest : KoinTest {
                     properties[key] = value.replace("./", "../")
                 }
             }
-            properties["storage.players.path"] = "../temp/data/test-saves/"
-            properties["storage.players.logs"] = "../temp/data/test-logs/"
+            properties["storage.players.path"] = "${forkDirectory}saves/"
+            properties["storage.players.logs"] = "${forkDirectory}logs/"
+            properties["storage.players.errors"] = "${forkDirectory}errors/"
             properties["storage.players.logs.seconds"] = Int.MAX_VALUE
-            properties["storage.grand.exchange.offers.buy.path"] = "../temp/data/test-grand_exchange/buy_offers/"
-            properties["storage.grand.exchange.offers.sell.path"] = "../temp/data/test-grand_exchange/sell_offers/"
-            properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
-            properties["storage.grand.exchange.offers.path"] = "../temp/data/test-grand_exchange/offers.toml"
-            properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
+            properties["storage.grand.exchange.offers.buy.path"] = "${forkDirectory}grand_exchange/buy_offers/"
+            properties["storage.grand.exchange.offers.sell.path"] = "${forkDirectory}grand_exchange/sell_offers/"
+            properties["storage.grand.exchange.offers.claim.path"] = "${forkDirectory}grand_exchange/claimable_offers.toml"
+            properties["storage.grand.exchange.offers.path"] = "${forkDirectory}grand_exchange/offers.toml"
+            properties["storage.grand.exchange.history.path"] = "${forkDirectory}grand_exchange/price_history/"
+            // Don't write map caches as parallel forks would clash
+            properties["storage.caching.active"] = false
             properties["storage.caching.path"] = "../data/.temp/"
-            properties["bots.chat.model"] = "../temp/data/test-bot_chat.model"
+            properties["bots.chat.model"] = "${forkDirectory}bot_chat.model"
             properties["quests.requirements.skipMissing"] = false
             properties["construction.freeBuild"] = false
             properties["grandExchange.priceLimit"] = true

@@ -113,6 +113,8 @@ tasks {
 
     test {
         jvmArgs("-XX:-OmitStackTraceInFastThrow")
+        maxParallelForks = (findProperty("testForks") as String?)?.toInt() ?: (Runtime.getRuntime().availableProcessors() / 2).coerceIn(1, 4)
+        maxHeapSize = "3g"
     }
 }
 
