@@ -171,7 +171,7 @@ class SlayerChallenge : Script {
             if (slayerChallenge == "turaels_dungeon") {
                 return@objTeleportTakeOff Teleport.CONTINUE
             }
-            message("You can only enter Turael's dungeon when you have accepted his special Slayer challenge.")
+            message("<red>You can only enter Turael's dungeon when you have accepted his special Slayer challenge.")
             Teleport.CANCEL
         }
 
