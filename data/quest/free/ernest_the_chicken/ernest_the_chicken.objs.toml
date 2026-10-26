@@ -158,3 +158,31 @@ id = 47531
 
 [ernest_secret_wall_north_opened]
 id = 47532
+
+# Wall-shaped leaves used while walking through the cellar gates.
+[ernest_puzzle_door_1_opened]
+id = 47379
+
+[ernest_puzzle_door_2_opened]
+id = 47382
+
+[ernest_puzzle_door_3_opened]
+id = 47385
+
+[ernest_puzzle_door_4_opened]
+id = 47388
+
+[ernest_puzzle_door_5_opened]
+id = 47391
+
+[ernest_puzzle_door_6_opened]
+id = 47394
+
+[ernest_puzzle_door_7_opened]
+id = 47397
+
+[ernest_puzzle_door_8_opened]
+id = 47400
+
+[ernest_puzzle_door_9_opened]
+id = 47403

@@ -1,11 +1,15 @@
 package content.quest.free.ernest_the_chicken
 
 import content.entity.obj.Replace
+import content.entity.obj.door.Door
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.type.Tile
 
 /** Six personal switches and nine doors reproducing the historical quest puzzle.
@@ -148,6 +152,29 @@ private suspend fun Player.passErnestDoor(target: GameObject) {
         message("I can't reach that.")
         return
     }
+    if (!GameObjects.contains(target) || target.id.endsWith("_opened")) {
+        message("The door is already moving. Please wait a moment.")
+        return
+    }
     val end = if (northSouth) Tile(start.x, 2 * target.y - start.y) else Tile(2 * target.x - start.x, start.y)
-    walkOverDelay(end)
+    // The cache provides a wall-shaped leaf for each scenery-shaped personal gate.
+    // Keep the original collision: seeing another player open a door must not bypass a lock.
+    target.replace(
+        "ernest_puzzle_door_${index + 1}_opened",
+        tile = Door.tile(target, 1),
+        shape = ObjectShape.WALL_STRAIGHT,
+        rotation = (target.rotation + 1) and 3,
+        ticks = 12,
+        collision = false,
+        onRevert = { areaSound("iron_door_close", target.tile) },
+    )
+    areaSound("iron_door_open", target.tile)
+    try {
+        delay()
+        walkOverDelay(end)
+        if (tile == end) delay()
+    } finally {
+        // The timer restores the gate even if movement or logout discards this interaction.
+        GameObjects.timers.execute(target)
+    }
 }

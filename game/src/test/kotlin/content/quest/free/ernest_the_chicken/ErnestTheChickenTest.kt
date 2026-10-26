@@ -2,6 +2,7 @@ package content.quest.free.ernest_the_chicken
 
 import WorldTest
 import content.entity.effect.stunned
+import content.entity.obj.door.Door
 import content.quest.quest
 import content.quest.questStage
 import dialogueContinue
@@ -27,6 +28,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -417,6 +419,84 @@ class ErnestTheChickenTest : WorldTest() {
             tick(15)
             assertEquals(to, p.tile, "A single click from $from should cross: ${p.messages}")
         }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6, 7, 8])
+    fun `Cellar gates open before crossing from either side and close after arrival`(index: Int) {
+        val tiles = listOf(Tile(3105, 9765), Tile(3100, 9765), Tile(3105, 9760), Tile(3100, 9760), Tile(3100, 9755), Tile(3102, 9763), Tile(3097, 9763), Tile(3108, 9758), Tile(3102, 9758))
+        val at = tiles[index]
+        val p = createPlayer(at)
+        val other = createPlayer(Tile(3110, 9752))
+        val mask = (0..63).first { ernestDoorMask(it) and (1 shl index) != 0 }
+        p["ernest_levers"] = mask shl 1
+        p["ernest_door_${index + 1}_unlocked"] = 1
+        val door = GameObjects.find(at, "ernest_puzzle_door_${index + 1}")
+        val openedAt = Door.tile(door, 1)
+        for (side in listOf(-1, 1)) {
+            val from = if (index >= 5) at.addY(side) else at.addX(side)
+            val to = if (index >= 5) at.addY(-side) else at.addX(-side)
+            p.tele(from)
+            p.objectOption(door, "Open")
+            var sawOpen = false
+            var positionBefore = p.tile
+            repeat(16) {
+                tick()
+                val opened = GameObjects.findOrNull(openedAt, "ernest_puzzle_door_${index + 1}_opened")
+                if (opened != null) {
+                    if (!sawOpen) assertEquals(from, p.tile, "The gate must open before walking through it")
+                    sawOpen = true
+                    assertEquals(ObjectShape.WALL_STRAIGHT, opened.shape)
+                    assertEquals((door.rotation + 1) and 3, opened.rotation)
+                    assertFalse(GameObjects.contains(door))
+                } else if (sawOpen) {
+                    assertEquals(to, positionBefore, "Keep the leaf open through the last walking update")
+                    assertEquals(to, p.tile)
+                }
+                positionBefore = p.tile
+            }
+            assertTrue(sawOpen, "Gate ${index + 1} should visibly open")
+            assertEquals(to, p.tile)
+            assertTrue(GameObjects.contains(door))
+            assertEquals(0, other["ernest_levers", 0])
+            assertEquals(0, other["ernest_door_${index + 1}_unlocked", 0])
+        }
+    }
+
+    @Test
+    fun `Locked cellar gate stays shut even if its client selector appears unlocked`() {
+        val p = createPlayer(Tile(3101, 9760))
+        val door = GameObjects.find(Tile(3100, 9760), "ernest_puzzle_door_4")
+        p["ernest_door_4_unlocked"] = 1
+        p.objectOption(door, "Open")
+        tick(8)
+        assertEquals(Tile(3101, 9760), p.tile)
+        assertTrue(GameObjects.contains(door))
+        assertNull(GameObjects.findOrNull(Door.tile(door, 1), "ernest_puzzle_door_4_opened"))
+        assertTrue(p.messages.contains("This door is locked."))
+    }
+
+    @Test
+    fun `Interrupted cellar crossing restores the gate through its world timer`() {
+        val p = createPlayer(Tile(3101, 9760))
+        p["ernest_levers"] = 16
+        p["ernest_door_4_unlocked"] = 1
+        val door = GameObjects.find(Tile(3100, 9760), "ernest_puzzle_door_4")
+        p.objectOption(door, "Open")
+        var sawOpen = false
+        repeat(8) {
+            if (!sawOpen) {
+                tick()
+                if (GameObjects.findOrNull(Door.tile(door, 1), "ernest_puzzle_door_4_opened") != null) {
+                    sawOpen = true
+                    p.walk(Tile(3103, 9760))
+                }
+            }
+        }
+        assertTrue(sawOpen)
+        tick(16)
+        assertTrue(GameObjects.contains(door))
+        assertNull(GameObjects.findOrNull(Door.tile(door, 1), "ernest_puzzle_door_4_opened"))
     }
 
     @Test
