@@ -108,6 +108,11 @@ amount = [130, 200]
 weight = 10
 tip = "Nechryael are demons of decay that summon small winged beings to help them fight their victims. They can be found in the Slayer Tower near Canifis."
 
+[.scabarites]
+amount = [40, 80]
+weight = 10
+tip = "Scabarites are the followers of Scabaras and consist of anything from the lowliest dung beetle to the mightiest scarab mage. They are most commonly found near Sophanem, and under it."
+
 [.skeletal_wyverns]
 amount = [40, 80]
 weight = 5
@@ -131,6 +136,7 @@ tip = "Suqahs can only be found on the mystical Lunar Isle. They use melee and m
 [.warped_creatures]
 amount = [130, 200]
 weight = 9
+tip = "Warped terrorbirds are creatures tainted by magical waste and are vulnerable to an elven chime and may only be damaged when a chime has been used; look carefully to work out which. Their sonic attack is a Ranged attack but may be affected by ear defences."
 
 [.waterfiends]
 amount = [130, 200]

@@ -121,6 +121,7 @@ tip = "Red dragons are fearsome firebreathers, stronger than green or blue. I'm 
 [.scabarites]
 amount = [30, 60]
 weight = 5
+tip = "Scabarites are the followers of Scabaras and consist of anything from the lowliest dung beetle to the vilest scarab mage. They are most commonly found near and under Sophanem. They are traitorous creatures in the main, so commit genocide upon them."
 
 [.spiritual_mages]
 amount = [120, 185]
@@ -135,6 +136,7 @@ tip = "Spiritual warriors are fighters that have dedicated their souls to their 
 [.terror_dogs]
 amount = [30, 60]
 weight = 10
+tip = "Terror dogs are, unsurprisingly, dogs that terrorise the weak. They are the servants of Tarn, who annoyed me when he was young. Be a force of vengeance for me by cleaning his lair of these pathetic servitors."
 
 [.trolls]
 amount = [120, 191]
