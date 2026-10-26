@@ -9,7 +9,9 @@ import interfaceOption
 import itemOnNpc
 import itemOption
 import npcOption
+import objectOption
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.Death
@@ -20,8 +22,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -306,5 +311,52 @@ class SlayerChallengeTest : WorldTest() {
         } finally {
             Settings.load(mapOf("slayer.challengeChance" to "0"))
         }
+    }
+
+    @Test
+    fun `Can't enter Turael's dungeon without his challenge`() {
+        val player = createPlayer(Tile(2931, 3540))
+        val ladder = GameObjects.find(Tile(2931, 3539), "turaels_dungeon_ladder_down")
+
+        player.objectOption(ladder, "Climb-down")
+        tick(3)
+
+        assertTrue(player.tile.y < 4000)
+    }
+
+    @Test
+    fun `Kill every monster in Turael's dungeon in one visit`() {
+        val player = challenger("turael", "turaels_dungeon", Tile(2931, 3540))
+        val ladder = GameObjects.find(Tile(2931, 3539), "turaels_dungeon_ladder_down")
+
+        player.objectOption(ladder, "Climb-down")
+        tick(5)
+
+        assertEquals(Tile(3098, 4959), player.tile)
+        val monsters = NPCs.filter { it["owner", ""] == player.accountName }
+        assertEquals(15, monsters.size)
+        for (monster in monsters) {
+            assertEquals("turaels_dungeon", player.slayerChallenge)
+            kill(player, monster)
+        }
+
+        assertEquals("", player.slayerChallenge)
+        assertEquals(1_000.0, player.experience.get(Skill.Slayer))
+    }
+
+    @Test
+    fun `Leaving Turael's dungeon resets his challenge`() {
+        val player = challenger("turael", "turaels_dungeon", Tile(2931, 3540))
+        player.objectOption(GameObjects.find(Tile(2931, 3539), "turaels_dungeon_ladder_down"), "Climb-down")
+        tick(5)
+        kill(player, NPCs.first { it["owner", ""] == player.accountName })
+
+        player.objectOption(GameObjects.find(Tile(3097, 4959), "turaels_dungeon_ladder_up"), "Climb-up")
+        tick(5)
+
+        assertEquals(Tile(2931, 3538), player.tile)
+        assertFalse(Collisions.check(player.tile, CollisionFlag.OBJECT or CollisionFlag.FLOOR))
+        assertEquals(0, NPCs.count { it["owner", ""] == player.accountName })
+        assertEquals("turaels_dungeon", player.slayerChallenge)
     }
 }

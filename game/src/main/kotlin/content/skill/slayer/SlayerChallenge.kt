@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -74,6 +75,17 @@ private val fairyRings = listOf(
     "ravenous_vampire" to Tile(3597, 3495),
     "ravenous_snail" to Tile(3469, 3431),
 )
+
+// Turael's challenge: the monsters in his dungeon
+private val dungeonMonsters = mapOf(
+    "goblin_turaels_dungeon" to 2,
+    "goblin_turaels_dungeon_2" to 2,
+    "goblin_turaels_dungeon_3" to 1,
+    "wolf_turaels_dungeon" to 2,
+    "wolf_turaels_dungeon_2" to 3,
+    "minotaur_turaels_dungeon" to 5,
+)
+private const val DUNGEON_MONSTERS = "goblin_turaels_dungeon*,wolf_turaels_dungeon*,minotaur_turaels_dungeon"
 
 /**
  * Slayer masters occasionally offer a challenge in place of an assignment, which awards
@@ -152,6 +164,57 @@ class SlayerChallenge : Script {
             player.challengeProgress = player.challengeProgress or (1 shl ring)
             if (player.challengeProgress == (1 shl fairyRings.size) - 1) {
                 player.completeChallenge()
+            }
+        }
+
+        objTeleportTakeOff("Climb-down", "turaels_dungeon_ladder_down") { _, _ ->
+            if (slayerChallenge == "turaels_dungeon") {
+                return@objTeleportTakeOff Teleport.CONTINUE
+            }
+            message("You can only enter Turael's dungeon when you have accepted his special Slayer challenge.")
+            Teleport.CANCEL
+        }
+
+        entered("turaels_dungeon") {
+            if (slayerChallenge != "turaels_dungeon" || contains("turaels_dungeon_remaining")) {
+                return@entered
+            }
+            val area = Areas["turaels_dungeon"]
+            var spawned = 0
+            for ((id, amount) in dungeonMonsters) {
+                repeat(amount) {
+                    if (NPCs.addRandom(id, area, owner = this) != null) {
+                        spawned++
+                    }
+                }
+            }
+            set("turaels_dungeon_remaining", spawned)
+        }
+
+        npcDeath(DUNGEON_MONSTERS) {
+            val player = killer as? Player ?: return@npcDeath
+            if (player.slayerChallenge != "turaels_dungeon" || this["owner", ""] != player.accountName) {
+                return@npcDeath
+            }
+            val remaining = player["turaels_dungeon_remaining", 0] - 1
+            player["turaels_dungeon_remaining"] = remaining
+            if (remaining <= 0) {
+                player.clear("turaels_dungeon_remaining")
+                player.completeChallenge()
+            }
+        }
+
+        exited("turaels_dungeon") {
+            if (!contains("turaels_dungeon_remaining")) {
+                return@exited
+            }
+            clear("turaels_dungeon_remaining")
+            // Every monster must be killed in a single visit
+            for (npc in NPCs.filter { it.id in dungeonMonsters && it["owner", ""] == accountName }) {
+                NPCs.remove(npc)
+            }
+            if (slayerChallenge == "turaels_dungeon") {
+                message("You have left Turael's dungeon; you'll have to start his challenge again.")
             }
         }
 
@@ -235,6 +298,7 @@ internal suspend fun Player.offerChallenge(master: String): Boolean {
         "kalphite_queen" -> npc<Neutral>("Travel to the Kalphite Hive and slay the Kalphite Queen. You may bring a partner, but you must do the majority of the damage.")
         "slayer_tower" -> npc<Neutral>("Go to the Slayer Tower and, without leaving, kill 21 crawling hands, 8 banshees, 9 infernal mages, 7 bloodvelds, 7 aberrant spectres, 5 gargoyles, 6 nechryael and 6 abyssal demons.")
         "fight_cave" -> npc<Neutral>("Complete the TzHaar Fight Cave and slay TzTok-Jad.")
+        "turaels_dungeon" -> npc<Neutral>("I've constructed a basement and filled it with monsters. Enter it through the ladder in my house and kill all of the monsters inside in one visit.")
     }
     return true
 }
