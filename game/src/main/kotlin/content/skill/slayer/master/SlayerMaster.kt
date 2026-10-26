@@ -7,9 +7,11 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.slayer.*
+import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -124,9 +126,9 @@ internal val slayerMasterRanks = listOf(
     SlayerMasterRank("turael", "Burthorpe", combat = 3),
     SlayerMasterRank("mazchna", "Canifis", combat = 20),
     SlayerMasterRank("vannaka", "Edgeville Dungeon", combat = 40),
-    SlayerMasterRank("chaeldar", "Zanaris", combat = 70),
-    SlayerMasterRank("sumona", "Pollnivneach", combat = 3, slayer = 35, quest = "smoking_kills"),
-    SlayerMasterRank("duradel", "Shilo Village", combat = 100, slayer = 50),
+    SlayerMasterRank("chaeldar", "Zanaris", combat = 70, quest = "lost_city"),
+    SlayerMasterRank("sumona", "Pollnivneach", combat = 85, slayer = 35, quest = "smoking_kills"),
+    SlayerMasterRank("duradel", "Shilo Village", combat = 100, slayer = 50, quest = "shilo_village"),
     SlayerMasterRank("kuradal", "the Ancient Cavern", combat = 110, slayer = 75),
 )
 
@@ -153,22 +155,32 @@ private fun Player.qualifies(rank: SlayerMasterRank): Boolean {
 }
 
 internal suspend fun Player.assignTaskDialogue(master: String) {
-    if (slayerTask == "nothing") {
-        roll(master)
+    if (slayerTask != "nothing") {
+        if (master == "turael" && Tables.getOrNull("turael_slayer_tasks")?.rows?.none { Rows.get(it).rowId == slayerTask } == true) {
+            easierTask(master)
+        } else {
+            npc<Neutral>("You're still hunting ${slayerTask.toLowerSpaceCase()}, you have $slayerTaskRemaining to go. Come back when you've finished your task.")
+        }
         return
     }
-    npc<Neutral>("You're still hunting ${slayerTask.toSentenceCase()}, you have $slayerTaskRemaining to go.")
-    if (slayerMaster != "turael") {
-        npc<Neutral>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
-        npc<Neutral>("If you do get a new one, you will reset your task streak of $slayerStreak. Is that okay?")
-    } else {
-        npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
+    val rank = slayerMasterRanks.firstOrNull { it.id == master }
+    if (rank != null && !qualifies(rank)) {
+        npc<Happy>("You are not yet experienced enough to receive my tasks. Come back when you're stronger.")
+        return
     }
+    roll(master)
+}
+
+/**
+ * Turael swaps tasks he wouldn't normally give for an easier one, at the cost of the task streak.
+ */
+private suspend fun Player.easierTask(master: String) {
+    npc<Neutral>("You're still hunting ${slayerTask.toLowerSpaceCase()}, you have $slayerTaskRemaining to go.")
+    npc<Neutral>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
+    npc<Neutral>("If you do get a new one, you will reset your task streak of $slayerStreak. Is that okay?")
     choice {
         option<Neutral>("Yes, please.") {
-            if (slayerMaster != "turael") {
-                slayerStreak = 0
-            }
+            slayerStreak = 0
             roll(master)
         }
         option<Neutral>("No, thanks.")
@@ -176,7 +188,12 @@ internal suspend fun Player.assignTaskDialogue(master: String) {
 }
 
 private suspend fun Player.roll(master: String) {
-    val (type, amount) = assignTask(this, master)
+    val task = assignTask(this, master)
+    if (task == null) {
+        npc<Neutral>("I don't have any tasks suitable for you at the moment.")
+        return
+    }
+    val (type, amount) = task
     npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${type.toSentenceCase()}.")
     choice {
         option<Quiz>("Got any tips for me?") {
@@ -194,7 +211,7 @@ private suspend fun Player.teachMe(master: String) {
             player<Neutral>("Pleeeaasssse!")
             npc<Neutral>("Oh okay then, you twisted my arm. You'll have to train against specific groups of creatures.")
             player<Quiz>("Okay, what's first?")
-            val (type, amount) = assignTask(this, master)
+            val (type, amount) = assignTask(this, master) ?: return@option
             npc<Neutral>("We'll start you off hunting ${type.toSentenceCase()}, you'll need to kill $amount of them.")
             npc<Neutral>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
             inventory.add("enchanted_gem")

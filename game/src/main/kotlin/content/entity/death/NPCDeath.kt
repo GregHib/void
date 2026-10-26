@@ -9,6 +9,7 @@ import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
 import content.entity.player.logEvent
+import content.quest.questCompleted
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
@@ -229,6 +230,8 @@ class NPCDeath(
                 else -> 0
             }
             when {
+                // Points are only earned after Smoking Kills, and not for the first four tasks of a streak
+                !player.questCompleted("smoking_kills") || player.slayerStreak <= 4 -> points = 0
                 player.slayerStreak.rem(50) == 0 -> {}
                 player.slayerStreak.rem(10) == 0 -> points /= 3
                 else -> points /= 15
@@ -236,10 +239,13 @@ class NPCDeath(
             player.slayerPoints += points
             player.inc("slayer_tasks_completed")
             player.clear("slayer_target")
-            // TODO dif message for 0 points?
-            player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
+            if (points == 0) {
+                player.message("You've completed ${player.slayerStreak} tasks in a row. Return to a Slayer Master.")
+            } else {
+                player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
+            }
         } else if (player.slayerTaskRemaining.rem(10) == 0) {
-            player.message("You still need to kill ${player.slayerTaskRemaining} monsters to completed your current Slayer assignment.", ChatType.Filter)
+            player.message("You still need to kill ${player.slayerTaskRemaining} monsters to complete your current Slayer assignment.", ChatType.Filter)
         }
     }
 }
