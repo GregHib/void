@@ -368,6 +368,20 @@ internal fun Player.contactNearFairyRing(): Boolean {
     return false
 }
 
+/**
+ * Whether [npc] is one of the monsters the player's challenge has them kill, which still gives slayer experience.
+ */
+internal fun Player.isChallengeTarget(npc: NPC): Boolean = when (slayerChallenge) {
+    "kalphite_queen" -> npc.id.startsWith("kalphite_queen")
+    "slayer_tower" -> tile in Areas["slayer_tower"] && npc.categories.any { it in towerMonsters }
+    "fight_cave" -> contains("fight_cave_wave")
+    "dragon_scales" -> dragonColours.any { npc.categories.contains("${it}_dragons") }
+    "zygomites" -> npc.categories.contains("mutated_zygomites")
+    "ravenous_creatures" -> fairyRings.any { it.first == npc.id }
+    "turaels_dungeon" -> npc.id in dungeonMonsters
+    else -> false
+}
+
 internal fun Player.completeChallenge() {
     val master = slayerMaster
     val xp = Rows.getOrNull("slayer_challenges.$master")?.int("xp") ?: 0
@@ -376,9 +390,9 @@ internal fun Player.completeChallenge() {
     exp(Skill.Slayer, xp.toDouble())
     slayerPoints += points
     if (points > 0) {
-        message("You've completed your special challenge and receive $xp Slayer experience and $points points.")
+        message("Congratulations! You have completed your challenge. You gain $xp Slayer experience and $points points.")
     } else {
-        message("You've completed your special challenge and receive $xp Slayer experience.")
+        message("Congratulations! You have completed your challenge. You gain $xp Slayer experience.")
     }
     completeAssignment(this)
 }

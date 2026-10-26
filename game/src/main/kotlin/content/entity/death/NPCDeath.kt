@@ -206,7 +206,8 @@ class NPCDeath(
     }
 
     fun slay(player: Player, npc: NPC) {
-        if (player.slayerTask == "nothing" || !npc.categories.contains(player.slayerTask)) {
+        val onTask = player.slayerTask != "nothing" && npc.categories.contains(player.slayerTask)
+        if (!onTask && !player.isChallengeTarget(npc)) {
             return
         }
         // Slayer experience equals the monster's life points unless configured otherwise
@@ -216,6 +217,9 @@ class NPCDeath(
             return
         }
         player.exp(Skill.Slayer, slayerExp)
+        if (!onTask) {
+            return
+        }
         player.slayerTaskRemaining--
         if (player.slayerTaskRemaining == 0) {
             completeAssignment(player)

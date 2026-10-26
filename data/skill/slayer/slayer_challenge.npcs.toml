@@ -1,7 +1,7 @@
 [ravenous_ghoul]
 id = 11265
 clone = "ghoul"
-drop_table = ""
+drop_table = "ravenous_ghoul"
 hunt_mode = "aggressive"
 categories = ["ghouls"]
 examine = "It's totally savage."

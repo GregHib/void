@@ -3,6 +3,7 @@ package content.skill.slayer
 import FakeRandom
 import WorldTest
 import content.entity.combat.damageDealers
+import content.entity.death.NPCDeath
 import dialogueContinue
 import dialogueOption
 import interfaceOption
@@ -358,5 +359,25 @@ class SlayerChallengeTest : WorldTest() {
         assertFalse(Collisions.check(player.tile, CollisionFlag.OBJECT or CollisionFlag.FLOOR))
         assertEquals(0, NPCs.count { it["owner", ""] == player.accountName })
         assertEquals("turaels_dungeon", player.slayerChallenge)
+    }
+
+    @Test
+    fun `Challenge monsters give slayer experience`() {
+        val player = challenger("duradel", "slayer_tower", Tile(3428, 3538))
+        val banshee = createNPC("banshee", Tile(3429, 3538))
+
+        scripts.filterIsInstance<NPCDeath>().first().slay(player, banshee)
+
+        assertTrue(player.experience.get(Skill.Slayer) > 0)
+    }
+
+    @Test
+    fun `Other monsters don't give slayer experience during a challenge`() {
+        val player = challenger("duradel", "slayer_tower", Tile(3200, 3200))
+        val chicken = createNPC("chicken", Tile(3201, 3200))
+
+        scripts.filterIsInstance<NPCDeath>().first().slay(player, chicken)
+
+        assertEquals(0.0, player.experience.get(Skill.Slayer))
     }
 }

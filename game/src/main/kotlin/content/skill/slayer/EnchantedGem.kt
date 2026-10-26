@@ -16,6 +16,8 @@ import world.gregs.voidps.engine.entity.character.player.name
 
 class EnchantedGem : Script {
 
+    private val femaleMasters = setOf("chaeldar", "sumona", "kuradal", "spria")
+
     init {
         itemOption("Activate", "enchanted_gem") {
             if (contactNearFairyRing()) {
@@ -37,7 +39,9 @@ class EnchantedGem : Script {
         }
 
         itemOption("Kills-left", "enchanted_gem,ring_of_slaying_*") {
-            if (slayerTask == "nothing") {
+            if (slayerChallenge != "") {
+                message("You are currently doing a special task for ${slayerMaster.toSentenceCase()}; speak with ${if (slayerMaster in femaleMasters) "her" else "him"} if you need help with this task.")
+            } else if (slayerTask == "nothing") {
                 message("You need something new to hunt; return to a Slayer master.")
             } else {
                 message("Your current assignment is: ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go.")

@@ -19,6 +19,7 @@ class BlackMaskTest : WorldTest() {
     @Test
     fun `Charged black mask lowers defence when starting combat`() {
         setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 0
             override fun nextInt(from: Int, until: Int): Int = from
         })
         val player = createPlayer(Tile(3200, 3200))
@@ -36,6 +37,23 @@ class BlackMaskTest : WorldTest() {
         tick(10)
 
         assertEquals("black_mask_9", player.equipment[EquipSlot.Hat.index].id)
+    }
+
+    @Test
+    fun `Charged black mask doesn't use a charge every fight`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 1
+        })
+        val player = createPlayer(Tile(3200, 3200))
+        player.equipment.set(EquipSlot.Hat.index, "black_mask_10")
+        val npc = createNPC("hill_giant", player.tile.addY(1))
+        val defence = npc.levels.get(Skill.Defence)
+
+        player.npcOption(npc, "Attack")
+        tick(2)
+
+        assertEquals(defence, npc.levels.get(Skill.Defence))
+        assertEquals("black_mask_10", player.equipment[EquipSlot.Hat.index].id)
     }
 
     @Test
