@@ -113,6 +113,15 @@ amount = [60, 120]
 weight = 10
 tip = "Demons are weak to magical attacks. Though Lesser Demons are relatively weak they are still dangerous."
 
+[.mogres]
+amount = [60, 120]
+weight = 10
+tip = "Mogres are a type of aquatic ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive. You can find them on the peninsula to the south of Port Sarim."
+
+[.molanisks]
+amount = [60, 120]
+weight = 10
+
 [.moss_giants]
 amount = [60, 120]
 weight = 10

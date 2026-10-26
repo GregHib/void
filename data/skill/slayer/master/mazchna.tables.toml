@@ -98,6 +98,10 @@ amount = [40, 70]
 weight = 10
 tip = "Desert lizards are large reptiles with tough skin. They're cold-blooded, so dousing them with freezing water will finish them off after a tough battle. You can find them to the east of Sophanem."
 
+[.mogres]
+amount = [40, 70]
+weight = 10
+
 [.pyrefiends]
 amount = [40, 70]
 weight = 20
