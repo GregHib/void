@@ -1,6 +1,8 @@
 package content.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
+import content.quest.miniquest.barbarian_training.BarbarianTraining
+import content.quest.miniquest.barbarian_training.barbarianTraining
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -60,6 +62,11 @@ class Equipping : Script {
     fun equip(player: Player, it: ItemOption) {
         val (item, slot) = it
         if (!player.hasRequirements(item, true)) {
+            return
+        }
+        // The client lists "Barbarian spearmaking" as a requirement for every hasta
+        if (item.id.contains("_hasta") && player.barbarianTraining("hasta") < BarbarianTraining.DONE) {
+            player.message("You need to have learned Barbarian spearmaking to wield this.")
             return
         }
         val blocked: Set<EquipSlot>? = player["blocked_equip_slots"]
