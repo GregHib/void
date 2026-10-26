@@ -15,6 +15,9 @@ data class BotItemOnItem(val item: String, val on: String, val success: Conditio
         if (success != null && success.check(bot.player)) {
             return BehaviourState.Success
         }
+        if (bot.player.delayed) {
+            return BehaviourState.Running
+        }
         val state = itemOnItem(bot.player, world, item, on)
         if (state != null) {
             return state
