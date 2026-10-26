@@ -1,7 +1,6 @@
 package content.quest.free.ernest_the_chicken
 
 import content.entity.obj.Replace
-import content.entity.obj.door.Door
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -157,11 +156,11 @@ private suspend fun Player.passErnestDoor(target: GameObject) {
         return
     }
     val end = if (northSouth) Tile(start.x, 2 * target.y - start.y) else Tile(2 * target.x - start.x, start.y)
-    // The cache provides a wall-shaped leaf for each scenery-shaped personal gate.
+    // The unlocked cache model already swings inward from this tile's hinge.
+    // Keep the wall leaf on that tile so the full opening follows the existing crack.
     // Keep the original collision: seeing another player open a door must not bypass a lock.
     target.replace(
         "ernest_puzzle_door_${index + 1}_opened",
-        tile = Door.tile(target, 1),
         shape = ObjectShape.WALL_STRAIGHT,
         rotation = (target.rotation + 1) and 3,
         ticks = 12,

@@ -2,7 +2,6 @@ package content.quest.free.ernest_the_chicken
 
 import WorldTest
 import content.entity.effect.stunned
-import content.entity.obj.door.Door
 import content.quest.quest
 import content.quest.questStage
 import dialogueContinue
@@ -423,7 +422,7 @@ class ErnestTheChickenTest : WorldTest() {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6, 7, 8])
-    fun `Cellar gates open before crossing from either side and close after arrival`(index: Int) {
+    fun `Cellar gates follow their cracked-open direction from either side and close after arrival`(index: Int) {
         val tiles = listOf(Tile(3105, 9765), Tile(3100, 9765), Tile(3105, 9760), Tile(3100, 9760), Tile(3100, 9755), Tile(3102, 9763), Tile(3097, 9763), Tile(3108, 9758), Tile(3102, 9758))
         val at = tiles[index]
         val p = createPlayer(at)
@@ -432,7 +431,9 @@ class ErnestTheChickenTest : WorldTest() {
         p["ernest_levers"] = mask shl 1
         p["ernest_door_${index + 1}_unlocked"] = 1
         val door = GameObjects.find(at, "ernest_puzzle_door_${index + 1}")
-        val openedAt = Door.tile(door, 1)
+        // East-west passages open toward the east; north-south passages open north.
+        // The same tile and hinge must be used from either approach side.
+        val openedAt = at
         for (side in listOf(-1, 1)) {
             val from = if (index >= 5) at.addY(side) else at.addX(side)
             val to = if (index >= 5) at.addY(-side) else at.addX(-side)
@@ -447,7 +448,8 @@ class ErnestTheChickenTest : WorldTest() {
                     if (!sawOpen) assertEquals(from, p.tile, "The gate must open before walking through it")
                     sawOpen = true
                     assertEquals(ObjectShape.WALL_STRAIGHT, opened.shape)
-                    assertEquals((door.rotation + 1) and 3, opened.rotation)
+                    assertEquals(if (index < 5) 1 else 0, opened.rotation)
+                    assertEquals(at, opened.tile)
                     assertFalse(GameObjects.contains(door))
                 } else if (sawOpen) {
                     assertEquals(to, positionBefore, "Keep the leaf open through the last walking update")
@@ -472,7 +474,7 @@ class ErnestTheChickenTest : WorldTest() {
         tick(8)
         assertEquals(Tile(3101, 9760), p.tile)
         assertTrue(GameObjects.contains(door))
-        assertNull(GameObjects.findOrNull(Door.tile(door, 1), "ernest_puzzle_door_4_opened"))
+        assertNull(GameObjects.findOrNull(door.tile, "ernest_puzzle_door_4_opened"))
         assertTrue(p.messages.contains("This door is locked."))
     }
 
@@ -487,7 +489,7 @@ class ErnestTheChickenTest : WorldTest() {
         repeat(8) {
             if (!sawOpen) {
                 tick()
-                if (GameObjects.findOrNull(Door.tile(door, 1), "ernest_puzzle_door_4_opened") != null) {
+                if (GameObjects.findOrNull(door.tile, "ernest_puzzle_door_4_opened") != null) {
                     sawOpen = true
                     p.walk(Tile(3103, 9760))
                 }
@@ -496,7 +498,7 @@ class ErnestTheChickenTest : WorldTest() {
         assertTrue(sawOpen)
         tick(16)
         assertTrue(GameObjects.contains(door))
-        assertNull(GameObjects.findOrNull(Door.tile(door, 1), "ernest_puzzle_door_4_opened"))
+        assertNull(GameObjects.findOrNull(door.tile, "ernest_puzzle_door_4_opened"))
     }
 
     @Test
