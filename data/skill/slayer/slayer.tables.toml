@@ -249,8 +249,9 @@ combat_level = 7
 
 [.mithril_dragons]
 npc = "mithril_dragon"
-# TODO barbarian training varbit
 combat_level = 100
+# The Ancient Cavern can only be entered after Barbarian Training's pyre ships
+variable = "barbarian_training_pyre_unlocked"
 
 [.monkeys]
 npc = "monkey_brown"
@@ -314,11 +315,13 @@ npc = "spider"
 
 [.spiritual_mages]
 npc = "spiritual_mage_zamorak"
-# TODO req god wars dungeon knight varbit
+# Entering the God Wars Dungeon needs Troll Stronghold
+quest = "troll_stronghold"
 
 [.spiritual_warriors]
 npc = "spiritual_warrior_zamorak"
-# TODO req god wars dungeon knight varbit
+# Entering the God Wars Dungeon needs Troll Stronghold
+quest = "troll_stronghold"
 
 [.steel_dragons]
 npc = "steel_dragon"
