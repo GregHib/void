@@ -44,6 +44,7 @@
       - [Shops](shops)
   - [Definitions](definitions)
     - [Cache viewer](cache-viewer)
+    - [Transformations](transformations)
   - [Config Files](config-files)
     - [Tables](data-tables)
   - [Variables](character-variables)
