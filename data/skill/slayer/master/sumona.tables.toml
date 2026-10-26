@@ -120,7 +120,7 @@ tip = "Red dragons are fearsome firebreathers, stronger than green or blue. I'm 
 
 [.scabarites]
 amount = [30, 60]
-weight = 10
+weight = 5
 
 [.spiritual_mages]
 amount = [120, 185]

@@ -135,7 +135,7 @@ tip = "Suqahs can only be found on the mystical Lunar Isle. They use melee and m
 
 [.terror_dogs]
 amount = [60, 70]
-weight = 10
+weight = 6
 
 [.tzhaar]
 amount = [70, 110]

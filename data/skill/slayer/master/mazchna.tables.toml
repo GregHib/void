@@ -120,7 +120,7 @@ tip = "Vampyres are extremely powerful beings. They feed on the blood of the liv
 
 [.wall_beasts]
 amount = [10, 20]
-weight = 7
+weight = 15
 tip = "Wall Beasts are really much larger creatures but you'll only see their arms. You'll want something sharp on your head to stop them grabbing you."
 
 [.wolves]
