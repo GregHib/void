@@ -18,6 +18,9 @@ class EnchantedGem : Script {
 
     init {
         itemOption("Activate", "enchanted_gem") {
+            if (contactNearFairyRing()) {
+                return@itemOption
+            }
             val master = slayerMaster
             if (master == "") {
                 message("You need something new to hunt; return to a Slayer master.")
@@ -44,7 +47,9 @@ class EnchantedGem : Script {
 
     fun ChoiceOption.howAmIDoing() {
         option<Quiz>("How am I doing so far?") {
-            if (slayerTask == "nothing") {
+            if (slayerChallenge != "") {
+                npc<Happy>(slayerMaster, "You're currently working on my special challenge. Your reward point tally is $slayerPoints.")
+            } else if (slayerTask == "nothing") {
                 npc<Confused>(slayerMaster, "You need something new to hunt. Come and see me when you can and I'll give you a new task.")
             } else {
                 npc<Happy>(slayerMaster, "You're currently assigned to kill ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go. Your reward point tally is $slayerPoints.")

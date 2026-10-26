@@ -18,6 +18,14 @@ format = "int"
 persist = true
 format = "string"
 
+[slayer_challenge]
+persist = true
+format = "string"
+
+[slayer_challenge_progress]
+persist = true
+format = "int"
+
 [slayer_last_task]
 persist = true
 format = "string"
