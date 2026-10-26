@@ -97,6 +97,28 @@ class SlayerTaskTest : WorldTest() {
         }
     }
 
+    @TestFactory
+    fun `Monsters without configured slayer experience count towards their task`() = listOf(
+        Triple("lesser_demons", "lesser_demon", 79.0),
+        Triple("lesser_demons", "lesser_demon_melzars_maze", 79.0),
+        Triple("gorak", "gorak", 112.0),
+        Triple("fire_giants", "fire_giant_2", 111.0),
+        Triple("cave_horrors", "cave_horror_2", 55.0),
+    ).map { (task, id, experience) ->
+        dynamicTest("Kill $id on a $task task") {
+            val player = createPlayer(Tile(3231, 3298))
+            player.slayerMaster = "vannaka"
+            player.slayerTask = task
+            player.slayerTaskRemaining = 2
+            val npc = createNPC(id, player.tile.addY(1))
+
+            scripts.filterIsInstance<NPCDeath>().first().slay(player, npc)
+
+            assertEquals(1, player.slayerTaskRemaining)
+            assertEquals(experience, player.experience.get(Skill.Slayer))
+        }
+    }
+
     @Test
     fun `Banshees drain stats without earmuffs`() {
         setRandom(object : FakeRandom() {

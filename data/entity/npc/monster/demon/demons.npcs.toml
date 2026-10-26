@@ -115,6 +115,7 @@ att = 145
 str = 148
 def = 152
 examine = "A big, scary, jet-black demon."
+categories = ["black_demons", "demons"]
 
 [lesser_demon_6]
 id = 13229
@@ -123,6 +124,7 @@ att = 68
 str = 70
 def = 71
 examine = "Lesser, but still pretty big."
+categories = ["demons", "lesser_demons"]
 
 [lesser_demon_7]
 id = 13230

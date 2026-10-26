@@ -68,6 +68,7 @@ def = 115
 range = 72
 max_hit_range = 86
 hunt_mode = "cowardly"
+categories = ["zombies"]
 
 [armoured_zombie_chaos_temple_dungeon_6]
 id = 8154

@@ -18,6 +18,7 @@ respawn_delay = 15
 examine = "The eyes of evil."
 drop_table = "basilisk"
 combat_def = "basilisk"
+slayer_level = 40
 
 [catolax_pollninveach_dungeon]
 id = 7783

@@ -98,6 +98,7 @@ att = 10
 str = 12
 def = 7
 examine = "This one is slacking off."
+categories = ["goblins"]
 
 [cave_goblin_miner_8]
 id = 2078
@@ -106,3 +107,4 @@ att = 10
 str = 12
 def = 7
 examine = "This one is slacking off."
+categories = ["goblins"]

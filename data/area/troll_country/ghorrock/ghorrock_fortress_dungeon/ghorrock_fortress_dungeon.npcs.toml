@@ -23,6 +23,7 @@ mage = 105
 range = 105
 max_hit_magic = 119
 hunt_mode = "cowardly"
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_2]
 id = 9056
@@ -31,6 +32,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_3]
 id = 9057
@@ -39,6 +41,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_4]
 id = 9058
@@ -47,6 +50,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_5]
 id = 9059
@@ -55,6 +59,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_6]
 id = 9061
@@ -63,6 +68,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_7]
 id = 9062
@@ -71,6 +77,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_8]
 id = 9063
@@ -79,6 +86,7 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]
 
 [waterfiend_ghorrock_fortress_dungeon_9]
 id = 9064
@@ -87,3 +95,4 @@ def = 128
 mage = 105
 range = 105
 examine = "A fiendish embodiment of water."
+categories = ["waterfiends"]

@@ -44,6 +44,7 @@ str = 17
 def = 17
 max_hit_crush = 30
 hunt_mode = "cowardly"
+categories = ["skeletons", "undead"]
 
 [skeleton_ullek_2]
 id = 6765
@@ -55,6 +56,7 @@ str = 17
 def = 17
 max_hit_crush = 30
 hunt_mode = "cowardly"
+categories = ["skeletons", "undead"]
 
 [skeleton_ullek_3]
 id = 6766
@@ -66,6 +68,7 @@ str = 17
 def = 17
 max_hit_crush = 30
 hunt_mode = "cowardly"
+categories = ["skeletons", "undead"]
 
 [skeleton_ullek_4]
 id = 6767
@@ -77,6 +80,7 @@ str = 17
 def = 17
 max_hit_crush = 30
 hunt_mode = "cowardly"
+categories = ["skeletons", "undead"]
 
 [skeleton_ullek_5]
 id = 6768
@@ -139,6 +143,7 @@ def = 54
 max_hit_slash = 60
 combat_def = "crocodile"
 hunt_mode = "cowardly"
+categories = ["crocodiles"]
 
 [lead_archaeologist_abigail]
 id = 6786

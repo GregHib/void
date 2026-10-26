@@ -44,3 +44,5 @@ str = 45
 def = 120
 mage = 45
 examine = "There's always room for jelly."
+categories = ["jellies"]
+slayer_level = 52

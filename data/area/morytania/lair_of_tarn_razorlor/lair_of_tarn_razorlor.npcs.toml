@@ -157,6 +157,7 @@ att = 75
 str = 61
 def = 45
 examine = "An angry skeleton."
+categories = ["skeletons", "undead"]
 
 [skeleton_level_87]
 id = 5412
@@ -165,6 +166,7 @@ att = 75
 str = 80
 def = 55
 examine = "Cross bones."
+categories = ["skeletons", "undead"]
 
 [tarn]
 id = 5420
@@ -181,3 +183,4 @@ att = 50
 str = 50
 def = 47
 examine = "A dead woman walking."
+categories = ["undead", "zombies"]

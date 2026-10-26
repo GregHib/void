@@ -16,6 +16,7 @@ hitpoints = 120
 att = 3
 def = 4
 examine = "An ugly green creature."
+categories = ["goblins"]
 
 [goblin_stronghold_of_security_2]
 id = 11261
@@ -24,6 +25,7 @@ att = 12
 str = 13
 def = 7
 examine = "An ugly green creature."
+categories = ["goblins"]
 
 [wolf_stronghold_of_security_3]
 id = 11262
@@ -32,6 +34,7 @@ att = 10
 str = 15
 def = 10
 examine = "Not man's best friend."
+categories = ["wolves"]
 
 [wolf_stronghold_of_security_4]
 id = 11263
@@ -40,3 +43,4 @@ att = 10
 str = 10
 def = 10
 examine = "Not man's best friend."
+categories = ["wolves"]

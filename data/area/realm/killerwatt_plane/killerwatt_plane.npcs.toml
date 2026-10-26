@@ -22,6 +22,7 @@ range = 67
 combat_def = "killerwatt"
 drop_table = "killerwatt"
 examine = "An angry electrical shock!"
+categories = ["killerwatts"]
 
 [storm_cloud_killerwatt_plane]
 id = 3203

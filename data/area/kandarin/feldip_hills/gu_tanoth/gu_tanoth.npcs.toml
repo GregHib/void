@@ -205,3 +205,4 @@ att = 75
 str = 71
 def = 75
 examine = "Tough-looking."
+categories = ["ogres"]

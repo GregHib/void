@@ -35,6 +35,7 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
 
 [cave_horror_3]
 id = 4354
@@ -44,6 +45,7 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
 
 [cave_horror_4]
 id = 4356
@@ -53,6 +55,7 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
 
 [cave_horror_5]
 id = 4357
@@ -62,3 +65,4 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]

@@ -28,6 +28,7 @@ respawn_delay = 15
 drop_table = "crawling_hand"
 categories = ["crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
+slayer_level = 5
 
 [crawling_hand_ring]
 id = 1651
@@ -49,11 +50,13 @@ respawn_delay = 15
 drop_table = "crawling_hand"
 categories = ["crawling_hands", "undead"]
 examine = "Now, that's handy."
+slayer_level = 5
 
 [crawling_hand_large_black]
 id = 1654
 clone = "crawling_hand_large"
 examine = "I'm glad it's just the hand I can see..."
+slayer_level = 5
 
 [crawling_hand_large_brown]
 id = 1655
@@ -67,13 +70,16 @@ respawn_delay = 15
 drop_table = "crawling_hand"
 categories = ["crawling_hands", "undead"]
 examine = "A big severed hand."
+slayer_level = 5
 
 [crawling_hand_large_ring]
 id = 1656
 clone = "crawling_hand_large"
 examine = "Give the guy a big hand....."
+slayer_level = 5
 
 [crawling_hand_large_blood]
 id = 1657
 clone = "crawling_hand_large"
 examine = "A big severed hand."
+slayer_level = 5
