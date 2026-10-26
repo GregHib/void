@@ -9,7 +9,6 @@ import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
 import content.entity.player.logEvent
-import content.quest.questCompleted
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
@@ -219,31 +218,7 @@ class NPCDeath(
         player.exp(Skill.Slayer, slayerExp)
         player.slayerTaskRemaining--
         if (player.slayerTaskRemaining == 0) {
-            player.slayerStreak++
-            var points = when (player.slayerMaster) {
-                "mazchna" -> 15
-                "vannaka" -> 60
-                "chaeldar" -> 150
-                "sumona" -> 180
-                "duradel", "lapalok" -> 225
-                "kuradal" -> 270
-                else -> 0
-            }
-            when {
-                // Points are only earned after Smoking Kills, and not for the first four tasks of a streak
-                !player.questCompleted("smoking_kills") || player.slayerStreak <= 4 -> points = 0
-                player.slayerStreak.rem(50) == 0 -> {}
-                player.slayerStreak.rem(10) == 0 -> points /= 3
-                else -> points /= 15
-            }
-            player.slayerPoints += points
-            player.inc("slayer_tasks_completed")
-            player.clear("slayer_target")
-            if (points == 0) {
-                player.message("You've completed ${player.slayerStreak} tasks in a row. Return to a Slayer Master.")
-            } else {
-                player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
-            }
+            completeAssignment(player)
         } else if (player.slayerTaskRemaining.rem(10) == 0) {
             player.message("You still need to kill ${player.slayerTaskRemaining} monsters to complete your current Slayer assignment.", ChatType.Filter)
         }

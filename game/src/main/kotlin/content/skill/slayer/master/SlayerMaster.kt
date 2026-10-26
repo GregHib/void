@@ -155,6 +155,10 @@ private fun Player.qualifies(rank: SlayerMasterRank): Boolean {
 }
 
 internal suspend fun Player.assignTaskDialogue(master: String) {
+    if (slayerChallenge != "") {
+        challengeDialogue(master)
+        return
+    }
     if (slayerTask != "nothing") {
         if (master == "turael" && Tables.getOrNull("turael_slayer_tasks")?.rows?.none { Rows.get(it).rowId == slayerTask } == true) {
             easierTask(master)
@@ -166,6 +170,9 @@ internal suspend fun Player.assignTaskDialogue(master: String) {
     val rank = slayerMasterRanks.firstOrNull { it.id == master }
     if (rank != null && !qualifies(rank)) {
         npc<Happy>("You are not yet experienced enough to receive my tasks. Come back when you're stronger.")
+        return
+    }
+    if (offerChallenge(master)) {
         return
     }
     roll(master)

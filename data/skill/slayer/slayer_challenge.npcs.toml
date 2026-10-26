@@ -1,0 +1,27 @@
+[ravenous_ghoul]
+id = 11265
+clone = "ghoul"
+drop_table = ""
+hunt_mode = "aggressive"
+categories = ["ghouls"]
+examine = "It's totally savage."
+
+[ravenous_vampire]
+id = 11264
+clone = "vampire"
+hitpoints = 550
+drop_table = "ravenous_vampire"
+hunt_mode = "aggressive"
+categories = ["vampyres"]
+examine = "Where did that come from?"
+
+[ravenous_snail]
+id = 11266
+hitpoints = 280
+att = 1
+str = 15
+def = 15
+combat_def = "ravenous_snail"
+drop_table = "ravenous_snail"
+hunt_mode = "aggressive"
+examine = "It looks hungry!"

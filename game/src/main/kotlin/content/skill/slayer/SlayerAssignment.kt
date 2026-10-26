@@ -31,11 +31,12 @@ class SlayerAssignment : Script {
                 message("Sorry. That would cost 30 and you only have $slayerPoints Slayer ${"Point".plural(slayerPoints)}.")
                 return@interfaceOption
             }
-            if (slayerTask == "nothing") {
+            if (slayerTask == "nothing" && slayerChallenge == "") {
                 message("You need a task in order to skip it.")
                 return@interfaceOption
             }
             slayerPoints -= 30
+            slayerChallenge = ""
             slayerTask = "nothing"
             slayerTaskRemaining = 0
             message("<green>Your assignment has now been cleared. You may freely choose another. $slayerPoints Slayer ${"point".plural(slayerPoints)} remaining.")

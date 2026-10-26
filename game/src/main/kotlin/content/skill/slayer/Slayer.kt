@@ -2,6 +2,7 @@ package content.skill.slayer
 
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ColumnType
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
@@ -159,4 +160,35 @@ private fun hasRequirements(player: Player, row: Int): Boolean {
     }
     val quest = Tables.stringOrNull("slayer_tasks.$category.quest") ?: return true
     return player.questCompleted(quest)
+}
+
+/**
+ * Finish the current assignment, increasing the task streak and awarding the master's points.
+ */
+fun completeAssignment(player: Player) {
+    player.slayerStreak++
+    var points = when (player.slayerMaster) {
+        "mazchna" -> 15
+        "vannaka" -> 60
+        "chaeldar" -> 150
+        "sumona" -> 180
+        "duradel", "lapalok" -> 225
+        "kuradal" -> 270
+        else -> 0
+    }
+    when {
+        // Points are only earned after Smoking Kills, and not for the first four tasks of a streak
+        !player.questCompleted("smoking_kills") || player.slayerStreak <= 4 -> points = 0
+        player.slayerStreak.rem(50) == 0 -> {}
+        player.slayerStreak.rem(10) == 0 -> points /= 3
+        else -> points /= 15
+    }
+    player.slayerPoints += points
+    player.inc("slayer_tasks_completed")
+    player.clear("slayer_target")
+    if (points == 0) {
+        player.message("You've completed ${player.slayerStreak} tasks in a row. Return to a Slayer Master.")
+    } else {
+        player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
+    }
 }
