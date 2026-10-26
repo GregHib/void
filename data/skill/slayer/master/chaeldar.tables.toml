@@ -125,12 +125,12 @@ tip = "Lesser demons are weak to ranged attacks. Although they're relatively wea
 
 [.mutated_zygomites]
 amount = [30, 60]
-weight = 7
+weight = 10
 tip = "Mutated zygomites are hard to destroy and attack with mainly magical damage. They regenerate quickly, so you will need to finish them off with fungicide. We have a bit of a problem with them here in Zanaris."
 
 [.shadow_warriors]
 amount = [110, 170]
-weight = 8
+weight = 10
 tip = "Shadow warriors are dark and mysterious. They hide in the shadows, so be wary of ambushes. Apparently, a large number may be found lurking beneath the Legends' Guild."
 
 [.trolls]
