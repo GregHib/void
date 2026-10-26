@@ -21,14 +21,6 @@ variable = "aquanites"
 [.ankou]
 npc = "ankou"
 
-[.aviansies]
-npc = "aviansie_god_wars"
-# TODO req god wars dungeon knight varbit
-combat_level = 70
-
-[.bandits]
-npc = "guard_bandit"
-
 [.basilisks]
 npc = "basilisk"
 
@@ -60,9 +52,6 @@ combat_level = 100
 
 [.black_dragons]
 npc = "black_dragon"
-
-[.black_knights]
-npc = "black_knight"
 
 [.blue_dragons]
 npc = "blue_dragon"
@@ -102,19 +91,19 @@ combat_level = 5
 npc = "crawling_hand"
 quest = "priest_in_peril"
 
-[.chaos_druid]
-npc = "chaos_druid"
-
-[.crabs]
-npc = "rock_crab"
-
 [.crocodiles]
 npc = "crocodile_kharidian_desert"
 combat_level = 40
 
+[.cyclopes]
+npc = "cyclopse_club"
+
 [.dark_beasts]
 npc = "dark_beast"
 quest = "mournings_end_part_ii"
+
+[.desert_strykewyrm]
+npc = "mound_desert_strykewyrm"
 
 [.dust_devils]
 npc = "dust_devil"
@@ -123,9 +112,6 @@ quest = "what_lies_below"
 [.dagannoth]
 npc = "dagannoth_lighthouse_range_74"
 quest = "horror_from_the_deep"
-
-[.dark_warriors]
-npc = "dark_warrior"
 
 [.dogs]
 npc = "guard_dog"
@@ -152,9 +138,6 @@ combat_level = 15
 [.fever_spiders]
 npc = "fever_spider"
 quest = "rum_deal"
-
-[.frost_dragons]
-npc = "frost_dragon"
 
 [.ghosts]
 npc = "ghost"
@@ -196,6 +179,9 @@ combat_level = 20
 npc = "harpie_bug_swarm"
 skill = ["firemaking", 33]
 
+[.ice_strykewyrm]
+npc = "mound_ice_strykewyrm"
+
 [.infernal_mage]
 npc = "infernal_mage"
 
@@ -220,7 +206,7 @@ npc = "jelly"
 npc = "jungle_horror"
 
 [.jungle_strykewyrm]
-npc = "jungle_strykewyrm"
+npc = "mound_feldip_hills"
 
 [.kalphites]
 npc = "kalphite_worker"
@@ -237,20 +223,15 @@ npc = "kurask"
 [.lesser_demons]
 npc = "lesser_demon"
 
+[.living_rock_creatures]
+npc = "living_rock_protector"
+
 [.lizards]
 npc = "lizard"
 combat_level = 20
 
-[.magic_axe]
-npc = "magic_axe"
-
-[.mogres]
-npc = "mogre"
-combat_level = 30
-quest = "skippy_and_the_mogres"
-
 [.mutated_zygomites]
-npc = "zygomite"
+npc = "fungi"
 
 [.minotaurs]
 npc = "minotaur"
@@ -277,9 +258,6 @@ npc = "ogre_chieftain"
 [.otherworldly_beings]
 npc = "otherworldly_being"
 
-[.pirates]
-npc = "pirate_pirates_cove"
-
 [.pyrefiends]
 npc = "pyrefiend_large"
 combat_level = 25
@@ -289,9 +267,6 @@ npc = "rat"
 
 [.red_dragons]
 npc = "red_dragon"
-
-[.rogues]
-npc = "rogue_castle"
 
 [.rockslugs]
 npc = "rockslug"
@@ -324,12 +299,16 @@ npc = "shadow_warrior"
 npc = "skeleton_heavy"
 combat_level = 15
 
-[.spiritual_creatures]
+[.spiders]
+npc = "spider"
+
+[.spiritual_mages]
 npc = "spiritual_mage_zamorak"
 # TODO req god wars dungeon knight varbit
 
-[.spiders]
-npc = "spider"
+[.spiritual_warriors]
+npc = "spiritual_warrior_zamorak"
+# TODO req god wars dungeon knight varbit
 
 [.steel_dragons]
 npc = "steel_dragon"
@@ -338,19 +317,26 @@ npc = "steel_dragon"
 npc = "suqah"
 quest = "lunar_diplomacy"
 
+[.terror_dogs]
+npc = "terror_dog"
+
 [.turoth]
 npc = "turoth"
 
 [.trolls]
-npc = "ice_troll_troll_country"
+npc = "ice_troll_troll_country_2"
 
 [.tzhaar]
 npc = "tzhaar_mej"
 
 [.vampyres]
-npc = "vampyre_juvinate"
+npc = "vampire"
 combat_level = 35
 quest = "priest_in_peril"
+
+[.warped_tortoises]
+npc = "warped_tortoise"
+quest = "path_of_glouphrie"
 
 [.waterfiends]
 npc = "waterfiend"
@@ -364,13 +350,13 @@ npc = "wolf"
 combat_level = 20
 
 [.wall_beasts]
-npc = "wall_beast"
+npc = "hole_in_the_wall"
 combat_level = 30
 skill = ["defence", 5]
 
 [.warped_creatures]
 npc = "warped_terrorbird"
-quest = "the_path_of_glouphrie"
+quest = "path_of_glouphrie"
 
 [.zombies]
 npc = "zombie"

@@ -22,6 +22,7 @@ slayer_xp = 105.0
 categories = ["dust_devils"]
 respawn_delay = 15
 examine = "The vacuumed face of evil."
+slayer_level = 65
 
 [turoth_chaos_tunnels]
 id = 1629

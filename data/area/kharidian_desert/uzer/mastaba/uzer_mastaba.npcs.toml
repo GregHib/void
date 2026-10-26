@@ -31,6 +31,7 @@ hitpoints = 400
 att = 55
 def = 55
 examine = "It's looking unwell - probably something it ate."
+categories = ["scabarites"]
 
 [small_scarab_uzer_mastaba_3]
 id = 7502
@@ -38,6 +39,7 @@ hitpoints = 400
 att = 55
 def = 55
 examine = "Once a valuable contributor to the ecosystem."
+categories = ["scabarites"]
 
 [small_scarab_uzer_mastaba_4]
 id = 7503
@@ -45,6 +47,7 @@ hitpoints = 400
 att = 55
 def = 55
 examine = "This is what happens if you play with your food."
+categories = ["scabarites"]
 
 [small_scarab_uzer_mastaba_5]
 id = 13231
@@ -52,3 +55,4 @@ hitpoints = 400
 att = 55
 def = 55
 examine = "This dung beetle has been disturbed."
+categories = ["scabarites"]

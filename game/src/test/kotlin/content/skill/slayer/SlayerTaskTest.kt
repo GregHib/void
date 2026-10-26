@@ -106,6 +106,11 @@ class SlayerTaskTest : WorldTest() {
         Triple("gorak", "gorak", 112.0),
         Triple("fire_giants", "fire_giant_2", 111.0),
         Triple("cave_horrors", "cave_horror_2", 55.0),
+        Triple("cyclopes", "cyclopse_club", 100.0),
+        Triple("hill_giants", "cyclops_god_wars", 110.0),
+        Triple("spiritual_warriors", "spiritual_warrior_zamorak", 110.0),
+        Triple("spiritual_mages", "spiritual_mage_zamorak", 75.0),
+        Triple("warped_tortoises", "warped_tortoise", 87.0),
     ).map { (task, id, experience) ->
         dynamicTest("Kill $id on a $task task") {
             val player = createPlayer(Tile(3231, 3298))

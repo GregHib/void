@@ -29,6 +29,7 @@ att = 90
 str = 90
 def = 20
 examine = "A mounted lancer."
+categories = ["scabarites"]
 
 [locust_rider_2]
 id = 5256
@@ -37,3 +38,4 @@ att = 90
 str = 90
 def = 20
 examine = "A mounted lancer."
+categories = ["scabarites"]

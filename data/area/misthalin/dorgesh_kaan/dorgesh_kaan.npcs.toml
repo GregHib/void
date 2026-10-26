@@ -395,3 +395,4 @@ slayer_xp = 52.0
 categories = ["molanisks"]
 drop_table = "molanisk"
 examine = "A strange mole-like being."
+slayer_level = 39

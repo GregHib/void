@@ -195,9 +195,9 @@ private suspend fun Player.roll(master: String) {
     }
     val (type, amount) = task
     npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${type.toSentenceCase()}.")
+    val tip = Tables.stringOrNull("${master}_slayer_tasks.$type.tip") ?: return
     choice {
         option<Quiz>("Got any tips for me?") {
-            val tip = Tables.string("${master}_slayer_tasks.$type.tip")
             npc<Neutral>(tip)
         }
         option<Happy>("Okay, great!")
@@ -215,10 +215,12 @@ private suspend fun Player.teachMe(master: String) {
             npc<Neutral>("We'll start you off hunting ${type.toSentenceCase()}, you'll need to kill $amount of them.")
             npc<Neutral>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
             inventory.add("enchanted_gem")
+            val tip = Tables.stringOrNull("${master}_slayer_tasks.$type.tip")
             choice {
-                option("Got any tips for me?") {
-                    val tip = Tables.string("${master}_slayer_tasks.$type.tip")
-                    npc<Neutral>(tip)
+                if (tip != null) {
+                    option("Got any tips for me?") {
+                        npc<Neutral>(tip)
+                    }
                 }
                 option<Neutral>("Okay, great!") {
                     npc<Happy>("Good luck! Don't forget to come back when you need a new assignment.")
