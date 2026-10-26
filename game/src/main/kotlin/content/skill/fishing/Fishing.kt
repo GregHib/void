@@ -1,6 +1,8 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.quest.miniquest.barbarian_training.barbarianTaskDone
+import content.quest.miniquest.barbarian_training.barbarianTrainingStarted
 import content.skill.constitution.drink.JUJU_SHARK_PERCENT
 import content.skill.constitution.drink.jujuActive
 import content.skill.summoning.familiarActsAsHarpoon
@@ -36,6 +38,13 @@ import world.gregs.voidps.type.random
 class Fishing : Script {
 
     val logger = InlineLogger()
+
+    // Fishing and Strength levels needed to catch harpoon fish without a harpoon
+    val barehand = mapOf(
+        "raw_tuna" to (55 to 35),
+        "raw_swordfish" to (70 to 50),
+        "raw_shark" to (96 to 76),
+    )
 
     init {
         npcOperate("Bait", "fishing_spot_*") { (target) ->
@@ -82,8 +91,12 @@ class Fishing : Script {
             val tackles = spot.itemList("${option.lowercase()}_tackle")
             // The ibis and granite lobster spear fish themselves, standing in for a harpoon.
             val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) || (tackle == "harpoon" && player.familiarActsAsHarpoon()) }
+                ?: if (option == "Harpoon" && player.barbarianTrainingStarted("barehand")) BAREHAND else null
             if (tackle == null) {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
+                break@fishing
+            }
+            if (tackle == BAREHAND && (!player.has(Skill.Fishing, fish.minOf { barehand[it]?.first ?: Int.MAX_VALUE }, true) || !player.has(Skill.Strength, fish.minOf { barehand[it]?.second ?: Int.MAX_VALUE }, true))) {
                 break@fishing
             }
 
@@ -103,14 +116,14 @@ class Fishing : Script {
                 player.message("You don't have any ${required?.toTitleCase()?.plural(2)}.")
                 break
             }
-            if (first) {
+            if (first && tackle != BAREHAND) {
                 player.message(ItemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
             }
             val remaining = player.remaining("action_delay")
             if (remaining < 0) {
                 player.face(target)
                 val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
-                player.anim("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
+                player.anim(if (tackle == BAREHAND) "barehand_fishing" else "fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
                 player.pause(5)
             } else if (remaining > 0) {
                 return
@@ -127,11 +140,20 @@ class Fishing : Script {
                 val chance = row.intRange("chance")
                 val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
+                val levels = barehand[item]
+                if (tackle == BAREHAND && (levels == null || player.levels.get(Skill.Fishing) < levels.first || player.levels.get(Skill.Strength) < levels.second)) {
+                    continue
+                }
                 if (level >= requiredLevel && success(level + player.familiarBoost(Skill.Fishing), chance)) {
                     if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
                     player.exp(Skill.Fishing, experience.toDouble())
+                    if (tackle == BAREHAND) {
+                        player.exp(Skill.Strength, experience / 10.0)
+                        player.anim("barehand_${item.removePrefix("raw_")}")
+                        player.barbarianTaskDone("barehand")
+                    }
                     addCatch(player, item)
                     break
                 }
@@ -159,6 +181,10 @@ class Fishing : Script {
             is TransactionError.Full -> player.inventoryFull()
             else -> logger.warn { "Error adding fish $fish ${player.inventory.transaction.error}" }
         }
+    }
+
+    companion object {
+        private const val BAREHAND = "barehand"
     }
 
     fun bigCatch(catch: String): Boolean = when {
