@@ -1,0 +1,55 @@
+# Each lighting animation holds a different bow model (items 11306-11319 and 14535)
+[light_fire_training_bow]
+id = 6713
+
+[light_fire_shortbow]
+id = 6714
+
+[light_fire_oak_bow]
+id = 6715
+
+[light_fire_willow_bow]
+id = 6716
+
+[light_fire_maple_bow]
+id = 6717
+
+[light_fire_yew_bow]
+id = 6718
+
+[light_fire_magic_bow]
+id = 6719
+
+[light_fire_seercull]
+id = 6720
+
+[light_fire_sacred_clay_bow]
+id = 10990
+
+# Hammer in hand, as with smith_item
+[smith_barbarian_anvil]
+id = 6712
+
+[barehand_fishing]
+id = 6709
+
+[carve_pyre_rune]
+id = 3285
+
+[carve_pyre_adamant]
+id = 3286
+
+[carve_pyre_mithril]
+id = 3287
+
+[carve_pyre_black]
+id = 3288
+
+[carve_pyre_steel]
+id = 3289
+
+[carve_pyre_iron]
+id = 3290
+
+[carve_pyre_bronze]
+id = 3291
