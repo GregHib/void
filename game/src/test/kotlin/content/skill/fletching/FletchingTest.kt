@@ -147,4 +147,42 @@ internal class FletchingTest : WorldTest() {
         assertEquals(10, player.inventory.count("bronze_bolts"))
         assertTrue(player.experience.get(Skill.Fletching) > 0)
     }
+
+    @Test
+    fun `Fletch broad arrows once learnt`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Fletching, 100)
+        player.inventory.add("headless_arrow", 15)
+        player.inventory.add("broad_arrow_heads", 15)
+
+        player.itemOnItem(0, 1)
+        tick(2)
+        assertEquals(0, player.inventory.count("broad_arrow"))
+
+        player["broader_fletching"] = true
+        player.itemOnItem(0, 1)
+        tick(2)
+
+        assertEquals(15, player.inventory.count("broad_arrow"))
+        assertEquals(225.0, player.experience.get(Skill.Fletching))
+    }
+
+    @Test
+    fun `Fletch broad bolts once learnt`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Fletching, 100)
+        player.inventory.add("unfinished_broad_bolts", 10)
+        player.inventory.add("feather", 10)
+
+        player.itemOnItem(0, 1)
+        tick(2)
+        assertEquals(0, player.inventory.count("broad_tipped_bolts"))
+
+        player["broader_fletching"] = true
+        player.itemOnItem(0, 1)
+        tick(2)
+
+        assertEquals(10, player.inventory.count("broad_tipped_bolts"))
+        assertEquals(30.0, player.experience.get(Skill.Fletching))
+    }
 }
