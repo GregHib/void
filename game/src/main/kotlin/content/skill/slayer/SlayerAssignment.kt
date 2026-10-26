@@ -32,13 +32,14 @@ class SlayerAssignment : Script {
                 return@interfaceOption
             }
             if (slayerTask == "nothing") {
-                message("You need a task in order to skip it.") // TODO proper message
+                message("You need a task in order to skip it.")
                 return@interfaceOption
             }
             slayerPoints -= 30
             slayerTask = "nothing"
-//            message("<green>Your assignment has now been cleared. You may freely choose another. 548 Slayer points remaining.")
-            //    npc<Happy>(player["slayer_npc", ""], "") TODO proper message and save npc id on interface open
+            slayerTaskRemaining = 0
+            message("<green>Your assignment has now been cleared. You may freely choose another. $slayerPoints Slayer ${"point".plural(slayerPoints)} remaining.")
+            refresh(this, "slayer_rewards_assignment")
         }
 
         interfaceOption(id = "slayer_rewards_assignment:block_*") {
@@ -50,25 +51,33 @@ class SlayerAssignment : Script {
                 return@interfaceOption
             }
             if (slayerTask == "nothing") {
-                message("You need a task in order to block it.") // TODO proper message
+                message("You need a task in order to block it.")
                 return@interfaceOption
             }
-            var blocked = false
-            for (i in 0 until 5) {
-                if (!contains("blocked_task_$i")) {
-                    set("blocked_task_$i", slayerTask)
-                    slayerTask = "nothing"
-                    slayerPoints -= 100
-                    blocked = true
-                    break
-                }
+            val slot = (0 until BLOCKED_TASK_SLOTS).firstOrNull { !contains("blocked_task_$it") }
+            if (slot == null) {
+                message("You don't have any free block slots.")
+                return@interfaceOption
             }
+            // One task can be blocked for every 50 quest points
+            val required = (slot + 1) * 50
+            if (get("quest_points", 0) < required) {
+                message("<red>Sorry, you'll need at least $required Quest Points to buy this ability.")
+                return@interfaceOption
+            }
+            set("blocked_task_$slot", slayerTask)
+            slayerTask = "nothing"
+            slayerTaskRemaining = 0
+            slayerPoints -= 100
+            refresh(this, "slayer_rewards_assignment")
+        }
 
-//            message("<green>Removed Cave bugs from my ignore list.")
-//            message("<red>Sorry, you'll need at least 250 Quest Points to buy this ability.")
-            if (!blocked) {
-                message("You don't have any free block slots.") // TODO proper message
-            }
+        interfaceOption("Cancel Removal", "slayer_rewards_assignment:cancel_*") {
+            val slot = it.component.removePrefix("cancel_").toInt() - 1
+            val task: String = get("blocked_task_$slot") ?: return@interfaceOption
+            clear("blocked_task_$slot")
+            message("<green>Removed ${task.toSentenceCase()} from my ignore list.")
+            refresh(this, "slayer_rewards_assignment")
         }
     }
 
@@ -77,7 +86,7 @@ class SlayerAssignment : Script {
         player.interfaces.sendText(id, "current_points", points.toString())
         player.interfaces.sendColour(id, "current_points", if (points == 0) Colours.RED else Colours.GOLD)
         var hasBlockedSlot = false
-        for (i in 0 until 5) {
+        for (i in 0 until BLOCKED_TASK_SLOTS) {
             if (!player.contains("blocked_task_$i")) {
                 hasBlockedSlot = true
             }

@@ -1,7 +1,6 @@
 package content.skill.slayer
 
 import content.quest.questCompleted
-import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.data.definition.ColumnType
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
@@ -75,29 +74,52 @@ fun Player.isTask(character: Character?): Boolean {
     return target.categories.contains(slayerTask)
 }
 
-fun assignTask(player: Player, master: String): Pair<String, Int> {
-    val pair = rollTask(player, master) ?: error("No task found for $master")
+var Player.slayerLastTask: String
+    get() = this["slayer_last_task", "nothing"]
+    set(value) {
+        this["slayer_last_task"] = value
+    }
+
+const val BLOCKED_TASK_SLOTS = 5
+
+val Player.blockedTasks: Set<String>
+    get() = (0 until BLOCKED_TASK_SLOTS).filter { contains("blocked_task_$it") }.map { this["blocked_task_$it", "nothing"] }.toSet()
+
+/**
+ * Assigns a new task from [master], or null if the player isn't eligible for any of their tasks.
+ * The same task is never assigned twice in a row unless it's the only one available.
+ */
+fun assignTask(player: Player, master: String): Pair<String, Int>? {
+    val pair = rollTask(player, master, player.slayerLastTask) ?: rollTask(player, master, null) ?: return null
     player.slayerTasks++
     player.slayerMaster = master
     player.slayerTask = pair.first
     player.slayerTaskRemaining = pair.second
+    player.slayerLastTask = pair.first
     return pair
 }
 
-private fun rollTask(player: Player, master: String): Pair<String, Int>? {
+private fun rollTask(player: Player, master: String, exclude: String?): Pair<String, Int>? {
     var total = 0
     val table = Tables.getOrNull("${master}_slayer_tasks") ?: return null
+    val blocked = player.blockedTasks
+    fun eligible(row: Int): Boolean {
+        val category = Rows.get(row).rowId
+        return category != exclude && category !in blocked && hasRequirements(player, row)
+    }
     for (row in table.rows) {
-        val weight = table.int("weight", row)
-        if (!hasRequirements(player, table, row)) {
+        if (!eligible(row)) {
             continue
         }
-        total += weight
+        total += table.int("weight", row)
+    }
+    if (total <= 0) {
+        return null
     }
     val roll = random.nextInt(total)
     var count = 0
     for (row in table.rows) {
-        if (!hasRequirements(player, table, row)) {
+        if (!eligible(row)) {
             continue
         }
         val weight = table.int("weight", row)
@@ -111,7 +133,7 @@ private fun rollTask(player: Player, master: String): Pair<String, Int>? {
     return null
 }
 
-private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
+private fun hasRequirements(player: Player, row: Int): Boolean {
     val category = Rows.get(row).rowId
     // A master listing a task with no matching slayer_tasks entry shouldn't crash the whole
     // assignment - skip it so the other tasks can still be rolled.
@@ -132,6 +154,6 @@ private fun hasRequirements(player: Player, table: TableDefinition, row: Int): B
     if (variable != null && !player.contains(variable)) {
         return false
     }
-    val quest = table.stringOrNull("slayer_tasks.$category.quest", row) ?: return true
+    val quest = Tables.stringOrNull("slayer_tasks.$category.quest") ?: return true
     return player.questCompleted(quest)
 }

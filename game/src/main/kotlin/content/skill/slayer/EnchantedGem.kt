@@ -19,6 +19,10 @@ class EnchantedGem : Script {
     init {
         itemOption("Activate", "enchanted_gem") {
             val master = slayerMaster
+            if (master == "") {
+                message("You need something new to hunt; return to a Slayer master.")
+                return@itemOption
+            }
             npc<Happy>(master, "Hello there ${this@itemOption.name}, what can I help you with?")
             choice {
                 howAmIDoing()
@@ -69,13 +73,13 @@ class EnchantedGem : Script {
     fun ChoiceOption.whereAreYou() {
         option<Quiz>("Where are you?") {
             when (slayerMaster) {
-                "turael" -> npc<Neutral>("You'll find me in Burthorpe. I'll be here when you need a new task.")
-                "vannaka" -> npc<Neutral>("You'll find me in Edgeville. I'll be here when you need a new task.")
-                "duradel" -> npc<Neutral>("You'll find me in Shilo Village. I'll be here when you need a new task.")
-                "mazchna" -> npc<Neutral>("You'll find me in Canifis. I'll be here when you need a new task.")
-                "chaeldar" -> npc<Neutral>("You'll find me in Zanaris. I'll be here when you need a new task.")
-                "sumona" -> npc<Neutral>("You'll find me in Pollnivneach. I'll be here when you need a new task.")
-                "kuradal" -> npc<Neutral>("You'll find me in the ancient cavern, near the Dragonkin Forge. I'll be here when you need a new task.")
+                "turael" -> npc<Neutral>(slayerMaster, "You'll find me in Burthorpe. I'll be here when you need a new task.")
+                "vannaka" -> npc<Neutral>(slayerMaster, "You'll find me in Edgeville. I'll be here when you need a new task.")
+                "duradel" -> npc<Neutral>(slayerMaster, "You'll find me in Shilo Village. I'll be here when you need a new task.")
+                "mazchna" -> npc<Neutral>(slayerMaster, "You'll find me in Canifis. I'll be here when you need a new task.")
+                "chaeldar" -> npc<Neutral>(slayerMaster, "You'll find me in Zanaris. I'll be here when you need a new task.")
+                "sumona" -> npc<Neutral>(slayerMaster, "You'll find me in Pollnivneach. I'll be here when you need a new task.")
+                "kuradal" -> npc<Neutral>(slayerMaster, "You'll find me in the ancient cavern, near the Dragonkin Forge. I'll be here when you need a new task.")
             }
             choice {
                 howAmIDoing()
