@@ -180,6 +180,10 @@ abstract class WorldTest : KoinTest {
                         ItemDefinitions
                     }
                     single(createdAtStart = true) {
+                        NPCDefinitions.set(npcDefinitions, npcIds)
+                        NPCDefinitions
+                    }
+                    single(createdAtStart = true) {
                         AnimationDefinitions.set(animationDefinitions, animationIds)
                         AnimationDefinitions
                     }
@@ -234,7 +238,6 @@ abstract class WorldTest : KoinTest {
             )
         }
 
-        NPCDefinitions.set(npcDefinitions, npcIds)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
         val scripts = ContentLoader().load()

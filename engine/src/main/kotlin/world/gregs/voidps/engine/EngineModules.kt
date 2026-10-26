@@ -69,7 +69,13 @@ fun engineModule(files: ConfigFiles) = module {
         DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
     }
     single(createdAtStart = true) { AccountDefinitions().load() }
-    single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
+    single(createdAtStart = true) {
+        // Required for wildcards
+        get<NPCDefinitions>()
+        get<ObjectDefinitions>()
+        get<ItemDefinitions>()
+        HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"]))
+    }
     single(createdAtStart = true) { ClientScriptDefinitions().load(files.list(Settings["definitions.clientScripts"])) }
     single(createdAtStart = true) { CombatDefinitions().load(files.list(Settings["definitions.combatAttacks"])) }
 }

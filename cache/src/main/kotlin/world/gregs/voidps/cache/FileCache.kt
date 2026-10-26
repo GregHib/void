@@ -28,6 +28,8 @@ class FileCache(
     private val length = main.length()
     private val context = DecompressionContext()
 
+    // Synchronized as reads share file pointers, caches and decompression context
+    @Synchronized
     override fun sector(index: Int, archive: Int): ByteArray? {
         val indexRaf = if (index == 255) index255 else indexes[index] ?: return null
         return sectorCache.getOrPut(index + (archive shl 6)) {
@@ -35,6 +37,7 @@ class FileCache(
         }
     }
 
+    @Synchronized
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
         if (index >= files.size) {
             return null

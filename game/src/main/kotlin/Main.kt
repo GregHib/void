@@ -4,8 +4,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.core.module.Module
@@ -117,12 +119,14 @@ object Main {
         configFiles.update()
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            modules(
-                engineModule(configFiles),
-                gameModule(configFiles),
-                cache(cache, configFiles),
-            )
         }
+        val modules = listOf(
+            engineModule(configFiles),
+            gameModule(configFiles),
+            cache(cache, configFiles),
+        )
+        GlobalContext.loadKoinModules(modules, createEagerInstances = false)
+        createEagerInstances(modules)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader().load()
@@ -133,6 +137,18 @@ object Main {
                 AuditLog.save()
             },
         )
+    }
+
+    /**
+     * Creates all [modules] `createdAtStart` singletons in parallel.
+     * Dependencies must be requested with `get()` so koin can block until they're created.
+     */
+    private fun createEagerInstances(modules: List<Module>) = runBlocking(Dispatchers.Default) {
+        val koin = GlobalContext.get()
+        modules
+            .flatMap { it.eagerInstances }
+            .map { factory -> async { koin.get<Any>(factory.beanDefinition.primaryType, factory.beanDefinition.qualifier) } }
+            .awaitAll()
     }
 
     private fun cache(cache: Cache, files: ConfigFiles): Module {
