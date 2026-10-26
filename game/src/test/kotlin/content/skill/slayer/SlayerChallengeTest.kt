@@ -13,6 +13,8 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import skipDialogues
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.Death
@@ -224,9 +226,14 @@ class SlayerChallengeTest : WorldTest() {
 
         player.itemOption("Activate", "enchanted_gem")
         tick()
+        player.skipDialogues()
+        tick()
 
         val ghoul = NPCs.first { it.id == "ravenous_ghoul" && it.tile.within(Tile(3447, 3470), 5) }
         kill(player, ghoul)
+        tick()
+        assertTrue(player.dialogue != null, "Mazchna checks in after the kill")
+        player.skipDialogues()
         kill(player, createNPC("ravenous_vampire", Tile(3448, 3472)))
         assertEquals("ravenous_creatures", player.slayerChallenge)
         kill(player, createNPC("ravenous_snail", Tile(3448, 3472)))

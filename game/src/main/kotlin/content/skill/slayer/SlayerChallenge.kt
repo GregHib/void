@@ -8,8 +8,11 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Shock
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
@@ -23,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
@@ -30,6 +34,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -164,6 +169,10 @@ class SlayerChallenge : Script {
             player.challengeProgress = player.challengeProgress or (1 shl ring)
             if (player.challengeProgress == (1 shl fairyRings.size) - 1) {
                 player.completeChallenge()
+            }
+            val id = id
+            player.queue("mazchna_contact") {
+                ravenousCreatureKilled(id)
             }
         }
 
@@ -349,23 +358,69 @@ internal suspend fun Player.challengeDialogue(master: String) {
  * Contacting Mazchna with an enchanted gem near a Morytania fairy ring summons a monster for their challenge.
  * @return true if a monster was summoned
  */
-internal fun Player.contactNearFairyRing(): Boolean {
+internal suspend fun Player.contactNearFairyRing(): Boolean {
     if (slayerChallenge != "ravenous_creatures") {
         return false
     }
-    for ((index, ring) in fairyRings.withIndex()) {
-        val (id, tile) = ring
-        if (!this.tile.within(tile, 10) || challengeProgress and (1 shl index) != 0) {
-            continue
-        }
-        if (NPCs.at(tile).any { it.id == id }) {
-            return true
-        }
-        val npc = NPCs.add(id, tile, ticks = TimeUnit.MINUTES.toTicks(5), owner = this)
-        npc.interactPlayer(this, "Attack")
+    val index = fairyRings.indices.firstOrNull { tile.within(fairyRings[it].second, 10) && challengeProgress and (1 shl it) == 0 } ?: return false
+    val (id, ring) = fairyRings[index]
+    if (NPCs.at(ring).any { it.id == id }) {
         return true
     }
-    return false
+    npc<Quiz>(slayerMaster, "Hello, $name. Are you at one of the fairy rings now?")
+    when (id) {
+        "ravenous_ghoul" -> {
+            player<Neutral>("Yes, I've reached the ring near the farming patch to the west of Canifis.")
+            npc<Quiz>(slayerMaster, "Excellent. Can you see anything out of the ordinary?")
+            player<Neutral>("'Out of the ordinary' might be difficult to define around these parts.")
+            statement("A column of butterflies briefly appears swarming around the centre of the fairy ring.")
+            player<Shock>("Wait! Something seems to be happening with the ring.")
+            npc<Quiz>(slayerMaster, "What's happening?")
+            player<Neutral>("The ring is glowing with some sort of magic.")
+            summon(id, ring)
+            npc<Shock>(slayerMaster, "How strange. Wait, $name! Look out!")
+        }
+        "ravenous_vampire" -> {
+            player<Neutral>("Yes, I've reached the ring in the haunted woods to the east of Canifis.")
+            npc<Quiz>(slayerMaster, "Well done, $name. Can you see anything of interest?")
+            player<Shock>("I don't think so... Wait, what's that up in the sky?")
+            summon(id, ring)
+            npc<Shock>(slayerMaster, "Oh no! Look out, $name!")
+        }
+        else -> {
+            player<Neutral>("Yes, I've reached the ring in the swamplands to the south of Canifis.")
+            npc<Quiz>(slayerMaster, "Good work. Is there anything unnatural going on?")
+            player<Neutral>("Does my standing in a festering, stinking swamp count?")
+            npc<Neutral>(slayerMaster, "Not really, $name!")
+            player<Neutral>("Well, I can't see anything worth reporting.")
+            summon(id, ring)
+            npc<Shock>(slayerMaster, "Alright then let's bring you...wait what's that noise?")
+        }
+    }
+    return true
+}
+
+private fun Player.summon(id: String, tile: Tile) {
+    val npc = NPCs.add(id, tile, ticks = TimeUnit.MINUTES.toTicks(5), owner = this)
+    npc.interactPlayer(this, "Attack")
+}
+
+/**
+ * Mazchna checks in after each ravenous creature is killed.
+ */
+private suspend fun Player.ravenousCreatureKilled(id: String) {
+    if (slayerChallenge == "") {
+        npc<Neutral>(slayerMaster, "I don't like this one bit, $name. These attacks have to be more than mere coincidence. I will look into this matter further. You should recover your strength now. Don't forget to come and see me if you would like a new assignment. Thank you for your help, $name.")
+        return
+    }
+    npc<Quiz>(slayerMaster, "Are you okay, $name?")
+    if (id == "ravenous_ghoul") {
+        player<Neutral>("Yes, I think so.")
+        npc<Neutral>(slayerMaster, "Hmm, this does not bode well. We had best continue our investigation with the other rings in the swamplands and the haunted woods.")
+    } else {
+        player<Neutral>("Yes, just about.")
+        npc<Neutral>(slayerMaster, "The evil of the area seems to be attracted to your presence. We had best finish our investigation with the final ring in the swamplands.")
+    }
 }
 
 /**
