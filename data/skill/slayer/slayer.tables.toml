@@ -233,6 +233,13 @@ npc = "living_rock_protector"
 npc = "lizard"
 combat_level = 20
 
+[.mogres]
+npc = "mogre"
+combat_level = 30
+
+[.molanisks]
+npc = "molanisk"
+
 [.mutated_zygomites]
 npc = "fungi"
 

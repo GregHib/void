@@ -47,3 +47,10 @@ examine = "The cable connects the lampposts."
 [dorgesh_lamp_post_light]
 id = 22760
 examine = "A bright light."
+
+[molanisk_wall]
+id = 22545
+examine = "That white dot looks like an eye!"
+
+[molanisk_wall_empty]
+id = 22544
