@@ -209,8 +209,9 @@ class NPCDeath(
         if (player.slayerTask == "nothing" || !npc.categories.contains(player.slayerTask)) {
             return
         }
-        val slayerExp = npc.def["slayer_xp", 0.0]
-        if (slayerExp == 0.0) {
+        // Slayer experience equals the monster's life points unless configured otherwise
+        val slayerExp = npc.def["slayer_xp", npc.def.hitpoints / 10.0]
+        if (slayerExp <= 0.0) {
             logger.warn { "No slayer exp found for slain monster: $npc" }
             return
         }

@@ -79,6 +79,7 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+categories = ["warped_creatures"]
 
 [warped_terrorbird_7]
 id = 6291
@@ -119,6 +120,7 @@ def = 171
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+categories = ["warped_creatures"]
 
 [warped_terrorbird_10]
 id = 6294

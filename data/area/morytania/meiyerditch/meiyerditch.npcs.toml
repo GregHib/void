@@ -340,6 +340,7 @@ range = 110
 max_hit_crush = 110
 combat_def = "vyrewatch"
 hunt_mode = "cowardly"
+categories = ["vampyres"]
 
 [vampyre_juvenile_male]
 id = 4774

@@ -20,3 +20,5 @@ att = 22
 str = 37
 def = 37
 examine = "The winged reptile."
+categories = ["cockatrice"]
+slayer_level = 25

@@ -101,7 +101,7 @@ hitpoints = 100
 slayer_xp = 10.0
 combat_def = "giant_rat"
 drop_table = "giant_rat"
-categories = ["giant_rats"]
+categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
 hunt_mode = "aggressive"
 respawn_delay = 30
@@ -213,6 +213,7 @@ def = 2
 max_hit_stab = 10
 hunt_mode = "aggressive"
 respawn_delay = 30
+categories = ["giant_rats", "rats"]
 
 [battle_mage_zamorak]
 id = 912

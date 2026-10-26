@@ -21,3 +21,5 @@ att = 75
 str = 105
 def = 107
 examine = "Flies like a rock."
+categories = ["gargoyles"]
+slayer_level = 75

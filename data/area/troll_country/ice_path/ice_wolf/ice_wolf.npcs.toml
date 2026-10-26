@@ -56,3 +56,4 @@ att = 150
 str = 150
 def = 70
 examine = "Not man's best friend."
+categories = ["wolves"]
