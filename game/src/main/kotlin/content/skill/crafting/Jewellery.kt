@@ -83,6 +83,10 @@ class Jewellery : Script {
         val type = split.first()
         val gem = split.last()
         val item = Item(if (gem == "enchanted_gem" && type == "ring") "ring_of_slaying_8" else "${gem}_$type")
+        if (item.id == "ring_of_slaying_8" && !contains("ring_bling")) {
+            message("You have not unlocked the ability to craft this. Purchase the ability from a slayer master.")
+            return
+        }
         closeMenu()
         make(item, gem, amount)
     }
