@@ -62,6 +62,24 @@ class BotFletchLogsTest {
     }
 
     @Test
+    fun `Item on item waits for a player delay then sends the interaction`() {
+        player.inventory.add("knife")
+        player.inventory.add("logs")
+        var attempts = 0
+        val world = FakeWorld(execute = { _, _ ->
+            attempts++
+            true
+        })
+        val action = BotItemOnItem("knife", "logs")
+        player.delay = 2
+        assertEquals(BehaviourState.Running, action.update(bot, world, frame))
+        assertEquals(0, attempts)
+        player.delay = 0
+        assertEquals(BehaviourState.Wait(1, BehaviourState.Success), action.update(bot, world, frame))
+        assertEquals(1, attempts)
+    }
+
+    @Test
     fun `Menu respects the arrow shaft setting without mutating table products`() {
         assertEquals(listOf("oak_shortbow_u", "oak_longbow_u", "oak_stock"), fletchableProducts("oak_logs"))
         assertEquals("arrow_shaft", fletchableProducts("logs").first())
