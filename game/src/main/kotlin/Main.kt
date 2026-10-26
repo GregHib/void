@@ -49,6 +49,7 @@ object Main {
     fun main(args: Array<String>) {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
+        ContentLoader.preload()
         val settings = settings()
 
         // File server

@@ -48,6 +48,16 @@ tasks {
         dependsOn("scriptMetadata")
     }
 
+    val main = sourceSets.getByName("main")
+    val preloadDirectory = layout.buildDirectory.dir("generated/preload")
+    val classPreload =
+        register("classPreload", ClassPreloadTask::class.java) {
+            classesDirs.from(main.output.classesDirs)
+            packageName = "content"
+            outputDirectory = preloadDirectory
+        }
+    main.output.dir(mapOf("builtBy" to classPreload), preloadDirectory)
+
     register("scriptMetadata", ScriptMetadataTask::class.java) {
         val main = sourceSets.getByName("main")
         val resources = main.resources.srcDirs.first { it.name == "resources" }
