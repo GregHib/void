@@ -1,5 +1,6 @@
 package content.skill.slayer
 
+import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
 import world.gregs.voidps.engine.data.definition.ColumnType
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -150,8 +151,10 @@ private fun hasRequirements(player: Player, row: Int): Boolean {
     if (pair != null && !player.has(pair.first, pair.second)) {
         return false
     }
+    // Tasks unlocked by a reward or by owning an item; either is enough when a task lists both
     val variable = Tables.stringOrNull("slayer_tasks.$category.variable")
-    if (variable != null && !player.contains(variable)) {
+    val item = Tables.stringOrNull("slayer_tasks.$category.item")
+    if ((variable != null || item != null) && !(variable != null && player.contains(variable)) && !(item != null && player.ownsItem(item))) {
         return false
     }
     val quest = Tables.stringOrNull("slayer_tasks.$category.quest") ?: return true
