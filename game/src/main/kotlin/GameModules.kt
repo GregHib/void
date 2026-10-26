@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Reports
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.file.FileStorage
 import java.io.File
 
@@ -22,20 +23,25 @@ fun gameModule(files: ConfigFiles) = module {
     single { Reports(get()) }
     single { BotManager().load(files) }
     single { loadGraph(files) }
-    single { BotChatModel().load(files, get()) }
+    single { if (Settings["bots.count", 0] > 0) BotChatModel().load(files, get()) else BotChatModel() }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
     single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
     single { InstructionHandlers(InterfaceHandler(get())) }
+    val loadExchange = Settings["grandExchange.enabled", true]
     single(createdAtStart = true) {
-        get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0])
+        if (loadExchange) get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0]) else OpenOffers()
     }
     single(createdAtStart = true) {
-        ExchangeHistory(get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
+        if (loadExchange) {
+            ExchangeHistory(get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
+        } else {
+            ExchangeHistory(mutableMapOf())
+        }
     }
     single(createdAtStart = true) {
-        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get())
+        GrandExchange(get(), get(), if (loadExchange) get<Storage>().claims().toMutableMap() else mutableMapOf(), get(), get(), loaded = loadExchange)
     }
     single {
         if (Settings["storage.type", "files"] == "database") {
