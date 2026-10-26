@@ -6,9 +6,12 @@ import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.timedLoad
+import java.nio.file.FileVisitResult
 import java.nio.file.Files
 import java.nio.file.NoSuchFileException
 import java.nio.file.Path
+import java.nio.file.SimpleFileVisitor
+import java.nio.file.attribute.BasicFileAttributes
 import kotlin.io.path.*
 
 data class ConfigFiles(
@@ -62,30 +65,36 @@ private fun loadLastUpdate(path: Path): Pair<Long, Int> {
     return Pair(lastUpdated, if (reader.remaining > 0) reader.readByte() else -1)
 }
 
+/**
+ * Uses [Files.walkFileTree] as it reuses the attributes read while listing each directory
+ * instead of querying every file individually which is slow on Windows.
+ * Symbolic links aren't followed as resolving them disables that reuse (~4x slower).
+ */
 private fun walkPath(
     map: MutableMap<String, MutableList<String>>,
     dir: Path,
     lastUpdated: Long,
     invalidatedExtensions: MutableSet<String>,
 ) {
-    Files.newDirectoryStream(dir).use { stream ->
-        for (path in stream) {
-            val name = path.name
-            if (!name.endsWith(".toml")) {
-                if (Files.isDirectory(path)) {
-                    walkPath(map, path, lastUpdated, invalidatedExtensions)
+    Files.walkFileTree(
+        dir,
+        object : SimpleFileVisitor<Path>() {
+            override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
+                val name = file.name
+                if (!name.endsWith(".toml")) {
+                    return FileVisitResult.CONTINUE
                 }
-                continue
-            }
-            val extension = name.substringAfter('.')
-            map.getOrPut(extension) { ObjectArrayList() }.add(path.pathString)
+                val extension = name.substringAfter('.')
+                map.getOrPut(extension) { ObjectArrayList() }.add(file.pathString)
 
-            // Check file-type hasn't been marked as invalidated before checking the last modified time for invalidation
-            if (!invalidatedExtensions.contains(extension) && Files.getLastModifiedTime(path).toMillis() > lastUpdated) {
-                invalidatedExtensions.add(extension)
+                // Check file-type hasn't been marked as invalidated before checking the last modified time for invalidation
+                if (!invalidatedExtensions.contains(extension) && attrs.lastModifiedTime().toMillis() > lastUpdated) {
+                    invalidatedExtensions.add(extension)
+                }
+                return FileVisitResult.CONTINUE
             }
-        }
-    }
+        },
+    )
 }
 
 private fun cacheChanged(

@@ -3,6 +3,7 @@ import content.entity.obj.ObjectTeleports
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
@@ -51,6 +52,7 @@ object Main {
         val startTime = System.currentTimeMillis()
         ContentLoader.preload()
         val settings = settings()
+        val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
@@ -60,7 +62,7 @@ object Main {
         AuditLog.info("login online")
 
         // Content
-        val configFiles = configFiles()
+        val configFiles = runBlocking { files.await() }
         try {
             preload(cache, configFiles)
         } catch (ex: Exception) {
