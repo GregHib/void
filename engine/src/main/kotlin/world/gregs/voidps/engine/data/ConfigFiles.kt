@@ -18,8 +18,35 @@ data class ConfigFiles(
     val map: Map<String, List<String>>,
     val cacheUpdate: Boolean = false,
     val extensions: Set<String> = emptySet(),
+    /** Size and modified time of every config file, by path */
+    val stamps: Map<String, Long> = emptyMap(),
+    val cacheModified: Long = 0L,
 ) {
     fun list(path: String): List<String> = map.getOrDefault(path, emptyList())
+
+    /**
+     * A [Snapshot] of the parsed result of [paths], keyed on their sizes and modified times and the cache's modified time.
+     * @param dependencies other files the result depends on, for example definitions that ids are resolved from.
+     * @return null when snapshots are disabled or the files weren't scanned.
+     */
+    fun snapshot(name: String, paths: List<String>, dependencies: List<String> = emptyList()): Snapshot? {
+        if (stamps.isEmpty() || !Settings["storage.snapshots.active", false]) {
+            return null
+        }
+        var key = Snapshot.VERSION.toLong()
+        key = key * 31 + cacheModified
+        key = key * 31 + Settings["development.loadAllObjects", false].toInt()
+        key = key * 31 + Settings["world.members", false].toInt()
+        for (path in paths) {
+            key = key * 31 + path.hashCode()
+            key = key * 31 + (stamps[path] ?: return null)
+        }
+        for (path in dependencies) {
+            key = key * 31 + path.hashCode()
+            key = key * 31 + (stamps[path] ?: return null)
+        }
+        return Snapshot(Path.of(Settings["storage.caching.path"]).resolve("$name.snapshot"), key)
+    }
 
     fun getValue(key: String) = map.getValue(key)
 
@@ -42,14 +69,16 @@ fun configFiles(path: String = Settings["storage.data"], temp: String = Settings
     val (lastUpdated, storeUnusedObjs) = loadLastUpdate(modified)
     val settingsChanged = storeUnusedObjs != Settings["development.loadAllObjects", false].toInt()
     val extensions = mutableSetOf<String>()
+    val stamps = Object2ObjectOpenHashMap<String, Long>()
     timedLoad("config file path") {
         val dirs = data.resolve("dirs.txt").toFile().readLines()
         for (dir in dirs) {
-            walkPath(map, data.resolve(dir), lastUpdated, extensions)
+            walkPath(map, data.resolve(dir), lastUpdated, extensions, stamps)
         }
         map.size
     }
-    return ConfigFiles(map, settingsChanged || cacheChanged(lastUpdated, Path.of(cachePath)), extensions)
+    val cacheModified = cacheModified(Path.of(cachePath))
+    return ConfigFiles(map, settingsChanged || cacheModified > lastUpdated, extensions, stamps, cacheModified)
 }
 
 /**
@@ -75,6 +104,7 @@ private fun walkPath(
     dir: Path,
     lastUpdated: Long,
     invalidatedExtensions: MutableSet<String>,
+    stamps: MutableMap<String, Long>,
 ) {
     Files.walkFileTree(
         dir,
@@ -86,9 +116,11 @@ private fun walkPath(
                 }
                 val extension = name.substringAfter('.')
                 map.getOrPut(extension) { ObjectArrayList() }.add(file.pathString)
+                val modified = attrs.lastModifiedTime().toMillis()
+                stamps[file.pathString] = attrs.size() xor (modified * -7046029254386353131L)
 
                 // Check file-type hasn't been marked as invalidated before checking the last modified time for invalidation
-                if (!invalidatedExtensions.contains(extension) && attrs.lastModifiedTime().toMillis() > lastUpdated) {
+                if (!invalidatedExtensions.contains(extension) && modified > lastUpdated) {
                     invalidatedExtensions.add(extension)
                 }
                 return FileVisitResult.CONTINUE
@@ -97,20 +129,15 @@ private fun walkPath(
     )
 }
 
-private fun cacheChanged(
-    lastUpdated: Long,
-    dir: Path = Path.of(Settings["storage.cache.path"]),
-): Boolean {
+private fun cacheModified(dir: Path = Path.of(Settings["storage.cache.path"])): Long {
+    var latest = 0L
     Files.newDirectoryStream(dir).use { stream ->
         for (path in stream) {
             if (!path.extension.startsWith("dat") && !path.extension.startsWith("idx")) {
                 continue
             }
-            val lastModified = Files.getLastModifiedTime(path).toMillis()
-            if (lastModified > lastUpdated) {
-                return true
-            }
+            latest = maxOf(latest, Files.getLastModifiedTime(path).toMillis())
         }
     }
-    return false
+    return latest
 }

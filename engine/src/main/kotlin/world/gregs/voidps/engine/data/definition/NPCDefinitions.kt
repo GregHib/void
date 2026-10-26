@@ -9,6 +9,8 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.client.ui.chat.toInt
+import world.gregs.voidps.engine.data.Snapshot
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
 
@@ -45,9 +47,13 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
     fun load(
         paths: List<String>,
         dropTables: DropTables? = null,
+        snapshot: Snapshot? = null,
     ): NPCDefinitions {
         timedLoad("npc config") {
             definitions.onEach { it.stringId = it.id.toString() }
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad ids.size
+            }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             // Npcs which explicitly set a custom field, so deferred clones don't overwrite them
             val ids = Object2IntOpenHashMap<String>()
@@ -181,8 +187,66 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 }
             }
             this.ids = ids
+            snapshot?.write {
+                int(ids.size)
+                for ((stringId, id) in ids) {
+                    val definition = definitions[id]
+                    string(stringId)
+                    int(id)
+                    int(definition.hitpoints)
+                    int(definition.regenRate)
+                    int(definition.huntRange)
+                    nullableString(definition.huntMode)
+                    boolean(definition.allowedUnder)
+                    boolean(definition.solid)
+                    boolean(definition.blocksPlayers)
+                    params(definition.params)
+                }
+            }
             ids.size
         }
         return this
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val size = reader.int()
+        val ids = Object2IntOpenHashMap<String>()
+        ids.defaultReturnValue(-1)
+        val strings = arrayOfNulls<String>(size)
+        val ints = IntArray(size)
+        val hitpoints = IntArray(size)
+        val regenRates = IntArray(size)
+        val huntRanges = IntArray(size)
+        val huntModes = arrayOfNulls<String>(size)
+        val flags = IntArray(size)
+        val params = arrayOfNulls<Map<Int, Any>>(size)
+        for (i in 0 until size) {
+            strings[i] = reader.string()
+            ints[i] = reader.int()
+            hitpoints[i] = reader.int()
+            regenRates[i] = reader.int()
+            huntRanges[i] = reader.int()
+            huntModes[i] = reader.nullableString()
+            flags[i] = (reader.boolean().toInt()) or (reader.boolean().toInt() shl 1) or (reader.boolean().toInt() shl 2)
+            params[i] = reader.params()
+        }
+        for (i in 0 until size) {
+            val id = ints[i]
+            ids[strings[i]] = id
+            val definition = definitions[id]
+            definition.stringId = strings[i]!!
+            definition.hitpoints = hitpoints[i]
+            definition.regenRate = regenRates[i]
+            definition.huntRange = huntRanges[i]
+            definition.huntMode = huntModes[i]
+            definition.allowedUnder = flags[i] and 1 != 0
+            definition.solid = flags[i] and 2 != 0
+            definition.blocksPlayers = flags[i] and 4 != 0
+            val map = params[i]
+            if (map != null) {
+                definition.params = map
+            }
+        }
+        this.ids = ids
     }
 }

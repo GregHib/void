@@ -11,6 +11,7 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.Snapshot
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -50,8 +51,11 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(paths: List<String>): ItemDefinitions {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): ItemDefinitions {
         timedLoad("item config") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad ids.size
+            }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>(18_000)
             ids.defaultReturnValue(-1)
@@ -157,8 +161,51 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                 }
             }
             this.ids = ids
+            snapshot?.write {
+                // Several names can share an id, in which case the definition has the last one's
+                int(ids.size)
+                for ((stringId, id) in ids) {
+                    string(stringId)
+                    int(id)
+                }
+                val unique = ids.values.distinct()
+                int(unique.size)
+                for (id in unique) {
+                    int(id)
+                    string(definitions[id].stringId)
+                    params(definitions[id].params)
+                }
+            }
             ids.size
         }
         return this
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val ids = Object2IntOpenHashMap<String>(18_000)
+        ids.defaultReturnValue(-1)
+        repeat(reader.int()) {
+            val stringId = reader.string()
+            ids[stringId] = reader.int()
+        }
+        val size = reader.int()
+        val ints = IntArray(size)
+        val strings = arrayOfNulls<String>(size)
+        val params = arrayOfNulls<Map<Int, Any>>(size)
+        for (i in 0 until size) {
+            ints[i] = reader.int()
+            strings[i] = reader.string()
+            params[i] = reader.params()
+        }
+        for (i in 0 until size) {
+            val definition = definitions[ints[i]]
+            definition.stringId = strings[i]!!
+            val map = params[i]
+            if (map != null) {
+                definition.params = map
+            }
+        }
+        loaded = true
+        this.ids = ids
     }
 }

@@ -159,9 +159,18 @@ object Main {
                 MapDefinitions(CollisionDecoder(), cache).load(files)
             }
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"])) }
-            single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
-            single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"])) }
+            single(createdAtStart = true) {
+                val paths = files.list(Settings["definitions.objects"])
+                ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(paths, files.snapshot("objects", paths))
+            }
+            single(createdAtStart = true) {
+                val paths = files.list(Settings["definitions.npcs"])
+                NPCDefinitions.init(NPCDecoder(members).load(cache)).load(paths, get(), files.snapshot("npcs", paths))
+            }
+            single(createdAtStart = true) {
+                val paths = files.list(Settings["definitions.items"])
+                ItemDefinitions.init(ItemDecoder().load(cache)).load(paths, files.snapshot("items", paths))
+            }
             single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) {
                 get<AnimationDefinitions>()
@@ -182,7 +191,10 @@ object Main {
                 get<NPCDefinitions>()
                 get<ObjectDefinitions>()
                 get<VariableDefinitions>()
-                Tables.load(files.list(Settings["definitions.tables"]))
+                val paths = files.list(Settings["definitions.tables"])
+                // Rows store the ids of the entities they reference
+                val dependencies = listOf("definitions.items", "definitions.npcs", "definitions.objects", "definitions.animations", "definitions.graphics").flatMap { files.list(Settings[it]) }
+                Tables.load(paths, files.snapshot("tables", paths, dependencies))
             }
             single(createdAtStart = true) { GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
             single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }

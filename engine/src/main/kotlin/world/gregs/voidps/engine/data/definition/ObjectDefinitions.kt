@@ -9,6 +9,7 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.data.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
@@ -42,8 +43,11 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
         loaded = false
     }
 
-    fun load(paths: List<String>): ObjectDefinitions {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): ObjectDefinitions {
         timedLoad("object config") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad ids.size
+            }
             val ids = Object2IntOpenHashMap<String>()
             val refs = Object2IntOpenHashMap<String>()
             val intIds = IntOpenHashSet()
@@ -87,8 +91,40 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                 }
             }
             this.ids = ids
+            snapshot?.write {
+                int(ids.size)
+                for ((stringId, id) in ids) {
+                    string(stringId)
+                    int(id)
+                    params(definitions[id].params)
+                }
+            }
             ids.size
         }
         return this
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val size = reader.int()
+        val ids = Object2IntOpenHashMap<String>(size)
+        ids.defaultReturnValue(-1)
+        val strings = arrayOfNulls<String>(size)
+        val ints = IntArray(size)
+        val params = arrayOfNulls<Map<Int, Any>>(size)
+        for (i in 0 until size) {
+            strings[i] = reader.string()
+            ints[i] = reader.int()
+            params[i] = reader.params()
+        }
+        for (i in 0 until size) {
+            val id = ints[i]
+            ids[strings[i]] = id
+            definitions[id].stringId = strings[i]!!
+            val map = params[i]
+            if (map != null) {
+                definitions[id].params = map
+            }
+        }
+        this.ids = ids
     }
 }
