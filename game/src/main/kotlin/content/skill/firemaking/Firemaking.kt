@@ -1,6 +1,10 @@
 package content.skill.firemaking
 
 import content.entity.obj.door.Door.isDoor
+import content.entity.player.dialogue.type.statement
+import content.quest.miniquest.barbarian_training.BarbarianTraining
+import content.quest.miniquest.barbarian_training.barbarianTaskDone
+import content.quest.miniquest.barbarian_training.barbarianTrainingStarted
 import content.skill.summoning.familiarBoost
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
@@ -33,6 +37,25 @@ class Firemaking : Script {
 
     fun burnable(id: String) = Tables.intOrNull("firemaking.$id.xp") != null
 
+    // Bows Otto teaches to light fires with and the animation holding each one
+    val bows = mapOf(
+        "training_bow" to "light_fire_training_bow",
+        "shortbow" to "light_fire_shortbow",
+        "longbow" to "light_fire_shortbow",
+        "oak_shortbow" to "light_fire_oak_bow",
+        "oak_longbow" to "light_fire_oak_bow",
+        "willow_shortbow" to "light_fire_willow_bow",
+        "willow_longbow" to "light_fire_willow_bow",
+        "maple_shortbow" to "light_fire_maple_bow",
+        "maple_longbow" to "light_fire_maple_bow",
+        "yew_shortbow" to "light_fire_yew_bow",
+        "yew_longbow" to "light_fire_yew_bow",
+        "magic_shortbow" to "light_fire_magic_bow",
+        "magic_longbow" to "light_fire_magic_bow",
+        "seercull" to "light_fire_seercull",
+        "sacred_clay_bow" to "light_fire_sacred_clay_bow",
+    )
+
     init {
         itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->
             val log = if (burnable(toItem.id)) toItem else fromItem
@@ -53,6 +76,33 @@ class Firemaking : Script {
             lightFire(this, target)
         }
 
+        itemOnItem(bows.keys.joinToString(","), "*logs") { fromItem, toItem, fromSlot, toSlot ->
+            val bow = if (burnable(toItem.id)) fromItem else toItem
+            val log = if (burnable(toItem.id)) toItem else fromItem
+            val logSlot = if (burnable(toItem.id)) toSlot else fromSlot
+            closeDialogue()
+            queue.clearWeak()
+            if (!barbarianTrainingStarted("bow")) {
+                statement(BarbarianTraining.NOT_STARTED_MESSAGE)
+                return@itemOnItem
+            }
+            if (!canLightOn(tile) || Rows.getOrNull("firemaking.${log.id}") == null) {
+                return@itemOnItem
+            }
+            if (inventory.remove(logSlot, log.id)) {
+                val floorItem = FloorItems.add(tile, log.id, disappearTicks = 300, owner = this)
+                lightFire(this, floorItem, skip = true, bow = bow.id)
+            }
+        }
+
+        itemOnItem("crystal_bow*,new_crystal_bow", "*logs") { _, _ ->
+            message("The bow resists all attempts to light the fire. It seems that the sentient tools of the elves don't approve of you burning down forests.")
+        }
+
+        itemOnItem("dark_bow", "*logs") { _, _ ->
+            message("The innate darkness of the bow sucks all the heat from your firemaking attempt. You realise that this type of bow is useless for firelighting.")
+        }
+
         floorItemOperate("Light") { (target) ->
             lightFire(this, target)
         }
@@ -62,6 +112,7 @@ class Firemaking : Script {
         player: Player,
         floorItem: FloorItem,
         skip: Boolean = player["recently_dropped", false],
+        bow: String? = null,
     ) {
         val row = Rows.getOrNull("firemaking.${floorItem.id}") ?: return
         player.arriveDelay()
@@ -70,8 +121,9 @@ class Firemaking : Script {
         val log = Item(floorItem.id)
         var first = true
         while (player.awaitDialogues()) {
-            val level = row.int("level")
-            if (!player.canLight(log.id, level, floorItem, skip)) {
+            // Lighting with a bow takes 20 more levels than a tinderbox
+            val level = row.int("level") + if (bow != null) 20 else 0
+            if (!player.canLight(log.id, level, floorItem, skip, bow)) {
                 break
             }
             val remaining = player.remaining("action_delay")
@@ -80,7 +132,7 @@ class Firemaking : Script {
                     player.message("You attempt to light the logs.", ChatType.Filter)
                     first = false
                 }
-                player.anim("light_fire")
+                player.anim(if (bow != null) bows.getValue(bow) else "light_fire")
                 player.start("action_delay", 4)
                 player.pause(4)
             } else if (remaining > 0) {
@@ -91,6 +143,9 @@ class Firemaking : Script {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
                 player.exp(Skill.Firemaking, row.int("xp") / 10.0)
                 spawnFire(player, floorItem.tile, row)
+                if (bow != null && log.id == "oak_logs") {
+                    player.barbarianTaskDone("bow")
+                }
                 break
             }
         }
@@ -99,12 +154,16 @@ class Firemaking : Script {
         player.clearAnim()
     }
 
-    fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean): Boolean {
+    fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean, bow: String? = null): Boolean {
         if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
             message("You don't have the required items to light this.")
             return false
         }
-        if (log.endsWith("logs") && !inventory.contains("tinderbox")) {
+        if (bow != null && !inventory.contains(bow)) {
+            message("You don't have the required items to light this.")
+            return false
+        }
+        if (bow == null && log.endsWith("logs") && !inventory.contains("tinderbox")) {
             message("You don't have the required items to light this.")
             return false
         }
