@@ -1,35 +1,19 @@
 package content.area.misthalin.tutorial_island
 
-import content.entity.obj.ObjectTeleports
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.obj.GameObject
 
-/**
- * Doors, gates and ladders that only open once the tutorial has reached the stage they
- * lead on from. A handler registered for a concrete object id replaces the wildcard
- * handlers in [content.entity.obj.door.Doors] and
- * [content.entity.obj.ObjectTeleporting] for that object, so both are re-invoked here
- * after the stage check passes.
- */
-class TutorialObjects(val teleports: ObjectTeleports) : Script {
+/** Stage-gated passages using ordinary door movement and object teleport hooks. */
+class TutorialObjects : Script {
 
     init {
-        // Keep the shared collision closed: only the eligible player steps through.
-        // An account stranded outside by an older server may return to its guide.
-        objectOperate("Open", "door_87_closed") { (target) ->
-            val leaving = tile.x < target.tile.x
-            if (leaving && !allowed(3, target)) {
-                return@objectOperate
-            }
-            if (leaving) {
-                advanceTutorial(3)
-            }
-            enterDoor(target)
-        }
+        objectOperate("Open", "door_87_closed") { (target) -> openFirstDoor(target) }
+
         gatedDoor("gate_72_closed,gate_73_closed", 13)
         gatedDoor("door_88_closed", 14)
         gatedDoor("door_89_closed", 19)
@@ -43,14 +27,8 @@ class TutorialObjects(val teleports: ObjectTeleports) : Script {
         gatedLadder("ladder_tutorial_island_cave_down", "Climb-down", 27)
         gatedLadder("ladder_tutorial_island_rat_pit_up", "Climb-up", 51)
 
-        // Registered on the wildcard so the Mining script's own prospect handler still runs;
-        // a handler bound to the concrete id would replace it instead.
-        objectApproach("Prospect") { (target) ->
-            when (target.id) {
-                "tin_rocks_tutorial_island_1" -> advanceTutorial(29)
-                "copper_rocks_tutorial_island_1" -> advanceTutorial(30)
-            }
-        }
+        // Keep the Mining script's concrete prospect handlers active.
+        objectApproach("Prospect") { (target) -> prospect(target) }
 
         itemOnObjectOperate("bronze_bar", "anvil") {
             advanceTutorial(36)
@@ -58,6 +36,24 @@ class TutorialObjects(val teleports: ObjectTeleports) : Script {
 
         objectOperate("Use", "bank_booth_tutorial_island") {
             advanceTutorial(52)
+        }
+    }
+
+    private suspend fun Player.openFirstDoor(target: GameObject) {
+        val leaving = tile.x < target.tile.x
+        if (leaving && !allowed(3, target)) {
+            return
+        }
+        if (leaving) {
+            advanceTutorial(3)
+        }
+        enterDoor(target)
+    }
+
+    private fun Player.prospect(target: GameObject) {
+        when (target.id) {
+            "tin_rocks_tutorial_island_1" -> advanceTutorial(29)
+            "copper_rocks_tutorial_island_1" -> advanceTutorial(30)
         }
     }
 
@@ -78,13 +74,13 @@ class TutorialObjects(val teleports: ObjectTeleports) : Script {
     }
 
     private fun gatedLadder(id: String, option: String, stage: Int) {
-        objectOperate(option, id) { (target) ->
+        objTeleportTakeOff(option, id) { target, _ ->
             if (!allowed(stage, target)) {
-                return@objectOperate
+                return@objTeleportTakeOff Teleport.CANCEL
             }
-            advanceTutorial(stage)
-            teleports.teleport(this, target, option)
+            Teleport.CONTINUE
         }
+        objTeleportLand(option, id) { _, _ -> advanceTutorial(stage) }
     }
 
     private suspend fun Player.allowed(stage: Int, target: GameObject): Boolean {

@@ -10,39 +10,56 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.queue.weakQueue
-import java.util.WeakHashMap
 
 /** Tutorial instructions cover chat history, so show action refusals as normal statements. */
-class TutorialFeedback(val fonts: FontDefinitions) : Script {
-    private val pending = WeakHashMap<Player, MutableList<String>>()
+class TutorialFeedback(private val fonts: FontDefinitions) : Script {
     init {
-        GameMessageFeedback.listen { player, text, type ->
-            if (!player.inTutorial || !player.hasOpen("tutorial_text") || player.dialogue != null || player.hasMenuOpen() || !isFeedback(text, type)) return@listen
-            val scheduled = player.queue.contains("tutorial_feedback")
-            // A new action may have cancelled the old weak queue; do not revive its messages.
-            if (!scheduled) pending[player] = mutableListOf()
-            val messages = pending.getOrPut(player) { mutableListOf() }
-            // Coalesce related messages without creating a stack of popups.
-            if (messages.size < 5) messages.add(text)
-            if (!scheduled) {
-                player.weakQueue("tutorial_feedback", 1) {
-                    val feedback = pending.remove(this) ?: return@weakQueue
-                    if (!inTutorial || !hasOpen("tutorial_text") || dialogue != null || hasMenuOpen()) return@weakQueue
-                    val font = fonts.get("q8_full")
-                    val lines = feedback.flatMap { font.splitLines(it, 470) }.take(5)
-                    if (lines.isNotEmpty()) statement(lines.joinToString("\n"))
-                }
-            }
-        }
-        // A real dialogue takes precedence over feedback queued just before it opened.
-        interfaceOpened("dialogue_*") {
-            pending.remove(this)
-            queue.clear("tutorial_feedback")
-        }
-        playerDespawn { pending.remove(this) }
+        // No content event observes outgoing messages; this hook preserves their original type.
+        GameMessageFeedback.listen { player, text, type -> player.queueFeedback(text, type) }
+
+        interfaceOpened("dialogue_*") { discardFeedback() }
+
+        playerDespawn { discardFeedback() }
     }
+
+    private fun Player.queueFeedback(text: String, type: ChatType) {
+        if (!inTutorial || !hasOpen("tutorial_text") || dialogue != null || hasMenuOpen() || !isFeedback(text, type)) {
+            return
+        }
+        val scheduled = queue.contains("tutorial_feedback")
+        if (!scheduled) {
+            clear("tutorial_feedback_messages")
+        }
+        val messages = getOrPut("tutorial_feedback_messages") { mutableListOf<String>() }
+        if (messages.size < 5) {
+            messages.add(text)
+        }
+        if (!scheduled) {
+            weakQueue("tutorial_feedback", 1) { showFeedback() }
+        }
+    }
+
+    private suspend fun Player.showFeedback() {
+        val feedback = get<MutableList<String>>("tutorial_feedback_messages") ?: return
+        clear("tutorial_feedback_messages")
+        if (!inTutorial || !hasOpen("tutorial_text") || dialogue != null || hasMenuOpen()) {
+            return
+        }
+        val font = fonts.get("q8_full")
+        val lines = feedback.flatMap { font.splitLines(it, 470) }.take(5)
+        if (lines.isNotEmpty()) {
+            statement(lines.joinToString("\n"))
+        }
+    }
+
+    private fun Player.discardFeedback() {
+        clear("tutorial_feedback_messages")
+        queue.clear("tutorial_feedback")
+    }
+
     companion object {
         private val refusal = Regex("^(?:You (?:can't|cannot|don't|do not|need|must|should|have to|haven't|have not|aren't|are not|are unable|are too)|Your inventory|Nothing interesting happens|I (?:can't|cannot) reach)", RegexOption.IGNORE_CASE)
-        fun isFeedback(text: String, type: ChatType): Boolean = (type == ChatType.Game || type == ChatType.Engine || type == ChatType.Filter) && refusal.containsMatchIn(text.replace(Regex("<[^>]*>"), "").trim())
+
+        internal fun isFeedback(text: String, type: ChatType): Boolean = (type == ChatType.Game || type == ChatType.Engine || type == ChatType.Filter) && refusal.containsMatchIn(text.replace(Regex("<[^>]*>"), "").trim())
     }
 }

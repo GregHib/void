@@ -42,18 +42,7 @@ class TutorialSkills : Script {
             equippedSwordAndShield()
         }
 
-        experience { skill, from, to ->
-            // Login/interface refreshes publish unchanged XP through this same event.
-            if (to <= from) {
-                return@experience
-            }
-            when (skill) {
-                Skill.Firemaking -> advanceTutorial(7)
-                Skill.Attack, Skill.Strength, Skill.Defence -> advanceTutorial(47)
-                Skill.Magic -> advanceTutorial(66)
-                else -> {}
-            }
-        }
+        experience { skill, from, to -> skillExperience(skill, from, to) }
 
         npcDeath("giant_rat_tutorial_island") {
             val killer = killer
@@ -62,6 +51,19 @@ class TutorialSkills : Script {
             }
             killer.advanceTutorial(48)
             killer.advanceTutorial(50)
+        }
+    }
+
+    private fun Player.skillExperience(skill: Skill, from: Int, to: Int) {
+        // Login and interface refreshes also publish unchanged XP through this event.
+        if (to <= from) {
+            return
+        }
+        when (skill) {
+            Skill.Firemaking -> advanceTutorial(7)
+            Skill.Attack, Skill.Strength, Skill.Defence -> advanceTutorial(47)
+            Skill.Magic -> advanceTutorial(66)
+            else -> {}
         }
     }
 

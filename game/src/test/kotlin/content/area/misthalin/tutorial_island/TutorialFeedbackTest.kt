@@ -60,6 +60,24 @@ class TutorialFeedbackTest : WorldTest() {
     }
 
     @Test
+    fun `Queued feedback stays with the player who received it`() {
+        val first = createPlayer {
+            it.set("tutorial_stage", 6)
+            it.set("tutorial_designed", true)
+        }
+        val second = createPlayer {
+            it.set("tutorial_stage", 6)
+            it.set("tutorial_designed", true)
+        }
+        first.noInterest()
+        first.message("I can't reach that.", ChatType.Engine)
+        second.noInterest()
+        tick(4)
+        assertEquals("dialogue_message2", first.dialogue)
+        assertEquals("dialogue_message1", second.dialogue)
+    }
+
+    @Test
     fun `Feedback classification includes engine refusals but never player chat or routine progress`() {
         assertTrue(TutorialFeedback.isFeedback("Nothing interesting happens.", ChatType.Engine))
         assertTrue(TutorialFeedback.isFeedback("You need to have a Woodcutting level of 15.", ChatType.Game))
