@@ -97,7 +97,7 @@ class BarbarianFishing : Script {
             }
             val bait = baits.firstOrNull { inventory.contains(it) }
             if (bait == null) {
-                // TODO confirm message
+                // TODO proper message
                 message("You don't have any bait.")
                 break
             }
@@ -165,13 +165,13 @@ class BarbarianFishing : Script {
         }
         anim("gut_fish")
         if (random.nextInt(guaranteed) >= levels.get(Skill.Cooking)) {
-            // TODO confirm message
+            // TODO proper message
             message("You fail to cut the fish properly.", ChatType.Filter)
             return
         }
         inventory.add(eggs)
         exp(Skill.Cooking, xp)
-        // TODO confirm message
+        // TODO proper message
         message("You cut open the fish and extract some $eggs.", ChatType.Filter)
         val (chance, out) = when (fish) {
             "leaping_trout" -> 1 to 2
@@ -180,7 +180,7 @@ class BarbarianFishing : Script {
         }
         if (random.nextInt(out) < chance) {
             inventory.add("fish_offcuts")
-            // TODO confirm message
+            // TODO proper message
             message("You also find some usable fish offcuts.", ChatType.Filter)
         }
     }

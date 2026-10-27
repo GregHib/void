@@ -174,7 +174,6 @@ class Skippy : Script {
         player<Shifty>("Loony...")
     }
 
-    // Nettle tea and the container it's drunk from
     private val teas = listOf(
         "nettle_tea" to "bowl",
         "cup_of_tea_nettle_tea" to "empty_cup",

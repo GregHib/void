@@ -23,7 +23,7 @@ class BarbarianSkillsBook(books: Books) : Script {
     )
 
     init {
-        // TODO confirm the title, the long book and each lesson starting a new page (from 2009scape and rsmod)
+        // TODO confirm the title, the long book and each lesson starting a new page
         books.generate("barbarian_skills", "What Otto told me.", type = "long") { player -> pages(player) }
     }
 
@@ -36,7 +36,6 @@ class BarbarianSkillsBook(books: Books) : Script {
             if (stage < STARTED) {
                 continue
             }
-            // Each lesson starts on a fresh page
             while (lines.size % LINES_PER_SIDE != 0) {
                 lines.add("")
             }

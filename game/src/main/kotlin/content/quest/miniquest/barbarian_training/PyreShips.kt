@@ -61,24 +61,24 @@ class PyreShips(val drops: DropTables) : Script {
             }
             val spirit = NPCs.findOrNull(tile.regionLevel) { it.id == "ferocious_barbarian_spirit" && it["owner", ""] == accountName }
             if (spirit != null) {
-                // TODO confirm message (from 2009scape)
+                // TODO proper message
                 message("You must defeat the barbarian spirit first.")
                 return@objectOperate
             }
             val bones = listOf("chewed_bones", "mangled_bones").firstOrNull { inventory.contains(it) }
             if (bones == null) {
-                // TODO confirm message (from 2009scape)
+                // TODO proper message
                 message("You need chewed bones or mangled bones in order to do this.")
                 return@objectOperate
             }
             val hatchet = Hatchet.best(this)
             if (hatchet == null) {
-                // TODO confirm message
+                // TODO proper message
                 message("You need a hatchet in order to do this.")
                 return@objectOperate
             }
             if (!inventory.contains("tinderbox") && !BOWS.any { carriesItem(it) }) {
-                // TODO confirm message
+                // TODO proper message
                 message("You need a tinderbox or a bow in order to do this.")
                 return@objectOperate
             }
@@ -111,7 +111,7 @@ class PyreShips(val drops: DropTables) : Script {
                 val npc = NPCs.add("peaceful_barbarian_spirit", target.tile, ticks = 5)
                 npc.face(this)
                 set("barbarian_pyre_bones", (get("barbarian_pyre_bones", 0) + pyre.bones).coerceAtMost(MAX_BLESSED_BONES))
-                // TODO confirm message (from 2009scape)
+                // TODO proper message
                 message("The ancient barbarian is laid to rest. Your future prayer training is blessed, as his spirit ascends to a glorious afterlife. Spirits drop an object into your pack.")
                 val reward = drops.get("peaceful_barbarian_spirit_drop_table")?.roll()?.firstOrNull()?.toItem()
                 if (reward != null) {

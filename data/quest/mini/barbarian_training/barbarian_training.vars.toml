@@ -1,4 +1,3 @@
-# Whether the player has spoken to Otto about their barbarian blood
 [barbarian_training_started]
 format = "boolean"
 persist = true
