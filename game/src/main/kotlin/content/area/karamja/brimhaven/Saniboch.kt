@@ -90,10 +90,12 @@ class Saniboch : Script {
                 statement("You can't go in there without paying!")
                 return@objTeleportTakeOff Teleport.CANCEL
             }
+            Teleport.CONTINUE
+        }
 
+        objTeleportLand("Enter", "brimhaven_dungeon_entrance") { _, _ ->
             // Reset access after one-time use
             set("temporary_saniboch_access", false)
-            Teleport.CONTINUE
         }
     }
 }

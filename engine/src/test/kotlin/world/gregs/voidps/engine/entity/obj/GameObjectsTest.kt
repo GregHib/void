@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
@@ -455,6 +456,25 @@ class GameObjectsTest : KoinMock() {
                 }
             }
         }
+    }
+
+    @Test
+    fun `Removing an object refreshes floor items under it`() {
+        ObjectDefinitions.set(arrayOf(ObjectDefinition(0, sizeX = 2, sizeY = 1)), mapOf("table" to 0))
+        mockkObject(FloorItems)
+        val obj = GameObject(id = 0, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
+        GameObjects.add(obj, collision = false)
+
+        GameObjects.remove(obj, collision = false)
+
+        verifyOrder {
+            ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
+            FloorItems.refresh(Tile(10, 10))
+        }
+        verify {
+            FloorItems.refresh(Tile(11, 10))
+        }
+        unmockkObject(FloorItems)
     }
 
     @AfterEach

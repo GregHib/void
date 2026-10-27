@@ -58,8 +58,8 @@ class Fishing : Script {
     suspend fun fish(player: Player, target: NPC, option: String) {
         player.arriveDelay()
         val spot = Rows.getOrNull("fishing_spots.${target.id}") ?: return
-        // Roll the highest level fish first so lower level catches don't crowd them out
-        val fish = spot.itemList(option.lowercase()).sortedByDescending { Tables.int("fishing.$it.level") }
+        // Listed highest level first so lower level catches don't crowd them out
+        val fish = spot.itemList(option.lowercase())
         target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
         player.softTimers.start("fishing")
         player.closeDialogue()
@@ -91,8 +91,11 @@ class Fishing : Script {
             var bait: String? = null
             var required: String? = null
             for (fish in fish) {
+                if ((Tables.intOrNull("fishing.$fish.level") ?: 0) > player.levels.get(Skill.Fishing)) {
+                    continue
+                }
                 val b = Tables.item("fishing.$fish.bait")
-                if (required == null && b != "empty_box_fish") {
+                if (b != "empty_box_fish") {
                     required = b
                 }
                 if (b == "empty_box_fish" || player.carriesItem(b)) {

@@ -154,9 +154,7 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
     }
 
     /**
-     * Re-sends the items on [tile] so clients rebuild the pile.
-     * The client keeps a pile at the height of the object it was dropped on after that object is removed,
-     * leaving the items visible on the ground but unclickable.
+     * Re-sends the items on [tile] so clients rebuild the pile
      */
     fun refresh(tile: Tile) {
         for (floorItem in at(tile)) {

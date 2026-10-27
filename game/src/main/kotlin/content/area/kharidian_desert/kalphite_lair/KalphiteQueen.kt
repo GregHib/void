@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
@@ -39,14 +38,6 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
     init {
         npcSpawn("kalphite_queen") {
             clearTransform()
-        }
-
-        objectDespawn("kalphite_queen_emerging_legs") {
-            for (x in tile.x until tile.x + width) {
-                for (y in tile.y until tile.y + height) {
-                    FloorItems.refresh(tile.copy(x, y))
-                }
-            }
         }
 
         npcCombatDamage("kalphite_queen") {
