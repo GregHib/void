@@ -358,7 +358,7 @@ internal class BarbarianTrainingTest : WorldTest() {
         player.itemOption("Read", "barbarian_skills")
         tick()
 
-        assertTrue(player.hasOpen("book"))
+        assertTrue(player.hasOpen("book_long"))
         assertTrue(books.get(player, "barbarian_skills").flatten().joinToString(" ").replace("<navy>", "").contains("Fishing with rods"))
     }
 
@@ -399,23 +399,33 @@ internal class BarbarianTrainingTest : WorldTest() {
     }
 
     @Test
-    fun `Otto switches back to regular fishing`() {
-        alwaysSucceed()
-        val player = trainee(Tile(2837, 3431))
-        player.inventory.add("barbarian_skills")
-        player["barbarian_training_barehand"] = BarbarianTraining.REPORTED
-        val otto = createNPC("otto_godblessed_baxtorian_falls", Tile(2837, 3430))
+    fun `Low cooking levels can fail to cut fish`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = until - 1
+        })
+        val player = trainee()
+        player.levels.set(Skill.Cooking, 1)
+        player.inventory.add("knife")
+        player.inventory.add("leaping_trout")
 
-        player.npcOption(otto, "Talk-to")
+        player.itemOnItem("knife", "leaping_trout")
         tick()
-        player.dialogueOption("line3")
-        tick()
-        player.skipDialogues()
-        assertTrue(player["barbarian_fishing_default", false])
 
-        val spot = createNPC("fishing_spot_cage_harpoon_catherby", Tile(2837, 3432))
-        player.npcOption(spot, "Harpoon")
-        tick(10)
-        assertTrue(player.inventory.items.none { it.id.startsWith("raw_") })
+        assertFalse(player.inventory.contains("leaping_trout"))
+        assertFalse(player.inventory.contains("roe"))
+        assertEquals(0.0, player.experience.get(Skill.Cooking))
+    }
+
+    @Test
+    fun `Whirlpool only asks for confirmation the first time`() {
+        val player = trainee(Tile(2511, 3516))
+        player["barbarian_training_pyre"] = BarbarianTraining.STARTED
+        player["ancient_cavern_entered"] = true
+        val whirlpool = createObject("ancient_cavern_whirlpool", Tile(2510, 3506))
+
+        player.objectOption(whirlpool, "Dive in")
+        tick(25)
+
+        assertEquals(Tile(1763, 5365, 1), player.tile)
     }
 }
