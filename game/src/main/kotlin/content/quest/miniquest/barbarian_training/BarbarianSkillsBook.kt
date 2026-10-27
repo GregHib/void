@@ -4,7 +4,9 @@ import content.entity.player.modal.book.Books
 import content.quest.miniquest.barbarian_training.BarbarianTraining.REPORTED
 import content.quest.miniquest.barbarian_training.BarbarianTraining.STARTED
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
 
 /**
  * The journal fills in with each of Otto's lessons as they're told, and their follow-up once reported back.
@@ -13,7 +15,7 @@ class BarbarianSkillsBook(books: Books) : Script {
 
     // Section, heading, instructions and what Otto says once it's done
     val entries = listOf(
-        Triple("rod", "Otto's words on Fishing with rods", "While you civilised folk use small, weak fishing rods, we barbarians are skilled with heavier tackle. We fish in the lake nearby. Take the rod from under my bed in my dwelling and fish in the lake. When you have caught a few fish I am sure you will be able to talk more with me. You will know when you are ready since my inspiration will fill your mind. We do not use these fish quite as you might expect. When you return from Fishing we can speak of this matter.") to "Your mind is as clear as the waters you have fished. This is good. These are fish that are fat with eggs rather than fat with flesh; this is what we will make use of.",
+        Triple("rod", "Otto's words on Fishing with rods", "While you civilised folk use small, weak fishing rods, we barbarians are skilled with heavier tackle. We fish in the lake nearby. Take the rod from under the bed in my dwelling and fish in the lake. When you have caught a few fish I am sure you will be ready to talk more with me. You will know when you are ready, since inspiration will fill your mind. We do not use these fish quite as you might expect. When you return from Fishing we can speak more of this matter.") to "Your mind is as clear as the waters you have fished. This is good. These are fish that are fat with eggs rather than fat with flesh; this is what we will make use of.",
         Triple("barehand", "Otto's words on Fishing without harpoons", "First you must know more of harpoons with fish that are usually caught with such a device. You must catch fish which are usually harpooned, without a harpoon. You will be using your skill and strength. Use your arm as bait. Wriggle you fingers as if they are a tasty snack and hungry tuna and swordfish will throng to be caught by you. The method also works with shark - though in this case the action must be more of a frenzied thrashing of the arm than wiggling.") to "I sense you have more understanding of spears through your studies.",
         Triple("bow", "Otto's words on Firemaking", "The first point in your progression is that of lighting fires without a tinderbox. For this process you will require a strung bow. You use the bow to quickly rotate pieces of wood against one another. As you rub the wood becomes hot, eventually springing into flame. The spirits will aid you, the power they supply you will guide your hands. Go benefit from their guidance upon an oaken log.") to "Firemaking with your bow worked - fine news indeed, secrets our spirit boats now await your attention.",
         Triple("herblore", "Otto's words on potion enhancement", "If you use a knife upon a fat fish, several new fishy items will be produced. Fish parts can be used as bait; the roe or caviar is more useful for us. Mixing these items with two dose potions is what should be performed. This results in nutritious slop, perfect for healing as well as imparting the effect of the potion. Roe can be used for some more easily combined mixes, while caviar may be used for any mixes of which I am aware. You will discover you will be able to decant a four dose potion into an empty vial, thus giving two potions of two doses. This will aid you in the process. In this case I in fact require a potion for my own stocks. Bring a lesser attack potion combined with fish roe.") to "I see you have my potion. I will say no more than that I am eternally grateful.",
@@ -23,53 +25,50 @@ class BarbarianSkillsBook(books: Books) : Script {
     )
 
     init {
-        // TODO confirm the title, the long book and each lesson starting a new page
+        // TODO confirm the layout of lessons after the first
         books.generate("barbarian_skills", "What Otto told me.", type = "long") { player -> pages(player) }
     }
 
     fun pages(player: Player): List<List<String>> {
         val lines = mutableListOf<String>()
         lines.addAll(wrap("I have noted down what Otto has told me in this journal, so that I may not forget my tasks. His instructions are thus faithfully recorded for posterity."))
+        var gap = INTRO_GAP
         for ((entry, done) in entries) {
             val (section, heading, instructions) = entry
             val stage = player.barbarianTraining(section)
             if (stage < STARTED) {
                 continue
             }
-            while (lines.size % LINES_PER_SIDE != 0) {
-                lines.add("")
-            }
+            repeat(gap) { lines.add("") }
+            gap = 1
             lines.addAll(wrap(heading).map { "<navy>$it" })
-            lines.addAll(wrap(instructions))
+            lines.add("")
+            lines.addAll(wrap("'$instructions'"))
             if (stage == REPORTED && done.isNotEmpty()) {
                 lines.add("")
-                lines.addAll(wrap(done))
+                lines.addAll(wrap("'$done'"))
             }
         }
-        return lines.chunked(LINES_PER_SIDE * 2)
+        // The last line of each left-hand page is left empty
+        val pages = mutableListOf<List<String>>()
+        var index = 0
+        while (index < lines.size) {
+            val left = lines.subList(index, minOf(index + LINES_PER_SIDE - 1, lines.size))
+            index += left.size
+            val right = lines.subList(index, minOf(index + LINES_PER_SIDE, lines.size))
+            index += right.size
+            pages.add(left + List(LINES_PER_SIDE - left.size) { "" } + right)
+        }
+        return pages
     }
 
     companion object {
         private const val LINES_PER_SIDE = 15
-        private const val LINE_LENGTH = 31
+        private const val INTRO_GAP = 3
 
-        fun wrap(text: String): List<String> {
-            val lines = mutableListOf<String>()
-            val line = StringBuilder()
-            for (word in text.split(' ')) {
-                if (line.isNotEmpty() && line.length + 1 + word.length > LINE_LENGTH) {
-                    lines.add(line.toString())
-                    line.clear()
-                }
-                if (line.isNotEmpty()) {
-                    line.append(' ')
-                }
-                line.append(word)
-            }
-            if (line.isNotEmpty()) {
-                lines.add(line.toString())
-            }
-            return lines
-        }
+        // Width of a line in the long book
+        private const val LINE_WIDTH = 202
+
+        fun wrap(text: String): List<String> = get<FontDefinitions>().get("q8_full").splitLines(text, LINE_WIDTH)
     }
 }
