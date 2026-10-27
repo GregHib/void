@@ -7,5 +7,5 @@ death_sound = "ghost_death"
 [stronghold_shade.melee]
 range = 1
 anim = "stronghold_shade_attack"
-target_sound = "stronghold_shade_attack"
+target_sound = "stabsword_slash"
 target_hit = { offense = "crush", max = 127 }

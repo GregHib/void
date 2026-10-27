@@ -68,7 +68,7 @@ class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val
         sound(
             when {
                 equipped(EquipSlot.Weapon).isEmpty() -> "unarmed_punch"
-                attackType == "slash" -> "stronghold_shade_attack"
+                attackType == "slash" -> "stabsword_slash"
                 else -> "stabsword_stab"
             },
         )
