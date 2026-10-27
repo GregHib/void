@@ -55,7 +55,8 @@ fun loadGraph(files: ConfigFiles): NavigationGraph {
     val templates = loadTemplates(files.list(Settings["bots.templates"]))
     val shortcuts = mutableListOf<NavigationShortcut>()
     loadShortcuts(shortcuts, templates, files.list(Settings["bots.shortcuts"]))
-    return NavigationGraph.loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
+    val paths = files.list(Settings["bots.nav.definitions"])
+    return NavigationGraph.loadGraph(paths, shortcuts, files.snapshot("nav_graph", paths))
 }
 
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {

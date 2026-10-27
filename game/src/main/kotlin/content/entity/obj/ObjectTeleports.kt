@@ -1,10 +1,12 @@
 package content.entity.obj
 
 import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
@@ -70,9 +72,12 @@ class ObjectTeleports {
 
     fun options(): Set<String> = teleports.keys
 
-    fun load(paths: List<String>): ObjectTeleports {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): ObjectTeleports {
         val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
         timedLoad("object teleport") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad teleports.values.sumOf { it.size }
+            }
             var counter = 0
             for (path in paths) {
                 Config.fileReader(path) {
@@ -130,9 +135,41 @@ class ObjectTeleports {
                 }
             }
             this.teleports = teleports
+            snapshot?.let { save(it) }
             counter
         }
         return this
+    }
+
+    private fun save(snapshot: Snapshot) = snapshot.write {
+        int(teleports.size)
+        for ((option, definitions) in teleports) {
+            string(option)
+            int(definitions.size)
+            for (definition in definitions.values) {
+                string(definition.id)
+                string(definition.option)
+                int(definition.tile.id)
+                long(definition.delta.id)
+                int(definition.to.id)
+            }
+        }
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val size = reader.int()
+        val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>(size, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(size) {
+            val option = reader.string()
+            val count = reader.int()
+            val definitions = Int2ObjectOpenHashMap<TeleportDefinition>(count, Hash.VERY_FAST_LOAD_FACTOR)
+            repeat(count) {
+                val definition = TeleportDefinition(reader.string(), reader.string(), Tile(reader.int()), Delta(reader.long()), Tile(reader.int()))
+                definitions[definition.tile.id] = definition
+            }
+            teleports[option] = definitions
+        }
+        this.teleports = teleports
     }
 
     data class TeleportDefinition(

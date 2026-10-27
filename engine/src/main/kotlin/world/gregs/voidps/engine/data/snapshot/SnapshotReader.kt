@@ -9,6 +9,10 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Polygon
+import world.gregs.voidps.type.area.Rectangle
 import java.nio.ByteBuffer
 
 class SnapshotReader(bytes: ByteArray) {
@@ -114,6 +118,13 @@ class SnapshotReader(bytes: ByteArray) {
             params[key] = value()!!
         }
         return params
+    }
+
+    fun area(): Area = when (val type = byte()) {
+        0 -> Rectangle(int(), int(), int(), int())
+        1 -> Cuboid(int(), int(), int(), int(), int(), int())
+        2 -> Polygon(ints(), ints(), int(), int())
+        else -> throw IllegalStateException("Unknown area type $type")
     }
 
     fun value(): Any? = when (val tag = byte()) {

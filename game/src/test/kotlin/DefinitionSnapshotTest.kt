@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import content.bot.behaviour.navigation.NavigationGraph
+import content.entity.obj.ObjectTeleports
+import content.entity.world.music.MusicTracks
 import org.junit.jupiter.api.io.TempDir
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.MemoryCache
@@ -8,6 +11,7 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
+import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.cache.definition.decoder.FontDecoder
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
@@ -25,11 +29,13 @@ import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions
@@ -38,6 +44,9 @@ import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.area.Polygon
 import java.nio.file.Path
 import java.util.Properties
@@ -292,6 +301,89 @@ internal class DefinitionSnapshotTest {
     }
 
     @Test
+    fun `Enum snapshot matches the loaded enums`() {
+        AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"]))
+        GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"]))
+        ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
+        InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
+        InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
+        NPCDefinitions.init(NPCDecoder(member = true).load(cache)).load(files.list(Settings["definitions.npcs"]), null)
+        StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"]))
+        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"]))
+        VariableDefinitions.load(files)
+        Tables.load(files.list(Settings["definitions.tables"]))
+        val paths = files.list(Settings["definitions.enums"])
+        EnumDefinitions.init(EnumDecoder().load(cache)).load(paths)
+        val definitions = EnumDefinitions.definitions.toList()
+        val ids = EnumDefinitions.ids.toSortedMap()
+        EnumDefinitions.saveDefinitions(files.snapshot("enums", paths)!!)
+        EnumDefinitions.clear()
+        assertTrue(EnumDefinitions.restoreDefinitions(files.snapshot("enums", paths)!!))
+        assertEquals(definitions, EnumDefinitions.definitions.toList())
+        assertEquals(ids, EnumDefinitions.ids.toSortedMap())
+        assertTrue(EnumDefinitions.loaded)
+    }
+
+    @Test
+    fun `Item on item and teleport snapshots match toml`() {
+        ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
+        val itemOnItem = files.list(Settings["definitions.itemOnItem"])
+        val parsed = ItemOnItemDefinitions().load(itemOnItem)
+        ItemOnItemDefinitions().load(itemOnItem, files.snapshot("item_on_item", itemOnItem))
+        assertTrue(temp.resolve("item_on_item.snapshot").exists())
+        val restored = ItemOnItemDefinitions().load(emptyList(), files.snapshot("item_on_item", itemOnItem))
+        assertEquals(parsed.dump(), restored.dump())
+
+        val teleportPaths = files.list(Settings["map.teleports"])
+        val teleports = ObjectTeleports().load(teleportPaths)
+        ObjectTeleports().load(teleportPaths, files.snapshot("object_teleports", teleportPaths))
+        assertTrue(temp.resolve("object_teleports.snapshot").exists())
+        val restoredTeleports = ObjectTeleports().load(emptyList(), files.snapshot("object_teleports", teleportPaths))
+        assertEquals(teleports.options(), restoredTeleports.options())
+        for (option in teleports.options()) {
+            assertEquals(teleports.get(option), restoredTeleports.get(option))
+        }
+    }
+
+    @Test
+    fun `Music and nav graph snapshots match toml`() {
+        val music = files.find(Settings["map.music"])
+        val parsed = MusicTracks().load(music)
+        MusicTracks().load(music, files.snapshot("music_tracks", listOf(music)))
+        assertTrue(temp.resolve("music_tracks.snapshot").exists())
+        val restored = MusicTracks().load("", files.snapshot("music_tracks", listOf(music)))
+        assertEquals(parsed.tracks.map { track -> track?.let { "${it.id} ${it.name} ${it.indexes} ${it.area.map(::shape)}" } }, restored.tracks.map { track -> track?.let { "${it.id} ${it.name} ${it.indexes} ${it.area.map(::shape)}" } })
+        for (region in 0..20000) {
+            assertEquals(parsed[Region(region)].map { "${it.id} ${shape(it.area)}" }, restored[Region(region)].map { "${it.id} ${shape(it.area)}" })
+        }
+
+        Areas.load(files.list(Settings["map.areas"]))
+        val nav = files.list(Settings["bots.nav.definitions"])
+        val graph = NavigationGraph.loadGraph(nav, emptyList())
+        NavigationGraph.loadGraph(nav, emptyList(), files.snapshot("nav_graph", nav))
+        assertTrue(temp.resolve("nav_graph.snapshot").exists())
+        val restoredGraph = NavigationGraph.loadGraph(emptyList(), emptyList(), files.snapshot("nav_graph", nav))
+        assertEquals(graph.nodeCount, restoredGraph.nodeCount)
+        for (node in 0 until graph.nodeCount) {
+            assertEquals(graph.tile(node), restoredGraph.tile(node))
+            assertEquals(graph.edges(node)?.toList(), restoredGraph.edges(node)?.toList())
+            for (edge in graph.edges(node) ?: continue) {
+                assertEquals(graph.weight(edge), restoredGraph.weight(edge))
+                assertEquals(graph.endTile(edge), restoredGraph.endTile(edge))
+                assertEquals(graph.actions(edge), restoredGraph.actions(edge))
+            }
+        }
+    }
+
+
+    @Suppress("UNCHECKED_CAST")
+    private fun ItemOnItemDefinitions.dump(): Map<String, List<ItemOnItemDefinition>> {
+        val field = ItemOnItemDefinitions::class.java.getDeclaredField("definitions")
+        field.isAccessible = true
+        return (field.get(this) as Map<String, List<ItemOnItemDefinition>>).toSortedMap()
+    }
+
+    @Test
     fun `Snapshot is ignored when a file changes`() {
         val paths = files.list(Settings["definitions.objects"])
         ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(paths, files.snapshot("objects", paths))
@@ -329,12 +421,13 @@ internal class DefinitionSnapshotTest {
         return builder.toString()
     }
 
+private fun shape(area: Area): String = if (area is Polygon) "Polygon ${area.xPoints.toList()} ${area.yPoints.toList()} ${area.level} ${area.bounds.maxLevel}" else area.toString()
     private fun dumpAreas(): String {
         val builder = StringBuilder()
         val tags = sortedSetOf<String>()
         for (definition in Areas.named.values.sortedBy { it.name }) {
             val area = definition.area
-            val shape = if (area is Polygon) "Polygon ${area.xPoints.toList()} ${area.yPoints.toList()} ${area.level} ${area.bounds.maxLevel}" else area.toString()
+            val shape = shape(area)
             builder.append(definition.name).append(' ').append(shape).append(' ').append(definition.tags.sorted()).append(' ').append(definition.stringId).append(' ').append(render(definition.params)).append(" |")
             tags.addAll(definition.tags)
             for (level in 0..3) {

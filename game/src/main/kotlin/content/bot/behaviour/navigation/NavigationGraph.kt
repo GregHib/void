@@ -11,6 +11,7 @@ import content.bot.isBot
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Distance
@@ -260,40 +261,19 @@ class NavigationGraph(
     }
 
     companion object {
-        fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>): NavigationGraph {
+        fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>, snapshot: Snapshot? = null): NavigationGraph {
             val builder = Builder()
             timedLoad("nav graph edge") {
-                for (path in paths) {
-                    Config.fileReader(path) {
-                        while (nextPair()) {
-                            val list = key()
-                            assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
-                            while (nextElement()) {
-                                var from = Tile.EMPTY
-                                var to = Tile.EMPTY
-                                var cost = 0
-                                val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
-                                val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
-                                while (nextEntry()) {
-                                    when (val key = key()) {
-                                        "from" -> from = readTile()
-                                        "to" -> to = readTile()
-                                        "cost" -> cost = int()
-                                        "actions" -> actions(actions)
-                                        "requires" -> requirements(requirements)
-                                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                                    }
-                                }
-                                val conditions = if (requirements.isEmpty()) null else Condition.parse(requirements, exception())
-                                if (actions.isEmpty()) {
-                                    val weight = if (cost > 0) cost else Distance.manhattan(from.x, from.y, to.x, to.y)
-                                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), weight, listOf(BotWalkTo(to.x, to.y)), conditions)
-                                    builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), weight, listOf(BotWalkTo(from.x, from.y)), conditions)
-                                } else {
-                                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), conditions)
-                                }
-                            }
-                        }
+                for (edge in edges(paths, snapshot)) {
+                    val from = edge.from
+                    val to = edge.to
+                    val conditions = if (edge.requirements.isEmpty()) null else Condition.parse(edge.requirements, edge.debug)
+                    if (edge.actions.isEmpty()) {
+                        val weight = if (edge.cost > 0) edge.cost else Distance.manhattan(from.x, from.y, to.x, to.y)
+                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), weight, listOf(BotWalkTo(to.x, to.y)), conditions)
+                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), weight, listOf(BotWalkTo(from.x, from.y)), conditions)
+                    } else {
+                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), edge.cost, ActionParser.parse(edge.actions, edge.debug), conditions)
                     }
                 }
                 for (shortcut in shortcuts) {
@@ -303,6 +283,85 @@ class NavigationGraph(
             }
 //            builder.print()
             return builder.build()
+        }
+
+        /**
+         * The edges as they are in the config files, before being turned into actions and conditions.
+         */
+        private class Edge(
+            val from: Tile,
+            val to: Tile,
+            val cost: Int,
+            val actions: List<Pair<String, Map<String, Any>>>,
+            val requirements: List<Pair<String, List<Map<String, Any>>>>,
+            val debug: String,
+        )
+
+        private fun edges(paths: List<String>, snapshot: Snapshot?): List<Edge> {
+            var edges: List<Edge>? = null
+            snapshot?.restore { reader ->
+                edges = reader.list {
+                    Edge(
+                        Tile(reader.int()),
+                        Tile(reader.int()),
+                        reader.int(),
+                        reader.list {
+                            @Suppress("UNCHECKED_CAST")
+                            reader.value() as Pair<String, Map<String, Any>>
+                        },
+                        reader.list {
+                            @Suppress("UNCHECKED_CAST")
+                            reader.value() as Pair<String, List<Map<String, Any>>>
+                        },
+                        reader.string(),
+                    )
+                }
+            }
+            edges?.let { return it }
+            val parsed = parseEdges(paths)
+            snapshot?.write {
+                list(parsed) { edge ->
+                    int(edge.from.id)
+                    int(edge.to.id)
+                    int(edge.cost)
+                    list(edge.actions) { value(it) }
+                    list(edge.requirements) { value(it) }
+                    string(edge.debug)
+                }
+            }
+            return parsed
+        }
+
+        private fun parseEdges(paths: List<String>): List<Edge> {
+            val edges = ArrayList<Edge>()
+            for (path in paths) {
+                Config.fileReader(path) {
+                    while (nextPair()) {
+                        val list = key()
+                        assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
+                        while (nextElement()) {
+                            var from = Tile.EMPTY
+                            var to = Tile.EMPTY
+                            var cost = 0
+                            val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
+                            val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                            while (nextEntry()) {
+                                when (val key = key()) {
+                                    "from" -> from = readTile()
+                                    "to" -> to = readTile()
+                                    "cost" -> cost = int()
+                                    "actions" -> actions(actions)
+                                    "requires" -> requirements(requirements)
+                                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                                }
+                            }
+                            val debug = if (actions.isEmpty() && requirements.isEmpty()) "" else exception()
+                            edges.add(Edge(from, to, cost, actions, requirements, debug))
+                        }
+                    }
+                }
+            }
+            return edges
         }
 
         fun ConfigReader.readTile(): Tile {

@@ -212,7 +212,14 @@ object Main {
                 get<StructDefinitions>()
                 get<ObjectDefinitions>()
                 get<Tables>()
-                EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
+                val paths = files.list(Settings["definitions.enums"])
+                // Keys and values store the ids of the entities they reference
+                val dependencies = listOf("definitions.items", "definitions.npcs", "definitions.objects", "definitions.inventories", "definitions.shops", "definitions.tables").flatMap { files.list(Settings[it]) } +
+                    files.list(Settings["definitions.interfaces"]) + files.find(Settings["definitions.interfaces.types"]) + files.find(Settings["definitions.structs"])
+                files.full("enums", paths, dependencies).restoreOrLoad(EnumDefinitions::restoreDefinitions, EnumDefinitions::saveDefinitions) {
+                    EnumDefinitions.init(EnumDecoder().load(cache)).load(paths)
+                }
+                EnumDefinitions
             }
             single(createdAtStart = true) {
                 get<AnimationDefinitions>()
@@ -273,7 +280,7 @@ object Main {
             }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()
-                ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"]))
+                files.list(Settings["definitions.itemOnItem"]).let { ItemOnItemDefinitions().load(it, files.snapshot("item_on_item", it)) }
             }
             single(createdAtStart = true) {
                 VariableDefinitions.load(files)
@@ -282,7 +289,7 @@ object Main {
                 get<ItemDefinitions>()
                 DropTables().load(files.list(Settings["spawns.drops"]))
             }
-            single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
+            single(createdAtStart = true) { files.list(Settings["map.teleports"]).let { ObjectTeleports().load(it, files.snapshot("object_teleports", it)) } }
         }
         return module
     }

@@ -9,14 +9,12 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
-import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
+import world.gregs.voidps.type.Zone
 import java.util.IdentityHashMap
 
 object Areas {
@@ -148,7 +146,7 @@ object Areas {
         val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
         repeat(reader.int()) {
             val name = reader.string()
-            val area = area(reader)
+            val area = reader.area()
             val tags = ObjectOpenHashSet<String>()
             repeat(reader.int()) { tags.add(reader.string()) }
             val stringId = reader.string()
@@ -184,43 +182,6 @@ object Areas {
         this.named = named
         this.tagged = tagged
         this.areas = areas
-    }
-
-    private fun SnapshotWriter.area(area: Area) {
-        when {
-            area is Rectangle -> {
-                byte(0)
-                int(area.minX)
-                int(area.minY)
-                int(area.maxX)
-                int(area.maxY)
-            }
-            area is Cuboid -> {
-                byte(1)
-                int(area.minX)
-                int(area.minY)
-                int(area.maxX)
-                int(area.maxY)
-                int(area.minLevel)
-                int(area.maxLevel)
-            }
-            area.javaClass == Polygon::class.java -> {
-                area as Polygon
-                byte(2)
-                ints(area.xPoints)
-                ints(area.yPoints)
-                int(area.level)
-                int(area.bounds.maxLevel)
-            }
-            else -> throw IllegalArgumentException("Unsupported area type ${area.javaClass}")
-        }
-    }
-
-    private fun area(reader: SnapshotReader): Area = when (val type = reader.byte()) {
-        0 -> Rectangle(reader.int(), reader.int(), reader.int(), reader.int())
-        1 -> Cuboid(reader.int(), reader.int(), reader.int(), reader.int(), reader.int(), reader.int())
-        2 -> Polygon(reader.ints(), reader.ints(), reader.int(), reader.int())
-        else -> throw IllegalStateException("Unknown area type $type")
     }
 
     @TestOnly

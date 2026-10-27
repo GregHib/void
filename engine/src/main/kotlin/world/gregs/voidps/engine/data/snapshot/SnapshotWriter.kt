@@ -3,6 +3,10 @@ package world.gregs.voidps.engine.data.snapshot
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Polygon
+import world.gregs.voidps.type.area.Rectangle
 
 class SnapshotWriter {
     private var buffer = ByteArray(1 shl 16)
@@ -178,6 +182,36 @@ class SnapshotWriter {
         for ((key, value) in params) {
             int(key)
             value(value)
+        }
+    }
+
+    fun area(area: Area) {
+        when {
+            area is Rectangle -> {
+                byte(0)
+                int(area.minX)
+                int(area.minY)
+                int(area.maxX)
+                int(area.maxY)
+            }
+            area is Cuboid -> {
+                byte(1)
+                int(area.minX)
+                int(area.minY)
+                int(area.maxX)
+                int(area.maxY)
+                int(area.minLevel)
+                int(area.maxLevel)
+            }
+            area.javaClass == Polygon::class.java -> {
+                area as Polygon
+                byte(2)
+                ints(area.xPoints)
+                ints(area.yPoints)
+                int(area.level)
+                int(area.bounds.maxLevel)
+            }
+            else -> throw IllegalArgumentException("Unsupported area type ${area.javaClass}")
         }
     }
 
