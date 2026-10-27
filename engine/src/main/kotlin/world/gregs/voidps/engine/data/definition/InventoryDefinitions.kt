@@ -1,14 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
-import it.unimi.dsi.fastutil.Hash
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import org.jetbrains.annotations.TestOnly
-import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.cache.definition.Params
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.DefinitionsState
 
 object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
 
@@ -39,110 +33,17 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
 
     override fun empty() = InventoryDefinition.EMPTY
 
+    fun install(state: DefinitionsState<InventoryDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
+    }
+
+    /**
+     * Applies the configs to the already decoded [definitions].
+     */
     fun load(paths: List<String>, shopPaths: List<String>): InventoryDefinitions {
-        timedLoad("inventory config") {
-            val ids = Object2IntOpenHashMap<String>()
-            for (path in paths) {
-                loadInventories(path, ids, shop = false)
-            }
-            for (path in shopPaths) {
-                loadInventories(path, ids, shop = true)
-            }
-            this.ids = ids
-            ids.size
-        }
+        ids = InventoryLoader.parse(definitions, paths, shopPaths)
         return this
-    }
-
-    private fun loadInventories(path: String, ids: Object2IntOpenHashMap<String>, shop: Boolean) {
-        Config.fileReader(path) {
-            while (nextSection()) {
-                val stringId = section()
-                var invId = -1
-                val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
-                if (shop) {
-                    params[Params.SHOP] = true
-                }
-                var itemIds: IntArray? = null
-                var amounts: IntArray? = null
-                var length = -1
-                while (nextPair()) {
-                    when (val key = key()) {
-                        "id" -> invId = int()
-                        "defaults" -> {
-                            var index = 0
-                            require(invId != -1) { "Inventory '$stringId' must declare 'id' before 'defaults' at $path." }
-                            val definition = definitions[invId]
-                            if (length > definition.length) {
-                                definition.length = length
-                            }
-                            itemIds = IntArray(definition.length) { -1 }
-                            amounts = IntArray(definition.length)
-                            while (nextElement()) {
-                                var id = ""
-                                var amount = 0
-                                while (nextEntry()) {
-                                    when (val itemKey = key()) {
-                                        "id" -> id = string()
-                                        "amount" -> amount = int()
-                                        else -> throw IllegalArgumentException("Unexpected key: '$itemKey' ${exception()}")
-                                    }
-                                }
-                                require(ItemDefinitions.contains(id)) { "Unable to find inventory item with id '$id' at $path." }
-                                itemIds[index] = ItemDefinitions.get(id).id
-                                amounts[index++] = amount
-                            }
-                        }
-                        "length" -> length = int()
-                        "stack", "currency", "title" -> params[Params.id(key)] = string()
-                        "width", "height" -> params[Params.id(key)] = int()
-                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                    }
-                }
-                if (invId > -1) {
-                    require(!ids.containsKey(stringId)) { "Duplicate inventory found '$stringId' at $path." }
-                    ids[stringId] = invId
-                    if (params.isNotEmpty()) {
-                        definitions[invId].params = params
-                    }
-                    if (itemIds != null) {
-                        definitions[invId].ids = itemIds
-                    }
-                    if (amounts != null) {
-                        definitions[invId].amounts = amounts
-                    }
-                    definitions[invId].stringId = stringId
-                }
-            }
-        }
-    }
-
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
-            int(definition.id)
-            int(definition.length)
-            nullableInts(definition.ids)
-            nullableInts(definition.amounts)
-            string(definition.stringId)
-            params(definition.params)
-        }
-        ids(ids)
-    }
-
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            InventoryDefinition(
-                id = reader.int(),
-                length = reader.int(),
-                ids = reader.nullableInts(),
-                amounts = reader.nullableInts(),
-                stringId = reader.string(),
-                params = reader.params(),
-            )
-        }
-        val ids = reader.ids()
-        init(definitions)
-        this.ids = ids
     }
 }

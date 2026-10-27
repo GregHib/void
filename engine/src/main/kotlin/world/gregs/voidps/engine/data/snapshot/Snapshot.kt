@@ -12,8 +12,8 @@ import kotlin.io.path.readBytes
 import kotlin.io.path.writeBytes
 
 /**
- * A binary copy of the final result of parsing a set of config files, so the files only need parsing again when they change.
- * Valid while the [key] (derived from the files' sizes and modified times) matches the one the snapshot was written with.
+ * A binary copy of the state a loader built, so the cache and config files only need reading again when they change.
+ * Valid while the [key] (derived from everything the loader reads) matches the one the snapshot was written with.
  */
 class Snapshot(private val path: Path, private val key: Long) {
 
@@ -34,17 +34,16 @@ class Snapshot(private val path: Path, private val key: Long) {
     }
 
     /**
-     * Decodes the snapshot with [block], which should only apply what it decodes once reading has completed.
-     * @return true if the snapshot was valid and [block] completed.
+     * Decodes the snapshot with [block].
+     * @return the decoded value, or null if the snapshot wasn't valid or couldn't be decoded.
      */
-    fun restore(block: (SnapshotReader) -> Unit): Boolean {
-        val reader = reader() ?: return false
+    fun <T : Any> read(block: (SnapshotReader) -> T): T? {
+        val reader = reader() ?: return null
         return try {
             block(reader)
-            true
         } catch (e: Exception) {
             logger.warn(e) { "Unable to restore snapshot ${path.name}." }
-            false
+            null
         }
     }
 
@@ -68,21 +67,5 @@ class Snapshot(private val path: Path, private val key: Long) {
     companion object {
         private val logger = InlineLogger()
         private const val MAGIC = 0x564F4944
-
-        /** Increment when the encoding or the content of any snapshot changes. */
-        const val VERSION = 1
-    }
-}
-
-/**
- * Restores from the snapshot if it's valid, otherwise [load]s and then saves it.
- */
-inline fun Snapshot?.restoreOrLoad(restore: (Snapshot) -> Boolean, save: (Snapshot) -> Unit, load: () -> Unit) {
-    if (this != null && restore(this)) {
-        return
-    }
-    load()
-    if (this != null) {
-        save(this)
     }
 }

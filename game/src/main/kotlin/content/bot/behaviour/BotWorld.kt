@@ -44,7 +44,8 @@ interface BotWorld {
 
 class BotGameWorld : BotWorld {
     val handlers: InstructionHandlers = get()
-    val graph: NavigationGraph = get()
+    val graph: NavigationGraph
+        get() = NavigationGraphLoader.graph
     val steps: StepValidator = get()
     val pathFinder: PathFinder = get()
     val lineValidator: LineValidator = get()

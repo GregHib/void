@@ -1,17 +1,15 @@
 package content.entity.obj
 
 import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
-import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import kotlinx.serialization.Serializable
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
@@ -72,106 +70,75 @@ class ObjectTeleports {
 
     fun options(): Set<String> = teleports.keys
 
-    fun load(paths: List<String>, snapshot: Snapshot? = null): ObjectTeleports {
-        val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
-        timedLoad("object teleport") {
-            if (snapshot != null && restore(snapshot)) {
-                return@timedLoad teleports.values.sumOf { it.size }
-            }
-            var counter = 0
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var option = ""
-                        var tile = Tile.EMPTY
-                        var to = Tile.EMPTY
-                        var delta = Delta.EMPTY
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "option" -> option = string()
-                                "tile" -> tile = readTile()
-                                "delta" -> {
-                                    var x = 0
-                                    var y = 0
-                                    var level = 0
-                                    while (nextEntry()) {
-                                        when (val k = key()) {
-                                            "x" -> x = int()
-                                            "y" -> y = int()
-                                            "level" -> level = int()
-                                            else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
-                                        }
-                                    }
-                                    delta = Delta(x, y, level)
-                                }
-                                "to" -> to = readTile()
-                                "near" -> {
-                                    var x = 0
-                                    var y = 0
-                                    var level = 0
-                                    var width = 1
-                                    var height = 1
-                                    while (nextEntry()) {
-                                        when (val k = key()) {
-                                            "x" -> x = int()
-                                            "y" -> y = int()
-                                            "width" -> width = int()
-                                            "height" -> height = int()
-                                            "level" -> level = int()
-                                            else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
-                                        }
-                                    }
-                                    to = Tile(x, y, level)
-                                    delta = Delta(width, height)
-                                }
-                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                            }
-                        }
-                        val definition = TeleportDefinition(stringId, option, tile, delta, to)
-                        teleports.getOrPut(option) { Int2ObjectOpenHashMap() }.put(tile.id, definition)
-                        counter++
-                    }
-                }
-            }
-            this.teleports = teleports
-            snapshot?.let { save(it) }
-            counter
-        }
+    fun install(state: Map<String, Map<Int, TeleportDefinition>>) {
+        teleports = state
+    }
+
+    fun load(paths: List<String>): ObjectTeleports {
+        install(parse(paths))
         return this
     }
 
-    private fun save(snapshot: Snapshot) = snapshot.write {
-        int(teleports.size)
-        for ((option, definitions) in teleports) {
-            string(option)
-            int(definitions.size)
-            for (definition in definitions.values) {
-                string(definition.id)
-                string(definition.option)
-                int(definition.tile.id)
-                long(definition.delta.id)
-                int(definition.to.id)
+    internal fun parse(paths: List<String>): Map<String, Map<Int, TeleportDefinition>> {
+        val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var option = ""
+                    var tile = Tile.EMPTY
+                    var to = Tile.EMPTY
+                    var delta = Delta.EMPTY
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "option" -> option = string()
+                            "tile" -> tile = readTile()
+                            "delta" -> {
+                                var x = 0
+                                var y = 0
+                                var level = 0
+                                while (nextEntry()) {
+                                    when (val k = key()) {
+                                        "x" -> x = int()
+                                        "y" -> y = int()
+                                        "level" -> level = int()
+                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    }
+                                }
+                                delta = Delta(x, y, level)
+                            }
+                            "to" -> to = readTile()
+                            "near" -> {
+                                var x = 0
+                                var y = 0
+                                var level = 0
+                                var width = 1
+                                var height = 1
+                                while (nextEntry()) {
+                                    when (val k = key()) {
+                                        "x" -> x = int()
+                                        "y" -> y = int()
+                                        "width" -> width = int()
+                                        "height" -> height = int()
+                                        "level" -> level = int()
+                                        else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    }
+                                }
+                                to = Tile(x, y, level)
+                                delta = Delta(width, height)
+                            }
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                        }
+                    }
+                    val definition = TeleportDefinition(stringId, option, tile, delta, to)
+                    teleports.getOrPut(option) { Int2ObjectOpenHashMap() }.put(tile.id, definition)
+                }
             }
         }
+        return teleports
     }
 
-    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val size = reader.int()
-        val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>(size, Hash.VERY_FAST_LOAD_FACTOR)
-        repeat(size) {
-            val option = reader.string()
-            val count = reader.int()
-            val definitions = Int2ObjectOpenHashMap<TeleportDefinition>(count, Hash.VERY_FAST_LOAD_FACTOR)
-            repeat(count) {
-                val definition = TeleportDefinition(reader.string(), reader.string(), Tile(reader.int()), Delta(reader.long()), Tile(reader.int()))
-                definitions[definition.tile.id] = definition
-            }
-            teleports[option] = definitions
-        }
-        this.teleports = teleports
-    }
-
+    @Serializable
     data class TeleportDefinition(
         val id: String,
         val option: String,

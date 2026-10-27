@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.config.WeaponAnimationDefinition
-import world.gregs.voidps.engine.timedLoad
 
 class WeaponAnimationDefinitions {
 
@@ -17,21 +16,22 @@ class WeaponAnimationDefinitions {
     fun getOrNull(key: String) = definitions[key]
 
     fun load(path: String): WeaponAnimationDefinitions {
-        timedLoad("weapon animation definition") {
-            val definitions = Object2ObjectOpenHashMap<String, WeaponAnimationDefinition>()
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val stringId = section()
-                    val types = Int2ObjectOpenHashMap<String>(4, Hash.VERY_FAST_LOAD_FACTOR)
-                    while (nextPair()) {
-                        types[Params.id(key())] = string()
-                    }
-                    definitions[stringId] = WeaponAnimationDefinition(stringId = stringId, attackTypes = types)
+        val definitions = Object2ObjectOpenHashMap<String, WeaponAnimationDefinition>()
+        Config.fileReader(path) {
+            while (nextSection()) {
+                val stringId = section()
+                val types = Int2ObjectOpenHashMap<String>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                while (nextPair()) {
+                    types[Params.id(key())] = string()
                 }
+                definitions[stringId] = WeaponAnimationDefinition(stringId = stringId, attackTypes = types)
             }
-            this.definitions = definitions
-            this.definitions.size
         }
+        this.definitions = definitions
         return this
+    }
+
+    internal fun copyFrom(other: WeaponAnimationDefinitions) {
+        definitions = other.definitions
     }
 }

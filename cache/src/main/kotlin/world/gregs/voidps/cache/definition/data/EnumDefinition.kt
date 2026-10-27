@@ -1,9 +1,13 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.EnumMapSerializer
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 import world.gregs.voidps.type.random
 
+@Serializable
 data class EnumDefinition(
     override var id: Int = -1,
     var keyType: Char = 0.toChar(),
@@ -11,8 +15,10 @@ data class EnumDefinition(
     var defaultString: String = "null",
     var defaultInt: Int = 0,
     var length: Int = 0,
+    @Serializable(with = EnumMapSerializer::class)
     var map: Map<Int, Any>? = null,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {

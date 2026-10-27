@@ -1,5 +1,4 @@
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.obj.ObjectTeleports
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,21 +14,16 @@ import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.data.snapshot.restoreOrLoad
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.LoaderGraph
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
@@ -49,6 +43,16 @@ object Main {
     private val logger = InlineLogger()
     lateinit var server: GameServer
         private set
+
+    private lateinit var graph: LoaderGraph
+    private lateinit var loaded: Map<Loader<*>, Any>
+    private lateinit var cache: Cache
+
+    fun reload(name: String, files: ConfigFiles): List<String> {
+        val (reloaded, results) = graph.reload(name, files, cache, loaded)
+        loaded = results
+        return reloaded
+    }
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -118,18 +122,26 @@ object Main {
     }
 
     private fun preload(cache: Cache, configFiles: ConfigFiles) {
-        configFiles.update()
         startKoin {
             slf4jLogger(level = Level.ERROR)
         }
+        this.cache = cache
+        graph = LoaderGraph(engineLoaders() + gameLoaders())
+        loaded = graph.run(configFiles, cache)
         val modules = listOf(
-            engineModule(configFiles),
+            engineModule(),
             gameModule(configFiles),
-            cache(cache, configFiles),
+            definitionsModule(),
+            gameDefinitionsModule(),
+            module {
+                single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
+                single { loaded.getValue(MapLoader) as MapDefinitions }
+                single { cache }
+            },
         )
         GlobalContext.loadKoinModules(modules, createEagerInstances = false)
         createEagerInstances(modules)
-        engineLoad(configFiles)
+        engineLoad()
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader().load()
         Wildcards.update(Settings["storage.wildcards"])
@@ -151,147 +163,6 @@ object Main {
             .flatMap { it.eagerInstances }
             .map { factory -> async { koin.get<Any>(factory.beanDefinition.primaryType, factory.beanDefinition.qualifier) } }
             .awaitAll()
-    }
-
-    /**
-     * A snapshot of the definitions themselves, if enabled.
-     */
-    private fun ConfigFiles.full(name: String, paths: List<String>, dependencies: List<String> = emptyList()): Snapshot? = if (Settings["storage.snapshots.full", true]) snapshot(name, paths, dependencies) else null
-
-    private fun cache(cache: Cache, files: ConfigFiles): Module {
-        val members = Settings["world.members", false]
-        // Whether to snapshot the definitions themselves, instead of only the parsed configs
-        val fullSnapshots = Settings["storage.snapshots.full", true]
-        val module = module {
-            single(createdAtStart = true) {
-                get<ObjectDefinitions>()
-                MapDefinitions(CollisionDecoder(), cache).load(files)
-            }
-            single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) {
-                val paths = files.list(Settings["definitions.objects"])
-                val all = if (fullSnapshots) files.snapshot("objects.all", paths) else null
-                if (all == null || !ObjectDefinitions.restoreDefinitions(all)) {
-                    ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(paths, if (all == null) files.snapshot("objects", paths) else null)
-                    all?.let { ObjectDefinitions.saveDefinitions(it) }
-                }
-                ObjectDefinitions
-            }
-            single(createdAtStart = true) {
-                val paths = files.list(Settings["definitions.npcs"])
-                val all = if (fullSnapshots) files.snapshot("npcs.all", paths) else null
-                if (all == null || !NPCDefinitions.restoreDefinitions(all)) {
-                    NPCDefinitions.init(NPCDecoder(members).load(cache)).load(paths, get<DropTables>(), if (all == null) files.snapshot("npcs", paths) else null)
-                    all?.let { NPCDefinitions.saveDefinitions(it) }
-                }
-                NPCDefinitions
-            }
-            single(createdAtStart = true) {
-                val paths = files.list(Settings["definitions.items"])
-                val all = if (fullSnapshots) files.snapshot("items.all", paths) else null
-                if (all == null || !ItemDefinitions.restoreDefinitions(all)) {
-                    ItemDefinitions.init(ItemDecoder().load(cache)).load(paths, if (all == null) files.snapshot("items", paths) else null)
-                    all?.let { ItemDefinitions.saveDefinitions(it) }
-                }
-                ItemDefinitions
-            }
-            single(createdAtStart = true) {
-                val paths = files.list(Settings["definitions.animations"])
-                files.full("animations", paths).restoreOrLoad(AnimationDefinitions::restoreDefinitions, AnimationDefinitions::saveDefinitions) {
-                    AnimationDefinitions.init(AnimationDecoder().load(cache)).load(paths)
-                }
-                AnimationDefinitions
-            }
-            single(createdAtStart = true) {
-                get<AnimationDefinitions>()
-                get<GraphicDefinitions>()
-                get<ItemDefinitions>()
-                get<InterfaceDefinitions>()
-                get<InventoryDefinitions>()
-                get<NPCDefinitions>()
-                get<StructDefinitions>()
-                get<ObjectDefinitions>()
-                get<Tables>()
-                val paths = files.list(Settings["definitions.enums"])
-                // Keys and values store the ids of the entities they reference
-                val dependencies = listOf("definitions.items", "definitions.npcs", "definitions.objects", "definitions.inventories", "definitions.shops", "definitions.tables").flatMap { files.list(Settings[it]) } +
-                    files.list(Settings["definitions.interfaces"]) + files.find(Settings["definitions.interfaces.types"]) + files.find(Settings["definitions.structs"])
-                files.full("enums", paths, dependencies).restoreOrLoad(EnumDefinitions::restoreDefinitions, EnumDefinitions::saveDefinitions) {
-                    EnumDefinitions.init(EnumDecoder().load(cache)).load(paths)
-                }
-                EnumDefinitions
-            }
-            single(createdAtStart = true) {
-                get<AnimationDefinitions>()
-                get<GraphicDefinitions>()
-                get<ItemDefinitions>()
-                get<NPCDefinitions>()
-                get<ObjectDefinitions>()
-                get<VariableDefinitions>()
-                val paths = files.list(Settings["definitions.tables"])
-                // Rows store the ids of the entities they reference
-                val dependencies = listOf("definitions.items", "definitions.npcs", "definitions.objects", "definitions.animations", "definitions.graphics").flatMap { files.list(Settings[it]) }
-                Tables.load(paths, files.snapshot("tables", paths, dependencies))
-            }
-            single(createdAtStart = true) {
-                val paths = files.list(Settings["definitions.graphics"])
-                files.full("graphics", paths).restoreOrLoad(GraphicDefinitions::restoreDefinitions, GraphicDefinitions::saveDefinitions) {
-                    GraphicDefinitions.init(GraphicDecoder().load(cache)).load(paths)
-                }
-                GraphicDefinitions
-            }
-            single(createdAtStart = true) {
-                val paths = files.list(Settings["definitions.interfaces"])
-                val types = files.find(Settings["definitions.interfaces.types"])
-                files.full("interfaces", paths + types).restoreOrLoad(InterfaceDefinitions::restoreDefinitions, InterfaceDefinitions::saveDefinitions) {
-                    InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(paths, types)
-                }
-                InterfaceDefinitions
-            }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                val paths = files.list(Settings["definitions.inventories"])
-                val shops = files.list(Settings["definitions.shops"])
-                // Inventories store the ids of the items they contain
-                val items = files.list(Settings["definitions.items"])
-                files.full("inventories", paths + shops, items).restoreOrLoad(InventoryDefinitions::restoreDefinitions, InventoryDefinitions::saveDefinitions) {
-                    InventoryDefinitions.init(InventoryDecoder().load(cache)).load(paths, shops)
-                }
-                InventoryDefinitions
-            }
-            single(createdAtStart = true) {
-                val path = files.find(Settings["definitions.structs"])
-                files.full("structs", listOf(path)).restoreOrLoad(StructDefinitions::restoreDefinitions, StructDefinitions::saveDefinitions) {
-                    StructDefinitions.init(StructDecoder().load(cache)).load(path)
-                }
-                StructDefinitions
-            }
-            single(createdAtStart = true) {
-                val snapshot = files.full("quick_chat", emptyList())
-                snapshot?.let { QuickChatPhraseDefinitions.restore(it) } ?: QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load().also { phrases -> snapshot?.let(phrases::save) }
-            }
-            single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
-            single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
-            single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
-            single(createdAtStart = true) {
-                val path = files.find(Settings["definitions.fonts"])
-                val snapshot = files.full("fonts", listOf(path))
-                snapshot?.let { FontDefinitions.restore(it) } ?: FontDefinitions(FontDecoder().load(cache)).load(path).also { fonts -> snapshot?.let(fonts::save) }
-            }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                files.list(Settings["definitions.itemOnItem"]).let { ItemOnItemDefinitions().load(it, files.snapshot("item_on_item", it)) }
-            }
-            single(createdAtStart = true) {
-                VariableDefinitions.load(files)
-            }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                DropTables().load(files.list(Settings["spawns.drops"]))
-            }
-            single(createdAtStart = true) { files.list(Settings["map.teleports"]).let { ObjectTeleports().load(it, files.snapshot("object_teleports", it)) } }
-        }
-        return module
     }
 
     @Suppress("HttpUrlsUsage")

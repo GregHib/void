@@ -1,9 +1,13 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
+import world.gregs.voidps.cache.serialization.NullableStringArraySerializer
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class ObjectDefinition(
     override var id: Int = -1,
     var name: String = "null",
@@ -11,6 +15,7 @@ data class ObjectDefinition(
     var sizeY: Int = 1,
     var solid: Int = 2,
     var interactive: Int = -1,
+    @Serializable(with = NullableStringArraySerializer::class)
     var options: Array<String?>? = null,
     var mirrored: Boolean = false,
     var blockFlag: Int = 0,
@@ -18,6 +23,7 @@ data class ObjectDefinition(
     override var varp: Int = -1,
     override var transforms: IntArray? = null,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,

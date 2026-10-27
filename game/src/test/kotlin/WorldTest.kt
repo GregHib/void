@@ -1,5 +1,4 @@
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.obj.ObjectTeleports
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.*
@@ -12,35 +11,25 @@ import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
-import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.cache.definition.data.EnumDefinition
-import world.gregs.voidps.cache.definition.data.GraphicDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.data.*
-import world.gregs.voidps.engine.data.config.RowDefinition
-import world.gregs.voidps.engine.data.config.TableDefinition
-import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.MapDefinitions
+import world.gregs.voidps.engine.data.definition.MapLoader
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.LoaderGraph
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.*
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
-import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -164,65 +153,20 @@ abstract class WorldTest : KoinTest {
 
     private fun boot(): SharedWorld {
         stopKoin()
-        val (ids, components) = interfaceIds
-        InterfaceDefinitions.set(interfaceDefinitions, ids, components)
+        // Other tests may have replaced the definitions so install them again
+        graph.install(loaded)
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
             modules(
-                engineModule(configFiles),
+                engineModule(),
                 gameModule(configFiles),
+                definitionsModule(),
+                gameDefinitionsModule(),
                 module {
                     single(createdAtStart = true) { cache }
                     single(createdAtStart = true) { huffman }
-                    single(createdAtStart = true) {
-                        ItemDefinitions.set(itemDefinitions, itemIds)
-                        ItemDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        NPCDefinitions.set(npcDefinitions, npcIds)
-                        NPCDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        AnimationDefinitions.set(animationDefinitions, animationIds)
-                        AnimationDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        GraphicDefinitions.set(graphicDefinitions, graphicIds)
-                        GraphicDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        InventoryDefinitions.set(inventoryDefinitions, inventoryIds)
-                        InventoryDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        StructDefinitions.set(structDefinitions, structIds)
-                        StructDefinitions
-                    }
-                    single(createdAtStart = true) { quickChatPhraseDefinitions }
-                    single(createdAtStart = true) { weaponStyleDefinitions }
-                    single(createdAtStart = true) { weaponAnimationDefinitions }
-                    single(createdAtStart = true) {
-                        EnumDefinitions.set(enumDefinitions, enumIds)
-                        EnumDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        Tables.set(tableDefinitions)
-                        Rows.set(rowDefinitions, rowIds)
-                        Tables
-                    }
-                    single(createdAtStart = true) { fontDefinitions }
-                    single(createdAtStart = true) { objectTeleports }
-                    single(createdAtStart = true) { itemOnItemDefinitions }
-                    single(createdAtStart = true) { variableDefinitions }
-                    single(createdAtStart = true) { dropTables }
-                    single(createdAtStart = true) {
-                        ObjectDefinitions.set(objectDefinitions, objectIds)
-                        ObjectDefinitions
-                    }
-                    single { ammoDefinitions }
                     single { mapDefinitions }
-                    single { objectCollisionAdd }
                     single { objectCollisionAdd }
                     single { objectCollisionRemove }
                     single {
@@ -238,7 +182,7 @@ abstract class WorldTest : KoinTest {
             )
         }
 
-        engineLoad(configFiles)
+        engineLoad()
         Wildcards.load(Settings["storage.wildcards"])
         val scripts = ContentLoader().load()
         Wildcards.clear()
@@ -268,7 +212,8 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(configFiles)
+            NPCSpawnLoader.install(npcSpawns)
+            loadNpcSpawns()
         }
         setRandom(FakeRandom())
     }
@@ -380,122 +325,16 @@ abstract class WorldTest : KoinTest {
         }
         private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-        private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(configFiles.find(Settings["definitions.ammoGroups"])) }
-        private val objectDefinitions: Array<ObjectDefinition> by lazy {
-            ObjectDecoder(member = true, lowDetail = false).load(cache)
-        }
-        private val objectIds: Map<String, Int> by lazy {
-            ObjectDefinitions.init(objectDefinitions).load(configFiles.list(Settings["definitions.objects"]))
-            ObjectDefinitions.ids
-        }
-        private val npcDefinitions: Array<NPCDefinition> by lazy {
-            NPCDecoder(member = true).load(cache)
-        }
-        private val npcIds: Map<String, Int> by lazy {
-            NPCDefinitions.init(npcDefinitions).load(configFiles.list(Settings["definitions.npcs"]))
-            NPCDefinitions.ids
-        }
-        val itemDefinitions: Array<ItemDefinition> by lazy {
-            ItemDecoder().load(cache)
-        }
-        val itemIds: Map<String, Int> by lazy {
-            ItemDefinitions.init(itemDefinitions).load(configFiles.list(Settings["definitions.items"]))
-            ItemDefinitions.ids
-        }
-        private val animationDefinitions: Array<AnimationDefinition> by lazy {
-            AnimationDecoder().load(cache)
-        }
-        private val animationIds: Map<String, Int> by lazy {
-            AnimationDefinitions.init(animationDefinitions).load(configFiles.list(Settings["definitions.animations"]))
-            AnimationDefinitions.ids
-        }
-        private val graphicDefinitions: Array<GraphicDefinition> by lazy {
-            GraphicDecoder().load(cache)
-        }
-        private val graphicIds: Map<String, Int> by lazy {
-            GraphicDefinitions.init(graphicDefinitions).load(configFiles.list(Settings["definitions.graphics"]))
-            GraphicDefinitions.ids
-        }
-        private val interfaceDefinitions: Array<InterfaceDefinition> by lazy {
-            InterfaceDecoder().load(cache)
-        }
-        private val interfaceIds: Pair<Map<String, Int>, Map<String, Int>> by lazy {
-            InterfaceDefinitions.init(interfaceDefinitions).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
-            InterfaceDefinitions.ids to InterfaceDefinitions.componentIds
-        }
-        private val inventoryDefinitions: Array<InventoryDefinition> by lazy {
-            InventoryDecoder().load(cache)
-        }
-        private val inventoryIds: Map<String, Int> by lazy {
-            itemIds
-            InventoryDefinitions.init(inventoryDefinitions).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
-            InventoryDefinitions.ids
-        }
-        private val structDefinitions: Array<StructDefinition> by lazy {
-            StructDecoder().load(cache)
-        }
-        private val structIds: Map<String, Int> by lazy {
-            StructDefinitions.init(structDefinitions).load(configFiles.find(Settings["definitions.structs"]))
-            StructDefinitions.ids
-        }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-        private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
-        private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
-        private val enumDefinitions: Array<EnumDefinition> by lazy {
-            animationIds
-            graphicIds
-            itemIds
-            interfaceIds
-            inventoryIds
-            npcIds
-            structIds
-            objectIds
-            tableDefinitions
-            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
-            EnumDefinitions.definitions
-        }
 
-        private val tableDefinitions: Map<String, TableDefinition> by lazy {
-            animationIds
-            graphicIds
-            itemIds
-            npcIds
-            objectIds
-            variableDefinitions
-            Tables.load(configFiles.list(Settings["definitions.tables"]))
-            Tables.definitions
-        }
-
-        private val rowDefinitions: Array<RowDefinition> by lazy {
-            tableDefinitions
-            Rows.definitions
-        }
-
-        private val rowIds: Map<String, Int> by lazy {
-            tableDefinitions
-            Rows.ids
-        }
-
-        private val enumIds: Map<String, Int> by lazy {
-            enumDefinitions
-            EnumDefinitions.ids
-        }
+        // Maps are only loaded by the tests which need them
+        private val graph: LoaderGraph by lazy { LoaderGraph((engineLoaders() + gameLoaders()).filter { it != MapLoader && it != NPCSpawnLoader }) }
+        private val loaded: Map<Loader<*>, Any> by lazy { graph.run(configFiles, cache, null) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
-        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
-        private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
-        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy {
-            itemIds.size
-            ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"]))
-        }
-        private val variableDefinitions: VariableDefinitions by lazy {
-            VariableDefinitions.load(configFiles)
-        }
-        private val dropTables: DropTables by lazy {
-            itemIds
-            DropTables().load(configFiles.list(Settings["spawns.drops"]))
-        }
+
+        // Spawns are only needed by the tests which load npcs
+        private val npcSpawns: List<NPCSpawn> by lazy { NPCSpawnLoader.load(LoadContext(configFiles, cache)) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load() }
         val emptyTile = Tile(2655, 4640)
     }
 }

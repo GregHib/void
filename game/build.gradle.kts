@@ -5,9 +5,11 @@ plugins {
     id("shared")
     application
     alias(libs.plugins.shadow)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 dependencies {
+    implementation(libs.kotlinx.serialization.core)
     implementation(project(":engine"))
     implementation(project(":cache"))
     implementation(project(":network"))
