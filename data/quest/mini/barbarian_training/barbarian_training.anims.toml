@@ -40,24 +40,36 @@ id = 6704
 [gut_fish]
 id = 6702
 
-# TODO confirm pyre carving anims (from 2009scape)
-[carve_pyre_rune]
-id = 3285
-
-[carve_pyre_adamant]
-id = 3286
-
-[carve_pyre_mithril]
-id = 3287
-
-[carve_pyre_black]
-id = 3288
-
-[carve_pyre_steel]
-id = 3289
+# Each carving animation holds the matching hatchet
+[carve_pyre_bronze]
+id = 6744
 
 [carve_pyre_iron]
-id = 3290
+id = 6743
 
-[carve_pyre_bronze]
-id = 3291
+[carve_pyre_steel]
+id = 6742
+
+[carve_pyre_black]
+id = 6741
+
+[carve_pyre_mithril]
+id = 6740
+
+[carve_pyre_adamant]
+id = 6739
+
+[carve_pyre_rune]
+id = 6738
+
+[carve_pyre_dragon]
+id = 6745
+
+[carve_pyre_inferno_adze]
+id = 10249
+
+[carve_pyre_sacred_clay]
+id = 11060
+
+[carve_pyre_volatile_clay]
+id = 11061
