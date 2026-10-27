@@ -125,6 +125,13 @@ class AccountManagerTest : KoinMock() {
     }
 
     @Test
+    fun `Explicit display name replaces the email placeholder`() {
+        val player = manager.create("bob@example.com", "hash", displayName = "Bobcat")
+        assertEquals("Bobcat", player["display_name", ""])
+        assertFalse(player.contains("choose_name"))
+    }
+
+    @Test
     fun `Username accounts keep their name`() {
         val player = manager.create("bob", "hash")
         assertFalse(player.contains("display_name"))

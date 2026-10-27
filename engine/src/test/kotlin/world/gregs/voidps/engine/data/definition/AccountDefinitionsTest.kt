@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.data.definition
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertSame
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.AccountDefinition
@@ -17,6 +19,34 @@ class AccountDefinitionsTest {
     @BeforeEach
     fun setUp() {
         definitions = AccountDefinitions()
+    }
+
+    @Test
+    fun `Names are taken by display names and account names of other accounts`() {
+        definitions.merge(mapOf("alice" to definition("alice", "Bobby", hash = "hash")), emptyMap()) { false }
+
+        assertTrue(definitions.taken("bobby"))
+        assertTrue(definitions.taken("ALICE"))
+        assertTrue(definitions.taken("alice", except = "carol"))
+        assertFalse(definitions.taken("alice", except = "Alice"))
+        assertFalse(definitions.taken("Bobby", except = "alice"))
+        assertFalse(definitions.taken("carol"))
+    }
+
+    @Test
+    fun `Name is taken when another account has it even if the checker's display name matches`() {
+        // Saves from before names were checked against account names can collide
+        definitions.merge(
+            mapOf(
+                "alice" to definition("alice", "Bob", hash = "hash"),
+                "bob" to definition("bob", "Robert", hash = "hash"),
+            ),
+            emptyMap(),
+        ) { false }
+
+        assertTrue(definitions.taken("bob", except = "alice"))
+        assertTrue(definitions.taken("bob", except = "bob"))
+        assertFalse(definitions.taken("robert", except = "bob"))
     }
 
     @Test

@@ -3,8 +3,6 @@ package content.social.ignore
 import content.social.chat.privateStatus
 import content.social.friend.friend
 import content.social.friend.updateFriend
-import content.social.friend.world
-import content.social.friend.worldName
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message

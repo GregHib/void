@@ -36,6 +36,9 @@ sealed class ApiException(
     }
 
     class RateLimited(val retryAfterSeconds: Int) : ApiException("rate_limited", "Too many requests")
+
+    /** The game server couldn't complete the request; safe to retry later. */
+    class Unavailable(message: String) : ApiException("unavailable", message)
 }
 
 @Serializable

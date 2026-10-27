@@ -22,6 +22,7 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.AccountCreator
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.AccountNames
 import world.gregs.voidps.network.login.Registration
 import world.gregs.voidps.network.login.protocol.encode.login
 import world.gregs.voidps.network.login.registration.RegistrationResponse
@@ -103,32 +104,42 @@ class PlayerAccountLoader(
         if (!Settings["accounts.registration", false]) {
             return RegistrationResponse.REFUSED
         }
-        val email = registration.email.lowercase()
-        // Checking and reserving the name together on the game thread stops two requests registering the same email
+        return create(registration.email, registration.passwordHash, displayName = null, registration.hostname)
+    }
+
+    /**
+     * Creates and persists an account regardless of the client registration setting, e.g. for the web api.
+     * Username account names double as the display name; email account names use [displayName] when given,
+     * otherwise they're given a placeholder and pick their own on first login.
+     * @return a [RegistrationResponse] code
+     */
+    suspend fun create(accountName: String, passwordHash: String, displayName: String?, hostname: String): Int {
+        val name = AccountNames.normalise(accountName)
+        // Checking and reserving the name together on the game thread stops two requests registering the same name
         val player = withContext(gameContext) {
-            if (accountDefinitions.getByAccount(email) != null) {
+            if (accountDefinitions.taken(name) || displayName != null && accountDefinitions.taken(displayName)) {
                 return@withContext null
             }
-            val player = accounts.create(email, registration.passwordHash)
+            val player = accounts.create(name, passwordHash, displayName)
             accountDefinitions.add(player)
             player
         } ?: return RegistrationResponse.EMAIL_IN_USE
         try {
             if (!storage.create(player.copy())) {
                 withContext(gameContext) {
-                    accountDefinitions.remove(email)
+                    accountDefinitions.remove(name)
                 }
                 return RegistrationResponse.EMAIL_IN_USE
             }
         } catch (e: Exception) {
-            logger.error(e) { "Failed to create account for $email." }
+            logger.error(e) { "Failed to create account for $name." }
             withContext(gameContext) {
-                accountDefinitions.remove(email)
+                accountDefinitions.remove(name)
             }
             return RegistrationResponse.UNAVAILABLE
         }
-        AuditLog.info("registered $email from ${registration.hostname}")
-        logger.info { "Account registered for $email." }
+        AuditLog.info("registered $name from $hostname")
+        logger.info { "Account registered for $name." }
         return RegistrationResponse.SUCCESS
     }
 

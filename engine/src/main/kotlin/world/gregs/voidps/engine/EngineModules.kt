@@ -5,6 +5,7 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.PlayerAccountUpdater
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
@@ -46,6 +47,7 @@ fun engineModule() = module {
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     single(createdAtStart = true) { AccountDefinitions().load() }
+    single { PlayerAccountUpdater(get(), get(), get(), get(), gameContext = Contexts.Game) }
     // Map
     single { DynamicZones(get()) }
     // Network

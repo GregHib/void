@@ -1,6 +1,6 @@
 # Modules
 
-Dependency direction: `game` → `engine`, `cache`, `network`, `config`, `types`.
+Dependency direction: `game` → `engine`, `cache`, `network`, `config`, `types`, `web:server`.
 
 |        Module         |                                                                 Responsibility                                                                  |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -9,6 +9,7 @@ Dependency direction: `game` → `engine`, `cache`, `network`, `config`, `types`
 | **cache**             | Decoders and encoders of binary RS cache files                                                                                                  |
 | **config**            | Reader for simplified toml file reading (string IDs, shops, drop tables, etc.)                                                                  |
 | **network**           | Ktor server for connections, login, packet encoding/decoding                                                                                    |
+| **web:server**        | Ktor webserver: site, webclient host, WebSocket proxy to the game port, public `/api/v1` and the account REST api                               |
 | **buffer**            | Binary read/write utilities                                                                                                                     |
 | **types**             | Shared value types (`Tile`, `Item`, `Direction`, etc.)                                                                                          |
 | **database**          | Optional PostgreSQL via Exposed ORM (`-PincludeDb` only)                                                                                        |
