@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
 import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.pearx.kasechange.toSentenceCase
@@ -8,10 +9,14 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timedLoad
+import java.util.IdentityHashMap
 
 class ItemOnItemDefinitions {
 
@@ -23,8 +28,11 @@ class ItemOnItemDefinitions {
 
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
-    fun load(paths: List<String>): ItemOnItemDefinitions {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad definitions.size
+            }
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
             for (path in paths) {
@@ -123,10 +131,102 @@ class ItemOnItemDefinitions {
                 }
             }
             this.definitions = definitions
+            snapshot?.let { save(it) }
             count
         }
         return this
     }
+
+    private fun save(snapshot: Snapshot) = snapshot.write {
+        val indices = IdentityHashMap<ItemOnItemDefinition, Int>()
+        for (list in definitions.values) {
+            for (definition in list) {
+                indices.putIfAbsent(definition, indices.size)
+            }
+        }
+        val unique = arrayOfNulls<ItemOnItemDefinition>(indices.size)
+        for ((definition, index) in indices) {
+            unique[index] = definition
+        }
+        int(unique.size)
+        for (definition in unique) {
+            definition!!
+            nullableString(definition.skill?.name)
+            int(definition.level)
+            double(definition.xp)
+            items(definition.requires)
+            items(definition.one)
+            items(definition.remove)
+            items(definition.add)
+            items(definition.fail)
+            int(definition.delay)
+            int(definition.ticks)
+            int(definition.chance.first)
+            int(definition.chance.last)
+            string(definition.type)
+            string(definition.animation)
+            string(definition.graphic)
+            string(definition.sound)
+            string(definition.message)
+            string(definition.failure)
+            string(definition.requiresMessage)
+            string(definition.question)
+            int(definition.maximum)
+            boolean(definition.members)
+        }
+        int(definitions.size)
+        for ((key, list) in definitions) {
+            string(key)
+            int(list.size)
+            for (definition in list) {
+                int(indices.getValue(definition))
+            }
+        }
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val unique = Array(reader.int()) {
+            ItemOnItemDefinition(
+                skill = reader.nullableString()?.let { Skill.valueOf(it) },
+                level = reader.int(),
+                xp = reader.double(),
+                requires = items(reader),
+                one = items(reader),
+                remove = items(reader),
+                add = items(reader),
+                fail = items(reader),
+                delay = reader.int(),
+                ticks = reader.int(),
+                chance = reader.int()..reader.int(),
+                type = reader.string(),
+                animation = reader.string(),
+                graphic = reader.string(),
+                sound = reader.string(),
+                message = reader.string(),
+                failure = reader.string(),
+                requiresMessage = reader.string(),
+                question = reader.string(),
+                maximum = reader.int(),
+                members = reader.boolean(),
+            )
+        }
+        val size = reader.int()
+        val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>(size, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(size) {
+            val key = reader.string()
+            val list = ObjectArrayList<ItemOnItemDefinition>(2)
+            repeat(reader.int()) { list.add(unique[reader.int()]) }
+            definitions[key] = list
+        }
+        this.definitions = definitions
+    }
+
+    private fun SnapshotWriter.items(items: List<Item>) = list(items) {
+        string(it.id)
+        int(it.rawValue())
+    }
+
+    private fun items(reader: SnapshotReader): List<Item> = reader.list { Item(reader.string(), reader.int()) }
 
     private fun ConfigReader.itemList(items: MutableList<Item>) {
         while (nextElement()) {

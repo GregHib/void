@@ -11,6 +11,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
@@ -206,5 +207,77 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
             definition.components = components
         }
         return components.getOrPut(index) { InterfaceComponentDefinition(id = index + (id shl 16)) }
+    }
+
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            val components = definition.components
+            if (components == null) {
+                int(-1)
+            } else {
+                int(components.size)
+                for ((index, component) in components) {
+                    int(index)
+                    int(component.id)
+                    nullableStrings(component.options)
+                    nullableAnyArray(component.information)
+                    int(component.baseX)
+                    int(component.baseY)
+                    int(component.defaultImage)
+                    string(component.stringId)
+                    params(component.params)
+                }
+            }
+            nullableString(definition.type)
+            int(definition.fixed)
+            int(definition.resizable)
+            boolean(definition.permanent)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+        ids(componentIds)
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            val id = reader.int()
+            val size = reader.int()
+            var components: Int2ObjectOpenHashMap<InterfaceComponentDefinition>? = null
+            if (size != -1) {
+                val map = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(size)
+                components = map
+                repeat(size) {
+                    val index = reader.int()
+                    map[index] = InterfaceComponentDefinition(
+                        id = reader.int(),
+                        options = reader.nullableStrings(),
+                        information = reader.nullableAnyArray(),
+                        baseX = reader.int(),
+                        baseY = reader.int(),
+                        defaultImage = reader.int(),
+                        stringId = reader.string(),
+                        params = reader.params(),
+                    )
+                }
+            }
+            InterfaceDefinition(
+                id = id,
+                components = components,
+                type = reader.nullableString(),
+                fixed = reader.int(),
+                resizable = reader.int(),
+                permanent = reader.boolean(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = reader.ids(default = -1)
+        val componentIds = reader.ids()
+        init(definitions)
+        this.ids = ids
+        this.componentIds = componentIds
     }
 }

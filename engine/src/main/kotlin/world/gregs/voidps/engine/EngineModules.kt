@@ -21,7 +21,7 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import java.io.File
 
 fun engineLoad(files: ConfigFiles) {
-    Areas.load(files.list(Settings["map.areas"]))
+    files.list(Settings["map.areas"]).let { Areas.load(it, files.snapshot("areas", it)) }
     ZoneBatchUpdates.register(GameObjects)
     ZoneBatchUpdates.register(FloorItems)
 }
@@ -57,7 +57,7 @@ fun engineModule(files: ConfigFiles) = module {
     single { PathFinder(flags = Collisions.map, useRouteBlockerFlags = true) }
     single { LineValidator(flags = Collisions.map) }
     // Definitions
-    single(createdAtStart = true) { SoundDefinitions().load(files.list(Settings["definitions.sounds"])) }
+    single(createdAtStart = true) { files.list(Settings["definitions.sounds"]).let { SoundDefinitions().load(it, files.snapshot("sounds", it)) } }
     single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }
     single(createdAtStart = true) { RenderEmoteDefinitions().load(files.find(Settings["definitions.renderEmotes"])) }
     single(createdAtStart = true) { MidiDefinitions().load(files.list(Settings["definitions.midis"])) }
@@ -69,7 +69,13 @@ fun engineModule(files: ConfigFiles) = module {
         DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
     }
     single(createdAtStart = true) { AccountDefinitions().load() }
-    single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
+    single(createdAtStart = true) {
+        // Required for wildcards
+        get<NPCDefinitions>()
+        get<ObjectDefinitions>()
+        get<ItemDefinitions>()
+        HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"]))
+    }
     single(createdAtStart = true) { ClientScriptDefinitions().load(files.list(Settings["definitions.clientScripts"])) }
-    single(createdAtStart = true) { CombatDefinitions().load(files.list(Settings["definitions.combatAttacks"])) }
+    single(createdAtStart = true) { files.list(Settings["definitions.combatAttacks"]).let { CombatDefinitions().load(it, files.snapshot("combat", it)) } }
 }

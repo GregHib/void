@@ -11,6 +11,7 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -50,8 +51,11 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
 
     override fun empty() = ItemDefinition.EMPTY
 
-    fun load(paths: List<String>): ItemDefinitions {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): ItemDefinitions {
         timedLoad("item config") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad ids.size
+            }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>(18_000)
             ids.defaultReturnValue(-1)
@@ -157,8 +161,114 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                 }
             }
             this.ids = ids
+            snapshot?.write {
+                // Several names can share an id, in which case the definition has the last one's
+                int(ids.size)
+                for ((stringId, id) in ids) {
+                    string(stringId)
+                    int(id)
+                }
+                val unique = ids.values.distinct()
+                int(unique.size)
+                for (id in unique) {
+                    int(id)
+                    string(definitions[id].stringId)
+                    params(definitions[id].params)
+                }
+            }
             ids.size
         }
         return this
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val ids = Object2IntOpenHashMap<String>(18_000)
+        ids.defaultReturnValue(-1)
+        repeat(reader.int()) {
+            val stringId = reader.string()
+            ids[stringId] = reader.int()
+        }
+        val size = reader.int()
+        val ints = IntArray(size)
+        val strings = arrayOfNulls<String>(size)
+        val params = arrayOfNulls<Map<Int, Any>>(size)
+        for (i in 0 until size) {
+            ints[i] = reader.int()
+            strings[i] = reader.string()
+            params[i] = reader.params()
+        }
+        for (i in 0 until size) {
+            val definition = definitions[ints[i]]
+            definition.stringId = strings[i]!!
+            val map = params[i]
+            if (map != null) {
+                definition.params = map
+            }
+        }
+        loaded = true
+        this.ids = ids
+    }
+
+    /**
+     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     */
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            string(definition.name)
+            int(definition.spriteScale)
+            int(definition.stackable)
+            int(definition.cost)
+            boolean(definition.members)
+            nullableStrings(definition.floorOptions)
+            nullableStrings(definition.options)
+            boolean(definition.exchangeable)
+            int(definition.dummyItem)
+            int(definition.noteId)
+            int(definition.notedTemplateId)
+            int(definition.lendId)
+            int(definition.lendTemplateId)
+            int(definition.equipIndex)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        int(ids.size)
+        for ((stringId, id) in ids) {
+            string(stringId)
+            int(id)
+        }
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            ItemDefinition(
+                id = reader.int(),
+                name = reader.string(),
+                spriteScale = reader.int(),
+                stackable = reader.int(),
+                cost = reader.int(),
+                members = reader.boolean(),
+                floorOptions = reader.nullableStrings()!!,
+                options = reader.nullableStrings()!!,
+                exchangeable = reader.boolean(),
+                dummyItem = reader.int(),
+                noteId = reader.int(),
+                notedTemplateId = reader.int(),
+                lendId = reader.int(),
+                lendTemplateId = reader.int(),
+                equipIndex = reader.int(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = Object2IntOpenHashMap<String>(18_000)
+        ids.defaultReturnValue(-1)
+        repeat(reader.int()) {
+            val stringId = reader.string()
+            ids[stringId] = reader.int()
+        }
+        init(definitions)
+        this.ids = ids
     }
 }

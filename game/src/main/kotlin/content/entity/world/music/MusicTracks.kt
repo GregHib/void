@@ -1,10 +1,12 @@
 package content.entity.world.music
 
+import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
@@ -24,8 +26,11 @@ class MusicTracks {
 
     operator fun get(region: Region): List<AreaTrack> = trackAreas[region.id] ?: emptyList()
 
-    fun load(path: String): MusicTracks {
+    fun load(path: String, snapshot: Snapshot? = null): MusicTracks {
         timedLoad("music track") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad ids.size
+            }
             val regions = Int2ObjectOpenHashMap<MutableList<AreaTrack>>(900)
             val ids = Object2IntOpenHashMap<String>(650)
             val tracks = arrayOfNulls<Track>(1000)
@@ -97,8 +102,55 @@ class MusicTracks {
             this.trackAreas = regions
             this.ids = ids
             this.tracks = tracks
+            snapshot?.let { save(it) }
             ids.size
         }
         return this
+    }
+
+    private fun save(snapshot: Snapshot) = snapshot.write {
+        val present = tracks.filterNotNull()
+        int(tracks.size)
+        int(present.size)
+        for (track in present) {
+            int(track.id)
+            string(track.name)
+            ints(track.indexes.toIntArray())
+            list(track.area) { area(it) }
+        }
+        int(trackAreas.size)
+        for ((region, list) in trackAreas) {
+            int(region)
+            list(list) { areaTrack ->
+                val track = tracks[areaTrack.id]!!
+                int(areaTrack.id)
+                int(track.area.indexOfFirst { it === areaTrack.area })
+            }
+        }
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val tracks = arrayOfNulls<Track>(reader.int())
+        val ids = Object2IntOpenHashMap<String>(650, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(reader.int()) {
+            val id = reader.int()
+            val name = reader.string()
+            val indexes = reader.ints().toMutableList()
+            val areas = reader.list { reader.area() }
+            tracks[id] = Track(id, name, indexes, areas)
+            ids[name] = id
+        }
+        val size = reader.int()
+        val regions = Int2ObjectOpenHashMap<MutableList<AreaTrack>>(size, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(size) {
+            val region = reader.int()
+            regions[region] = reader.list {
+                val id = reader.int()
+                AreaTrack(id, tracks[id]!!.area[reader.int()])
+            }
+        }
+        this.trackAreas = regions
+        this.ids = ids
+        this.tracks = tracks
     }
 }

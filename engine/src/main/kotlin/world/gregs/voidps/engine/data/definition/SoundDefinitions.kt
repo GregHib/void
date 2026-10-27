@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.config.SoundDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -15,8 +16,11 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
     override lateinit var definitions: Array<SoundDefinition>
     override lateinit var ids: Map<String, Int>
 
-    fun load(paths: List<String>): SoundDefinitions {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): SoundDefinitions {
         timedLoad("sound definition") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad ids.size
+            }
             val definitions = Array(10_000) { SoundDefinition.EMPTY }
             val ids = Object2IntOpenHashMap<String>(250, Hash.VERY_FAST_LOAD_FACTOR)
             for (path in paths) {
@@ -44,9 +48,37 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
             }
             this.definitions = definitions
             this.ids = ids
+            snapshot?.write {
+                ids(ids)
+                // Several names can share an id, in which case the definition has the last one's
+                val unique = ids.values.distinct()
+                int(unique.size)
+                for (id in unique) {
+                    val definition = definitions[id]
+                    int(id)
+                    string(definition.stringId)
+                    boolean(definition.params != null)
+                }
+            }
             ids.size
         }
         return this
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val ids = reader.ids()
+        val definitions = Array(10_000) { SoundDefinition.EMPTY }
+        repeat(reader.int()) {
+            val id = reader.int()
+            val stringId = reader.string()
+            definitions[id] = if (reader.boolean()) {
+                SoundDefinition(id = id, stringId = stringId, params = mapOf(Params.AREA to true))
+            } else {
+                SoundDefinition(id = id, stringId = stringId)
+            }
+        }
+        this.definitions = definitions
+        this.ids = ids
     }
 
     override fun empty() = SoundDefinition.EMPTY

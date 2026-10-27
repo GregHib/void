@@ -180,6 +180,10 @@ abstract class WorldTest : KoinTest {
                         ItemDefinitions
                     }
                     single(createdAtStart = true) {
+                        NPCDefinitions.set(npcDefinitions, npcIds)
+                        NPCDefinitions
+                    }
+                    single(createdAtStart = true) {
                         AnimationDefinitions.set(animationDefinitions, animationIds)
                         AnimationDefinitions
                     }
@@ -234,7 +238,6 @@ abstract class WorldTest : KoinTest {
             )
         }
 
-        NPCDefinitions.set(npcDefinitions, npcIds)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
         val scripts = ContentLoader().load()
@@ -350,6 +353,7 @@ abstract class WorldTest : KoinTest {
             properties["storage.grand.exchange.history.path"] = "${forkDirectory}grand_exchange/price_history/"
             // Don't write map caches as parallel forks would clash
             properties["storage.caching.active"] = false
+            properties["storage.snapshots.active"] = false
             properties["storage.caching.path"] = "../data/.temp/"
             properties["bots.chat.model"] = "${forkDirectory}bot_chat.model"
             properties["quests.requirements.skipMissing"] = false

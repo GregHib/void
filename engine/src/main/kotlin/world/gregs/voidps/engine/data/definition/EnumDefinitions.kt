@@ -11,6 +11,7 @@ import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.EnumTypes
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
 
@@ -251,6 +252,63 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
             ids.size
         }
         return this
+    }
+
+    /**
+     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     */
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            int(definition.keyType.code)
+            int(definition.valueType.code)
+            string(definition.defaultString)
+            int(definition.defaultInt)
+            int(definition.length)
+            val map = definition.map
+            if (map == null) {
+                int(-1)
+            } else {
+                int(map.size)
+                // Config defined enums keep their order
+                boolean(map is LinkedHashMap<*, *>)
+                for ((key, value) in map) {
+                    int(key)
+                    value(value)
+                }
+            }
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            val id = reader.int()
+            val keyType = reader.int().toChar()
+            val valueType = reader.int().toChar()
+            val defaultString = reader.string()
+            val defaultInt = reader.int()
+            val length = reader.int()
+            val size = reader.int()
+            val map: Map<Int, Any>? = if (size == -1) {
+                null
+            } else {
+                val ordered = reader.boolean()
+                val map: MutableMap<Int, Any> = if (ordered) LinkedHashMap(size) else Int2ObjectOpenHashMap(size, Hash.VERY_FAST_LOAD_FACTOR)
+                repeat(size) {
+                    val key = reader.int()
+                    map[key] = reader.value()!!
+                }
+                map
+            }
+            EnumDefinition(id, keyType, valueType, defaultString, defaultInt, length, map, reader.string(), reader.params())
+        }
+        val ids = reader.ids()
+        init(definitions)
+        this.ids = ids
     }
 
     override fun empty() = EnumDefinition.EMPTY

@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.FontDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 class FontDefinitions(
@@ -29,5 +30,45 @@ class FontDefinitions(
             ids.size
         }
         return this
+    }
+
+    fun save(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            bytes(definition.glyphWidths)
+            nullableByteArrays(definition.kerningAdjustments)
+            int(definition.verticalSpacing)
+            int(definition.topPadding)
+            int(definition.bottomPadding)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+    }
+
+    companion object {
+        fun restore(snapshot: Snapshot): FontDefinitions? {
+            var fonts: FontDefinitions? = null
+            snapshot.restore { reader ->
+                val definitions = Array(reader.int()) {
+                    FontDefinition(
+                        id = reader.int(),
+                        glyphWidths = reader.bytes(),
+                        kerningAdjustments = reader.nullableByteArrays(),
+                        verticalSpacing = reader.int(),
+                        topPadding = reader.int(),
+                        bottomPadding = reader.int(),
+                        stringId = reader.string(),
+                        params = reader.params(),
+                    )
+                }
+                val ids = reader.ids()
+                val created = FontDefinitions(definitions)
+                created.ids = ids
+                fonts = created
+            }
+            return fonts
+        }
     }
 }

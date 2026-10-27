@@ -54,6 +54,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.13.4")
 }
 
+val hotSwapArgs = listOf("-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition")
+tasks.withType<Test>().configureEach { jvmArgs(hotSwapArgs) }
+tasks.withType<JavaExec>().configureEach { jvmArgs(hotSwapArgs) }
+
 val coverage = providers.gradleProperty("coverage").isPresent
 
 if (name != "tools") {

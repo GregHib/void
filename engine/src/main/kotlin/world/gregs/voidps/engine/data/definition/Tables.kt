@@ -5,6 +5,9 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
@@ -236,7 +239,7 @@ object Tables {
         loaded = false
     }
 
-    fun load(paths: List<String>): Tables {
+    fun load(paths: List<String>, snapshot: Snapshot? = null): Tables {
         require(ItemDefinitions.loaded) { "Item definitions must be loaded before tables" }
         require(ObjectDefinitions.loaded) { "Object definitions must be loaded before tables" }
         require(NPCDefinitions.loaded) { "NPC definitions must be loaded before tables" }
@@ -244,6 +247,9 @@ object Tables {
         require(AnimationDefinitions.loaded) { "Animation definitions must be loaded before tables" }
         require(GraphicDefinitions.loaded) { "Graphic definitions must be loaded before tables" }
         timedLoad("table config") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad size
+            }
             val definitions = mutableMapOf<String, TableBuilder>()
             val rows = mutableListOf<RowDefinition>()
             val ids = mutableMapOf<String, Int>()
@@ -267,9 +273,98 @@ object Tables {
             }
             set(definitions.mapValues { it.value.build() }.toMap())
             Rows.set(rows.toTypedArray(), ids)
+            snapshot?.write {
+                int(this@Tables.definitions.size)
+                for ((name, table) in this@Tables.definitions) {
+                    string(name)
+                    int(table.columns.size)
+                    for ((column, index) in table.columns) {
+                        string(column)
+                        int(index)
+                    }
+                    int(table.types.size)
+                    for (type in table.types) {
+                        type(type)
+                    }
+                    int(table.default.size)
+                    for (cell in table.default) {
+                        value(cell)
+                    }
+                    ints(table.rows)
+                }
+                int(Rows.definitions.size)
+                for (row in Rows.definitions) {
+                    string(row.stringId)
+                    int(row.data.size)
+                    for (cell in row.data) {
+                        value(cell)
+                    }
+                }
+            }
             size
         }
         return this
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val tables = LinkedHashMap<String, TableDefinition>()
+        repeat(reader.int()) {
+            val name = reader.string()
+            val columns = LinkedHashMap<String, Int>()
+            repeat(reader.int()) {
+                val column = reader.string()
+                columns[column] = reader.int()
+            }
+            val types = Array(reader.int()) { type(reader) }
+            val defaults = Array(reader.int()) { reader.value() }
+            tables[name] = TableDefinition(columns, types, defaults, reader.ints())
+        }
+        val ids = LinkedHashMap<String, Int>()
+        val rows = Array(reader.int()) { id ->
+            val stringId = reader.string()
+            ids[stringId] = id
+            RowDefinition(id, Array(reader.int()) { reader.value() }, stringId)
+        }
+        set(tables)
+        Rows.set(rows, ids)
+    }
+
+    private fun SnapshotWriter.type(type: ColumnType<*>) {
+        when (type) {
+            ColumnType.ColumnBoolean -> byte(0)
+            ColumnType.ColumnInt -> byte(1)
+            ColumnType.ColumnIntRange -> byte(2)
+            ColumnType.ColumnString -> byte(3)
+            ColumnType.ColumnEntity -> byte(4)
+            is ColumnType.ColumnPair<*, *> -> {
+                byte(5)
+                type(type.one)
+                type(type.two)
+            }
+            is ColumnType.ColumnTriple<*, *, *> -> {
+                byte(6)
+                type(type.one)
+                type(type.two)
+                type(type.three)
+            }
+            is ColumnType.ColumnList<*> -> {
+                byte(7)
+                type(type.type)
+            }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun type(reader: SnapshotReader): ColumnType<*> = when (val tag = reader.byte()) {
+        0 -> ColumnType.ColumnBoolean
+        1 -> ColumnType.ColumnInt
+        2 -> ColumnType.ColumnIntRange
+        3 -> ColumnType.ColumnString
+        4 -> ColumnType.ColumnEntity
+        5 -> ColumnType.ColumnPair(type(reader) as ColumnType<Any>, type(reader) as ColumnType<Any>)
+        6 -> ColumnType.ColumnTriple(type(reader) as ColumnType<Any>, type(reader) as ColumnType<Any>, type(reader) as ColumnType<Any>)
+        7 -> ColumnType.ColumnList(type(reader) as ColumnType<Any>)
+        else -> throw IllegalStateException("Unknown column type tag $tag")
     }
 
     private fun readTableRow(reader: ConfigReader, definitions: MutableMap<String, TableBuilder>, rows: MutableList<RowDefinition>, ids: MutableMap<String, Int>, key: String, rowName: String) {

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
@@ -69,5 +70,56 @@ object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
             ids.size
         }
         return this
+    }
+
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            int(definition.modelId)
+            int(definition.animationId)
+            int(definition.sizeXY)
+            int(definition.sizeZ)
+            int(definition.rotation)
+            int(definition.ambience)
+            int(definition.contrast)
+            byte(definition.aByte2381.toInt())
+            int(definition.anInt2385)
+            boolean(definition.aBoolean2402)
+            nullableShorts(definition.originalColours)
+            nullableShorts(definition.modifiedColours)
+            nullableShorts(definition.originalTextureColours)
+            nullableShorts(definition.modifiedTextureColours)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            GraphicDefinition(
+                id = reader.int(),
+                modelId = reader.int(),
+                animationId = reader.int(),
+                sizeXY = reader.int(),
+                sizeZ = reader.int(),
+                rotation = reader.int(),
+                ambience = reader.int(),
+                contrast = reader.int(),
+                aByte2381 = reader.byte().toByte(),
+                anInt2385 = reader.int(),
+                aBoolean2402 = reader.boolean(),
+                originalColours = reader.nullableShorts(),
+                modifiedColours = reader.nullableShorts(),
+                originalTextureColours = reader.nullableShorts(),
+                modifiedTextureColours = reader.nullableShorts(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = reader.ids()
+        init(definitions)
+        this.ids = ids
     }
 }

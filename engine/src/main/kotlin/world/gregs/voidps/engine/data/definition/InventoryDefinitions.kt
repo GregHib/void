@@ -7,6 +7,7 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
@@ -114,5 +115,34 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
                 }
             }
         }
+    }
+
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            int(definition.length)
+            nullableInts(definition.ids)
+            nullableInts(definition.amounts)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            InventoryDefinition(
+                id = reader.int(),
+                length = reader.int(),
+                ids = reader.nullableInts(),
+                amounts = reader.nullableInts(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = reader.ids()
+        init(definitions)
+        this.ids = ids
     }
 }

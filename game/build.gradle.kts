@@ -30,6 +30,13 @@ dependencies {
     testImplementation(libs.bundles.testing)
 }
 
+kotlin {
+    compilerOptions {
+        // Compile lambdas to classes instead of invokedynamic so they can be preloaded in parallel on startup
+        freeCompilerArgs.addAll("-Xlambdas=class", "-Xsam-conversions=class")
+    }
+}
+
 application {
     mainClass.set("Main")
     tasks.run.get().workingDir = rootProject.projectDir
@@ -47,6 +54,16 @@ tasks {
     named("classes") {
         dependsOn("scriptMetadata")
     }
+
+    val main = sourceSets.getByName("main")
+    val preloadDirectory = layout.buildDirectory.dir("generated/preload")
+    val classPreload =
+        register("classPreload", ClassPreloadTask::class.java) {
+            classesDirs.from(main.output.classesDirs)
+            packageName = "content"
+            outputDirectory = preloadDirectory
+        }
+    main.output.dir(mapOf("builtBy" to classPreload), preloadDirectory)
 
     register("scriptMetadata", ScriptMetadataTask::class.java) {
         val main = sourceSets.getByName("main")

@@ -18,11 +18,15 @@ import world.gregs.voidps.engine.data.AccountDefinitionsReloader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.CanoeDefinitions
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -36,8 +40,11 @@ import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
+import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -68,6 +75,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
         val configs = setOf(
             "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
             "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings", "accounts",
+            "enums", "structs", "hunt_modes", "weapon_styles", "weapon_animations", "ammo", "canoes", "item_spawns",
         )
         adminCommand(
             "reload",
@@ -101,6 +109,17 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
                 ItemDefinitions.load(files.list(Settings["definitions.items"]))
                 loadItemSpawns(files.list(Settings["spawns.items"]))
             }
+            "item_spawns", "floor_item_spawns" -> {
+                FloorItems.clear()
+                loadItemSpawns(files.list(Settings["spawns.items"]))
+            }
+            "enum", "enums" -> EnumDefinitions.load(files.list(Settings["definitions.enums"]))
+            "struct", "structs" -> StructDefinitions.load(files.find(Settings["definitions.structs"]))
+            "hunt", "hunt_modes", "hunt_mode" -> get<HuntModeDefinitions>().load(files.find(Settings["definitions.huntModes"]))
+            "weapon_styles", "weapon_style", "styles" -> get<WeaponStyleDefinitions>().load(files.find(Settings["definitions.weapons.styles"]))
+            "weapon_animations", "weapon_anims", "weapon_animation" -> get<WeaponAnimationDefinitions>().load(files.find(Settings["definitions.weapons.animations"]))
+            "ammo", "ammo_groups", "ammunition" -> get<AmmoDefinitions>().load(files.find(Settings["definitions.ammoGroups"]))
+            "canoe", "canoes" -> get<CanoeDefinitions>().load(files.find(Settings["map.canoes"]))
             "npcs" -> {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
                 loadNpcSpawns(files, reload = true)

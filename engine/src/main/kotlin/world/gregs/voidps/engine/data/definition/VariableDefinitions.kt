@@ -3,10 +3,20 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
+import world.gregs.voidps.engine.client.variable.BitwiseValues
+import world.gregs.voidps.engine.client.variable.BooleanValues
+import world.gregs.voidps.engine.client.variable.IntValues
+import world.gregs.voidps.engine.client.variable.ListValues
+import world.gregs.voidps.engine.client.variable.MapValues
+import world.gregs.voidps.engine.client.variable.NoValues
+import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.timedLoad
 
 object VariableDefinitions {
@@ -38,16 +48,21 @@ object VariableDefinitions {
 
     fun getVarp(id: Int) = varpIds[id]
 
-    fun load(files: ConfigFiles) = load(
-        files.list(Settings["definitions.variables.players"]),
-        files.list(Settings["definitions.variables.bits"]),
-        files.list(Settings["definitions.variables.clients"]),
-        files.list(Settings["definitions.variables.strings"]),
-        files.list(Settings["definitions.variables.customs"]),
-    )
+    fun load(files: ConfigFiles): VariableDefinitions {
+        val players = files.list(Settings["definitions.variables.players"])
+        val playerBits = files.list(Settings["definitions.variables.bits"])
+        val clients = files.list(Settings["definitions.variables.clients"])
+        val clientStrings = files.list(Settings["definitions.variables.strings"])
+        val custom = files.list(Settings["definitions.variables.customs"])
+        val snapshot = files.snapshot("variables", players + playerBits + clients + clientStrings + custom)
+        return load(players, playerBits, clients, clientStrings, custom, snapshot)
+    }
 
-    fun load(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>): VariableDefinitions {
+    fun load(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>, snapshot: Snapshot? = null): VariableDefinitions {
         timedLoad("variable definition") {
+            if (snapshot != null && restore(snapshot)) {
+                return@timedLoad this.definitions.size
+            }
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val varbitIds = Int2ObjectOpenHashMap<String>()
             val varpIds = Int2ObjectOpenHashMap<String>()
@@ -88,10 +103,102 @@ object VariableDefinitions {
                 }
             }
             set(definitions, varbitIds, varpIds)
+            snapshot?.let { save(it) }
             this.definitions.size
         }
         return this
     }
+
+    private fun save(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for ((stringId, definition) in definitions) {
+            string(stringId)
+            byte(
+                when (definition) {
+                    is VariableDefinition.VarpDefinition -> VARP
+                    is VariableDefinition.VarbitDefinition -> VARBIT
+                    is VariableDefinition.VarcDefinition -> VARC
+                    is VariableDefinition.VarcStrDefinition -> VARC_STR
+                    is VariableDefinition.CustomVariableDefinition -> CUSTOM
+                    else -> throw IllegalArgumentException("Unsupported variable type ${definition.javaClass}")
+                },
+            )
+            int(definition.id)
+            values(definition.values)
+            value(definition.defaultValue)
+            boolean(definition.persistent)
+            boolean(definition.transmit)
+        }
+    }
+
+    private fun SnapshotWriter.values(values: VariableValues) {
+        when (values) {
+            NoValues -> byte(0)
+            IntValues -> byte(1)
+            StringValues -> byte(2)
+            BooleanValues -> byte(3)
+            is ListValues -> {
+                byte(4)
+                value(values.values)
+            }
+            is MapValues -> {
+                byte(5)
+                value(values.values)
+            }
+            is BitwiseValues -> {
+                byte(6)
+                value(values.values)
+            }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun values(reader: SnapshotReader): VariableValues = when (val tag = reader.byte()) {
+        0 -> NoValues
+        1 -> IntValues
+        2 -> StringValues
+        3 -> BooleanValues
+        4 -> ListValues(reader.value() as List<Any>)
+        5 -> MapValues(reader.value() as Map<Any, Int>)
+        6 -> BitwiseValues(reader.value() as List<Any>)
+        else -> throw IllegalStateException("Unknown variable values tag $tag")
+    }
+
+    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
+        val varbitIds = Int2ObjectOpenHashMap<String>()
+        val varpIds = Int2ObjectOpenHashMap<String>()
+        repeat(reader.int()) {
+            val stringId = reader.string()
+            val type = reader.byte()
+            val id = reader.int()
+            val values = values(reader)
+            val default = reader.value()
+            val persistent = reader.boolean()
+            val transmit = reader.boolean()
+            definitions[stringId] = when (type) {
+                VARP -> {
+                    varpIds[id] = stringId
+                    VariableDefinition.VarpDefinition(id, values, default, persistent, transmit)
+                }
+                VARBIT -> {
+                    varbitIds[id] = stringId
+                    VariableDefinition.VarbitDefinition(id, values, default, persistent, transmit)
+                }
+                VARC -> VariableDefinition.VarcDefinition(id, values, default, persistent, transmit)
+                VARC_STR -> VariableDefinition.VarcStrDefinition(id, default, persistent, transmit)
+                CUSTOM -> VariableDefinition.CustomVariableDefinition(values, default, persistent)
+                else -> throw IllegalStateException("Unknown variable type $type")
+            }
+        }
+        set(definitions, varbitIds, varpIds)
+    }
+
+    private const val VARP = 0
+    private const val VARBIT = 1
+    private const val VARC = 2
+    private const val VARC_STR = 3
+    private const val CUSTOM = 4
 
     /**
      * Two variables sharing an [id] both write the same client variable, so setting one silently changes the other.
