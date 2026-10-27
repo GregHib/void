@@ -1,12 +1,14 @@
 package content.quest.miniquest.barbarian_training
 
 import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.statement
 import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.Rows
@@ -21,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.succe
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.type.random
 
 /**
@@ -60,10 +63,14 @@ class BarbarianFishing : Script {
             fish(target)
         }
 
-        itemOnItem("knife", "leaping_*") { fromItem, toItem, _, toSlot ->
-            val fish = if (fromItem.id == "knife") toItem else fromItem
-            val slot = if (fromItem.id == "knife") toSlot else inventory.indexOf(fish.id)
-            gut(fish.id, slot)
+        itemOnItem("knife", "leaping_*") { fromItem, toItem ->
+            val fish = if (fromItem.id == "knife") toItem.id else fromItem.id
+            closeInterfaces()
+            weakQueue("gut_fish") {
+                val count = inventory.count(fish)
+                val amount = if (count <= 1) count else makeAmount(listOf(fish), "Cut", count).second
+                gut(fish, amount)
+            }
         }
     }
 
@@ -132,7 +139,17 @@ class BarbarianFishing : Script {
     /**
      * Cutting leaping fish open always gives roe or caviar but only sometimes leaves usable offcuts.
      */
-    fun Player.gut(fish: String, slot: Int) {
+    fun Player.gut(fish: String, amount: Int) {
+        if (amount <= 0 || !inventory.contains("knife") || !inventory.contains(fish)) {
+            return
+        }
+        gutFish(fish, inventory.indexOf(fish))
+        weakQueue("gut_fish", 2) {
+            gut(fish, amount - 1)
+        }
+    }
+
+    fun Player.gutFish(fish: String, slot: Int) {
         val (eggs, xp, offcutChance) = when (fish) {
             "leaping_trout" -> Triple("roe", 10.0, 50)
             "leaping_salmon" -> Triple("roe", 10.0, 75)
