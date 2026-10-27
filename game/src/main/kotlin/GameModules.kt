@@ -5,7 +5,6 @@ import content.bot.chat.BotChatModel
 import content.entity.obj.ObjectTeleportLoader
 import content.entity.player.modal.book.BooksLoader
 import content.entity.world.music.MusicTrackLoader
-import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodesLoader
 import content.skill.farming.FarmingDefinitionsLoader
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
@@ -78,7 +77,6 @@ fun gameLoaders(): List<Loader<*>> = listOf(
     ObjectTeleportLoader,
     MusicTrackLoader,
     BooksLoader,
-    FairyRingCodesLoader,
     FarmingDefinitionsLoader,
     NavigationEdgeLoader,
     NavigationGraphLoader,
@@ -91,6 +89,5 @@ fun gameDefinitionsModule() = module {
     single { ObjectTeleportLoader.instance }
     single { MusicTrackLoader.instance }
     single { BooksLoader.instance }
-    single { FairyRingCodesLoader.instance }
     single { FarmingDefinitionsLoader.instance }
 }
