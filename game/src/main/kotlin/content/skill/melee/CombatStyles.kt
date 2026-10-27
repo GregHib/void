@@ -59,9 +59,9 @@ class CombatStyles : Script {
         val type = getWeaponStyleType(player)
         val style = Tables.get("weapon_styles").rows().getOrNull(type)
         val index = player["attack_style_${style?.rowId}", 0]
-        player["attack_type"] = style?.stringList("attackTypes")?.getOrNull(index) ?: ""
-        player["attack_style"] = style?.stringList("attackStyles")?.getOrNull(index) ?: ""
-        player["combat_style"] = style?.stringList("combatStyles")?.getOrNull(index) ?: ""
+        player["attack_type"] = style?.stringList("attack_types")?.getOrNull(index) ?: ""
+        player["attack_style"] = style?.stringList("attack_styles")?.getOrNull(index) ?: ""
+        player["combat_style"] = style?.stringList("combat_styles")?.getOrNull(index) ?: ""
         player["attack_style_index"] = index
     }
 
