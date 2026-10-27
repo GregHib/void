@@ -7,7 +7,7 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.Params
-import world.gregs.voidps.engine.data.Snapshot
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {

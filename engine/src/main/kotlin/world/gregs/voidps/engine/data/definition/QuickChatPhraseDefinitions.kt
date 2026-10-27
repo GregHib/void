@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.definition.data.QuickChatPhraseDefinition
-import world.gregs.voidps.engine.data.Snapshot
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 
 class QuickChatPhraseDefinitions(
     override var definitions: Array<QuickChatPhraseDefinition>,

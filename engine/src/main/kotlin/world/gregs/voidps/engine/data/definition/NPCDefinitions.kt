@@ -10,7 +10,7 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.data.Snapshot
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
 

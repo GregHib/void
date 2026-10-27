@@ -3,9 +3,9 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.data.Snapshot
-import world.gregs.voidps.engine.data.SnapshotReader
-import world.gregs.voidps.engine.data.SnapshotWriter
+import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatAttack
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit

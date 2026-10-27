@@ -11,7 +11,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.Snapshot
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {

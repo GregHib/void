@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.client.ui.chat.toInt
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 import java.nio.file.FileVisitResult
 import java.nio.file.Files
