@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import skillCreation
 import skipDialogues
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -232,6 +233,24 @@ internal class BarbarianTrainingTest : WorldTest() {
         assertTrue(player.inventory.contains("raw_swordfish") || player.inventory.contains("raw_tuna"))
         assertTrue(player.experience.get(Skill.Strength) > 0)
         assertEquals(BarbarianTraining.DONE, player.barbarianTraining("barehand"))
+    }
+
+    @Test
+    fun `Barehand fishing catches every 5 ticks`() {
+        alwaysSucceed()
+        val player = trainee(Tile(2837, 3431))
+        player["barbarian_training_barehand"] = BarbarianTraining.REPORTED
+        val spot = createNPC("fishing_spot_cage_harpoon_catherby", Tile(2837, 3432))
+
+        player.npcOption(spot, "Harpoon")
+        tickIf { player.inventory.count == 0 }
+        val first = GameLoop.tick
+        tickIf { player.inventory.count == 1 }
+        val second = GameLoop.tick
+        tickIf { player.inventory.count == 2 }
+
+        assertEquals(5, second - first)
+        assertEquals(5, GameLoop.tick - second)
     }
 
     @Test

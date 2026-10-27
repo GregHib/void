@@ -124,7 +124,8 @@ class Fishing : Script {
                 player.face(target)
                 val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
                 player.anim(if (tackle == BAREHAND) "barehand_fishing" else "fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
-                player.pause(5)
+                // Barehand attempts already spent 4 ticks on the previous catch or miss, keeping the same 5 tick rate as a harpoon
+                player.pause(if (tackle == BAREHAND && !first) 1 else 5)
             } else if (remaining > 0) {
                 return
             }
@@ -161,7 +162,7 @@ class Fishing : Script {
                 }
             }
             if (tackle == BAREHAND) {
-                // Each attempt ends by pulling out a fish or wiping hands off, which plays out before the next attempt starts
+                // Each attempt ends by pulling out a fish or wiping hands off before reaching back into the water
                 if (!caught) {
                     player.anim("barehand_miss")
                 }
