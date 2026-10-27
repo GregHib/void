@@ -71,13 +71,30 @@ internal class FishingTest : WorldTest() {
     }
 
     @Test
-    fun `Fishing spot catches are listed highest level first`() {
+    fun `Fishing spot catches have levels and are listed highest level first`() {
         for (spot in Tables.get("fishing_spots").rows()) {
             for (option in listOf("net", "bait", "lure", "cage", "harpoon")) {
                 val fish = Tables.itemListOrNull("${spot.stringId}.$option") ?: continue
-                val levels = fish.map { Tables.intOrNull("fishing.$it.level") ?: 0 }
+                val levels = fish.map { Tables.int("fishing.$it.level") }
                 assertEquals(levels.sortedDescending(), levels, "${spot.rowId} $option $fish")
             }
         }
+    }
+
+    @Test
+    fun `Catch cave eels in the lumbridge swamp caves`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 0
+        })
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Fishing, 38)
+        val fishingSpot = createNPC("fishing_spot_lumbridge_swamp_caves", emptyTile.addY(1))
+        player.inventory.add("fishing_rod")
+        player.inventory.add("fishing_bait", 100)
+
+        player.npcOption(fishingSpot, "Bait")
+        tickIf { player.inventory.spaces >= 26 }
+
+        assertTrue(player.inventory.contains("raw_cave_eel"))
     }
 }
