@@ -10,4 +10,11 @@ object Border {
     } else {
         tile.copy(x = if (tile.x > border.minX) border.minX - 1 else border.maxX + 1)
     }
+
+    // Tile in line with [tile] just outside the border, on the same side as [side]
+    fun getSide(border: Rectangle, tile: Tile, side: Tile) = if (border.height > border.width) {
+        tile.copy(y = if (side.y < border.minY) border.minY - 1 else border.maxY + 1)
+    } else {
+        tile.copy(x = if (side.x < border.minX) border.minX - 1 else border.maxX + 1)
+    }
 }

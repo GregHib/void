@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrateg
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
@@ -70,11 +71,27 @@ class Movement : Script {
             }
 
             val target = player.tile.copy(x, y)
-            val border = borders[target.zone]
+            val border = borders[target.zone] ?: borders[player.tile.zone]
             if (border != null && (target in border || player.tile in border)) {
-                val tile = border.nearestTo(player.tile)
-                val endSide = Border.getOppositeSide(border, tile)
-                player.walkTo(endSide, noCollision = true, forceWalk = true)
+                val nearest = border.nearestTo(player.tile)
+                if (player.tile in border) {
+                    val endSide = if (target in border) Border.getOppositeSide(border, nearest) else Border.getSide(border, nearest, target)
+                    player.walkTo(endSide, noCollision = true, forceWalk = true)
+                } else {
+                    // Walk up to the border normally before passing through it
+                    val startSide = Border.getSide(border, nearest, player.tile)
+                    val endSide = Border.getOppositeSide(border, startSide)
+                    if (player.tile == startSide) {
+                        player.walkTo(endSide, noCollision = true, forceWalk = true)
+                    } else {
+                        player.weakQueue("border_crossing") {
+                            walkToDelay(startSide, forceWalk = TargetStrategy.noRun(this))
+                            if (tile == startSide) {
+                                walkTo(endSide, noCollision = true, forceWalk = true)
+                            }
+                        }
+                    }
+                }
             } else {
                 if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
                     player.mode = EmptyMode
