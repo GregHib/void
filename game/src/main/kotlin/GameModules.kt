@@ -21,7 +21,7 @@ import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
     single { Reports(get()) }
-    single { BotManager().load(files) }
+    single(createdAtStart = true) { BotManager().load(files) }
     single { loadGraph(files) }
     single { if (Settings["bots.count", 0] > 0) BotChatModel().load(files, get()) else BotChatModel() }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }

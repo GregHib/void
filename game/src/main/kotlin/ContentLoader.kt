@@ -69,6 +69,7 @@ class ContentLoader {
          * list made by the classPreload gradle build task, so [load] only has to construct them.
          *
          * Only lambda classes are initialised, scripts themselves are initialised in order during [load].
+         * Scripts are still linked here so bytecode verification happens off the main thread.
          */
         fun preload() {
             val names = ContentLoader::class.java.getResourceAsStream("preload.txt")?.bufferedReader()?.use { it.readLines() }
@@ -81,7 +82,8 @@ class ContentLoader {
                 val start = System.currentTimeMillis()
                 names.parallelStream().forEach { name ->
                     try {
-                        Class.forName(name, name.contains('$'), loader)
+                        // Reflecting constructors links (and verifies) the class without initialising it
+                        Class.forName(name, name.contains('$'), loader).declaredConstructors
                     } catch (e: Throwable) {
                         logger.warn(e) { "Failed to preload class $name" }
                     }

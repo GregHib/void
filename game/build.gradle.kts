@@ -30,6 +30,13 @@ dependencies {
     testImplementation(libs.bundles.testing)
 }
 
+kotlin {
+    compilerOptions {
+        // Compile lambdas to classes instead of invokedynamic so they can be preloaded in parallel on startup
+        freeCompilerArgs.addAll("-Xlambdas=class", "-Xsam-conversions=class")
+    }
+}
+
 application {
     mainClass.set("Main")
     tasks.run.get().workingDir = rootProject.projectDir
