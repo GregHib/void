@@ -163,6 +163,7 @@ class BarbarianFishing : Script {
         if (!inventory.remove(slot, fish)) {
             return
         }
+        anim("gut_fish")
         if (random.nextInt(guaranteed) >= levels.get(Skill.Cooking)) {
             // TODO confirm message
             message("You fail to cut the fish properly.", ChatType.Filter)

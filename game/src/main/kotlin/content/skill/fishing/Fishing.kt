@@ -123,7 +123,7 @@ class Fishing : Script {
             if (remaining < 0) {
                 player.face(target)
                 val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
-                // TODO confirm barehand anim sequence (6703/6704 wind-up, 6709 loop, fish-specific catch anims)
+                // TODO confirm the barehand fishing loop anim
                 player.anim(if (tackle == BAREHAND) "barehand_fishing" else "fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
                 player.pause(5)
             } else if (remaining > 0) {
