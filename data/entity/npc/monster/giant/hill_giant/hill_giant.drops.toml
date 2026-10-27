@@ -11,10 +11,8 @@ drops = [
 roll = 128
 drops = [
   { id = "iron_dagger", chance = 4 },
-  { id = "iron_med_helm", chance = 5 },
   { id = "iron_full_helm", chance = 5 },
   { id = "iron_kiteshield", chance = 3 },
-  { id = "steel_scimitar", chance = 2 },
   { id = "steel_longsword", chance = 2 },
   { id = "iron_arrow", amount = 3, chance = 6 },
   { id = "fire_rune", amount = 15, chance = 3 },

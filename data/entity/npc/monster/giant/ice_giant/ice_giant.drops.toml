@@ -10,7 +10,8 @@ drops = [
 roll = 128
 drops = [
     { id = "iron_2h_sword", chance = 5 },
-    { id = "black_kiteshield", chance = 5 },
+    { id = "black_kiteshield", chance = 5, members = false },
+    { id = "black_kiteshield", chance = 4, members = true },
     { id = "steel_hatchet", chance = 4 },
     { id = "steel_sword", chance = 4 },
     { id = "iron_platelegs" },
@@ -25,7 +26,7 @@ drops = [
     { id = "cosmic_rune", amount = 4 },
     { id = "death_rune", amount = 3 },
     { id = "blood_rune", amount = 2, members = true },
-    { table = "uncommon_seed_drop_table", chance = 8 },
+    { table = "uncommon_seed_drop_table", chance = 8, members = true },
     { id = "coins", amount = 117, chance = 32 },
     { id = "coins", amount = 53, chance = 12 },
     { id = "coins", amount = 196, chance = 10 },
