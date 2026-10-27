@@ -33,7 +33,7 @@ class BarbarianSmithing : Script {
             val metal = item.id.removeSuffix("_bar")
             val logs = shafts[metal]
             if (logs == null) {
-                // TODO confirm message
+                // TODO proper message
                 message("You can't make anything from that metal on this anvil.")
                 return@itemOnObjectOperate
             }
@@ -54,7 +54,7 @@ class BarbarianSmithing : Script {
                 return@itemOnObjectOperate
             }
             if (!inventory.contains(logs)) {
-                // TODO confirm message
+                // TODO proper message
                 statement("You need ${if (logs == "logs") "some normal logs" else "some ${logs.replace('_', ' ')}"} for the shaft.")
                 return@itemOnObjectOperate
             }
@@ -68,7 +68,7 @@ class BarbarianSmithing : Script {
         }
 
         itemOnObjectOperate("hammer", "barbarian_anvil", arrive = false) {
-            // TODO confirm message
+            // TODO proper message
             message("To smith a spear, you must use the metal bar on the anvil.")
         }
     }
@@ -96,7 +96,7 @@ class BarbarianSmithing : Script {
                 return
             }
             exp(Skill.Smithing, row.int("xp") / 10.0)
-            // TODO confirm message
+            // TODO proper message
             message("You make a ${if (spear.endsWith("hasta")) "hasta" else "spear"}.", ChatType.Filter)
             barbarianTaskDone(if (spear.endsWith("hasta")) "hasta" else "spear")
         }

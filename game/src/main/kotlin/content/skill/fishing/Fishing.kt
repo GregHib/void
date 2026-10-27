@@ -169,7 +169,6 @@ class Fishing : Script {
                 }
             }
             if (tackle == BAREHAND) {
-                // Each attempt ends by pulling out a fish or wiping hands off, which plays out before the next attempt starts
                 if (!caught) {
                     player.anim("barehand_miss")
                 }

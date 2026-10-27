@@ -26,8 +26,7 @@ id = 6720
 [light_fire_sacred_clay_bow]
 id = 10990
 
-# Hammer in hand, as with smith_item
-# TODO confirm anim (from 2009scape)
+# TODO confirm anim
 [smith_barbarian_anvil]
 id = 6712
 
@@ -37,7 +36,6 @@ id = 9980
 [barehand_miss]
 id = 14723
 
-# Knife in hand
 [gut_fish]
 id = 6702
 

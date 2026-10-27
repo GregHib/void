@@ -66,7 +66,7 @@ class Equipping : Script {
         }
         // The client lists "Barbarian spearmaking" as a requirement for every hasta
         if (item.id.contains("_hasta") && player.barbarianTraining("hasta") < BarbarianTraining.DONE) {
-            // TODO confirm message
+            // TODO proper message
             player.message("You need to have learned Barbarian spearmaking to wield this.")
             return
         }
