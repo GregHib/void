@@ -1,8 +1,8 @@
 [stronghold_shade]
 defend_anim = "stronghold_shade_defend"
-defend_sound = "stronghold_shade_defend"
+defend_sound = "ghost_defend"
 death_anim = "stronghold_shade_death"
-death_sound = "stronghold_shade_death"
+death_sound = "ghost_death"
 
 [stronghold_shade.melee]
 range = 1

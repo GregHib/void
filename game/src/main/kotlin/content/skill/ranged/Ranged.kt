@@ -61,9 +61,9 @@ class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: We
                 val ammoName = character.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
                 character.gfx("${ammoName}_throw")
                 if (weapon.contains("dart")) {
-                    character.sound("dart_throw")
+                    character.sound("dart")
                 } else if (weapon.contains("javelin")) {
-                    character.sound("javelin_throw")
+                    character.sound("aviansie_attack")
                 } else if (weapon.contains("knife")) {
                     character.sound("knife_throw")
                 } else if (weapon.contains("axe")) {
