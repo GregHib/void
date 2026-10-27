@@ -35,3 +35,82 @@ west = { x = 2256, y = 3227 }
 trap = { x = 2295, y = 3214 }
 north = { x = 2295, y = 3217 }
 south = { x = 2295, y = 3213 }
+
+# Where each leaf trap is, the pit it drops into and where climbing out lands
+# TODO which pit belongs to the west and north traps is unverified
+[leaf_traps]
+centre = "tile"
+pit = "tile"
+exit = "tile"
+
+[.leaf_trap_1]
+centre = { x = 2209, y = 3203 }
+pit = { x = 2313, y = 9656 }
+exit = { x = 2209, y = 3201 }
+
+[.leaf_trap_2]
+centre = { x = 2267, y = 3203 }
+pit = { x = 2355, y = 9656 }
+exit = { x = 2267, y = 3201 }
+
+[.leaf_trap_3]
+centre = { x = 2274, y = 3174 }
+pit = { x = 2336, y = 9656 }
+exit = { x = 2274, y = 3172 }
+
+[.leaf_trap_4]
+centre = { x = 2277, y = 3262 }
+pit = { x = 2354, y = 9643 }
+exit = { x = 2275, y = 3262 }
+
+# Each climbable rock face, per side. A path ending the climb down has a single tile; delay, face, anim_delay and loops only apply when climbing down
+[elven_overpass]
+tile = "tile"
+level = "int"
+path = "list<tile>"
+delay = "int"
+face = "string"
+anim_delay = "int"
+loops = "int"
+loops_default = 8
+
+[.elven_overpass_1_top]
+tile = { x = 2346, y = 3299 }
+level = 59
+path = [{ x = 2344, y = 3294 }]
+delay = 120
+face = "north"
+anim_delay = 10
+loops = 6
+
+[.elven_overpass_1_bottom]
+tile = { x = 2344, y = 3295 }
+level = 59
+path = [{ x = 2344, y = 3295 }, { x = 2344, y = 3296 }, { x = 2345, y = 3297 }, { x = 2345, y = 3298 }, { x = 2346, y = 3299 }, { x = 2346, y = 3300 }]
+
+[.elven_overpass_2_top]
+tile = { x = 2338, y = 3282 }
+level = 68
+path = [{ x = 2338, y = 3286 }]
+delay = 90
+face = "south"
+loops = 4
+
+[.elven_overpass_2_bottom]
+tile = { x = 2338, y = 3285 }
+level = 68
+path = [{ x = 2338, y = 3285 }, { x = 2338, y = 3281 }]
+
+[.elven_overpass_3_top]
+tile = { x = 2333, y = 3252 }
+level = 85
+path = [{ x = 2338, y = 3253 }]
+delay = 120
+face = "west"
+anim_delay = 10
+loops = 6
+
+[.elven_overpass_3_bottom]
+tile = { x = 2337, y = 3253 }
+level = 85
+path = [{ x = 2337, y = 3253 }, { x = 2332, y = 3252 }]

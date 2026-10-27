@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import java.time.LocalDateTime
@@ -163,7 +164,7 @@ class BotChatTest : WorldTest() {
 
     @Test
     fun `Advice is for the asker's level`() {
-        player.levels.set(Skill.Mining, 20)
+        player.experience.set(Skill.Mining, Level.experience(20))
         val reply = reply("where should i train mining", 1_000)
         assertEquals("Try mining at: <MultipleChoice>.", reply?.phrase)
         assertTrue(reply!!.args.single() in setOf("varrock_south_east", "varrock_south_west"))
