@@ -15,6 +15,8 @@ import content.entity.player.stat.KillTracker
 import content.quest.clearInstance
 import content.quest.instanceOffset
 import content.quest.smallInstance
+import content.skill.summoning.follower
+import content.skill.summoning.pet.pet
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.NPCDefinition
@@ -74,7 +76,7 @@ class TzhaarFightCave(
                 npc<Angry>("tzhaar_mej_jal", "Hey, JalYt, you were in cave only a moment ago. You wait $remaining before going in again.")
                 return@objectOperate
             }
-            if (hasFamiliar(this)) {
+            if (follower != null || pet != null) {
                 npc<Angry>("tzhaar_mej_jal", "No Kimit-Zil in the cave! This is a fight for YOU, not your friends!")
                 return@objectOperate
             }
@@ -328,6 +330,4 @@ class TzhaarFightCave(
             npc["healed"] = true
         }
     }
-
-    fun hasFamiliar(player: Player) = false
 }
