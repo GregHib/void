@@ -4,8 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class ClientScriptDefinitions : DefinitionsDecoder<ClientScriptDefinition> {
 
@@ -47,14 +45,4 @@ class ClientScriptDefinitions : DefinitionsDecoder<ClientScriptDefinition> {
         definitions = other.definitions
         ids = other.ids
     }
-}
-
-object ClientScriptLoader : Loader<ClientScriptDefinitions> {
-    val instance = ClientScriptDefinitions()
-    override val name = "client_scripts"
-    override val files = listOf("definitions.clientScripts")
-
-    override fun load(context: LoadContext): ClientScriptDefinitions = ClientScriptDefinitions().load(context.paths(this))
-
-    override fun install(state: ClientScriptDefinitions) = instance.copyFrom(state)
 }

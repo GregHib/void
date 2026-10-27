@@ -4,8 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.PatrolDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.type.Tile
 
 /**
@@ -56,14 +54,4 @@ class PatrolDefinitions {
     internal fun copyFrom(other: PatrolDefinitions) {
         definitions = other.definitions
     }
-}
-
-object PatrolLoader : Loader<PatrolDefinitions> {
-    val instance = PatrolDefinitions()
-    override val name = "patrols"
-    override val files = listOf("definitions.patrols")
-
-    override fun load(context: LoadContext): PatrolDefinitions = PatrolDefinitions().load(context.paths(this))
-
-    override fun install(state: PatrolDefinitions) = instance.copyFrom(state)
 }

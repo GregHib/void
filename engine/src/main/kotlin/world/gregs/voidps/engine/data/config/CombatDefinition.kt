@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.data.config
 
 import kotlinx.serialization.Serializable
-import world.gregs.voidps.engine.data.snapshot.IntRangeSerializer
+import world.gregs.voidps.engine.data.snapshot.serializer.IntRangeSerializer
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.random
 import kotlin.ranges.random

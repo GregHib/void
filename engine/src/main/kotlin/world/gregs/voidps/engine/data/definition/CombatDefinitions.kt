@@ -8,10 +8,6 @@ import world.gregs.voidps.engine.data.config.CombatDefinition.CombatAttack
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
 import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
 import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
-import world.gregs.voidps.engine.data.snapshot.StringKeyedMapSerializer
 import world.gregs.voidps.type.Delta
 
 /**
@@ -472,15 +468,4 @@ class CombatDefinitions {
         defendSound = original.defendSound ?: clone.defendSound,
         deathSound = original.deathSound ?: clone.deathSound,
     )
-}
-
-object CombatLoader : Loader<Map<String, CombatDefinition>> {
-    val instance = CombatDefinitions()
-    override val name = "combat"
-    override val files = listOf("definitions.combatAttacks")
-    override val codec = SnapshotFormat.codec(StringKeyedMapSerializer(CombatDefinition.serializer()))
-
-    override fun load(context: LoadContext): Map<String, CombatDefinition> = instance.parse(context.paths(this))
-
-    override fun install(state: Map<String, CombatDefinition>) = instance.install(state)
 }

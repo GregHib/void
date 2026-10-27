@@ -3,8 +3,6 @@ package content.quest.member.fairy_tale_part_2.fairy_ring
 import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.type.Tile
 
 class FairyRingCodes {
@@ -40,14 +38,4 @@ class FairyRingCodes {
     fun copyFrom(other: FairyRingCodes) {
         codes = other.codes
     }
-}
-
-object FairyRingCodesLoader : Loader<FairyRingCodes> {
-    val instance = FairyRingCodes()
-    override val name = "fairy_ring_codes"
-    override val file = listOf("definitions.fairyCodes")
-
-    override fun load(context: LoadContext): FairyRingCodes = FairyRingCodes().load(context.paths(this).single())
-
-    override fun install(state: FairyRingCodes) = instance.copyFrom(state)
 }

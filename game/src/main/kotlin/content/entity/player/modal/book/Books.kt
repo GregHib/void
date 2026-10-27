@@ -5,8 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 
@@ -70,14 +68,4 @@ fun Player.openBook(name: String) {
     val type = get<Books>().type(name)
     open(if (type == "normal") "book" else "book_$type")
     anim("human_read_book")
-}
-
-object BooksLoader : Loader<Books> {
-    val instance = Books()
-    override val name = "books"
-    override val files = listOf("definitions.books")
-
-    override fun load(context: LoadContext): Books = Books().load(context.paths(this))
-
-    override fun install(state: Books) = instance.copyFrom(state)
 }

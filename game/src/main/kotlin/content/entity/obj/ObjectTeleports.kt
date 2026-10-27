@@ -1,17 +1,11 @@
 package content.entity.obj
 
 import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
-import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.serialization.Serializable
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.snapshot.IntKeyedMapSerializer
-import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
-import world.gregs.voidps.engine.data.snapshot.StringKeyedMapSerializer
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
@@ -152,15 +146,4 @@ class ObjectTeleports {
         val delta: Delta = Delta.EMPTY,
         val to: Tile = Tile.EMPTY,
     )
-}
-
-object ObjectTeleportLoader : Loader<Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>> {
-    val instance = ObjectTeleports()
-    override val name = "object_teleports"
-    override val files = listOf("map.teleports")
-    override val codec = SnapshotFormat.codec(StringKeyedMapSerializer(IntKeyedMapSerializer(ObjectTeleports.TeleportDefinition.serializer()), Hash.VERY_FAST_LOAD_FACTOR))
-
-    override fun load(context: LoadContext): Map<String, Map<Int, ObjectTeleports.TeleportDefinition>> = instance.parse(context.paths(this))
-
-    override fun install(state: Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>) = instance.install(state)
 }

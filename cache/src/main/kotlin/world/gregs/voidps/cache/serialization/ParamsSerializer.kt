@@ -10,17 +10,6 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /**
- * Implemented by encoders which can write values of types unknown to this module, such as enums from the engine.
- */
-interface AnyValueEncoder {
-    fun encodeAnyValue(value: Any?)
-}
-
-interface AnyValueDecoder {
-    fun decodeAnyValue(): Any?
-}
-
-/**
  * Definition params: untyped values by param id.
  * Restored the same way the config parsers build them, as a lookup optimised [Int2ObjectOpenHashMap].
  */

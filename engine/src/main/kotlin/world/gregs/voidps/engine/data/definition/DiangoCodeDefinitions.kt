@@ -5,8 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.DiangoCodeDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.engine.entity.item.Item
 
 class DiangoCodeDefinitions {
@@ -47,15 +45,4 @@ class DiangoCodeDefinitions {
     internal fun copyFrom(other: DiangoCodeDefinitions) {
         definitions = other.definitions
     }
-}
-
-object DiangoCodeLoader : Loader<DiangoCodeDefinitions> {
-    val instance = DiangoCodeDefinitions()
-    override val name = "diango_codes"
-    override val file = listOf("definitions.diangoCodes")
-    override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
-
-    override fun load(context: LoadContext): DiangoCodeDefinitions = DiangoCodeDefinitions().load(context.paths(this).single())
-
-    override fun install(state: DiangoCodeDefinitions) = instance.copyFrom(state)
 }

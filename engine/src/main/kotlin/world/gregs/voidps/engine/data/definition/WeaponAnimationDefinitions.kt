@@ -6,8 +6,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.config.WeaponAnimationDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class WeaponAnimationDefinitions {
 
@@ -36,14 +34,4 @@ class WeaponAnimationDefinitions {
     internal fun copyFrom(other: WeaponAnimationDefinitions) {
         definitions = other.definitions
     }
-}
-
-object WeaponAnimationLoader : Loader<WeaponAnimationDefinitions> {
-    val instance = WeaponAnimationDefinitions()
-    override val name = "weapon_animations"
-    override val file = listOf("definitions.weapons.animations")
-
-    override fun load(context: LoadContext): WeaponAnimationDefinitions = WeaponAnimationDefinitions().load(context.paths(this).single())
-
-    override fun install(state: WeaponAnimationDefinitions) = instance.copyFrom(state)
 }

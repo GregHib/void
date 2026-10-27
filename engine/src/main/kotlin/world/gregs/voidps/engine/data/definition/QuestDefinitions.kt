@@ -6,8 +6,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.cache.definition.Params
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
 
@@ -71,14 +69,4 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
         definitions = other.definitions
         ids = other.ids
     }
-}
-
-object QuestLoader : Loader<QuestDefinitions> {
-    val instance = QuestDefinitions()
-    override val name = "quests"
-    override val file = listOf("definitions.quests")
-
-    override fun load(context: LoadContext): QuestDefinitions = QuestDefinitions().load(context.paths(this).single())
-
-    override fun install(state: QuestDefinitions) = instance.copyFrom(state)
 }

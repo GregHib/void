@@ -5,8 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.WeaponStyleDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class WeaponStyleDefinitions : DefinitionsDecoder<WeaponStyleDefinition> {
 
@@ -53,14 +51,4 @@ class WeaponStyleDefinitions : DefinitionsDecoder<WeaponStyleDefinition> {
         definitions = other.definitions
         ids = other.ids
     }
-}
-
-object WeaponStyleLoader : Loader<WeaponStyleDefinitions> {
-    val instance = WeaponStyleDefinitions()
-    override val name = "weapon_styles"
-    override val file = listOf("definitions.weapons.styles")
-
-    override fun load(context: LoadContext): WeaponStyleDefinitions = WeaponStyleDefinitions().load(context.paths(this).single())
-
-    override fun install(state: WeaponStyleDefinitions) = instance.copyFrom(state)
 }

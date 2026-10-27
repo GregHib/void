@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.CanoeDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.type.Tile
 
 class CanoeDefinitions {
@@ -63,14 +61,4 @@ class CanoeDefinitions {
     internal fun copyFrom(other: CanoeDefinitions) {
         definitions = other.definitions
     }
-}
-
-object CanoeLoader : Loader<CanoeDefinitions> {
-    val instance = CanoeDefinitions()
-    override val name = "canoes"
-    override val file = listOf("map.canoes")
-
-    override fun load(context: LoadContext): CanoeDefinitions = CanoeDefinitions().load(context.paths(this).single())
-
-    override fun install(state: CanoeDefinitions) = instance.copyFrom(state)
 }

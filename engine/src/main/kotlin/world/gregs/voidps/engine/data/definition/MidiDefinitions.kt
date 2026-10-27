@@ -4,8 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.MidiDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
 
@@ -43,14 +41,4 @@ class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
         definitions = other.definitions
         ids = other.ids
     }
-}
-
-object MidiLoader : Loader<MidiDefinitions> {
-    val instance = MidiDefinitions()
-    override val name = "midis"
-    override val files = listOf("definitions.midis")
-
-    override fun load(context: LoadContext): MidiDefinitions = MidiDefinitions().load(context.paths(this))
-
-    override fun install(state: MidiDefinitions) = instance.copyFrom(state)
 }

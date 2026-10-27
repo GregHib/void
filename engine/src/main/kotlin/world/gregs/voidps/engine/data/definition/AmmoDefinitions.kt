@@ -4,8 +4,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.AmmoDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 /**
  * List of [AmmoDefinition.items] each weapons ammo_group can use ignoring
@@ -48,14 +46,4 @@ class AmmoDefinitions : DefinitionsDecoder<AmmoDefinition> {
         definitions = other.definitions
         ids = other.ids
     }
-}
-
-object AmmoLoader : Loader<AmmoDefinitions> {
-    val instance = AmmoDefinitions()
-    override val name = "ammo"
-    override val file = listOf("definitions.ammoGroups")
-
-    override fun load(context: LoadContext): AmmoDefinitions = AmmoDefinitions().load(context.paths(this).single())
-
-    override fun install(state: AmmoDefinitions) = instance.copyFrom(state)
 }

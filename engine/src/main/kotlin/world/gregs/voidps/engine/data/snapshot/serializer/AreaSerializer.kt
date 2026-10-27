@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data.snapshot
+package world.gregs.voidps.engine.data.snapshot.serializer
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer

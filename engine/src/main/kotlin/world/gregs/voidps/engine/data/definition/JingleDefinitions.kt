@@ -4,8 +4,6 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.JingleDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
 
@@ -43,14 +41,4 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
         definitions = other.definitions
         ids = other.ids
     }
-}
-
-object JingleLoader : Loader<JingleDefinitions> {
-    val instance = JingleDefinitions()
-    override val name = "jingles"
-    override val files = listOf("definitions.jingles")
-
-    override fun load(context: LoadContext): JingleDefinitions = JingleDefinitions().load(context.paths(this))
-
-    override fun install(state: JingleDefinitions) = instance.copyFrom(state)
 }

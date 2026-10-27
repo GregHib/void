@@ -8,8 +8,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArraySet
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.PrayerDefinition
-import world.gregs.voidps.engine.data.load.LoadContext
-import world.gregs.voidps.engine.data.load.Loader
 
 class PrayerDefinitions {
 
@@ -90,14 +88,4 @@ class PrayerDefinitions {
         curses = other.curses
         groups = other.groups
     }
-}
-
-object PrayerLoader : Loader<PrayerDefinitions> {
-    val instance = PrayerDefinitions()
-    override val name = "prayers"
-    override val file = listOf("definitions.prayers")
-
-    override fun load(context: LoadContext): PrayerDefinitions = PrayerDefinitions().load(context.paths(this).single())
-
-    override fun install(state: PrayerDefinitions) = instance.copyFrom(state)
 }
