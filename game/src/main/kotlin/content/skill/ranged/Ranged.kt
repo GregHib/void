@@ -6,16 +6,15 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 
-class Ranged(val weaponDefinitions: WeaponAnimationDefinitions) : Script {
+class Ranged : Script {
 
     init {
         combatPrepare("range") {
@@ -90,8 +89,8 @@ class Ranged(val weaponDefinitions: WeaponAnimationDefinitions) : Script {
         }
         val type = character.weapon.def.getOrNull("weapon_type") ?: style ?: ""
         var animation: String?
-        val definition = weaponDefinitions.get(type)
-        animation = definition.attackTypes.getOrDefault(Params.id(character.attackType), definition.attackTypes[Params.DEFAULT])
+        val definition = Rows.getOrNull("weapon_anims.${type}")
+        animation = definition?.stringOrNull(character.attackType) ?: definition?.stringOrNull("default")
         if (animation == null) {
             animation = "${style}_${character.attackType}"
         }

@@ -1,13 +1,12 @@
 package content.skill.melee
 
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
@@ -21,7 +20,6 @@ import world.gregs.voidps.type.random
 
 class Block(
     val combatDefinitions: CombatDefinitions,
-    val weaponDefinitions: WeaponAnimationDefinitions,
 ) : Script {
 
     init {
@@ -45,8 +43,8 @@ class Block(
                 target.anim("book_block", delay)
             } else {
                 val type: String? = target.weapon.def.getOrNull("weapon_type")
-                val definition = if (type != null) weaponDefinitions.get(type) else null
-                var animation = definition?.attackTypes?.get(Params.DEFEND)
+                val definition = if (type != null) Rows.get("weapon_anims.${type}") else null
+                var animation = definition?.stringOrNull("defend")
                 if (animation == null) {
                     val id = target.weapon.def["weapon_style", -1]
                     val style = Tables.get("weapon_styles").rows().getOrNull(id)
