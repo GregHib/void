@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 
 object GraphicLoader : Loader<DefinitionsState<GraphicDefinition>> {
     override val name = "graphics"
+    override val label = "graphic config"
     override val files = listOf("definitions.graphics")
     override val usesCache = true
     override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(GraphicDefinition::class, GraphicDefinition.serializer(), default = null))
@@ -23,6 +24,8 @@ object GraphicLoader : Loader<DefinitionsState<GraphicDefinition>> {
         val definitions = GraphicDecoder().load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
+
+    override fun total(state: DefinitionsState<GraphicDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<GraphicDefinition>) = GraphicDefinitions.install(state)
 

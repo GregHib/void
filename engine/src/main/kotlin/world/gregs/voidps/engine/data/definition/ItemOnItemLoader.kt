@@ -8,11 +8,14 @@ import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 object ItemOnItemLoader : Loader<Map<String, List<ItemOnItemDefinition>>> {
     val instance = ItemOnItemDefinitions()
     override val name = "item_on_item"
+    override val label = "item on item definition"
     override val files = listOf("definitions.itemOnItem")
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
     override val codec = SnapshotFormat.codec(ItemOnItemStateSerializer)
 
     override fun load(context: LoadContext): Map<String, List<ItemOnItemDefinition>> = instance.parse(context.paths(this))
+
+    override fun total(state: Map<String, List<ItemOnItemDefinition>>) = state.values.sumOf { it.size }
 
     override fun install(state: Map<String, List<ItemOnItemDefinition>>) = instance.install(state)
 }

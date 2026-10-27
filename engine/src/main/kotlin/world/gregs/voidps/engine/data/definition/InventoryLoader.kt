@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 
 object InventoryLoader : Loader<DefinitionsState<InventoryDefinition>> {
     override val name = "inventories"
+    override val label = "inventory config"
     override val files = listOf("definitions.inventories", "definitions.shops")
     override val usesCache = true
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
@@ -24,6 +25,8 @@ object InventoryLoader : Loader<DefinitionsState<InventoryDefinition>> {
         val definitions = InventoryDecoder().load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.list("definitions.inventories"), context.list("definitions.shops")))
     }
+
+    override fun total(state: DefinitionsState<InventoryDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<InventoryDefinition>) = InventoryDefinitions.install(state)
 

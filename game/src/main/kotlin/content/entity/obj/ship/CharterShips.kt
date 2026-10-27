@@ -6,7 +6,7 @@ import world.gregs.config.Config
 import kotlin.collections.set
 
 class CharterShips {
-    private lateinit var prices: Map<String, Map<String, Int>>
+    internal lateinit var prices: Map<String, Map<String, Int>>
 
     fun get(name: String): Map<String, Int> = prices.getOrDefault(name, emptyMap())
 

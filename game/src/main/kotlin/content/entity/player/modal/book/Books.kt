@@ -12,7 +12,7 @@ class Books {
 
     private lateinit var types: Map<String, String>
     private lateinit var books: Map<String, List<List<String>>>
-    private lateinit var titles: Map<String, String>
+    internal lateinit var titles: Map<String, String>
 
     fun type(name: String) = types[name] ?: "normal"
 

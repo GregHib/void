@@ -6,10 +6,13 @@ import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object AreaLoader : Loader<AreasState> {
     override val name = "areas"
+    override val label = "map area"
     override val files = listOf("map.areas")
     override val codec = SnapshotFormat.codec(AreasStateSerializer)
 
     override fun load(context: LoadContext): AreasState = Areas.parse(context.paths(this))
+
+    override fun total(state: AreasState) = state.named.size
 
     override fun install(state: AreasState) = Areas.install(state)
 }

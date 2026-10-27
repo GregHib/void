@@ -6,9 +6,12 @@ import world.gregs.voidps.engine.data.load.Loader
 object FairyRingCodesLoader : Loader<FairyRingCodes> {
     val instance = FairyRingCodes()
     override val name = "fairy_ring_codes"
+    override val label = "fairy ring code"
     override val file = listOf("definitions.fairyCodes")
 
     override fun load(context: LoadContext): FairyRingCodes = FairyRingCodes().load(context.paths(this).single())
+
+    override fun total(state: FairyRingCodes) = state.codes.size
 
     override fun install(state: FairyRingCodes) = instance.copyFrom(state)
 }

@@ -23,6 +23,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object ItemLoader : Loader<DefinitionsState<ItemDefinition>> {
     override val name = "items"
+    override val label = "item config"
     override val files = listOf("definitions.items")
     override val usesCache = true
     override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(ItemDefinition::class, ItemDefinition.serializer(), default = -1))
@@ -31,6 +32,8 @@ object ItemLoader : Loader<DefinitionsState<ItemDefinition>> {
         val definitions = ItemDecoder().load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
+
+    override fun total(state: DefinitionsState<ItemDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<ItemDefinition>) = ItemDefinitions.install(state)
 

@@ -10,10 +10,13 @@ import world.gregs.voidps.engine.data.snapshot.serializer.StringKeyedMapSerializ
 object ObjectTeleportLoader : Loader<Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>> {
     val instance = ObjectTeleports()
     override val name = "object_teleports"
+    override val label = "object teleport"
     override val files = listOf("map.teleports")
     override val codec = SnapshotFormat.codec(StringKeyedMapSerializer(IntKeyedMapSerializer(ObjectTeleports.TeleportDefinition.serializer()), Hash.VERY_FAST_LOAD_FACTOR))
 
     override fun load(context: LoadContext): Map<String, Map<Int, ObjectTeleports.TeleportDefinition>> = instance.parse(context.paths(this))
+
+    override fun total(state: Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>) = state.values.sumOf { it.size }
 
     override fun install(state: Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>) = instance.install(state)
 }

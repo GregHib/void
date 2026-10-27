@@ -18,12 +18,15 @@ object NPCSpawnLoader : Loader<List<NPCSpawn>> {
     var spawns: List<NPCSpawn> = emptyList()
         private set
     override val name = "npc_spawns"
+    override val label = "npc spawn"
     override val files = listOf("spawns.npcs")
     override val settings = listOf("world.members")
     override val dependsOn: List<Loader<*>> get() = listOf(NPCLoader)
     override val codec = SnapshotFormat.codec(ListSerializer(NPCSpawn.serializer()))
 
     override fun load(context: LoadContext): List<NPCSpawn> = parse(context.paths(this))
+
+    override fun total(state: List<NPCSpawn>) = state.size
 
     override fun install(state: List<NPCSpawn>) {
         spawns = state

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Wildcards
 
 class HuntModeDefinitions {
 
-    private lateinit var modes: Map<String, HuntModeDefinition>
+    internal lateinit var modes: Map<String, HuntModeDefinition>
 
     fun get(name: String): HuntModeDefinition = modes.getValue(name)
 

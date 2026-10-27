@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 object FontLoader : Loader<DefinitionsState<FontDefinition>> {
     val instance = FontDefinitions(emptyArray())
     override val name = "fonts"
+    override val label = "font config"
     override val file = listOf("definitions.fonts")
     override val usesCache = true
     override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(FontDefinition::class, FontDefinition.serializer(), default = null))
@@ -22,6 +23,8 @@ object FontLoader : Loader<DefinitionsState<FontDefinition>> {
         val definitions = FontDecoder().load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this).single()))
     }
+
+    override fun total(state: DefinitionsState<FontDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<FontDefinition>) = instance.install(state)
 

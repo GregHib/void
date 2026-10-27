@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 
 object ObjectLoader : Loader<DefinitionsState<ObjectDefinition>> {
     override val name = "objects"
+    override val label = "object config"
     override val files = listOf("definitions.objects")
     override val settings = listOf("world.members")
     override val usesCache = true
@@ -27,6 +28,8 @@ object ObjectLoader : Loader<DefinitionsState<ObjectDefinition>> {
         val definitions = ObjectDecoder(Settings["world.members", false], lowDetail = false).load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
+
+    override fun total(state: DefinitionsState<ObjectDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<ObjectDefinition>) = ObjectDefinitions.install(state)
 

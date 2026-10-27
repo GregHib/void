@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.item.drop.DropTablesLoader
 
 object NPCLoader : Loader<DefinitionsState<NPCDefinition>> {
     override val name = "npcs"
+    override val label = "npc config"
     override val files = listOf("definitions.npcs")
     override val settings = listOf("world.members")
     override val usesCache = true
@@ -30,6 +31,8 @@ object NPCLoader : Loader<DefinitionsState<NPCDefinition>> {
         val definitions = NPCDecoder(Settings["world.members", false]).load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this), context[DropTablesLoader]))
     }
+
+    override fun total(state: DefinitionsState<NPCDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<NPCDefinition>) = NPCDefinitions.install(state)
 

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 
 class DiangoCodeDefinitions {
 
-    private lateinit var definitions: Map<String, DiangoCodeDefinition>
+    internal lateinit var definitions: Map<String, DiangoCodeDefinition>
 
     fun get(code: String) = getOrNull(code) ?: DiangoCodeDefinition.EMPTY
 

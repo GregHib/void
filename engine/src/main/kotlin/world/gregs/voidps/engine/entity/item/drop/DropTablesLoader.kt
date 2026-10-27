@@ -7,10 +7,13 @@ import world.gregs.voidps.engine.data.load.Loader
 object DropTablesLoader : Loader<Map<String, DropTable>> {
     val instance = DropTables()
     override val name = "drop_tables"
+    override val label = "drop table"
     override val files = listOf("spawns.drops")
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
 
     override fun load(context: LoadContext): Map<String, DropTable> = instance.parse(context.paths(this))
+
+    override fun total(state: Map<String, DropTable>) = state.size
 
     override fun install(state: Map<String, DropTable>) {
         instance.tables = state

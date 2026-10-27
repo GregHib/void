@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 
 object AnimationLoader : Loader<DefinitionsState<AnimationDefinition>> {
     override val name = "animations"
+    override val label = "animation config"
     override val files = listOf("definitions.animations")
     override val usesCache = true
     override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(AnimationDefinition::class, AnimationDefinition.serializer(), default = null))
@@ -23,6 +24,8 @@ object AnimationLoader : Loader<DefinitionsState<AnimationDefinition>> {
         val definitions = AnimationDecoder().load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
+
+    override fun total(state: DefinitionsState<AnimationDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<AnimationDefinition>) = AnimationDefinitions.install(state)
 

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object VariableLoader : Loader<VariablesState> {
     override val name = "variables"
+    override val label = "variable definition"
     override val files = listOf(
         "definitions.variables.players",
         "definitions.variables.bits",
@@ -22,6 +23,8 @@ object VariableLoader : Loader<VariablesState> {
         context.list("definitions.variables.strings"),
         context.list("definitions.variables.customs"),
     )
+
+    override fun total(state: VariablesState) = state.definitions.size
 
     override fun install(state: VariablesState) = VariableDefinitions.install(state)
 }

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 
 object StructLoader : Loader<DefinitionsState<StructDefinition>> {
     override val name = "structs"
+    override val label = "struct config"
     override val file = listOf("definitions.structs")
     override val usesCache = true
     override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(StructDefinition::class, StructDefinition.serializer(), default = null))
@@ -21,6 +22,8 @@ object StructLoader : Loader<DefinitionsState<StructDefinition>> {
         val definitions = StructDecoder().load(context.requireCache())
         return DefinitionsState(definitions, parse(definitions, context.paths(this).single()))
     }
+
+    override fun total(state: DefinitionsState<StructDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<StructDefinition>) = StructDefinitions.install(state)
 

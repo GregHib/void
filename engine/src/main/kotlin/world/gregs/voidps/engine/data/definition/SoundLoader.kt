@@ -13,10 +13,13 @@ import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 object SoundLoader : Loader<DefinitionsState<SoundDefinition>> {
     val instance = SoundDefinitions()
     override val name = "sounds"
+    override val label = "sound definition"
     override val files = listOf("definitions.sounds")
     override val codec = SnapshotFormat.codec(SoundStateSerializer)
 
     override fun load(context: LoadContext): DefinitionsState<SoundDefinition> = parse(context.paths(this))
+
+    override fun total(state: DefinitionsState<SoundDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<SoundDefinition>) = instance.install(state)
 

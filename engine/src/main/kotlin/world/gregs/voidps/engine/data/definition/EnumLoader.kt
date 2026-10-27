@@ -16,12 +16,15 @@ import world.gregs.voidps.engine.data.snapshot.serializer.DefinitionsStateSerial
 
 object EnumLoader : Loader<DefinitionsState<EnumDefinition>> {
     override val name = "enums"
+    override val label = "enum config"
     override val files = listOf("definitions.enums")
     override val usesCache = true
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader, InterfaceLoader, InventoryLoader, NPCLoader, StructLoader, ObjectLoader, TableLoader)
     override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(EnumDefinition::class, EnumDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<EnumDefinition> = parse(EnumDecoder().load(context.requireCache()), context.paths(this))
+
+    override fun total(state: DefinitionsState<EnumDefinition>) = state.ids.size
 
     override fun install(state: DefinitionsState<EnumDefinition>) = EnumDefinitions.install(state)
 

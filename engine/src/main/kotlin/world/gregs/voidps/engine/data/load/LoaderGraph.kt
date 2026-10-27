@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.snapshot.Snapshot
@@ -139,7 +140,9 @@ class LoaderGraph(loaders: List<Loader<*>>) {
         }
         loader.install(state)
         timings[loader.name] = System.currentTimeMillis() - start
-        logger.info { "Loaded ${loader.name} in ${System.currentTimeMillis() - start}ms${if (loader.name in restored) " (snapshot)" else ""}" }
+        val total = loader.total(state)
+        val what = if (total == null) loader.label else "$total ${loader.label.plural(total)}"
+        logger.info { "Loaded $what in ${System.currentTimeMillis() - start}ms${if (loader.name in restored) " (snapshot)" else ""}" }
         return state
     }
 

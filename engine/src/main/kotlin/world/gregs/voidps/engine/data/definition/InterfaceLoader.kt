@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object InterfaceLoader : Loader<InterfaceState> {
     override val name = "interfaces"
+    override val label = "interface config"
     override val files = listOf("definitions.interfaces")
     override val file = listOf("definitions.interfaces.types")
     override val usesCache = true
@@ -26,6 +27,8 @@ object InterfaceLoader : Loader<InterfaceState> {
         val definitions = InterfaceDecoder().load(context.requireCache())
         return parse(definitions, context.list("definitions.interfaces"), context.find("definitions.interfaces.types"))
     }
+
+    override fun total(state: InterfaceState) = state.ids.size
 
     override fun install(state: InterfaceState) = InterfaceDefinitions.install(state)
 

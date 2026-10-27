@@ -10,6 +10,9 @@ interface Loader<T : Any> {
     /** Unique; used as the snapshot file name and reload alias. */
     val name: String
 
+    /** What one loaded item is called in the log, e.g. "item config". Defaults to [name]. */
+    val label: String get() = name
+
     /** Setting keys whose file lists are inputs, e.g. "definitions.items". Resolved with [ConfigFiles.list]. */
     val files: List<String> get() = emptyList()
 
@@ -29,6 +32,9 @@ interface Loader<T : Any> {
 
     /** Builds a NEW state. Must not mutate globals or previously installed state. */
     fun load(context: LoadContext): T
+
+    /** How many items [state] holds, for the log. Null leaves the count out. */
+    fun total(state: T): Int? = null
 
     /** Publishes [state]; a plain field swap on the singleton. */
     fun install(state: T)
