@@ -185,9 +185,8 @@ private class CodeFenceGeneratingProvider(private val slots: Map<Int, CodeTabs.S
     override fun processNode(visitor: HtmlGenerator.HtmlGeneratingVisitor, text: String, node: ASTNode) {
         val language = node.children.find { it.type == MarkdownTokenTypes.FENCE_LANG }
             ?.getTextInNode(text)?.toString()?.trim()?.takeIf { it.isNotEmpty() }
-        val code = node.children
-            .filter { it.type == MarkdownTokenTypes.CODE_FENCE_CONTENT }
-            .joinToString("\n") { it.getTextInNode(text) }
+        val content = node.children.filter { it.type == MarkdownTokenTypes.CODE_FENCE_CONTENT }
+        val code = if (content.isEmpty()) "" else text.substring(content.first().startOffset, content.last().endOffset)
         val block = codeBlockHtml(language, highlightHtml(language, code))
 
         val slot = slots[node.startOffset]

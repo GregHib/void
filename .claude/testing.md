@@ -20,3 +20,4 @@ player.skipDialogues()
 player.dialogueOption(2)
 player.skipDialogues()
 ```
+
