@@ -3,7 +3,6 @@ import content.bot.behaviour.NavigationEdgeLoader
 import content.bot.behaviour.NavigationGraphLoader
 import content.bot.chat.BotChatModel
 import content.entity.obj.ObjectTeleportLoader
-import content.entity.obj.ship.CharterShipsLoader
 import content.entity.player.modal.book.BooksLoader
 import content.entity.world.music.MusicTrackLoader
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodesLoader
@@ -80,7 +79,6 @@ fun gameLoaders(): List<Loader<*>> = listOf(
     MusicTrackLoader,
     BooksLoader,
     FairyRingCodesLoader,
-    CharterShipsLoader,
     FarmingDefinitionsLoader,
     NavigationEdgeLoader,
     NavigationGraphLoader,
@@ -94,6 +92,5 @@ fun gameDefinitionsModule() = module {
     single { MusicTrackLoader.instance }
     single { BooksLoader.instance }
     single { FairyRingCodesLoader.instance }
-    single { CharterShipsLoader.instance }
     single { FarmingDefinitionsLoader.instance }
 }
