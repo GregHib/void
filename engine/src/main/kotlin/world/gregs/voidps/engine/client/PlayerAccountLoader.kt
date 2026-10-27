@@ -23,8 +23,8 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.AccountCreator
 import world.gregs.voidps.network.login.AccountLoader
 import world.gregs.voidps.network.login.Registration
-import world.gregs.voidps.network.login.registration.RegistrationResponse
 import world.gregs.voidps.network.login.protocol.encode.login
+import world.gregs.voidps.network.login.registration.RegistrationResponse
 
 /**
  * Checks password is valid for a player account before logging in

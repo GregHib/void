@@ -7,9 +7,9 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.client.variable.BooleanValues
 import world.gregs.voidps.engine.client.variable.StringValues
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions

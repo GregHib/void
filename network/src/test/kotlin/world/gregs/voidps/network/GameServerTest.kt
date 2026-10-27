@@ -15,12 +15,12 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.network.client.ConnectionTracker
 import world.gregs.voidps.network.login.AccountCreator
 import world.gregs.voidps.network.login.Registration
+import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.registration.RegistrationLimiter
 import world.gregs.voidps.network.login.registration.RegistrationResponse
-import world.gregs.voidps.network.login.protocol.writeByte
 import java.io.BufferedReader
-import java.math.BigInteger
 import java.io.InputStreamReader
+import java.math.BigInteger
 import java.net.Socket
 import java.util.*
 
