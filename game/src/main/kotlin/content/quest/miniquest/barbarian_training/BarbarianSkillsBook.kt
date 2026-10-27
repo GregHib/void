@@ -23,7 +23,7 @@ class BarbarianSkillsBook(books: Books) : Script {
     )
 
     init {
-        books.generate("barbarian_skills", "Barbarian skills") { player -> pages(player) }
+        books.generate("barbarian_skills", "What Otto told me.", type = "long") { player -> pages(player) }
     }
 
     fun pages(player: Player): List<List<String>> {
@@ -35,7 +35,10 @@ class BarbarianSkillsBook(books: Books) : Script {
             if (stage < STARTED) {
                 continue
             }
-            lines.add("")
+            // Each lesson starts on a fresh page
+            while (lines.size % LINES_PER_SIDE != 0) {
+                lines.add("")
+            }
             lines.addAll(wrap(heading).map { "<navy>$it" })
             lines.addAll(wrap(instructions))
             if (stage == REPORTED && done.isNotEmpty()) {
@@ -43,12 +46,12 @@ class BarbarianSkillsBook(books: Books) : Script {
                 lines.addAll(wrap(done))
             }
         }
-        return lines.chunked(LINES_PER_PAGE)
+        return lines.chunked(LINES_PER_SIDE * 2)
     }
 
     companion object {
-        private const val LINES_PER_PAGE = 22
-        private const val LINE_LENGTH = 27
+        private const val LINES_PER_SIDE = 15
+        private const val LINE_LENGTH = 31
 
         fun wrap(text: String): List<String> {
             val lines = mutableListOf<String>()
