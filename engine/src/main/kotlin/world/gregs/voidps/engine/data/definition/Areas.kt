@@ -8,8 +8,11 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.SnapshotCodec
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Cuboid
@@ -36,84 +39,85 @@ object Areas {
 
     fun tagged(tag: String): Set<AreaDefinition> = tagged[tag] ?: emptySet()
 
-    fun load(paths: List<String>, snapshot: Snapshot? = null): Areas {
-        timedLoad("map area") {
-            if (snapshot != null && restore(snapshot)) {
-                return@timedLoad named.size
-            }
-            val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
-            val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
-            val areas = Int2ObjectOpenHashMap<MutableSet<AreaDefinition>>()
-            for (path in paths) {
-                Config.fileReader(path) {
-                    val x = IntArrayList()
-                    val y = IntArrayList()
-                    while (nextSection()) {
-                        val name = section()
-                        x.clear()
-                        y.clear()
-                        var level: Int? = null
-                        val tags = ObjectOpenHashSet<String>()
-                        val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "x" -> while (nextElement()) {
-                                    x.add(int())
-                                }
-                                "y" -> while (nextElement()) {
-                                    y.add(int())
-                                }
-                                "level" -> level = int()
-                                "tags" -> while (nextElement()) {
-                                    tags.add(string())
-                                }
-                                else -> params[Params.id(key)] = value()
+    fun install(state: AreasState) {
+        named = state.named
+        tagged = state.tagged
+        areas = state.areas
+    }
+
+    fun load(paths: List<String>): Areas {
+        install(parse(paths))
+        return this
+    }
+
+    internal fun parse(paths: List<String>): AreasState {
+        val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
+        val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
+        val areas = Int2ObjectOpenHashMap<MutableSet<AreaDefinition>>()
+        for (path in paths) {
+            Config.fileReader(path) {
+                val x = IntArrayList()
+                val y = IntArrayList()
+                while (nextSection()) {
+                    val name = section()
+                    x.clear()
+                    y.clear()
+                    var level: Int? = null
+                    val tags = ObjectOpenHashSet<String>()
+                    val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "x" -> while (nextElement()) {
+                                x.add(int())
                             }
-                        }
-                        require(x.size == y.size) { "Area '$name' must have the same number of x and y values (x=${x.size}, y=${y.size}) in '$path'." }
-                        val area: Area = if (x.size <= 2) {
-                            if (level == null) {
-                                Rectangle(x.min(), y.min(), x.max(), y.max())
-                            } else {
-                                Cuboid(x.min(), y.min(), x.max(), y.max(), level, level)
+                            "y" -> while (nextElement()) {
+                                y.add(int())
                             }
+                            "level" -> level = int()
+                            "tags" -> while (nextElement()) {
+                                tags.add(string())
+                            }
+                            else -> params[Params.id(key)] = value()
+                        }
+                    }
+                    require(x.size == y.size) { "Area '$name' must have the same number of x and y values (x=${x.size}, y=${y.size}) in '$path'." }
+                    val area: Area = if (x.size <= 2) {
+                        if (level == null) {
+                            Rectangle(x.min(), y.min(), x.max(), y.max())
                         } else {
-                            Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
+                            Cuboid(x.min(), y.min(), x.max(), y.max(), level, level)
                         }
-                        val definition = if (params.isEmpty()) {
-                            AreaDefinition(name = name, area = area, tags = tags, stringId = name)
-                        } else {
-                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, params = params)
+                    } else {
+                        Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
+                    }
+                    val definition = if (params.isEmpty()) {
+                        AreaDefinition(name = name, area = area, tags = tags, stringId = name)
+                    } else {
+                        AreaDefinition(name = name, area = area, tags = tags, stringId = name, params = params)
+                    }
+                    named[name] = definition
+                    for (tag in tags) {
+                        tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(definition)
+                    }
+                    if (level != null) {
+                        for (zone in area.toZones(level)) {
+                            areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
                         }
-                        named[name] = definition
-                        for (tag in tags) {
-                            tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(definition)
-                        }
-                        if (level != null) {
-                            for (zone in area.toZones(level)) {
+                    } else {
+                        for (lvl in 0..3) {
+                            for (zone in area.toZones(lvl)) {
                                 areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
-                            }
-                        } else {
-                            for (lvl in 0..3) {
-                                for (zone in area.toZones(lvl)) {
-                                    areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
-                                }
                             }
                         }
                     }
                 }
             }
-            this.named = named
-            this.areas = areas
-            this.tagged = tagged
-            snapshot?.let { save(it) }
-            named.size
         }
-        return this
+        return AreasState(named, tagged, areas)
     }
 
-    private fun save(snapshot: Snapshot) = snapshot.write {
-        val definitions = named.values.toList()
+    internal fun write(writer: SnapshotWriter, state: AreasState) = with(writer) {
+        val definitions = state.named.values.toList()
         val indices = IdentityHashMap<AreaDefinition, Int>(definitions.size)
         int(definitions.size)
         for ((index, definition) in definitions.withIndex()) {
@@ -129,19 +133,19 @@ object Areas {
                 array[i] = indices[definition] ?: throw IllegalArgumentException("Area '${definition.name}' isn't named.")
             }
         }
-        int(tagged.size)
-        for ((tag, set) in tagged) {
+        int(state.tagged.size)
+        for ((tag, set) in state.tagged) {
             string(tag)
             ints(indices(set))
         }
-        int(areas.size)
-        for ((zone, set) in areas) {
+        int(state.areas.size)
+        for ((zone, set) in state.areas) {
             int(zone)
             ints(indices(set))
         }
     }
 
-    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+    internal fun read(reader: SnapshotReader): AreasState {
         val definitions = ArrayList<AreaDefinition>()
         val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
         repeat(reader.int()) {
@@ -179,9 +183,7 @@ object Areas {
             }
             areas[zone] = set
         }
-        this.named = named
-        this.tagged = tagged
-        this.areas = areas
+        return AreasState(named, tagged, areas)
     }
 
     @TestOnly
@@ -196,4 +198,26 @@ object Areas {
         tagged = Object2ObjectOpenHashMap()
         areas = Int2ObjectOpenHashMap()
     }
+}
+
+class AreasState(
+    val named: Map<String, AreaDefinition>,
+    val tagged: Map<String, Set<AreaDefinition>>,
+    val areas: Map<Int, Set<AreaDefinition>>,
+)
+
+object AreaLoader : Loader<AreasState> {
+    override val name = "areas"
+    override val files = listOf("map.areas")
+    override val codec = object : SnapshotCodec<AreasState> {
+        override val schema = 1L
+
+        override fun write(writer: SnapshotWriter, value: AreasState) = Areas.write(writer, value)
+
+        override fun read(reader: SnapshotReader) = Areas.read(reader)
+    }
+
+    override fun load(context: LoadContext): AreasState = Areas.parse(context.paths(this))
+
+    override fun install(state: AreasState) = Areas.install(state)
 }

@@ -9,10 +9,16 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.entity.item.drop.DropTablesLoader
 
 object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
 
@@ -44,218 +50,31 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         loaded = false
     }
 
-    fun load(
-        paths: List<String>,
-        dropTables: DropTables? = null,
-        snapshot: Snapshot? = null,
-    ): NPCDefinitions {
-        timedLoad("npc config") {
-            definitions.onEach { it.stringId = it.id.toString() }
-            if (snapshot != null && restore(snapshot)) {
-                return@timedLoad ids.size
-            }
-            val clones = Object2ObjectOpenHashMap<String, String>(100)
-            // Npcs which explicitly set a custom field, so deferred clones don't overwrite them
-            val ids = Object2IntOpenHashMap<String>()
-            ids.defaultReturnValue(-1)
-            for (path in paths) {
-                Config.fileReader(path, 150) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
-                        var id = -1
-                        var hitpoints: Int? = null
-                        var regenRate: Int? = null
-                        var huntRange: Int? = null
-                        var huntMode: String? = null
-                        var allowedUnder: Boolean? = null
-                        var solid: Boolean? = null
-                        var blocksPlayers: Boolean? = null
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "clone" -> {
-                                    val name = string()
-                                    val npcId = ids.getInt(name)
-                                    if (npcId == -1) {
-                                        clones[stringId] = name
-                                    } else {
-                                        val definition = definitions[npcId]
-                                        hitpoints = hitpoints ?: definition.hitpoints
-                                        regenRate = regenRate ?: definition.regenRate
-                                        huntRange = huntRange ?: definition.huntRange
-                                        huntMode = huntMode ?: definition.huntMode
-                                        allowedUnder = allowedUnder ?: definition.allowedUnder
-                                        solid = solid ?: definition.solid
-                                        blocksPlayers = blocksPlayers ?: definition.blocksPlayers
-                                        params.putAll(definition.params ?: continue)
-                                    }
-                                }
-                                "id" -> id = int()
-                                "hitpoints" -> hitpoints = int()
-                                "regen_rate_ticks" -> regenRate = int()
-                                "hunt_range" -> huntRange = int()
-                                "hunt_mode" -> huntMode = string()
-                                "allowed_under" -> allowedUnder = boolean()
-                                "solid" -> solid = boolean()
-                                "blocks_players" -> blocksPlayers = boolean()
-                                "categories" -> {
-                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                                    while (nextElement()) {
-                                        categories.add(string())
-                                    }
-                                    params[Params.CATEGORIES] = categories
-                                }
-                                "drop_table" -> {
-                                    val table = string()
-                                    require(dropTables == null || table.isBlank() || dropTables.get("${table}_drop_table") != null) { "Drop table '$table' not found for npc $stringId" }
-                                    params[Params.DROP_TABLE] = table
-                                }
-                                else -> params[Params.id(key)] = value()
-                            }
-                        }
-                        require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
-                        ids[stringId] = id
-                        require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
-                        definitions[id].stringId = stringId
-                        if (hitpoints != null) {
-                            definitions[id].hitpoints = hitpoints
-                        }
-                        if (regenRate != null) {
-                            definitions[id].regenRate = regenRate
-                        }
-                        if (huntRange != null) {
-                            definitions[id].huntRange = huntRange
-                        }
-                        if (huntMode != null) {
-                            definitions[id].huntMode = huntMode
-                        }
-                        if (allowedUnder != null) {
-                            definitions[id].allowedUnder = allowedUnder
-                        }
-                        if (solid != null) {
-                            definitions[id].solid = solid
-                        }
-                        if (blocksPlayers != null) {
-                            definitions[id].blocksPlayers = blocksPlayers
-                        }
-                        if (params.isNotEmpty()) {
-                            if (definitions[id].params != null) {
-                                (definitions[id].params as MutableMap<Int, Any>).putAll(params)
-                            } else {
-                                definitions[id].params = params
-                            }
-                        }
-                    }
-                }
-            }
-            for ((npc, cloneStr) in clones) {
-                val cloneId = ids.getInt(cloneStr)
-                require(cloneId != -1) { "Unable to find npc id to clone '$cloneStr'" }
-                val clone = definitions[cloneId]
-                val id = ids.getInt(npc)
-                require(id != -1) { "Unable to find npc id '$npc'" }
-                val definition = definitions[id]
-                if (definition.hitpoints == NPCDefinition.EMPTY.hitpoints) {
-                    definition.hitpoints = clone.hitpoints
-                }
-                if (definition.regenRate == NPCDefinition.EMPTY.regenRate) {
-                    definition.regenRate = clone.regenRate
-                }
-                if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
-                    definition.huntRange = clone.huntRange
-                }
-                if (definition.huntMode == NPCDefinition.EMPTY.huntMode) {
-                    definition.huntMode = clone.huntMode
-                }
-                if (definition.allowedUnder == NPCDefinition.EMPTY.allowedUnder) {
-                    definition.allowedUnder = clone.allowedUnder
-                }
-                if (definition.solid == NPCDefinition.EMPTY.solid) {
-                    definition.solid = clone.solid
-                }
-                if (definition.blocksPlayers == NPCDefinition.EMPTY.blocksPlayers) {
-                    definition.blocksPlayers = clone.blocksPlayers
-                }
-                val params = definition.params as? MutableMap<Int, Any> ?: continue
-                for (param in clone.params ?: continue) {
-                    if (param.key == Params.AKA) {
-                        continue
-                    }
-                    if (!params.containsKey(param.key)) {
-                        params[param.key] = param.value
-                    }
-                }
-            }
-            this.ids = ids
-            snapshot?.write {
-                int(ids.size)
-                for ((stringId, id) in ids) {
-                    val definition = definitions[id]
-                    string(stringId)
-                    int(id)
-                    int(definition.hitpoints)
-                    int(definition.regenRate)
-                    int(definition.huntRange)
-                    nullableString(definition.huntMode)
-                    boolean(definition.allowedUnder)
-                    boolean(definition.solid)
-                    boolean(definition.blocksPlayers)
-                    params(definition.params)
-                }
-            }
-            ids.size
-        }
-        return this
-    }
-
-    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val size = reader.int()
-        val ids = Object2IntOpenHashMap<String>()
-        ids.defaultReturnValue(-1)
-        val strings = arrayOfNulls<String>(size)
-        val ints = IntArray(size)
-        val hitpoints = IntArray(size)
-        val regenRates = IntArray(size)
-        val huntRanges = IntArray(size)
-        val huntModes = arrayOfNulls<String>(size)
-        val flags = IntArray(size)
-        val params = arrayOfNulls<Map<Int, Any>>(size)
-        for (i in 0 until size) {
-            strings[i] = reader.string()
-            ints[i] = reader.int()
-            hitpoints[i] = reader.int()
-            regenRates[i] = reader.int()
-            huntRanges[i] = reader.int()
-            huntModes[i] = reader.nullableString()
-            flags[i] = (reader.boolean().toInt()) or (reader.boolean().toInt() shl 1) or (reader.boolean().toInt() shl 2)
-            params[i] = reader.params()
-        }
-        for (i in 0 until size) {
-            val id = ints[i]
-            ids[strings[i]] = id
-            val definition = definitions[id]
-            definition.stringId = strings[i]!!
-            definition.hitpoints = hitpoints[i]
-            definition.regenRate = regenRates[i]
-            definition.huntRange = huntRanges[i]
-            definition.huntMode = huntModes[i]
-            definition.allowedUnder = flags[i] and 1 != 0
-            definition.solid = flags[i] and 2 != 0
-            definition.blocksPlayers = flags[i] and 4 != 0
-            val map = params[i]
-            if (map != null) {
-                definition.params = map
-            }
-        }
-        this.ids = ids
+    fun install(state: DefinitionsState<NPCDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
     }
 
     /**
-     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     * Applies the configs in [paths] to the already decoded [definitions].
      */
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
+    fun load(paths: List<String>, dropTables: DropTables? = null): NPCDefinitions {
+        ids = NPCLoader.parse(definitions, paths, dropTables?.tables)
+        return this
+    }
+}
+
+object NPCLoader : Loader<DefinitionsState<NPCDefinition>> {
+    override val name = "npcs"
+    override val files = listOf("definitions.npcs")
+    override val settings = listOf("world.members")
+    override val usesCache = true
+    override val dependsOn: List<Loader<*>> get() = listOf(DropTablesLoader)
+    override val codec = DefinitionsCodec(
+        NPCDefinition::class.java,
+        default = -1,
+        writeDefinition = { definition ->
             int(definition.id)
             string(definition.name)
             int(definition.size)
@@ -280,50 +99,178 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
             nullableString(definition.huntMode)
             int(definition.regenRate)
             int(definition.hitpoints)
-        }
-        int(ids.size)
-        for ((stringId, id) in ids) {
-            string(stringId)
-            int(id)
-        }
+        },
+        readDefinition = {
+            NPCDefinition(
+                id = int(),
+                name = string(),
+                size = int(),
+                options = nullableStrings()!!,
+                combat = int(),
+                varbit = int(),
+                varp = int(),
+                transforms = nullableInts(),
+                walkMode = byte().toByte(),
+                renderEmote = int(),
+                idleSound = int(),
+                crawlSound = int(),
+                walkSound = int(),
+                runSound = int(),
+                soundDistance = int(),
+                stringId = string(),
+                params = params(),
+                allowedUnder = boolean(),
+                solid = boolean(),
+                blocksPlayers = boolean(),
+                huntRange = int(),
+                huntMode = nullableString(),
+                regenRate = int(),
+                hitpoints = int(),
+            )
+        },
+    )
+
+    override fun load(context: LoadContext): DefinitionsState<NPCDefinition> {
+        val definitions = NPCDecoder(Settings["world.members", false]).load(context.requireCache())
+        return DefinitionsState(definitions, parse(definitions, context.paths(this), context[DropTablesLoader]))
     }
 
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            NPCDefinition(
-                id = reader.int(),
-                name = reader.string(),
-                size = reader.int(),
-                options = reader.nullableStrings()!!,
-                combat = reader.int(),
-                varbit = reader.int(),
-                varp = reader.int(),
-                transforms = reader.nullableInts(),
-                walkMode = reader.byte().toByte(),
-                renderEmote = reader.int(),
-                idleSound = reader.int(),
-                crawlSound = reader.int(),
-                walkSound = reader.int(),
-                runSound = reader.int(),
-                soundDistance = reader.int(),
-                stringId = reader.string(),
-                params = reader.params(),
-                allowedUnder = reader.boolean(),
-                solid = reader.boolean(),
-                blocksPlayers = reader.boolean(),
-                huntRange = reader.int(),
-                huntMode = reader.nullableString(),
-                regenRate = reader.int(),
-                hitpoints = reader.int(),
-            )
-        }
+    override fun install(state: DefinitionsState<NPCDefinition>) = NPCDefinitions.install(state)
+
+    fun parse(definitions: Array<NPCDefinition>, paths: List<String>, dropTables: Map<String, DropTable>?): Map<String, Int> {
+        definitions.onEach { it.stringId = it.id.toString() }
+        val clones = Object2ObjectOpenHashMap<String, String>(100)
+        // Npcs which explicitly set a custom field, so deferred clones don't overwrite them
         val ids = Object2IntOpenHashMap<String>()
         ids.defaultReturnValue(-1)
-        repeat(reader.int()) {
-            val stringId = reader.string()
-            ids[stringId] = reader.int()
+        for (path in paths) {
+            Config.fileReader(path, 150) {
+                while (nextSection()) {
+                    val stringId = section()
+                    val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                    var id = -1
+                    var hitpoints: Int? = null
+                    var regenRate: Int? = null
+                    var huntRange: Int? = null
+                    var huntMode: String? = null
+                    var allowedUnder: Boolean? = null
+                    var solid: Boolean? = null
+                    var blocksPlayers: Boolean? = null
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "clone" -> {
+                                val name = string()
+                                val npcId = ids.getInt(name)
+                                if (npcId == -1) {
+                                    clones[stringId] = name
+                                } else {
+                                    val definition = definitions[npcId]
+                                    hitpoints = hitpoints ?: definition.hitpoints
+                                    regenRate = regenRate ?: definition.regenRate
+                                    huntRange = huntRange ?: definition.huntRange
+                                    huntMode = huntMode ?: definition.huntMode
+                                    allowedUnder = allowedUnder ?: definition.allowedUnder
+                                    solid = solid ?: definition.solid
+                                    blocksPlayers = blocksPlayers ?: definition.blocksPlayers
+                                    params.putAll(definition.params ?: continue)
+                                }
+                            }
+                            "id" -> id = int()
+                            "hitpoints" -> hitpoints = int()
+                            "regen_rate_ticks" -> regenRate = int()
+                            "hunt_range" -> huntRange = int()
+                            "hunt_mode" -> huntMode = string()
+                            "allowed_under" -> allowedUnder = boolean()
+                            "solid" -> solid = boolean()
+                            "blocks_players" -> blocksPlayers = boolean()
+                            "categories" -> {
+                                val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                while (nextElement()) {
+                                    categories.add(string())
+                                }
+                                params[Params.CATEGORIES] = categories
+                            }
+                            "drop_table" -> {
+                                val table = string()
+                                require(dropTables == null || table.isBlank() || dropTables["${table}_drop_table"] != null) { "Drop table '$table' not found for npc $stringId" }
+                                params[Params.DROP_TABLE] = table
+                            }
+                            else -> params[Params.id(key)] = value()
+                        }
+                    }
+                    require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
+                    ids[stringId] = id
+                    require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
+                    definitions[id].stringId = stringId
+                    if (hitpoints != null) {
+                        definitions[id].hitpoints = hitpoints
+                    }
+                    if (regenRate != null) {
+                        definitions[id].regenRate = regenRate
+                    }
+                    if (huntRange != null) {
+                        definitions[id].huntRange = huntRange
+                    }
+                    if (huntMode != null) {
+                        definitions[id].huntMode = huntMode
+                    }
+                    if (allowedUnder != null) {
+                        definitions[id].allowedUnder = allowedUnder
+                    }
+                    if (solid != null) {
+                        definitions[id].solid = solid
+                    }
+                    if (blocksPlayers != null) {
+                        definitions[id].blocksPlayers = blocksPlayers
+                    }
+                    if (params.isNotEmpty()) {
+                        if (definitions[id].params != null) {
+                            (definitions[id].params as MutableMap<Int, Any>).putAll(params)
+                        } else {
+                            definitions[id].params = params
+                        }
+                    }
+                }
+            }
         }
-        init(definitions)
-        this.ids = ids
+        for ((npc, cloneStr) in clones) {
+            val cloneId = ids.getInt(cloneStr)
+            require(cloneId != -1) { "Unable to find npc id to clone '$cloneStr'" }
+            val clone = definitions[cloneId]
+            val id = ids.getInt(npc)
+            require(id != -1) { "Unable to find npc id '$npc'" }
+            val definition = definitions[id]
+            if (definition.hitpoints == NPCDefinition.EMPTY.hitpoints) {
+                definition.hitpoints = clone.hitpoints
+            }
+            if (definition.regenRate == NPCDefinition.EMPTY.regenRate) {
+                definition.regenRate = clone.regenRate
+            }
+            if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
+                definition.huntRange = clone.huntRange
+            }
+            if (definition.huntMode == NPCDefinition.EMPTY.huntMode) {
+                definition.huntMode = clone.huntMode
+            }
+            if (definition.allowedUnder == NPCDefinition.EMPTY.allowedUnder) {
+                definition.allowedUnder = clone.allowedUnder
+            }
+            if (definition.solid == NPCDefinition.EMPTY.solid) {
+                definition.solid = clone.solid
+            }
+            if (definition.blocksPlayers == NPCDefinition.EMPTY.blocksPlayers) {
+                definition.blocksPlayers = clone.blocksPlayers
+            }
+            val params = definition.params as? MutableMap<Int, Any> ?: continue
+            for (param in clone.params ?: continue) {
+                if (param.key == Params.AKA) {
+                    continue
+                }
+                if (!params.containsKey(param.key)) {
+                    params[param.key] = param.value
+                }
+            }
+        }
+        return ids
     }
 }

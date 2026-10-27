@@ -1,11 +1,14 @@
 import content.bot.BotManager
-import content.bot.behaviour.loadGraph
+import content.bot.behaviour.NavigationEdgeLoader
+import content.bot.behaviour.NavigationGraphLoader
+import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.chat.BotChatModel
-import content.entity.obj.ship.CharterShips
-import content.entity.player.modal.book.Books
-import content.entity.world.music.MusicTracks
-import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
-import content.skill.farming.FarmingDefinitions
+import content.entity.obj.ObjectTeleportLoader
+import content.entity.obj.ship.CharterShipsLoader
+import content.entity.player.modal.book.BooksLoader
+import content.entity.world.music.MusicTrackLoader
+import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodesLoader
+import content.skill.farming.FarmingDefinitionsLoader
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
 import org.koin.dsl.module
@@ -17,17 +20,13 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.load.Loader
 import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
     single { Reports(get()) }
     single(createdAtStart = true) { BotManager().load(files) }
-    single { loadGraph(files) }
     single { BotChatModel().load(files, get()) }
-    single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
-    single(createdAtStart = true) { files.find(Settings["map.music"]).let { MusicTracks().load(it, files.snapshot("music_tracks", listOf(it))) } }
-    single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
-    single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
     single { InstructionHandlers(InterfaceHandler(get())) }
     val loadExchange = Settings["grandExchange.enabled", true]
     single(createdAtStart = true) {
@@ -72,5 +71,31 @@ fun gameModule(files: ConfigFiles) = module {
             FileStorage(saves)
         }
     }
-    single(createdAtStart = true) { FarmingDefinitions().load(files.find(Settings["definitions.produce"])) }
+}
+
+/**
+ * Loaders of every definition and config in the game content.
+ */
+fun gameLoaders(): List<Loader<*>> = listOf(
+    ObjectTeleportLoader,
+    MusicTrackLoader,
+    BooksLoader,
+    FairyRingCodesLoader,
+    CharterShipsLoader,
+    FarmingDefinitionsLoader,
+    NavigationEdgeLoader,
+    NavigationGraphLoader,
+)
+
+/**
+ * Makes the results of [gameLoaders] available through koin.
+ */
+fun gameDefinitionsModule() = module {
+    single { ObjectTeleportLoader.instance }
+    single { MusicTrackLoader.instance }
+    single { BooksLoader.instance }
+    single { FairyRingCodesLoader.instance }
+    single { CharterShipsLoader.instance }
+    single { FarmingDefinitionsLoader.instance }
+    single<NavigationGraph> { NavigationGraphLoader.graph }
 }

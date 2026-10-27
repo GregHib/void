@@ -11,9 +11,9 @@ import content.bot.isBot
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import java.util.PriorityQueue
@@ -261,34 +261,30 @@ class NavigationGraph(
     }
 
     companion object {
-        fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>, snapshot: Snapshot? = null): NavigationGraph {
+        fun loadGraph(edges: List<Edge>, shortcuts: List<NavigationShortcut>): NavigationGraph {
             val builder = Builder()
-            timedLoad("nav graph edge") {
-                for (edge in edges(paths, snapshot)) {
-                    val from = edge.from
-                    val to = edge.to
-                    val conditions = if (edge.requirements.isEmpty()) null else Condition.parse(edge.requirements, edge.debug)
-                    if (edge.actions.isEmpty()) {
-                        val weight = if (edge.cost > 0) edge.cost else Distance.manhattan(from.x, from.y, to.x, to.y)
-                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), weight, listOf(BotWalkTo(to.x, to.y)), conditions)
-                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), weight, listOf(BotWalkTo(from.x, from.y)), conditions)
-                    } else {
-                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), edge.cost, ActionParser.parse(edge.actions, edge.debug), conditions)
-                    }
+            for (edge in edges) {
+                val from = edge.from
+                val to = edge.to
+                val conditions = if (edge.requirements.isEmpty()) null else Condition.parse(edge.requirements, edge.debug)
+                if (edge.actions.isEmpty()) {
+                    val weight = if (edge.cost > 0) edge.cost else Distance.manhattan(from.x, from.y, to.x, to.y)
+                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), weight, listOf(BotWalkTo(to.x, to.y)), conditions)
+                    builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), weight, listOf(BotWalkTo(from.x, from.y)), conditions)
+                } else {
+                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), edge.cost, ActionParser.parse(edge.actions, edge.debug), conditions)
                 }
-                for (shortcut in shortcuts) {
-                    builder.add(shortcut)
-                }
-                builder.edgeCount
             }
-//            builder.print()
+            for (shortcut in shortcuts) {
+                builder.add(shortcut)
+            }
             return builder.build()
         }
 
         /**
          * The edges as they are in the config files, before being turned into actions and conditions.
          */
-        private class Edge(
+        class Edge(
             val from: Tile,
             val to: Tile,
             val cost: Int,
@@ -297,42 +293,35 @@ class NavigationGraph(
             val debug: String,
         )
 
-        private fun edges(paths: List<String>, snapshot: Snapshot?): List<Edge> {
-            var edges: List<Edge>? = null
-            snapshot?.restore { reader ->
-                edges = reader.list {
-                    Edge(
-                        Tile(reader.int()),
-                        Tile(reader.int()),
-                        reader.int(),
-                        reader.list {
-                            @Suppress("UNCHECKED_CAST")
-                            reader.value() as Pair<String, Map<String, Any>>
-                        },
-                        reader.list {
-                            @Suppress("UNCHECKED_CAST")
-                            reader.value() as Pair<String, List<Map<String, Any>>>
-                        },
-                        reader.string(),
-                    )
-                }
+        fun writeEdges(writer: SnapshotWriter, edges: List<Edge>) = with(writer) {
+            list(edges) { edge ->
+                int(edge.from.id)
+                int(edge.to.id)
+                int(edge.cost)
+                list(edge.actions) { value(it) }
+                list(edge.requirements) { value(it) }
+                string(edge.debug)
             }
-            edges?.let { return it }
-            val parsed = parseEdges(paths)
-            snapshot?.write {
-                list(parsed) { edge ->
-                    int(edge.from.id)
-                    int(edge.to.id)
-                    int(edge.cost)
-                    list(edge.actions) { value(it) }
-                    list(edge.requirements) { value(it) }
-                    string(edge.debug)
-                }
-            }
-            return parsed
         }
 
-        private fun parseEdges(paths: List<String>): List<Edge> {
+        fun readEdges(reader: SnapshotReader): List<Edge> = reader.list {
+            Edge(
+                Tile(reader.int()),
+                Tile(reader.int()),
+                reader.int(),
+                reader.list {
+                    @Suppress("UNCHECKED_CAST")
+                    reader.value() as Pair<String, Map<String, Any>>
+                },
+                reader.list {
+                    @Suppress("UNCHECKED_CAST")
+                    reader.value() as Pair<String, List<Map<String, Any>>>
+                },
+                reader.string(),
+            )
+        }
+
+        fun parseEdges(paths: List<String>): List<Edge> {
             val edges = ArrayList<Edge>()
             for (path in paths) {
                 Config.fileReader(path) {

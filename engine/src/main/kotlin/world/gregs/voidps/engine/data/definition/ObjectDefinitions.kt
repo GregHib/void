@@ -9,8 +9,12 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 
 object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
 
@@ -43,97 +47,30 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
         loaded = false
     }
 
-    fun load(paths: List<String>, snapshot: Snapshot? = null): ObjectDefinitions {
-        timedLoad("object config") {
-            if (snapshot != null && restore(snapshot)) {
-                return@timedLoad ids.size
-            }
-            val ids = Object2IntOpenHashMap<String>()
-            val refs = Object2IntOpenHashMap<String>()
-            val intIds = IntOpenHashSet()
-            ids.defaultReturnValue(-1)
-            for (path in paths) {
-                refs.clear()
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var id = -1
-                        val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                "clone" -> {
-                                    val name = string()
-                                    val obj = refs.getInt(name)
-                                    require(obj >= 0) { "Cannot find object to clone with id '$name' in $path. Make sure it's in the same file." }
-                                    val definition = definitions[obj]
-                                    params.putAll(definition.params ?: continue)
-                                }
-                                "categories" -> {
-                                    val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                                    while (nextElement()) {
-                                        categories.add(string())
-                                    }
-                                    params[Params.CATEGORIES] = categories
-                                }
-                                else -> params[Params.id(key)] = value()
-                            }
-                        }
-                        require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
-                        require(intIds.add(id)) { "Duplicate object id $id found '$stringId' at $path, already defined as '${definitions[id].stringId}'." }
-                        ids[stringId] = id
-                        refs[stringId] = id
-                        definitions[id].stringId = stringId
-                        if (params.isNotEmpty()) {
-                            definitions[id].params = params
-                        }
-                    }
-                }
-            }
-            this.ids = ids
-            snapshot?.write {
-                int(ids.size)
-                for ((stringId, id) in ids) {
-                    string(stringId)
-                    int(id)
-                    params(definitions[id].params)
-                }
-            }
-            ids.size
-        }
-        return this
-    }
-
-    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val size = reader.int()
-        val ids = Object2IntOpenHashMap<String>(size)
-        ids.defaultReturnValue(-1)
-        val strings = arrayOfNulls<String>(size)
-        val ints = IntArray(size)
-        val params = arrayOfNulls<Map<Int, Any>>(size)
-        for (i in 0 until size) {
-            strings[i] = reader.string()
-            ints[i] = reader.int()
-            params[i] = reader.params()
-        }
-        for (i in 0 until size) {
-            val id = ints[i]
-            ids[strings[i]] = id
-            definitions[id].stringId = strings[i]!!
-            val map = params[i]
-            if (map != null) {
-                definitions[id].params = map
-            }
-        }
-        this.ids = ids
+    fun install(state: DefinitionsState<ObjectDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
     }
 
     /**
-     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     * Applies the configs in [paths] to the already decoded [definitions].
      */
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
+    fun load(paths: List<String>): ObjectDefinitions {
+        ids = ObjectLoader.parse(definitions, paths)
+        return this
+    }
+}
+
+object ObjectLoader : Loader<DefinitionsState<ObjectDefinition>> {
+    override val name = "objects"
+    override val files = listOf("definitions.objects")
+    override val settings = listOf("world.members")
+    override val usesCache = true
+    override val codec = DefinitionsCodec(
+        ObjectDefinition::class.java,
+        default = -1,
+        writeDefinition = { definition ->
             int(definition.id)
             string(definition.name)
             int(definition.sizeX)
@@ -149,42 +86,79 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
             string(definition.stringId)
             params(definition.params)
             int(definition.block)
-        }
-        int(ids.size)
-        for ((stringId, id) in ids) {
-            string(stringId)
-            int(id)
-        }
+        },
+        readDefinition = {
+            val definition = ObjectDefinition(
+                id = int(),
+                name = string(),
+                sizeX = int(),
+                sizeY = int(),
+                solid = int(),
+                interactive = int(),
+                options = nullableStrings(),
+                mirrored = boolean(),
+                blockFlag = int(),
+                varbit = int(),
+                varp = int(),
+                transforms = nullableInts(),
+                stringId = string(),
+                params = params(),
+            )
+            definition.block = int()
+            definition
+        },
+    )
+
+    override fun load(context: LoadContext): DefinitionsState<ObjectDefinition> {
+        val definitions = ObjectDecoder(Settings["world.members", false], lowDetail = false).load(context.requireCache())
+        return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
 
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            val definition = ObjectDefinition(
-                id = reader.int(),
-                name = reader.string(),
-                sizeX = reader.int(),
-                sizeY = reader.int(),
-                solid = reader.int(),
-                interactive = reader.int(),
-                options = reader.nullableStrings(),
-                mirrored = reader.boolean(),
-                blockFlag = reader.int(),
-                varbit = reader.int(),
-                varp = reader.int(),
-                transforms = reader.nullableInts(),
-                stringId = reader.string(),
-                params = reader.params(),
-            )
-            definition.block = reader.int()
-            definition
-        }
+    override fun install(state: DefinitionsState<ObjectDefinition>) = ObjectDefinitions.install(state)
+
+    fun parse(definitions: Array<ObjectDefinition>, paths: List<String>): Map<String, Int> {
         val ids = Object2IntOpenHashMap<String>()
+        val refs = Object2IntOpenHashMap<String>()
+        val intIds = IntOpenHashSet()
         ids.defaultReturnValue(-1)
-        repeat(reader.int()) {
-            val stringId = reader.string()
-            ids[stringId] = reader.int()
+        for (path in paths) {
+            refs.clear()
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = -1
+                    val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            "clone" -> {
+                                val name = string()
+                                val obj = refs.getInt(name)
+                                require(obj >= 0) { "Cannot find object to clone with id '$name' in $path. Make sure it's in the same file." }
+                                val definition = definitions[obj]
+                                params.putAll(definition.params ?: continue)
+                            }
+                            "categories" -> {
+                                val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                                while (nextElement()) {
+                                    categories.add(string())
+                                }
+                                params[Params.CATEGORIES] = categories
+                            }
+                            else -> params[Params.id(key)] = value()
+                        }
+                    }
+                    require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
+                    require(intIds.add(id)) { "Duplicate object id $id found '$stringId' at $path, already defined as '${definitions[id].stringId}'." }
+                    ids[stringId] = id
+                    refs[stringId] = id
+                    definitions[id].stringId = stringId
+                    if (params.isNotEmpty()) {
+                        definitions[id].params = params
+                    }
+                }
+            }
         }
-        init(definitions)
-        this.ids = ids
+        return ids
     }
 }

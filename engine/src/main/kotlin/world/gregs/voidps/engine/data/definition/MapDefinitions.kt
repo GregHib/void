@@ -7,6 +7,8 @@ import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -131,4 +133,18 @@ class MapDefinitions(
         MapTileDecoder.loadTiles(data, settings)
         return true
     }
+}
+
+/**
+ * Not snapshotted through the graph yet, it keeps its own map files.
+ */
+object MapLoader : Loader<MapDefinitions> {
+    override val name = "maps"
+    override val settings = listOf("development.loadAllObjects", "world.members")
+    override val usesCache = true
+    override val dependsOn: List<Loader<*>> get() = listOf(ObjectLoader)
+
+    override fun load(context: LoadContext): MapDefinitions = MapDefinitions(CollisionDecoder(), context.requireCache()).load(context.files)
+
+    override fun install(state: MapDefinitions) {}
 }

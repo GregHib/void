@@ -4,9 +4,10 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.timedLoad
 
 class HuntModeDefinitions {
 
@@ -15,78 +16,90 @@ class HuntModeDefinitions {
     fun get(name: String): HuntModeDefinition = modes.getValue(name)
 
     fun load(path: String): HuntModeDefinitions {
-        timedLoad("hunt mode") {
-            val modes = Object2ObjectOpenHashMap<String, HuntModeDefinition>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val mode = section()
-                    var type = ""
-                    var checkVisual = "none"
-                    var checkNotTooStrong: Boolean? = null
-                    var checkNotCombat = true
-                    var checkNotCombatSelf = true
-                    var checkNotBusy = true
-                    var checkAfk = false
-                    var findKeepHunting = false
-                    var pauseIfNobodyNear = true
-                    var rate: Int? = null
-                    var id = ""
-                    var layer: Int = -1
-                    var maxMultiAttackers = 2
-                    var checkSameGod = false
-                    var checkZamorak = false
-                    var checkNotZamorak = false
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "type" -> type = string()
-                            "check_visual" -> checkVisual = string()
-                            "check_not_too_strong" -> checkNotTooStrong = boolean()
-                            "check_not_combat" -> checkNotCombat = boolean()
-                            "check_not_combat_self" -> checkNotCombatSelf = boolean()
-                            "check_not_busy" -> checkNotBusy = boolean()
-                            "check_afk" -> checkAfk = boolean()
-                            "find_keep_hunting" -> findKeepHunting = boolean()
-                            "pause_if_nobody_near" -> pauseIfNobodyNear = boolean()
-                            "rate" -> rate = int()
-                            "id" -> id = string()
-                            "layer" -> layer = int()
-                            "max_multi_attackers" -> maxMultiAttackers = int()
-                            "check_same_god" -> checkSameGod = boolean()
-                            "check_zamorak" -> checkZamorak = boolean()
-                            "check_not_zamorak" -> checkNotZamorak = boolean()
-                            else -> throw IllegalArgumentException("Unknown hunt mode key: $key")
-                        }
+        val modes = Object2ObjectOpenHashMap<String, HuntModeDefinition>(10, Hash.VERY_FAST_LOAD_FACTOR)
+        Config.fileReader(path) {
+            while (nextSection()) {
+                val mode = section()
+                var type = ""
+                var checkVisual = "none"
+                var checkNotTooStrong: Boolean? = null
+                var checkNotCombat = true
+                var checkNotCombatSelf = true
+                var checkNotBusy = true
+                var checkAfk = false
+                var findKeepHunting = false
+                var pauseIfNobodyNear = true
+                var rate: Int? = null
+                var id = ""
+                var layer: Int = -1
+                var maxMultiAttackers = 2
+                var checkSameGod = false
+                var checkZamorak = false
+                var checkNotZamorak = false
+                while (nextPair()) {
+                    when (val key = key()) {
+                        "type" -> type = string()
+                        "check_visual" -> checkVisual = string()
+                        "check_not_too_strong" -> checkNotTooStrong = boolean()
+                        "check_not_combat" -> checkNotCombat = boolean()
+                        "check_not_combat_self" -> checkNotCombatSelf = boolean()
+                        "check_not_busy" -> checkNotBusy = boolean()
+                        "check_afk" -> checkAfk = boolean()
+                        "find_keep_hunting" -> findKeepHunting = boolean()
+                        "pause_if_nobody_near" -> pauseIfNobodyNear = boolean()
+                        "rate" -> rate = int()
+                        "id" -> id = string()
+                        "layer" -> layer = int()
+                        "max_multi_attackers" -> maxMultiAttackers = int()
+                        "check_same_god" -> checkSameGod = boolean()
+                        "check_zamorak" -> checkZamorak = boolean()
+                        "check_not_zamorak" -> checkNotZamorak = boolean()
+                        else -> throw IllegalArgumentException("Unknown hunt mode key: $key")
                     }
-                    modes[mode] = HuntModeDefinition(
-                        type = type,
-                        checkVisual = checkVisual,
-                        checkNotTooStrong = checkNotTooStrong ?: (type == "player"),
-                        checkNotCombat = checkNotCombat,
-                        checkNotCombatSelf = checkNotCombatSelf,
-                        checkNotBusy = checkNotBusy,
-                        checkAfk = checkAfk,
-                        findKeepHunting = findKeepHunting,
-                        pauseIfNobodyNear = pauseIfNobodyNear,
-                        rate = rate ?: if (type == "player") 1 else 3,
-                        ids = Wildcards.get(
-                            id,
-                            when (type) {
-                                "object" -> Wildcard.Object
-                                "npc" -> Wildcard.Npc
-                                else -> Wildcard.Item
-                            },
-                        ),
-                        layer = layer,
-                        maxMultiAttackers = maxMultiAttackers,
-                        checkSameGod = checkSameGod,
-                        checkZamorak = checkZamorak,
-                        checkNotZamorak = checkNotZamorak,
-                    )
                 }
+                modes[mode] = HuntModeDefinition(
+                    type = type,
+                    checkVisual = checkVisual,
+                    checkNotTooStrong = checkNotTooStrong ?: (type == "player"),
+                    checkNotCombat = checkNotCombat,
+                    checkNotCombatSelf = checkNotCombatSelf,
+                    checkNotBusy = checkNotBusy,
+                    checkAfk = checkAfk,
+                    findKeepHunting = findKeepHunting,
+                    pauseIfNobodyNear = pauseIfNobodyNear,
+                    rate = rate ?: if (type == "player") 1 else 3,
+                    ids = Wildcards.get(
+                        id,
+                        when (type) {
+                            "object" -> Wildcard.Object
+                            "npc" -> Wildcard.Npc
+                            else -> Wildcard.Item
+                        },
+                    ),
+                    layer = layer,
+                    maxMultiAttackers = maxMultiAttackers,
+                    checkSameGod = checkSameGod,
+                    checkZamorak = checkZamorak,
+                    checkNotZamorak = checkNotZamorak,
+                )
             }
-            this.modes = modes
-            modes.size
         }
+        this.modes = modes
         return this
     }
+
+    internal fun copyFrom(other: HuntModeDefinitions) {
+        modes = other.modes
+    }
+}
+
+object HuntModeLoader : Loader<HuntModeDefinitions> {
+    val instance = HuntModeDefinitions()
+    override val name = "hunt_modes"
+    override val file = listOf("definitions.huntModes")
+    override val dependsOn: List<Loader<*>> get() = listOf(NPCLoader, ObjectLoader, ItemLoader)
+
+    override fun load(context: LoadContext): HuntModeDefinitions = HuntModeDefinitions().load(context.paths(this).single())
+
+    override fun install(state: HuntModeDefinitions) = instance.copyFrom(state)
 }

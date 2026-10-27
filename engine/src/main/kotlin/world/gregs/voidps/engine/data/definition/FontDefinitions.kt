@@ -4,8 +4,11 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.FontDefinition
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.cache.definition.decoder.FontDecoder
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 
 class FontDefinitions(
     override var definitions: Array<FontDefinition>,
@@ -15,26 +18,29 @@ class FontDefinitions(
 
     override fun empty() = FontDefinition.EMPTY
 
-    fun load(path: String): FontDefinitions {
-        timedLoad("font config") {
-            val ids = Object2IntOpenHashMap<String>(20, Hash.VERY_FAST_LOAD_FACTOR)
-            Config.fileReader(path) {
-                while (nextPair()) {
-                    val key = key()
-                    val id = int()
-                    ids[key] = id
-                    definitions[id].stringId = key
-                }
-            }
-            this.ids = ids
-            ids.size
-        }
-        return this
+    fun install(state: DefinitionsState<FontDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
     }
 
-    fun save(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
+    /**
+     * Applies the config at [path] to the already decoded [definitions].
+     */
+    fun load(path: String): FontDefinitions {
+        ids = FontLoader.parse(definitions, path)
+        return this
+    }
+}
+
+object FontLoader : Loader<DefinitionsState<FontDefinition>> {
+    val instance = FontDefinitions(emptyArray())
+    override val name = "fonts"
+    override val file = listOf("definitions.fonts")
+    override val usesCache = true
+    override val codec = DefinitionsCodec(
+        FontDefinition::class.java,
+        default = null,
+        writeDefinition = { definition ->
             int(definition.id)
             bytes(definition.glyphWidths)
             nullableByteArrays(definition.kerningAdjustments)
@@ -43,32 +49,38 @@ class FontDefinitions(
             int(definition.bottomPadding)
             string(definition.stringId)
             params(definition.params)
-        }
-        ids(ids)
+        },
+        readDefinition = {
+            FontDefinition(
+                id = int(),
+                glyphWidths = bytes(),
+                kerningAdjustments = nullableByteArrays(),
+                verticalSpacing = int(),
+                topPadding = int(),
+                bottomPadding = int(),
+                stringId = string(),
+                params = params(),
+            )
+        },
+    )
+
+    override fun load(context: LoadContext): DefinitionsState<FontDefinition> {
+        val definitions = FontDecoder().load(context.requireCache())
+        return DefinitionsState(definitions, parse(definitions, context.paths(this).single()))
     }
 
-    companion object {
-        fun restore(snapshot: Snapshot): FontDefinitions? {
-            var fonts: FontDefinitions? = null
-            snapshot.restore { reader ->
-                val definitions = Array(reader.int()) {
-                    FontDefinition(
-                        id = reader.int(),
-                        glyphWidths = reader.bytes(),
-                        kerningAdjustments = reader.nullableByteArrays(),
-                        verticalSpacing = reader.int(),
-                        topPadding = reader.int(),
-                        bottomPadding = reader.int(),
-                        stringId = reader.string(),
-                        params = reader.params(),
-                    )
-                }
-                val ids = reader.ids()
-                val created = FontDefinitions(definitions)
-                created.ids = ids
-                fonts = created
+    override fun install(state: DefinitionsState<FontDefinition>) = instance.install(state)
+
+    fun parse(definitions: Array<FontDefinition>, path: String): Map<String, Int> {
+        val ids = Object2IntOpenHashMap<String>(20, Hash.VERY_FAST_LOAD_FACTOR)
+        Config.fileReader(path) {
+            while (nextPair()) {
+                val key = key()
+                val id = int()
+                ids[key] = id
+                definitions[id].stringId = key
             }
-            return fonts
         }
+        return ids
     }
 }

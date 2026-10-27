@@ -9,10 +9,14 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.SnapshotCodec
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 
 object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
 
@@ -52,154 +56,257 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
 
     override fun empty() = InterfaceDefinition.EMPTY
 
-    fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
-        timedLoad("interface config") {
-            val ids = Object2IntOpenHashMap<String>()
-            ids.defaultReturnValue(-1)
-            val componentIds = Object2IntOpenHashMap<String>()
-            for (path in paths) {
-                Config.fileReader(path) {
-                    var parentIntId = -1
-                    val components = mutableListOf<Pair<String, Int>>()
-                    while (nextSection()) {
-                        val interfaceStringId = section()
-                        if (interfaceStringId.contains(".")) {
-                            val (interfaceId, key) = interfaceStringId.split(".")
-                            val componentParams = Int2ObjectOpenHashMap<Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
-                            var optionsArray = emptyArray<String?>()
-                            components.clear()
-                            while (nextPair()) {
-                                when (val componentKey = key()) {
-                                    "id" -> {
-                                        if (peek == '"') {
-                                            val range = string().toIntRange(inclusive = true)
-                                            val startDigit = key.takeLastWhile { it.isDigit() }.toInt()
-                                            val prefix = key.removeSuffix(startDigit.toString())
-                                            for ((index, id) in range.withIndex()) {
-                                                val name = "$prefix${startDigit + index}"
-                                                components.add(name to id)
-                                            }
-                                        } else {
-                                            components.add(key to int())
-                                        }
-                                    }
-                                    "options" -> {
-                                        val options = Object2IntOpenHashMap<String>(4, Hash.VERY_FAST_LOAD_FACTOR)
-                                        var max = 0
-                                        while (nextEntry()) {
-                                            val option = key()
-                                            val index = int()
-                                            if (index > max) {
-                                                max = index
-                                            }
-                                            options[option] = index
-                                        }
-                                        optionsArray = Array(max + 1) { "" }
-                                        for ((option, index) in options) {
-                                            optionsArray[index] = option
-                                        }
-                                    }
-                                    "cast_id", "amount", "bars" -> componentParams[Params.id(componentKey)] = int()
-                                    else -> componentParams[Params.id(componentKey)] = value()
-                                }
-                            }
-                            if (components.isEmpty()) {
-                                throw IllegalArgumentException("Invalid component id.")
-                            }
-                            for ((stringId, componentId) in components) {
-                                componentIds["$interfaceId:$stringId"] = componentId
-                                val componentDefinition = getOrPut(parentIntId, componentId)
-                                require(componentDefinition.stringId == "") { "Found duplicate interface component id $stringId ${componentDefinition.stringId}" }
-                                componentDefinition.stringId = stringId
-                                if (optionsArray.isNotEmpty()) {
-                                    componentParams[Params.OPTIONS] = optionsArray
-                                }
-                                if (componentParams.isNotEmpty()) {
-                                    componentDefinition.params = componentParams
-                                }
-                            }
-                            continue
-                        }
-                        var interfaceId = -1
-                        var type: String? = null
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> {
-                                    interfaceId = int()
-                                    parentIntId = interfaceId
-                                }
-                                "type" -> type = string()
-                                else -> throw IllegalArgumentException("Unknown interface key '$key' in ${exception()}.")
-                            }
-                        }
-                        if (interfaceId != -1) {
-                            require(!ids.containsKey(interfaceStringId)) { "Found duplicate interface id $interfaceStringId in ${exception()}." }
-                            require(definitions[interfaceId].stringId == "") { "Found duplicate interface id $interfaceId $interfaceStringId ${definitions[interfaceId].stringId} in ${exception()}." }
-                            ids[interfaceStringId] = interfaceId
-                            definitions[interfaceId].stringId = interfaceStringId
-                            definitions[interfaceId].type = type
-                        }
-                    }
-                }
-            }
-
-            data class Parent(
-                val fixed: Int,
-                val resize: Int,
-                val permanent: Boolean,
-            )
-
-            val typeData = Object2ObjectOpenHashMap<String, Parent>(100, Hash.VERY_FAST_LOAD_FACTOR)
-            val fixedDefault = ids.getInt(Interfaces.GAME_FRAME_NAME)
-            val resizeDefault = ids.getInt(Interfaces.GAME_FRAME_RESIZE_NAME)
-            Config.fileReader(typePath) {
-                while (nextSection()) {
-                    val stringId = section()
-                    var parentFixed = fixedDefault
-                    var parentResize = resizeDefault
-                    var indexFixed: Int? = null
-                    var indexResize: Int? = null
-                    var permanent = true
-                    while (nextPair()) {
-                        val key = key()
-                        when (key) {
-                            "index" -> {
-                                indexFixed = int()
-                                indexResize = indexFixed
-                            }
-                            "parent" -> {
-                                parentFixed = ids.getInt(string())
-                                parentResize = parentFixed
-                            }
-                            "fixedIndex" -> indexFixed = int()
-                            "resizeIndex" -> indexResize = int()
-                            "permanent" -> if (!boolean()) {
-                                permanent = false
-                            }
-                        }
-                    }
-                    requireNotNull(indexFixed) { "No fixed index specified for interface type $stringId." }
-                    requireNotNull(indexResize) { "No resizable index specified for interface type $stringId." }
-                    val fixed = if (parentFixed == -1) -1 else InterfaceDefinition.pack(parentFixed, indexFixed)
-                    val resize = if (parentResize == -1) -1 else InterfaceDefinition.pack(parentResize, indexResize)
-                    typeData[stringId] = Parent(fixed, resize, permanent)
-                }
-            }
-            for (definition in definitions) {
-                val type = definition.type ?: Interfaces.DEFAULT_TYPE
-                val data = typeData[type] ?: continue
-                definition.fixed = data.fixed
-                definition.resizable = data.resize
-                definition.permanent = data.permanent
-            }
-            this.ids = ids
-            this.componentIds = componentIds
-            ids.size
-        }
-        return this
+    fun install(state: InterfaceState) {
+        definitions = state.definitions
+        ids = state.ids
+        componentIds = state.componentIds
+        loaded = true
     }
 
-    private fun getOrPut(id: Int, index: Int): InterfaceComponentDefinition {
+    /**
+     * Applies the configs to the already decoded [definitions].
+     */
+    fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
+        val state = InterfaceLoader.parse(definitions, paths, typePath)
+        ids = state.ids
+        componentIds = state.componentIds
+        return this
+    }
+}
+
+class InterfaceState(
+    val definitions: Array<InterfaceDefinition>,
+    val ids: Map<String, Int>,
+    val componentIds: Map<String, Int>,
+)
+
+object InterfaceLoader : Loader<InterfaceState> {
+    override val name = "interfaces"
+    override val files = listOf("definitions.interfaces")
+    override val file = listOf("definitions.interfaces.types")
+    override val usesCache = true
+    override val codec = object : SnapshotCodec<InterfaceState> {
+        override val schema = 1L
+
+        override fun write(writer: SnapshotWriter, value: InterfaceState) = with(writer) {
+            int(value.definitions.size)
+            for (definition in value.definitions) {
+                int(definition.id)
+                val components = definition.components
+                if (components == null) {
+                    int(-1)
+                } else {
+                    int(components.size)
+                    for ((index, component) in components) {
+                        int(index)
+                        int(component.id)
+                        nullableStrings(component.options)
+                        nullableAnyArray(component.information)
+                        int(component.baseX)
+                        int(component.baseY)
+                        int(component.defaultImage)
+                        string(component.stringId)
+                        params(component.params)
+                    }
+                }
+                nullableString(definition.type)
+                int(definition.fixed)
+                int(definition.resizable)
+                boolean(definition.permanent)
+                string(definition.stringId)
+                params(definition.params)
+            }
+            ids(value.ids)
+            ids(value.componentIds)
+        }
+
+        override fun read(reader: SnapshotReader): InterfaceState {
+            val definitions = Array(reader.int()) {
+                val id = reader.int()
+                val size = reader.int()
+                var components: Int2ObjectOpenHashMap<InterfaceComponentDefinition>? = null
+                if (size != -1) {
+                    val map = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(size)
+                    components = map
+                    repeat(size) {
+                        val index = reader.int()
+                        map[index] = InterfaceComponentDefinition(
+                            id = reader.int(),
+                            options = reader.nullableStrings(),
+                            information = reader.nullableAnyArray(),
+                            baseX = reader.int(),
+                            baseY = reader.int(),
+                            defaultImage = reader.int(),
+                            stringId = reader.string(),
+                            params = reader.params(),
+                        )
+                    }
+                }
+                InterfaceDefinition(
+                    id = id,
+                    components = components,
+                    type = reader.nullableString(),
+                    fixed = reader.int(),
+                    resizable = reader.int(),
+                    permanent = reader.boolean(),
+                    stringId = reader.string(),
+                    params = reader.params(),
+                )
+            }
+            return InterfaceState(definitions, reader.ids(default = -1), reader.ids())
+        }
+    }
+
+    override fun load(context: LoadContext): InterfaceState {
+        val definitions = InterfaceDecoder().load(context.requireCache())
+        return parse(definitions, context.list("definitions.interfaces"), context.find("definitions.interfaces.types"))
+    }
+
+    override fun install(state: InterfaceState) = InterfaceDefinitions.install(state)
+
+    fun parse(definitions: Array<InterfaceDefinition>, paths: List<String>, typePath: String): InterfaceState {
+        val ids = Object2IntOpenHashMap<String>()
+        ids.defaultReturnValue(-1)
+        val componentIds = Object2IntOpenHashMap<String>()
+        for (path in paths) {
+            Config.fileReader(path) {
+                var parentIntId = -1
+                val components = mutableListOf<Pair<String, Int>>()
+                while (nextSection()) {
+                    val interfaceStringId = section()
+                    if (interfaceStringId.contains(".")) {
+                        val (interfaceId, key) = interfaceStringId.split(".")
+                        val componentParams = Int2ObjectOpenHashMap<Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                        var optionsArray = emptyArray<String?>()
+                        components.clear()
+                        while (nextPair()) {
+                            when (val componentKey = key()) {
+                                "id" -> {
+                                    if (peek == '"') {
+                                        val range = string().toIntRange(inclusive = true)
+                                        val startDigit = key.takeLastWhile { it.isDigit() }.toInt()
+                                        val prefix = key.removeSuffix(startDigit.toString())
+                                        for ((index, id) in range.withIndex()) {
+                                            val name = "$prefix${startDigit + index}"
+                                            components.add(name to id)
+                                        }
+                                    } else {
+                                        components.add(key to int())
+                                    }
+                                }
+                                "options" -> {
+                                    val options = Object2IntOpenHashMap<String>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                                    var max = 0
+                                    while (nextEntry()) {
+                                        val option = key()
+                                        val index = int()
+                                        if (index > max) {
+                                            max = index
+                                        }
+                                        options[option] = index
+                                    }
+                                    optionsArray = Array(max + 1) { "" }
+                                    for ((option, index) in options) {
+                                        optionsArray[index] = option
+                                    }
+                                }
+                                "cast_id", "amount", "bars" -> componentParams[Params.id(componentKey)] = int()
+                                else -> componentParams[Params.id(componentKey)] = value()
+                            }
+                        }
+                        if (components.isEmpty()) {
+                            throw IllegalArgumentException("Invalid component id.")
+                        }
+                        for ((stringId, componentId) in components) {
+                            componentIds["$interfaceId:$stringId"] = componentId
+                            val componentDefinition = getOrPut(definitions, parentIntId, componentId)
+                            require(componentDefinition.stringId == "") { "Found duplicate interface component id $stringId ${componentDefinition.stringId}" }
+                            componentDefinition.stringId = stringId
+                            if (optionsArray.isNotEmpty()) {
+                                componentParams[Params.OPTIONS] = optionsArray
+                            }
+                            if (componentParams.isNotEmpty()) {
+                                componentDefinition.params = componentParams
+                            }
+                        }
+                        continue
+                    }
+                    var interfaceId = -1
+                    var type: String? = null
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> {
+                                interfaceId = int()
+                                parentIntId = interfaceId
+                            }
+                            "type" -> type = string()
+                            else -> throw IllegalArgumentException("Unknown interface key '$key' in ${exception()}.")
+                        }
+                    }
+                    if (interfaceId != -1) {
+                        require(!ids.containsKey(interfaceStringId)) { "Found duplicate interface id $interfaceStringId in ${exception()}." }
+                        require(definitions[interfaceId].stringId == "") { "Found duplicate interface id $interfaceId $interfaceStringId ${definitions[interfaceId].stringId} in ${exception()}." }
+                        ids[interfaceStringId] = interfaceId
+                        definitions[interfaceId].stringId = interfaceStringId
+                        definitions[interfaceId].type = type
+                    }
+                }
+            }
+        }
+
+        data class Parent(
+            val fixed: Int,
+            val resize: Int,
+            val permanent: Boolean,
+        )
+
+        val typeData = Object2ObjectOpenHashMap<String, Parent>(100, Hash.VERY_FAST_LOAD_FACTOR)
+        val fixedDefault = ids.getInt(Interfaces.GAME_FRAME_NAME)
+        val resizeDefault = ids.getInt(Interfaces.GAME_FRAME_RESIZE_NAME)
+        Config.fileReader(typePath) {
+            while (nextSection()) {
+                val stringId = section()
+                var parentFixed = fixedDefault
+                var parentResize = resizeDefault
+                var indexFixed: Int? = null
+                var indexResize: Int? = null
+                var permanent = true
+                while (nextPair()) {
+                    val key = key()
+                    when (key) {
+                        "index" -> {
+                            indexFixed = int()
+                            indexResize = indexFixed
+                        }
+                        "parent" -> {
+                            parentFixed = ids.getInt(string())
+                            parentResize = parentFixed
+                        }
+                        "fixedIndex" -> indexFixed = int()
+                        "resizeIndex" -> indexResize = int()
+                        "permanent" -> if (!boolean()) {
+                            permanent = false
+                        }
+                    }
+                }
+                requireNotNull(indexFixed) { "No fixed index specified for interface type $stringId." }
+                requireNotNull(indexResize) { "No resizable index specified for interface type $stringId." }
+                val fixed = if (parentFixed == -1) -1 else InterfaceDefinition.pack(parentFixed, indexFixed)
+                val resize = if (parentResize == -1) -1 else InterfaceDefinition.pack(parentResize, indexResize)
+                typeData[stringId] = Parent(fixed, resize, permanent)
+            }
+        }
+        for (definition in definitions) {
+            val type = definition.type ?: Interfaces.DEFAULT_TYPE
+            val data = typeData[type] ?: continue
+            definition.fixed = data.fixed
+            definition.resizable = data.resize
+            definition.permanent = data.permanent
+        }
+        return InterfaceState(definitions, ids, componentIds)
+    }
+
+    private fun getOrPut(definitions: Array<InterfaceDefinition>, id: Int, index: Int): InterfaceComponentDefinition {
         val definition = definitions[id]
         var components = definition.components
         if (components == null) {
@@ -207,77 +314,5 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
             definition.components = components
         }
         return components.getOrPut(index) { InterfaceComponentDefinition(id = index + (id shl 16)) }
-    }
-
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
-            int(definition.id)
-            val components = definition.components
-            if (components == null) {
-                int(-1)
-            } else {
-                int(components.size)
-                for ((index, component) in components) {
-                    int(index)
-                    int(component.id)
-                    nullableStrings(component.options)
-                    nullableAnyArray(component.information)
-                    int(component.baseX)
-                    int(component.baseY)
-                    int(component.defaultImage)
-                    string(component.stringId)
-                    params(component.params)
-                }
-            }
-            nullableString(definition.type)
-            int(definition.fixed)
-            int(definition.resizable)
-            boolean(definition.permanent)
-            string(definition.stringId)
-            params(definition.params)
-        }
-        ids(ids)
-        ids(componentIds)
-    }
-
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            val id = reader.int()
-            val size = reader.int()
-            var components: Int2ObjectOpenHashMap<InterfaceComponentDefinition>? = null
-            if (size != -1) {
-                val map = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(size)
-                components = map
-                repeat(size) {
-                    val index = reader.int()
-                    map[index] = InterfaceComponentDefinition(
-                        id = reader.int(),
-                        options = reader.nullableStrings(),
-                        information = reader.nullableAnyArray(),
-                        baseX = reader.int(),
-                        baseY = reader.int(),
-                        defaultImage = reader.int(),
-                        stringId = reader.string(),
-                        params = reader.params(),
-                    )
-                }
-            }
-            InterfaceDefinition(
-                id = id,
-                components = components,
-                type = reader.nullableString(),
-                fixed = reader.int(),
-                resizable = reader.int(),
-                permanent = reader.boolean(),
-                stringId = reader.string(),
-                params = reader.params(),
-            )
-        }
-        val ids = reader.ids(default = -1)
-        val componentIds = reader.ids()
-        init(definitions)
-        this.ids = ids
-        this.componentIds = componentIds
     }
 }

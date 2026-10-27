@@ -6,9 +6,12 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.definition.Params
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 
 object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
 
@@ -39,22 +42,68 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
 
     override fun empty() = InventoryDefinition.EMPTY
 
-    fun load(paths: List<String>, shopPaths: List<String>): InventoryDefinitions {
-        timedLoad("inventory config") {
-            val ids = Object2IntOpenHashMap<String>()
-            for (path in paths) {
-                loadInventories(path, ids, shop = false)
-            }
-            for (path in shopPaths) {
-                loadInventories(path, ids, shop = true)
-            }
-            this.ids = ids
-            ids.size
-        }
-        return this
+    fun install(state: DefinitionsState<InventoryDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
     }
 
-    private fun loadInventories(path: String, ids: Object2IntOpenHashMap<String>, shop: Boolean) {
+    /**
+     * Applies the configs to the already decoded [definitions].
+     */
+    fun load(paths: List<String>, shopPaths: List<String>): InventoryDefinitions {
+        ids = InventoryLoader.parse(definitions, paths, shopPaths)
+        return this
+    }
+}
+
+object InventoryLoader : Loader<DefinitionsState<InventoryDefinition>> {
+    override val name = "inventories"
+    override val files = listOf("definitions.inventories", "definitions.shops")
+    override val usesCache = true
+    override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
+    override val codec = DefinitionsCodec(
+        InventoryDefinition::class.java,
+        default = null,
+        writeDefinition = { definition ->
+            int(definition.id)
+            int(definition.length)
+            nullableInts(definition.ids)
+            nullableInts(definition.amounts)
+            string(definition.stringId)
+            params(definition.params)
+        },
+        readDefinition = {
+            InventoryDefinition(
+                id = int(),
+                length = int(),
+                ids = nullableInts(),
+                amounts = nullableInts(),
+                stringId = string(),
+                params = params(),
+            )
+        },
+    )
+
+    override fun load(context: LoadContext): DefinitionsState<InventoryDefinition> {
+        val definitions = InventoryDecoder().load(context.requireCache())
+        return DefinitionsState(definitions, parse(definitions, context.list("definitions.inventories"), context.list("definitions.shops")))
+    }
+
+    override fun install(state: DefinitionsState<InventoryDefinition>) = InventoryDefinitions.install(state)
+
+    fun parse(definitions: Array<InventoryDefinition>, paths: List<String>, shopPaths: List<String>): Map<String, Int> {
+        val ids = Object2IntOpenHashMap<String>()
+        for (path in paths) {
+            loadInventories(definitions, path, ids, shop = false)
+        }
+        for (path in shopPaths) {
+            loadInventories(definitions, path, ids, shop = true)
+        }
+        return ids
+    }
+
+    private fun loadInventories(definitions: Array<InventoryDefinition>, path: String, ids: Object2IntOpenHashMap<String>, shop: Boolean) {
         Config.fileReader(path) {
             while (nextSection()) {
                 val stringId = section()
@@ -115,34 +164,5 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
                 }
             }
         }
-    }
-
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
-            int(definition.id)
-            int(definition.length)
-            nullableInts(definition.ids)
-            nullableInts(definition.amounts)
-            string(definition.stringId)
-            params(definition.params)
-        }
-        ids(ids)
-    }
-
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            InventoryDefinition(
-                id = reader.int(),
-                length = reader.int(),
-                ids = reader.nullableInts(),
-                amounts = reader.nullableInts(),
-                stringId = reader.string(),
-                params = reader.params(),
-            )
-        }
-        val ids = reader.ids()
-        init(definitions)
-        this.ids = ids
     }
 }

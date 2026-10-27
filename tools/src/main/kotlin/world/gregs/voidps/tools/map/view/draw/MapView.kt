@@ -103,7 +103,7 @@ class MapView : JPanel() {
     fun reload(files: ConfigFiles = configFiles()) {
         val areaFiles = files.list(Settings["map.areas"])
         AreaSet.load(areaFiles, areaSet)
-        graph.reload(NavigationGraph.loadGraph(files.list(Settings["bots.nav.definitions"]), emptyList()))
+        graph.reload(NavigationGraph.loadGraph(NavigationGraph.parseEdges(files.list(Settings["bots.nav.definitions"])), emptyList()))
     }
 
     fun updateLevel(level: Int) {

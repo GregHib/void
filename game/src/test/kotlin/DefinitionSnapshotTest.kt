@@ -1,24 +1,14 @@
-import content.bot.behaviour.navigation.NavigationGraph
-import content.entity.obj.ObjectTeleports
-import content.entity.world.music.MusicTracks
+import content.bot.behaviour.NavigationGraphLoader
+import content.entity.obj.ObjectTeleportLoader
+import content.entity.world.music.MusicTrackLoader
+import gameLoaders
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.MemoryCache
-import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.Parameterized
-import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.cache.definition.decoder.FontDecoder
-import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.cache.definition.decoder.QuickChatPhraseDecoder
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.client.variable.MapValues
@@ -28,35 +18,39 @@ import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.CombatLoader
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.FontDefinitions
+import world.gregs.voidps.engine.data.definition.FontLoader
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemLoader
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
+import world.gregs.voidps.engine.data.definition.ItemOnItemLoader
+import world.gregs.voidps.engine.data.definition.MapLoader
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions
+import world.gregs.voidps.engine.data.definition.QuickChatPhraseLoader
 import world.gregs.voidps.engine.data.definition.Rows
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
+import world.gregs.voidps.engine.data.definition.SoundLoader
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.load.LoaderGraph
+import world.gregs.voidps.engine.engineLoaders
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.area.Polygon
 import java.nio.file.Path
 import java.util.Properties
 import kotlin.io.path.exists
-import kotlin.io.path.fileSize
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 /**
- * Definitions restored from a binary snapshot must be identical to those parsed from the toml files.
+ * Definitions restored from a binary snapshot must be identical to those loaded from the cache and toml files.
  */
 internal class DefinitionSnapshotTest {
 
@@ -65,6 +59,7 @@ internal class DefinitionSnapshotTest {
 
     private lateinit var files: ConfigFiles
     private lateinit var cache: Cache
+    private lateinit var graph: LoaderGraph
 
     @BeforeEach
     fun setup() {
@@ -77,9 +72,12 @@ internal class DefinitionSnapshotTest {
         }
         properties["storage.caching.path"] = "$temp/"
         properties["storage.snapshots.active"] = "true"
+        properties["world.members"] = "true"
         Settings.load(properties)
         files = configFiles()
         cache = MemoryCache(Settings["storage.cache.path"])
+        // Maps keep their own files
+        graph = LoaderGraph((engineLoaders() + gameLoaders()).filter { it != MapLoader })
     }
 
     @AfterEach
@@ -88,291 +86,85 @@ internal class DefinitionSnapshotTest {
     }
 
     @Test
-    fun `Item snapshot matches toml`() {
-        val paths = files.list(Settings["definitions.items"])
-        val snapshot = { files.snapshot("items", paths) }
-        fun load(paths: List<String>, snapshot: Snapshot?): String {
-            ItemDefinitions.init(ItemDecoder().load(cache)).load(paths, snapshot)
-            return dump(ItemDefinitions.definitions.asList(), ItemDefinitions.ids)
+    fun `Every snapshot matches what is loaded without one`() {
+        graph.run(files, cache, null)
+        val loaded = capture()
+
+        graph.run(files, cache, temp)
+        assertEquals(emptySet(), graph.restored)
+        compare(loaded, capture(), "Writing a snapshot shouldn't change the result")
+
+        val snapshotted = graph.loaders.filter { it.codec != null }.map { it.name }
+        for (name in snapshotted) {
+            assertTrue(temp.resolve("$name.snapshot").exists(), "Missing snapshot $name")
         }
-
-        val parsed = load(paths, null)
-        assertEquals(parsed, load(paths, snapshot()), "Writing a snapshot shouldn't change the result")
-        assertTrue(temp.resolve("items.snapshot").exists())
-        // No paths, so it can only be loaded from the snapshot
-        assertEquals(parsed, load(emptyList(), snapshot()))
+        graph.run(files, cache, temp)
+        assertEquals(snapshotted.toSet(), graph.restored)
+        compare(loaded, capture(), "Restoring a snapshot shouldn't change the result")
     }
 
     @Test
-    fun `Npc snapshot matches toml`() {
-        val paths = files.list(Settings["definitions.npcs"])
-        val snapshot = { files.snapshot("npcs", paths) }
-        fun load(paths: List<String>, snapshot: Snapshot?): String {
-            NPCDefinitions.init(NPCDecoder(member = true).load(cache)).load(paths, null, snapshot)
-            return dump(NPCDefinitions.definitions.asList(), NPCDefinitions.ids) { definition ->
-                "${definition.hitpoints} ${definition.regenRate} ${definition.huntRange} ${definition.huntMode} ${definition.allowedUnder} ${definition.solid} ${definition.blocksPlayers}"
-            }
-        }
-
-        val parsed = load(paths, null)
-        assertEquals(parsed, load(paths, snapshot()), "Writing a snapshot shouldn't change the result")
-        assertTrue(temp.resolve("npcs.snapshot").exists())
-        assertEquals(parsed, load(emptyList(), snapshot()))
+    fun `Snapshots are ignored when a file they depend on changes`() {
+        val before = graph.keys(files)
+        val items = files.list(Settings["definitions.items"]).first()
+        val after = graph.keys(files.copy(stamps = files.stamps + (items to -1L)))
+        assertNotEquals(before[ItemLoader], after[ItemLoader])
+        // Inventories hold item ids so depend on them
+        assertNotEquals(before[graph.get("inventories")], after[graph.get("inventories")])
+        assertEquals(before[SoundLoader], after[SoundLoader])
     }
 
-    @Test
-    fun `Object snapshot matches toml`() {
-        val paths = files.list(Settings["definitions.objects"])
-        val snapshot = { files.snapshot("objects", paths) }
-        fun load(paths: List<String>, snapshot: Snapshot?): String {
-            ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(paths, snapshot)
-            return dump(ObjectDefinitions.definitions.asList(), ObjectDefinitions.ids)
-        }
-
-        val parsed = load(paths, null)
-        assertEquals(parsed, load(paths, snapshot()), "Writing a snapshot shouldn't change the result")
-        assertTrue(temp.resolve("objects.snapshot").exists())
-        assertEquals(parsed, load(emptyList(), snapshot()))
-    }
-
-    @Test
-    fun `Table snapshot matches toml`() {
-        ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"]))
-        NPCDefinitions.init(NPCDecoder(member = true).load(cache)).load(files.list(Settings["definitions.npcs"]))
-        AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"]))
-        GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"]))
-        VariableDefinitions.load(files)
-        val paths = files.list(Settings["definitions.tables"])
-        val snapshot = { files.snapshot("tables", paths) }
-
-        Tables.load(paths)
-        val parsed = dumpTables()
-        Tables.load(paths, snapshot())
-        assertEquals(parsed, dumpTables(), "Writing a snapshot shouldn't change the result")
-        assertTrue(temp.resolve("tables.snapshot").exists())
-        Tables.clear()
-        Rows.clear()
-        Tables.load(emptyList(), snapshot())
-        assertEquals(parsed, dumpTables())
-    }
-
-    @Test
-    fun `Full definition snapshots match the loaded definitions`() {
-        val items = files.list(Settings["definitions.items"])
-        ItemDefinitions.init(ItemDecoder().load(cache)).load(items)
-        val itemDump = dump(ItemDefinitions.definitions.asList(), ItemDefinitions.ids)
-        val itemDefinitions = ItemDefinitions.definitions.toList()
-        ItemDefinitions.saveDefinitions(files.snapshot("items.all", items)!!)
-        ItemDefinitions.clear()
-        assertTrue(ItemDefinitions.restoreDefinitions(files.snapshot("items.all", items)!!))
-        assertEquals(itemDefinitions, ItemDefinitions.definitions.toList())
-        assertEquals(itemDump, dump(ItemDefinitions.definitions.asList(), ItemDefinitions.ids))
-
-        val npcs = files.list(Settings["definitions.npcs"])
-        NPCDefinitions.init(NPCDecoder(member = true).load(cache)).load(npcs)
-        val npcDump = dump(NPCDefinitions.definitions.asList(), NPCDefinitions.ids)
-        val npcDefinitions = NPCDefinitions.definitions.toList()
-        NPCDefinitions.saveDefinitions(files.snapshot("npcs.all", npcs)!!)
-        NPCDefinitions.clear()
-        assertTrue(NPCDefinitions.restoreDefinitions(files.snapshot("npcs.all", npcs)!!))
-        assertEquals(npcDefinitions, NPCDefinitions.definitions.toList())
-        assertEquals(npcDump, dump(NPCDefinitions.definitions.asList(), NPCDefinitions.ids))
-
-        val objects = files.list(Settings["definitions.objects"])
-        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(objects)
-        val objectDump = dump(ObjectDefinitions.definitions.asList(), ObjectDefinitions.ids)
-        val objectDefinitions = ObjectDefinitions.definitions.toList()
-        ObjectDefinitions.saveDefinitions(files.snapshot("objects.all", objects)!!)
-        ObjectDefinitions.clear()
-        assertTrue(ObjectDefinitions.restoreDefinitions(files.snapshot("objects.all", objects)!!))
-        assertEquals(objectDefinitions, ObjectDefinitions.definitions.toList())
-        assertEquals(objectDump, dump(ObjectDefinitions.definitions.asList(), ObjectDefinitions.ids))
-    }
-
-    @Test
-    fun `Variable snapshot matches toml`() {
-        val paths = listOf("players", "bits", "clients", "strings", "customs").flatMap { files.list(Settings["definitions.variables.$it"]) }
-        VariableDefinitions.load(files)
-        val parsed = dumpVariables()
-        assertTrue(temp.resolve("variables.snapshot").exists())
-        VariableDefinitions.clear()
-        // No paths, so it can only be loaded from the snapshot
-        VariableDefinitions.load(emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), files.snapshot("variables", paths))
-        assertEquals(parsed, dumpVariables())
-    }
-
-    @Test
-    fun `Other full definition snapshots match the loaded definitions`() {
-        ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-
-        val animations = files.list(Settings["definitions.animations"])
-        AnimationDefinitions.init(AnimationDecoder().load(cache)).load(animations)
-        val animationDefinitions = AnimationDefinitions.definitions.toList()
-        val animationIds = AnimationDefinitions.ids.toSortedMap()
-        AnimationDefinitions.saveDefinitions(files.snapshot("animations", animations)!!)
-        AnimationDefinitions.clear()
-        assertTrue(AnimationDefinitions.restoreDefinitions(files.snapshot("animations", animations)!!))
-        assertEquals(animationDefinitions, AnimationDefinitions.definitions.toList())
-        assertEquals(animationIds, AnimationDefinitions.ids.toSortedMap())
-
-        val graphics = files.list(Settings["definitions.graphics"])
-        GraphicDefinitions.init(GraphicDecoder().load(cache)).load(graphics)
-        val graphicDefinitions = GraphicDefinitions.definitions.toList()
-        val graphicIds = GraphicDefinitions.ids.toSortedMap()
-        GraphicDefinitions.saveDefinitions(files.snapshot("graphics", graphics)!!)
-        GraphicDefinitions.clear()
-        assertTrue(GraphicDefinitions.restoreDefinitions(files.snapshot("graphics", graphics)!!))
-        assertEquals(graphicDefinitions, GraphicDefinitions.definitions.toList())
-        assertEquals(graphicIds, GraphicDefinitions.ids.toSortedMap())
-
-        val interfaces = files.list(Settings["definitions.interfaces"])
-        val types = files.find(Settings["definitions.interfaces.types"])
-        InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(interfaces, types)
-        val interfaceDump = dumpInterfaces()
-        val interfaceIds = InterfaceDefinitions.ids.toSortedMap()
-        val componentIds = InterfaceDefinitions.componentIds.toSortedMap()
-        InterfaceDefinitions.saveDefinitions(files.snapshot("interfaces", interfaces + types)!!)
-        InterfaceDefinitions.clear()
-        assertTrue(InterfaceDefinitions.restoreDefinitions(files.snapshot("interfaces", interfaces + types)!!))
-        assertEquals(interfaceDump, dumpInterfaces())
-        assertEquals(interfaceIds, InterfaceDefinitions.ids.toSortedMap())
-        assertEquals(componentIds, InterfaceDefinitions.componentIds.toSortedMap())
-
-        val structs = files.find(Settings["definitions.structs"])
-        StructDefinitions.init(StructDecoder().load(cache)).load(structs)
-        val structDefinitions = StructDefinitions.definitions.toList()
-        val structIds = StructDefinitions.ids.toSortedMap()
-        StructDefinitions.saveDefinitions(files.snapshot("structs", listOf(structs))!!)
-        StructDefinitions.clear()
-        assertTrue(StructDefinitions.restoreDefinitions(files.snapshot("structs", listOf(structs))!!))
-        assertEquals(structDefinitions, StructDefinitions.definitions.toList())
-        assertEquals(structIds, StructDefinitions.ids.toSortedMap())
-
-        val inventories = files.list(Settings["definitions.inventories"])
-        val shops = files.list(Settings["definitions.shops"])
-        InventoryDefinitions.init(InventoryDecoder().load(cache)).load(inventories, shops)
-        val inventoryDefinitions = InventoryDefinitions.definitions.toList()
-        val inventoryIds = InventoryDefinitions.ids.toSortedMap()
-        InventoryDefinitions.saveDefinitions(files.snapshot("inventories", inventories + shops)!!)
-        InventoryDefinitions.clear()
-        assertTrue(InventoryDefinitions.restoreDefinitions(files.snapshot("inventories", inventories + shops)!!))
-        assertEquals(inventoryDefinitions, InventoryDefinitions.definitions.toList())
-        assertEquals(inventoryIds, InventoryDefinitions.ids.toSortedMap())
-
-        val fontPath = files.find(Settings["definitions.fonts"])
-        val fonts = FontDefinitions(FontDecoder().load(cache)).load(fontPath)
-        fonts.save(files.snapshot("fonts", listOf(fontPath))!!)
-        val restoredFonts = FontDefinitions.restore(files.snapshot("fonts", listOf(fontPath))!!)!!
-        assertEquals(fonts.definitions.toList(), restoredFonts.definitions.toList())
-        assertEquals(fonts.ids.toSortedMap(), restoredFonts.ids.toSortedMap())
-
-        val phrases = QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load()
-        phrases.save(files.snapshot("quick_chat", emptyList())!!)
-        val restoredPhrases = QuickChatPhraseDefinitions.restore(files.snapshot("quick_chat", emptyList())!!)!!
-        assertEquals(phrases.definitions.toList(), restoredPhrases.definitions.toList())
-    }
-
-    @Test
-    fun `Sound combat and area snapshots match toml`() {
-        val sounds = files.list(Settings["definitions.sounds"])
-        val parsedSounds = SoundDefinitions().load(sounds)
-        SoundDefinitions().load(sounds, files.snapshot("sounds", sounds))
-        val restoredSounds = SoundDefinitions().load(emptyList(), files.snapshot("sounds", sounds))
-        assertTrue(temp.resolve("sounds.snapshot").exists())
-        assertEquals(parsedSounds.definitions.toList(), restoredSounds.definitions.toList())
-        assertEquals(parsedSounds.ids.toSortedMap(), restoredSounds.ids.toSortedMap())
-
-        val combat = files.list(Settings["definitions.combatAttacks"])
-        val parsedCombat = CombatDefinitions().load(combat)
-        CombatDefinitions().load(combat, files.snapshot("combat", combat))
-        assertTrue(temp.resolve("combat.snapshot").exists())
-        val restoredCombat = CombatDefinitions().load(emptyList(), files.snapshot("combat", combat))
-        assertEquals(parsedCombat.all.toSortedMap(), restoredCombat.all.toSortedMap())
-
-        val areas = files.list(Settings["map.areas"])
-        Areas.load(areas)
-        val parsedAreas = dumpAreas()
-        Areas.load(areas, files.snapshot("areas", areas))
-        assertTrue(temp.resolve("areas.snapshot").exists())
-        Areas.clear()
-        Areas.load(emptyList(), files.snapshot("areas", areas))
-        assertEquals(parsedAreas, dumpAreas())
-    }
-
-    @Test
-    fun `Enum snapshot matches the loaded enums`() {
-        AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"]))
-        GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"]))
-        ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-        InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
-        InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
-        NPCDefinitions.init(NPCDecoder(member = true).load(cache)).load(files.list(Settings["definitions.npcs"]), null)
-        StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"]))
-        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"]))
-        VariableDefinitions.load(files)
-        Tables.load(files.list(Settings["definitions.tables"]))
-        val paths = files.list(Settings["definitions.enums"])
-        EnumDefinitions.init(EnumDecoder().load(cache)).load(paths)
-        val definitions = EnumDefinitions.definitions.toList()
-        val ids = EnumDefinitions.ids.toSortedMap()
-        EnumDefinitions.saveDefinitions(files.snapshot("enums", paths)!!)
-        EnumDefinitions.clear()
-        assertTrue(EnumDefinitions.restoreDefinitions(files.snapshot("enums", paths)!!))
-        assertEquals(definitions, EnumDefinitions.definitions.toList())
-        assertEquals(ids, EnumDefinitions.ids.toSortedMap())
-        assertTrue(EnumDefinitions.loaded)
-    }
-
-    @Test
-    fun `Item on item and teleport snapshots match toml`() {
-        ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-        val itemOnItem = files.list(Settings["definitions.itemOnItem"])
-        val parsed = ItemOnItemDefinitions().load(itemOnItem)
-        ItemOnItemDefinitions().load(itemOnItem, files.snapshot("item_on_item", itemOnItem))
-        assertTrue(temp.resolve("item_on_item.snapshot").exists())
-        val restored = ItemOnItemDefinitions().load(emptyList(), files.snapshot("item_on_item", itemOnItem))
-        assertEquals(parsed.dump(), restored.dump())
-
-        val teleportPaths = files.list(Settings["map.teleports"])
-        val teleports = ObjectTeleports().load(teleportPaths)
-        ObjectTeleports().load(teleportPaths, files.snapshot("object_teleports", teleportPaths))
-        assertTrue(temp.resolve("object_teleports.snapshot").exists())
-        val restoredTeleports = ObjectTeleports().load(emptyList(), files.snapshot("object_teleports", teleportPaths))
-        assertEquals(teleports.options(), restoredTeleports.options())
-        for (option in teleports.options()) {
-            assertEquals(teleports.get(option), restoredTeleports.get(option))
+    private fun compare(expected: Map<String, Any?>, actual: Map<String, Any?>, message: String) {
+        assertEquals(expected.keys, actual.keys)
+        for ((name, value) in expected) {
+            assertEquals(value, actual[name], "$message: $name")
         }
     }
 
-    @Test
-    fun `Music and nav graph snapshots match toml`() {
-        val music = files.find(Settings["map.music"])
-        val parsed = MusicTracks().load(music)
-        MusicTracks().load(music, files.snapshot("music_tracks", listOf(music)))
-        assertTrue(temp.resolve("music_tracks.snapshot").exists())
-        val restored = MusicTracks().load("", files.snapshot("music_tracks", listOf(music)))
-        assertEquals(parsed.tracks.map { track -> track?.let { "${it.id} ${it.name} ${it.indexes} ${it.area.map(::shape)}" } }, restored.tracks.map { track -> track?.let { "${it.id} ${it.name} ${it.indexes} ${it.area.map(::shape)}" } })
-        for (region in 0..20000) {
-            assertEquals(parsed[Region(region)].map { "${it.id} ${shape(it.area)}" }, restored[Region(region)].map { "${it.id} ${shape(it.area)}" })
+    /**
+     * Everything the loaders install, in a form which can be compared.
+     */
+    private fun capture(): Map<String, Any?> {
+        val captured = linkedMapOf<String, Any?>()
+        captured["items"] = ItemDefinitions.definitions.toList() to dump(ItemDefinitions.definitions.asList(), ItemDefinitions.ids)
+        captured["npcs"] = NPCDefinitions.definitions.toList() to dump(NPCDefinitions.definitions.asList(), NPCDefinitions.ids) { definition ->
+            "${definition.hitpoints} ${definition.regenRate} ${definition.huntRange} ${definition.huntMode} ${definition.allowedUnder} ${definition.solid} ${definition.blocksPlayers}"
         }
+        captured["objects"] = ObjectDefinitions.definitions.toList() to dump(ObjectDefinitions.definitions.asList(), ObjectDefinitions.ids)
+        captured["animations"] = AnimationDefinitions.definitions.toList() to AnimationDefinitions.ids.toSortedMap()
+        captured["graphics"] = GraphicDefinitions.definitions.toList() to GraphicDefinitions.ids.toSortedMap()
+        captured["interfaces"] = Triple(dumpInterfaces(), InterfaceDefinitions.ids.toSortedMap(), InterfaceDefinitions.componentIds.toSortedMap())
+        captured["structs"] = StructDefinitions.definitions.toList() to StructDefinitions.ids.toSortedMap()
+        captured["inventories"] = InventoryDefinitions.definitions.toList() to InventoryDefinitions.ids.toSortedMap()
+        captured["enums"] = EnumDefinitions.definitions.toList() to EnumDefinitions.ids.toSortedMap()
+        captured["tables"] = dumpTables()
+        captured["variables"] = dumpVariables()
+        captured["areas"] = dumpAreas()
+        captured["sounds"] = SoundLoader.instance.definitions.toList() to SoundLoader.instance.ids.toSortedMap()
+        captured["fonts"] = FontLoader.instance.definitions.toList() to FontLoader.instance.ids.toSortedMap()
+        captured["quick_chat"] = QuickChatPhraseLoader.instance.definitions.toList()
+        captured["combat"] = CombatLoader.instance.all.toSortedMap()
+        captured["item_on_item"] = ItemOnItemLoader.instance.dump()
+        val teleports = ObjectTeleportLoader.instance
+        captured["object_teleports"] = teleports.options().sorted().associateWith { option -> teleports.get(option).toSortedMap() }
+        val music = MusicTrackLoader.instance
+        captured["music_tracks"] = music.tracks.map { track -> track?.let { "${it.id} ${it.name} ${it.indexes} ${it.area.map(::shape)}" } } to
+            (0..20000).map { region -> music[Region(region)].map { "${it.id} ${shape(it.area)}" } }
+        captured["nav_graph"] = navGraph()
+        return captured
+    }
 
-        Areas.load(files.list(Settings["map.areas"]))
-        val nav = files.list(Settings["bots.nav.definitions"])
-        val graph = NavigationGraph.loadGraph(nav, emptyList())
-        NavigationGraph.loadGraph(nav, emptyList(), files.snapshot("nav_graph", nav))
-        assertTrue(temp.resolve("nav_graph.snapshot").exists())
-        val restoredGraph = NavigationGraph.loadGraph(emptyList(), emptyList(), files.snapshot("nav_graph", nav))
-        assertEquals(graph.nodeCount, restoredGraph.nodeCount)
+    private fun navGraph(): List<String> {
+        val graph = NavigationGraphLoader.graph
+        val nodes = ArrayList<String>()
         for (node in 0 until graph.nodeCount) {
-            assertEquals(graph.tile(node), restoredGraph.tile(node))
-            assertEquals(graph.edges(node)?.toList(), restoredGraph.edges(node)?.toList())
+            val builder = StringBuilder("${graph.tile(node)}:")
             for (edge in graph.edges(node) ?: continue) {
-                assertEquals(graph.weight(edge), restoredGraph.weight(edge))
-                assertEquals(graph.endTile(edge), restoredGraph.endTile(edge))
-                assertEquals(graph.actions(edge), restoredGraph.actions(edge))
+                builder.append(" ${graph.weight(edge)} ${graph.endTile(edge)} ${graph.actions(edge)}")
             }
+            nodes.add(builder.toString())
         }
+        return nodes
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -380,16 +172,6 @@ internal class DefinitionSnapshotTest {
         val field = ItemOnItemDefinitions::class.java.getDeclaredField("definitions")
         field.isAccessible = true
         return (field.get(this) as Map<String, List<ItemOnItemDefinition>>).toSortedMap()
-    }
-
-    @Test
-    fun `Snapshot is ignored when a file changes`() {
-        val paths = files.list(Settings["definitions.objects"])
-        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(paths, files.snapshot("objects", paths))
-        assertTrue(temp.resolve("objects.snapshot").fileSize() > 0)
-
-        val changed = files.copy(stamps = files.stamps + (paths.first() to -1L))
-        assertTrue(changed.snapshot("objects", paths)!!.reader() == null)
     }
 
     private fun <T : Parameterized> dump(definitions: List<T>, ids: Map<String, Int>, extra: (T) -> String = { "" }): String {

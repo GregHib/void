@@ -7,8 +7,11 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 
 object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
 
@@ -42,39 +45,29 @@ object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
         loaded = false
     }
 
-    fun load(paths: List<String>): GraphicDefinitions {
-        timedLoad("graphic config") {
-            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var id = -1
-                        val params = Int2ObjectOpenHashMap<Any>(0)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                "angle" -> throw IllegalArgumentException("Unknown key 'angle' use 'curve' instead. ${exception()}")
-                                else -> params[Params.id(key)] = value()
-                            }
-                        }
-                        require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }
-                        require(id != -1) { "Missing id for graphic '$stringId' at $path." }
-                        ids[stringId] = id
-                        definitions[id].stringId = stringId
-                        definitions[id].params = params.ifEmpty { null }
-                    }
-                }
-            }
-            this.ids = ids
-            ids.size
-        }
-        return this
+    fun install(state: DefinitionsState<GraphicDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
     }
 
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
+    /**
+     * Applies the configs in [paths] to the already decoded [definitions].
+     */
+    fun load(paths: List<String>): GraphicDefinitions {
+        ids = GraphicLoader.parse(definitions, paths)
+        return this
+    }
+}
+
+object GraphicLoader : Loader<DefinitionsState<GraphicDefinition>> {
+    override val name = "graphics"
+    override val files = listOf("definitions.graphics")
+    override val usesCache = true
+    override val codec = DefinitionsCodec(
+        GraphicDefinition::class.java,
+        default = null,
+        writeDefinition = { definition ->
             int(definition.id)
             int(definition.modelId)
             int(definition.animationId)
@@ -92,34 +85,60 @@ object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
             nullableShorts(definition.modifiedTextureColours)
             string(definition.stringId)
             params(definition.params)
-        }
-        ids(ids)
+        },
+        readDefinition = {
+            GraphicDefinition(
+                id = int(),
+                modelId = int(),
+                animationId = int(),
+                sizeXY = int(),
+                sizeZ = int(),
+                rotation = int(),
+                ambience = int(),
+                contrast = int(),
+                aByte2381 = byte().toByte(),
+                anInt2385 = int(),
+                aBoolean2402 = boolean(),
+                originalColours = nullableShorts(),
+                modifiedColours = nullableShorts(),
+                originalTextureColours = nullableShorts(),
+                modifiedTextureColours = nullableShorts(),
+                stringId = string(),
+                params = params(),
+            )
+        },
+    )
+
+    override fun load(context: LoadContext): DefinitionsState<GraphicDefinition> {
+        val definitions = GraphicDecoder().load(context.requireCache())
+        return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
 
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            GraphicDefinition(
-                id = reader.int(),
-                modelId = reader.int(),
-                animationId = reader.int(),
-                sizeXY = reader.int(),
-                sizeZ = reader.int(),
-                rotation = reader.int(),
-                ambience = reader.int(),
-                contrast = reader.int(),
-                aByte2381 = reader.byte().toByte(),
-                anInt2385 = reader.int(),
-                aBoolean2402 = reader.boolean(),
-                originalColours = reader.nullableShorts(),
-                modifiedColours = reader.nullableShorts(),
-                originalTextureColours = reader.nullableShorts(),
-                modifiedTextureColours = reader.nullableShorts(),
-                stringId = reader.string(),
-                params = reader.params(),
-            )
+    override fun install(state: DefinitionsState<GraphicDefinition>) = GraphicDefinitions.install(state)
+
+    fun parse(definitions: Array<GraphicDefinition>, paths: List<String>): Map<String, Int> {
+        val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = -1
+                    val params = Int2ObjectOpenHashMap<Any>(0)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            "angle" -> throw IllegalArgumentException("Unknown key 'angle' use 'curve' instead. ${exception()}")
+                            else -> params[Params.id(key)] = value()
+                        }
+                    }
+                    require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }
+                    require(id != -1) { "Missing id for graphic '$stringId' at $path." }
+                    ids[stringId] = id
+                    definitions[id].stringId = stringId
+                    definitions[id].params = params.ifEmpty { null }
+                }
+            }
         }
-        val ids = reader.ids()
-        init(definitions)
-        this.ids = ids
+        return ids
     }
 }

@@ -15,6 +15,15 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AreaLoader
+import world.gregs.voidps.engine.data.definition.InterfaceLoader
+import world.gregs.voidps.engine.data.definition.ItemLoader
+import world.gregs.voidps.engine.data.definition.TableLoader
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.SnapshotCodec
+import world.gregs.voidps.engine.data.snapshot.SnapshotReader
+import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -51,12 +60,42 @@ fun loadBehaviours(
     loadSetups(resolvers, templates, files.list(Settings["bots.setups"]))
 }
 
-fun loadGraph(files: ConfigFiles): NavigationGraph {
-    val templates = loadTemplates(files.list(Settings["bots.templates"]))
-    val shortcuts = mutableListOf<NavigationShortcut>()
-    loadShortcuts(shortcuts, templates, files.list(Settings["bots.shortcuts"]))
-    val paths = files.list(Settings["bots.nav.definitions"])
-    return NavigationGraph.loadGraph(paths, shortcuts, files.snapshot("nav_graph", paths))
+/**
+ * The edges of the navigation graph as parsed from config, snapshotted separately as turning them into actions and conditions can't be.
+ */
+object NavigationEdgeLoader : Loader<List<NavigationGraph.Companion.Edge>> {
+    override val name = "nav_edges"
+    override val files = listOf("bots.nav.definitions")
+    override val codec = object : SnapshotCodec<List<NavigationGraph.Companion.Edge>> {
+        override val schema = 1L
+
+        override fun write(writer: SnapshotWriter, value: List<NavigationGraph.Companion.Edge>) = NavigationGraph.writeEdges(writer, value)
+
+        override fun read(reader: SnapshotReader) = NavigationGraph.readEdges(reader)
+    }
+
+    override fun load(context: LoadContext): List<NavigationGraph.Companion.Edge> = NavigationGraph.parseEdges(context.paths(this))
+
+    override fun install(state: List<NavigationGraph.Companion.Edge>) {}
+}
+
+object NavigationGraphLoader : Loader<NavigationGraph> {
+    lateinit var graph: NavigationGraph
+        private set
+    override val name = "nav_graph"
+    override val files = listOf("bots.templates", "bots.shortcuts")
+    override val dependsOn: List<Loader<*>> get() = listOf(NavigationEdgeLoader, AreaLoader, InterfaceLoader, ItemLoader, TableLoader)
+
+    override fun load(context: LoadContext): NavigationGraph {
+        val templates = loadTemplates(context.list("bots.templates"))
+        val shortcuts = mutableListOf<NavigationShortcut>()
+        loadShortcuts(shortcuts, templates, context.list("bots.shortcuts"))
+        return NavigationGraph.loadGraph(context[NavigationEdgeLoader], shortcuts)
+    }
+
+    override fun install(state: NavigationGraph) {
+        graph = state
+    }
 }
 
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {

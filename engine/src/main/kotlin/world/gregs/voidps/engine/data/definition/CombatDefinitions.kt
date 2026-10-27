@@ -8,10 +8,11 @@ import world.gregs.voidps.engine.data.config.CombatDefinition.CombatAttack
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
 import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
 import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
-import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.SnapshotCodec
 import world.gregs.voidps.engine.data.snapshot.SnapshotReader
 import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 
 /**
@@ -28,45 +29,46 @@ class CombatDefinitions {
     val all: Map<String, CombatDefinition>
         get() = definitions
 
-    fun load(paths: List<String>, snapshot: Snapshot? = null): CombatDefinitions {
-        timedLoad("combat definition") {
-            if (snapshot != null && restore(snapshot)) {
-                return@timedLoad all.size
-            }
-            val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
-            val attackClones = mutableListOf<Triple<CombatDefinition, String, String>>()
-            val definitionClones = mutableListOf<Pair<String, String>>()
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val section = section()
-                        if (section.contains(".")) {
-                            attack(section, definitions, attackClones)
-                        } else {
-                            definition(definitions, section, definitionClones)
-                        }
-                    }
-                }
-            }
-            for ((definition, attack, clone) in attackClones) {
-                val original = definition.attacks[attack]!!
-                val (id, att) = clone.split(".")
-                val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.$attack'.")
-                (definition.attacks as MutableMap<String, CombatAttack>)[attack] = override(original, clone)
-            }
-            for ((name, clone) in definitionClones) {
-                val original = definitions[name]!!
-                val clone = definitions[clone] ?: throw IllegalArgumentException("Unable to find combat definition '$clone' to clone for '${original.npc}'.")
-                definitions[name] = override(original, clone)
-            }
-            this.definitions = definitions
-            snapshot?.let { save(it) }
-            this.definitions.size
-        }
+    fun install(state: Map<String, CombatDefinition>) {
+        definitions = state
+    }
+
+    fun load(paths: List<String>): CombatDefinitions {
+        definitions = parse(paths)
         return this
     }
 
-    private fun save(snapshot: Snapshot) = snapshot.write {
+    internal fun parse(paths: List<String>): Map<String, CombatDefinition> {
+        val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
+        val attackClones = mutableListOf<Triple<CombatDefinition, String, String>>()
+        val definitionClones = mutableListOf<Pair<String, String>>()
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val section = section()
+                    if (section.contains(".")) {
+                        attack(section, definitions, attackClones)
+                    } else {
+                        definition(definitions, section, definitionClones)
+                    }
+                }
+            }
+        }
+        for ((definition, attack, clone) in attackClones) {
+            val original = definition.attacks[attack]!!
+            val (id, att) = clone.split(".")
+            val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.$attack'.")
+            (definition.attacks as MutableMap<String, CombatAttack>)[attack] = override(original, clone)
+        }
+        for ((name, clone) in definitionClones) {
+            val original = definitions[name]!!
+            val clone = definitions[clone] ?: throw IllegalArgumentException("Unable to find combat definition '$clone' to clone for '${original.npc}'.")
+            definitions[name] = override(original, clone)
+        }
+        return definitions
+    }
+
+    internal fun write(writer: SnapshotWriter, definitions: Map<String, CombatDefinition>) = with(writer) {
         int(definitions.size)
         for ((key, definition) in definitions) {
             string(key)
@@ -85,7 +87,7 @@ class CombatDefinitions {
         }
     }
 
-    private fun restore(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+    internal fun read(reader: SnapshotReader): Map<String, CombatDefinition> {
         val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
         repeat(reader.int()) {
             val key = reader.string()
@@ -103,7 +105,7 @@ class CombatDefinitions {
             }
             definitions[key] = CombatDefinition(npc, attackRange, retreatRange, defendAnim, defendSound, deathAnim, deathSound, attacks)
         }
-        this.definitions = definitions
+        return definitions
     }
 
     private fun SnapshotWriter.delta(delta: Delta?) {
@@ -654,4 +656,21 @@ class CombatDefinitions {
         defendSound = original.defendSound ?: clone.defendSound,
         deathSound = original.deathSound ?: clone.deathSound,
     )
+}
+
+object CombatLoader : Loader<Map<String, CombatDefinition>> {
+    val instance = CombatDefinitions()
+    override val name = "combat"
+    override val files = listOf("definitions.combatAttacks")
+    override val codec = object : SnapshotCodec<Map<String, CombatDefinition>> {
+        override val schema = 1L
+
+        override fun write(writer: SnapshotWriter, value: Map<String, CombatDefinition>) = instance.write(writer, value)
+
+        override fun read(reader: SnapshotReader) = instance.read(reader)
+    }
+
+    override fun load(context: LoadContext): Map<String, CombatDefinition> = instance.parse(context.paths(this))
+
+    override fun install(state: Map<String, CombatDefinition>) = instance.install(state)
 }

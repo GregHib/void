@@ -5,7 +5,8 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.WeaponStyleDefinition
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 
 class WeaponStyleDefinitions : DefinitionsDecoder<WeaponStyleDefinition> {
 
@@ -13,41 +14,53 @@ class WeaponStyleDefinitions : DefinitionsDecoder<WeaponStyleDefinition> {
     override lateinit var ids: Map<String, Int>
 
     fun load(path: String): WeaponStyleDefinitions {
-        timedLoad("weapon style definition") {
-            val definitions = Array(28) { WeaponStyleDefinition.EMPTY }
-            val ids = Object2IntOpenHashMap<String>(28, Hash.VERY_FAST_LOAD_FACTOR)
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val stringId = section()
-                    var id = -1
-                    val attackTypes = ObjectArrayList<String>()
-                    val attackStyles = ObjectArrayList<String>()
-                    val combatStyles = ObjectArrayList<String>()
-                    while (nextPair()) {
-                        when (key()) {
-                            "id" -> id = int()
-                            "attack_types" -> while (nextElement()) {
-                                attackTypes.add(string())
-                            }
-                            "attack_styles" -> while (nextElement()) {
-                                attackStyles.add(string())
-                            }
-                            "combat_styles" -> while (nextElement()) {
-                                combatStyles.add(string())
-                            }
+        val definitions = Array(28) { WeaponStyleDefinition.EMPTY }
+        val ids = Object2IntOpenHashMap<String>(28, Hash.VERY_FAST_LOAD_FACTOR)
+        Config.fileReader(path) {
+            while (nextSection()) {
+                val stringId = section()
+                var id = -1
+                val attackTypes = ObjectArrayList<String>()
+                val attackStyles = ObjectArrayList<String>()
+                val combatStyles = ObjectArrayList<String>()
+                while (nextPair()) {
+                    when (key()) {
+                        "id" -> id = int()
+                        "attack_types" -> while (nextElement()) {
+                            attackTypes.add(string())
+                        }
+                        "attack_styles" -> while (nextElement()) {
+                            attackStyles.add(string())
+                        }
+                        "combat_styles" -> while (nextElement()) {
+                            combatStyles.add(string())
                         }
                     }
-                    require(!ids.containsKey(stringId)) { "Duplicate weapon style id found '$stringId' at $path." }
-                    ids[stringId] = id
-                    definitions[id] = WeaponStyleDefinition(stringId = stringId, attackTypes = attackTypes.toTypedArray(), attackStyles = attackStyles.toTypedArray(), combatStyles = combatStyles.toTypedArray())
                 }
+                require(!ids.containsKey(stringId)) { "Duplicate weapon style id found '$stringId' at $path." }
+                ids[stringId] = id
+                definitions[id] = WeaponStyleDefinition(stringId = stringId, attackTypes = attackTypes.toTypedArray(), attackStyles = attackStyles.toTypedArray(), combatStyles = combatStyles.toTypedArray())
             }
-            this.definitions = definitions
-            this.ids = ids
-            ids.size
         }
+        this.definitions = definitions
+        this.ids = ids
         return this
     }
 
     override fun empty() = WeaponStyleDefinition.EMPTY
+
+    internal fun copyFrom(other: WeaponStyleDefinitions) {
+        definitions = other.definitions
+        ids = other.ids
+    }
+}
+
+object WeaponStyleLoader : Loader<WeaponStyleDefinitions> {
+    val instance = WeaponStyleDefinitions()
+    override val name = "weapon_styles"
+    override val file = listOf("definitions.weapons.styles")
+
+    override fun load(context: LoadContext): WeaponStyleDefinitions = WeaponStyleDefinitions().load(context.paths(this).single())
+
+    override fun install(state: WeaponStyleDefinitions) = instance.copyFrom(state)
 }

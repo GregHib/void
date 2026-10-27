@@ -7,8 +7,11 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 
 object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
 
@@ -42,63 +45,79 @@ object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
         loaded = false
     }
 
-    fun load(paths: List<String>): AnimationDefinitions {
-        timedLoad("animation config") {
-            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var id = -1
-                        val params = Object2ObjectOpenHashMap<Int, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                "ticks" -> params[Params.TICKS] = int()
-                                "infinite" -> params[Params.INFINITE] = boolean()
-                                "walk" -> params[Params.WALK] = boolean()
-                                "run" -> params[Params.RUN] = boolean()
-                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                            }
-                        }
-                        require(!ids.containsKey(stringId)) { "Duplicate animation id found '$stringId' at $path." }
-                        require(id != -1) { "Missing id for animation '$stringId' at $path." }
-                        ids[stringId] = id
-                        definitions[id].stringId = stringId
-                        if (params.isNotEmpty()) {
-                            definitions[id].params = params
-                        }
-                    }
-                }
-            }
-            this.ids = ids
-            ids.size
-        }
-        return this
+    fun install(state: DefinitionsState<AnimationDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
     }
 
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
+    /**
+     * Applies the configs in [paths] to the already decoded [definitions].
+     */
+    fun load(paths: List<String>): AnimationDefinitions {
+        ids = AnimationLoader.parse(definitions, paths)
+        return this
+    }
+}
+
+object AnimationLoader : Loader<DefinitionsState<AnimationDefinition>> {
+    override val name = "animations"
+    override val files = listOf("definitions.animations")
+    override val usesCache = true
+    override val codec = DefinitionsCodec(
+        AnimationDefinition::class.java,
+        default = null,
+        writeDefinition = { definition ->
             int(definition.id)
             int(definition.priority)
             string(definition.stringId)
             params(definition.params)
-        }
-        ids(ids)
+        },
+        readDefinition = {
+            AnimationDefinition(
+                id = int(),
+                priority = int(),
+                stringId = string(),
+                params = params(),
+            )
+        },
+    )
+
+    override fun load(context: LoadContext): DefinitionsState<AnimationDefinition> {
+        val definitions = AnimationDecoder().load(context.requireCache())
+        return DefinitionsState(definitions, parse(definitions, context.paths(this)))
     }
 
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            AnimationDefinition(
-                id = reader.int(),
-                priority = reader.int(),
-                stringId = reader.string(),
-                params = reader.params(),
-            )
+    override fun install(state: DefinitionsState<AnimationDefinition>) = AnimationDefinitions.install(state)
+
+    fun parse(definitions: Array<AnimationDefinition>, paths: List<String>): Map<String, Int> {
+        val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = -1
+                    val params = Object2ObjectOpenHashMap<Int, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> id = int()
+                            "ticks" -> params[Params.TICKS] = int()
+                            "infinite" -> params[Params.INFINITE] = boolean()
+                            "walk" -> params[Params.WALK] = boolean()
+                            "run" -> params[Params.RUN] = boolean()
+                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                        }
+                    }
+                    require(!ids.containsKey(stringId)) { "Duplicate animation id found '$stringId' at $path." }
+                    require(id != -1) { "Missing id for animation '$stringId' at $path." }
+                    ids[stringId] = id
+                    definitions[id].stringId = stringId
+                    if (params.isNotEmpty()) {
+                        definitions[id].params = params
+                    }
+                }
+            }
         }
-        val ids = reader.ids()
-        init(definitions)
-        this.ids = ids
+        return ids
     }
 }

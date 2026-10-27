@@ -5,9 +5,10 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.timedLoad
 
 class Books {
 
@@ -22,41 +23,44 @@ class Books {
     fun title(name: String) = titles.getOrDefault(name, "")
 
     fun load(paths: List<String>): Books {
-        timedLoad("book") {
-            val types = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            val titles = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            val books = Object2ObjectOpenHashMap<String, List<List<String>>>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in paths) {
-                Config.fileReader(path, 50) {
-                    while (nextSection()) {
-                        val book = section()
-                        while (nextPair()) {
-                            val key = key()
-                            when (key) {
-                                "type" -> types[book] = string()
-                                "title" -> titles[book] = string()
-                                "pages" -> {
-                                    val pages = ObjectArrayList<List<String>>(4)
+        val types = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
+        val titles = Object2ObjectOpenHashMap<String, String>(10, Hash.VERY_FAST_LOAD_FACTOR)
+        val books = Object2ObjectOpenHashMap<String, List<List<String>>>(10, Hash.VERY_FAST_LOAD_FACTOR)
+        for (path in paths) {
+            Config.fileReader(path, 50) {
+                while (nextSection()) {
+                    val book = section()
+                    while (nextPair()) {
+                        val key = key()
+                        when (key) {
+                            "type" -> types[book] = string()
+                            "title" -> titles[book] = string()
+                            "pages" -> {
+                                val pages = ObjectArrayList<List<String>>(4)
+                                while (nextElement()) {
+                                    val lines = ObjectArrayList<String>(20)
                                     while (nextElement()) {
-                                        val lines = ObjectArrayList<String>(20)
-                                        while (nextElement()) {
-                                            lines.add(string())
-                                        }
-                                        pages.add(lines)
+                                        lines.add(string())
                                     }
-                                    books[book] = pages
+                                    pages.add(lines)
                                 }
+                                books[book] = pages
                             }
                         }
                     }
                 }
             }
-            this.types = types
-            this.titles = titles
-            this.books = books
-            titles.size
         }
+        this.types = types
+        this.titles = titles
+        this.books = books
         return this
+    }
+
+    fun copyFrom(other: Books) {
+        types = other.types
+        titles = other.titles
+        books = other.books
     }
 }
 
@@ -66,4 +70,14 @@ fun Player.openBook(name: String) {
     val type = get<Books>().type(name)
     open(if (type == "normal") "book" else "book_$type")
     anim("human_read_book")
+}
+
+object BooksLoader : Loader<Books> {
+    val instance = Books()
+    override val name = "books"
+    override val files = listOf("definitions.books")
+
+    override fun load(context: LoadContext): Books = Books().load(context.paths(this))
+
+    override fun install(state: Books) = instance.copyFrom(state)
 }

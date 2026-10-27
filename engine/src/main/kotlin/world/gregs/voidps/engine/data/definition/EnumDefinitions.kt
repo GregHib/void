@@ -9,10 +9,13 @@ import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.EnumTypes
+import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
-import world.gregs.voidps.engine.data.snapshot.Snapshot
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.DefinitionsCodec
+import world.gregs.voidps.engine.data.load.DefinitionsState
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.type.Tile
 
 /**
@@ -159,107 +162,34 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         return StructDefinitions.get(struct)[param, default]
     }
 
-    fun load(list: List<String>): EnumDefinitions {
-        timedLoad("enum config") {
-            require(ItemDefinitions.loaded) { "Item definitions must be loaded before enum definitions" }
-            require(InterfaceDefinitions.loaded) { "Interface definitions must be loaded before enum definitions" }
-            require(InventoryDefinitions.loaded) { "Inventory definitions must be loaded before enum definitions" }
-            require(NPCDefinitions.loaded) { "NPC definitions must be loaded before enum definitions" }
-            require(StructDefinitions.loaded) { "Struct definitions must be loaded before enum definitions" }
-            require(ObjectDefinitions.loaded) { "Object definitions must be loaded before enum definitions" }
-            require(Tables.loaded) { "Tables must be loaded before enum definitions" }
-            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            val custom = mutableListOf<EnumDefinition>()
-            for (path in list) {
-                Config.fileReader(path, 250) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var id = -1
-                        var keyType: Char = 0.toChar()
-                        var valueType: Char = 0.toChar()
-                        var defaultString = "null"
-                        var defaultInt = 0
-                        val params = Int2ObjectOpenHashMap<Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                        val map = mutableMapOf<Int, Any>()
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> {
-                                    id = int()
-                                    require(!ids.containsKey(stringId)) { "Duplicate enum id found '$stringId' at $path." }
-                                    ids[stringId] = id
-                                    definitions[id].stringId = stringId
-                                }
-                                "keyType" -> {
-                                    val string = string()
-                                    keyType = EnumTypes.char(string) ?: error("Unknown enum type: $string")
-                                }
-                                "valueType" -> {
-                                    val string = string()
-                                    valueType = EnumTypes.char(string) ?: error("Unknown enum type: $string")
-                                }
-                                "defaultString" -> defaultString = string()
-                                "defaultInt" -> defaultInt = int()
-                                "values" -> while (nextEntry()) {
-                                    val key = key()
-                                    val keyInt = when (keyType) {
-                                        EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.getOrNull(key)?.id ?: error("Unknown item '$key' ${exception()}")
-                                        EnumTypes.COMPONENT -> InterfaceDefinitions.getOrNull(key)?.id ?: error("Unknown interface '$key' ${exception()}")
-                                        EnumTypes.INV -> InventoryDefinitions.getOrNull(key)?.id ?: error("Unknown inventory '$key' ${exception()}")
-                                        EnumTypes.NPC -> NPCDefinitions.getOrNull(key)?.id ?: error("Unknown npc '$key' ${exception()}")
-                                        EnumTypes.STRUCT -> StructDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
-                                        EnumTypes.OBJ -> ObjectDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
-                                        EnumTypes.DBROW -> Rows.getOrNull(key)?.id ?: error("Unknown table row '$key' ${exception()}")
-                                        else -> key.toInt()
-                                    }
-                                    map[keyInt] = value()
-                                }
-                                else -> params[Params.id(key)] = value()
-                            }
-                        }
-                        if (id == -1) {
-                            custom.add(
-                                EnumDefinition(
-                                    keyType = keyType,
-                                    valueType = valueType,
-                                    defaultString = defaultString,
-                                    defaultInt = defaultInt,
-                                    length = map.size,
-                                    map = map,
-                                    params = params,
-                                    stringId = stringId,
-                                ),
-                            )
-                        } else {
-                            definitions[id].params = params
-                        }
-                    }
-                }
-            }
-            if (custom.isNotEmpty()) {
-                val index = definitions.size
-                definitions = Array(index + custom.size) { i ->
-                    if (i >= index) {
-                        custom[i - index].also {
-                            ids[it.stringId] = i
-                            it.id = i
-                        }
-                    } else {
-                        definitions[i]
-                    }
-                }
-            }
-            this.ids = ids
-            ids.size
-        }
-        return this
+    fun install(state: DefinitionsState<EnumDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
     }
 
     /**
-     * Saves every definition as it is after loading, so that decoding the cache and parsing configs can both be skipped.
+     * Applies the configs in [list] to the already decoded [definitions].
      */
-    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
-        int(definitions.size)
-        for (definition in definitions) {
+    fun load(list: List<String>): EnumDefinitions {
+        val state = EnumLoader.parse(definitions, list)
+        definitions = state.definitions
+        ids = state.ids
+        return this
+    }
+
+    override fun empty() = EnumDefinition.EMPTY
+}
+
+object EnumLoader : Loader<DefinitionsState<EnumDefinition>> {
+    override val name = "enums"
+    override val files = listOf("definitions.enums")
+    override val usesCache = true
+    override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader, InterfaceLoader, InventoryLoader, NPCLoader, StructLoader, ObjectLoader, TableLoader)
+    override val codec = DefinitionsCodec(
+        EnumDefinition::class.java,
+        default = null,
+        writeDefinition = { definition ->
             int(definition.id)
             int(definition.keyType.code)
             int(definition.valueType.code)
@@ -280,36 +210,116 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
             }
             string(definition.stringId)
             params(definition.params)
-        }
-        ids(ids)
-    }
-
-    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
-        val definitions = Array(reader.int()) {
-            val id = reader.int()
-            val keyType = reader.int().toChar()
-            val valueType = reader.int().toChar()
-            val defaultString = reader.string()
-            val defaultInt = reader.int()
-            val length = reader.int()
-            val size = reader.int()
+        },
+        readDefinition = {
+            val id = int()
+            val keyType = int().toChar()
+            val valueType = int().toChar()
+            val defaultString = string()
+            val defaultInt = int()
+            val length = int()
+            val size = int()
             val map: Map<Int, Any>? = if (size == -1) {
                 null
             } else {
-                val ordered = reader.boolean()
+                val ordered = boolean()
                 val map: MutableMap<Int, Any> = if (ordered) LinkedHashMap(size) else Int2ObjectOpenHashMap(size, Hash.VERY_FAST_LOAD_FACTOR)
                 repeat(size) {
-                    val key = reader.int()
-                    map[key] = reader.value()!!
+                    val key = int()
+                    map[key] = value()!!
                 }
                 map
             }
-            EnumDefinition(id, keyType, valueType, defaultString, defaultInt, length, map, reader.string(), reader.params())
-        }
-        val ids = reader.ids()
-        init(definitions)
-        this.ids = ids
-    }
+            EnumDefinition(id, keyType, valueType, defaultString, defaultInt, length, map, string(), params())
+        },
+    )
 
-    override fun empty() = EnumDefinition.EMPTY
+    override fun load(context: LoadContext): DefinitionsState<EnumDefinition> = parse(EnumDecoder().load(context.requireCache()), context.paths(this))
+
+    override fun install(state: DefinitionsState<EnumDefinition>) = EnumDefinitions.install(state)
+
+    fun parse(decoded: Array<EnumDefinition>, list: List<String>): DefinitionsState<EnumDefinition> {
+        var definitions = decoded
+        val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+        val custom = mutableListOf<EnumDefinition>()
+        for (path in list) {
+            Config.fileReader(path, 250) {
+                while (nextSection()) {
+                    val stringId = section()
+                    var id = -1
+                    var keyType: Char = 0.toChar()
+                    var valueType: Char = 0.toChar()
+                    var defaultString = "null"
+                    var defaultInt = 0
+                    val params = Int2ObjectOpenHashMap<Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                    val map = mutableMapOf<Int, Any>()
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "id" -> {
+                                id = int()
+                                require(!ids.containsKey(stringId)) { "Duplicate enum id found '$stringId' at $path." }
+                                ids[stringId] = id
+                                definitions[id].stringId = stringId
+                            }
+                            "keyType" -> {
+                                val string = string()
+                                keyType = EnumTypes.char(string) ?: error("Unknown enum type: $string")
+                            }
+                            "valueType" -> {
+                                val string = string()
+                                valueType = EnumTypes.char(string) ?: error("Unknown enum type: $string")
+                            }
+                            "defaultString" -> defaultString = string()
+                            "defaultInt" -> defaultInt = int()
+                            "values" -> while (nextEntry()) {
+                                val key = key()
+                                val keyInt = when (keyType) {
+                                    EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.getOrNull(key)?.id ?: error("Unknown item '$key' ${exception()}")
+                                    EnumTypes.COMPONENT -> InterfaceDefinitions.getOrNull(key)?.id ?: error("Unknown interface '$key' ${exception()}")
+                                    EnumTypes.INV -> InventoryDefinitions.getOrNull(key)?.id ?: error("Unknown inventory '$key' ${exception()}")
+                                    EnumTypes.NPC -> NPCDefinitions.getOrNull(key)?.id ?: error("Unknown npc '$key' ${exception()}")
+                                    EnumTypes.STRUCT -> StructDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
+                                    EnumTypes.OBJ -> ObjectDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
+                                    EnumTypes.DBROW -> Rows.getOrNull(key)?.id ?: error("Unknown table row '$key' ${exception()}")
+                                    else -> key.toInt()
+                                }
+                                map[keyInt] = value()
+                            }
+                            else -> params[Params.id(key)] = value()
+                        }
+                    }
+                    if (id == -1) {
+                        custom.add(
+                            EnumDefinition(
+                                keyType = keyType,
+                                valueType = valueType,
+                                defaultString = defaultString,
+                                defaultInt = defaultInt,
+                                length = map.size,
+                                map = map,
+                                params = params,
+                                stringId = stringId,
+                            ),
+                        )
+                    } else {
+                        definitions[id].params = params
+                    }
+                }
+            }
+        }
+        if (custom.isNotEmpty()) {
+            val index = definitions.size
+            definitions = Array(index + custom.size) { i ->
+                if (i >= index) {
+                    custom[i - index].also {
+                        ids[it.stringId] = i
+                        it.id = i
+                    }
+                } else {
+                    definitions[i]
+                }
+            }
+        }
+        return DefinitionsState(definitions, ids)
+    }
 }

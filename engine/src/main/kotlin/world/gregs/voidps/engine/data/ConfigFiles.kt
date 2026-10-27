@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 import java.nio.file.FileVisitResult
 import java.nio.file.Files
@@ -24,30 +23,6 @@ data class ConfigFiles(
     val cacheModified: Long = 0L,
 ) {
     fun list(path: String): List<String> = map.getOrDefault(path, emptyList())
-
-    /**
-     * A [Snapshot] of the parsed result of [paths], keyed on their sizes and modified times and the cache's modified time.
-     * @param dependencies other files the result depends on, for example definitions that ids are resolved from.
-     * @return null when snapshots are disabled or the files weren't scanned.
-     */
-    fun snapshot(name: String, paths: List<String>, dependencies: List<String> = emptyList()): Snapshot? {
-        if (stamps.isEmpty() || !Settings["storage.snapshots.active", false]) {
-            return null
-        }
-        var key = Snapshot.VERSION.toLong()
-        key = key * 31 + cacheModified
-        key = key * 31 + Settings["development.loadAllObjects", false].toInt()
-        key = key * 31 + Settings["world.members", false].toInt()
-        for (path in paths) {
-            key = key * 31 + path.hashCode()
-            key = key * 31 + (stamps[path] ?: return null)
-        }
-        for (path in dependencies) {
-            key = key * 31 + path.hashCode()
-            key = key * 31 + (stamps[path] ?: return null)
-        }
-        return Snapshot(Path.of(Settings["storage.caching.path"]).resolve("$name.snapshot"), key)
-    }
 
     fun getValue(key: String) = map.getValue(key)
 
