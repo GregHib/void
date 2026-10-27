@@ -4,22 +4,45 @@ import WorldTest
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
+import walk
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 
 class ShiloVillageGatesTest : WorldTest() {
 
     @Test
-    fun `Metal gate lets players through and closes behind them`() {
+    fun `Broken cart is removed so the village can be entered`() {
+        assertNull(GameObjects.findOrNull(Tile(2877, 2951), "broken_cart_shilo_village"))
+        val player = createPlayer(Tile(2881, 2952))
+
+        player.walk(Tile(2876, 2952))
+        tick(6)
+
+        assertEquals(Tile(2876, 2952), player.tile)
+    }
+
+    @Test
+    fun `Open walk through and close the metal gate`() {
         val player = createPlayer(Tile(2876, 2952))
         val gate = GameObjects.find(Tile(2875, 2952), "metal_gate_closed")
 
         player.objectOption(gate, "Open")
-        tick(8)
+        tick(5)
 
-        assertEquals(Tile(2874, 2952), player.tile)
+        val opened = (2873..2877).flatMap { x -> (2950..2955).mapNotNull { y -> GameObjects.findOrNull(Tile(x, y), "gate_29_opened") } }.firstOrNull()
+        assertNotNull(opened)
+
+        player.walk(Tile(2873, 2952))
+        tick(6)
+        assertEquals(Tile(2873, 2952), player.tile)
+
+        player.objectOption(opened!!, "Close")
+        tick(3)
+
         assertNotNull(GameObjects.findOrNull(Tile(2875, 2952), "metal_gate_closed"))
+        assertNotNull(GameObjects.findOrNull(Tile(2875, 2953), "metal_gate_2_closed"))
     }
 
     @Test
