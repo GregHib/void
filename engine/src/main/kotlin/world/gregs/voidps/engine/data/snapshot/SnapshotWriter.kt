@@ -27,6 +27,12 @@ class SnapshotWriter {
 
     fun boolean(value: Boolean) = byte(if (value) 1 else 0)
 
+    fun short(value: Int) {
+        ensure(2)
+        buffer[position++] = (value ushr 8).toByte()
+        buffer[position++] = value.toByte()
+    }
+
     fun int(value: Int) {
         ensure(4)
         buffer[position++] = (value ushr 24).toByte()

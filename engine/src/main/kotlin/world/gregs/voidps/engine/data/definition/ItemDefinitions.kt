@@ -12,10 +12,11 @@ import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -73,50 +74,7 @@ object ItemLoader : Loader<DefinitionsState<ItemDefinition>> {
     override val name = "items"
     override val files = listOf("definitions.items")
     override val usesCache = true
-    override val codec = DefinitionsCodec(
-        ItemDefinition::class.java,
-        default = -1,
-        writeDefinition = { definition ->
-            int(definition.id)
-            string(definition.name)
-            int(definition.spriteScale)
-            int(definition.stackable)
-            int(definition.cost)
-            boolean(definition.members)
-            nullableStrings(definition.floorOptions)
-            nullableStrings(definition.options)
-            boolean(definition.exchangeable)
-            int(definition.dummyItem)
-            int(definition.noteId)
-            int(definition.notedTemplateId)
-            int(definition.lendId)
-            int(definition.lendTemplateId)
-            int(definition.equipIndex)
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            ItemDefinition(
-                id = int(),
-                name = string(),
-                spriteScale = int(),
-                stackable = int(),
-                cost = int(),
-                members = boolean(),
-                floorOptions = nullableStrings()!!,
-                options = nullableStrings()!!,
-                exchangeable = boolean(),
-                dummyItem = int(),
-                noteId = int(),
-                notedTemplateId = int(),
-                lendId = int(),
-                lendTemplateId = int(),
-                equipIndex = int(),
-                stringId = string(),
-                params = params(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(ItemDefinition::class, ItemDefinition.serializer(), default = -1))
 
     override fun load(context: LoadContext): DefinitionsState<ItemDefinition> {
         val definitions = ItemDecoder().load(context.requireCache())

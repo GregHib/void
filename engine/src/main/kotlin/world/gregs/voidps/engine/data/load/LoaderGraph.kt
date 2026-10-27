@@ -26,6 +26,9 @@ class LoaderGraph(loaders: List<Loader<*>>) {
     /** Names of the loaders restored from a snapshot by the last run, mostly for tests. */
     val restored: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
+    /** Milliseconds each loader took in the last run, mostly for benchmarks. */
+    val timings: MutableMap<String, Long> = ConcurrentHashMap()
+
     fun get(name: String): Loader<*>? = loaders.firstOrNull { it.name == name }
 
     /**
@@ -135,6 +138,7 @@ class LoaderGraph(loaders: List<Loader<*>>) {
             state = loaded
         }
         loader.install(state)
+        timings[loader.name] = System.currentTimeMillis() - start
         logger.info { "Loaded ${loader.name} in ${System.currentTimeMillis() - start}ms${if (loader.name in restored) " (snapshot)" else ""}" }
         return state
     }
