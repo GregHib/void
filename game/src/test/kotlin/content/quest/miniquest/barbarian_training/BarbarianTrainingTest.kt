@@ -3,6 +3,7 @@ package content.quest.miniquest.barbarian_training
 import FakeRandom
 import WorldTest
 import containsMessage
+import content.entity.player.modal.book.Books
 import dialogueOption
 import equipItem
 import itemOnItem
@@ -21,6 +22,7 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -328,5 +330,92 @@ internal class BarbarianTrainingTest : WorldTest() {
         tick()
 
         assertFalse(player.hasOpen("smithing"))
+    }
+
+    @Test
+    fun `Gutting several fish uses make-x`() {
+        val player = trainee()
+        player.inventory.add("knife")
+        player.inventory.add("leaping_trout", 3)
+
+        player.itemOnItem("knife", "leaping_trout")
+        tick()
+        player.skillCreation("Leaping trout", 3)
+        tick(8)
+
+        assertEquals(0, player.inventory.count("leaping_trout"))
+        assertEquals(3, player.inventory.count("roe"))
+    }
+
+    @Test
+    fun `Skills book records Otto's lessons`() {
+        val player = trainee()
+        player.inventory.add("barbarian_skills")
+        val books = get<Books>()
+        assertFalse(books.get(player, "barbarian_skills").flatten().joinToString(" ").replace("<navy>", "").contains("Fishing with rods"))
+
+        player["barbarian_training_rod"] = BarbarianTraining.STARTED
+        player.itemOption("Read", "barbarian_skills")
+        tick()
+
+        assertTrue(player.hasOpen("book"))
+        assertTrue(books.get(player, "barbarian_skills").flatten().joinToString(" ").replace("<navy>", "").contains("Fishing with rods"))
+    }
+
+    @Test
+    fun `Trained players confirm before diving into the whirlpool`() {
+        val player = trainee(Tile(2511, 3516))
+        player["barbarian_training_pyre"] = BarbarianTraining.STARTED
+        val whirlpool = createObject("ancient_cavern_whirlpool", Tile(2510, 3506))
+
+        player.objectOption(whirlpool, "Dive in")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption("line2")
+        tick()
+        assertTrue(player.containsMessage("discretion is the better part of valour"))
+
+        player.objectOption(whirlpool, "Dive in")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption("line1")
+        tick(25)
+        assertEquals(Tile(1763, 5365, 1), player.tile)
+    }
+
+    @Test
+    fun `Followers can't enter the whirlpool`() {
+        val player = trainee(Tile(2511, 3516))
+        val pet = createNPC("pet_cat", Tile(2511, 3517))
+        player["follower_index"] = pet.index
+        val whirlpool = createObject("ancient_cavern_whirlpool", Tile(2510, 3506))
+
+        player.objectOption(whirlpool, "Dive in")
+        tick(25)
+
+        assertEquals(0, player.tile.level)
+        assertTrue(player.tile.y > 3510)
+        assertTrue(player.containsMessage("dismiss your follower"))
+    }
+
+    @Test
+    fun `Otto switches back to regular fishing`() {
+        alwaysSucceed()
+        val player = trainee(Tile(2837, 3431))
+        player.inventory.add("barbarian_skills")
+        player["barbarian_training_barehand"] = BarbarianTraining.REPORTED
+        val otto = createNPC("otto_godblessed_baxtorian_falls", Tile(2837, 3430))
+
+        player.npcOption(otto, "Talk-to")
+        tick()
+        player.dialogueOption("line3")
+        tick()
+        player.skipDialogues()
+        assertTrue(player["barbarian_fishing_default", false])
+
+        val spot = createNPC("fishing_spot_cage_harpoon_catherby", Tile(2837, 3432))
+        player.npcOption(spot, "Harpoon")
+        tick(10)
+        assertTrue(player.inventory.items.none { it.id.startsWith("raw_") })
     }
 }
