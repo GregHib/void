@@ -23,7 +23,7 @@ fun gameModule(files: ConfigFiles) = module {
     single { Reports(get()) }
     single(createdAtStart = true) { BotManager().load(files) }
     single { loadGraph(files) }
-    single { if (Settings["bots.count", 0] > 0) BotChatModel().load(files, get()) else BotChatModel() }
+    single { BotChatModel().load(files, get()) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { files.find(Settings["map.music"]).let { MusicTracks().load(it, files.snapshot("music_tracks", listOf(it))) } }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
