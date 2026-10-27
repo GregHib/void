@@ -30,7 +30,7 @@ class AncientCavern(val drops: DropTables) : Script {
                 message("You must dismiss your follower before you can enter the whirlpool.")
                 return@objectApproach
             }
-            if (barbarianTrainingStarted("pyre") && !get("ancient_cavern_entered", false)) {
+            if (barbarianTrainingStarted("pyre") && !get("barbarian_training_tried_whirlpool", false)) {
                 statement("You realise that you are about to attempt entry an unknown and potentially hideously dangerous place, with no known exits. Doughty barbarian warriors have entered, never to return.")
                 var enter = false
                 choice("Are you really sure you wish to enter?") {
@@ -66,7 +66,7 @@ class AncientCavern(val drops: DropTables) : Script {
                 message("You find yourself on the banks of the river, far below the lake.", type = ChatType.Filter)
                 return@objectApproach
             }
-            set("ancient_cavern_entered", true)
+            set("barbarian_training_tried_whirlpool", true)
             message("You dive into the swirling maelstrom of the whirlpool.", type = ChatType.Filter)
             tele(1763, 5365, 1)
             delay(1)
