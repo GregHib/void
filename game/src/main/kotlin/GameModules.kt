@@ -5,7 +5,6 @@ import content.bot.chat.BotChatModel
 import content.entity.obj.ObjectTeleportLoader
 import content.entity.player.modal.book.BooksLoader
 import content.entity.world.music.MusicTrackLoader
-import content.skill.farming.FarmingDefinitionsLoader
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
 import org.koin.dsl.module
@@ -77,7 +76,6 @@ fun gameLoaders(): List<Loader<*>> = listOf(
     ObjectTeleportLoader,
     MusicTrackLoader,
     BooksLoader,
-    FarmingDefinitionsLoader,
     NavigationEdgeLoader,
     NavigationGraphLoader,
 )
@@ -89,5 +87,4 @@ fun gameDefinitionsModule() = module {
     single { ObjectTeleportLoader.instance }
     single { MusicTrackLoader.instance }
     single { BooksLoader.instance }
-    single { FarmingDefinitionsLoader.instance }
 }
