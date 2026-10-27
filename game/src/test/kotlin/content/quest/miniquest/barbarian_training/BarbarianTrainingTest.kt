@@ -348,6 +348,23 @@ internal class BarbarianTrainingTest : WorldTest() {
     }
 
     @Test
+    fun `Skills book lays out the first lesson like the original`() {
+        val player = trainee()
+        player["barbarian_training_rod"] = BarbarianTraining.STARTED
+
+        val page = get<Books>().get(player, "barbarian_skills").first()
+
+        assertEquals("I have noted down what Otto", page[0])
+        assertEquals("posterity.", page[5])
+        assertEquals("<navy>Otto's words on Fishing with", page[9])
+        assertEquals("'While you civilised folk use", page[12])
+        assertEquals("small, weak fishing rods, we", page[13])
+        assertEquals("", page[14])
+        assertEquals("barbarians are skilled with", page[15])
+        assertEquals("more of this matter.'", page[29])
+    }
+
+    @Test
     fun `Skills book records Otto's lessons`() {
         val player = trainee()
         player.inventory.add("barbarian_skills")
