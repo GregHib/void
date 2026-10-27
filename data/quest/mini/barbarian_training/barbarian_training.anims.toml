@@ -1,3 +1,4 @@
+# TODO confirm bow lighting anims (from 2009scape)
 # Each lighting animation holds a different bow model (items 11306-11319 and 14535)
 [light_fire_training_bow]
 id = 6713
@@ -27,12 +28,15 @@ id = 6720
 id = 10990
 
 # Hammer in hand, as with smith_item
+# TODO confirm anim (from 2009scape)
 [smith_barbarian_anvil]
 id = 6712
 
+# TODO confirm anim
 [barehand_fishing]
 id = 6709
 
+# TODO confirm pyre carving anims (from 2009scape)
 [carve_pyre_rune]
 id = 3285
 

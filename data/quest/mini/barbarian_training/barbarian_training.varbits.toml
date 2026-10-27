@@ -6,11 +6,13 @@ id = 3757
 format = "int"
 persist = true
 
+# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_rod]
 id = 3758
 format = "int"
 persist = true
 
+# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_bow]
 id = 3759
 format = "int"
@@ -21,6 +23,7 @@ id = 3761
 format = "int"
 persist = true
 
+# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_spear]
 id = 3762
 format = "int"
@@ -38,12 +41,14 @@ id = 3764
 format = "int"
 persist = true
 
+# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_started]
 id = 3765
 format = "boolean"
 persist = true
 
 # Bones left to bury with the pyre ship prayer bonus
+# TODO confirm what this varbit holds, the client never reads it
 [barbarian_pyre_bones]
 id = 3767
 format = "int"

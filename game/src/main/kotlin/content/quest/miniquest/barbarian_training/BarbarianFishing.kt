@@ -33,6 +33,7 @@ class BarbarianFishing : Script {
 
     // Fishing, Strength & Agility level and Strength & Agility experience
     val leapingFish = listOf(
+        // TODO confirm catch chances in fishing.tables.toml, source unknown
         "leaping_sturgeon" to Triple(70, 45, 7.0),
         "leaping_salmon" to Triple(58, 30, 6.0),
         "leaping_trout" to Triple(48, 15, 5.0),
@@ -96,6 +97,7 @@ class BarbarianFishing : Script {
             }
             val bait = baits.firstOrNull { inventory.contains(it) }
             if (bait == null) {
+                // TODO confirm message
                 message("You don't have any bait.")
                 break
             }
@@ -144,6 +146,7 @@ class BarbarianFishing : Script {
             return
         }
         gutFish(fish, inventory.indexOf(fish))
+        // TODO confirm 634 cut delay (3 ticks is OSRS)
         weakQueue("gut_fish", 3) {
             gut(fish, amount - 1)
         }
@@ -161,11 +164,13 @@ class BarbarianFishing : Script {
             return
         }
         if (random.nextInt(guaranteed) >= levels.get(Skill.Cooking)) {
+            // TODO confirm message
             message("You fail to cut the fish properly.", ChatType.Filter)
             return
         }
         inventory.add(eggs)
         exp(Skill.Cooking, xp)
+        // TODO confirm message
         message("You cut open the fish and extract some $eggs.", ChatType.Filter)
         val (chance, out) = when (fish) {
             "leaping_trout" -> 1 to 2
@@ -174,6 +179,7 @@ class BarbarianFishing : Script {
         }
         if (random.nextInt(out) < chance) {
             inventory.add("fish_offcuts")
+            // TODO confirm message
             message("You also find some usable fish offcuts.", ChatType.Filter)
         }
     }

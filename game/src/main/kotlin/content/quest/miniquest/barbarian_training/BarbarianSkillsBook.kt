@@ -23,6 +23,7 @@ class BarbarianSkillsBook(books: Books) : Script {
     )
 
     init {
+        // TODO confirm the 634 book interface, line length and page breaks (layout copied from 2009scape)
         books.generate("barbarian_skills", "What Otto told me.", type = "long") { player -> pages(player) }
     }
 

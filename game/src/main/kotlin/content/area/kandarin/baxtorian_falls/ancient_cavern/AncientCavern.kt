@@ -26,6 +26,7 @@ class AncientCavern(val drops: DropTables) : Script {
     init {
         objectApproach("Dive in", "ancient_cavern_whirlpool") {
             if (follower != null) {
+                // TODO confirm message
                 message("You must dismiss your follower before you can enter the whirlpool.")
                 return@objectApproach
             }
@@ -55,6 +56,7 @@ class AncientCavern(val drops: DropTables) : Script {
             if (!barbarianTrainingStarted("pyre")) {
                 // Without Otto's guidance the spirits don't steer you into the cavern
                 message("You are swept, out of control, through horrific underwater currents.", type = ChatType.Filter)
+                // TODO confirm landing tile ("near Hadley's house") and damage ("a small amount of life points")
                 tele(2531, 3446)
                 delay(1)
                 message("You are swirled beneath the water, dashed against sharp rocks.", type = ChatType.Filter)

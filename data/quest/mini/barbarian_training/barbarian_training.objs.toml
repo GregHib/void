@@ -6,6 +6,7 @@ examine = "A barbarian bed."
 id = 25286
 examine = "A patch of ash-strewn ground."
 
+# TODO confirm which pyre stage objects are used and in what order
 [pyre_carved_log]
 id = 25288
 

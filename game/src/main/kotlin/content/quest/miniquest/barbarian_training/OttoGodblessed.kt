@@ -176,6 +176,7 @@ class OttoGodblessed : Script {
                 npc<Neutral>("Neither is it the most deadly. Go now and return when you have drawn a fish from the sea, with sheer strength and knowledge of our scaled prey.")
             }
             DONE -> {
+                // TODO confirm report dialogue (from OSRS)
                 npc<Neutral>("I sense you have more understanding of harpoons through your studies.")
                 player<Quiz>("Well it was interesting, can I move on to more sane hobbies now?")
                 npc<Neutral>("Nothing is sane when one is born knowing only certain death. The spirits approve of you however, so death is on your side.")
@@ -254,6 +255,7 @@ class OttoGodblessed : Script {
                 npc<Neutral>("Exactly.")
             }
             DONE -> {
+                // TODO confirm whether the topic line is repeated first
                 player<Happy>("The Firemaking with my bow worked!")
                 npc<Happy>("Fine news indeed, secrets of our spirit boats now await your attention.")
                 set("barbarian_training_bow", REPORTED)
@@ -274,6 +276,7 @@ class OttoGodblessed : Script {
                 pyreInstructions()
             }
             DONE -> {
+                // TODO confirm report dialogue (from OSRS)
                 player<Happy>("I've created a pyre ship!")
                 npc<Happy>("Hail to you, saviour of my ancestors. The spirits herald your presence with a spectral fanfare.")
                 player<Happy>("It's good to be appreciated.")
@@ -312,12 +315,14 @@ class OttoGodblessed : Script {
         when (barbarianTraining("spear")) {
             NOT_STARTED -> {
                 npc<Neutral>("Many warriors complain that spears are difficult to find, we barbarians thus forge our own.")
+                // TODO confirm player lines (from OSRS)
                 player<Quiz>("Can I just use some metal on an anvil, or is there something else involved?")
                 npc<Neutral>("If you use our special barbarian anvil here, you will find it ideal. Other forges are not sturdy enough or for the forging work involved. Make any of our spears and return.")
                 npc<Neutral>("Note well that you will require wood for the spear shafts, the quality of the wood must be similar to that of the metal involved.")
                 set("barbarian_training_spear", STARTED)
             }
             STARTED -> {
+                // TODO confirm reminder dialogue (from OSRS)
                 npc<Neutral>("You do not exude the presence of one who has poured his soul into manufacturing spears.")
                 player<Quiz>("The spirits told you?")
                 npc<Neutral>("Indeed they did. There are no secrets from those who live eternally.")
@@ -334,6 +339,7 @@ class OttoGodblessed : Script {
         when (barbarianTraining("hasta")) {
             NOT_STARTED -> {
                 npc<Neutral>("The next step up is to manufacture a one handed version of a spear, suitable for combat. Such a spear is known as a hasta.")
+                // TODO confirm player lines (from OSRS)
                 player<Quiz>("Can't I just pick one up and use it in one hand?")
                 npc<Neutral>("As you might suspect, our ways require greater understanding than is gained by looking at a weapon. It is also the case that the process involves a differently balanced spear.")
                 npc<Neutral>("Before you use such a weapon in anger you must make an example. Only then will you understand the poise of the techniques involved.")
@@ -342,11 +348,13 @@ class OttoGodblessed : Script {
                 set("barbarian_training_hasta", STARTED)
             }
             STARTED -> {
+                // TODO confirm reminder dialogue (from OSRS)
                 npc<Neutral>("Take some wood and metal and make a spear upon the nearby anvil, then you may return to me. As an example, you may use bronze bars with normal logs or iron bars with oak logs.")
                 npc<Neutral>("If you perform this task I will be freed from the spirits complaining of your lack of dedication.")
                 player<Neutral>("I'll be back.")
             }
             DONE -> {
+                // TODO confirm report dialogue (from OSRS)
                 npc<Neutral>("I see you have constructed your hasta, and are approaching readiness.")
                 player<Quiz>("If I may ask, readiness for what?")
                 npc<Neutral>("To live life to it's fullest of course - that you may be a peaceful spirit when your time ends.")
