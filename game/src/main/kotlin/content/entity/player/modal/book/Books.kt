@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class Books {
 
-    private lateinit var types: Map<String, String>
+    private val types: MutableMap<String, String> = Object2ObjectOpenHashMap()
     private lateinit var books: Map<String, List<List<String>>>
     private var titles: MutableMap<String, String> = Object2ObjectOpenHashMap()
 
@@ -29,8 +29,9 @@ class Books {
     /**
      * Generate the pages of book [name] per player
      */
-    fun generate(name: String, title: String, pages: (Player) -> List<List<String>>) {
+    fun generate(name: String, title: String, type: String = "normal", pages: (Player) -> List<List<String>>) {
         titles[name] = title
+        types[name] = type
         generators[name] = pages
     }
 
@@ -66,7 +67,7 @@ class Books {
                     }
                 }
             }
-            this.types = types
+            this.types.putAll(types)
             this.titles.putAll(titles)
             this.books = books
             titles.size
