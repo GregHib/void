@@ -123,7 +123,6 @@ class Fishing : Script {
             if (remaining < 0) {
                 player.face(target)
                 val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
-                // TODO confirm the barehand fishing loop anim
                 player.anim(if (tackle == BAREHAND) "barehand_fishing" else "fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
                 player.pause(5)
             } else if (remaining > 0) {
@@ -132,6 +131,7 @@ class Fishing : Script {
             if (first) {
                 first = false
             }
+            var caught = false
             for (item in fish) {
                 val row = Rows.getOrNull("fishing.$item") ?: continue
                 if (bait != row.item("bait")) {
@@ -156,8 +156,13 @@ class Fishing : Script {
                         player.barbarianTaskDone("barehand")
                     }
                     addCatch(player, item)
+                    caught = true
                     break
                 }
+            }
+            if (tackle == BAREHAND && !caught) {
+                // Wipe hands off after a miss
+                player.anim("barehand_miss")
             }
             player.stop("action_delay")
         }
