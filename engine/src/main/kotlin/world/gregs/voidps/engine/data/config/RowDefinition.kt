@@ -23,6 +23,14 @@ data class RowDefinition(
 
     fun skillOrNull(column: String) = Tables.skillOrNull("$stringId.$column")
 
+    fun dir(column: String) = Tables.dir("$stringId.$column")
+
+    fun dirOrNull(column: String) = Tables.dirOrNull("$stringId.$column")
+
+    fun dirList(column: String) = Tables.dirList("$stringId.$column")
+
+    fun dirListOrNull(column: String) = Tables.dirListOrNull("$stringId.$column")
+
     fun skillPair(column: String) = Tables.skillPair("$stringId.$column")
 
     fun skillPairOrNull(column: String) = Tables.skillPairOrNull("$stringId.$column")
