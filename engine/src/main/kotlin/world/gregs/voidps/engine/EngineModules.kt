@@ -84,7 +84,6 @@ fun engineLoaders(): List<Loader<*>> = listOf(
     CombatLoader,
     AreaLoader,
     ItemOnItemLoader,
-    AmmoLoader,
     WeaponStyleLoader,
     WeaponAnimationLoader,
     RenderEmoteLoader,
@@ -120,7 +119,6 @@ fun definitionsModule() = module {
     single { QuickChatPhraseLoader.instance }
     single { CombatLoader.instance }
     single { ItemOnItemLoader.instance }
-    single { AmmoLoader.instance }
     single { WeaponStyleLoader.instance }
     single { WeaponAnimationLoader.instance }
     single { RenderEmoteLoader.instance }
