@@ -43,7 +43,7 @@ class Block(
                 target.anim("book_block", delay)
             } else {
                 val type: String? = target.weapon.def.getOrNull("weapon_type")
-                val definition = if (type != null) Rows.get("weapon_anims.${type}") else null
+                val definition = if (type != null) Rows.get("weapon_anims.$type") else null
                 var animation = definition?.stringOrNull("defend")
                 if (animation == null) {
                     val id = target.weapon.def["weapon_style", -1]

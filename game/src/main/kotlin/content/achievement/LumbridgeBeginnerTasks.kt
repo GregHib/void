@@ -20,7 +20,8 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
-class LumbridgeBeginnerTasks : Script,
+class LumbridgeBeginnerTasks :
+    Script,
     PrayerApi {
 
     init {

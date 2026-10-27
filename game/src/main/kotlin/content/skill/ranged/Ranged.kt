@@ -89,7 +89,7 @@ class Ranged : Script {
         }
         val type = character.weapon.def.getOrNull("weapon_type") ?: style ?: ""
         var animation: String?
-        val definition = Rows.getOrNull("weapon_anims.${type}")
+        val definition = Rows.getOrNull("weapon_anims.$type")
         animation = definition?.stringOrNull(character.attackType) ?: definition?.stringOrNull("default")
         if (animation == null) {
             animation = "${style}_${character.attackType}"

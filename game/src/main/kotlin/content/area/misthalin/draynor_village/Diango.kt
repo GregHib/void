@@ -43,7 +43,7 @@ class Diango : Script {
 
         npcOperate("Redeem-code", "diango") {
             val code = stringEntry("Please enter your code.").lowercase()
-            val row = Rows.getOrNull("diango_codes.${code}")
+            val row = Rows.getOrNull("diango_codes.$code")
             if (row == null) {
                 message("Your code was not valid. Please check it and try again.")
                 return@npcOperate

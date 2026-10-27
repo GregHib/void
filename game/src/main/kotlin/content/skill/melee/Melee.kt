@@ -35,7 +35,7 @@ class Melee : Script {
  */
 fun Player.attackAnimation(): String {
     val type: String? = weapon.def.getOrNull("weapon_type")
-    val definition = if (type != null) Rows.get("weapon_anims.${type}") else null
+    val definition = if (type != null) Rows.get("weapon_anims.$type") else null
     var animation = definition?.stringOrNull(attackType) ?: definition?.stringOrNull("default")
     if (animation == null) {
         val id = weapon.def["weapon_style", 0]

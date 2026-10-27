@@ -156,7 +156,7 @@ class Canoes : Script {
                 }
             }
             canoeTravel(canoe, station, destination)
-            val row = Rows.getOrNull("canoe_stations.${destination}") ?: return@objectOperate
+            val row = Rows.getOrNull("canoe_stations.$destination") ?: return@objectOperate
             tele(row.tile("destination"))
             set("canoe_state_$station", "tree")
             set("canoe_state_$destination", "tree")
