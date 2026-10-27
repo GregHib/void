@@ -33,6 +33,7 @@ class BarbarianSmithing : Script {
             val metal = item.id.removeSuffix("_bar")
             val logs = shafts[metal]
             if (logs == null) {
+                // TODO confirm message
                 message("You can't make anything from that metal on this anvil.")
                 return@itemOnObjectOperate
             }
@@ -53,10 +54,12 @@ class BarbarianSmithing : Script {
                 return@itemOnObjectOperate
             }
             if (!inventory.contains(logs)) {
+                // TODO confirm message
                 statement("You need ${if (logs == "logs") "some normal logs" else "some ${logs.replace('_', ' ')}"} for the shaft.")
                 return@itemOnObjectOperate
             }
             val maximum = minOf(inventory.count(item.id), inventory.count(logs))
+            // TODO confirm the 2011 interface for choosing spear or hasta
             val (selected, amount) = makeAmount(types.map { "${metal}_$it" }, "Make", maximum)
             if (selected.isEmpty()) {
                 return@itemOnObjectOperate
@@ -65,6 +68,7 @@ class BarbarianSmithing : Script {
         }
 
         itemOnObjectOperate("hammer", "barbarian_anvil", arrive = false) {
+            // TODO confirm message
             message("To smith a spear, you must use the metal bar on the anvil.")
         }
     }
@@ -80,6 +84,7 @@ class BarbarianSmithing : Script {
                 message("You need a Hammer to smith items.")
                 return
             }
+            // TODO confirm anim and smithing delay
             anim("smith_barbarian_anvil")
             delay(5)
             inventory.transaction {
@@ -91,6 +96,7 @@ class BarbarianSmithing : Script {
                 return
             }
             exp(Skill.Smithing, row.int("xp") / 10.0)
+            // TODO confirm message
             message("You make a ${if (spear.endsWith("hasta")) "hasta" else "spear"}.", ChatType.Filter)
             barbarianTaskDone(if (spear.endsWith("hasta")) "hasta" else "spear")
         }
