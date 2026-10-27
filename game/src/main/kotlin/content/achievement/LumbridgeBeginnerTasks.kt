@@ -7,7 +7,7 @@ import content.skill.prayer.PrayerApi
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,9 +20,7 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
-class LumbridgeBeginnerTasks(
-    val styleDefinitions: WeaponStyleDefinitions,
-) : Script,
+class LumbridgeBeginnerTasks : Script,
     PrayerApi {
 
     init {
@@ -127,7 +125,7 @@ class LumbridgeBeginnerTasks(
                         set("temper_temper_task", true)
                     }
                     val id = item.def["weapon_style", -1]
-                    when (val style = styleDefinitions.get(id).stringId) {
+                    when (val style = Tables.get("weapon_styles").rows().getOrNull(id)?.rowId) {
                         "staff" -> set("just_cant_get_the_staff_task", true)
                         "axe", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "spear", "halberd", "ivandis_flail", "salamander" -> {
                             set("armed_and_dangerous_task", true)
@@ -290,7 +288,8 @@ class LumbridgeBeginnerTasks(
         npcDeath("warped_bat") {
             val killer = killer
             if (killer is Player && !killer["three_rounds_rapid_men_task", false] && killer.tile in Areas["lumbridge_catacombs"]) {
-                val weaponStyle = styleDefinitions.get(killer.equipped(EquipSlot.Weapon).def["weapon_style", -1]).stringId
+                val style = killer.equipped(EquipSlot.Weapon).def["weapon_style", -1]
+                val weaponStyle = Tables.get("weapon_styles").rows().getOrNull(style)?.rowId
                 when (weaponStyle) {
                     "bow", "crossbow", "thrown", "chinchompa", "sling" -> when (killer.attackStyle) {
                         "accurate" -> killer["warped_bat_accurate_kill"] = true

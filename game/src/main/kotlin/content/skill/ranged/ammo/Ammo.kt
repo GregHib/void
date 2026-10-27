@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -19,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Ammo(val weaponStyles: WeaponStyleDefinitions) : Script {
+class Ammo : Script {
 
     init {
         combatPrepare {
@@ -56,9 +55,9 @@ class Ammo(val weaponStyles: WeaponStyleDefinitions) : Script {
             player.message("You need to have a Ranged level of ${player.weapon.def.get<Int>("secondary_use_level")}.")
             return false
         }
-        val style = weaponStyles.get(player.weapon.def["weapon_style", 0])
+        val style = Tables.get("weapon_styles").rows().getOrNull(player.weapon.def["weapon_style", 0])
         val group = Tables.getOrNull("ammo_group")?.rows()?.getOrNull(player.weapon.def["ammo_group", -1])
-        val slot = when (style.stringId) {
+        val slot = when (style?.rowId) {
             "pie", "chinchompa", "thrown" -> EquipSlot.Weapon
             "crossbow", "fixed_device", "salamander" -> EquipSlot.Ammo
             "bow" -> if (group == null || group.rowId == "none") EquipSlot.Weapon else EquipSlot.Ammo
@@ -86,7 +85,7 @@ class Ammo(val weaponStyles: WeaponStyleDefinitions) : Script {
             return false
         }
         if (!usable(group, ammo, player)) {
-            player.message("You can't use that ammo with your ${style.stringId.toLowerSpaceCase()}.")
+            player.message("You can't use that ammo with your ${style?.rowId?.toLowerSpaceCase()}.")
             return false
         }
         // Ammo is kept track of as EquipSlot.Ammo could've been used up
