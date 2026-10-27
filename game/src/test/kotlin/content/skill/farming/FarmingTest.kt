@@ -6,6 +6,7 @@ import containsMessage
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
@@ -52,6 +53,8 @@ class FarmingTest : KoinMock() {
             fonts
         }
         definitions = mutableMapOf()
+        Tables.clear()
+        Rows.clear()
         farming = Farming()
         player = Player()
         player.inventories.normalStack = ItemDependentStack
@@ -61,6 +64,13 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 1
         })
+    }
+
+    @AfterEach
+    fun teardown() {
+        VariableDefinitions.clear()
+        Tables.clear()
+        Rows.clear()
     }
 
     @Test
@@ -230,5 +240,6 @@ class FarmingTest : KoinMock() {
             persistent = false,
             transmit = false,
         )
+        VariableDefinitions.set(definitions)
     }
 }
