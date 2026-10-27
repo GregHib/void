@@ -3,6 +3,7 @@ package content.skill.fishing
 import FakeRandom
 import WorldTest
 import npcOption
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -29,5 +30,22 @@ internal class FishingTest : WorldTest() {
         assertTrue(player.inventory.count("feather") < 100)
         assertTrue(player.inventory.contains("raw_trout"))
         assertTrue(player.experience.get(Skill.Fishing) > 0)
+    }
+
+    @Test
+    fun `Higher level fish are rolled before lower level fish`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 0
+        })
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Fishing, 99)
+        val fishingSpot = createNPC("fishing_spot_tai_bwo_wannai", emptyTile.addY(1))
+        player.inventory.add("small_fishing_net")
+
+        player.npcOption(fishingSpot, "Net")
+        tickIf { player.inventory.spaces >= 27 }
+
+        assertTrue(player.inventory.contains("raw_karambwanji"))
+        assertFalse(player.inventory.contains("raw_shrimps"))
     }
 }

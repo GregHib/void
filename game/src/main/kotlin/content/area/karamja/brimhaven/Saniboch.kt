@@ -20,7 +20,7 @@ class Saniboch : Script {
 
             choice {
                 option<Quiz>("Can I go through that door please?") {
-                    if (get("can_enter_brimhaven_dungeon", false)) {
+                    if (get("temporary_saniboch_access", false)) {
                         npc<Neutral>("Most certainly, you have already given me lots of nice coins.")
                         return@option
                     }
@@ -30,7 +30,7 @@ class Saniboch : Script {
                         choice {
                             option("Okay, here's 875 coins.") {
                                 inventory.remove("coins", dungeonEntryFee)
-                                set("can_enter_brimhaven_dungeon", true)
+                                set("temporary_saniboch_access", true)
                                 statement("You pay Saniboch 875 coins.")
                                 npc<Neutral>("Many thanks. You may now pass the door. May your death be a glorious one!")
                             }
@@ -68,7 +68,7 @@ class Saniboch : Script {
         }
 
         npcOperate("Pay", "saniboch") {
-            if (get("can_enter_brimhaven_dungeon", false)) {
+            if (get("temporary_saniboch_access", false)) {
                 npc<Neutral>("You have already given me lots of nice coins, you may go in.")
                 return@npcOperate
             }
@@ -76,7 +76,7 @@ class Saniboch : Script {
             val coins = inventory.count("coins")
             if (coins >= dungeonEntryFee) {
                 inventory.remove("coins", dungeonEntryFee)
-                set("can_enter_brimhaven_dungeon", true)
+                set("temporary_saniboch_access", true)
                 statement("You pay Saniboch 875 coins.")
                 npc<Neutral>("Many thanks. You may now pass the door. May your death be a glorious one!")
             } else {
@@ -86,14 +86,14 @@ class Saniboch : Script {
         }
 
         objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") { _, _ ->
-            if (!get("can_enter_brimhaven_dungeon", false)) {
+            if (!get("temporary_saniboch_access", false)) {
                 statement("You can't go in there without paying!")
-                return@objTeleportTakeOff Teleport.CONTINUE
+                return@objTeleportTakeOff Teleport.CANCEL
             }
 
             // Reset access after one-time use
-            set("can_enter_brimhaven_dungeon", false)
-            Teleport.CANCEL
+            set("temporary_saniboch_access", false)
+            Teleport.CONTINUE
         }
     }
 }

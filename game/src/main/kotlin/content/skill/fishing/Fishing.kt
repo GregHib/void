@@ -58,7 +58,8 @@ class Fishing : Script {
     suspend fun fish(player: Player, target: NPC, option: String) {
         player.arriveDelay()
         val spot = Rows.getOrNull("fishing_spots.${target.id}") ?: return
-        val fish = spot.itemList(option.lowercase())
+        // Roll the highest level fish first so lower level catches don't crowd them out
+        val fish = spot.itemList(option.lowercase()).sortedByDescending { Tables.int("fishing.$it.level") }
         target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
         player.softTimers.start("fishing")
         player.closeDialogue()

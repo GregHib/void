@@ -1,0 +1,5 @@
+[elvarg_drop_table]
+type = "all"
+drops = [
+  { id = "dragon_bones" },
+]

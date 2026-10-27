@@ -567,7 +567,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Shrimpin' Ain't Easy`() {
         val player = createPlayer(Tile(3245, 3155))
-        player.levels.set(Skill.Fishing, 20)
+        player.levels.set(Skill.Fishing, 10)
         val fishingSpot = createNPC("fishing_spot_small_net_bait_lumbridge", Tile(3246, 3155))
         player.inventory.add("small_fishing_net")
 

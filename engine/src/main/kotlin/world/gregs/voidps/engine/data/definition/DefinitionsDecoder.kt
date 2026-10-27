@@ -56,15 +56,17 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
             return definition
         }
         val transforms = definition.transforms ?: return definition
-        if (definition.varbit != -1) {
-            val index = index(player, definition.varbit, true)
-            return get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
+        val index = when {
+            definition.varbit != -1 -> index(player, definition.varbit, true)
+            definition.varp != -1 -> index(player, definition.varp, false)
+            else -> return definition
         }
-        if (definition.varp != -1) {
-            val index = index(player, definition.varp, false)
-            return get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
+        // Same as the client: out of range or unset (-1) entries fall back to the default (last) transform
+        var transform = if (index < 0 || index >= transforms.lastIndex) -1 else transforms[index]
+        if (transform == -1) {
+            transform = transforms.last()
         }
-        return definition
+        return get(transform)
     }
 
     private fun index(player: Player, id: Int, varbit: Boolean): Int {

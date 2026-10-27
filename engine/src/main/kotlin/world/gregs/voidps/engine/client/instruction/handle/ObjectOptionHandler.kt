@@ -1,14 +1,9 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Parameterized
-import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnObjectInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -33,7 +28,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
             logger.warn { "Invalid object $objectId $tile" }
             return false
         }
-        val definition = getDefinition(player, ObjectDefinitions, target.def, target.def)
+        val definition = ObjectDefinitions.resolve(target.def, player)
         val options = definition.options
         if (options == null) {
             logger.warn { "Invalid object interaction $target $option ${definition.options.contentToString()}" }
@@ -61,39 +56,6 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
             }
         }
         return obj
-    }
-
-    companion object {
-        private fun getVarbitIndex(player: Player, id: Int): Int {
-            val key = VariableDefinitions.getVarbit(id) ?: return 0
-            return getInt(key, player)
-        }
-
-        private fun getVarpIndex(player: Player, id: Int): Int {
-            val key = VariableDefinitions.getVarp(id) ?: return 0
-            return getInt(key, player)
-        }
-
-        private fun getInt(key: String, player: Player): Int {
-            val variable = VariableDefinitions.get(key) ?: return 0
-            val value = player.variables.get<Any>(key) ?: return 0
-            return variable.values.toInt(value)
-        }
-
-        fun <T, D : DefinitionsDecoder<T>> getDefinition(player: Player, definitions: D, definition: T, def: Transforms): T where T : Definition, T : Parameterized {
-            val transforms = def.transforms ?: return definition
-            val varbit = def.varbit
-            val varp = def.varp
-            if (varbit == -1 && varp == -1) {
-                return definition
-            }
-            val index = if (varbit != -1) getVarbitIndex(player, varbit) else getVarpIndex(player, varp)
-            var transform = transforms.getOrNull(index) ?: -1
-            if (transform == -1) {
-                transform = transforms.last()
-            }
-            return definitions.get(transform)
-        }
     }
 }
 

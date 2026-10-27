@@ -1,8 +1,8 @@
 [elvarg]
-defend_anim = "elvarg_defend"
+defend_anim = "colour_dragon_defend"
 death_anim = "elvarg_death"
 
 [elvarg.melee]
 range = 1
 target_hit = { offense = "slash", max = 80 }
-anim = "elvarg_attack"
+anim = "colour_dragon_attack"
