@@ -5,12 +5,18 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.IntArraySerializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.load.SnapshotCodec
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
+import world.gregs.voidps.engine.data.snapshot.AreaSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.area.Cuboid
@@ -111,52 +117,6 @@ class MusicTracks {
         }
         return MusicState(regions, ids, tracks)
     }
-
-    internal fun write(writer: SnapshotWriter, state: MusicState) = with(writer) {
-        val tracks = state.tracks
-        val trackAreas = state.trackAreas
-        val present = tracks.filterNotNull()
-        int(tracks.size)
-        int(present.size)
-        for (track in present) {
-            int(track.id)
-            string(track.name)
-            ints(track.indexes.toIntArray())
-            list(track.area) { area(it) }
-        }
-        int(trackAreas.size)
-        for ((region, list) in trackAreas) {
-            int(region)
-            list(list) { areaTrack ->
-                val track = tracks[areaTrack.id]!!
-                int(areaTrack.id)
-                int(track.area.indexOfFirst { it === areaTrack.area })
-            }
-        }
-    }
-
-    internal fun read(reader: SnapshotReader): MusicState {
-        val tracks = arrayOfNulls<Track>(reader.int())
-        val ids = Object2IntOpenHashMap<String>(650, Hash.VERY_FAST_LOAD_FACTOR)
-        repeat(reader.int()) {
-            val id = reader.int()
-            val name = reader.string()
-            val indexes = reader.ints().toMutableList()
-            val areas = reader.list { reader.area() }
-            tracks[id] = Track(id, name, indexes, areas)
-            ids[name] = id
-        }
-        val size = reader.int()
-        val regions = Int2ObjectOpenHashMap<MutableList<AreaTrack>>(size, Hash.VERY_FAST_LOAD_FACTOR)
-        repeat(size) {
-            val region = reader.int()
-            regions[region] = reader.list {
-                val id = reader.int()
-                AreaTrack(id, tracks[id]!!.area[reader.int()])
-            }
-        }
-        return MusicState(regions, ids, tracks)
-    }
 }
 
 class MusicState(
@@ -169,15 +129,70 @@ object MusicTrackLoader : Loader<MusicState> {
     val instance = MusicTracks()
     override val name = "music_tracks"
     override val file = listOf("map.music")
-    override val codec = object : SnapshotCodec<MusicState> {
-        override val schema = 1L
-
-        override fun write(writer: SnapshotWriter, value: MusicState) = instance.write(writer, value)
-
-        override fun read(reader: SnapshotReader) = instance.read(reader)
-    }
+    override val codec = SnapshotFormat.codec(MusicStateSerializer)
 
     override fun load(context: LoadContext): MusicState = instance.parse(context.paths(this).single())
 
     override fun install(state: MusicState) = instance.install(state)
+}
+
+private object MusicStateSerializer : KSerializer<MusicState> {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("content.entity.world.music.MusicState") {
+        element("id", Int.serializer().descriptor)
+        element("name", String.serializer().descriptor)
+        element("indexes", IntArraySerializer().descriptor)
+        element("area", AreaSerializer.descriptor)
+        element("region", Int.serializer().descriptor)
+    }
+
+    override fun serialize(encoder: Encoder, value: MusicState) {
+        val present = value.tracks.filterNotNull()
+        encoder.encodeInt(value.tracks.size)
+        encoder.encodeInt(present.size)
+        for (track in present) {
+            encoder.encodeInt(track.id)
+            encoder.encodeString(track.name)
+            encoder.encodeInt(track.indexes.size)
+            for (index in track.indexes) {
+                encoder.encodeInt(index)
+            }
+            encoder.encodeInt(track.area.size)
+            for (area in track.area) {
+                AreaSerializer.serialize(encoder, area)
+            }
+        }
+        encoder.encodeInt(value.trackAreas.size)
+        for ((region, list) in value.trackAreas) {
+            encoder.encodeInt(region)
+            encoder.encodeInt(list.size)
+            for (areaTrack in list) {
+                val track = value.tracks[areaTrack.id]!!
+                encoder.encodeInt(areaTrack.id)
+                encoder.encodeInt(track.area.indexOfFirst { it === areaTrack.area })
+            }
+        }
+    }
+
+    override fun deserialize(decoder: Decoder): MusicState {
+        val tracks = arrayOfNulls<Track>(decoder.decodeInt())
+        val ids = Object2IntOpenHashMap<String>(650, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(decoder.decodeInt()) {
+            val id = decoder.decodeInt()
+            val name = decoder.decodeString()
+            val indexes = IntArray(decoder.decodeInt()) { decoder.decodeInt() }.toMutableList()
+            val areas = List(decoder.decodeInt()) { AreaSerializer.deserialize(decoder) }
+            tracks[id] = Track(id, name, indexes, areas)
+            ids[name] = id
+        }
+        val size = decoder.decodeInt()
+        val regions = Int2ObjectOpenHashMap<MutableList<AreaTrack>>(size, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(size) {
+            val region = decoder.decodeInt()
+            regions[region] = MutableList(decoder.decodeInt()) {
+                val id = decoder.decodeInt()
+                AreaTrack(id, tracks[id]!!.area[decoder.decodeInt()])
+            }
+        }
+        return MusicState(regions, ids, tracks)
+    }
 }

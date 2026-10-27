@@ -8,10 +8,11 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
 
@@ -64,24 +65,7 @@ object AnimationLoader : Loader<DefinitionsState<AnimationDefinition>> {
     override val name = "animations"
     override val files = listOf("definitions.animations")
     override val usesCache = true
-    override val codec = DefinitionsCodec(
-        AnimationDefinition::class.java,
-        default = null,
-        writeDefinition = { definition ->
-            int(definition.id)
-            int(definition.priority)
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            AnimationDefinition(
-                id = int(),
-                priority = int(),
-                stringId = string(),
-                params = params(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(AnimationDefinition::class, AnimationDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<AnimationDefinition> {
         val definitions = AnimationDecoder().load(context.requireCache())

@@ -8,10 +8,11 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.definition.Params
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
 
@@ -62,28 +63,7 @@ object InventoryLoader : Loader<DefinitionsState<InventoryDefinition>> {
     override val files = listOf("definitions.inventories", "definitions.shops")
     override val usesCache = true
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
-    override val codec = DefinitionsCodec(
-        InventoryDefinition::class.java,
-        default = null,
-        writeDefinition = { definition ->
-            int(definition.id)
-            int(definition.length)
-            nullableInts(definition.ids)
-            nullableInts(definition.amounts)
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            InventoryDefinition(
-                id = int(),
-                length = int(),
-                ids = nullableInts(),
-                amounts = nullableInts(),
-                stringId = string(),
-                params = params(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(InventoryDefinition::class, InventoryDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<InventoryDefinition> {
         val definitions = InventoryDecoder().load(context.requireCache())

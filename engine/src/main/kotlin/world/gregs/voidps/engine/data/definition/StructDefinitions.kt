@@ -6,10 +6,11 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 /**
  * Also known as AttributeMaps in cs2 or rows
@@ -63,22 +64,7 @@ object StructLoader : Loader<DefinitionsState<StructDefinition>> {
     override val name = "structs"
     override val file = listOf("definitions.structs")
     override val usesCache = true
-    override val codec = DefinitionsCodec(
-        StructDefinition::class.java,
-        default = null,
-        writeDefinition = { definition ->
-            int(definition.id)
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            StructDefinition(
-                id = int(),
-                stringId = string(),
-                params = params(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(StructDefinition::class, StructDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<StructDefinition> {
         val definitions = StructDecoder().load(context.requireCache())

@@ -5,10 +5,11 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.cache.definition.decoder.FontDecoder
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 class FontDefinitions(
     override var definitions: Array<FontDefinition>,
@@ -37,32 +38,7 @@ object FontLoader : Loader<DefinitionsState<FontDefinition>> {
     override val name = "fonts"
     override val file = listOf("definitions.fonts")
     override val usesCache = true
-    override val codec = DefinitionsCodec(
-        FontDefinition::class.java,
-        default = null,
-        writeDefinition = { definition ->
-            int(definition.id)
-            bytes(definition.glyphWidths)
-            nullableByteArrays(definition.kerningAdjustments)
-            int(definition.verticalSpacing)
-            int(definition.topPadding)
-            int(definition.bottomPadding)
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            FontDefinition(
-                id = int(),
-                glyphWidths = bytes(),
-                kerningAdjustments = nullableByteArrays(),
-                verticalSpacing = int(),
-                topPadding = int(),
-                bottomPadding = int(),
-                stringId = string(),
-                params = params(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(FontDefinition::class, FontDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<FontDefinition> {
         val definitions = FontDecoder().load(context.requireCache())

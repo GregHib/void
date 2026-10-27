@@ -10,9 +10,8 @@ import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
 import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.load.SnapshotCodec
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
+import world.gregs.voidps.engine.data.snapshot.StringKeyedMapSerializer
 import world.gregs.voidps.type.Delta
 
 /**
@@ -67,189 +66,6 @@ class CombatDefinitions {
         }
         return definitions
     }
-
-    internal fun write(writer: SnapshotWriter, definitions: Map<String, CombatDefinition>) = with(writer) {
-        int(definitions.size)
-        for ((key, definition) in definitions) {
-            string(key)
-            string(definition.npc)
-            int(definition.attackRange)
-            int(definition.retreatRange)
-            string(definition.defendAnim)
-            sound(definition.defendSound)
-            string(definition.deathAnim)
-            sound(definition.deathSound)
-            int(definition.attacks.size)
-            for ((id, attack) in definition.attacks) {
-                string(id)
-                attack(attack)
-            }
-        }
-    }
-
-    internal fun read(reader: SnapshotReader): Map<String, CombatDefinition> {
-        val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
-        repeat(reader.int()) {
-            val key = reader.string()
-            val npc = reader.string()
-            val attackRange = reader.int()
-            val retreatRange = reader.int()
-            val defendAnim = reader.string()
-            val defendSound = sound(reader)
-            val deathAnim = reader.string()
-            val deathSound = sound(reader)
-            val attacks = LinkedHashMap<String, CombatAttack>()
-            repeat(reader.int()) {
-                val id = reader.string()
-                attacks[id] = attack(reader)
-            }
-            definitions[key] = CombatDefinition(npc, attackRange, retreatRange, defendAnim, defendSound, deathAnim, deathSound, attacks)
-        }
-        return definitions
-    }
-
-    private fun SnapshotWriter.delta(delta: Delta?) {
-        boolean(delta != null)
-        if (delta != null) {
-            long(delta.id)
-        }
-    }
-
-    private fun delta(reader: SnapshotReader): Delta? = if (reader.boolean()) Delta(reader.long()) else null
-
-    private fun SnapshotWriter.sound(sound: CombatDefinition.CombatSound?) {
-        boolean(sound != null)
-        if (sound != null) {
-            string(sound.id)
-            int(sound.delay)
-            int(sound.radius)
-            delta(sound.offset)
-        }
-    }
-
-    private fun sound(reader: SnapshotReader): CombatDefinition.CombatSound? {
-        if (!reader.boolean()) {
-            return null
-        }
-        return CombatDefinition.CombatSound(reader.string(), reader.int(), reader.int(), delta(reader))
-    }
-
-    private fun SnapshotWriter.gfx(gfx: CombatDefinition.CombatGfx) {
-        string(gfx.id)
-        nullableInt(gfx.delay)
-        nullableInt(gfx.height)
-        boolean(gfx.area)
-        delta(gfx.offset)
-    }
-
-    private fun gfx(reader: SnapshotReader) = CombatDefinition.CombatGfx(reader.string(), reader.nullableInt(), reader.nullableInt(), reader.boolean(), delta(reader))
-
-    private fun SnapshotWriter.projectile(projectile: Projectile) {
-        string(projectile.id)
-        nullableInt(projectile.delay)
-        boolean(projectile.curve != null)
-        if (projectile.curve != null) {
-            int(projectile.curve.first)
-            int(projectile.curve.last)
-        }
-        nullableInt(projectile.endHeight)
-    }
-
-    private fun projectile(reader: SnapshotReader): Projectile {
-        val id = reader.string()
-        val delay = reader.nullableInt()
-        val curve = if (reader.boolean()) reader.int()..reader.int() else null
-        return Projectile(id, delay, curve, reader.nullableInt())
-    }
-
-    private fun SnapshotWriter.hit(hit: CombatHit) {
-        string(hit.offense)
-        string(hit.defence)
-        boolean(hit.special)
-        int(hit.min)
-        int(hit.max)
-        nullableInt(hit.delay)
-        boolean(hit.accuracyRoll)
-    }
-
-    private fun hit(reader: SnapshotReader) = CombatHit(reader.string(), reader.string(), reader.boolean(), reader.int(), reader.int(), reader.nullableInt(), reader.boolean())
-
-    private fun SnapshotWriter.drain(drain: CombatDefinition.Drain) {
-        string(drain.skill)
-        int(drain.min)
-        int(drain.max)
-        double(drain.multiplier)
-    }
-
-    private fun drain(reader: SnapshotReader) = CombatDefinition.Drain(reader.string(), reader.int(), reader.int(), reader.double())
-
-    private fun SnapshotWriter.attack(attack: CombatAttack) {
-        string(attack.id)
-        int(attack.chance)
-        int(attack.range)
-        boolean(attack.approach)
-        string(attack.condition)
-        string(attack.say)
-        string(attack.anim)
-        list(attack.gfx) { gfx(it) }
-        list(attack.sounds) { sound(it) }
-        string(attack.projectileOrigin.name)
-        int(attack.projectileOriginX)
-        int(attack.projectileOriginY)
-        list(attack.projectiles) { projectile(it) }
-        string(attack.targetAnim)
-        list(attack.targetGfx) { gfx(it) }
-        list(attack.targetSounds) { sound(it) }
-        list(attack.targetHits) { hit(it) }
-        string(attack.multiTargetArea)
-        int(attack.multiTargetRadius)
-        int(attack.multiRadius)
-        string(attack.impactAnim)
-        list(attack.impactGfx) { gfx(it) }
-        list(attack.impactSounds) { sound(it) }
-        list(attack.missGfx) { gfx(it) }
-        list(attack.missSounds) { sound(it) }
-        boolean(attack.impactRegardless)
-        list(attack.impactDrainSkills) { drain(it) }
-        int(attack.impactFreeze)
-        int(attack.impactPoison)
-        int(attack.impactDisease)
-        string(attack.impactMessage)
-    }
-
-    private fun attack(reader: SnapshotReader) = CombatAttack(
-        id = reader.string(),
-        chance = reader.int(),
-        range = reader.int(),
-        approach = reader.boolean(),
-        condition = reader.string(),
-        say = reader.string(),
-        anim = reader.string(),
-        gfx = reader.list { gfx(reader) },
-        sounds = reader.list { sound(reader)!! },
-        projectileOrigin = Origin.valueOf(reader.string()),
-        projectileOriginX = reader.int(),
-        projectileOriginY = reader.int(),
-        projectiles = reader.list { projectile(reader) },
-        targetAnim = reader.string(),
-        targetGfx = reader.list { gfx(reader) },
-        targetSounds = reader.list { sound(reader)!! },
-        targetHits = reader.list { hit(reader) },
-        multiTargetArea = reader.string(),
-        multiTargetRadius = reader.int(),
-        multiRadius = reader.int(),
-        impactAnim = reader.string(),
-        impactGfx = reader.list { gfx(reader) },
-        impactSounds = reader.list { sound(reader)!! },
-        missGfx = reader.list { gfx(reader) },
-        missSounds = reader.list { sound(reader)!! },
-        impactRegardless = reader.boolean(),
-        impactDrainSkills = reader.list { drain(reader) },
-        impactFreeze = reader.int(),
-        impactPoison = reader.int(),
-        impactDisease = reader.int(),
-        impactMessage = reader.string(),
-    )
 
     private fun ConfigReader.definition(definitions: Object2ObjectOpenHashMap<String, CombatDefinition>, section: String, clones: MutableList<Pair<String, String>>) {
         check(!definitions.containsKey(section)) { "Definition $section already exists. Make sure [npc_name] comes before [npc_name.attacks]." }
@@ -662,13 +478,7 @@ object CombatLoader : Loader<Map<String, CombatDefinition>> {
     val instance = CombatDefinitions()
     override val name = "combat"
     override val files = listOf("definitions.combatAttacks")
-    override val codec = object : SnapshotCodec<Map<String, CombatDefinition>> {
-        override val schema = 1L
-
-        override fun write(writer: SnapshotWriter, value: Map<String, CombatDefinition>) = instance.write(writer, value)
-
-        override fun read(reader: SnapshotReader) = instance.read(reader)
-    }
+    override val codec = SnapshotFormat.codec(StringKeyedMapSerializer(CombatDefinition.serializer()))
 
     override fun load(context: LoadContext): Map<String, CombatDefinition> = instance.parse(context.paths(this))
 

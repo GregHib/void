@@ -4,13 +4,14 @@ import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import kotlinx.serialization.Serializable
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.load.SnapshotCodec
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
+import world.gregs.voidps.engine.data.snapshot.IntKeyedMapSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
+import world.gregs.voidps.engine.data.snapshot.StringKeyedMapSerializer
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
@@ -143,37 +144,7 @@ class ObjectTeleports {
         return teleports
     }
 
-    internal fun write(writer: SnapshotWriter, teleports: Map<String, Map<Int, TeleportDefinition>>) = with(writer) {
-        int(teleports.size)
-        for ((option, definitions) in teleports) {
-            string(option)
-            int(definitions.size)
-            for (definition in definitions.values) {
-                string(definition.id)
-                string(definition.option)
-                int(definition.tile.id)
-                long(definition.delta.id)
-                int(definition.to.id)
-            }
-        }
-    }
-
-    internal fun read(reader: SnapshotReader): Map<String, Map<Int, TeleportDefinition>> {
-        val size = reader.int()
-        val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>(size, Hash.VERY_FAST_LOAD_FACTOR)
-        repeat(size) {
-            val option = reader.string()
-            val count = reader.int()
-            val definitions = Int2ObjectOpenHashMap<TeleportDefinition>(count, Hash.VERY_FAST_LOAD_FACTOR)
-            repeat(count) {
-                val definition = TeleportDefinition(reader.string(), reader.string(), Tile(reader.int()), Delta(reader.long()), Tile(reader.int()))
-                definitions[definition.tile.id] = definition
-            }
-            teleports[option] = definitions
-        }
-        return teleports
-    }
-
+    @Serializable
     data class TeleportDefinition(
         val id: String,
         val option: String,
@@ -187,13 +158,7 @@ object ObjectTeleportLoader : Loader<Map<String, Map<Int, ObjectTeleports.Telepo
     val instance = ObjectTeleports()
     override val name = "object_teleports"
     override val files = listOf("map.teleports")
-    override val codec = object : SnapshotCodec<Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>> {
-        override val schema = 1L
-
-        override fun write(writer: SnapshotWriter, value: Map<String, Map<Int, ObjectTeleports.TeleportDefinition>>) = instance.write(writer, value)
-
-        override fun read(reader: SnapshotReader) = instance.read(reader)
-    }
+    override val codec = SnapshotFormat.codec(StringKeyedMapSerializer(IntKeyedMapSerializer(ObjectTeleports.TeleportDefinition.serializer()), Hash.VERY_FAST_LOAD_FACTOR))
 
     override fun load(context: LoadContext): Map<String, Map<Int, ObjectTeleports.TeleportDefinition>> = instance.parse(context.paths(this))
 

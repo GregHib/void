@@ -1,16 +1,24 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.AnyArraySerializer
+import world.gregs.voidps.cache.serialization.NullableStringArraySerializer
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class InterfaceComponentDefinition(
     override var id: Int = -1,
+    @Serializable(with = NullableStringArraySerializer::class)
     var options: Array<String?>? = null,
+    @Serializable(with = AnyArraySerializer::class)
     var information: Array<Any>? = null,
     var baseX: Int = 0,
     var baseY: Int = 0,
     var defaultImage: Int = -1,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {

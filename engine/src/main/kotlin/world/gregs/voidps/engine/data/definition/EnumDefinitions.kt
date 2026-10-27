@@ -12,10 +12,11 @@ import world.gregs.voidps.cache.definition.data.EnumTypes
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 import world.gregs.voidps.type.Tile
 
 /**
@@ -186,53 +187,7 @@ object EnumLoader : Loader<DefinitionsState<EnumDefinition>> {
     override val files = listOf("definitions.enums")
     override val usesCache = true
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader, InterfaceLoader, InventoryLoader, NPCLoader, StructLoader, ObjectLoader, TableLoader)
-    override val codec = DefinitionsCodec(
-        EnumDefinition::class.java,
-        default = null,
-        writeDefinition = { definition ->
-            int(definition.id)
-            int(definition.keyType.code)
-            int(definition.valueType.code)
-            string(definition.defaultString)
-            int(definition.defaultInt)
-            int(definition.length)
-            val map = definition.map
-            if (map == null) {
-                int(-1)
-            } else {
-                int(map.size)
-                // Config defined enums keep their order
-                boolean(map is LinkedHashMap<*, *>)
-                for ((key, value) in map) {
-                    int(key)
-                    value(value)
-                }
-            }
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            val id = int()
-            val keyType = int().toChar()
-            val valueType = int().toChar()
-            val defaultString = string()
-            val defaultInt = int()
-            val length = int()
-            val size = int()
-            val map: Map<Int, Any>? = if (size == -1) {
-                null
-            } else {
-                val ordered = boolean()
-                val map: MutableMap<Int, Any> = if (ordered) LinkedHashMap(size) else Int2ObjectOpenHashMap(size, Hash.VERY_FAST_LOAD_FACTOR)
-                repeat(size) {
-                    val key = int()
-                    map[key] = value()!!
-                }
-                map
-            }
-            EnumDefinition(id, keyType, valueType, defaultString, defaultInt, length, map, string(), params())
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(EnumDefinition::class, EnumDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<EnumDefinition> = parse(EnumDecoder().load(context.requireCache()), context.paths(this))
 

@@ -11,8 +11,6 @@ import content.bot.isBot
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
@@ -292,34 +290,6 @@ class NavigationGraph(
             val requirements: List<Pair<String, List<Map<String, Any>>>>,
             val debug: String,
         )
-
-        fun writeEdges(writer: SnapshotWriter, edges: List<Edge>) = with(writer) {
-            list(edges) { edge ->
-                int(edge.from.id)
-                int(edge.to.id)
-                int(edge.cost)
-                list(edge.actions) { value(it) }
-                list(edge.requirements) { value(it) }
-                string(edge.debug)
-            }
-        }
-
-        fun readEdges(reader: SnapshotReader): List<Edge> = reader.list {
-            Edge(
-                Tile(reader.int()),
-                Tile(reader.int()),
-                reader.int(),
-                reader.list {
-                    @Suppress("UNCHECKED_CAST")
-                    reader.value() as Pair<String, Map<String, Any>>
-                },
-                reader.list {
-                    @Suppress("UNCHECKED_CAST")
-                    reader.value() as Pair<String, List<Map<String, Any>>>
-                },
-                reader.string(),
-            )
-        }
 
         fun parseEdges(paths: List<String>): List<Edge> {
             val edges = ArrayList<Edge>()

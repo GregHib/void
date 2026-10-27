@@ -1,8 +1,10 @@
 package world.gregs.voidps.type
 
+import kotlinx.serialization.Serializable
 /**
  * Difference between two coordinates
  */
+@Serializable
 @JvmInline
 value class Delta(val id: Long) {
 

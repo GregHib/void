@@ -8,10 +8,11 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
 
@@ -64,50 +65,7 @@ object GraphicLoader : Loader<DefinitionsState<GraphicDefinition>> {
     override val name = "graphics"
     override val files = listOf("definitions.graphics")
     override val usesCache = true
-    override val codec = DefinitionsCodec(
-        GraphicDefinition::class.java,
-        default = null,
-        writeDefinition = { definition ->
-            int(definition.id)
-            int(definition.modelId)
-            int(definition.animationId)
-            int(definition.sizeXY)
-            int(definition.sizeZ)
-            int(definition.rotation)
-            int(definition.ambience)
-            int(definition.contrast)
-            byte(definition.aByte2381.toInt())
-            int(definition.anInt2385)
-            boolean(definition.aBoolean2402)
-            nullableShorts(definition.originalColours)
-            nullableShorts(definition.modifiedColours)
-            nullableShorts(definition.originalTextureColours)
-            nullableShorts(definition.modifiedTextureColours)
-            string(definition.stringId)
-            params(definition.params)
-        },
-        readDefinition = {
-            GraphicDefinition(
-                id = int(),
-                modelId = int(),
-                animationId = int(),
-                sizeXY = int(),
-                sizeZ = int(),
-                rotation = int(),
-                ambience = int(),
-                contrast = int(),
-                aByte2381 = byte().toByte(),
-                anInt2385 = int(),
-                aBoolean2402 = boolean(),
-                originalColours = nullableShorts(),
-                modifiedColours = nullableShorts(),
-                originalTextureColours = nullableShorts(),
-                modifiedTextureColours = nullableShorts(),
-                stringId = string(),
-                params = params(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(GraphicDefinition::class, GraphicDefinition.serializer(), default = null))
 
     override fun load(context: LoadContext): DefinitionsState<GraphicDefinition> {
         val definitions = GraphicDecoder().load(context.requireCache())

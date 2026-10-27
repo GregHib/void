@@ -11,10 +11,11 @@ import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 
 object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
 
@@ -67,47 +68,7 @@ object ObjectLoader : Loader<DefinitionsState<ObjectDefinition>> {
     override val files = listOf("definitions.objects")
     override val settings = listOf("world.members")
     override val usesCache = true
-    override val codec = DefinitionsCodec(
-        ObjectDefinition::class.java,
-        default = -1,
-        writeDefinition = { definition ->
-            int(definition.id)
-            string(definition.name)
-            int(definition.sizeX)
-            int(definition.sizeY)
-            int(definition.solid)
-            int(definition.interactive)
-            nullableStrings(definition.options)
-            boolean(definition.mirrored)
-            int(definition.blockFlag)
-            int(definition.varbit)
-            int(definition.varp)
-            nullableInts(definition.transforms)
-            string(definition.stringId)
-            params(definition.params)
-            int(definition.block)
-        },
-        readDefinition = {
-            val definition = ObjectDefinition(
-                id = int(),
-                name = string(),
-                sizeX = int(),
-                sizeY = int(),
-                solid = int(),
-                interactive = int(),
-                options = nullableStrings(),
-                mirrored = boolean(),
-                blockFlag = int(),
-                varbit = int(),
-                varp = int(),
-                transforms = nullableInts(),
-                stringId = string(),
-                params = params(),
-            )
-            definition.block = int()
-            definition
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(ObjectDefinition::class, ObjectDefinition.serializer(), default = -1))
 
     override fun load(context: LoadContext): DefinitionsState<ObjectDefinition> {
         val definitions = ObjectDecoder(Settings["world.members", false], lowDetail = false).load(context.requireCache())

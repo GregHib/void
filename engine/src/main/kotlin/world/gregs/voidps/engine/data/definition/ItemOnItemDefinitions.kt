@@ -4,6 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.nullable
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
@@ -11,9 +18,8 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.load.SnapshotCodec
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
+import world.gregs.voidps.engine.data.snapshot.IntRangeSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
@@ -137,97 +143,6 @@ class ItemOnItemDefinitions {
         return definitions
     }
 
-    internal fun write(writer: SnapshotWriter, definitions: Map<String, List<ItemOnItemDefinition>>) = with(writer) {
-        val indices = IdentityHashMap<ItemOnItemDefinition, Int>()
-        for (list in definitions.values) {
-            for (definition in list) {
-                indices.putIfAbsent(definition, indices.size)
-            }
-        }
-        val unique = arrayOfNulls<ItemOnItemDefinition>(indices.size)
-        for ((definition, index) in indices) {
-            unique[index] = definition
-        }
-        int(unique.size)
-        for (definition in unique) {
-            definition!!
-            nullableString(definition.skill?.name)
-            int(definition.level)
-            double(definition.xp)
-            items(definition.requires)
-            items(definition.one)
-            items(definition.remove)
-            items(definition.add)
-            items(definition.fail)
-            int(definition.delay)
-            int(definition.ticks)
-            int(definition.chance.first)
-            int(definition.chance.last)
-            string(definition.type)
-            string(definition.animation)
-            string(definition.graphic)
-            string(definition.sound)
-            string(definition.message)
-            string(definition.failure)
-            string(definition.requiresMessage)
-            string(definition.question)
-            int(definition.maximum)
-            boolean(definition.members)
-        }
-        int(definitions.size)
-        for ((key, list) in definitions) {
-            string(key)
-            int(list.size)
-            for (definition in list) {
-                int(indices.getValue(definition))
-            }
-        }
-    }
-
-    internal fun read(reader: SnapshotReader): Map<String, List<ItemOnItemDefinition>> {
-        val unique = Array(reader.int()) {
-            ItemOnItemDefinition(
-                skill = reader.nullableString()?.let { Skill.valueOf(it) },
-                level = reader.int(),
-                xp = reader.double(),
-                requires = items(reader),
-                one = items(reader),
-                remove = items(reader),
-                add = items(reader),
-                fail = items(reader),
-                delay = reader.int(),
-                ticks = reader.int(),
-                chance = reader.int()..reader.int(),
-                type = reader.string(),
-                animation = reader.string(),
-                graphic = reader.string(),
-                sound = reader.string(),
-                message = reader.string(),
-                failure = reader.string(),
-                requiresMessage = reader.string(),
-                question = reader.string(),
-                maximum = reader.int(),
-                members = reader.boolean(),
-            )
-        }
-        val size = reader.int()
-        val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>(size, Hash.VERY_FAST_LOAD_FACTOR)
-        repeat(size) {
-            val key = reader.string()
-            val list = ObjectArrayList<ItemOnItemDefinition>(2)
-            repeat(reader.int()) { list.add(unique[reader.int()]) }
-            definitions[key] = list
-        }
-        return definitions
-    }
-
-    private fun SnapshotWriter.items(items: List<Item>) = list(items) {
-        string(it.id)
-        int(it.rawValue())
-    }
-
-    private fun items(reader: SnapshotReader): List<Item> = reader.list { Item(reader.string(), reader.int()) }
-
     private fun ConfigReader.itemList(items: MutableList<Item>) {
         while (nextElement()) {
             if (peek == '{') {
@@ -264,15 +179,135 @@ object ItemOnItemLoader : Loader<Map<String, List<ItemOnItemDefinition>>> {
     override val name = "item_on_item"
     override val files = listOf("definitions.itemOnItem")
     override val dependsOn: List<Loader<*>> get() = listOf(ItemLoader)
-    override val codec = object : SnapshotCodec<Map<String, List<ItemOnItemDefinition>>> {
-        override val schema = 1L
-
-        override fun write(writer: SnapshotWriter, value: Map<String, List<ItemOnItemDefinition>>) = instance.write(writer, value)
-
-        override fun read(reader: SnapshotReader) = instance.read(reader)
-    }
+    override val codec = SnapshotFormat.codec(ItemOnItemStateSerializer)
 
     override fun load(context: LoadContext): Map<String, List<ItemOnItemDefinition>> = instance.parse(context.paths(this))
 
     override fun install(state: Map<String, List<ItemOnItemDefinition>>) = instance.install(state)
+}
+
+private object ItemOnItemStateSerializer : KSerializer<Map<String, List<ItemOnItemDefinition>>> {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("world.gregs.voidps.engine.data.definition.ItemOnItemState") {
+        element("skill", String.serializer().nullable.descriptor)
+        element("level", Int.serializer().descriptor)
+        element("xp", Double.serializer().descriptor)
+        element("items", String.serializer().descriptor)
+        element("amount", Int.serializer().descriptor)
+        element("delay", Int.serializer().descriptor)
+        element("ticks", Int.serializer().descriptor)
+        element("chance", IntRangeSerializer.descriptor)
+        element("type", String.serializer().descriptor)
+        element("animation", String.serializer().descriptor)
+        element("graphic", String.serializer().descriptor)
+        element("sound", String.serializer().descriptor)
+        element("message", String.serializer().descriptor)
+        element("failure", String.serializer().descriptor)
+        element("requiresMessage", String.serializer().descriptor)
+        element("question", String.serializer().descriptor)
+        element("maximum", Int.serializer().descriptor)
+        element("members", Boolean.serializer().descriptor)
+        element("keys", String.serializer().descriptor)
+    }
+
+    override fun serialize(encoder: Encoder, value: Map<String, List<ItemOnItemDefinition>>) {
+        val indices = IdentityHashMap<ItemOnItemDefinition, Int>()
+        for (list in value.values) {
+            for (definition in list) {
+                indices.putIfAbsent(definition, indices.size)
+            }
+        }
+        val unique = arrayOfNulls<ItemOnItemDefinition>(indices.size)
+        for ((definition, index) in indices) {
+            unique[index] = definition
+        }
+        encoder.encodeInt(unique.size)
+        for (definition in unique) {
+            definition!!
+            val skill = definition.skill?.name
+            encoder.encodeBoolean(skill != null)
+            if (skill != null) {
+                encoder.encodeString(skill)
+            }
+            encoder.encodeInt(definition.level)
+            encoder.encodeDouble(definition.xp)
+            items(encoder, definition.requires)
+            items(encoder, definition.one)
+            items(encoder, definition.remove)
+            items(encoder, definition.add)
+            items(encoder, definition.fail)
+            encoder.encodeInt(definition.delay)
+            encoder.encodeInt(definition.ticks)
+            IntRangeSerializer.serialize(encoder, definition.chance)
+            encoder.encodeString(definition.type)
+            encoder.encodeString(definition.animation)
+            encoder.encodeString(definition.graphic)
+            encoder.encodeString(definition.sound)
+            encoder.encodeString(definition.message)
+            encoder.encodeString(definition.failure)
+            encoder.encodeString(definition.requiresMessage)
+            encoder.encodeString(definition.question)
+            encoder.encodeInt(definition.maximum)
+            encoder.encodeBoolean(definition.members)
+        }
+        encoder.encodeInt(value.size)
+        for ((key, list) in value) {
+            encoder.encodeString(key)
+            encoder.encodeInt(list.size)
+            for (definition in list) {
+                encoder.encodeInt(indices.getValue(definition))
+            }
+        }
+    }
+
+    override fun deserialize(decoder: Decoder): Map<String, List<ItemOnItemDefinition>> {
+        val unique = Array(decoder.decodeInt()) {
+            ItemOnItemDefinition(
+                skill = if (decoder.decodeBoolean()) Skill.valueOf(decoder.decodeString()) else null,
+                level = decoder.decodeInt(),
+                xp = decoder.decodeDouble(),
+                requires = items(decoder),
+                one = items(decoder),
+                remove = items(decoder),
+                add = items(decoder),
+                fail = items(decoder),
+                delay = decoder.decodeInt(),
+                ticks = decoder.decodeInt(),
+                chance = IntRangeSerializer.deserialize(decoder),
+                type = decoder.decodeString(),
+                animation = decoder.decodeString(),
+                graphic = decoder.decodeString(),
+                sound = decoder.decodeString(),
+                message = decoder.decodeString(),
+                failure = decoder.decodeString(),
+                requiresMessage = decoder.decodeString(),
+                question = decoder.decodeString(),
+                maximum = decoder.decodeInt(),
+                members = decoder.decodeBoolean(),
+            )
+        }
+        val size = decoder.decodeInt()
+        val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>(size, Hash.VERY_FAST_LOAD_FACTOR)
+        repeat(size) {
+            val key = decoder.decodeString()
+            val list = ObjectArrayList<ItemOnItemDefinition>(2)
+            repeat(decoder.decodeInt()) { list.add(unique[decoder.decodeInt()]) }
+            definitions[key] = list
+        }
+        return definitions
+    }
+
+    private fun items(encoder: Encoder, items: List<Item>) {
+        encoder.encodeInt(items.size)
+        for (item in items) {
+            encoder.encodeString(item.id)
+            encoder.encodeInt(item.rawValue())
+        }
+    }
+
+    private fun items(decoder: Decoder): List<Item> {
+        val size = decoder.decodeInt()
+        val list = ArrayList<Item>(size)
+        repeat(size) { list.add(Item(decoder.decodeString(), decoder.decodeInt())) }
+        return list
+    }
 }

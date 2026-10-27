@@ -10,12 +10,12 @@ import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.load.DefinitionsCodec
 import world.gregs.voidps.engine.data.load.DefinitionsState
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.snapshot.DefinitionsStateSerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.DropTablesLoader
@@ -71,64 +71,7 @@ object NPCLoader : Loader<DefinitionsState<NPCDefinition>> {
     override val settings = listOf("world.members")
     override val usesCache = true
     override val dependsOn: List<Loader<*>> get() = listOf(DropTablesLoader)
-    override val codec = DefinitionsCodec(
-        NPCDefinition::class.java,
-        default = -1,
-        writeDefinition = { definition ->
-            int(definition.id)
-            string(definition.name)
-            int(definition.size)
-            nullableStrings(definition.options)
-            int(definition.combat)
-            int(definition.varbit)
-            int(definition.varp)
-            nullableInts(definition.transforms)
-            byte(definition.walkMode.toInt())
-            int(definition.renderEmote)
-            int(definition.idleSound)
-            int(definition.crawlSound)
-            int(definition.walkSound)
-            int(definition.runSound)
-            int(definition.soundDistance)
-            string(definition.stringId)
-            params(definition.params)
-            boolean(definition.allowedUnder)
-            boolean(definition.solid)
-            boolean(definition.blocksPlayers)
-            int(definition.huntRange)
-            nullableString(definition.huntMode)
-            int(definition.regenRate)
-            int(definition.hitpoints)
-        },
-        readDefinition = {
-            NPCDefinition(
-                id = int(),
-                name = string(),
-                size = int(),
-                options = nullableStrings()!!,
-                combat = int(),
-                varbit = int(),
-                varp = int(),
-                transforms = nullableInts(),
-                walkMode = byte().toByte(),
-                renderEmote = int(),
-                idleSound = int(),
-                crawlSound = int(),
-                walkSound = int(),
-                runSound = int(),
-                soundDistance = int(),
-                stringId = string(),
-                params = params(),
-                allowedUnder = boolean(),
-                solid = boolean(),
-                blocksPlayers = boolean(),
-                huntRange = int(),
-                huntMode = nullableString(),
-                regenRate = int(),
-                hitpoints = int(),
-            )
-        },
-    )
+    override val codec = SnapshotFormat.codec(DefinitionsStateSerializer(NPCDefinition::class, NPCDefinition.serializer(), default = -1))
 
     override fun load(context: LoadContext): DefinitionsState<NPCDefinition> {
         val definitions = NPCDecoder(Settings["world.members", false]).load(context.requireCache())

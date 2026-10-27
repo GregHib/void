@@ -4,6 +4,11 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
@@ -14,9 +19,9 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
-import world.gregs.voidps.engine.data.load.SnapshotCodec
-import world.gregs.voidps.engine.data.snapshot.SnapshotReader
-import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
+import world.gregs.voidps.engine.data.snapshot.DefinitionArraySerializer
+import world.gregs.voidps.engine.data.snapshot.SnapshotFormat
+import world.gregs.voidps.engine.data.snapshot.StringIdsSerializer
 
 object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
 
@@ -85,77 +90,7 @@ object InterfaceLoader : Loader<InterfaceState> {
     override val files = listOf("definitions.interfaces")
     override val file = listOf("definitions.interfaces.types")
     override val usesCache = true
-    override val codec = object : SnapshotCodec<InterfaceState> {
-        override val schema = 1L
-
-        override fun write(writer: SnapshotWriter, value: InterfaceState) = with(writer) {
-            int(value.definitions.size)
-            for (definition in value.definitions) {
-                int(definition.id)
-                val components = definition.components
-                if (components == null) {
-                    int(-1)
-                } else {
-                    int(components.size)
-                    for ((index, component) in components) {
-                        int(index)
-                        int(component.id)
-                        nullableStrings(component.options)
-                        nullableAnyArray(component.information)
-                        int(component.baseX)
-                        int(component.baseY)
-                        int(component.defaultImage)
-                        string(component.stringId)
-                        params(component.params)
-                    }
-                }
-                nullableString(definition.type)
-                int(definition.fixed)
-                int(definition.resizable)
-                boolean(definition.permanent)
-                string(definition.stringId)
-                params(definition.params)
-            }
-            ids(value.ids)
-            ids(value.componentIds)
-        }
-
-        override fun read(reader: SnapshotReader): InterfaceState {
-            val definitions = Array(reader.int()) {
-                val id = reader.int()
-                val size = reader.int()
-                var components: Int2ObjectOpenHashMap<InterfaceComponentDefinition>? = null
-                if (size != -1) {
-                    val map = Int2ObjectOpenHashMap<InterfaceComponentDefinition>(size)
-                    components = map
-                    repeat(size) {
-                        val index = reader.int()
-                        map[index] = InterfaceComponentDefinition(
-                            id = reader.int(),
-                            options = reader.nullableStrings(),
-                            information = reader.nullableAnyArray(),
-                            baseX = reader.int(),
-                            baseY = reader.int(),
-                            defaultImage = reader.int(),
-                            stringId = reader.string(),
-                            params = reader.params(),
-                        )
-                    }
-                }
-                InterfaceDefinition(
-                    id = id,
-                    components = components,
-                    type = reader.nullableString(),
-                    fixed = reader.int(),
-                    resizable = reader.int(),
-                    permanent = reader.boolean(),
-                    stringId = reader.string(),
-                    params = reader.params(),
-                )
-            }
-            return InterfaceState(definitions, reader.ids(default = -1), reader.ids())
-        }
-    }
+    override val codec = SnapshotFormat.codec(InterfaceStateSerializer)
 
     override fun load(context: LoadContext): InterfaceState {
         val definitions = InterfaceDecoder().load(context.requireCache())
@@ -315,4 +250,23 @@ object InterfaceLoader : Loader<InterfaceState> {
         }
         return components.getOrPut(index) { InterfaceComponentDefinition(id = index + (id shl 16)) }
     }
+}
+
+private object InterfaceStateSerializer : KSerializer<InterfaceState> {
+    private val definitions = DefinitionArraySerializer(InterfaceDefinition::class, InterfaceDefinition.serializer())
+    private val ids = StringIdsSerializer(default = -1)
+    private val componentIds = StringIdsSerializer(default = null)
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("world.gregs.voidps.engine.data.definition.InterfaceState") {
+        element("definitions", definitions.descriptor)
+        element("ids", ids.descriptor)
+        element("componentIds", componentIds.descriptor)
+    }
+
+    override fun serialize(encoder: Encoder, value: InterfaceState) {
+        definitions.serialize(encoder, value.definitions)
+        ids.serialize(encoder, value.ids)
+        componentIds.serialize(encoder, value.componentIds)
+    }
+
+    override fun deserialize(decoder: Decoder) = InterfaceState(definitions.deserialize(decoder), ids.deserialize(decoder), componentIds.deserialize(decoder))
 }
