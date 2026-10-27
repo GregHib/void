@@ -48,9 +48,3 @@ persist = true
 id = 3767
 format = "int"
 persist = true
-
-# Players can switch back to regular fishing, so harpoon fish aren't caught barehanded
-[barbarian_fishing_default]
-id = 3766
-format = "boolean"
-persist = true
