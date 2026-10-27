@@ -91,7 +91,6 @@ fun engineLoaders(): List<Loader<*>> = listOf(
     ClientScriptLoader,
     QuestLoader,
     PrayerLoader,
-    DiangoCodeLoader,
     HuntModeLoader,
     MapLoader,
 )
@@ -124,6 +123,5 @@ fun definitionsModule() = module {
     single { ClientScriptLoader.instance }
     single { QuestLoader.instance }
     single { PrayerLoader.instance }
-    single { DiangoCodeLoader.instance }
     single { HuntModeLoader.instance }
 }
