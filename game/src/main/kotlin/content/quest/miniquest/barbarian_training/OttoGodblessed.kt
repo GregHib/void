@@ -14,7 +14,6 @@ import content.quest.miniquest.barbarian_training.BarbarianTraining.REPORTED
 import content.quest.miniquest.barbarian_training.BarbarianTraining.STARTED
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -41,9 +40,6 @@ class OttoGodblessed : Script {
                 choice {
                     option<Quiz>("Could you tell me more of these spirits you continually refer to?") {
                         spirits()
-                    }
-                    option("I wish to change my fishing style") {
-                        fishingStyle()
                     }
                     option<Neutral>("I have no more questions at this time.") {
                         npc<Neutral>("In that case, farewell.")
@@ -147,25 +143,7 @@ class OttoGodblessed : Script {
                     spirits()
                 }
             }
-            if (barbarianTrainingStarted("rod") || barbarianTrainingStarted("barehand")) {
-                option("I wish to change my fishing style") {
-                    fishingStyle()
-                }
-            }
         }
-    }
-
-    suspend fun Player.fishingStyle() {
-        if (barbarianTraining("barehand") < DONE) {
-            npc<Neutral>("You will need to learn much more about fishing before I can do that.")
-            message("You need to learn more about Barbarian fishing in order to use this feature.")
-            return
-        }
-        player<Neutral>("I wish to change how I fish.")
-        npc<Neutral>("So be it.")
-        val default = !get("barbarian_fishing_default", false)
-        set("barbarian_fishing_default", default)
-        message(if (default) "You revert to default fishing techniques." else "You revert to barbarian fishing techniques.")
     }
 
     suspend fun Player.moreQuestions() {
