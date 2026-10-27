@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -58,15 +59,9 @@ class TzhaarFightCave(
     val outside = Tile(2436, 5170)
     val region = Region(9551)
 
-    val waves = TzhaarFightCaveWaves()
-
     val logger = InlineLogger()
 
     init {
-        worldSpawn {
-            waves.load(it.find(Settings["spawns.fight.cave.waves"]))
-        }
-
         /*
             Entrance/Exit
          */
@@ -288,10 +283,10 @@ class TzhaarFightCave(
                 player.npc<Angry>("tzhaar_mej_jal", "Look out, here comes TzTok-Jad!")
             }
         }
-        val ids = waves.npcs(wave)
+        val ids = Tables.npcList("fight_cave_waves.wave_${wave}.npcs")
         player["fight_cave_remaining"] = ids.sumOf { if (it == "tz_kek" || it == "tz_kek_spawn_point") 2 else 1 }
         val rotation = player["fight_cave_rotation", 1]
-        val directions = waves.spawns(wave, rotation)
+        val directions = Tables.dirList("fight_cave_waves.wave_${wave}.rotation_${rotation}")
         val offset = player.instanceOffset()
         val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
         for (i in ids.indices) {
