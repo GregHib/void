@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.data.snapshot.SnapshotReader
 import world.gregs.voidps.engine.data.snapshot.SnapshotWriter
-import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.timedLoad
 
 object VariableDefinitions {

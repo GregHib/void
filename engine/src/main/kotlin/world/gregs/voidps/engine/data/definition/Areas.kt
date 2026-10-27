@@ -11,10 +11,10 @@ import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.type.Zone
 import java.util.IdentityHashMap
 
 object Areas {

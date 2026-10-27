@@ -1,9 +1,9 @@
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import content.bot.behaviour.navigation.NavigationGraph
 import content.entity.obj.ObjectTeleports
 import content.entity.world.music.MusicTracks
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.MemoryCache
@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.snapshot.Snapshot
+import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
@@ -44,7 +44,7 @@ import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
+import world.gregs.voidps.engine.data.snapshot.Snapshot
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.area.Polygon
@@ -375,7 +375,6 @@ internal class DefinitionSnapshotTest {
         }
     }
 
-
     @Suppress("UNCHECKED_CAST")
     private fun ItemOnItemDefinitions.dump(): Map<String, List<ItemOnItemDefinition>> {
         val field = ItemOnItemDefinitions::class.java.getDeclaredField("definitions")
@@ -421,7 +420,7 @@ internal class DefinitionSnapshotTest {
         return builder.toString()
     }
 
-private fun shape(area: Area): String = if (area is Polygon) "Polygon ${area.xPoints.toList()} ${area.yPoints.toList()} ${area.level} ${area.bounds.maxLevel}" else area.toString()
+    private fun shape(area: Area): String = if (area is Polygon) "Polygon ${area.xPoints.toList()} ${area.yPoints.toList()} ${area.level} ${area.bounds.maxLevel}" else area.toString()
     private fun dumpAreas(): String {
         val builder = StringBuilder()
         val tags = sortedSetOf<String>()
