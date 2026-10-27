@@ -26,7 +26,7 @@ class ShiloVillageGates : Script {
 
     // TODO only allow climbing over once the Shilo Village quest is complete, "The village looks like it isn't safe to enter." otherwise
     private suspend fun Player.climbCart(cart: GameObject) {
-        statement("You approach the cart and see undead creatures gathering by the village gates. There is a note attached to the cart. The note says, :: Danger :: Deadly green mist DO NOT ENTER IF YOU VALUE YOUR LIFE !")
+        statement("You approach the cart and see undead creatures gathering by the village gates. There is a note attached to the cart. The note says, <red>:: Danger :: Deadly green mist DO NOT ENTER IF YOU VALUE YOUR LIFE !")
         choice {
             option("Yes, I am very nimble and agile!") {
                 message("You nimbly jump from one side of the cart...")
