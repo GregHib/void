@@ -75,7 +75,7 @@ class Movement : Script {
             if (border != null && (target in border || player.tile in border)) {
                 val nearest = border.nearestTo(player.tile)
                 if (player.tile in border) {
-                    val endSide = if (target in border) Border.getOppositeSide(border, nearest) else Border.getSide(border, nearest, target)
+                    val endSide = if (target in border) Border.getCrossingSide(border, player.tile, target) else Border.getSide(border, nearest, target)
                     player.walkTo(endSide, noCollision = true, forceWalk = true)
                 } else {
                     // Walk up to the border normally before passing through it
@@ -85,7 +85,12 @@ class Movement : Script {
                         player.walkTo(endSide, noCollision = true, forceWalk = true)
                     } else {
                         player.weakQueue("border_crossing") {
-                            walkToDelay(startSide, forceWalk = TargetStrategy.noRun(this))
+                            walkTo(startSide, forceWalk = TargetStrategy.noRun(this))
+                            // Cancellable so the player can still click elsewhere while approaching
+                            var count = 0
+                            while (tile != startSide && mode != EmptyMode && count++ < 50) {
+                                delay(cancellable = true)
+                            }
                             if (tile == startSide) {
                                 walkTo(endSide, noCollision = true, forceWalk = true)
                             }
