@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.engine.data.definition.ItemDefinitions.loaded
+import world.gregs.voidps.engine.data.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -57,5 +57,28 @@ object StructDefinitions : DefinitionsDecoder<StructDefinition> {
             ids.size
         }
         return this
+    }
+
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            StructDefinition(
+                id = reader.int(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = reader.ids()
+        init(definitions)
+        this.ids = ids
     }
 }

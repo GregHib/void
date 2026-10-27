@@ -7,6 +7,7 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
+import world.gregs.voidps.engine.data.Snapshot
 import world.gregs.voidps.engine.timedLoad
 
 object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
@@ -74,5 +75,30 @@ object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
             ids.size
         }
         return this
+    }
+
+    fun saveDefinitions(snapshot: Snapshot) = snapshot.write {
+        int(definitions.size)
+        for (definition in definitions) {
+            int(definition.id)
+            int(definition.priority)
+            string(definition.stringId)
+            params(definition.params)
+        }
+        ids(ids)
+    }
+
+    fun restoreDefinitions(snapshot: Snapshot): Boolean = snapshot.restore { reader ->
+        val definitions = Array(reader.int()) {
+            AnimationDefinition(
+                id = reader.int(),
+                priority = reader.int(),
+                stringId = reader.string(),
+                params = reader.params(),
+            )
+        }
+        val ids = reader.ids()
+        init(definitions)
+        this.ids = ids
     }
 }

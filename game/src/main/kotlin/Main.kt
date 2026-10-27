@@ -151,6 +151,11 @@ object Main {
             .awaitAll()
     }
 
+    /**
+     * A snapshot of the definitions themselves, if enabled.
+     */
+    private fun ConfigFiles.full(name: String, paths: List<String>, dependencies: List<String> = emptyList()): Snapshot? = if (Settings["storage.snapshots.full", true]) snapshot(name, paths, dependencies) else null
+
     private fun cache(cache: Cache, files: ConfigFiles): Module {
         val members = Settings["world.members", false]
         // Whether to snapshot the definitions themselves, instead of only the parsed configs
@@ -188,7 +193,13 @@ object Main {
                 }
                 ItemDefinitions
             }
-            single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
+            single(createdAtStart = true) {
+                val paths = files.list(Settings["definitions.animations"])
+                files.full("animations", paths).restoreOrLoad(AnimationDefinitions::restoreDefinitions, AnimationDefinitions::saveDefinitions) {
+                    AnimationDefinitions.init(AnimationDecoder().load(cache)).load(paths)
+                }
+                AnimationDefinitions
+            }
             single(createdAtStart = true) {
                 get<AnimationDefinitions>()
                 get<GraphicDefinitions>()
@@ -213,18 +224,51 @@ object Main {
                 val dependencies = listOf("definitions.items", "definitions.npcs", "definitions.objects", "definitions.animations", "definitions.graphics").flatMap { files.list(Settings[it]) }
                 Tables.load(paths, files.snapshot("tables", paths, dependencies))
             }
-            single(createdAtStart = true) { GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
-            single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
+            single(createdAtStart = true) {
+                val paths = files.list(Settings["definitions.graphics"])
+                files.full("graphics", paths).restoreOrLoad(GraphicDefinitions::restoreDefinitions, GraphicDefinitions::saveDefinitions) {
+                    GraphicDefinitions.init(GraphicDecoder().load(cache)).load(paths)
+                }
+                GraphicDefinitions
+            }
+            single(createdAtStart = true) {
+                val paths = files.list(Settings["definitions.interfaces"])
+                val types = files.find(Settings["definitions.interfaces.types"])
+                files.full("interfaces", paths + types).restoreOrLoad(InterfaceDefinitions::restoreDefinitions, InterfaceDefinitions::saveDefinitions) {
+                    InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(paths, types)
+                }
+                InterfaceDefinitions
+            }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()
-                InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
+                val paths = files.list(Settings["definitions.inventories"])
+                val shops = files.list(Settings["definitions.shops"])
+                // Inventories store the ids of the items they contain
+                val items = files.list(Settings["definitions.items"])
+                files.full("inventories", paths + shops, items).restoreOrLoad(InventoryDefinitions::restoreDefinitions, InventoryDefinitions::saveDefinitions) {
+                    InventoryDefinitions.init(InventoryDecoder().load(cache)).load(paths, shops)
+                }
+                InventoryDefinitions
             }
-            single(createdAtStart = true) { StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"])) }
-            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
+            single(createdAtStart = true) {
+                val path = files.find(Settings["definitions.structs"])
+                files.full("structs", listOf(path)).restoreOrLoad(StructDefinitions::restoreDefinitions, StructDefinitions::saveDefinitions) {
+                    StructDefinitions.init(StructDecoder().load(cache)).load(path)
+                }
+                StructDefinitions
+            }
+            single(createdAtStart = true) {
+                val snapshot = files.full("quick_chat", emptyList())
+                snapshot?.let { QuickChatPhraseDefinitions.restore(it) } ?: QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load().also { phrases -> snapshot?.let(phrases::save) }
+            }
             single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
             single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
             single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
-            single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
+            single(createdAtStart = true) {
+                val path = files.find(Settings["definitions.fonts"])
+                val snapshot = files.full("fonts", listOf(path))
+                snapshot?.let { FontDefinitions.restore(it) } ?: FontDefinitions(FontDecoder().load(cache)).load(path).also { fonts -> snapshot?.let(fonts::save) }
+            }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()
                 ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"]))
