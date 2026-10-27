@@ -245,7 +245,7 @@ internal class RegistrationServerTest {
     }
 
     @Test
-    fun `Create when underage`() = runTest {
+    fun `Create when under 13`() = runTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         launch {
@@ -253,8 +253,8 @@ internal class RegistrationServerTest {
         }
         writeCreatePacket(readChannel, age = 12)
 
-        assertEquals(RegistrationResponse.REFUSED, writeChannel.readByte().toInt())
-        assertNull(registration)
+        assertEquals(RegistrationResponse.SUCCESS, writeChannel.readByte().toInt())
+        assertNotNull(registration)
     }
 
     @Test

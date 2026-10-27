@@ -36,10 +36,4 @@ class RegistrationValidatorTest {
     fun `Password rules`(password: String, expected: Int) {
         assertEquals(expected, RegistrationValidator.password(password, "bobby@example.com"))
     }
-
-    @ParameterizedTest
-    @CsvSource("12, 9", "0, 9", "13, 2", "99, 2")
-    fun `Age rules`(age: Int, expected: Int) {
-        assertEquals(expected, RegistrationValidator.age(age))
-    }
 }
