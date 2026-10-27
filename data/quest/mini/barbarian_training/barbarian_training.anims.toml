@@ -32,9 +32,11 @@ id = 10990
 [smith_barbarian_anvil]
 id = 6712
 
-# TODO confirm anim, 6709 is the wrong loop and 6704 shares its frames
 [barehand_fishing]
-id = 6704
+id = 9980
+
+[barehand_miss]
+id = 14723
 
 # Knife in hand
 [gut_fish]
