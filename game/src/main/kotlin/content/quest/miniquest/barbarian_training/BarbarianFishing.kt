@@ -137,32 +137,42 @@ class BarbarianFishing : Script {
     }
 
     /**
-     * Cutting leaping fish open always gives roe or caviar but only sometimes leaves usable offcuts.
+     * Cutting leaping fish open for roe or caviar gets more reliable with Cooking level, and a successful cut can also leave usable offcuts.
      */
     fun Player.gut(fish: String, amount: Int) {
         if (amount <= 0 || !inventory.contains("knife") || !inventory.contains(fish)) {
             return
         }
         gutFish(fish, inventory.indexOf(fish))
-        weakQueue("gut_fish", 2) {
+        weakQueue("gut_fish", 3) {
             gut(fish, amount - 1)
         }
     }
 
     fun Player.gutFish(fish: String, slot: Int) {
-        val (eggs, xp, offcutChance) = when (fish) {
-            "leaping_trout" -> Triple("roe", 10.0, 50)
-            "leaping_salmon" -> Triple("roe", 10.0, 75)
-            "leaping_sturgeon" -> Triple("caviar", 15.0, 83)
+        // Trout succeeds level/150 times; salmon and sturgeon level/80 so never fail from 80 Cooking
+        val (eggs, xp, guaranteed) = when (fish) {
+            "leaping_trout" -> Triple("roe", 10.0, 150)
+            "leaping_salmon" -> Triple("roe", 10.0, 80)
+            "leaping_sturgeon" -> Triple("caviar", 15.0, 80)
             else -> return
         }
         if (!inventory.remove(slot, fish)) {
             return
         }
+        if (random.nextInt(guaranteed) >= levels.get(Skill.Cooking)) {
+            message("You fail to cut the fish properly.", ChatType.Filter)
+            return
+        }
         inventory.add(eggs)
         exp(Skill.Cooking, xp)
-        message("You cut open the fish and extract some ${if (eggs == "roe") "roe" else "caviar"}.", ChatType.Filter)
-        if (random.nextInt(100) < offcutChance) {
+        message("You cut open the fish and extract some $eggs.", ChatType.Filter)
+        val (chance, out) = when (fish) {
+            "leaping_trout" -> 1 to 2
+            "leaping_salmon" -> 3 to 4
+            else -> 5 to 6
+        }
+        if (random.nextInt(out) < chance) {
             inventory.add("fish_offcuts")
             message("You also find some usable fish offcuts.", ChatType.Filter)
         }
