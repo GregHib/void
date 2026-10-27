@@ -91,7 +91,7 @@ class Fishing : Script {
             val tackles = spot.itemList("${option.lowercase()}_tackle")
             // The ibis and granite lobster spear fish themselves, standing in for a harpoon.
             val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) || (tackle == "harpoon" && player.familiarActsAsHarpoon()) }
-                ?: if (option == "Harpoon" && player.barbarianTrainingStarted("barehand")) BAREHAND else null
+                ?: if (option == "Harpoon" && player.barbarianTrainingStarted("barehand") && !player["barbarian_fishing_default", false]) BAREHAND else null
             if (tackle == null) {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
                 break@fishing
