@@ -5,8 +5,8 @@ import KoinMock
 import containsMessage
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare

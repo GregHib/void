@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.CanoeDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Direction
 
-class Canoes(val stations: CanoeDefinitions) : Script {
+class Canoes : Script {
 
     init {
         objectOperate("Chop-down", "canoe_station") { (target) ->
@@ -156,13 +156,13 @@ class Canoes(val stations: CanoeDefinitions) : Script {
                 }
             }
             canoeTravel(canoe, station, destination)
-            val definition = stations.get(destination)
-            tele(definition.destination)
+            val row = Rows.getOrNull("canoe_stations.${destination}") ?: return@objectOperate
+            tele(row.tile("destination"))
             set("canoe_state_$station", "tree")
             set("canoe_state_$destination", "tree")
-            GameObjects.add("a_sinking_canoe_$canoe", tile = definition.sink, rotation = 1, ticks = 3)
+            GameObjects.add("a_sinking_canoe_$canoe", tile = row.tile("sink"), rotation = 1, ticks = 3)
             sound("canoe_sink")
-            message(definition.message, type = ChatType.Filter)
+            message(row.string("message"), type = ChatType.Filter)
         }
     }
 

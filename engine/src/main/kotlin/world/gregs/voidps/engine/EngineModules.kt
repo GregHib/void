@@ -96,7 +96,6 @@ fun engineLoaders(): List<Loader<*>> = listOf(
     PrayerLoader,
     DiangoCodeLoader,
     HuntModeLoader,
-    CanoeLoader,
     MapLoader,
 )
 
@@ -133,5 +132,4 @@ fun definitionsModule() = module {
     single { PrayerLoader.instance }
     single { DiangoCodeLoader.instance }
     single { HuntModeLoader.instance }
-    single { CanoeLoader.instance }
 }
