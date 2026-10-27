@@ -1,11 +1,12 @@
 package content.area.karamja.shilo_village
 
 import WorldTest
+import dialogueOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
+import skipDialogues
 import walk
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
@@ -13,14 +14,31 @@ import world.gregs.voidps.type.Tile
 class ShiloVillageGatesTest : WorldTest() {
 
     @Test
-    fun `Broken cart is removed so the village can be entered`() {
-        assertNull(GameObjects.findOrNull(Tile(2877, 2951), "broken_cart_shilo_village"))
-        val player = createPlayer(Tile(2881, 2952))
+    fun `Climb over the broken cart into the village`() {
+        val player = createPlayer(Tile(2880, 2952))
+        val cart = GameObjects.find(Tile(2877, 2951), "broken_cart_shilo_village")
 
-        player.walk(Tile(2876, 2952))
-        tick(6)
+        player.objectOption(cart, "Look-at")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        tick(3)
 
         assertEquals(Tile(2876, 2952), player.tile)
+    }
+
+    @Test
+    fun `Climb back over the broken cart`() {
+        val player = createPlayer(Tile(2876, 2952))
+        val cart = GameObjects.find(Tile(2877, 2951), "broken_cart_shilo_village")
+
+        player.objectOption(cart, "Search")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        tick(3)
+
+        assertEquals(Tile(2880, 2952), player.tile)
     }
 
     @Test
