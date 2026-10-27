@@ -41,7 +41,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
         val configs = setOf(
             "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
             "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings", "accounts",
-            "enums", "structs", "hunt_modes", "weapon_styles", "weapon_animations", "ammo", "canoes", "item_spawns",
+            "enums", "structs", "hunt_modes", "weapon_styles", "weapon_animations", "ammo", "canoes", "item_spawns", "nav",
         )
         adminCommand(
             "reload",
@@ -186,6 +186,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
             alias("drop_tables", "drops", "drop_tables")
             alias("client_scripts", "cs2", "cs2s", "client_scripts")
             alias("tables", "tables", "rows", "dbs", "spells")
+            alias("nav_edges", "nav", "nav_graph", "nav_edges", "navigation", "ai_graph")
         }
     }
 }

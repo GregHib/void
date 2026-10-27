@@ -1,7 +1,6 @@
 import content.bot.BotManager
 import content.bot.behaviour.NavigationEdgeLoader
 import content.bot.behaviour.NavigationGraphLoader
-import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.chat.BotChatModel
 import content.entity.obj.ObjectTeleportLoader
 import content.entity.obj.ship.CharterShipsLoader
@@ -97,5 +96,4 @@ fun gameDefinitionsModule() = module {
     single { FairyRingCodesLoader.instance }
     single { CharterShipsLoader.instance }
     single { FarmingDefinitionsLoader.instance }
-    single<NavigationGraph> { NavigationGraphLoader.graph }
 }

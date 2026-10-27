@@ -44,16 +44,10 @@ object Main {
     lateinit var server: GameServer
         private set
 
-    /** The loaders of every definition and config, and the results of the last time they ran */
-    lateinit var graph: LoaderGraph
-        private set
+    private lateinit var graph: LoaderGraph
     private lateinit var loaded: Map<Loader<*>, Any>
     private lateinit var cache: Cache
 
-    /**
-     * Loads [name] and everything that depends on it again.
-     * @return the names of the loaders which were reloaded.
-     */
     fun reload(name: String, files: ConfigFiles): List<String> {
         val (reloaded, results) = graph.reload(name, files, cache, loaded)
         loaded = results
