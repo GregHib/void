@@ -27,22 +27,22 @@ id = 1193
 id = 5108
 
 [barehand_shark]
-id = 6705
-
-[barehand_shark_2]
 id = 6706
 
-[barehand_swordfish]
-id = 6707
+[barehand_shark_2]
+id = 6705
 
-[barehand_swordfish_2]
+[barehand_swordfish]
 id = 6708
 
+[barehand_swordfish_2]
+id = 6707
+
 [barehand_tuna]
-id = 6710
+id = 6711
 
 [barehand_tuna_2]
-id = 6711
+id = 6710
 
 [fish_crayfish_cage]
 id = 10009

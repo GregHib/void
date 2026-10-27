@@ -32,9 +32,13 @@ id = 10990
 [smith_barbarian_anvil]
 id = 6712
 
-# TODO confirm anim
+# TODO confirm anim, 6709 is the wrong loop and 6704 shares its frames
 [barehand_fishing]
-id = 6709
+id = 6704
+
+# Knife in hand
+[gut_fish]
+id = 6702
 
 # TODO confirm pyre carving anims (from 2009scape)
 [carve_pyre_rune]
