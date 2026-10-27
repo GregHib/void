@@ -1,5 +1,4 @@
-# TODO confirm bow lighting anims (from 2009scape)
-# Each lighting animation holds a different bow model (items 11306-11319 and 14535)
+# Each lighting animation holds its bow, recoloured for the wood (items 11306-11312 match each bow's colours, 11319 seercull, 14535 sacred clay)
 [light_fire_training_bow]
 id = 6713
 
