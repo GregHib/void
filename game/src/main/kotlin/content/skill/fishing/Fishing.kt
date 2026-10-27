@@ -73,6 +73,7 @@ class Fishing : Script {
         player.closeDialogue()
         val tile = target.tile
         var first = true
+        var barehandTicks = 0
         fishing@ while (true) {
             if (player.inventory.isFull()) {
                 player.message("Your inventory is too full to hold any more fish.")
@@ -131,6 +132,13 @@ class Fishing : Script {
             if (first) {
                 first = false
             }
+            // Barehand attempts take longer than a harpoon but catch fish at the same rate, so roll once for every harpoon attempt's worth of ticks
+            var rolls = 1
+            if (tackle == BAREHAND) {
+                barehandTicks += BAREHAND_ATTEMPT_TICKS
+                rolls = barehandTicks / HARPOON_ATTEMPT_TICKS
+                barehandTicks -= rolls * HARPOON_ATTEMPT_TICKS
+            }
             var caught = false
             for (item in fish) {
                 val row = Rows.getOrNull("fishing.$item") ?: continue
@@ -145,7 +153,7 @@ class Fishing : Script {
                 if (tackle == BAREHAND && (levels == null || player.levels.get(Skill.Fishing) < levels.first || player.levels.get(Skill.Strength) < levels.second)) {
                     continue
                 }
-                if (level >= requiredLevel && success(level + player.familiarBoost(Skill.Fishing), chance)) {
+                if (level >= requiredLevel && (0 until rolls).any { success(level + player.familiarBoost(Skill.Fishing), chance) }) {
                     if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
@@ -194,6 +202,10 @@ class Fishing : Script {
 
     companion object {
         private const val BAREHAND = "barehand"
+        private const val HARPOON_ATTEMPT_TICKS = 5
+
+        // Reaching into the water then pulling out a fish or wiping hands off
+        private const val BAREHAND_ATTEMPT_TICKS = 9
     }
 
     fun bigCatch(catch: String): Boolean = when {
