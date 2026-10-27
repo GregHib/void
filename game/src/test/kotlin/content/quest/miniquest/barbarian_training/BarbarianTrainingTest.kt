@@ -420,7 +420,7 @@ internal class BarbarianTrainingTest : WorldTest() {
     fun `Whirlpool only asks for confirmation the first time`() {
         val player = trainee(Tile(2511, 3516))
         player["barbarian_training_pyre"] = BarbarianTraining.STARTED
-        player["ancient_cavern_entered"] = true
+        player["barbarian_training_tried_whirlpool"] = true
         val whirlpool = createObject("ancient_cavern_whirlpool", Tile(2510, 3506))
 
         player.objectOption(whirlpool, "Dive in")

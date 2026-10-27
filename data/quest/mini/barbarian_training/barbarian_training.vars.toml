@@ -1,4 +1,4 @@
-# Otto's trainees are only asked to confirm the first time they dive into the whirlpool
-[ancient_cavern_entered]
+# Whether the player has spoken to Otto about their barbarian blood
+[barbarian_training_started]
 format = "boolean"
 persist = true

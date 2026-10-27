@@ -1,18 +1,17 @@
 # Barbarian Training is stored in varp 1023. The client only reads 3757, 3761, 3763 and 3764 (task and item
 # requirement scripts); the rest are server-only. Each section goes 0 = not told, 1 = told by Otto, 2 = task done, 3 = reported back.
+# TODO confirm the 0-3 stage values, only "> 0" (and hasta ">= 2") are checked by the client
 
 [barbarian_training_barehand]
 id = 3757
 format = "int"
 persist = true
 
-# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_rod]
 id = 3758
 format = "int"
 persist = true
 
-# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_bow]
 id = 3759
 format = "int"
@@ -23,7 +22,6 @@ id = 3761
 format = "int"
 persist = true
 
-# TODO confirm what this varbit holds, the client never reads it
 [barbarian_training_spear]
 id = 3762
 format = "int"
@@ -41,14 +39,13 @@ id = 3764
 format = "int"
 persist = true
 
-# TODO confirm what this varbit holds, the client never reads it
-[barbarian_training_started]
+# Whether the player has dived into the whirlpool before, so Otto's trainees are only asked to confirm once
+[barbarian_training_tried_whirlpool]
 id = 3765
 format = "boolean"
 persist = true
 
 # Bones left to bury with the pyre ship prayer bonus
-# TODO confirm what this varbit holds, the client never reads it
 [barbarian_pyre_bones]
 id = 3767
 format = "int"
