@@ -56,7 +56,8 @@ class Ammo : Script {
             return false
         }
         val style = Tables.get("weapon_styles").rows().getOrNull(player.weapon.def["weapon_style", 0])
-        val group = Tables.getOrNull("ammo_group")?.rows()?.getOrNull(player.weapon.def["ammo_group", -1])
+        val groupId = player.weapon.def["ammo_group", -1]
+        val group = Tables.getOrNull("ammo_groups")?.rows()?.firstOrNull { it.int("id") == groupId }
         val slot = when (style?.rowId) {
             "pie", "chinchompa", "thrown" -> EquipSlot.Weapon
             "crossbow", "fixed_device", "salamander" -> EquipSlot.Ammo
