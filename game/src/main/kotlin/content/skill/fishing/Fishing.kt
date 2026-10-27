@@ -91,7 +91,7 @@ class Fishing : Script {
             var bait: String? = null
             var required: String? = null
             for (fish in fish) {
-                if ((Tables.intOrNull("fishing.$fish.level") ?: 0) > player.levels.get(Skill.Fishing)) {
+                if (Tables.int("fishing.$fish.level") > player.levels.get(Skill.Fishing)) {
                     continue
                 }
                 val b = Tables.item("fishing.$fish.bait")

@@ -72,10 +72,6 @@ bait = ["raw_karambwan"]
 bait_tackle = ["karambwan_vessel"]
 bait = ["raw_karambwan"]
 
-[.fishing_spot_braindeath_island]
-bait_tackle = ["fishbowl_and_net"]
-bait = ["sluglings", "karamthulhu"]
-
 [.fishing_spot_cage_harpoon_catherby]
 cage = ["raw_lobster"]
 harpoon = ["raw_swordfish", "raw_tuna"]
@@ -120,11 +116,11 @@ net = ["raw_anchovies", "raw_shrimps"]
 
 [.fishing_spot_dorgesh_kaan_agility_course]
 net = ["frog_spawn"]
-bait = ["slimy_eel", "raw_cave_eel"]
+bait = ["raw_cave_eel", "slimy_eel"]
 
 [.fishing_spot_dorgesh_kaan_agility_course_2]
 net = ["frog_spawn"]
-bait = ["slimy_eel", "raw_cave_eel"]
+bait = ["raw_cave_eel", "slimy_eel"]
 
 [.fishing_spot_entrana_net]
 net = ["raw_anchovies", "raw_shrimps"]
@@ -145,11 +141,11 @@ harpoon = ["raw_swordfish", "raw_tuna"]
 
 [.fishing_spot_lumbridge_swamp_caves]
 net = ["frog_spawn"]
-bait = ["slimy_eel", "raw_cave_eel"]
+bait = ["raw_cave_eel", "slimy_eel"]
 
 [.fishing_spot_lumbridge_swamp_caves_2]
 net = ["frog_spawn"]
-bait = ["slimy_eel", "raw_cave_eel"]
+bait = ["raw_cave_eel", "slimy_eel"]
 
 [.fishing_spot_mudskipper_point]
 net = ["raw_anchovies", "raw_shrimps"]
@@ -225,7 +221,7 @@ bait = ["raw_pike"]
 lure = ["raw_rainbow_fish", "raw_salmon", "raw_trout"]
 
 [.fishing_spot_meiyerditch_tunnels]
-bait = ["slimy_eel", "raw_cave_eel"]
+bait = ["raw_cave_eel", "slimy_eel"]
 
 [.fishing_spot_mort_myre_swamp]
 bait = ["slimy_eel"]
