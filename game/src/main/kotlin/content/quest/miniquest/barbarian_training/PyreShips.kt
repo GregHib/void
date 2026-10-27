@@ -40,6 +40,10 @@ class PyreShips(val drops: DropTables) : Script {
     )
 
     val carving = mapOf(
+        "inferno_adze" to "carve_pyre_inferno_adze",
+        "volatile_clay_hatchet" to "carve_pyre_volatile_clay",
+        "sacred_clay_hatchet" to "carve_pyre_sacred_clay",
+        "dragon_hatchet" to "carve_pyre_dragon",
         "rune_hatchet" to "carve_pyre_rune",
         "adamant_hatchet" to "carve_pyre_adamant",
         "mithril_hatchet" to "carve_pyre_mithril",
@@ -91,7 +95,6 @@ class PyreShips(val drops: DropTables) : Script {
             }
             val (logId, pyre) = log
             face(target)
-            // TODO confirm carving anims (from 2009scape) and find the dragon hatchet one
             carving[hatchet.id]?.let { anim(it) }
             delay(4)
             inventory.transaction {
