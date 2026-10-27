@@ -94,4 +94,5 @@ tradeable = false
 weight = 0.01
 destroy = "I can obtain another from Otto."
 examine = "A record of Otto's instructions to me."
+book = "barbarian_skills"
 kept = "Vanish"
