@@ -251,7 +251,7 @@ combat_level = 7
 npc = "mithril_dragon"
 combat_level = 100
 # The Ancient Cavern can only be entered after Barbarian Training's pyre ships
-variable = "barbarian_training_pyre_unlocked"
+variable = "barbarian_training_pyre"
 
 [.monkeys]
 npc = "monkey_brown"

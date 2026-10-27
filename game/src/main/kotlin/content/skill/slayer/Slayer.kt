@@ -155,7 +155,7 @@ private fun hasRequirements(player: Player, row: Int): Boolean {
     // Tasks unlocked by a reward or by owning an item; either is enough when a task lists both
     val variable = Tables.stringOrNull("slayer_tasks.$category.variable")
     val item = Tables.stringOrNull("slayer_tasks.$category.item")
-    if ((variable != null || item != null) && !(variable != null && player[variable, false]) && !(item != null && player.ownsItem(item))) {
+    if ((variable != null || item != null) && !(variable != null && player.unlocked(variable)) && !(item != null && player.ownsItem(item))) {
         return false
     }
     val quest = Tables.stringOrNull("slayer_tasks.$category.quest") ?: return true
@@ -191,4 +191,13 @@ fun completeAssignment(player: Player) {
     } else {
         player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
     }
+}
+
+/**
+ * Task unlocks are either reward booleans or training stages where anything above zero counts
+ */
+private fun Player.unlocked(variable: String): Boolean = when (val value = get<Any>(variable)) {
+    is Boolean -> value
+    is Int -> value > 0
+    else -> false
 }
