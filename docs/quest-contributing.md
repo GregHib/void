@@ -1,16 +1,18 @@
 # Contributing a quest: Vampire Slayer
 
-A quest is ordinary server content. It needs no SDK or client-specific hooks.
+A quest is ordinary server content built on the existing engine APIs.
 Vampire Slayer provides a compact example of dialogue, persistent state,
 world objects, a personal boss, a journal and a one-time reward.
 
 ## Files to work on
 
-- `game/src/main/kotlin/content/quest/free/vampire_slayer/VampireSlayer.kt`:
-  Morgan's conversation, Harlow's quest conversation, garlic, the coffin,
-  Count Draynor's lifecycle and reward, and quest journal text.
+- `game/src/main/kotlin/content/quest/free/vampire_slayer/`: focused scripts for
+  Morgan, the garlic drawers, the coffin, Count Draynor and the quest journal.
+  Each script registers handlers in `init` and keeps its behavior in private
+  member methods. The journal and boss share the tools check through the
+  Count's companion object.
 - `game/src/main/kotlin/content/area/misthalin/varrock/blue_moon_inn/DrHarlow.kt`:
-  delegates active-quest dialogue before retaining his ordinary drinking chat.
+  owns both quest advice and his ordinary drinking conversation.
 - `data/quest/free/vampyre_slayer/`: existing item/NPC definitions plus the
   quest's varbit, garlic drawers and Count combat definition. The data folder
   keeps its existing spelling; the canonical state key is `vampire_slayer`.
@@ -22,7 +24,10 @@ world objects, a personal boss, a journal and a one-time reward.
   tests exercise normal NPC/object instructions against the prepared cache.
 
 Classes implementing `Script` are discovered by the build's generated script
-metadata. Add handlers in `init`; do not construct scripts during gameplay.
+metadata. Keep `init` limited to handler registration; put behavior in private
+member methods and use companion helpers only where the same content shares
+logic. Do not construct scripts during gameplay. Follow the guidelines linked
+from the repository AGENTS.md.
 Run a normal build and deploy the resulting server and data together.
 
 ## Design the state machine first
