@@ -13,11 +13,26 @@ class Books {
 
     private lateinit var types: Map<String, String>
     private lateinit var books: Map<String, List<List<String>>>
-    private lateinit var titles: Map<String, String>
+    private var titles: MutableMap<String, String> = Object2ObjectOpenHashMap()
 
     fun type(name: String) = types[name] ?: "normal"
 
+    private val generators = Object2ObjectOpenHashMap<String, (Player) -> List<List<String>>>()
+
     fun get(name: String) = books.getOrDefault(name, emptyList())
+
+    /**
+     * Pages for [name], or generated for the [player] if the book changes with their progress
+     */
+    fun get(player: Player, name: String) = generators[name]?.invoke(player) ?: get(name)
+
+    /**
+     * Generate the pages of book [name] per player
+     */
+    fun generate(name: String, title: String, pages: (Player) -> List<List<String>>) {
+        titles[name] = title
+        generators[name] = pages
+    }
 
     fun title(name: String) = titles.getOrDefault(name, "")
 
@@ -52,7 +67,7 @@ class Books {
                 }
             }
             this.types = types
-            this.titles = titles
+            this.titles.putAll(titles)
             this.books = books
             titles.size
         }
