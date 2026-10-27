@@ -43,9 +43,7 @@ sealed interface ColumnReader<T : Any> {
     object ReaderDirection : ColumnReader<Direction> {
         override val type = ColumnType.ColumnDirection
         override fun list() = mutableListOf<Direction>()
-        override fun read(reader: ConfigReader): Direction {
-            return Direction.valueOf(reader.string().uppercase())
-        }
+        override fun read(reader: ConfigReader): Direction = Direction.valueOf(reader.string().uppercase())
     }
 
     object ReaderIntRange : ColumnReader<IntRange> {

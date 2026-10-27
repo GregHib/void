@@ -285,10 +285,10 @@ class TzhaarFightCave(
                 player.npc<Angry>("tzhaar_mej_jal", "Look out, here comes TzTok-Jad!")
             }
         }
-        val ids = Tables.npcList("fight_cave_waves.wave_${wave}.npcs")
+        val ids = Tables.npcList("fight_cave_waves.wave_$wave.npcs")
         player["fight_cave_remaining"] = ids.sumOf { if (it == "tz_kek" || it == "tz_kek_spawn_point") 2 else 1 }
         val rotation = player["fight_cave_rotation", 1]
-        val directions = Tables.dirList("fight_cave_waves.wave_${wave}.rotation_${rotation}")
+        val directions = Tables.dirList("fight_cave_waves.wave_$wave.rotation_$rotation")
         val offset = player.instanceOffset()
         val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
         for (i in ids.indices) {
