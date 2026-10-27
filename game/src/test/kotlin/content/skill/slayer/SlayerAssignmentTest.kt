@@ -55,7 +55,7 @@ class SlayerAssignmentTest : WorldTest() {
 
         assertFalse("mithril_dragons" in player.possibleTasks("kuradal"))
 
-        player["barbarian_training_pyre_unlocked"] = true
+        player["barbarian_training_pyre"] = 1
         assertTrue("mithril_dragons" in player.possibleTasks("kuradal"))
     }
 
