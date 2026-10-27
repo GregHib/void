@@ -1,8 +1,11 @@
 package content.area.kandarin.baxtorian_falls.ancient_cavern
 
 import content.entity.combat.hit.directHit
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.quest.miniquest.barbarian_training.barbarianTrainingStarted
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
@@ -22,6 +25,25 @@ import java.util.concurrent.TimeUnit
 class AncientCavern(val drops: DropTables) : Script {
     init {
         objectApproach("Dive in", "ancient_cavern_whirlpool") {
+            if (follower != null) {
+                message("You must dismiss your follower before you can enter the whirlpool.")
+                return@objectApproach
+            }
+            if (barbarianTrainingStarted("pyre")) {
+                statement("You realise that you are about to attempt entry an unknown and potentially hideously dangerous place, with no known exits. Doughty barbarian warriors have entered, never to return.")
+                var enter = false
+                choice("Are you really sure you wish to enter?") {
+                    option("Yes, I wish to enter the unknown.") {
+                        enter = true
+                    }
+                    option("No, I fear the unknown perils.") {
+                        message("You decide that discretion is the better part of valour.")
+                    }
+                }
+                if (!enter) {
+                    return@objectApproach
+                }
+            }
             walkToDelay(Tile(tile.x.coerceIn(2511..2512), 3516))
             face(Direction.SOUTH)
             delay(1)
