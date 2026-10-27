@@ -36,9 +36,22 @@ class SnapshotFormatTest {
         val nested: Nested?,
         val ints: IntArray,
     ) {
-        override fun equals(other: Any?) = other is Sample && flag == other.flag && byte == other.byte && short == other.short && int == other.int && long == other.long &&
-            float == other.float && double == other.double && char == other.char && text == other.text && maybe == other.maybe && colour == other.colour &&
-            list == other.list && map == other.map && nested == other.nested && ints.contentEquals(other.ints)
+        override fun equals(other: Any?) = other is Sample &&
+            flag == other.flag &&
+            byte == other.byte &&
+            short == other.short &&
+            int == other.int &&
+            long == other.long &&
+            float == other.float &&
+            double == other.double &&
+            char == other.char &&
+            text == other.text &&
+            maybe == other.maybe &&
+            colour == other.colour &&
+            list == other.list &&
+            map == other.map &&
+            nested == other.nested &&
+            ints.contentEquals(other.ints)
 
         override fun hashCode() = int
     }
