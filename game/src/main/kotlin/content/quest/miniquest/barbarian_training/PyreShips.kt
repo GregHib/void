@@ -57,20 +57,24 @@ class PyreShips(val drops: DropTables) : Script {
             }
             val spirit = NPCs.findOrNull(tile.regionLevel) { it.id == "ferocious_barbarian_spirit" && it["owner", ""] == accountName }
             if (spirit != null) {
+                // TODO confirm message (from 2009scape)
                 message("You must defeat the barbarian spirit first.")
                 return@objectOperate
             }
             val bones = listOf("chewed_bones", "mangled_bones").firstOrNull { inventory.contains(it) }
             if (bones == null) {
+                // TODO confirm message (from 2009scape)
                 message("You need chewed bones or mangled bones in order to do this.")
                 return@objectOperate
             }
             val hatchet = Hatchet.best(this)
             if (hatchet == null) {
+                // TODO confirm message
                 message("You need a hatchet in order to do this.")
                 return@objectOperate
             }
             if (!inventory.contains("tinderbox") && !BOWS.any { carriesItem(it) }) {
+                // TODO confirm message
                 message("You need a tinderbox or a bow in order to do this.")
                 return@objectOperate
             }
@@ -87,6 +91,7 @@ class PyreShips(val drops: DropTables) : Script {
             }
             val (logId, pyre) = log
             face(target)
+            // TODO confirm carving anims (from 2009scape) and find the dragon hatchet one
             carving[hatchet.id]?.let { anim(it) }
             delay(4)
             inventory.transaction {
@@ -99,9 +104,11 @@ class PyreShips(val drops: DropTables) : Script {
             exp(Skill.Crafting, pyre.crafting)
             exp(Skill.Firemaking, pyre.firemaking)
             if (bones == "chewed_bones") {
+                // TODO confirm how long the peaceful spirit stays
                 val npc = NPCs.add("peaceful_barbarian_spirit", target.tile, ticks = 5)
                 npc.face(this)
                 set("barbarian_pyre_bones", (get("barbarian_pyre_bones", 0) + pyre.bones).coerceAtMost(MAX_BLESSED_BONES))
+                // TODO confirm message (from 2009scape)
                 message("The ancient barbarian is laid to rest. Your future prayer training is blessed, as his spirit ascends to a glorious afterlife. Spirits drop an object into your pack.")
                 val reward = drops.get("peaceful_barbarian_spirit_drop_table")?.roll()?.firstOrNull()?.toItem()
                 if (reward != null) {
@@ -113,6 +120,7 @@ class PyreShips(val drops: DropTables) : Script {
                 npc.interactPlayer(this, "Attack")
             }
             // Replacing the site ends this interaction so it must come last
+            // TODO confirm the pyre object stages (carved log, boat, bones, lit) and their timings
             target.replace("pyre_boat_lit", ticks = 10)
         }
     }
