@@ -1,0 +1,4 @@
+# Otto's trainees are only asked to confirm the first time they dive into the whirlpool
+[ancient_cavern_entered]
+format = "boolean"
+persist = true
