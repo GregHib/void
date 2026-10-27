@@ -5,7 +5,6 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
@@ -31,7 +30,11 @@ class MapDefinitions(
     private val decoder = MapObjectsDecoder()
     private val rotationDecoder = MapObjectsRotatedDecoder()
 
-    fun load(configFiles: ConfigFiles, xteas: Map<Int, IntArray>? = null): MapDefinitions {
+    /**
+     * @param key changes whenever the cache, the object definitions or any setting which affects the maps does,
+     * the map files are only used if they were written with the same one.
+     */
+    fun load(key: Long? = null, xteas: Map<Int, IntArray>? = null): MapDefinitions {
         try {
             if (!Settings["storage.caching.active", false]) {
                 loadCache(xteas)
@@ -41,7 +44,8 @@ class MapDefinitions(
             File(path).mkdirs()
             val objectsFile = File("${path}${Settings["storage.caching.objects"]}")
             val collisionsFile = File("${path}${Settings["storage.caching.collisions"]}")
-            if (objectsFile.exists() && collisionsFile.exists() && !configFiles.cacheUpdate) {
+            val keyFile = File("${path}maps.key")
+            if (key != null && objectsFile.exists() && collisionsFile.exists() && keyFile.exists() && keyFile.readText() == key.toString()) {
                 val start = System.currentTimeMillis()
                 val zones = collisions.load(collisionsFile)
                 if (zones >= 0) {
@@ -51,10 +55,14 @@ class MapDefinitions(
                 }
                 Collisions.clear()
             }
+            keyFile.delete()
             loadCache(xteas)
             val start = System.currentTimeMillis()
             collisions.save(collisionsFile)
             GameObjects.save(objectsFile)
+            if (key != null) {
+                keyFile.writeText(key.toString())
+            }
             logger.info { "Cached maps in ${System.currentTimeMillis() - start}ms" }
             return this
         } catch (e: ArrayIndexOutOfBoundsException) {

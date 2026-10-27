@@ -1,10 +1,12 @@
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.obj.ObjectTeleports
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.core.module.Module
@@ -12,19 +14,16 @@ import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.LoaderGraph
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
@@ -45,11 +44,23 @@ object Main {
     lateinit var server: GameServer
         private set
 
+    private lateinit var graph: LoaderGraph
+    private lateinit var loaded: Map<Loader<*>, Any>
+    private lateinit var cache: Cache
+
+    fun reload(name: String, files: ConfigFiles): List<String> {
+        val (reloaded, results) = graph.reload(name, files, cache, loaded)
+        loaded = results
+        return reloaded
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
+        ContentLoader.preload()
         val settings = settings()
+        val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
@@ -59,7 +70,7 @@ object Main {
         AuditLog.info("login online")
 
         // Content
-        val configFiles = configFiles()
+        val configFiles = runBlocking { files.await() }
         try {
             preload(cache, configFiles)
         } catch (ex: Exception) {
@@ -111,16 +122,26 @@ object Main {
     }
 
     private fun preload(cache: Cache, configFiles: ConfigFiles) {
-        configFiles.update()
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            modules(
-                engineModule(configFiles),
-                gameModule(configFiles),
-                cache(cache, configFiles),
-            )
         }
-        engineLoad(configFiles)
+        this.cache = cache
+        graph = LoaderGraph(engineLoaders() + gameLoaders())
+        loaded = graph.run(configFiles, cache)
+        val modules = listOf(
+            engineModule(),
+            gameModule(configFiles),
+            definitionsModule(),
+            gameDefinitionsModule(),
+            module {
+                single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
+                single { loaded.getValue(MapLoader) as MapDefinitions }
+                single { cache }
+            },
+        )
+        GlobalContext.loadKoinModules(modules, createEagerInstances = false)
+        createEagerInstances(modules)
+        engineLoad()
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader().load()
         Wildcards.update(Settings["storage.wildcards"])
@@ -132,65 +153,16 @@ object Main {
         )
     }
 
-    private fun cache(cache: Cache, files: ConfigFiles): Module {
-        val members = Settings["world.members", false]
-        val module = module {
-            single(createdAtStart = true) {
-                get<ObjectDefinitions>()
-                MapDefinitions(CollisionDecoder(), cache).load(files)
-            }
-            single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"])) }
-            single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
-            single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"])) }
-            single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
-            single(createdAtStart = true) {
-                get<AnimationDefinitions>()
-                get<GraphicDefinitions>()
-                get<ItemDefinitions>()
-                get<InterfaceDefinitions>()
-                get<InventoryDefinitions>()
-                get<NPCDefinitions>()
-                get<StructDefinitions>()
-                get<ObjectDefinitions>()
-                get<Tables>()
-                EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
-            }
-            single(createdAtStart = true) {
-                get<AnimationDefinitions>()
-                get<GraphicDefinitions>()
-                get<ItemDefinitions>()
-                get<NPCDefinitions>()
-                get<ObjectDefinitions>()
-                get<VariableDefinitions>()
-                Tables.load(files.list(Settings["definitions.tables"]))
-            }
-            single(createdAtStart = true) { GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
-            single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
-            }
-            single(createdAtStart = true) { StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"])) }
-            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-            single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
-            single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
-            single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
-            single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"]))
-            }
-            single(createdAtStart = true) {
-                VariableDefinitions.load(files)
-            }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                DropTables().load(files.list(Settings["spawns.drops"]))
-            }
-            single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
-        }
-        return module
+    /**
+     * Creates all [modules] `createdAtStart` singletons in parallel.
+     * Dependencies must be requested with `get()` so koin can block until they're created.
+     */
+    private fun createEagerInstances(modules: List<Module>) = runBlocking(Dispatchers.Default) {
+        val koin = GlobalContext.get()
+        modules
+            .flatMap { it.eagerInstances }
+            .map { factory -> async { koin.get<Any>(factory.beanDefinition.primaryType, factory.beanDefinition.qualifier) } }
+            .awaitAll()
     }
 
     @Suppress("HttpUrlsUsage")

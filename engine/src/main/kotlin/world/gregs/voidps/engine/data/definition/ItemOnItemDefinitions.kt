@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.timedLoad
 
 class ItemOnItemDefinitions {
 
@@ -23,109 +22,112 @@ class ItemOnItemDefinitions {
 
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
+    fun install(state: Map<String, List<ItemOnItemDefinition>>) {
+        definitions = state
+    }
+
     fun load(paths: List<String>): ItemOnItemDefinitions {
-        timedLoad("item on item definition") {
-            val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
-            var count = 0
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        section() // ignored
-                        var skill: Skill? = null
-                        var level = 1
-                        var xp = 0.0
-                        val requires = ObjectArrayList<Item>()
-                        val oneOf = ObjectArrayList<Item>()
-                        val remove = ObjectArrayList<Item>()
-                        val add = ObjectArrayList<Item>()
-                        val fail = ObjectArrayList<Item>()
-                        var delay = 1
-                        var ticks = 0
-                        var chance: IntRange = Level.SUCCESS
-                        var type = "make"
-                        var animation = ""
-                        var graphic = ""
-                        var sound = ""
-                        var message = ""
-                        var failure = ""
-                        var requiresMessage = ""
-                        var question: String? = null
-                        var maximum: Int = -1
-                        var members: Boolean = false
+        install(parse(paths))
+        return this
+    }
 
-                        while (nextPair()) {
-                            val key = key()
-                            when (key) {
-                                "skill" -> skill = Skill.valueOf(string().toSentenceCase())
-                                "level" -> level = int()
-                                "xp" -> xp = double()
-                                "requires" -> itemList(requires)
-                                "one" -> itemList(oneOf)
-                                "remove" -> itemList(remove)
-                                "add" -> itemList(add)
-                                "fail" -> itemList(fail)
-                                "delay" -> delay = int()
-                                "ticks" -> ticks = int()
-                                "chance" -> chance = string().toIntRange()
-                                "type" -> type = string()
-                                "animation" -> animation = string()
-                                "graphic" -> graphic = string()
-                                "sound" -> sound = string()
-                                "message" -> message = string()
-                                "failure" -> failure = string()
-                                "requires_message" -> requiresMessage = string()
-                                "question" -> question = string()
-                                "maximum" -> maximum = int()
-                                "members" -> members = boolean()
-                                else -> throw IllegalArgumentException("Unexpected item on item key: '$key' ${exception()}")
-                            }
+    internal fun parse(paths: List<String>): Map<String, List<ItemOnItemDefinition>> {
+        val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    section() // ignored
+                    var skill: Skill? = null
+                    var level = 1
+                    var xp = 0.0
+                    val requires = ObjectArrayList<Item>()
+                    val oneOf = ObjectArrayList<Item>()
+                    val remove = ObjectArrayList<Item>()
+                    val add = ObjectArrayList<Item>()
+                    val fail = ObjectArrayList<Item>()
+                    var delay = 1
+                    var ticks = 0
+                    var chance: IntRange = Level.SUCCESS
+                    var type = "make"
+                    var animation = ""
+                    var graphic = ""
+                    var sound = ""
+                    var message = ""
+                    var failure = ""
+                    var requiresMessage = ""
+                    var question: String? = null
+                    var maximum: Int = -1
+                    var members: Boolean = false
+
+                    while (nextPair()) {
+                        val key = key()
+                        when (key) {
+                            "skill" -> skill = Skill.valueOf(string().toSentenceCase())
+                            "level" -> level = int()
+                            "xp" -> xp = double()
+                            "requires" -> itemList(requires)
+                            "one" -> itemList(oneOf)
+                            "remove" -> itemList(remove)
+                            "add" -> itemList(add)
+                            "fail" -> itemList(fail)
+                            "delay" -> delay = int()
+                            "ticks" -> ticks = int()
+                            "chance" -> chance = string().toIntRange()
+                            "type" -> type = string()
+                            "animation" -> animation = string()
+                            "graphic" -> graphic = string()
+                            "sound" -> sound = string()
+                            "message" -> message = string()
+                            "failure" -> failure = string()
+                            "requires_message" -> requiresMessage = string()
+                            "question" -> question = string()
+                            "maximum" -> maximum = int()
+                            "members" -> members = boolean()
+                            else -> throw IllegalArgumentException("Unexpected item on item key: '$key' ${exception()}")
                         }
+                    }
 
-                        val definition = ItemOnItemDefinition(
-                            skill = skill,
-                            level = level,
-                            xp = xp,
-                            requires = requires,
-                            one = oneOf,
-                            remove = remove,
-                            add = add,
-                            fail = fail,
-                            delay = delay,
-                            ticks = ticks,
-                            chance = chance,
-                            type = type,
-                            animation = animation,
-                            graphic = graphic,
-                            sound = sound,
-                            message = message,
-                            failure = failure,
-                            requiresMessage = requiresMessage,
-                            question = question ?: "How many would you like to $type?",
-                            maximum = maximum,
-                            members = members,
-                        )
-                        requires.addAll(definition.one)
-                        requires.addAll(definition.remove)
-                        for (a in requires.indices) {
-                            for (b in requires.indices) {
-                                if (a != b) {
-                                    val one = requires[a]
-                                    val two = requires[b]
-                                    val list = definitions.getOrPut(id(one, two)) { ObjectArrayList(2) }
-                                    if (!list.contains(definition)) {
-                                        list.add(definition)
-                                    }
+                    val definition = ItemOnItemDefinition(
+                        skill = skill,
+                        level = level,
+                        xp = xp,
+                        requires = requires,
+                        one = oneOf,
+                        remove = remove,
+                        add = add,
+                        fail = fail,
+                        delay = delay,
+                        ticks = ticks,
+                        chance = chance,
+                        type = type,
+                        animation = animation,
+                        graphic = graphic,
+                        sound = sound,
+                        message = message,
+                        failure = failure,
+                        requiresMessage = requiresMessage,
+                        question = question ?: "How many would you like to $type?",
+                        maximum = maximum,
+                        members = members,
+                    )
+                    requires.addAll(definition.one)
+                    requires.addAll(definition.remove)
+                    for (a in requires.indices) {
+                        for (b in requires.indices) {
+                            if (a != b) {
+                                val one = requires[a]
+                                val two = requires[b]
+                                val list = definitions.getOrPut(id(one, two)) { ObjectArrayList(2) }
+                                if (!list.contains(definition)) {
+                                    list.add(definition)
                                 }
                             }
                         }
-                        count++
                     }
                 }
             }
-            this.definitions = definitions
-            count
         }
-        return this
+        return definitions
     }
 
     private fun ConfigReader.itemList(items: MutableList<Item>) {

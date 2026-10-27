@@ -54,6 +54,7 @@ class GrandExchange(
     private val claims: MutableMap<Int, Claim> = mutableMapOf(),
     private val accounts: AccountDefinitions,
     private val storage: Storage,
+    private val loaded: Boolean = true,
 ) : Runnable {
 
     private val limits = BuyLimits()
@@ -163,6 +164,9 @@ class GrandExchange(
     }
 
     fun save() {
+        if (!loaded) {
+            return
+        }
         var start = System.currentTimeMillis()
         storage.savePriceHistory(history.history)
         logger.info { "Saved ${history.history.size} item ${"history".plural(history.history.size)} in ${System.currentTimeMillis() - start}ms" }

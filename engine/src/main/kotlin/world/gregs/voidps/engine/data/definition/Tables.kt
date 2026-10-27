@@ -6,7 +6,6 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
 import kotlin.collections.set
 
@@ -236,40 +235,43 @@ object Tables {
         loaded = false
     }
 
+    fun install(state: TablesState) {
+        definitions = state.definitions
+        loaded = true
+        Rows.set(state.rows, state.ids)
+    }
+
+    /**
+     * Parses [paths] and installs them straight away.
+     */
     fun load(paths: List<String>): Tables {
-        require(ItemDefinitions.loaded) { "Item definitions must be loaded before tables" }
-        require(ObjectDefinitions.loaded) { "Object definitions must be loaded before tables" }
-        require(NPCDefinitions.loaded) { "NPC definitions must be loaded before tables" }
-        require(VariableDefinitions.loaded) { "Variable definitions must be loaded before tables" }
-        require(AnimationDefinitions.loaded) { "Animation definitions must be loaded before tables" }
-        require(GraphicDefinitions.loaded) { "Graphic definitions must be loaded before tables" }
-        timedLoad("table config") {
-            val definitions = mutableMapOf<String, TableBuilder>()
-            val rows = mutableListOf<RowDefinition>()
-            val ids = mutableMapOf<String, Int>()
-            for (path in paths) {
-                Config.fileReader(path, 512) {
-                    try {
-                        while (nextSection()) {
-                            val stringId = section()
-                            if (stringId.contains(".")) {
-                                val table = stringId.substringBefore(".")
-                                readTableRow(this, definitions, rows, ids, table, stringId)
-                            } else {
-                                readTableHeader(this, definitions, stringId)
-                            }
+        install(parse(paths))
+        return this
+    }
+
+    internal fun parse(paths: List<String>): TablesState {
+        val definitions = mutableMapOf<String, TableBuilder>()
+        val rows = mutableListOf<RowDefinition>()
+        val ids = mutableMapOf<String, Int>()
+        for (path in paths) {
+            Config.fileReader(path, 512) {
+                try {
+                    while (nextSection()) {
+                        val stringId = section()
+                        if (stringId.contains(".")) {
+                            val table = stringId.substringBefore(".")
+                            readTableRow(this, definitions, rows, ids, table, stringId)
+                        } else {
+                            readTableHeader(this, definitions, stringId)
                         }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        error("Error reading table definition at ${exception()}")
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    error("Error reading table definition at ${exception()}")
                 }
             }
-            set(definitions.mapValues { it.value.build() }.toMap())
-            Rows.set(rows.toTypedArray(), ids)
-            size
         }
-        return this
+        return TablesState(definitions.mapValues { it.value.build() }.toMap(), rows.toTypedArray(), ids)
     }
 
     private fun readTableRow(reader: ConfigReader, definitions: MutableMap<String, TableBuilder>, rows: MutableList<RowDefinition>, ids: MutableMap<String, Int>, key: String, rowName: String) {

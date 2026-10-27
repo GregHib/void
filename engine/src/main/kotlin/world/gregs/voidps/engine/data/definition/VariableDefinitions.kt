@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
-import world.gregs.voidps.engine.timedLoad
 
 object VariableDefinitions {
 
@@ -38,59 +37,62 @@ object VariableDefinitions {
 
     fun getVarp(id: Int) = varpIds[id]
 
-    fun load(files: ConfigFiles) = load(
-        files.list(Settings["definitions.variables.players"]),
-        files.list(Settings["definitions.variables.bits"]),
-        files.list(Settings["definitions.variables.clients"]),
-        files.list(Settings["definitions.variables.strings"]),
-        files.list(Settings["definitions.variables.customs"]),
-    )
+    fun install(state: VariablesState) = set(state.definitions, state.varbits, state.varps)
 
-    fun load(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>): VariableDefinitions {
-        timedLoad("variable definition") {
-            val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
-            val varbitIds = Int2ObjectOpenHashMap<String>()
-            val varpIds = Int2ObjectOpenHashMap<String>()
-            val varcIds = Int2ObjectOpenHashMap<String>()
-            val varcStrIds = Int2ObjectOpenHashMap<String>()
-            for (file in players) {
-                load(file) { id, stringId, values, default, persist, transmit ->
-                    claim(definitions, stringId, file)
-                    claim(varpIds, "varp", id, stringId, file)
-                    definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
-                }
-            }
-            for (file in playerBits) {
-                load(file) { id, stringId, values, default, persist, transmit ->
-                    claim(definitions, stringId, file)
-                    claim(varbitIds, "varbit", id, stringId, file)
-                    definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
-                }
-            }
-            for (file in clients) {
-                load(file) { id, stringId, values, default, persist, transmit ->
-                    claim(definitions, stringId, file)
-                    claim(varcIds, "varc", id, stringId, file)
-                    definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
-                }
-            }
-            for (file in clientStrings) {
-                load(file) { id, stringId, _, default, persist, transmit ->
-                    claim(definitions, stringId, file)
-                    claim(varcStrIds, "varc string", id, stringId, file)
-                    definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
-                }
-            }
-            for (file in custom) {
-                load(file, requireId = false) { _, stringId, values, default, persist, _ ->
-                    claim(definitions, stringId, file)
-                    definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
-                }
-            }
-            set(definitions, varbitIds, varpIds)
-            this.definitions.size
-        }
+    fun load(files: ConfigFiles): VariableDefinitions {
+        install(
+            parse(
+                files.list(Settings["definitions.variables.players"]),
+                files.list(Settings["definitions.variables.bits"]),
+                files.list(Settings["definitions.variables.clients"]),
+                files.list(Settings["definitions.variables.strings"]),
+                files.list(Settings["definitions.variables.customs"]),
+            ),
+        )
         return this
+    }
+
+    fun parse(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>): VariablesState {
+        val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
+        val varbitIds = Int2ObjectOpenHashMap<String>()
+        val varpIds = Int2ObjectOpenHashMap<String>()
+        val varcIds = Int2ObjectOpenHashMap<String>()
+        val varcStrIds = Int2ObjectOpenHashMap<String>()
+        for (file in players) {
+            load(file) { id, stringId, values, default, persist, transmit ->
+                claim(definitions, stringId, file)
+                claim(varpIds, "varp", id, stringId, file)
+                definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
+            }
+        }
+        for (file in playerBits) {
+            load(file) { id, stringId, values, default, persist, transmit ->
+                claim(definitions, stringId, file)
+                claim(varbitIds, "varbit", id, stringId, file)
+                definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
+            }
+        }
+        for (file in clients) {
+            load(file) { id, stringId, values, default, persist, transmit ->
+                claim(definitions, stringId, file)
+                claim(varcIds, "varc", id, stringId, file)
+                definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
+            }
+        }
+        for (file in clientStrings) {
+            load(file) { id, stringId, _, default, persist, transmit ->
+                claim(definitions, stringId, file)
+                claim(varcStrIds, "varc string", id, stringId, file)
+                definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
+            }
+        }
+        for (file in custom) {
+            load(file, requireId = false) { _, stringId, values, default, persist, _ ->
+                claim(definitions, stringId, file)
+                definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
+            }
+        }
+        return VariablesState(definitions, varbitIds, varpIds)
     }
 
     /**
@@ -136,3 +138,9 @@ object VariableDefinitions {
         }
     }
 }
+
+internal const val VARP = 0
+internal const val VARBIT = 1
+internal const val VARC = 2
+internal const val VARC_STR = 3
+internal const val CUSTOM = 4
