@@ -16,9 +16,6 @@ id = 2388
 [strangedoor_open]
 id = 2410
 
-[smokepuff]
-id = 1930
-
 [zogre_writing]
 id = 1958
 
@@ -39,9 +36,6 @@ id = 915
 
 [zogre_axe_attack]
 id = 913
-
-[skelly_hit]
-id = 779
 
 [zogre_bell]
 id = 1959

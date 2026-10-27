@@ -1,6 +1,6 @@
 [spider]
 defend_anim = "spider_defend"
-defend_sound = "spider_defend"
+defend_sound = "sea_snake_hatchling_attack"
 death_anim = "spider_death"
 death_sound = "spider_death"
 

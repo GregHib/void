@@ -1,103 +1,116 @@
-[anchor]
+[weapon_anims]
+default = "string"
+defend = "string"
+slash = "string"
+chop = "string"
+lunge = "string"
+smash = "string"
+swipe = "string"
+pound = "string"
+pummel = "string"
+spike = "string"
+block = "string"
+
+[.anchor]
 default = "anchor_attack"
 defend = "anchor_defend"
 
-[dragon_dagger]
+[.dragon_dagger]
 slash = "dragon_dagger_slash"
 default = "dragon_dagger_attack"
 defend = "dragon_dagger_defend"
 
-[korasis_sword]
+[.korasis_sword]
 chop = "korasis_sword_chop"
 default = "korasis_sword_slash"
 defend = "korasis_sword_defend"
 
-[vestas_longsword]
+[.vestas_longsword]
 lunge = "vestas_longsword_lunge"
 default = "vestas_longsword_attack"
 defend = "vestas_longsword_defend"
 
-[banner]
+[.banner]
 default = "banner_attack"
 defend = "banner_defend"
 
-[boxing_gloves]
+[.boxing_gloves]
 default = "boxing_gloves_attack"
 defend = "boxing_gloves_defend"
 
-[dharoks_greataxe]
+[.dharoks_greataxe]
 smash = "dharoks_greataxe_smash"
 default = "dharoks_greataxe_attack"
 defend = "dharoks_greataxe_defend"
 
-[easter_carrot]
+[.easter_carrot]
 default = "easter_carrot_whack"
 
-[godsword]
+[.godsword]
 pound = "godsword_pound"
 pummel = "godsword_pummel"
 spike = "godsword_spike"
 block = "godsword_block"
 defend = "godsword_defend"
 
-[tzhaar_ket_om]
+[.tzhaar_ket_om]
 default = "tzhaar_ket_om_attack"
 defend = "tzhaar_ket_om_defend"
 
-[granite_maul]
+[.granite_maul]
 default = "granite_maul_attack"
 defend = "granite_maul_block"
 
-[guthans_warspear]
+[.guthans_warspear]
 swipe = "guthans_spear_swipe"
 default = "guthans_spear_attack"
 defend = "guthans_spear_defend"
 
-[mouse_toy]
+[.mouse_toy]
 default = "mouse_toy_attack"
 defend = "whip_defend"
 
-[torags_hammers]
+[.torags_hammers]
 default = "torags_hammers_attack"
 
-[veracs_flail]
+[.veracs_flail]
 default = "veracs_flail_attack"
 defend = "veracs_flail_defend"
 
-[zamorakian_spear]
+[.zamorakian_spear]
 lunge = "zamorakian_spear_lunge"
 swipe = "zamorakian_spear_swipe"
 pound = "zamorakian_spear_pound"
 block = "zamorakian_spear_lunge"
 defend = "zamorakian_spear_defend"
 
-[chinchompa]
+[.chinchompa]
 default = "chinchompa_short_fuse"
 
-[pie]
+[.pie]
 default = "mud_pie"
 
-[javelin]
+[.javelin]
 default = "throw_javelin"
 
-[dart]
+[.dart]
 default = "throw_dart"
 
-[knife]
+[.knife]
 default = "thrown_accurate"
 
-[bow]
+[.bow]
 default = "bow_accurate"
 
-[crossbow]
+[.crossbow]
 default = "crossbow_accurate"
 
-[karils_crossbow]
+[.karils_crossbow]
 default = "karils_crossbow_shoot"
 
-[salamander]
+[.salamander]
 default = "salamander_scorch"
 
-[chaotic_maul]
+[.chaotic_maul]
 default = "chaotic_maul_attack"
 defend = "chaotic_maul_defend"

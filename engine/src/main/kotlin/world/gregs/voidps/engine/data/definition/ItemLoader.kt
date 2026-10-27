@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
@@ -41,6 +42,7 @@ object ItemLoader : Loader<DefinitionsState<ItemDefinition>> {
         val clones = Object2ObjectOpenHashMap<String, String>(100)
         val ids = Object2IntOpenHashMap<String>(18_000)
         ids.defaultReturnValue(-1)
+        val intIds = IntOpenHashSet()
         for (path in paths) {
             Config.fileReader(path, 256) {
                 while (nextSection()) {
@@ -101,6 +103,7 @@ object ItemLoader : Loader<DefinitionsState<ItemDefinition>> {
                         }
                     }
                     require(!ids.containsKey(stringId)) { "Duplicate item id found '$stringId' at $path." }
+                    require(intIds.add(id)) { "Duplicate item id $id found '$stringId' at $path, already defined as '${definitions[id].stringId}'." }
                     ids[stringId] = id
                     definitions[id].stringId = stringId
                     if (params.size > 0) {
