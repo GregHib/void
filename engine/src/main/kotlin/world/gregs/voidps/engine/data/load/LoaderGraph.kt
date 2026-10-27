@@ -101,7 +101,7 @@ class LoaderGraph(loaders: List<Loader<*>>) {
     }
 
     private fun execute(targets: Set<Loader<*>>, previous: Map<Loader<*>, Any>, files: ConfigFiles, cache: Cache?, snapshots: Path?, restore: Boolean): Map<Loader<*>, Any> {
-        val keys = if (snapshots == null) emptyMap() else keys(files)
+        val keys = keys(files)
         restored.clear()
         return runBlocking(Dispatchers.Default) {
             val nodes = LinkedHashMap<Loader<*>, Deferred<Any>>()
@@ -113,7 +113,7 @@ class LoaderGraph(loaders: List<Loader<*>>) {
                 val dependencies = loader.dependsOn.map { it to nodes.getValue(it) }
                 nodes[loader] = async {
                     val results = dependencies.associate { (dependency, deferred) -> dependency to deferred.await() }
-                    run(loader, LoadContext(files, cache, results), snapshots, keys[loader], restore)
+                    run(loader, LoadContext(files, cache, results, keys[loader]), snapshots, keys[loader], restore)
                 }
             }
             nodes.mapValues { it.value.await() }

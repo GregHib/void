@@ -51,6 +51,8 @@ class LoadContext(
     val files: ConfigFiles,
     val cache: Cache?,
     private val dependencies: Map<Loader<*>, Any> = emptyMap(),
+    /** The snapshot key of the loader being run, which changes whenever anything it reads does. Null if unknown. */
+    val key: Long? = null,
 ) {
     @Suppress("UNCHECKED_CAST")
     operator fun <T : Any> get(loader: Loader<T>): T = dependencies[loader] as? T ?: throw IllegalStateException("Loader '${loader.name}' is not a declared dependency.")

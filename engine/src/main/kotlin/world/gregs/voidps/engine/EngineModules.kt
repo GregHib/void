@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.entity.character.npc.NPCSpawnLoader
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -68,6 +69,7 @@ fun engineLoaders(): List<Loader<*>> = listOf(
     ObjectLoader,
     NPCLoader,
     DropTablesLoader,
+    NPCSpawnLoader,
     AnimationLoader,
     GraphicLoader,
     InterfaceLoader,

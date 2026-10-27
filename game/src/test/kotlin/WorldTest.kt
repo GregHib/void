@@ -17,11 +17,14 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.load.LoadContext
 import world.gregs.voidps.engine.data.load.Loader
 import world.gregs.voidps.engine.data.load.LoaderGraph
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCSpawn
+import world.gregs.voidps.engine.entity.character.npc.NPCSpawnLoader
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
@@ -210,7 +213,8 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(configFiles)
+            NPCSpawnLoader.install(npcSpawns)
+            loadNpcSpawns()
         }
         setRandom(FakeRandom())
     }
@@ -324,11 +328,14 @@ abstract class WorldTest : KoinTest {
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
 
         // Maps are only loaded by the tests which need them
-        private val graph: LoaderGraph by lazy { LoaderGraph((engineLoaders() + gameLoaders()).filter { it != MapLoader }) }
+        private val graph: LoaderGraph by lazy { LoaderGraph((engineLoaders() + gameLoaders()).filter { it != MapLoader && it != NPCSpawnLoader }) }
         private val loaded: Map<Loader<*>, Any> by lazy { graph.run(configFiles, cache, null) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
+
+        // Spawns are only needed by the tests which load npcs
+        private val npcSpawns: List<NPCSpawn> by lazy { NPCSpawnLoader.load(LoadContext(configFiles, cache)) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load() }
         val emptyTile = Tile(2655, 4640)
     }
 }

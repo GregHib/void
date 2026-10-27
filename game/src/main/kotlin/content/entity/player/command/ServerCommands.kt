@@ -72,8 +72,8 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
             if ("items" in reloaded) {
                 loadItemSpawns(files.list(Settings["spawns.items"]))
             }
-            if (alias == "npcs") {
-                loadNpcSpawns(files, reload = true)
+            if ("npc_spawns" in reloaded) {
+                loadNpcSpawns()
             }
             return
         }
@@ -167,6 +167,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
             alias("ammo", "ammo", "ammo_groups", "ammunition")
             alias("canoes", "canoe", "canoes")
             alias("npcs", "npcs", "npc_defs")
+            alias("npc_spawns", "npc_spawns", "spawns")
             alias("areas", "areas")
             alias("render_emotes", "emotes", "render_anims", "render_emotes")
             alias("animations", "anim_defs", "anims", "animations")
