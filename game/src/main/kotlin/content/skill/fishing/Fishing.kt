@@ -39,13 +39,6 @@ class Fishing : Script {
 
     val logger = InlineLogger()
 
-    // Fishing and Strength levels needed to catch harpoon fish without a harpoon
-    val barehand = mapOf(
-        "raw_tuna" to (55 to 35),
-        "raw_swordfish" to (70 to 50),
-        "raw_shark" to (96 to 76),
-    )
-
     init {
         npcOperate("Bait", "fishing_spot_*") { (target) ->
             fish(this, target, "Bait")
@@ -97,7 +90,7 @@ class Fishing : Script {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
                 break@fishing
             }
-            if (tackle == BAREHAND && (!player.has(Skill.Fishing, fish.minOf { barehand[it]?.first ?: Int.MAX_VALUE }, true) || !player.has(Skill.Strength, fish.minOf { barehand[it]?.second ?: Int.MAX_VALUE }, true))) {
+            if (tackle == BAREHAND && (!player.has(Skill.Fishing, fish.minOf { Tables.intOrNull("barehand_fishing.$it.level") ?: Int.MAX_VALUE }, true) || !player.has(Skill.Strength, fish.minOf { Tables.intOrNull("barehand_fishing.$it.strength") ?: Int.MAX_VALUE }, true))) {
                 break@fishing
             }
 
@@ -149,8 +142,8 @@ class Fishing : Script {
                 val chance = row.intRange("chance")
                 val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
-                val levels = barehand[item]
-                if (tackle == BAREHAND && (levels == null || player.levels.get(Skill.Fishing) < levels.first || player.levels.get(Skill.Strength) < levels.second)) {
+                val barehand = Rows.getOrNull("barehand_fishing.$item")
+                if (tackle == BAREHAND && (barehand == null || level < barehand.int("level") || player.levels.get(Skill.Strength) < barehand.int("strength"))) {
                     continue
                 }
                 if (level >= requiredLevel && (0 until rolls).any { success(level + player.familiarBoost(Skill.Fishing), chance) }) {
