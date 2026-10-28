@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -25,55 +26,7 @@ import java.util.concurrent.TimeUnit
 class AncientCavern(val drops: DropTables) : Script {
     init {
         objectApproach("Dive in", "ancient_cavern_whirlpool") {
-            if (follower != null) {
-                // TODO proper message
-                message("You must dismiss your follower before you can enter the whirlpool.")
-                return@objectApproach
-            }
-            if (barbarianTrainingStarted("pyre") && !get("barbarian_training_tried_whirlpool", false)) {
-                statement("You realise that you are about to attempt entry an unknown and potentially hideously dangerous place, with no known exits. Doughty barbarian warriors have entered, never to return.")
-                var enter = false
-                choice("Are you really sure you wish to enter?") {
-                    option("Yes, I wish to enter the unknown.") {
-                        enter = true
-                    }
-                    option("No, I fear the unknown perils.") {
-                        message("You decide that discretion is the better part of valour.")
-                    }
-                }
-                if (!enter) {
-                    return@objectApproach
-                }
-            }
-            walkToDelay(Tile(tile.x.coerceIn(2511..2512), 3516))
-            face(Direction.SOUTH)
-            delay(1)
-            anim("jump_whirlpool")
-            exactMove(Tile(2512, 3508), startDelay = 15, delay = 255, direction = Direction.SOUTH)
-            delay(4)
-            open("fade_out")
-            delay(6)
-            if (!barbarianTrainingStarted("pyre")) {
-                message("You are swept, out of control, through horrific underwater currents.", type = ChatType.Filter)
-                // TODO confirm landing tile ("near Hadley's house") and damage ("a small amount of life points")
-                tele(2531, 3446)
-                delay(1)
-                message("You are swirled beneath the water, dashed against sharp rocks.", type = ChatType.Filter)
-                directHit(60)
-                delay(3)
-                open("fade_in")
-                message("You find yourself on the banks of the river, far below the lake.", type = ChatType.Filter)
-                return@objectApproach
-            }
-            set("barbarian_training_tried_whirlpool", true)
-            message("You dive into the swirling maelstrom of the whirlpool.", type = ChatType.Filter)
-            tele(1763, 5365, 1)
-            delay(1)
-            message("You are swirled beneath the water, the darkness and pressure are overwhelming.", type = ChatType.Filter)
-            delay(1)
-            message("Mystical forces guide you into a cavern below the whirlpool.", type = ChatType.Filter)
-            delay(3)
-            open("fade_in")
+            diveIn()
         }
 
         objectOperate("Ride", "ancient_cavern_aged_log") {
@@ -121,5 +74,62 @@ class AncientCavern(val drops: DropTables) : Script {
             } ?: return@objectSpawn
             NPCs.remove(spawn)
         }
+    }
+
+    private suspend fun Player.diveIn() {
+        if (follower != null) {
+            // TODO proper message
+            message("You must dismiss your follower before you can enter the whirlpool.")
+            return
+        }
+        if (!barbarianTrainingStarted("pyre") || get("barbarian_training_tried_whirlpool", false)) {
+            dive()
+            return
+        }
+        statement("You realise that you are about to attempt entry an unknown and potentially hideously dangerous place, with no known exits. Doughty barbarian warriors have entered, never to return.")
+        choice("Are you really sure you wish to enter?") {
+            option("Yes, I wish to enter the unknown.") {
+                dive()
+            }
+            option("No, I fear the unknown perils.") {
+                message("You decide that discretion is the better part of valour.")
+            }
+        }
+    }
+
+    private suspend fun Player.dive() {
+        walkToDelay(Tile(tile.x.coerceIn(2511..2512), 3516))
+        face(Direction.SOUTH)
+        delay(1)
+        anim("jump_whirlpool")
+        exactMove(Tile(2512, 3508), startDelay = 15, delay = 255, direction = Direction.SOUTH)
+        delay(4)
+        open("fade_out")
+        delay(6)
+        if (!barbarianTrainingStarted("pyre")) {
+            sweptAway()
+            return
+        }
+        set("barbarian_training_tried_whirlpool", true)
+        message("You dive into the swirling maelstrom of the whirlpool.", type = ChatType.Filter)
+        tele(1763, 5365, 1)
+        delay(1)
+        message("You are swirled beneath the water, the darkness and pressure are overwhelming.", type = ChatType.Filter)
+        delay(1)
+        message("Mystical forces guide you into a cavern below the whirlpool.", type = ChatType.Filter)
+        delay(3)
+        open("fade_in")
+    }
+
+    private suspend fun Player.sweptAway() {
+        message("You are swept, out of control, through horrific underwater currents.", type = ChatType.Filter)
+        // TODO confirm landing tile ("near Hadley's house") and damage ("a small amount of life points")
+        tele(2531, 3446)
+        delay(1)
+        message("You are swirled beneath the water, dashed against sharp rocks.", type = ChatType.Filter)
+        directHit(60)
+        delay(3)
+        open("fade_in")
+        message("You find yourself on the banks of the river, far below the lake.", type = ChatType.Filter)
     }
 }
