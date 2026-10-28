@@ -24,3 +24,21 @@ id = 1384
 
 [padulah_attack]
 id = 1383
+
+[monkey_guard_ape_atoll_attack]
+id = 1402
+
+[monkey_guard_ape_atoll_defend]
+id = 1403
+
+[monkey_guard_ape_atoll_death]
+id = 1404
+
+[monkey_zombie_ape_atoll_attack]
+id = 1383
+
+[monkey_zombie_ape_atoll_defend]
+id = 1393
+
+[monkey_zombie_ape_atoll_death]
+id = 1384

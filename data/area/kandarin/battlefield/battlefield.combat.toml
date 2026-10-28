@@ -17,3 +17,12 @@ range = 1
 target_hit = { offense = "crush", max = 110 }
 anim = "tortoise_attack"
 sound = "tortoise_attack"
+
+[mounted_terrorbird_gnome]
+clone = "gnome"
+defend_anim = "mounted_terrorbird_gnome_defend"
+death_anim = "mounted_terrorbird_gnome_death"
+
+[mounted_terrorbird_gnome.ranged]
+clone = "gnome.ranged"
+anim = "mounted_terrorbird_gnome_attack"

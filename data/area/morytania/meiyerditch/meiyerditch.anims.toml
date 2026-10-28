@@ -1,0 +1,26 @@
+[flying_female_vampire_attack]
+id = 4685
+
+[flying_female_vampire_defend]
+id = 4691
+
+[flying_female_vampire_death]
+id = 4697
+
+[vampyre_juvenile_male_attack]
+id = 4701
+
+[vampyre_juvenile_male_defend]
+id = 4705
+
+[vampyre_juvenile_male_death]
+id = 4708
+
+[vampyre_juvenile_female_attack]
+id = 4701
+
+[vampyre_juvenile_female_defend]
+id = 4704
+
+[vampyre_juvenile_female_death]
+id = 4708

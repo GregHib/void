@@ -97,7 +97,7 @@ id = 8781
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
-combat_def = "guard"
+combat_def = "dwarf_hammer"
 hitpoints = 800
 att = 1
 str = 1
@@ -110,7 +110,7 @@ id = 8782
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
-combat_def = "guard"
+combat_def = "dwarf_hammer"
 hitpoints = 800
 att = 1
 str = 1
@@ -133,13 +133,13 @@ categories = ["dwarves"]
 respawn_delay = 30
 examine = "An elite member of the Black Guard."
 drop_table = "black_guard_berserker"
-combat_def = "guard"
+combat_def = "dwarf_hammer"
 
 [black_guard_berserker_chaos_dwarf_battlefield_2]
 id = 8784
 clone = "black_guard_berserker_chaos_dwarf_battlefield"
 drop_table = "black_guard_berserker"
-combat_def = "guard"
+combat_def = "dwarf_hammer"
 
 [colonel_grenda_chaos_dwarf_battlefield]
 id = 8818

@@ -320,7 +320,7 @@ id = 7656
 id = 1010
 
 [spirit_terrorbird_familiar_defend]
-id = 1011
+id = 1012
 
 [spirit_terrorbird_familiar_death]
 id = 1013
@@ -563,7 +563,7 @@ id = 5782
 id = 5783
 
 [pack_yak_familiar_death]
-id = 852
+id = 5784
 
 [fire_titan_familiar_attack]
 id = 7834
@@ -599,7 +599,7 @@ id = 7980
 id = 7981
 
 [lava_titan_familiar_death]
-id = 7692
+id = 7979
 
 [swamp_titan_familiar_attack]
 id = 8222
@@ -626,7 +626,7 @@ id = 7693
 id = 7691
 
 [abyssal_titan_familiar_death]
-id = 7979
+id = 7692
 
 [iron_titan_familiar_attack]
 id = 7946

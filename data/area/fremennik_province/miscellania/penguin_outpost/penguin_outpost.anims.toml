@@ -1,0 +1,8 @@
+[icelord_penguin_outpost_attack]
+id = 5724
+
+[icelord_penguin_outpost_defend]
+id = 5723
+
+[icelord_penguin_outpost_death]
+id = 5726

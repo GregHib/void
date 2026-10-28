@@ -54,3 +54,21 @@ death_anim = "ogress_death"
 range = 1
 target_hit = { offense = "crush", max = 80 }
 anim = "ogress_attack"
+
+[ogress_warrior]
+clone = "guard"
+defend_anim = "ogress_warrior_defend"
+death_anim = "ogress_warrior_death"
+
+[ogress_warrior.melee]
+clone = "guard.melee"
+anim = "ogress_warrior_attack"
+
+[ogress_warrior_spear]
+clone = "guard"
+defend_anim = "ogress_warrior_spear_defend"
+death_anim = "ogress_warrior_spear_death"
+
+[ogress_warrior_spear.melee]
+clone = "guard.melee"
+anim = "ogress_warrior_spear_attack"

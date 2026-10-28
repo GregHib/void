@@ -2,7 +2,7 @@
 id = 7497
 examine = "A rocky horror."
 drop_table = "empty"
-combat_def = "guard"
+combat_def = "golem_guard_uzer_mastaba"
 hitpoints = 750
 att = 36
 str = 36

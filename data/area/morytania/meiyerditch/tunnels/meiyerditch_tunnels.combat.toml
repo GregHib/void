@@ -15,3 +15,12 @@ death_anim = "mutated_bloodveld_death"
 range = 6
 target_hit = { offense = "magic", max = 90 }
 anim = "mutated_bloodveld_attack"
+
+[zombie_hand_meiyerditch_tunnels]
+clone = "zombie"
+defend_anim = "zombie_hand_meiyerditch_tunnels_defend"
+death_anim = "zombie_hand_meiyerditch_tunnels_death"
+
+[zombie_hand_meiyerditch_tunnels.melee]
+clone = "zombie.melee"
+anim = "zombie_hand_meiyerditch_tunnels_attack"

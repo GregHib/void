@@ -1,0 +1,8 @@
+[guard_dorgesh_kaan_attack]
+id = 6007
+
+[guard_dorgesh_kaan_defend]
+id = 6002
+
+[guard_dorgesh_kaan_death]
+id = 6003

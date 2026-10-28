@@ -23,7 +23,7 @@ max_hit_melee = 50
 categories = ["rats"]
 drop_table = "bones"
 examine = "He looks a little on the cross side!"
-combat_def = "giant_rat"
+combat_def = "angry_giant_rat_tolnas_rift"
 hunt_mode = "cowardly"
 
 [angry_goblin_tolnas_rift]
@@ -100,7 +100,7 @@ combat_def = "hopeless_creature"
 [angry_giant_rat_tolnas_rift_2]
 id = 4940
 clone = "angry_giant_rat_tolnas_rift"
-combat_def = "giant_rat"
+combat_def = "angry_giant_rat_tolnas_rift"
 hunt_mode = "cowardly"
 
 [tolna_south]

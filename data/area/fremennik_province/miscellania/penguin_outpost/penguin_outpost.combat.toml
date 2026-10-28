@@ -1,0 +1,8 @@
+[icelord_penguin_outpost]
+clone = "ice_warrior"
+defend_anim = "icelord_penguin_outpost_defend"
+death_anim = "icelord_penguin_outpost_death"
+
+[icelord_penguin_outpost.melee]
+clone = "ice_warrior.melee"
+anim = "icelord_penguin_outpost_attack"

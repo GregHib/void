@@ -32,3 +32,12 @@ id = 6375
 
 [hopeless_creature_defend]
 id = 3826
+
+[angry_giant_rat_tolnas_rift_attack]
+id = 4933
+
+[angry_giant_rat_tolnas_rift_defend]
+id = 4934
+
+[angry_giant_rat_tolnas_rift_death]
+id = 4935

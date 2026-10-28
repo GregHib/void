@@ -3,3 +3,12 @@ id = 2079
 
 [ahrim_attack]
 id = 1167
+
+[crypt_rat_barrows_attack]
+id = 240
+
+[crypt_rat_barrows_defend]
+id = 241
+
+[crypt_rat_barrows_death]
+id = 243

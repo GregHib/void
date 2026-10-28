@@ -6,3 +6,12 @@ death_anim = "head_thief_death"
 range = 1
 target_hit = { offense = "slash", max = 30 }
 anim = "head_thief_attack"
+
+[dungeon_rat_clocktower_dungeon]
+clone = "giant_rat"
+defend_anim = "dungeon_rat_clocktower_dungeon_defend"
+death_anim = "dungeon_rat_clocktower_dungeon_death"
+
+[dungeon_rat_clocktower_dungeon.melee]
+clone = "giant_rat.melee"
+anim = "dungeon_rat_clocktower_dungeon_attack"

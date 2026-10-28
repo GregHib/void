@@ -1,0 +1,8 @@
+[mouse_mouse_hole]
+clone = "rat"
+defend_anim = "mouse_mouse_hole_defend"
+death_anim = "mouse_mouse_hole_death"
+
+[mouse_mouse_hole.melee]
+clone = "rat.melee"
+anim = "mouse_mouse_hole_attack"

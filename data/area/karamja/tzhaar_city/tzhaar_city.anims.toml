@@ -53,3 +53,12 @@ id = 9341
 
 [fire_monster_defend]
 id = 9342
+
+[lava_monster_tzhaar_caves_attack]
+id = 9337
+
+[lava_monster_tzhaar_caves_defend]
+id = 9338
+
+[lava_monster_tzhaar_caves_death]
+id = 9340

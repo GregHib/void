@@ -1,0 +1,8 @@
+[gull_rock_island]
+clone = "seagull"
+defend_anim = "gull_rock_island_defend"
+death_anim = "gull_rock_island_death"
+
+[gull_rock_island.melee]
+clone = "seagull.melee"
+anim = "gull_rock_island_attack"

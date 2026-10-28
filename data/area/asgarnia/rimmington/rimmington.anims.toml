@@ -1,0 +1,17 @@
+[ghost_rimmington_attack]
+id = 5540
+
+[ghost_rimmington_defend]
+id = 5541
+
+[ghost_rimmington_death]
+id = 5542
+
+[zombie_rat_rimmington_attack]
+id = 4933
+
+[zombie_rat_rimmington_defend]
+id = 4934
+
+[zombie_rat_rimmington_death]
+id = 4935
