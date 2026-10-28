@@ -8,8 +8,8 @@ import content.skill.ranged.ammo
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AmmoDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDefinitions) : Script {
+class Ammo : Script {
 
     init {
         combatPrepare {
@@ -55,12 +55,13 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
             player.message("You need to have a Ranged level of ${player.weapon.def.get<Int>("secondary_use_level")}.")
             return false
         }
-        val style = weaponStyles.get(player.weapon.def["weapon_style", 0])
-        val group = ammoDefinitions.get(player.weapon.def["ammo_group", -1]).stringId
-        val slot = when (style.stringId) {
+        val style = Tables.get("weapon_styles").rows().getOrNull(player.weapon.def["weapon_style", 0])
+        val groupId = player.weapon.def["ammo_group", -1]
+        val group = Tables.getOrNull("ammo_groups")?.rows()?.firstOrNull { it.int("id") == groupId }
+        val slot = when (style?.rowId) {
             "pie", "chinchompa", "thrown" -> EquipSlot.Weapon
             "crossbow", "fixed_device", "salamander" -> EquipSlot.Ammo
-            "bow" -> if (group == "none") EquipSlot.Weapon else EquipSlot.Ammo
+            "bow" -> if (group == null || group.rowId == "none") EquipSlot.Weapon else EquipSlot.Ammo
             else -> EquipSlot.Weapon
         }
         if (slot == EquipSlot.Weapon) {
@@ -85,13 +86,13 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
             return false
         }
         if (!usable(group, ammo, player)) {
-            player.message("You can't use that ammo with your ${style.stringId.toLowerSpaceCase()}.")
+            player.message("You can't use that ammo with your ${style?.rowId?.toLowerSpaceCase()}.")
             return false
         }
         // Ammo is kept track of as EquipSlot.Ammo could've been used up
         if (ammo.id == "barbed_bolts" || ammo.id == "bone_bolts") {
             player.ammo = ammo.id
-        } else if (group == "crossbow") {
+        } else if (group?.rowId == "crossbow") {
             player.ammo = "crossbow_bolt"
         } else if (ammo.id.endsWith("fire_arrows_lit")) {
             player.ammo = "fire_arrows_lit"
@@ -103,7 +104,7 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
         return true
     }
 
-    private fun usable(group: String, ammo: Item, player: Player): Boolean {
+    private fun usable(group: RowDefinition?, ammo: Item, player: Player): Boolean {
         val weapon = player.equipped(EquipSlot.Weapon)
         if (weapon.def["dungeoneering", 0] != ammo.def["dungeoneering", 0]) {
             return false
@@ -133,7 +134,6 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
         if (weapon.id.startsWith("bow_class_") && ammo.id != weapon.id.replace("bow_", "arrows_")) {
             return false
         }
-        val definition = ammoDefinitions.get(group)
-        return definition.items.contains(ammo.id)
+        return group != null && group.itemList("items").contains(ammo.id)
     }
 }

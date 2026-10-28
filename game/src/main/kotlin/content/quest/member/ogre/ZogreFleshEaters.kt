@@ -317,14 +317,14 @@ class ZogreFleshEaters : Script {
                 }
                 progress == "killed_slash_bash" -> {
                     areaGfx("smokepuff_large", target.tile)
-                    areaSound("smokepuff", target.tile)
+                    areaSound("smoke_puff", target.tile)
                     addOrDrop("ogre_artefact")
                     item("ogre_artefact", "An ogre artefact appears in front of you. You quickly put it into your backpack.")
                 }
                 else -> {
                     message("Something stirs behind you!")
                     areaGfx("smokepuff_large", Tile(2477, 9444, 0))
-                    areaSound("smokepuff", Tile(2477, 9444, 0))
+                    areaSound("smoke_puff", Tile(2477, 9444, 0))
                     NPCs.add(
                         id = "slash_bash",
                         tile = Tile(2477, 9444, 0),

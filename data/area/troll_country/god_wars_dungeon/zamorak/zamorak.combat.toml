@@ -35,7 +35,7 @@ chance = 6
 anim = "kril_tsutsaroth_magic_attack"
 gfx = "kril_tsutsaroth_magic_attack"
 #projectile = "1211" TODO unknown
-target_sound = { id = "kril_tsutsaroth_magic", delay = 20 }
+target_sound = { id = "general_graardor_slam", delay = 20 }
 target_hit = { offense = "magic", delay = 1, min = 100, max = 300 }
 impact_sound = { id = "kril_tsutsaroth_magic_impact", radius = 15 }
 miss_gfx = "giant_splash"
@@ -43,9 +43,9 @@ miss_sound = "spell_splash"
 
 [balfrug_kreeyath]
 defend_anim = "balfrug_kreeyath_defend"
-defend_sound = "balfrug_kreeyath_defend"
+defend_sound = "zakln_gritch_defend"
 death_anim = "balfrug_kreeyath_death"
-death_sound = "balfrug_kreeyath_death"
+death_sound = "demon_death"
 
 [balfrug_kreeyath.magic]
 range = 10
@@ -59,7 +59,7 @@ target_hit = { offense = "magic", max = 160 }
 defend_anim = "zakln_gritch_defend"
 defend_sound = "zakln_gritch_defend"
 death_anim = "zakln_gritch_death"
-death_sound = "zakln_gritch_death"
+death_sound = "demon_death"
 
 [zakln_gritch.ranged]
 range = 10

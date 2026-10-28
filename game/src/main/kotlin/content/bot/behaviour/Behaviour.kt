@@ -7,7 +7,6 @@ import content.bot.behaviour.activity.Loadout
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.Condition
-import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -51,11 +50,10 @@ fun loadBehaviours(
     loadSetups(resolvers, templates, files.list(Settings["bots.setups"]))
 }
 
-fun loadGraph(files: ConfigFiles): NavigationGraph {
-    val templates = loadTemplates(files.list(Settings["bots.templates"]))
+internal fun loadNavigationShortcuts(templatePaths: List<String>, shortcutPaths: List<String>): List<NavigationShortcut> {
     val shortcuts = mutableListOf<NavigationShortcut>()
-    loadShortcuts(shortcuts, templates, files.list(Settings["bots.shortcuts"]))
-    return NavigationGraph.loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
+    loadShortcuts(shortcuts, loadTemplates(templatePaths), shortcutPaths)
+    return shortcuts
 }
 
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {

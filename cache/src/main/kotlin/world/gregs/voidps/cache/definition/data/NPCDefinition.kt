@@ -1,13 +1,18 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
+import world.gregs.voidps.cache.serialization.NullableStringArraySerializer
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class NPCDefinition(
     override var id: Int = -1,
     var name: String = "null",
     var size: Int = 1,
+    @Serializable(with = NullableStringArraySerializer::class)
     var options: Array<String?> = arrayOf(null, null, null, null, null, "Examine"),
     var combat: Int = -1,
     override var varbit: Int = -1,
@@ -21,6 +26,7 @@ data class NPCDefinition(
     var runSound: Int = -1,
     var soundDistance: Int = 0,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
     // Fields below here are custom params here for performance reasons
     var allowedUnder: Boolean = false, // Custom

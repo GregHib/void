@@ -1,8 +1,12 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.NullableStringArraySerializer
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class ItemDefinition(
     override var id: Int = -1,
     var name: String = "null",
@@ -10,7 +14,9 @@ data class ItemDefinition(
     var stackable: Int = 0,
     var cost: Int = 1,
     var members: Boolean = false,
+    @Serializable(with = NullableStringArraySerializer::class)
     var floorOptions: Array<String?> = arrayOf(null, null, "Take", null, null, "Examine"),
+    @Serializable(with = NullableStringArraySerializer::class)
     var options: Array<String?> = arrayOf(null, null, null, null, "Drop"),
     var exchangeable: Boolean = false,
     var dummyItem: Int = 0,
@@ -20,6 +26,7 @@ data class ItemDefinition(
     var lendTemplateId: Int = -1,
     var equipIndex: Int = -1,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {

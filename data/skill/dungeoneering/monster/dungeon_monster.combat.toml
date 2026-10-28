@@ -490,14 +490,14 @@ death_anim = "human_death"
 [forgotten_mage_9.wind_surge]
 clone = "forgotten_mage_1.wind_strike"
 projectile = "wind_surge"
-target_sound = "wind_surge_cast"
-impact_sound = "wind_surge_impact"
+target_sound = "wind_wave_cast"
+impact_sound = "wind_wave_impact"
 
 [forgotten_mage_9.water_surge]
 clone = "forgotten_mage_1.water_strike"
 projectile = "water_surge"
-target_sound = "water_surge_cast"
-impact_sound = "water_surge_impact"
+target_sound = "water_wave_cast"
+impact_sound = "water_wave_impact"
 
 [forgotten_mage_9.fire_wave]
 clone = "forgotten_mage_2.fire_strike"
@@ -533,20 +533,20 @@ death_anim = "human_death"
 [forgotten_mage_10.earth_surge]
 clone = "forgotten_mage_2.earth_strike"
 projectile = "earth_surge"
-target_sound = "earth_surge_cast"
-impact_sound = "earth_surge_impact"
+target_sound = "earth_wave_cast"
+impact_sound = "earth_wave_impact"
 
 [forgotten_mage_10.water_surge]
 clone = "forgotten_mage_1.water_strike"
 projectile = "water_surge"
-target_sound = "water_surge_cast"
-impact_sound = "water_surge_impact"
+target_sound = "water_wave_cast"
+impact_sound = "water_wave_impact"
 
 [forgotten_mage_10.fire_surge]
 clone = "forgotten_mage_2.fire_strike"
 projectile = "fire_surge"
-target_sound = "fire_surge_cast"
-impact_sound = "fire_surge_impact"
+target_sound = "fire_wave_cast"
+impact_sound = "fire_wave_impact"
 
 [forgotten_mage_10.stun]
 clone = "forgotten_mage_9.stun"
@@ -567,8 +567,8 @@ death_anim = "human_death"
 [forgotten_mage_11.fire_surge]
 clone = "forgotten_mage_2.fire_strike"
 projectile = "fire_surge"
-target_sound = "fire_surge_cast"
-impact_sound = "fire_surge_impact"
+target_sound = "fire_wave_cast"
+impact_sound = "fire_wave_impact"
 
 [forgotten_mage_11.stun]
 clone = "forgotten_mage_9.stun"

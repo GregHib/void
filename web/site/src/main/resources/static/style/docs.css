@@ -369,6 +369,7 @@
 }
 
 .docs-search-result:hover,
+.docs-search-result.active,
 .docs-search-result:focus-visible {
   background: var(--surface-active);
 }

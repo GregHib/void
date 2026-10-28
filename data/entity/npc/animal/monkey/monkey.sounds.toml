@@ -1,12 +1,3 @@
-[zombie_monkey_attack]
-id = 629
-
-[monkey_attack]
-id = 630
-
-[monkey_caught]
-id = 631
-
 [monkey_death]
 id = 632
 

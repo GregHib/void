@@ -1,13 +1,13 @@
 [infernal_mage]
 defend_anim = "human_defend"
-defend_sound = "infernal_mage_defend"
+defend_sound = "man_defend"
 death_anim = "human_death"
-death_sound = "infernal_mage_death"
+death_sound = "man_death"
 
 [infernal_mage.magic]
 range = 8
 anim = "fire_spell"
-target_sound = "infernal_mage_attack"
+target_sound = "fire_blast_impact"
 gfx = "fire_spell_cast"
 target_hit = { offense = "magic", max = 80 }
 

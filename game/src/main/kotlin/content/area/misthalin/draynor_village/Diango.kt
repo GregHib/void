@@ -11,12 +11,12 @@ import content.entity.player.dialogue.type.stringEntry
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.DiangoCodeDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
-class Diango(val codeDefinitions: DiangoCodeDefinitions) : Script {
+class Diango : Script {
 
     init {
         npcOperate("Talk-to", "diango") {
@@ -43,24 +43,23 @@ class Diango(val codeDefinitions: DiangoCodeDefinitions) : Script {
 
         npcOperate("Redeem-code", "diango") {
             val code = stringEntry("Please enter your code.").lowercase()
-            val definition = codeDefinitions.getOrNull(code)
-            if (definition == null) {
+            val row = Rows.getOrNull("diango_codes.$code")
+            if (row == null) {
                 message("Your code was not valid. Please check it and try again.")
                 return@npcOperate
             }
-            for (item in definition.add) {
-                if (get(definition.variable, false)) {
-                    message("You have already claimed this code.")
-                    return@npcOperate
-                }
+            val variable = row.string("variable")
+            if (get(variable, false)) {
+                message("You have already claimed this code.")
+                return@npcOperate
             }
             val success = inventory.transaction {
-                for (item in definition.add) {
-                    add(item.id, item.amount)
+                for (item in row.itemList("add")) {
+                    add(item)
                 }
             }
             if (success) {
-                set(definition.variable, true)
+                set(variable, true)
                 message("Your code has been successfully processed.")
             } else {
                 inventoryFull()

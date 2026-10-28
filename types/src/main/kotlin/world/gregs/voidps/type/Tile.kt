@@ -1,7 +1,9 @@
 package world.gregs.voidps.type
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.type.area.Cuboid
 
+@Serializable
 @JvmInline
 value class Tile(val id: Int) {
 

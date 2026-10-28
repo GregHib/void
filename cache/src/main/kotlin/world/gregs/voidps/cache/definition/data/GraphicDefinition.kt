@@ -1,9 +1,12 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Recolourable
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class GraphicDefinition(
     override var id: Int = -1,
     var modelId: Int = 0,
@@ -21,6 +24,7 @@ data class GraphicDefinition(
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Recolourable,

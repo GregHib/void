@@ -71,8 +71,8 @@ anim = "lanzig_attack"
 [lensa]
 defend_anim = "lensa_defend"
 death_anim = "lensa_death"
-defend_sound = "lensa_defend"
-death_sound = "lensa_death"
+defend_sound = "man_defend"
+death_sound = "man_death"
 
 [lensa.melee]
 range = 1
@@ -92,30 +92,30 @@ anim = "human_attack"
 [unicorn_foal]
 defend_anim = "unicorn_foal_defend"
 death_anim = "unicorn_foal_death"
-defend_sound = "unicorn_foal_defend"
-death_sound = "unicorn_foal_death"
+defend_sound = "black_unicorn_defend"
+death_sound = "black_unicorn_death"
 
 [unicorn_foal.melee]
 range = 1
 target_hit = { offense = "stab", max = 20 }
 anim = "unicorn_foal_attack"
-sound = "unicorn_foal_attack"
+sound = "black_unicorn_attack"
 
 [black_unicorn_foal]
 death_anim = "black_unicorn_foal_death"
-defend_sound = "black_unicorn_foal_defend"
-death_sound = "black_unicorn_foal_death"
+defend_sound = "black_unicorn_defend"
+death_sound = "black_unicorn_death"
 
 [black_unicorn_foal.melee]
 range = 1
 target_hit = { offense = "stab", max = 30 }
 anim = "black_unicorn_foal_attack"
-sound = "black_unicorn_foal_attack"
+sound = "black_unicorn_attack"
 
 [fenris_wolf]
 death_anim = "fenris_wolf_death"
-defend_sound = "fenris_wolf_defend"
-death_sound = "fenris_wolf_death"
+defend_sound = "werewolf_defend"
+death_sound = "werewolf_death"
 
 [fenris_wolf.melee]
 range = 1

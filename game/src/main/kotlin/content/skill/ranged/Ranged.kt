@@ -6,16 +6,15 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 
-class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: WeaponAnimationDefinitions) : Script {
+class Ranged : Script {
 
     init {
         combatPrepare("range") {
@@ -34,7 +33,7 @@ class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: We
     fun swing(character: Character, target: Character) {
         // TODO handle target sounds better
         var ammo = character.ammo
-        val style = weaponStyles.get(character.weapon.def["weapon_style", 0])
+        val style = Tables.get("weapon_styles").rows().getOrNull(character.weapon.def["weapon_style", 0])?.rowId ?: ""
         if (character is Player) {
             val required = Ammo.requiredAmount(character.weapon, character.specialAttack)
             if (character.specialAttack && SpecialAttack.drain(character)) {
@@ -42,28 +41,28 @@ class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: We
                 CombatApi.special(character, target, id)
                 return
             }
-            if (style.stringId != "sling") {
+            if (style != "sling") {
                 Ammo.remove(character, target, ammo, required)
             }
         }
-        if (style.stringId == "sling") {
+        if (style == "sling") {
             character.anim(ammo)
         }
-        ammo = when (style.stringId) {
+        ammo = when (style) {
             "crossbow" -> if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
             "bow" if ammo.endsWith("brutal") -> "brutal_arrow"
             else -> Ammo.graphic(ammo)
         }
         var time = character.shoot(id = ammo, target = target)
         val weapon = character.weapon.id
-        when (style.stringId) {
+        when (style) {
             "thrown" -> {
                 val ammoName = character.ammo.removePrefix("corrupt_").removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
                 character.gfx("${ammoName}_throw")
                 if (weapon.contains("dart")) {
-                    character.sound("dart_throw")
+                    character.sound("dart")
                 } else if (weapon.contains("javelin")) {
-                    character.sound("javelin_throw")
+                    character.sound("aviansie_attack")
                 } else if (weapon.contains("knife")) {
                     character.sound("knife_throw")
                 } else if (weapon.contains("axe")) {
@@ -88,12 +87,12 @@ class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: We
                 character.gfx("salamander_${character.attackType}")
             }
         }
-        val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
+        val type = character.weapon.def.getOrNull("weapon_type") ?: style ?: ""
         var animation: String?
-        val definition = weaponDefinitions.get(type)
-        animation = definition.attackTypes.getOrDefault(Params.id(character.attackType), definition.attackTypes[Params.DEFAULT])
+        val definition = Rows.getOrNull("weapon_anims.$type")
+        animation = definition?.stringOrNull(character.attackType) ?: definition?.stringOrNull("default")
         if (animation == null) {
-            animation = "${style.stringId}_${character.attackType}"
+            animation = "${style}_${character.attackType}"
         }
         character.anim(animation)
         character.hit(target, delay = if (time == -1) 64 else time)
