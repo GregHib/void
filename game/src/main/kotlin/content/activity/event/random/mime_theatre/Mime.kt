@@ -157,7 +157,6 @@ class Mime : Script {
             set("unlocked_emote_$unlock", true)
         }
         clearWalkTrigger()
-        addOrDrop("random_event_gift")
         rewardCostumePoint("mime")
         clear("mime_emote")
         clear("mime_correct")
@@ -166,6 +165,9 @@ class Mime : Script {
         val origin = RandomEvents.origin(this)
         RandomEvents.completeInPlace(this)
         teleport(origin, "modern")
+        strongQueue("mime_reward") {
+            addOrDrop("random_event_gift")
+        }
     }
 
     companion object {
