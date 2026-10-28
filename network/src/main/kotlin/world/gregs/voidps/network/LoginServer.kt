@@ -94,7 +94,7 @@ class LoginServer(
             return
         }
         val password: String = rsa.readString()
-        val xtea = decryptXtea(packet, isaacKeys)
+        val xtea = packet.decryptXtea(isaacKeys)
         val username = AccountNames.normalise(xtea.readString())
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
