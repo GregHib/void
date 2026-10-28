@@ -43,9 +43,7 @@ private val reacquireTicks = TimeUnit.SECONDS.toTicks(8)
 private const val STRAY_DOG_IDS = "stray_dog_defender_of_varrock,stray_dog_defender_of_varrock_2,stray_dog_meiyerditch,stray_dog_meiyerditch_2"
 private val acceptedFood = setOf("bones", "raw_meat", "raw_chicken", "cooked_meat", "cooked_chicken")
 
-class StrayDog : Script {
-
-    private val steps: StepValidator = get()
+class StrayDog(private val steps: StepValidator) : Script {
 
     init {
         npcSpawn(STRAY_DOG_IDS) {
