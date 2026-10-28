@@ -24,7 +24,7 @@ class Greasycheeks : Script {
             when (random.nextInt(3)) {
                 0 -> say("Cook, cook, cook!")
                 1 -> {
-                    anim("6832")
+                    anim("observatory_goblin_cook")
                     say("I'm soo hungry!")
                 }
                 else -> say("This is gonna taste sooo good")

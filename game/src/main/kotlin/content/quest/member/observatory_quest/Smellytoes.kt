@@ -26,7 +26,7 @@ class Smellytoes : Script {
             when (random.nextInt(2)) {
                 0 -> say("Doh ray meeee laa doh faaa!")
                 else -> {
-                    anim("6830")
+                    anim("observatory_goblin_drunk")
                     say("La la la! I'm feeling good!")
                 }
             }
