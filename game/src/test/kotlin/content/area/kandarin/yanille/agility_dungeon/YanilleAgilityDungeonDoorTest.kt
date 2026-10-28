@@ -69,4 +69,12 @@ class YanilleAgilityDungeonDoorTest : WorldTest() {
         assertEquals(0.0, player.experience.get(Skill.Thieving))
         assertNotNull(GameObjects.findOrNull(doorTile, "door_70_closed"))
     }
+
+    @Test
+    fun `Picking from the north reports that the door is already unlocked`() {
+        val player = createPlayer(Tile(2601, 9483))
+        player.objectOption(GameObjects.find(doorTile, "door_70_closed"), "Pick-lock")
+        tick(8)
+        assertTrue(player.containsMessage("The door is already unlocked."))
+    }
 }

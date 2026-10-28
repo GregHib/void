@@ -3,11 +3,10 @@ package content.area.misthalin.varrock
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.fightStyle
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,10 +15,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.random
 
-class VarrockDummy(
-    private val weaponAnimations: WeaponAnimationDefinitions,
-    private val weaponStyles: WeaponStyleDefinitions,
-) : Script {
+class VarrockDummy : Script {
 
     init {
         npcSpawn("trainee_guard") {
@@ -63,16 +59,16 @@ class VarrockDummy(
     }
 
     private fun Player.attackAnimation(): String {
-        val style = weaponStyles.get(weapon.def["weapon_style", 0])
-        val type = weapon.def.getOrNull("weapon_type") ?: style.stringId
+        val style = Tables.get("weapon_styles").rows().getOrNull(weapon.def["weapon_style", 0])
+        val type = weapon.def.getOrNull("weapon_type") ?: style?.rowId
         val attack = if (fightStyle == "magic" || fightStyle == "blaze") {
-            style.attackTypes.firstOrNull() ?: attackType
+            style?.stringList("attack_types")?.firstOrNull() ?: attackType
         } else {
             attackType
         }
-        val definition = weaponAnimations.getOrNull(type)
-        val animation = definition?.attackTypes?.getOrDefault(Params.id(attack), definition.attackTypes[Params.DEFAULT])
-        return animation ?: "${style.stringId}_$attack"
+        val definition = type?.let { Rows.getOrNull("weapon_anims.$it") }
+        val animation = definition?.stringOrNull(attack) ?: definition?.stringOrNull("default")
+        return animation ?: "${style?.rowId.orEmpty()}_$attack"
     }
 
     private fun NPC.dummy(): GameObject? = GameObjects.findOrNull(tile.add(direction), 23921)
