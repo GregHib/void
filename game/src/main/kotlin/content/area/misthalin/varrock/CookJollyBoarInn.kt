@@ -24,7 +24,7 @@ class CookJollyBoarInn : Script {
         }
 
         npcTimerTick("cook_jolly_boar_inn_cook") {
-            anim("896")
+            anim("cook_range")
             Timer.CONTINUE
         }
 
