@@ -19,11 +19,11 @@ id = 1877
 [bandit_pollnivneach]
 id = 1879
 hitpoints = 300
-att = 40
-str = 50
-def = 20
+att = 59
+str = 70
+def = 30
 style = "slash"
-max_hit_melee = 70
+max_hit_melee = 90
 attack_bonus = 9
 respawn_delay = 50
 drop_table = "bones"
@@ -64,6 +64,16 @@ id = 3127
 
 [bandit_pollnivneach_2]
 id = 7478
+hitpoints = 300
+att = 40
+str = 50
+def = 20
+style = "slash"
+max_hit_melee = 70
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "bones"
+examine = "Tough-looking."
 
 [sumona]
 id = 7779
@@ -120,6 +130,7 @@ id = 1878
 
 [bandit_pollnivneach_3]
 id = 1880
+combat_def = "bandit_pollnivneach"
 hitpoints = 300
 att = 59
 str = 70
@@ -128,6 +139,7 @@ examine = "Tough-looking."
 
 [bandit_pollnivneach_4]
 id = 1881
+combat_def = "bandit_pollnivneach"
 hitpoints = 300
 att = 59
 str = 70
@@ -201,6 +213,7 @@ id = 1901
 
 [menaphite_thug_pollnivneach_before_quest]
 id = 1904
+combat_def = "menaphite_thug_pollnivneach"
 hitpoints = 600
 att = 60
 str = 50
@@ -218,6 +231,7 @@ clone = "menaphite_thug_pollnivneach_before_quest"
 
 [bandit_pollnivneach_2_2]
 id = 6174
+combat_def = "bandit_pollnivneach_2"
 hitpoints = 300
 att = 40
 str = 50
@@ -230,6 +244,7 @@ examine = "Tough-looking."
 
 [bandit_pollnivneach_2_3]
 id = 6388
+combat_def = "bandit_pollnivneach_2"
 hitpoints = 300
 att = 40
 str = 50
