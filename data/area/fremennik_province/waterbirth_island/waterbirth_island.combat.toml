@@ -46,6 +46,7 @@ impact_sound = "water_strike_impact"
 impact_poison = 20
 
 [dagannoth_fledgeling]
+defend_anim = "dagannoth_fledgeling_defend"
 death_anim = "dagannoth_fledgeling_death"
 
 [dagannoth_fledgeling.melee]

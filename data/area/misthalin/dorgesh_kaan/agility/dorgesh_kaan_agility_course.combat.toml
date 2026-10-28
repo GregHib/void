@@ -8,6 +8,7 @@ target_hit = { offense = "crush", max = 90 }
 anim = "giant_frog_attack"
 
 [big_frog]
+defend_anim = "big_frog_defend"
 death_anim = "big_frog_death"
 
 [big_frog.melee]

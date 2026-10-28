@@ -1,4 +1,5 @@
 [death_wing]
+defend_anim = "death_wing_defend"
 death_anim = "death_wing_death"
 
 [death_wing.melee]
@@ -16,22 +17,22 @@ target_hit = { offense = "crush", max = 70 }
 anim = "human_attack"
 
 [san_tojalon]
-defend_anim = "human_defend"
-death_anim = "human_death"
+defend_anim = "skeleton_defend"
+death_anim = "skeleton_death"
 
 [san_tojalon.melee]
 range = 1
 target_hit = { offense = "stab", max = 120 }
-anim = "human_attack"
+anim = "skeleton_crush"
 
 [irvig_senay]
-defend_anim = "human_defend"
-death_anim = "human_death"
+defend_anim = "skeleton_defend"
+death_anim = "skeleton_death"
 
 [irvig_senay.melee]
 range = 1
 target_hit = { offense = "slash", max = 120 }
-anim = "human_attack"
+anim = "skeleton_crush"
 
 [ranalph_devere]
 defend_anim = "ranalph_devere_defend"

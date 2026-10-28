@@ -18,11 +18,11 @@ anim = "spiritual_ranger_bandos_attack"
 target_hit = { offense = "range", max = 130 }
 
 [spiritual_ranger_armadyl]
-defend_anim = "human_defend"
-death_anim = "human_death"
+defend_anim = "aviansie_defend"
+death_anim = "aviansie_death"
 
 [spiritual_ranger_armadyl.ranged]
 range = 5
-anim = "spiritual_ranger_attack"
+anim = "aviansie_attack"
 projectile = "rune_arrow"
 target_hit = { offense = "range", max = 160 }

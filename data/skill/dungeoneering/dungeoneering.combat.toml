@@ -1,4 +1,6 @@
 [luminescent_icefiend]
+defend_anim = "luminescent_icefiend_defend"
+death_anim = "luminescent_icefiend_death"
 
 [luminescent_icefiend.magic]
 range = 6

@@ -2,3 +2,6 @@
 id = 3540
 [big_snake_attack]
 id = 3538
+
+[big_snake_defend]
+id = 3536

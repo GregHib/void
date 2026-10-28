@@ -61,6 +61,7 @@ miss_gfx = "giant_splash"
 miss_sound = "spell_splash"
 
 [fire_monster]
+defend_anim = "fire_monster_defend"
 death_anim = "fire_monster_death"
 
 [fire_monster.magic]

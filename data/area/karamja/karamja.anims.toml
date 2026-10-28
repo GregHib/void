@@ -50,3 +50,21 @@ id = 836
 
 [tribesman_attack]
 id = 428
+
+[giant_wasp_defend]
+id = 7243
+
+[shaikahan_death]
+id = 1201
+
+[tribesman_defend]
+id = 430
+
+[frog_defend]
+id = 7257
+
+[pernicious_parrot_defend]
+id = 6776
+
+[tenacious_toucan_defend]
+id = 6776

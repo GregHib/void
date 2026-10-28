@@ -1,4 +1,5 @@
 [crab]
+defend_anim = "crab_defend"
 death_anim = "crab_death"
 
 [crab.melee]

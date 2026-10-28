@@ -1,4 +1,5 @@
 [watchman]
+defend_anim = "watchman_defend"
 death_anim = "watchman_death"
 
 [watchman.melee]

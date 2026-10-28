@@ -1,4 +1,5 @@
 [head_thief]
+defend_anim = "head_thief_defend"
 death_anim = "head_thief_death"
 
 [head_thief.melee]

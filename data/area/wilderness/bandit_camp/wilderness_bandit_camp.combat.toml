@@ -1,4 +1,5 @@
 [black_heather]
+defend_anim = "black_heather_defend"
 death_anim = "black_heather_death"
 
 [black_heather.melee]
@@ -7,6 +8,7 @@ target_hit = { offense = "slash", max = 40 }
 anim = "black_heather_attack"
 
 [donny_the_lad]
+defend_anim = "donny_the_lad_defend"
 death_anim = "donny_the_lad_death"
 
 [donny_the_lad.melee]
@@ -15,6 +17,7 @@ target_hit = { offense = "slash", max = 40 }
 anim = "donny_the_lad_attack"
 
 [speedy_keith]
+defend_anim = "speedy_keith_defend"
 death_anim = "speedy_keith_death"
 
 [speedy_keith.melee]
