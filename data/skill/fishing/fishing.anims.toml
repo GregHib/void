@@ -33,16 +33,16 @@ id = 6706
 id = 6705
 
 [barehand_swordfish]
-id = 6708
-
-[barehand_swordfish_2]
 id = 6707
 
+[barehand_swordfish_2]
+id = 6708
+
 [barehand_tuna]
-id = 6711
+id = 6710
 
 [barehand_tuna_2]
-id = 6710
+id = 6711
 
 [fish_crayfish_cage]
 id = 10009
