@@ -174,16 +174,7 @@ class YanilleAgilityDungeon : Script {
     }
 
     private fun success(level: Int): Boolean {
-        val chance = when (level) {
-            in 82..84 -> 35
-            in 85..86 -> 36
-            in 87..89 -> 37
-            in 90..92 -> 38
-            in 93..94 -> 39
-            in 95..97 -> 40
-            else -> 41
-        }
-        return random.nextInt(256) < chance
+        return Level.success(level, 8..41).coerceAtMost(41)
     }
 
     private suspend fun Player.swingAcrossMonkeyBars(tile: Tile) {
