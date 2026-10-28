@@ -6,6 +6,7 @@ str = 78
 def = 74
 style = "crush"
 max_hit_melee = 90
+attack_speed = 5
 hunt_mode = "cowardly"
 examine = "It's like looking in the mirror."
 
@@ -17,6 +18,7 @@ str = 78
 def = 74
 style = "crush"
 max_hit_melee = 90
+attack_speed = 5
 hunt_mode = "cowardly"
 examine = "It's like looking in the mirror."
 
