@@ -205,6 +205,7 @@ id = 8071
 
 [local_mage_edgeville]
 id = 8347
+clone = "local_mage_edgeville_2"
 
 [mysterious_ghost_edgeville_dungeon]
 id = 2396
@@ -236,10 +237,11 @@ hitpoints = 170
 att = 12
 str = 11
 def = 10
-style = "stab"
+style = "crush"
 max_hit_melee = 20
 attack_bonus = 5
 respawn_delay = 26
+combat_def = "lucien"
 examine = "He walks with a slight limp."
 
 [local_mage_edgeville_3]

@@ -13,3 +13,9 @@ id = 11473
 
 [ogre_chieftain_death]
 id = 11476
+
+[ogre_shaman_cast]
+id = 11471
+
+[ogre_shaman_death]
+id = 11477
