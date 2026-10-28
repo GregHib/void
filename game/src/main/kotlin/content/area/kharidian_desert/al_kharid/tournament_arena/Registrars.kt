@@ -61,18 +61,3 @@ class Registrars : Script {
     private fun yesNo(enabled: Boolean): String = if (enabled) "Yes" else "No"
 }
 
-private data class TournamentRegistrarRules(
-    val tournamentValue: String,
-    val entryFee: String,
-    val potions: Boolean,
-    val food: Boolean,
-    val prayer: Boolean,
-    val specialAttacks: Boolean,
-    val obstacles: Boolean,
-    val ranged: Boolean,
-    val melee: Boolean,
-    val magic: Boolean,
-    val healBetweenRounds: Boolean,
-    val weaponSlotsOnly: Boolean,
-    val summoning: Boolean,
-)
