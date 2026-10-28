@@ -8,3 +8,7 @@ format = "int"
 [cannon_lost_balls]
 persist = true
 format = "int"
+
+[coal_truck_coal_count]
+persist = true
+format = "int"

@@ -3,14 +3,15 @@ package content.bot.behaviour.setup
 import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.action.BotInteractNpc
-import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
+import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotVariable
+import content.bot.behaviour.condition.Condition
 import content.entity.player.bank.bank
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -24,9 +25,12 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
@@ -43,6 +47,7 @@ class DynamicResolversTest {
         DynamicResolvers.sampleItems.clear()
         Areas.clear()
         player = Player()
+        player.levels.link(player, PlayerLevels(player.experience))
         player.inventories.validItemRule = ValidItemRestriction()
         player.inventories.player = player
         player.inventories.normalStack = ItemDependentStack
@@ -78,7 +83,8 @@ class DynamicResolversTest {
 
         val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
-        assertTrue(resolver!!.actions.any { it is BotGoToNearest || it is BotInteractObject })
+        assertTrue(resolver!!.actions[0] is BotGoToNearest)
+        assertTrue(resolver.actions[1] is BotOpenBank)
     }
 
     @Test
@@ -180,6 +186,102 @@ class DynamicResolversTest {
         val entry = BotItem(setOf("missing"))
         val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNull(resolver)
+    }
+
+    private fun toolShop() {
+        ItemDefinitions.set(
+            arrayOf(
+                ItemDefinition(stringId = "steel_hatchet", cost = 200, params = mapOf(Params.USE_SKILL_1 to Skill.Woodcutting.ordinal, Params.USE_LEVEL_1 to 6, Params.EQUIP_SKILL_1 to Skill.Attack.ordinal, Params.EQUIP_LEVEL_1 to 5, Params.SLOT to EquipSlot.Weapon)),
+                ItemDefinition(stringId = "iron_hatchet", cost = 50, params = mapOf(Params.SLOT to EquipSlot.Weapon)),
+                ItemDefinition(stringId = "coins", stackable = 1),
+            ),
+            mapOf("steel_hatchet" to 0, "iron_hatchet" to 1, "coins" to 2),
+        )
+        player.levels.set(Skill.Woodcutting, 1)
+        for (id in listOf("steel_hatchet", "iron_hatchet")) {
+            DynamicResolvers.shopItems[id] = mutableListOf("axe_shop" to "bob")
+        }
+    }
+
+    @Test
+    fun `Purchases skip unusable tools even when one is already carried`() {
+        toolShop()
+        val entry = BotItem(linkedSetOf("steel_hatchet", "iron_hatchet"), usable = true)
+        for (carried in listOf(false, true)) {
+            player.inventory.clear()
+            player.inventory.add("coins", 10000)
+            if (carried) player.inventory.add("steel_hatchet")
+            val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))!!
+            assertEquals("buy_from_shop", resolver.id)
+            assertEquals(listOf("shop:stock:iron_hatchet"), resolver.actions.filterIsInstance<BotInterfaceOption>().map { it.id })
+        }
+    }
+
+    @Test
+    fun `Samples also skip unusable tools`() {
+        toolShop()
+        for (id in listOf("steel_hatchet", "iron_hatchet")) {
+            DynamicResolvers.sampleItems[id] = mutableListOf("axe_shop" to "bob")
+        }
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(BotItem(linkedSetOf("steel_hatchet", "iron_hatchet"), usable = true))))!!
+        assertEquals("take_from_shop", resolver.id)
+        assertEquals(listOf("shop:sample:iron_hatchet"), resolver.actions.filterIsInstance<BotInterfaceOption>().map { it.id })
+    }
+
+    @Test
+    fun `Equipment selection skips carried items that cannot be used`() {
+        toolShop()
+        player.inventory.add("steel_hatchet")
+        player.inventory.add("iron_hatchet")
+        val entry = BotItem(linkedSetOf("steel_hatchet", "iron_hatchet"), usable = true)
+        val resolver = DynamicResolvers.resolver(player, BotEquipmentSetup(mapOf(EquipSlot.Weapon to entry)))!!
+        assertEquals("equip_items", resolver.id)
+        assertEquals(listOf("inventory:inventory:iron_hatchet"), resolver.actions.filterIsInstance<BotInterfaceOption>().map { it.id })
+    }
+
+    @Test
+    fun `Parsed equippable requirement rejects tools usable for chopping but not wielding`() {
+        toolShop()
+        player.levels.set(Skill.Woodcutting, 6)
+        player.inventory.add("coins", 10000)
+        player.inventory.add("steel_hatchet")
+        val condition = Condition.parse(listOf("inventory" to listOf(mapOf("id" to "steel_hatchet,iron_hatchet", "equippable" to true))), "test").single() as BotInventorySetup
+        assertFalse(condition.check(player))
+        val resolver = DynamicResolvers.resolver(player, condition)!!
+        assertEquals("buy_from_shop", resolver.id)
+        assertEquals(listOf("shop:stock:iron_hatchet"), resolver.actions.filterIsInstance<BotInterfaceOption>().map { it.id })
+    }
+
+    @Test
+    fun `Equipment condition and selection enforce parsed equippable requirements`() {
+        toolShop()
+        player.levels.set(Skill.Woodcutting, 6)
+        val condition = Condition.parse(listOf("equipment" to listOf(mapOf("weapon" to mapOf("id" to "steel_hatchet,iron_hatchet", "equippable" to true)))), "test").single() as BotEquipmentSetup
+        player.equipment.set(EquipSlot.Weapon.index, "steel_hatchet")
+        assertFalse(condition.check(player))
+        player.inventory.add("steel_hatchet")
+        player.inventory.add("iron_hatchet")
+        val resolver = DynamicResolvers.resolver(player, condition)!!
+        assertEquals("equip_items", resolver.id)
+        assertEquals(listOf("inventory:inventory:iron_hatchet"), resolver.actions.filterIsInstance<BotInterfaceOption>().map { it.id })
+        player.equipment.set(EquipSlot.Weapon.index, "iron_hatchet")
+        assertTrue(condition.check(player))
+    }
+
+    @Test
+    fun `Purchases return no resolver when every available tool is unusable`() {
+        toolShop()
+        player.inventory.add("coins", 10000)
+        assertNull(DynamicResolvers.resolver(player, BotInventorySetup(listOf(BotItem(setOf("steel_hatchet"), usable = true)))))
+    }
+
+    @Test
+    fun `Purchases allow upgraded tools after their use requirements are met`() {
+        toolShop()
+        player.inventory.add("coins", 10000)
+        player.levels.set(Skill.Woodcutting, 6)
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(BotItem(linkedSetOf("steel_hatchet", "iron_hatchet"), usable = true))))!!
+        assertEquals(listOf("shop:stock:steel_hatchet"), resolver.actions.filterIsInstance<BotInterfaceOption>().map { it.id })
     }
 
     @Test

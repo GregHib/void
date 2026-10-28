@@ -17,3 +17,62 @@ hint = "near the Barbarian Outpost."
 [barbarian_outpost_fishing_area]
 x = [2498, 2516]
 y = [3547, 3575]
+
+[barbarian_outpost_bank_deposit_box]
+# nav-editor: named area only
+x = [2536, 2537]
+y = [3572, 3573]
+level = 0
+tags = ["bank_deposit_box"]
+
+[barbarian_assault_entrance]
+# nav-editor: named area only
+x = [2533, 2535]
+y = [3571, 3573]
+level = 0
+
+[barbarian_outpost_agility_course]
+# nav-editor: named area only
+x = [2530, 2552]
+y = [3543, 3553]
+level = 0
+
+[barbarian_outpost_small_obelisk]
+# nav-editor: named area only
+x = [2516, 2517]
+y = [3590, 3591]
+level = 0
+tags = ["small_obelisk"]
+
+[barbarian_pyre_site_northeast]
+# nav-editor: named area only
+x = [2518, 2519]
+y = [3519, 3520]
+level = 0
+tags = ["barbarian_pyre_site"]
+
+[barbarian_pyre_site_north]
+# nav-editor: named area only
+x = [2506, 2507]
+y = [3518, 3519]
+level = 0
+tags = ["barbarian_pyre_site"]
+
+[barbarian_fishing_area]
+# nav-editor: named area only
+x = [2498, 2501, 2501, 2507, 2507, 2505, 2498]
+y = [3513, 3513, 3504, 3494, 3492, 3492, 3504]
+level = 0
+
+[barbarian_pyre_site_west]
+# nav-editor: named area only
+x = [2502, 2503]
+y = [3498, 3499]
+level = 0
+tags = ["barbarian_pyre_site"]
+
+[ottos_grotto]
+# nav-editor: named area only
+x = [2500, 2503]
+y = [3487, 3490]
+level = 0

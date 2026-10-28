@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
+import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.timedLoad
 import java.nio.file.Files
 import java.nio.file.NoSuchFileException
@@ -23,8 +24,9 @@ data class ConfigFiles(
 
     fun update() {
         val modified = Path.of(Settings["storage.data.modified"])
-        val writer = ArrayWriter(8)
+        val writer = ArrayWriter(9)
         writer.writeLong(System.currentTimeMillis())
+        writer.writeByte(Settings["development.loadAllObjects", false].toInt())
         modified.writeBytes(writer.toArray())
     }
 }
@@ -34,7 +36,8 @@ fun configFiles(path: String = Settings["storage.data"], temp: String = Settings
     val data = Path.of(path)
     val modified = Path.of(temp)
     modified.createParentDirectories()
-    val lastUpdated = loadLastUpdate(modified)
+    val (lastUpdated, storeUnusedObjs) = loadLastUpdate(modified)
+    val settingsChanged = storeUnusedObjs != Settings["development.loadAllObjects", false].toInt()
     val extensions = mutableSetOf<String>()
     timedLoad("config file path") {
         val dirs = data.resolve("dirs.txt").toFile().readLines()
@@ -43,15 +46,20 @@ fun configFiles(path: String = Settings["storage.data"], temp: String = Settings
         }
         map.size
     }
-    return ConfigFiles(map, cacheChanged(lastUpdated, Path.of(cachePath)), extensions)
+    return ConfigFiles(map, settingsChanged || cacheChanged(lastUpdated, Path.of(cachePath)), extensions)
 }
 
-private fun loadLastUpdate(path: Path): Long {
-    if (path.exists()) {
-        val reader = ArrayReader(path.readBytes())
-        return reader.readLong()
+/**
+ * Reads the timestamp and the storeUnused flag written after it.
+ * Files from before the flag existed have no flag, so -1 is returned which never matches and rebuilds the cache once.
+ */
+private fun loadLastUpdate(path: Path): Pair<Long, Int> {
+    if (!path.exists()) {
+        return Pair(0L, -1)
     }
-    return 0
+    val reader = ArrayReader(path.readBytes())
+    val lastUpdated = reader.readLong()
+    return Pair(lastUpdated, if (reader.remaining > 0) reader.readByte() else -1)
 }
 
 private fun walkPath(

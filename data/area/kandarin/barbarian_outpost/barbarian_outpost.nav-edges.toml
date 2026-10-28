@@ -1,0 +1,42 @@
+edges = [
+    
+    { from = { x = 2511, y = 3520 }, to = { x = 2518, y = 3537 } },
+    { from = { x = 2518, y = 3537 }, to = { x = 2526, y = 3517 } },
+
+    { from = { x = 2520, y = 3573 }, to = { x = 2520, y = 3570 } },
+    { from = { x = 2520, y = 3570 }, to = { x = 2513, y = 3563 } },
+    { from = { x = 2513, y = 3563 }, to = { x = 2509, y = 3557 } },
+    { from = { x = 2509, y = 3557 }, to = { x = 2519, y = 3553 } },
+    { from = { x = 2519, y = 3553 }, to = { x = 2520, y = 3570 } },
+    { from = { x = 2520, y = 3570 }, to = { x = 2523, y = 3570 }, actions = [{ object = { option = "Open", id = "barbarian_door_2_closed", x = 2521, y = 3570, radius = 0, success = { object = { id = "door_324_opened", x = 2522, y = 3570 } } } }, { tile = { x = 2523, y = 3570, radius = 1 } }], cost = 4 },
+    { from = { x = 2523, y = 3570 }, to = { x = 2520, y = 3570 }, actions = [{ object = { option = "Open", id = "barbarian_door_2_closed", x = 2521, y = 3570, radius = 0, success = { object = { id = "door_324_opened", x = 2522, y = 3570 } } } }, { tile = { x = 2520, y = 3570, radius = 1 } }], cost = 4 },
+    { from = { x = 2523, y = 3570 }, to = { x = 2533, y = 3571 } },
+    { from = { x = 2533, y = 3571 }, to = { x = 2536, y = 3573 } },
+
+    { from = { x = 2519, y = 3553 }, to = { x = 2518, y = 3537 } },
+    { from = { x = 2519, y = 3553 }, to = { x = 2531, y = 3558 } },
+    { from = { x = 2520, y = 3570 }, to = { x = 2531, y = 3558 } },
+    { from = { x = 2531, y = 3558 }, to = { x = 2541, y = 3559 } },
+    { from = { x = 2541, y = 3559 }, to = { x = 2543, y = 3570 } },
+    { from = { x = 2543, y = 3570 }, to = { x = 2547, y = 3570 }, actions = [{ object = { option = "Open", id = "barbarian_outpost_gate_left_closed", x = 2545, y = 3570, radius = 0, success = { tile = { x = 2546, y = 3570, level = 0 } } } }, { tile = { x = 2547, y = 3570, radius = 1 } }], cost = 5 },
+    { from = { x = 2547, y = 3570 }, to = { x = 2543, y = 3570 }, actions = [{ object = { option = "Open", id = "barbarian_outpost_gate_left_closed", x = 2545, y = 3570, radius = 0, success = { tile = { x = 2545, y = 3570, level = 0 } } } }, { tile = { x = 2543, y = 3570, radius = 1 } }], cost = 5 },
+    { from = { x = 2547, y = 3570 }, to = { x = 2552, y = 3561 } },
+    { from = { x = 2552, y = 3561 }, to = { x = 2552, y = 3558 }, actions = [{ object = { option = "Squeeze-through", id = "barbarian_outpost_entrance", x = 2552, y = 3559, radius = 0, success = { tile = { x = 2552, y = 3558, level = 0 } } } }, { tile = { x = 2552, y = 3558, radius = 1 } }], requires = [{ skill = { id = "agility", min = 35 } }], cost = 4 },
+    { from = { x = 2552, y = 3558 }, to = { x = 2552, y = 3561 }, actions = [{ object = { option = "Squeeze-through", id = "barbarian_outpost_entrance", x = 2552, y = 3559, radius = 0, success = { tile = { x = 2552, y = 3561, level = 0 } } } }, { tile = { x = 2552, y = 3561, radius = 1 } }], requires = [{ skill = { id = "agility", min = 35 } }], cost = 4 },
+    { from = { x = 2552, y = 3558 }, to = { x = 2544, y = 3553 } },
+
+    { from = { x = 2520, y = 3573 }, to = { x = 2520, y = 3587 } },
+    { from = { x = 2520, y = 3587 }, to = { x = 2517, y = 3591 } },
+    { from = { x = 2517, y = 3591 }, to = { x = 2522, y = 3594 } },
+    { from = { x = 2522, y = 3594 }, to = { x = 2520, y = 3587 } },
+
+    { from = { x = 2526, y = 3517 }, to = { x = 2518, y = 3520 } },
+    { from = { x = 2518, y = 3520 }, to = { x = 2511, y = 3520 } },
+    { from = { x = 2511, y = 3520 }, to = { x = 2506, y = 3519 } },
+    { from = { x = 2506, y = 3519 }, to = { x = 2499, y = 3514 } },
+    { from = { x = 2499, y = 3514 }, to = { x = 2499, y = 3509 } },
+    { from = { x = 2499, y = 3509 }, to = { x = 2502, y = 3498 } },
+    { from = { x = 2505, y = 3488 }, to = { x = 2502, y = 3488 } },
+    { from = { x = 2502, y = 3498 }, to = { x = 2504, y = 3494 } },
+    { from = { x = 2504, y = 3494 }, to = { x = 2505, y = 3488 } },
+]

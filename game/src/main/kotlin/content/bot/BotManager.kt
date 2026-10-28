@@ -9,6 +9,8 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait
+import content.bot.behaviour.activity.ActivityPicker
+import content.bot.behaviour.activity.ActivityPicker.Companion.DEFAULT_PICKERS
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotInArea
@@ -41,6 +43,7 @@ class BotManager(
     val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
     private val world: BotWorld = BotGameWorld(),
+    private val pickers: List<ActivityPicker> = DEFAULT_PICKERS,
 ) : Runnable {
     internal val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
@@ -123,7 +126,7 @@ class BotManager(
     fun tick(bot: Bot) {
         try {
             if (bot.noTask()) {
-                assignRandom(bot)
+                assignNext(bot)
                 return
             }
             updateCombatContext(bot)
@@ -167,34 +170,18 @@ class BotManager(
     }
 
     /**
-     * Assign a random activity that is available to the [bot].
+     * Assign an activity to the [bot] chosen by the [pickers].
      */
-    private fun assignRandom(bot: Bot) {
-        val pinned = bot.pinned
-        if (pinned != null) {
+    private fun assignNext(bot: Bot) {
+        if (bot.pinned != null) {
             bot.evaluate.clear()
-            val pinnedActivity = activities[pinned]
-            if (pinnedActivity != null && hasRequirements(bot, pinnedActivity)) {
-                assign(bot, pinnedActivity)
-            } else {
-                assign(bot, activityFallback(bot))
-            }
-            return
-        }
-        if (bot.evaluate.isNotEmpty()) {
+        } else if (bot.evaluate.isNotEmpty()) {
             updateAvailable(bot)
         }
         if (bot.player["debug", false]) {
             logger.trace { "Picking new activity from ${bot.available} for bot ${bot.player.accountName}." }
         }
-        var activity = if (bot.previous != idle && hasRequirements(bot, bot.previous)) {
-            bot.previous!!
-        } else {
-            bot.available
-                .filter { hasRequirements(bot, activities[it]) }
-                .randomOrNull(random)
-                ?.let { activities[it] }
-        }
+        var activity = pickers.firstNotNullOfOrNull { it.pick(bot, activities, idle) { activity -> hasRequirements(bot, activity) } }
         if (activity == null) {
             if (bot.player["debug", false]) {
                 logger.debug { "No activities with requirements met for bot: ${bot.player.accountName}." }
@@ -441,6 +428,7 @@ class BotManager(
         }
         if (behaviour is BotActivity) {
             bot.blocked.remove(behaviour.id)
+            bot.lastSuccessful = behaviour
             slots.release(behaviour)
         }
     }

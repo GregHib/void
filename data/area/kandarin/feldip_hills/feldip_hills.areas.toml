@@ -32,3 +32,54 @@ y = [2890, 2895]
 x = [2496, 2559]
 y = [2880, 2943]
 tags = ["no_cannon", "no_cannon_dark_forces"]
+
+[feldip_hills_crimson_swifts_south]
+# nav-editor: named area only
+x = [2597, 2612]
+y = [2888, 2905]
+level = 0
+
+[feldip_hills_crimson_swifts_north]
+# nav-editor: named area only
+x = [2603, 2611]
+y = [2917, 2932]
+level = 0
+
+[feldip_hills_tropical_wagtails]
+# nav-editor: named area only
+x = [2517, 2551]
+y = [2876, 2885]
+level = 0
+
+[feldip_hills_carniverous_chinchompas_west]
+# nav-editor: named area only
+x = [2500, 2510]
+y = [2893, 2908]
+level = 0
+
+[feldip_hills_carniverous_chinchompas_east]
+# nav-editor: named area only
+x = [2517, 2530]
+y = [2893, 2909]
+level = 0
+
+[feldip_hills_jungle_strykewyrms]
+# nav-editor: named area only
+x = [2448, 2461]
+y = [2892, 2908]
+level = 0
+
+[feldip_hills_gnome_glider]
+# nav-editor: named area only
+x = [2543, 2546]
+y = [2970, 2973]
+level = 0
+tags = ["gnome_glider"]
+
+[feldip_hills_small_obelisk]
+# nav-editor: named area only
+x = [2548, 2550]
+y = [2961, 2963]
+level = 0
+tags = ["small_obelisk"]
+

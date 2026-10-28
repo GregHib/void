@@ -65,7 +65,6 @@ id = 950
 clone = "giant_rat"
 hitpoints = 50
 combat_def = "giant_rat_tutorial_island"
-hunt_mode = "cowardly"
 
 [giant_rat_3]
 id = 12349
