@@ -1,197 +1,200 @@
-[grapes]
+[farming_produce]
+disease_chance = "int"
+
+[.grapes]
 disease_chance = 0
 
-[empty_grape_patch]
+[.empty_grape_patch]
 disease_chance = 0
 
-[spirit_tree]
+[.spirit_tree]
 disease_chance = 7
 
-[calquat]
+[.calquat]
 disease_chance = 14
 
-[belladonna]
+[.belladonna]
 disease_chance = 25
 
-[bittercap_mushroom]
+[.bittercap_mushroom]
 disease_chance = 25
 
-[potato_cactus]
+[.potato_cactus]
 disease_chance = 10
 
-[cactus]
+[.cactus]
 disease_chance = 10
 
-[mahogany_tree]
+[.mahogany_tree]
 disease_chance = 12
 
-[teak_tree]
+[.teak_tree]
 disease_chance = 14
 
-[magic_tree]
+[.magic_tree]
 disease_chance = 9
 
-[yew_tree]
+[.yew_tree]
 disease_chance = 11
 
-[maple_tree]
+[.maple_tree]
 disease_chance = 13
 
-[willow_tree]
+[.willow_tree]
 disease_chance = 15
 
-[oak_tree]
+[.oak_tree]
 disease_chance = 17
 
-[palm_tree]
+[.palm_tree]
 disease_chance = 18
 
-[papaya_tree]
+[.papaya_tree]
 disease_chance = 18
 
-[pineapple_plant]
+[.pineapple_plant]
 disease_chance = 18
 
-[curry_tree]
+[.curry_tree]
 disease_chance = 18
 
-[orange_tree]
+[.orange_tree]
 disease_chance = 18
 
-[banana_tree]
+[.banana_tree]
 disease_chance = 18
 
-[apple_tree]
+[.apple_tree]
 disease_chance = 18
 
-[poison_ivy]
+[.poison_ivy]
 disease_chance = 0
 
-[whiteberry]
+[.whiteberry]
 disease_chance = 20
 
-[jangerberry]
+[.jangerberry]
 disease_chance = 20
 
-[dwellberry]
+[.dwellberry]
 disease_chance = 20
 
-[cadavaberry]
+[.cadavaberry]
 disease_chance = 20
 
-[redberry]
+[.redberry]
 disease_chance = 20
 
-[wildblood]
+[.wildblood]
 disease_chance = 30
 
-[krandorian]
+[.krandorian]
 disease_chance = 30
 
-[yanillian]
+[.yanillian]
 disease_chance = 30
 
-[jute]
+[.jute]
 disease_chance = 30
 
-[asgarnian]
+[.asgarnian]
 disease_chance = 30
 
-[hammerstone]
+[.hammerstone]
 disease_chance = 30
 
-[barley]
+[.barley]
 disease_chance = 30
 
-[white_lily]
+[.white_lily]
 disease_chance = 30
 
-[limpwurt]
+[.limpwurt]
 disease_chance = 30
 
-[woad]
+[.woad]
 disease_chance = 30
 
-[nasturtium]
+[.nasturtium]
 disease_chance = 30
 
-[rosemary]
+[.rosemary]
 disease_chance = 30
 
-[marigold]
+[.marigold]
 disease_chance = 30
 
-[scarecrow]
+[.scarecrow]
 disease_chance = 0
 
-[torstol]
+[.torstol]
 disease_chance = 27
 
-[dwarf_weed]
+[.dwarf_weed]
 disease_chance = 27
 
-[lantadyme]
+[.lantadyme]
 disease_chance = 27
 
-[cadantine]
+[.cadantine]
 disease_chance = 27
 
-[snapdragon]
+[.snapdragon]
 disease_chance = 27
 
-[kwuarm]
+[.kwuarm]
 disease_chance = 27
 
-[avantoe]
+[.avantoe]
 disease_chance = 27
 
-[irit]
+[.irit]
 disease_chance = 27
 
-[toadflax]
+[.toadflax]
 disease_chance = 27
 
-[ranarr]
+[.ranarr]
 disease_chance = 27
 
-[goutweed]
+[.goutweed]
 disease_chance = 27
 
-[harralander]
+[.harralander]
 disease_chance = 27
 
-[tarromin]
+[.tarromin]
 disease_chance = 27
 
-[marrentill]
+[.marrentill]
 disease_chance = 27
 
-[guam]
+[.guam]
 disease_chance = 27
 
-[snape_grass]
+[.snape_grass]
 disease_chance = 30
 
-[watermelon]
+[.watermelon]
 disease_chance = 30
 
-[strawberry]
+[.strawberry]
 disease_chance = 30
 
-[sweetcorn]
+[.sweetcorn]
 disease_chance = 30
 
-[tomato]
+[.tomato]
 disease_chance = 30
 
-[cabbage]
+[.cabbage]
 disease_chance = 30
 
-[onion]
+[.onion]
 disease_chance = 30
 
-[potato]
+[.potato]
 disease_chance = 30
 
-[blindweed]
+[.blindweed]
 disease_chance = 0

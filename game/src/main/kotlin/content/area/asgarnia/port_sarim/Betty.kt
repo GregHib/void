@@ -146,7 +146,7 @@ class Betty : Script {
         delay(3)
         target.tele(3012, 3259)
         target.face(Direction.EAST)
-        sound("put_down")
+        sound("drop_item")
         set("handsand_counter_multi", true)
         target.anim("take")
         item(item = "vial", text = "Betty places a vial on her counter.")

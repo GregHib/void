@@ -6,6 +6,7 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.collections.set
 
@@ -124,6 +125,10 @@ object Tables {
         return ids.mapNotNull { Rows.getOrNull(it) }
     }
 
+    fun dir(path: String): Direction = get(path, ColumnType.ColumnDirection)
+
+    fun dirOrNull(path: String): Direction? = getOrNull(path, ColumnType.ColumnDirection)
+
     /*
         Primitive Lists
      */
@@ -159,6 +164,10 @@ object Tables {
     fun npcList(path: String): List<String> = get(path, ColumnType.IntList).map { NPCDefinitions.get(it).stringId }
 
     fun npcListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.IntList)?.map { NPCDefinitions.get(it).stringId }
+
+    fun dirList(path: String): List<Direction> = get(path, ColumnType.DirectionList)
+
+    fun dirListOrNull(path: String): List<Direction>? = getOrNull(path, ColumnType.DirectionList)
 
     /*
         Primitive Pairs

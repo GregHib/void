@@ -1,13 +1,13 @@
 [monk_of_zamorak]
 defend_anim = "monk_of_zamorak_defend"
-defend_sound = "monk_of_zamorak_defend"
+defend_sound = "man_defend"
 death_anim = "monk_of_zamorak_death"
-death_sound = "monk_of_zamorak_death"
+death_sound = "man_death"
 
 [monk_of_zamorak.melee]
 range = 1
 anim = "monk_of_zamorak_attack"
-target_sound = "monk_of_zamorak_attack"
+target_sound = "lensa_attack"
 target_hit = { offense = "crush", max = 50 }
 
 [monk_of_zamorak.magic]

@@ -1,6 +1,6 @@
 [dragith_nurn]
 defend_anim = "dragith_nurn_defend"
-defend_sound = "dragith_nurn_hit"
+defend_sound = "corpse_defend"
 death_anim = "dragith_nurn_death"
 death_sound =  "dragith_nurn_death"
 

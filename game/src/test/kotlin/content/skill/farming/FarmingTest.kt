@@ -5,6 +5,7 @@ import KoinMock
 import containsMessage
 import io.mockk.every
 import io.mockk.mockk
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,7 +14,9 @@ import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.config.JingleDefinition
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.SoundDefinition
+import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,7 +34,6 @@ class FarmingTest : KoinMock() {
     private lateinit var definitions: MutableMap<String, VariableDefinition>
     private lateinit var player: Player
     private lateinit var farming: Farming
-    private lateinit var farmingDefinitions: FarmingDefinitions
 
     @BeforeEach
     fun setup() {
@@ -51,8 +53,9 @@ class FarmingTest : KoinMock() {
             fonts
         }
         definitions = mutableMapOf()
-        farmingDefinitions = FarmingDefinitions()
-        farming = Farming(farmingDefinitions)
+        Tables.clear()
+        Rows.clear()
+        farming = Farming()
         player = Player()
         player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = ValidItemRestriction()
@@ -61,6 +64,13 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 1
         })
+    }
+
+    @AfterEach
+    fun teardown() {
+        VariableDefinitions.clear()
+        Tables.clear()
+        Rows.clear()
     }
 
     @Test
@@ -142,7 +152,8 @@ class FarmingTest : KoinMock() {
         player["farming_veg_patch_falador_nw"] = "magic_tree_1"
         player["farming_offset_mins"] = 0
         player["amulet_of_farming_patch"] = "farming_veg_patch_falador_nw"
-        farmingDefinitions.diseaseChances["magic_tree"] = 9
+        Tables.set(mapOf("farming_produce" to TableDefinition(mapOf("disease_chance" to 0), arrayOf(ColumnType.ColumnInt), arrayOf(0), intArrayOf(0))))
+        Rows.set(arrayOf(RowDefinition(0, arrayOf(9), "farming_produce.magic_tree")), mapOf("farming_produce.magic_tree" to 0))
         val array = Array(70) { "" }
         array[0] = "magic_tree_0"
         array[1] = "magic_tree_1"
@@ -229,5 +240,6 @@ class FarmingTest : KoinMock() {
             persistent = false,
             transmit = false,
         )
+        VariableDefinitions.set(definitions)
     }
 }

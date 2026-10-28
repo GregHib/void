@@ -1,4 +1,8 @@
-[bolt]
+[ammo_groups]
+id = "int"
+items = "list<item>"
+
+[.bolt]
 id = 63
 items = [
     "silver_bolts",
@@ -54,7 +58,7 @@ items = [
     "broad_tipped_bolts"
 ]
 
-[arrow]
+[.arrow]
 id = 62
 items = [
     "bronze_arrow",
@@ -192,45 +196,45 @@ items = [
     "sagittarian_arrows_p++_bound"
 ]
 
-[ogre]
+[.ogre]
 id = 71
 items = ["bronze_brutal", "iron_brutal", "steel_brutal", "black_brutal", "mithril_brutal", "adamant_brutal", "rune_brutal", "ogre_arrow"]
 
-[none]
+[.none]
 id = 106
 
-[bolt_rack]
+[.bolt_rack]
 id = 38
 items = ["bolt_rack"]
 
-[training]
+[.training]
 id = 555
 items = ["training_arrows"]
 
-[guam_tar]
+[.guam_tar]
 id = 582
 items = ["guam_tar"]
 
-[marrentill_tar]
+[.marrentill_tar]
 id = 583
 items = ["marrentill_tar"]
 
-[tarromin_tar]
+[.tarromin_tar]
 id = 584
 items = ["tarromin_tar"]
 
-[harralander_tar]
+[.harralander_tar]
 id = 585
 items = ["harralander_tar"]
 
-[kebbit_bolts]
+[.kebbit_bolts]
 id = 587
 items = ["kebbit_bolts", "long_kebbit_bolts"]
 
-[performance]
+[.performance]
 id = 1038
 items = ["performance_arrow"]
 
-[hand_cannon_shot]
+[.hand_cannon_shot]
 id = 1289
 items = ["hand_cannon_shot"]

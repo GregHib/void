@@ -1,0 +1,275 @@
+[penguin_locations_easy]
+disguise = "string"
+tile = "tile"
+
+[.al_kharid]
+disguise = "cactus"
+tile = { x = 3311, y = 3163 }
+
+[.barbarian_outpost]
+disguise = "bush"
+tile = { x = 2532, y = 3588 }
+
+[.brimhaven]
+disguise = "bush"
+tile = { x = 2740, y = 3233 }
+
+[.castle_wars]
+disguise = "bush"
+tile = { x = 2458, y = 3095 }
+
+[.central_karamja]
+disguise = "bush"
+tile = { x = 2846, y = 3059 }
+
+[.death_plateau]
+disguise = "rock"
+tile = { x = 2872, y = 3603 }
+
+[.digsite]
+disguise = "rock"
+tile = { x = 3339, y = 3424 }
+
+[.draynor_manor]
+disguise = "crate"
+tile = { x = 3116, y = 3335 }
+
+[.dorgesh_kaan]
+disguise = "barrel"
+tile = { x = 2732, y = 5326 }
+
+[.eagles_peak]
+disguise = "bush"
+tile = { x = 2311, y = 3519 }
+
+[.east_karamja]
+disguise = "bush"
+tile = { x = 2938, y = 2978 }
+
+[.entrana]
+disguise = "barrel"
+tile = { x = 2810, y = 3383 }
+
+[.feldip_hills]
+disguise = "rock"
+tile = { x = 2606, y = 3006 }
+
+[.wilderness]
+disguise = "crate"
+tile = { x = 3314, y = 3551 }
+
+[.gnome_maze]
+disguise = "bush"
+tile = { x = 2513, y = 3154 }
+
+[.gnome_stronghold]
+disguise = "bush"
+tile = { x = 2386, y = 3454 }
+
+[.goblin_village]
+disguise = "bush"
+tile = { x = 2949, y = 3510 }
+
+[.ice_mountain]
+disguise = "rock"
+tile = { x = 3013, y = 3501 }
+
+[.lighthouse]
+disguise = "rock"
+tile = { x = 2524, y = 3625 }
+
+[.lumbridge_swamp]
+disguise = "toadstool"
+tile = { x = 3211, y = 3156 }
+
+[.mage_training_arena]
+disguise = "bush"
+tile = { x = 3349, y = 3310 }
+
+[.mcgrubors_wood]
+disguise = "bush"
+tile = { x = 2633, y = 3501 }
+
+[.mudskipper_point]
+disguise = "bush"
+tile = { x = 2989, y = 3121 }
+
+[.musa_point]
+disguise = "crate"
+tile = { x = 2870, y = 3156 }
+
+[.north_ardougne]
+disguise = "bush"
+tile = { x = 2398, y = 3361 }
+
+[.observatory]
+disguise = "crate"
+tile = { x = 2440, y = 3206 }
+
+[.port_khazard]
+disguise = "barrel"
+tile = { x = 2662, y = 3152 }
+
+[.rellekka]
+disguise = "rock"
+tile = { x = 2675, y = 3717 }
+
+[.southern_desert_mining_camp]
+disguise = "cactus"
+tile = { x = 3257, y = 3055 }
+
+[.southern_desert]
+disguise = "cactus"
+tile = { x = 3252, y = 2963 }
+
+[.white_wolf_mountain]
+disguise = "rock"
+tile = { x = 2859, y = 3506 }
+
+[.witchaven]
+disguise = "rock"
+tile = { x = 2733, y = 3283 }
+
+[.wizards_tower]
+disguise = "bush"
+tile = { x = 3110, y = 3152 }
+
+[.zanaris]
+disguise = "toadstool"
+tile = { x = 2420, y = 4472 }
+
+[penguin_locations_hard]
+disguise = "string"
+tile = "tile"
+
+[.ape_atoll]
+disguise = "barrel"
+tile = { x = 2751, y = 2700 }
+
+[.ape_atoll_bush]
+disguise = "bush"
+tile = { x = 2802, y = 2806 }
+
+[.castle_wars]
+disguise = "rock"
+tile = { x = 2340, y = 3064 }
+
+[.dragontooth_isle]
+disguise = "crate"
+tile = { x = 3824, y = 3562 }
+
+[.feldip_hills]
+disguise = "bush"
+tile = { x = 2578, y = 2909 }
+
+[.haunted_woods]
+disguise = "bush"
+tile = { x = 3600, y = 3487 }
+
+[.haunted_woods_crate]
+disguise = "crate"
+tile = { x = 3637, y = 3486 }
+
+[.jatizso]
+disguise = "bush"
+tile = { x = 2355, y = 3848 }
+
+[.jatizso_rock]
+disguise = "rock"
+tile = { x = 2413, y = 3846 }
+
+[.jiggig]
+disguise = "rock"
+tile = { x = 2438, y = 3050 }
+
+[.keldagrim]
+disguise = "rock"
+tile = { x = 2909, y = 10210 }
+
+[.lunar_isle]
+disguise = "rock"
+tile = { x = 2118, y = 3942 }
+
+[.miscellania]
+disguise = "bush"
+tile = { x = 2534, y = 3871 }
+
+[.mort_myre]
+disguise = "bush"
+tile = { x = 3472, y = 3392 }
+
+[.mort_myre_rock]
+disguise = "rock"
+tile = { x = 3545, y = 3439 }
+
+[.mort_myre_toadstool]
+disguise = "toadstool"
+tile = { x = 3417, y = 3438 }
+
+[.mos_le_harmless]
+disguise = "barrel"
+tile = { x = 3738, y = 3001 }
+
+[.neitiznot]
+disguise = "bush"
+tile = { x = 2353, y = 3834 }
+
+[.neitiznot_rock]
+disguise = "rock"
+tile = { x = 2357, y = 3797 }
+
+[.piscatoris]
+disguise = "crate"
+tile = { x = 2322, y = 3658 }
+
+[.port_phasmatys]
+disguise = "barrel"
+tile = { x = 3654, y = 3491 }
+
+[.sophanem]
+disguise = "cactus"
+tile = { x = 3276, y = 2797 }
+
+[.nardah]
+disguise = "cactus"
+tile = { x = 3433, y = 3000 }
+
+[.southern_desert]
+disguise = "cactus"
+tile = { x = 3281, y = 2908 }
+
+[.prifddinas_south_gate]
+disguise = "rock"
+tile = { x = 2284, y = 3265 }
+
+[.south_of_elf_camp]
+disguise = "toadstool"
+tile = { x = 2219, y = 3227 }
+
+[.lletya]
+disguise = "toadstool"
+tile = { x = 2314, y = 3174 }
+
+[.north_of_tyras_camp]
+disguise = "toadstool"
+tile = { x = 2181, y = 3172 }
+
+[.scorpion_pit]
+disguise = "rock"
+tile = { x = 3236, y = 3927 }
+
+[.wilderness_north_kbd]
+disguise = "rock"
+tile = { x = 3019, y = 3866 }
+
+[.wilderness_lava_maze]
+disguise = "rock"
+tile = { x = 3108, y = 3837 }
+
+[.wilderness_south_kbd]
+disguise = "rock"
+tile = { x = 2991, y = 3824 }
+
+[.wilderness_volcano]
+disguise = "rock"
+tile = { x = 3169, y = 3650 }
