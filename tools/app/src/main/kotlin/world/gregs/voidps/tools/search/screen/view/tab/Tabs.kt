@@ -53,7 +53,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         Settings.load()
         Settings.rebase("${file.absolutePath}/")
         loadConfig = true
-        configFiles(path, "$path/.temp/modified.dat", cachePath)
+        configFiles(path, cachePath)
     } else {
         Settings.load()
         Settings.rebase("${file.parentFile.parent}/")

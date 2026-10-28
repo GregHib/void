@@ -12,9 +12,3 @@ id = 2418
 
 [death_spawn_defend]
 id = 884
-
-[death_spawn_death]
-id = 882
-
-[death_spawn_attack]
-id = 879

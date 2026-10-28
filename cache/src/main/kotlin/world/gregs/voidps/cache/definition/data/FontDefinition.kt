@@ -1,8 +1,11 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class FontDefinition(
     override var id: Int = -1,
     var glyphWidths: ByteArray = byteArrayOf(),
@@ -11,6 +14,7 @@ data class FontDefinition(
     var topPadding: Int = 0,
     var bottomPadding: Int = 0,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {

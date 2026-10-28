@@ -1,9 +1,12 @@
 package world.gregs.voidps.engine.data.config
 
+import kotlinx.serialization.Serializable
+import world.gregs.voidps.engine.data.snapshot.serializer.IntRangeSerializer
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.random
 import kotlin.ranges.random
 
+@Serializable
 data class CombatDefinition(
     val npc: String = "",
     var attackRange: Int = 1,
@@ -69,6 +72,7 @@ data class CombatDefinition(
      *  @param impactPoison poison damage applied to target after the hit's delay.
      *  @param impactMessage message sent to the target after the hit's delay.
      */
+    @Serializable
     data class CombatAttack(
         val id: String = "",
         // Selection
@@ -121,6 +125,7 @@ data class CombatDefinition(
      * @param delay override duration before this hit is applied (usually calculated using projectile travel time)
      * @param accuracyRoll should accuracy be rolled to check for successful hit or not (false = always hit)
      */
+    @Serializable
     data class CombatHit(
         val offense: String = "",
         val defence: String = "",
@@ -131,8 +136,10 @@ data class CombatDefinition(
         val accuracyRoll: Boolean = true,
     )
 
-    data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)
+    @Serializable
+    data class Projectile(val id: String, val delay: Int? = null, @Serializable(with = IntRangeSerializer::class) val curve: IntRange? = null, val endHeight: Int? = null)
 
+    @Serializable
     enum class Origin {
         /**
          * Entities south-west tile
@@ -151,13 +158,16 @@ data class CombatDefinition(
      * @param max number of levels to drain
      * @param multiplier multiplier applied to drained skill
      */
+    @Serializable
     data class Drain(val skill: String, val min: Int = 0, val max: Int = 0, val multiplier: Double = 0.0) {
         val amount: Int
             get() = if (min == max) max else (min..max).random(random)
     }
 
-    data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0, val offset: Delta? = null)
+    @Serializable
+    data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0, val offset: Delta? = null, val area: Boolean = false)
 
+    @Serializable
     data class CombatGfx(val id: String, val delay: Int? = null, val height: Int? = null, val area: Boolean = false, val offset: Delta? = null)
 
     companion object {

@@ -2,6 +2,8 @@
 
 package world.gregs.voidps.engine.data.definition
 
+import world.gregs.voidps.type.Direction
+
 sealed interface ColumnType<T : Any> {
     val default: T
     fun cast(value: Any?): T? = value as? T
@@ -29,6 +31,11 @@ sealed interface ColumnType<T : Any> {
     object ColumnEntity : ColumnType<Int> {
         override val default = -1
         override fun toString() = "ColumnEntity"
+    }
+
+    object ColumnDirection : ColumnType<Direction> {
+        override val default = Direction.NONE
+        override fun toString() = "ColumnDirection"
     }
 
     open class ColumnPair<A : Any, B : Any>(val one: ColumnType<A>, val two: ColumnType<B>) : ColumnType<Pair<A, B>> {
@@ -98,6 +105,7 @@ sealed interface ColumnType<T : Any> {
     object BooleanList : ColumnList<Boolean>(ColumnBoolean)
     object IntList : ColumnList<Int>(ColumnInt)
     object StringList : ColumnList<String>(ColumnString)
+    object DirectionList : ColumnList<Direction>(ColumnDirection)
 
     object IntIntPair : ColumnPair<Int, Int>(ColumnInt, ColumnInt)
     object IntStringPair : ColumnPair<Int, String>(ColumnInt, ColumnString)

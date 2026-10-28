@@ -30,7 +30,7 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
     fun start(files: ConfigFiles) {
         loadItemSpawns(files.list(Settings["spawns.items"]))
         loadObjectSpawns(files.list(Settings["spawns.objects"]))
-        loadNpcSpawns(files)
+        loadNpcSpawns()
         Spawn.world(files)
     }
 

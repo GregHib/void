@@ -1,12 +1,16 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class AnimationDefinition(
     override var id: Int = -1,
     var priority: Int = 5,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {

@@ -164,7 +164,7 @@ class Bork : Script {
         delay(2)
         elite.anim("teleport_modern")
         elite.gfx("teleport_modern")
-        sound("teleport_modern")
+        sound("teleport")
         delay(6)
         NPCs.remove(elite)
         clearCamera()

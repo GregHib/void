@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.wildcardEquals
-import world.gregs.voidps.engine.timedLoad
 
 class DropTables {
 
@@ -24,54 +23,55 @@ class DropTables {
     fun getValue(key: String) = tables.getValue(key)
 
     fun load(paths: List<String>): DropTables {
-        timedLoad("drop table") {
-            val tables = Object2ObjectOpenHashMap<String, DropTable>(10, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val tableName = section()
-                        var roll = 1
-                        var chance = 1
-                        var type = TableType.First
-                        val drops = ObjectArrayList<Drop>()
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "roll" -> roll = int()
-                                "type" -> type = TableType.byName(string())
-                                "chance" -> chance = int()
-                                "drops" -> while (nextElement()) {
-                                    drops.add(readItemDrop(roll))
-                                }
-                                else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
-                            }
-                        }
-                        if (tables.containsKey(tableName)) {
-                            logger.warn { "Duplicate drop table '$tableName' in $path overrides an earlier definition." }
-                        }
-                        tables[tableName] = DropTable(type, roll, drops, chance)
-                    }
-                }
-            }
-            for ((tableName, table) in tables) {
-                for (i in table.drops.indices) {
-                    val drop = table.drops[i]
-                    if (drop is ReferenceTable) {
-                        val dropTable = tables[drop.tableName]
-                        require(dropTable != null) { "Unable to find drop table with name '${drop.tableName}'." }
-                        (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll ?: dropTable.roll, chance = if (drop.chance == -1) dropTable.chance else drop.chance, predicate = dropTable.predicate ?: drop.predicate)
-                    }
-                }
-                if (table.type != TableType.All && table.roll >= 1) {
-                    val total = table.drops.sumOf { if (it.chance > 0 && it.predicate == null) it.chance else 0 }
-                    if (total > table.roll) {
-                        logger.warn { "Drop table '$tableName' chances total $total exceeds roll ${table.roll}; drops past the roll can never be selected." }
-                    }
-                }
-            }
-            this.tables = tables
-            tables.size
-        }
+        tables = parse(paths)
         return this
+    }
+
+    fun parse(paths: List<String>): Map<String, DropTable> {
+        val tables = Object2ObjectOpenHashMap<String, DropTable>(10, Hash.VERY_FAST_LOAD_FACTOR)
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val tableName = section()
+                    var roll = 1
+                    var chance = 1
+                    var type = TableType.First
+                    val drops = ObjectArrayList<Drop>()
+                    while (nextPair()) {
+                        when (val key = key()) {
+                            "roll" -> roll = int()
+                            "type" -> type = TableType.byName(string())
+                            "chance" -> chance = int()
+                            "drops" -> while (nextElement()) {
+                                drops.add(readItemDrop(roll))
+                            }
+                            else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
+                        }
+                    }
+                    if (tables.containsKey(tableName)) {
+                        logger.warn { "Duplicate drop table '$tableName' in $path overrides an earlier definition." }
+                    }
+                    tables[tableName] = DropTable(type, roll, drops, chance)
+                }
+            }
+        }
+        for ((tableName, table) in tables) {
+            for (i in table.drops.indices) {
+                val drop = table.drops[i]
+                if (drop is ReferenceTable) {
+                    val dropTable = tables[drop.tableName]
+                    require(dropTable != null) { "Unable to find drop table with name '${drop.tableName}'." }
+                    (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll ?: dropTable.roll, chance = if (drop.chance == -1) dropTable.chance else drop.chance, predicate = dropTable.predicate ?: drop.predicate)
+                }
+            }
+            if (table.type != TableType.All && table.roll >= 1) {
+                val total = table.drops.sumOf { if (it.chance > 0 && it.predicate == null) it.chance else 0 }
+                if (total > table.roll) {
+                    logger.warn { "Drop table '$tableName' chances total $total exceeds roll ${table.roll}; drops past the roll can never be selected." }
+                }
+            }
+        }
+        return tables
     }
 
     private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int, override val predicate: ((Player) -> Boolean)?) : Drop {

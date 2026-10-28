@@ -22,9 +22,6 @@ id = 510
 [drop_item]
 id = 2739
 
-[take_item]
-id = 2582
-
 [cook]
 id = 2577
 

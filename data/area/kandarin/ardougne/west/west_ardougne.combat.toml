@@ -1,8 +1,8 @@
 [mourner]
 defend_anim = "mourner_defend"
-defend_sound = "mourner_defend"
+defend_sound = "man_defend"
 death_anim = "mourner_death"
-death_sound = "mourner_death"
+death_sound = "man_death"
 
 [mourner.melee]
 range = 1

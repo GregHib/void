@@ -1,10 +1,10 @@
 [monk]
 death_anim = "monk_death"
-defend_sound = "monk_defend"
-death_sound = "monk_death"
+defend_sound = "man_defend"
+death_sound = "man_death"
 
 [monk.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
 anim = "monk_attack"
-sound = "monk_attack"
+sound = "lensa_attack"

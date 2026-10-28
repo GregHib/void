@@ -56,67 +56,67 @@ capacity = 150
 
 # Metal/god helms - Pikkupstix enchants the plain helm first (base -> enchanted).
 [.snakeskin_bandana]
-enchanted = "snakeskin_bandana_enchanted"
+enchanted = "snakeskin_bandana_e"
 charged = "snakeskin_bandana_charged"
 level = 20
 capacity = 50
 
 [.archer_helm]
-enchanted = "archer_helm_enchanted"
+enchanted = "archer_helm_e"
 charged = "archer_helm_charged"
 level = 30
 capacity = 70
 
 [.berserker_helm]
-enchanted = "berserker_helm_enchanted"
+enchanted = "berserker_helm_e"
 charged = "berserker_helm_charged"
 level = 30
 capacity = 70
 
 [.warrior_helm]
-enchanted = "warrior_helm_enchanted"
+enchanted = "warrior_helm_e"
 charged = "warrior_helm_charged"
 level = 30
 capacity = 70
 
 [.farseer_helm]
-enchanted = "farseer_helm_enchanted"
+enchanted = "farseer_helm_e"
 charged = "farseer_helm_charged"
 level = 30
 capacity = 70
 
 [.rune_full_helm]
-enchanted = "rune_full_helm_enchanted"
+enchanted = "rune_full_helm_e"
 charged = "rune_full_helm_charged"
 level = 30
 capacity = 60
 
 [.splitbark_helm]
-enchanted = "splitbark_helm_enchanted"
+enchanted = "splitbark_helm_e"
 charged = "splitbark_helm_charged"
 level = 30
 capacity = 50
 
 [.helm_of_neitiznot]
-enchanted = "helm_of_neitiznot_enchanted"
+enchanted = "helm_of_neitiznot_e"
 charged = "helm_of_neitiznot_charged"
 level = 45
 capacity = 90
 
 [.dragon_med_helm]
-enchanted = "dragon_helm_enchanted"
+enchanted = "dragon_helm_e"
 charged = "dragon_helm_charged"
 level = 50
 capacity = 110
 
 [.lunar_helm]
-enchanted = "lunar_helm_enchanted"
+enchanted = "lunar_helm_e"
 charged = "lunar_helm_charged"
 level = 55
 capacity = 110
 
 [.armadyl_helmet]
-enchanted = "armadyl_helmet_enchanted"
+enchanted = "armadyl_helmet_e"
 charged = "armadyl_helmet_charged"
 level = 60
 capacity = 120
