@@ -62,6 +62,12 @@ interface Storage {
     fun saveReport(report: AbuseReport)
 
     /**
+     * Atomically persists a brand-new account
+     * @return false if an account with the same name already exists
+     */
+    fun create(account: PlayerSave): Boolean
+
+    /**
      * Checks if an account exists
      */
     fun exists(accountName: String): Boolean
