@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
+import world.gregs.voidps.network.RegistrationServer
 import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.web.WebServer
 import java.nio.file.Paths
@@ -94,6 +95,7 @@ object Main {
         val decoders = decoders(get<Huffman>())
         val accountLoader: PlayerAccountLoader = get()
         val loginServer = LoginServer.load(settings, decoders, accountLoader)
+        val registrationServer = RegistrationServer.load(settings, accountLoader)
 
         // Game world
         val stages = getTickStages()
@@ -101,6 +103,7 @@ object Main {
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
+        server.registrationServer = registrationServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
         runBlocking {
