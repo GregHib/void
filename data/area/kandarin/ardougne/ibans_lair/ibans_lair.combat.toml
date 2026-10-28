@@ -1,4 +1,5 @@
 [soulless]
+defend_anim = "soulless_defend"
 death_anim = "soulless_death"
 
 [soulless.melee]

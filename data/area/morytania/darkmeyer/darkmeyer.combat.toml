@@ -1,4 +1,5 @@
 [vyrewatch]
+defend_anim = "vyrewatch_defend"
 death_anim = "vyrewatch_death"
 
 [vyrewatch.melee]

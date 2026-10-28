@@ -1,4 +1,5 @@
 [baby_tanglefoot]
+defend_anim = "baby_tanglefoot_defend"
 death_anim = "baby_tanglefoot_death"
 
 [baby_tanglefoot.melee]

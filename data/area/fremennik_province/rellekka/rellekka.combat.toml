@@ -1,4 +1,5 @@
 [agnar_rellekka]
+clone = "human"
 
 [agnar_rellekka.melee]
 clone = "man.melee"
