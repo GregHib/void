@@ -1,128 +1,159 @@
 [skeleton_drop_table]
 type = "all"
 drops = [
+    { id = "big_bones" },
     { table = "bones" },
     { table = "skeleton_charms", members = true },
+    { table = "skeleton_secondary" },
+    { table = "skeleton_own_tertiary" },
 ]
 
 [skeleton_unarmed_drop_table]
 type = "all"
 drops = [
+    { id = "big_bones" },
     { id = "bones" },
     { table = "skeleton_unarmed_secondary" },
-    { table = "skeleton_tertiary" },
+    { table = "skeleton_unarmed_tertiary" },
     { table = "skeleton_charms", members = true },
 ]
 
 [skeleton_unarmed_secondary]
-roll = 128
+roll = 256
 drops = [
-    { id = "bronze_arrow", amount = 2, chance = 7 },
-    { id = "bronze_arrow", amount = 5, chance = 4 },
-    { id = "iron_arrow", chance = 4 },
-    { id = "air_rune", amount = 12, chance = 2 },
-    { id = "earth_rune", amount = 3, chance = 2 },
-    { id = "chaos_rune", amount = 3, chance = 2 },
-    { id = "fire_rune", amount = 2, chance = 2 },
-    { id = "nature_rune", amount = 3 },
-    { id = "steel_arrow" },
-    { id = "coins", amount = 2, chance = 18 },
-    { id = "coins", amount = 12, chance = 15 },
-    { id = "coins", amount = 4, chance = 7 },
-    { id = "coins", amount = 33, chance = 4 },
-    { id = "coins", amount = 25, chance = 4 },
-    { id = "coins", amount = 16, chance = 4 },
-    { id = "coins", amount = 48 },
-    { id = "nothing", amount = 0, chance = 18 },
-    { id = "iron_dagger", chance = 6 },
-    { id = "iron_ore" },
-    { id = "fire_talisman", chance = 2 },
-    { id = "grain" },
-    { table = "herb_drop_table", chance = 21 },
-    { table = "gem_drop_table" },
+    { id = "bronze_arrow", min = 2, max = 5, chance = 14 },
+    { id = "iron_arrow", min = 12, max = 15, chance = 7 },
+    { id = "iron_arrow", chance = 7 },
+    { id = "air_rune", min = 12, max = 15, chance = 14 },
+    { id = "earth_rune", min = 1, max = 3, chance = 3 },
+    { id = "chaos_rune", min = 3, max = 8, chance = 7 },
+    { id = "fire_rune", amount = 2, chance = 3 },
+    { id = "nature_rune", min = 1, max = 3, chance = 2 },
+    { id = "steel_arrow", chance = 2 },
+    { id = "coins", min = 1, max = 65, chance = 14 },
+    { id = "iron_dagger", chance = 14 },
+    { id = "iron_ore", chance = 7 },
+    { id = "fire_talisman", chance = 3 },
+    { id = "grain", chance = 7 },
+    { table = "herb_drop_table", chance = 30 },
+    { table = "gem_drop_table", chance = 2 },
+    { id = "iron_mace", chance = 14 },
+    { id = "iron_sword", chance = 7 },
+    { id = "iron_scimitar" },
+    { id = "iron_med_helm", chance = 7 },
+    { id = "iron_hatchet", chance = 3 },
+    { id = "adamant_kiteshield", chance = 7 },
+    { id = "water_rune", min = 2, max = 9, chance = 5 },
+    { id = "mind_rune", min = 1, max = 25, chance = 14 },
+    { id = "cosmic_rune", amount = 2, chance = 2 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "bucket", chance = 7 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "staff_of_air", chance = 14 },
+    { id = "cannonball", chance = 7 },
+    { id = "antipoison_3", chance = 7 },
+    { id = "attack_potion_3", chance = 7 },
+    { id = "fishing_potion_1" },
+    { id = "agility_potion_2", chance = 7 },
 ]
 
 [skeleton_armed_drop_table]
 type = "all"
 drops = [
+    { id = "big_bones" },
     { id = "bones" },
     { table = "skeleton_armed_secondary" },
-    { table = "skeleton_tertiary" },
+    { table = "skeleton_armed_tertiary" },
     { table = "skeleton_charms", members = true },
 ]
 
 [skeleton_armed_secondary]
-roll = 128
+roll = 256
 drops = [
-    { id = "iron_med_helm", chance = 6 },
-    { id = "iron_sword", chance = 4 },
-    { id = "iron_hatchet", chance = 2 },
+    { id = "iron_med_helm", chance = 7 },
+    { id = "iron_sword", chance = 7 },
+    { id = "iron_hatchet", chance = 3 },
     { id = "iron_scimitar" },
-    { id = "air_rune", amount = 15, chance = 3 },
-    { id = "water_rune", amount = 9, chance = 3 },
-    { id = "chaos_rune", amount = 5, chance = 3 },
-    { id = "iron_arrow", amount = 12, chance = 2 },
-    { id = "law_rune", amount = 2, chance = 2 },
-    { id = "cosmic_rune", amount = 2 },
-    { id = "coins", amount = 5, chance = 25 },
-    { id = "coins", amount = 10, chance = 24 },
-    { id = "coins", amount = 25, chance = 8 },
-    { id = "coins", amount = 45, chance = 4 },
-    { id = "coins", amount = 65, chance = 3 },
-    { id = "coins", chance = 2 },
-    { id = "bronze_bar", chance = 5 },
-    { id = "nothing", amount = 0, chance = 8 },
-    { table = "herb_drop_table", chance = 20 },
-    { table = "gem_drop_table", chance = 2 },
+    { id = "air_rune", min = 12, max = 15, chance = 14 },
+    { id = "water_rune", min = 2, max = 9, chance = 5 },
+    { id = "chaos_rune", min = 3, max = 8, chance = 7 },
+    { id = "iron_arrow", min = 12, max = 15, chance = 7 },
+    { id = "iron_arrow", chance = 7 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "cosmic_rune", amount = 2, chance = 2 },
+    { id = "coins", min = 1, max = 65, chance = 14 },
+    { id = "bronze_bar", chance = 7 },
+    { table = "herb_drop_table", chance = 29 },
+    { table = "gem_drop_table", chance = 3 },
+    { id = "bronze_arrow", min = 2, max = 5, chance = 14 },
+    { id = "steel_arrow", chance = 2 },
+    { id = "iron_dagger", chance = 14 },
+    { id = "iron_mace", chance = 14 },
+    { id = "adamant_kiteshield", chance = 7 },
+    { id = "earth_rune", min = 1, max = 3, chance = 3 },
+    { id = "fire_rune", amount = 2, chance = 3 },
+    { id = "mind_rune", min = 1, max = 25, chance = 14 },
+    { id = "nature_rune", min = 1, max = 3, chance = 2 },
+    { id = "bucket", chance = 7 },
+    { id = "grain", chance = 7 },
+    { id = "iron_ore", chance = 7 },
+    { id = "fire_talisman", chance = 3 },
+    { id = "staff_of_air", chance = 14 },
+    { id = "cannonball", chance = 7 },
+    { id = "antipoison_3", chance = 7 },
+    { id = "attack_potion_3", chance = 7 },
+    { id = "fishing_potion_1" },
+    { id = "agility_potion_2", chance = 7 },
 ]
 
 [skeleton_catacombs_drop_table]
 type = "all"
 drops = [
-    { id = "bones"},
+    { id = "big_bones" },
+    { id = "bones" },
     { table = "skeleton_catacombs_secondary" },
     { table = "mask_part_2_drop", roll = 3 },
     { table = "skeleton_charms", members = true },
-    { table = "skeleton_tertiary" },
+    { table = "skeleton_catacombs_tertiary" },
 ]
 
 [skeleton_catacombs_secondary]
-roll = 512
+roll = 256
 drops = [
-    { id = "bronze_arrow", amount = 22, chance = 16 },
-    { id = "staff", chance = 16 },
-    { id = "sling", chance = 16 },
-    { id = "shortbow", chance = 16 },
-    { id = "bronze_mace", chance = 8 },
-    { id = "magic_staff", chance = 8 },
-    { id = "staff_of_air", chance = 2 },
-    { id = "air_rune", amount = 12, chance = 16 },
-    { id = "water_rune", amount = 5, chance = 16 },
-    { id = "earth_rune", amount = 5, chance = 16 },
-    { id = "fire_rune", amount = 5, chance = 16 },
-    { id = "mind_rune", amount = 32, chance = 16 },
-    { id = "air_talisman", chance = 2 },
-    { id = "mind_talisman", chance = 2 },
-    { id = "water_talisman" },
-    { id = "leather_gloves", chance = 16 },
-    { id = "leather_cowl", chance = 16 },
-    { id = "bronze_med_helm", chance = 8 },
-    { id = "bronze_sq_shield", chance = 8 },
-    { id = "leather_body", chance = 2 },
-    { id = "bronze_chainbody", chance = 2 },
-    { id = "copper_ore", chance = 16 },
-    { id = "tin_ore", amount = 2, chance = 16 },
-    { id = "bronze_bar", chance = 16 },
-    { id = "iron_bar", chance = 16 },
-    { id = "coins", amount = 160, chance = 16 },
-    { id = "fishing_bait", amount = 50, chance = 8 },
-    { id = "thread", amount = 40, chance = 16 },
-    { id = "leather", chance = 16 },
-    { id = "feather", amount = 10, chance = 16 },
-    { id = "gold_ring", chance = 8 },
-    { id = "gold_necklace", chance = 8 },
-    { id = "gold_amulet", chance = 8 },
-    { id = "holy_symbol", chance = 16 },
+    { id = "bronze_arrow", min = 2, max = 5, chance = 14 },
+    { id = "staff_of_air", chance = 14 },
+    { id = "air_rune", min = 12, max = 15, chance = 14 },
+    { id = "water_rune", min = 2, max = 9, chance = 5 },
+    { id = "earth_rune", min = 1, max = 3, chance = 3 },
+    { id = "fire_rune", amount = 2, chance = 3 },
+    { id = "mind_rune", min = 1, max = 25, chance = 14 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "coins", min = 1, max = 65, chance = 14 },
+    { id = "iron_arrow", min = 12, max = 15, chance = 7 },
+    { id = "steel_arrow", chance = 2 },
+    { id = "iron_dagger", chance = 14 },
+    { id = "iron_mace", chance = 14 },
+    { id = "iron_sword", chance = 7 },
+    { id = "iron_scimitar" },
+    { id = "iron_med_helm", chance = 7 },
+    { id = "iron_hatchet", chance = 3 },
+    { id = "adamant_kiteshield", chance = 7 },
+    { id = "cosmic_rune", amount = 2, chance = 2 },
+    { id = "nature_rune", min = 1, max = 3, chance = 2 },
+    { id = "chaos_rune", min = 3, max = 8, chance = 7 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "bucket", chance = 7 },
+    { id = "grain", chance = 7 },
+    { id = "iron_ore", chance = 7 },
+    { id = "fire_talisman", chance = 3 },
+    { id = "iron_arrow", chance = 7 },
+    { id = "cannonball", chance = 7 },
+    { id = "antipoison_3", chance = 7 },
+    { id = "attack_potion_3", chance = 7 },
+    { id = "fishing_potion_1" },
+    { id = "agility_potion_2", chance = 7 },
+    { table = "gem_drop_table", chance = 4 },
+    { table = "herb_drop_table", chance = 26 },
 ]
 
 [skeleton_tertiary]
@@ -138,4 +169,75 @@ drops = [
     { id = "green_charm", chance = 853 },
     { id = "crimson_charm", chance = 2472 },
     { id = "blue_charm", chance = 1023 },
+]
+
+[skeleton_armed_tertiary]
+roll = 5000
+drops = [
+    { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
+    { table = "medium_clue_scroll", chance = 29 },
+    { table = "medium_clue_scroll", chance = 29 },
+]
+
+[skeleton_catacombs_tertiary]
+roll = 5000
+drops = [
+    { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
+    { table = "medium_clue_scroll", chance = 29 },
+    { table = "medium_clue_scroll", chance = 29 },
+]
+
+[skeleton_secondary]
+roll = 256
+drops = [
+    { id = "bronze_arrow", min = 2, max = 5, chance = 14 },
+    { id = "iron_arrow", min = 12, max = 15, chance = 7 },
+    { id = "steel_arrow", chance = 2 },
+    { id = "iron_dagger", chance = 14 },
+    { id = "iron_mace", chance = 14 },
+    { id = "iron_sword", chance = 7 },
+    { id = "iron_scimitar" },
+    { id = "iron_med_helm", chance = 7 },
+    { id = "iron_hatchet", chance = 3 },
+    { id = "adamant_kiteshield", chance = 7 },
+    { id = "air_rune", min = 12, max = 15, chance = 14 },
+    { id = "water_rune", min = 2, max = 9, chance = 5 },
+    { id = "earth_rune", min = 1, max = 3, chance = 3 },
+    { id = "fire_rune", amount = 2, chance = 3 },
+    { id = "mind_rune", min = 1, max = 25, chance = 14 },
+    { id = "cosmic_rune", amount = 2, chance = 2 },
+    { id = "nature_rune", min = 1, max = 3, chance = 2 },
+    { id = "chaos_rune", min = 3, max = 8, chance = 7 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "coins", min = 1, max = 65, chance = 14 },
+    { id = "bucket", chance = 7 },
+    { id = "grain", chance = 7 },
+    { id = "iron_ore", chance = 7 },
+    { id = "fire_talisman", chance = 3 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "staff_of_air", chance = 14 },
+    { id = "iron_arrow", chance = 7 },
+    { id = "cannonball", chance = 7 },
+    { id = "antipoison_3", chance = 7 },
+    { id = "attack_potion_3", chance = 7 },
+    { id = "fishing_potion_1" },
+    { id = "agility_potion_2", chance = 7 },
+    { table = "gem_drop_table", chance = 4 },
+    { table = "herb_drop_table", chance = 26 },
+]
+
+[skeleton_own_tertiary]
+roll = 5000
+drops = [
+    { table = "medium_clue_scroll", chance = 29 },
+    { id = "skeleton_champions_scroll", lacks = "skeleton_champions_scroll" },
+    { table = "medium_clue_scroll", chance = 29 },
+]
+
+[skeleton_unarmed_tertiary]
+roll = 5000
+drops = [
+    { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
+    { table = "medium_clue_scroll", chance = 29 },
+    { table = "medium_clue_scroll", chance = 29 },
 ]

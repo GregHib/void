@@ -2,26 +2,48 @@
 type = "all"
 drops = [
     { table = "ice_warrior_secondary" },
-    { table = "medium_clue_scroll", roll = 128 }
+    { table = "medium_clue_scroll", roll = 128 },
+    { table = "ice_warrior_tertiary" },
 ]
 
 [ice_warrior_secondary]
-roll = 128
+roll = 1024
 drops = [
-    { id = "iron_battleaxe", chance = 3 },
-    { id = "mithril_mace" },
-    { id = "nature_rune", amount = 4, chance = 10 },
-    { id = "chaos_rune", amount = 3, chance = 8 },
-    { id = "law_rune", amount = 2, chance = 7 },
-    { id = "cosmic_rune", amount = 2, chance = 5 },
-    { id = "mithril_arrow", amount = 3, chance = 5 },
-    { id = "adamant_arrow", amount = 2, chance = 3 },
-    { id = "death_rune", amount = 2, chance = 3 },
-    { id = "blood_rune", amount = 2, members = true },
-    { table = "herb_drop_table", chance = 10, members = true },
-    { table = "uncommon_seed_drop_table", chance = 18, members = true },
-    { id = "coins", amount = 15, chance = 39 },
-    { id = "coins", amount = 5, chance = 18, members = false },
-    { id = "coins", amount = 10, chance = 10, members = false },
-    { table = "gem_drop_table", chance = 3 },
+    { id = "iron_battleaxe", chance = 24 },
+    { id = "mithril_mace", chance = 8 },
+    { id = "nature_rune", amount = 4, chance = 80 },
+    { id = "chaos_rune", amount = 3, chance = 64 },
+    { id = "law_rune", amount = 2, chance = 56 },
+    { id = "cosmic_rune", amount = 2, chance = 40 },
+    { id = "cosmic_rune", amount = 4, chance = 16 },
+    { id = "mithril_arrow", amount = 3, chance = 40 },
+    { id = "adamant_arrow", amount = 2, chance = 16, members = true },
+    { id = "adamant_arrow", amount = 2, chance = 24, members = false },
+    { id = "adamant_arrow", amount = 5, chance = 8 },
+    { id = "death_rune", amount = 2, chance = 24 },
+    { id = "death_rune", amount = 5, chance = 2 },
+    { id = "blood_rune", amount = 2, chance = 8, members = true },
+    { table = "herb_drop_table", chance = 80, members = true },
+    { table = "uncommon_seed_drop_table", chance = 144, members = true },
+    { id = "coins", amount = 15, chance = 312 },
+    { id = "coins", amount = 5, chance = 144, members = false },
+    { id = "coins", amount = 10, chance = 80, members = false },
+    { id = "rune_arrow", amount = 2, chance = 16, members = true },
+    { id = "rune_crossbow", chance = 3, members = true },
+    { id = "mithril_sq_shield" },
+    { id = "steel_sword" },
+    { id = "iron_2h_sword" },
+    { id = "black_kiteshield" },
+    { id = "mind_rune", amount = 24, chance = 3 },
+    { id = "steam_rune", amount = 2, members = true },
+    { id = "spirit_weed_seed", chance = 32, members = true },
+    { id = "guam_seed", chance = 32, members = true },
+    { id = "mithril_ore", chance = 3 },
+    { table = "rare_drop_table", chance = 8 },
+]
+
+[ice_warrior_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]
