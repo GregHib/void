@@ -1,8 +1,8 @@
 [jogre_attack]
-id = 128
+id = 11404
 
 [jogre_defend]
-id = 129
+id = 11427
 
 [jogre_death]
-id = 131
+id = 11418

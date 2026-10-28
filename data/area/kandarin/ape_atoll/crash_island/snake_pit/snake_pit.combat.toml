@@ -1,4 +1,5 @@
 [big_snake]
+defend_anim = "big_snake_defend"
 death_anim = "big_snake_death"
 defend_sound = "spider_death"
 death_sound = "sea_snake_hatchling_death"

@@ -2,3 +2,6 @@
 id = 7091
 [warped_tortoise_attack]
 id = 7093
+
+[warped_tortoise_defend]
+id = 7092

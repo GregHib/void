@@ -1,4 +1,5 @@
 [the_inadequacy]
+defend_anim = "the_inadequacy_defend"
 death_anim = "the_inadequacy_death"
 
 [the_inadequacy.range]

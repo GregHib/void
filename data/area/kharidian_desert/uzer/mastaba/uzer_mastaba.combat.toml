@@ -1,7 +1,8 @@
 [small_scarab]
-death_anim = "scarab_larva_death"
+defend_anim = "small_scarab_defend"
+death_anim = "small_scarab_death"
 
 [small_scarab.melee]
 range = 1
 target_hit = { offense = "crush", max = 15 }
-anim = "scarab_larva_attack"
+anim = "small_scarab_attack"

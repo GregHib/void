@@ -1,4 +1,5 @@
 [warped_tortoise]
+defend_anim = "warped_tortoise_defend"
 death_anim = "warped_tortoise_death"
 
 [warped_tortoise.melee]

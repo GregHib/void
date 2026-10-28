@@ -2,3 +2,6 @@
 id = 5658
 [sorebones_attack]
 id = 5643
+
+[sorebones_defend]
+id = 5644

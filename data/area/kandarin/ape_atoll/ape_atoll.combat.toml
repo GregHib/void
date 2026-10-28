@@ -8,9 +8,12 @@ impact_poison = 10
 
 [jungle_spider_ape_atoll]
 clone = "spider"
+defend_anim = "giant_spider_defend"
+death_anim = "giant_spider_death"
 
 [jungle_spider_ape_atoll.melee]
 clone = "spider.melee"
+anim = "giant_spider_attack"
 target_hit = { offense = "stab", max = 100 }
 impact_poison = 10
 

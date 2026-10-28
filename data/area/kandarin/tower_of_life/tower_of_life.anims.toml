@@ -9,3 +9,9 @@ id = 836
 
 [necromancer_attack]
 id = 422
+
+[invrigar_the_necromancer_defend]
+id = 424
+
+[necromancer_defend]
+id = 424

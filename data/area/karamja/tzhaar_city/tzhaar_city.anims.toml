@@ -50,3 +50,6 @@ id = 9344
 
 [fire_monster_attack]
 id = 9341
+
+[fire_monster_defend]
+id = 9342

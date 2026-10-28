@@ -1,4 +1,5 @@
 [monk]
+defend_anim = "monk_defend"
 death_anim = "monk_death"
 defend_sound = "man_defend"
 death_sound = "man_death"

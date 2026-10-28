@@ -3,3 +3,6 @@ id = 836
 
 [head_thief_attack]
 id = 390
+
+[head_thief_defend]
+id = 388

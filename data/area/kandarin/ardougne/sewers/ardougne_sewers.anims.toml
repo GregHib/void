@@ -18,3 +18,9 @@ id = 836
 
 [hazeel_cultist_attack]
 id = 422
+
+[hazeel_cultist_defend]
+id = 424
+
+[alomone_defend]
+id = 424

@@ -20,7 +20,10 @@ target_hit = { offense = "stab", max = 30 }
 
 [giant_bat_brine_cavern]
 clone = "giant_bat"
+defend_anim = "giant_bat_brine_cavern_defend"
+death_anim = "giant_bat_brine_cavern_death"
 
 [giant_bat_brine_cavern.melee]
 clone = "giant_bat.melee"
+anim = "giant_bat_brine_cavern_attack"
 target_hit = { offense = "crush", max = 30 }

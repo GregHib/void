@@ -26,3 +26,9 @@ id = 3827
 
 [hopeless_creature_attack]
 id = 3823
+
+[angry_unicorn_defend]
+id = 6375
+
+[hopeless_creature_defend]
+id = 3826
