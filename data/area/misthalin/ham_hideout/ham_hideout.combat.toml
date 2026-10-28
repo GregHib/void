@@ -1,4 +1,5 @@
 [ham_member]
+clone = "human"
 [ham_member.melee]
 range = 1
 anim = "unarmed_punch"

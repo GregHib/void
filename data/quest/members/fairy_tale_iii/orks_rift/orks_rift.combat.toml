@@ -14,8 +14,10 @@ range = 6
 target_hit = { offense = "range", max = 10 }
 
 [ivory_bre_egth_cursed]
+defend_anim = "ivory_bre_egth_cursed_defend"
 death_anim = "ivory_bre_egth_cursed_death"
 
 [ivory_bre_egth_cursed.magic]
+anim = "ivory_bre_egth_cursed_attack"
 range = 6
 target_hit = { offense = "magic", max = 114 }

@@ -8,6 +8,7 @@ target_hit = { offense = "stab", max = 50 }
 anim = "khazard_commander_attack"
 
 [tortoise]
+defend_anim = "tortoise_defend"
 death_anim = "tortoise_death"
 defend_sound = "tortoise_defend"
 death_sound = "tortoise_death"
