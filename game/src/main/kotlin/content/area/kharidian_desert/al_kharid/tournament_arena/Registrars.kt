@@ -24,7 +24,7 @@ class Registrars : Script {
             Timer.CONTINUE
         }
 
-        npcOperate("Talk-to", "registrar_*,head_registrar") {
+        npcOperate("Talk-to", "registrar_*") {
             open(INTERFACE)
             refresh()
         }
@@ -36,6 +36,7 @@ class Registrars : Script {
 
     companion object {
         private const val INTERFACE = "tournament_arena_registrar"
+    }
 
     private fun Player.refresh() {
         interfaces.sendText(INTERFACE, "tournament_value", "20")
@@ -60,4 +61,3 @@ class Registrars : Script {
 
     private fun yesNo(enabled: Boolean): String = if (enabled) "Yes" else "No"
 }
-

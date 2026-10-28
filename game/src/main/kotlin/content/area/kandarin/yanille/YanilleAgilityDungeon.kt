@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
 class YanilleAgilityDungeon : Script {
 
@@ -125,13 +124,13 @@ class YanilleAgilityDungeon : Script {
                 openDoor(target)
                 return@objectOperate
             }
-            if (this.tile.y > 9481) {
+            if (this.tile.y >= target.tile.y) {
                 message("The door is already unlocked.")
                 enterDoor(target)
                 return@objectOperate
             }
             if (!inventory.contains("lockpick")) {
-                message("You need a lockpick to pick this lock.")
+                message("You need a lockpick for this lock.")
                 sound("locked")
                 return@objectOperate
             }
@@ -174,7 +173,7 @@ class YanilleAgilityDungeon : Script {
     }
 
     private fun success(level: Int): Boolean {
-        return Level.success(level, 8..41).coerceAtMost(41)
+        return Level.success(level, 8..41)
     }
 
     private suspend fun Player.swingAcrossMonkeyBars(tile: Tile) {
