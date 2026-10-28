@@ -37,37 +37,20 @@ class Registrars : Script {
     companion object {
         private const val INTERFACE = "tournament_arena_registrar"
 
-        private val DEFAULT_RULES = TournamentRegistrarRules(
-            tournamentValue = "20",
-            entryFee = "6000 Coins",
-            potions = true,
-            food = true,
-            prayer = true,
-            specialAttacks = true,
-            obstacles = false,
-            ranged = true,
-            melee = true,
-            magic = true,
-            healBetweenRounds = false,
-            weaponSlotsOnly = false,
-            summoning = true,
-        )
-    }
-
     private fun Player.refresh() {
-        interfaces.sendText(INTERFACE, "tournament_value", DEFAULT_RULES.tournamentValue)
-        interfaces.sendText(INTERFACE, "entry_fee", DEFAULT_RULES.entryFee)
-        interfaces.sendText(INTERFACE, "potions", yesNo(DEFAULT_RULES.potions))
-        interfaces.sendText(INTERFACE, "food", yesNo(DEFAULT_RULES.food))
-        interfaces.sendText(INTERFACE, "prayer", yesNo(DEFAULT_RULES.prayer))
-        interfaces.sendText(INTERFACE, "special_attacks", yesNo(DEFAULT_RULES.specialAttacks))
-        interfaces.sendText(INTERFACE, "obstacles", yesNo(DEFAULT_RULES.obstacles))
-        interfaces.sendText(INTERFACE, "ranged", yesNo(DEFAULT_RULES.ranged))
-        interfaces.sendText(INTERFACE, "melee", yesNo(DEFAULT_RULES.melee))
-        interfaces.sendText(INTERFACE, "magic", yesNo(DEFAULT_RULES.magic))
-        interfaces.sendText(INTERFACE, "heal_between_rounds", yesNo(DEFAULT_RULES.healBetweenRounds))
-        interfaces.sendText(INTERFACE, "weapon_slots_only", yesNo(DEFAULT_RULES.weaponSlotsOnly))
-        interfaces.sendText(INTERFACE, "summoning", yesNo(DEFAULT_RULES.summoning))
+        interfaces.sendText(INTERFACE, "tournament_value", "20")
+        interfaces.sendText(INTERFACE, "entry_fee", "6000 Coins")
+        interfaces.sendText(INTERFACE, "potions", yesNo(true))
+        interfaces.sendText(INTERFACE, "food", yesNo(true))
+        interfaces.sendText(INTERFACE, "prayer", yesNo(true))
+        interfaces.sendText(INTERFACE, "special_attacks", yesNo(true))
+        interfaces.sendText(INTERFACE, "obstacles", yesNo(false))
+        interfaces.sendText(INTERFACE, "ranged", yesNo(true))
+        interfaces.sendText(INTERFACE, "melee", yesNo(true))
+        interfaces.sendText(INTERFACE, "magic", yesNo(true))
+        interfaces.sendText(INTERFACE, "heal_between_rounds", yesNo(false))
+        interfaces.sendText(INTERFACE, "weapon_slots_only", yesNo(false))
+        interfaces.sendText(INTERFACE, "summoning", yesNo(true))
         interfaces.sendVisibility(INTERFACE, "rank_required_label", false)
         interfaces.sendVisibility(INTERFACE, "rank_required", false)
         interfaces.sendVisibility(INTERFACE, "entry_fee_label", true)
