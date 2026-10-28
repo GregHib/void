@@ -17,37 +17,45 @@ object Level {
     const val MAX_LEVEL = 99
     private const val MAX_CHANCE = 256
 
-    val SUCCESS = MAX_CHANCE..MAX_CHANCE
+    /**
+     * Guaranteed success; the chance is `(1 + value) / 256` so 255 is the largest value that matters
+     */
+    val SUCCESS = (MAX_CHANCE - 1)..<MAX_CHANCE
 
     /**
      * Calculates random chance of being successful
      * @param level The players current level
-     * @param chances The chance rates (out of [MAX_CHANCE]) at level 1 and 99
+     * @param chances The low and high values, giving a chance of `(1 + value) / 256` at level 1 and 99
      * @return success
      */
     fun success(level: Int, chances: IntRange): Boolean {
         val chance = chance(level, chances)
         val random = random.nextInt(MAX_CHANCE)
-        return chance > random
+        return chance >= random
     }
 
     /**
      * Calculates random chance of being successful
      * @param level The players current level
      * @param maxLevel The maximum level to fail at
-     * @param minChance The chance rate (out of [MAX_CHANCE]) at level 1
+     * @param minChance The low value at level 1
      * @return success
      */
     fun success(level: Int, maxLevel: Int, minChance: Int = 1): Boolean {
-        val chance = chance(level, minChance..MAX_CHANCE, maxLevel)
+        val chance = chance(level, minChance..<MAX_CHANCE, maxLevel)
         val random = random.nextInt(MAX_CHANCE)
-        return chance > random
+        return chance >= random
     }
 
     /**
-     * The chance of being successful (out of [MAX_CHANCE])
+     * The skilling success value, interpolated between low and high and rounded to the nearest whole number.
+     * The chance of success is `(1 + value) / [MAX_CHANCE]`.
+     * https://oldschool.runescape.wiki/w/Skilling_success_chance
      */
-    private fun chance(level: Int, chances: IntRange, maxLevel: Int = MAX_LEVEL): Int = interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, maxLevel)
+    private fun chance(level: Int, chances: IntRange, maxLevel: Int = MAX_LEVEL): Int {
+        val doubled = interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first * 2, chances.last * 2, MIN_LEVEL, maxLevel)
+        return (doubled + 1) shr 1
+    }
 
     fun experience(skill: Skill, level: Int) = experience(if (skill == Skill.Constitution) level / 10 else level)
 

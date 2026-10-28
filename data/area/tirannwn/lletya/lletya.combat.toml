@@ -1,0 +1,5 @@
+[elf_unarmed]
+
+[elf_unarmed.melee]
+range = 1
+anim = "unarmed_punch"

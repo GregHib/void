@@ -83,7 +83,7 @@ xp_bonus = 2.5
 respawn_delay = 50
 examine = "A holy warrior."
 drop_table = "paladin"
-combat_def = "guard"
+combat_def = "paladin"
 
 [hero]
 id = 21
@@ -104,7 +104,7 @@ max_hit_slash = 90
 id = 2256
 clone = "paladin"
 drop_table = "paladin"
-combat_def = "guard"
+combat_def = "paladin"
 
 [knight_of_ardougne]
 id = 23
@@ -134,18 +134,18 @@ south_patch = "farming_veg_patch_ardougne_south"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [man_ardougne]
+clone = "man"
 id = 24
 examine = "One of Gielinor's many citizens."
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
 [woman_ardougne]
+clone = "woman"
 id = 25
 examine = "One of Gielinor's many citizens."
 drop_table = "woman"
-combat_def = "woman"
 hitpoints = 70
 max_hit_crush = 10
 
@@ -473,6 +473,7 @@ hitpoints = 520
 att = 38
 str = 40
 def = 31
+combat_def = "black_knight"
 examine = "To protect and serve the populace of Ardougne."
 
 [paladin_3]

@@ -204,6 +204,7 @@ hunt_mode = "cowardly"
 
 [master_farmer_varrock]
 id = 2235
+combat_def = "farmer"
 examine = "A master at farming."
 
 [tanner_varrock]
@@ -472,9 +473,9 @@ id = 8904
 id = 8906
 
 [man_varrock_4]
+clone = "man"
 id = 12346
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 examine = "One of Gielinor's many citizens."
@@ -501,16 +502,16 @@ shop = "urists_crafting_supplies"
 examine = "A crafter at the pinnacle of his art."
 
 [man_varrock]
+clone = "man"
 id = 12345
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
 [man_varrock_2]
+clone = "man"
 id = 12347
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 examine = "One of Gielinor's many citizens."
@@ -572,18 +573,18 @@ examine = "He tries to keep order around here. His bizarre uniform isn't helping
 drop_table = "guard"
 
 [man_varrock_3]
+clone = "man"
 id = 5923
 examine = "One of Gielinor's many citizens."
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
 [woman_varrock]
+clone = "woman"
 id = 5924
 examine = "One of Gielinor's many citizens."
 drop_table = "woman"
-combat_def = "woman"
 hitpoints = 70
 max_hit_crush = 10
 

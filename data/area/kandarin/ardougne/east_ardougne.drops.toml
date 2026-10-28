@@ -100,15 +100,14 @@ drops = [
 [hero_pickpocket]
 roll = 2331
 drops = [
-    { id = "coins", amount = 300, chance = 1050 },
-    { id = "coins", amount = 200, chance = 1050 },
+    { id = "coins", min = 200, max = 300, chance = 2100 },
     { id = "death_rune", amount = 2, chance = 80 },
     { id = "jug_of_wine", chance = 60 },
     { id = "blood_rune", chance = 50 },
     { id = "diamond", chance = 10 },
     { id = "fire_orb", chance = 20 },
     { id = "gold_ore", chance = 10 },
-    { table = "elite_clue_scroll" },
+    { id = "court_summons" },
 ]
 [woman_drop_table]
 type = "all"
