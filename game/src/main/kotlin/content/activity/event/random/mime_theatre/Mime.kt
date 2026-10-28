@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
@@ -165,7 +166,7 @@ class Mime : Script {
         val origin = RandomEvents.origin(this)
         RandomEvents.completeInPlace(this)
         teleport(origin, "modern")
-        strongQueue("mime_reward") {
+        longQueue("mime_reward") {
             addOrDrop("random_event_gift")
         }
     }
