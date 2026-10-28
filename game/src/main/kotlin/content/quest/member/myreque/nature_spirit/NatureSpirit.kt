@@ -407,7 +407,7 @@ class NatureSpirit : Script {
             current >= max + 2 -> message("You have already boosted your prayer points.")
             current == max -> {
                 levels.boost(Skill.Prayer, 2)
-                sound("prayer_boost")
+                sound("worship_ectofuntus")
                 message("You boost your prayer points.")
             }
             else -> {

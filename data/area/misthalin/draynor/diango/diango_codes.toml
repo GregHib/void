@@ -1,3 +1,7 @@
-[flagstaff]
+[diango_codes]
+variable = "var"
+add = "list<item>"
+
+[.flagstaff]
 variable = "flagstaff_runefest"
 add = [ "flagstaff_of_festivities" ]

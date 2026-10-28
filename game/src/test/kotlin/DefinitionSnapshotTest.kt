@@ -1,7 +1,6 @@
 import content.bot.behaviour.NavigationGraphLoader
 import content.entity.obj.ObjectTeleportLoader
 import content.entity.world.music.MusicTrackLoader
-import gameLoaders
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

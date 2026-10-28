@@ -48,7 +48,7 @@ class EnergyTransfer : Script {
             start("movement_delay", 2)
             anim("lunar_cast")
             target.gfx("energy_transfer")
-            sound("energy_transfer")
+            sound("telekinetic_grab")
             exp(Skill.Magic, Tables.int("spells.energy_transfer.xp") / 10.0)
             damage(random.nextInt(95, 100))
             specialAttackEnergy = 0

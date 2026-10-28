@@ -19,9 +19,6 @@ id = 2538
 [shatter_special]
 id = 2541
 
-[smash_special]
-id = 2541
-
 [impale_special]
 id = 2534
 
@@ -64,16 +61,7 @@ id = 3733
 [descent_of_darkness]
 id = 3737
 
-[morrigans_javelin_special]
-id = 2699
-
-[morrigans_throwing_axe_special]
-id = 2706
-
 [feint_special]
-id = 2529
-
-[spear_wall_special]
 id = 2529
 
 [dark_bow_special]
@@ -81,12 +69,6 @@ id = 3731
 
 [crossbow_shoot]
 id = 2695
-
-[dart_throw]
-id = 2696
-
-[javelin_throw]
-id = 2699
 
 [longbow_shoot]
 id = 2700

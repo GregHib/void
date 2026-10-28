@@ -1,4 +1,16 @@
-[brimhaven]
+[charter_ship_prices]
+brimhaven = "int"
+catherby = "int"
+musa_point = "int"
+mos_le_harmless = "int"
+port_khazard = "int"
+port_phasmatys = "int"
+port_sarim = "int"
+shipyard = "int"
+port_tyras = "int"
+oo_glog = "int"
+
+[.brimhaven]
 catherby = 480
 musa_point = 200
 mos_le_harmless = 1450
@@ -9,7 +21,7 @@ shipyard = 400
 port_tyras = 3200
 oo_glog = 3800
 
-[catherby]
+[.catherby]
 brimhaven = 480
 musa_point = 480
 mos_le_harmless = 1250
@@ -20,7 +32,7 @@ shipyard = 1600
 port_tyras = 3200
 oo_glog = 3400
 
-[musa_point]
+[.musa_point]
 brimhaven = 200
 catherby = 480
 mos_le_harmless = 2050
@@ -30,7 +42,7 @@ shipyard = 200
 port_tyras = 3200
 oo_glog = 2000
 
-[mos_le_harmless]
+[.mos_le_harmless]
 brimhaven = 1950
 catherby = 3500
 musa_point = 450
@@ -40,7 +52,7 @@ shipyard = 450
 port_tyras = 3200
 oo_glog = 1100
 
-[port_khazard]
+[.port_khazard]
 brimhaven = 400
 catherby = 1600
 musa_point = 400
@@ -51,7 +63,7 @@ shipyard = 720
 port_tyras = 3200
 oo_glog = 5000
 
-[port_phasmatys]
+[.port_phasmatys]
 brimhaven = 2900
 catherby = 3500
 musa_point = 2900
@@ -60,7 +72,7 @@ port_sarim = 1300
 port_tyras = 3200
 oo_glog = 2800
 
-[port_sarim]
+[.port_sarim]
 brimhaven = 1600
 catherby = 1000
 mos_le_harmless = 650
@@ -70,7 +82,7 @@ shipyard = 400
 port_tyras = 3200
 oo_glog = 1400
 
-[shipyard]
+[.shipyard]
 brimhaven = 400
 catherby = 1600
 musa_point = 200
@@ -80,7 +92,7 @@ port_sarim = 400
 port_tyras = 3200
 oo_glog = 900
 
-[port_tyras]
+[.port_tyras]
 brimhaven = 3200
 catherby = 3200
 musa_point = 3200
@@ -91,7 +103,7 @@ port_sarim = 3200
 shipyard = 3200
 oo_glog = 3200
 
-[oo_glog]
+[.oo_glog]
 brimhaven = 3800
 catherby = 3400
 musa_point = 2000

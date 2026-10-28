@@ -1,13 +1,13 @@
 [alomone]
 death_anim = "alomone_death"
-defend_sound = "alomone_defend"
-death_sound = "alomone_death"
+defend_sound = "man_defend"
+death_sound = "man_death"
 
 [alomone.melee]
 range = 1
 target_hit = { offense = "crush", max = 20 }
 anim = "alomone_attack"
-sound = "alomone_attack"
+sound = "lensa_attack"
 
 [clivet]
 defend_anim = "clivet_defend"

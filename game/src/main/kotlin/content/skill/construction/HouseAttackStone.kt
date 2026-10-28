@@ -9,8 +9,6 @@ import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.flagHits
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -31,7 +29,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * Clay, limestone and marble stones take progressively more hits to wear down.
  * https://oldschool.runescape.wiki/w/Games_room
  */
-class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val styleDefinitions: WeaponStyleDefinitions) : Script {
+class HouseAttackStone : Script {
     private val hitpoints = 400
     private val experienceRates = doubleArrayOf(0.25, 0.5, 5.0)
 
@@ -64,7 +62,7 @@ class HouseAttackStone(val animationDefinitions: WeaponAnimationDefinitions, val
 
     private suspend fun Player.hit(stone: NPC) {
         face(stone)
-        anim(attackAnimation(animationDefinitions, styleDefinitions))
+        anim(attackAnimation())
         sound(
             when {
                 equipped(EquipSlot.Weapon).isEmpty() -> "unarmed_punch"

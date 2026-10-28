@@ -46,9 +46,6 @@ id = 2689
 [activate_eagle_eye]
 id = 2665
 
-[activate_mystic_might]
-id = 2668
-
 [activate_protect_from_magic]
 id = 2675
 
@@ -70,20 +67,11 @@ id = 2691
 [activate_incredible_reflexes]
 id = 2667
 
-[activate_rapid_renewal]
-id = 2678
-
-[activate_rigour]
-id = 2685
-
 [activate_chivalry]
 id = 3826
 
 [activate_smite]
 id = 2686
-
-[activate_augury]
-id = 2670
 
 [activate_piety]
 id = 3825

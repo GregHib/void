@@ -7,7 +7,6 @@ import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.Instructions
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.config.WeaponStyleDefinition
 import java.io.File
 
 object DumpStyles {
@@ -62,8 +61,6 @@ object DumpStyles {
         val ints = script.intOperands ?: return
         val strings = script.stringOperands ?: return
         var highest = 0
-        val list = mutableListOf<WeaponStyleDefinition>()
-        list.add(WeaponStyleDefinition.EMPTY)
         for ((key, offset) in indices[ints[switchIndex]]) {
             val index = switchIndex + offset
             getStyles(key, index, script.instructions, strings)
