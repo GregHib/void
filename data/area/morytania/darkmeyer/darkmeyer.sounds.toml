@@ -1,0 +1,8 @@
+[vyrewatch_attack]
+id = 888
+
+[vyrewatch_defend]
+id = 883
+
+[vyrewatch_death]
+id = 889

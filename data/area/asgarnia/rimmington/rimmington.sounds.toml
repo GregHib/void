@@ -1,0 +1,8 @@
+[zombie_rat_rimmington_attack]
+id = 703
+
+[zombie_rat_rimmington_defend]
+id = 705
+
+[zombie_rat_rimmington_death]
+id = 704

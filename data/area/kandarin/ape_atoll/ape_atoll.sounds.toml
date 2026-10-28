@@ -4,3 +4,12 @@ id = 631
 id = 630
 [monkey_archer_attack]
 id = 629
+
+[monkey_guard_ape_atoll_attack]
+id = 478
+
+[monkey_guard_ape_atoll_defend]
+id = 481
+
+[monkey_guard_ape_atoll_death]
+id = 480
