@@ -24,7 +24,7 @@ class Clothears : Script {
         npcTimerTick("clothears_idle") {
             if (random.nextInt(4) == 0) {
                 queue("clothears_wake") {
-                    anim("6837")
+                    anim("observatory_huck_fin_ready")
                     delay(1)
                     say("Huh, What? Where?")
                 }
