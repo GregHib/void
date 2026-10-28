@@ -172,9 +172,7 @@ class YanilleAgilityDungeon : Script {
         damage(150)
     }
 
-    private fun success(level: Int): Boolean {
-        return Level.success(level, 8..41)
-    }
+    private fun success(level: Int): Boolean = Level.success(level, 8..41)
 
     private suspend fun Player.swingAcrossMonkeyBars(tile: Tile) {
         val northToSouth = this.tile.y >= 9494
