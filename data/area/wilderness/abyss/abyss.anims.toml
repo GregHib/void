@@ -32,10 +32,10 @@ id = 2186
 id = 2189
 
 [abyssal_walker_defend]
-id = 2192
+id = 2193
 
 [abyssal_walker_attack]
-id = 2193
+id = 2192
 
 [abyssal_walker_death]
 id = 2194

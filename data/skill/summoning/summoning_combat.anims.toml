@@ -86,7 +86,7 @@ id = 14861
 id = 8519
 
 [spirit_kalphite_familiar_defend]
-id = 8518
+id = 6227
 
 [spirit_kalphite_familiar_death]
 id = 8517
@@ -323,7 +323,7 @@ id = 1010
 id = 1011
 
 [spirit_terrorbird_familiar_death]
-id = 1012
+id = 1013
 
 [abyssal_parasite_familiar_attack]
 id = 8910
