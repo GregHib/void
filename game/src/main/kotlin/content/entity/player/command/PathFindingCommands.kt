@@ -3,8 +3,8 @@ package content.entity.player.command
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.NavigationGraphLoader
 import content.bot.behaviour.action.BotGoTo
-import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.setup.Resolver
 import content.bot.bot
 import content.bot.isBot
@@ -135,7 +135,7 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
         }
 
         adminCommand("walk_to_bank") {
-            val graph: NavigationGraph = get()
+            val graph = NavigationGraphLoader.graph
             val output = mutableListOf<Int>()
             println(
                 "Path took ${

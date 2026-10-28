@@ -15,6 +15,8 @@ import content.entity.player.stat.KillTracker
 import content.quest.clearInstance
 import content.quest.instanceOffset
 import content.quest.smallInstance
+import content.skill.summoning.follower
+import content.skill.summoning.pet.pet
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.NPCDefinition
@@ -30,6 +32,7 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -58,15 +61,9 @@ class TzhaarFightCave(
     val outside = Tile(2436, 5170)
     val region = Region(9551)
 
-    val waves = TzhaarFightCaveWaves()
-
     val logger = InlineLogger()
 
     init {
-        worldSpawn {
-            waves.load(it.find(Settings["spawns.fight.cave.waves"]))
-        }
-
         /*
             Entrance/Exit
          */
@@ -79,7 +76,7 @@ class TzhaarFightCave(
                 npc<Angry>("tzhaar_mej_jal", "Hey, JalYt, you were in cave only a moment ago. You wait $remaining before going in again.")
                 return@objectOperate
             }
-            if (hasFamiliar(this)) {
+            if (follower != null || pet != null) {
                 npc<Angry>("tzhaar_mej_jal", "No Kimit-Zil in the cave! This is a fight for YOU, not your friends!")
                 return@objectOperate
             }
@@ -288,10 +285,10 @@ class TzhaarFightCave(
                 player.npc<Angry>("tzhaar_mej_jal", "Look out, here comes TzTok-Jad!")
             }
         }
-        val ids = waves.npcs(wave)
+        val ids = Tables.npcList("fight_cave_waves.wave_$wave.npcs")
         player["fight_cave_remaining"] = ids.sumOf { if (it == "tz_kek" || it == "tz_kek_spawn_point") 2 else 1 }
         val rotation = player["fight_cave_rotation", 1]
-        val directions = waves.spawns(wave, rotation)
+        val directions = Tables.dirList("fight_cave_waves.wave_$wave.rotation_$rotation")
         val offset = player.instanceOffset()
         val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
         for (i in ids.indices) {
@@ -333,6 +330,4 @@ class TzhaarFightCave(
             npc["healed"] = true
         }
     }
-
-    fun hasFamiliar(player: Player) = false
 }

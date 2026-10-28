@@ -13,6 +13,8 @@ internal class SettingsTest {
         assertTrue(Settings["world.npcs.aggression", false])
         assertTrue(Settings["world.npcs.collision", false])
         assertFalse(Settings["web.server.enabled", false])
+        assertTrue(Settings["grandExchange.enabled", false])
+        assertTrue(Settings["bots.chat.enabled", false])
         assertEquals(30, Settings["bots.count", 0])
     }
 }

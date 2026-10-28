@@ -1,6 +1,6 @@
 [abyssal_demon]
 defend_anim = "abyssal_demon_defend"
-defend_sound = "abyssal_demon_defend"
+defend_sound = "abyssal_demon_teleport"
 death_anim = "abyssal_demon_death"
 death_sound = "abyssal_demon_death"
 

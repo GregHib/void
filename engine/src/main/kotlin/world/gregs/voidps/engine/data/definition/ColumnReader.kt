@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 sealed interface ColumnReader<T : Any> {
@@ -37,6 +38,12 @@ sealed interface ColumnReader<T : Any> {
             }
             return Tile.id(x, y, level)
         }
+    }
+
+    object ReaderDirection : ColumnReader<Direction> {
+        override val type = ColumnType.ColumnDirection
+        override fun list() = mutableListOf<Direction>()
+        override fun read(reader: ConfigReader): Direction = Direction.valueOf(reader.string().uppercase())
     }
 
     object ReaderIntRange : ColumnReader<IntRange> {
@@ -126,6 +133,7 @@ sealed interface ColumnReader<T : Any> {
             "int" -> ReaderInt
             "range" -> ReaderIntRange
             "tile" -> ReaderTile
+            "dir" -> ReaderDirection
             "string" -> ReaderString
             "skill" -> ReaderEntity(Skill.map)
             "npc" -> ReaderEntity(NPCDefinitions.ids)

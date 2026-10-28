@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
+import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 
 /**
  * Loads content scripts from a precomputed scripts.txt list made by scriptMetadata gradle build task
  */
 class ContentLoader {
-    private val logger = InlineLogger()
 
     fun load(): List<Script> {
         val start = System.currentTimeMillis()
@@ -59,5 +59,37 @@ class ContentLoader {
         val constructor = clazz.declaredConstructors.first()
         val params = constructor.parameters.map { get(it.type.kotlin) }.toTypedArray()
         return constructor.newInstance(*params)
+    }
+
+    companion object {
+        private val logger = InlineLogger("ContentLoader")
+
+        /**
+         * Loads script classes and their handler lambdas in parallel in the background from a precomputed preload.txt
+         * list made by the classPreload gradle build task, so [load] only has to construct them.
+         *
+         * Only lambda classes are initialised, scripts themselves are initialised in order during [load].
+         * Scripts are still linked here so bytecode verification happens off the main thread.
+         */
+        fun preload() {
+            val names = ContentLoader::class.java.getResourceAsStream("preload.txt")?.bufferedReader()?.use { it.readLines() }
+            if (names == null) {
+                logger.warn { "No preload class list found, make sure 'gradle classPreload' is correctly running" }
+                return
+            }
+            val loader = ContentLoader::class.java.classLoader
+            thread(isDaemon = true, name = "class-preload") {
+                val start = System.currentTimeMillis()
+                names.parallelStream().forEach { name ->
+                    try {
+                        // Reflecting constructors links (and verifies) the class without initialising it
+                        Class.forName(name, name.contains('$'), loader).declaredConstructors
+                    } catch (e: Throwable) {
+                        logger.warn(e) { "Failed to preload class $name" }
+                    }
+                }
+                logger.info { "Preloaded ${names.size} classes in ${System.currentTimeMillis() - start}ms" }
+            }
+        }
     }
 }

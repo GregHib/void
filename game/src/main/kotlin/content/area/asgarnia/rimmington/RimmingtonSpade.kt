@@ -29,7 +29,7 @@ class RimmingtonSpade : Script {
             anim("take")
             if (inventory.add("spade")) {
                 GameObjects.remove(target, ticks = 75)
-                sound("take_item")
+                sound("pick_2")
                 message("You take the spade.")
             }
         }

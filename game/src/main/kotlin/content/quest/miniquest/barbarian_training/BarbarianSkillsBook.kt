@@ -26,7 +26,7 @@ class BarbarianSkillsBook(books: Books) : Script {
 
     init {
         // TODO confirm the layout of lessons after the first, the layout follows the 2009 book
-        books.generate("barbarian_skills", "What Otto told me.", type = "long") { player -> pages(player) }
+        books.generate("barbarian_skills") { player -> pages(player) }
     }
 
     fun pages(player: Player): List<List<String>> {

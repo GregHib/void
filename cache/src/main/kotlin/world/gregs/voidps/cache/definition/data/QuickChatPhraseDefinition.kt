@@ -1,9 +1,12 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class QuickChatPhraseDefinition(
     override var id: Int = -1,
     var stringParts: Array<String>? = null,
@@ -11,6 +14,7 @@ data class QuickChatPhraseDefinition(
     var ids: Array<IntArray>? = null,
     var types: IntArray? = null,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {

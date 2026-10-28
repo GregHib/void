@@ -94,7 +94,7 @@ class LeafTraps : Script {
         player.tele(site.tile("pit"))
         player.anim("pit_getup")
         player.say("Ouch!")
-        player.sound("fall_land")
+        player.sound("land_flatter")
         player.damage(random.nextInt(20, 181)) // TODO unknown min damage
     }
 }

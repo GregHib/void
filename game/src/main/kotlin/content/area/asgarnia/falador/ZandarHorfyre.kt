@@ -40,7 +40,7 @@ class ZandarHorfyre : Script {
                         delay(2)
                         gfx("teleport_other_impact")
                         anim("teleport_other_impact")
-                        sound("teleport_modern")
+                        sound("teleport")
                         delay(2)
                         gfx("teleport_other_impact")
                         set("zandar_horfyre_banish", true)

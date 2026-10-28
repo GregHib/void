@@ -9,8 +9,12 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.entity.character.npc.NPCSpawnLoader
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.drop.DropTablesLoader
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -20,13 +24,12 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import java.io.File
 
-fun engineLoad(files: ConfigFiles) {
-    Areas.load(files.list(Settings["map.areas"]))
+fun engineLoad() {
     ZoneBatchUpdates.register(GameObjects)
     ZoneBatchUpdates.register(FloorItems)
 }
 
-fun engineModule(files: ConfigFiles) = module {
+fun engineModule() = module {
     // Entities
     single { Hunting(get(), get()) }
     single {
@@ -42,9 +45,9 @@ fun engineModule(files: ConfigFiles) = module {
     single { AccountDefinitionsReloader(get(), get(), get()) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
+    single(createdAtStart = true) { AccountDefinitions().load() }
     // Map
     single { DynamicZones(get()) }
-    single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {
         ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
@@ -56,20 +59,69 @@ fun engineModule(files: ConfigFiles) = module {
     // Pathfinding
     single { PathFinder(flags = Collisions.map, useRouteBlockerFlags = true) }
     single { LineValidator(flags = Collisions.map) }
-    // Definitions
-    single(createdAtStart = true) { SoundDefinitions().load(files.list(Settings["definitions.sounds"])) }
-    single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }
-    single(createdAtStart = true) { RenderEmoteDefinitions().load(files.find(Settings["definitions.renderEmotes"])) }
-    single(createdAtStart = true) { MidiDefinitions().load(files.list(Settings["definitions.midis"])) }
-    single(createdAtStart = true) { JingleDefinitions().load(files.list(Settings["definitions.jingles"])) }
-    single(createdAtStart = true) { PatrolDefinitions().load(files.list(Settings["definitions.patrols"])) }
-    single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }
-    single(createdAtStart = true) {
-        get<ItemDefinitions>()
-        DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
-    }
-    single(createdAtStart = true) { AccountDefinitions().load() }
-    single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
-    single(createdAtStart = true) { ClientScriptDefinitions().load(files.list(Settings["definitions.clientScripts"])) }
-    single(createdAtStart = true) { CombatDefinitions().load(files.list(Settings["definitions.combatAttacks"])) }
+}
+
+/**
+ * Loaders of every definition and config in the engine.
+ */
+fun engineLoaders(): List<Loader<*>> = listOf(
+    ItemLoader,
+    ObjectLoader,
+    NPCLoader,
+    DropTablesLoader,
+    NPCSpawnLoader,
+    AnimationLoader,
+    GraphicLoader,
+    InterfaceLoader,
+    InventoryLoader,
+    StructLoader,
+    VariableLoader,
+    TableLoader,
+    EnumLoader,
+    SoundLoader,
+    FontLoader,
+    QuickChatPhraseLoader,
+    CombatLoader,
+    AreaLoader,
+    ItemOnItemLoader,
+    RenderEmoteLoader,
+    MidiLoader,
+    JingleLoader,
+    PatrolLoader,
+    ClientScriptLoader,
+    QuestLoader,
+    PrayerLoader,
+    HuntModeLoader,
+    MapLoader,
+)
+
+/**
+ * Makes the results of [engineLoaders] available through koin.
+ */
+fun definitionsModule() = module {
+    single { ItemDefinitions }
+    single { ObjectDefinitions }
+    single { NPCDefinitions }
+    single { AnimationDefinitions }
+    single { GraphicDefinitions }
+    single { InterfaceDefinitions }
+    single { InventoryDefinitions }
+    single { StructDefinitions }
+    single { EnumDefinitions }
+    single { Tables }
+    single { VariableDefinitions }
+    single<DropTables> { DropTablesLoader.instance }
+    single { SoundLoader.instance }
+    single { FontLoader.instance }
+    single { QuickChatPhraseLoader.instance }
+    single { CombatLoader.instance }
+    single { ItemOnItemLoader.instance }
+    single { RenderEmoteLoader.instance }
+    single { MidiLoader.instance }
+    single { JingleLoader.instance }
+    single { PatrolLoader.instance }
+    single { ClientScriptLoader.instance }
+    single { QuestLoader.instance }
+    single { PrayerLoader.instance }
+    single { HuntModeLoader.instance }
 }
