@@ -55,7 +55,7 @@ hitpoints = 50
 att = 2
 str = 3
 def = 2
-combat_def = "giant_rat"
+combat_def = "zombie_rat_rimmington"
 slayer_xp = 2.0
 categories = ["rats", "zombies"]
 respawn_delay = 30
@@ -112,7 +112,7 @@ hunt_mode = "cowardly"
 [ghost_rimmington]
 id = 6094
 drop_table = "empty"
-combat_def = "ghost"
+combat_def = "ghost_rimmington"
 hitpoints = 250
 att = 13
 str = 13

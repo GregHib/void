@@ -12,7 +12,7 @@ attack_bonus = 5
 hunt_mode = "cowardly"
 examine = "Is that a bear... or a man?"
 drop_table = "empty"
-combat_def = "bear"
+combat_def = "the_kendal"
 
 [the_kendal_mountain_camp_caves_2]
 id = 1812

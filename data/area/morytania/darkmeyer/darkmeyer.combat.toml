@@ -5,3 +5,12 @@ death_anim = "vyrewatch_death"
 range = 1
 target_hit = { offense = "crush", max = 110 }
 anim = "vyrewatch_attack"
+
+[vyrewatch_darkmeyer]
+clone = "vyrewatch"
+defend_anim = "vyrewatch_darkmeyer_defend"
+death_anim = "vyrewatch_darkmeyer_death"
+
+[vyrewatch_darkmeyer.melee]
+clone = "vyrewatch.melee"
+anim = "vyrewatch_darkmeyer_attack"

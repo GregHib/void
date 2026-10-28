@@ -69,3 +69,12 @@ id = 3539
 
 [sea_snake_hatchling_defend]
 id = 3539
+
+[penguin_miscellania_attack]
+id = 5669
+
+[penguin_miscellania_defend]
+id = 5670
+
+[penguin_miscellania_death]
+id = 5671

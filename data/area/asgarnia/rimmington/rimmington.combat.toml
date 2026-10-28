@@ -1,0 +1,17 @@
+[ghost_rimmington]
+clone = "ghost"
+defend_anim = "ghost_rimmington_defend"
+death_anim = "ghost_rimmington_death"
+
+[ghost_rimmington.melee]
+clone = "ghost.melee"
+anim = "ghost_rimmington_attack"
+
+[zombie_rat_rimmington]
+clone = "giant_rat"
+defend_anim = "zombie_rat_rimmington_defend"
+death_anim = "zombie_rat_rimmington_death"
+
+[zombie_rat_rimmington.melee]
+clone = "giant_rat.melee"
+anim = "zombie_rat_rimmington_attack"

@@ -46,3 +46,12 @@ range = 1
 target_hit = { offense = "slash", max = 70 }
 anim = "hopeless_creature_attack"
 sound = "confusion_beast_attack"
+
+[angry_giant_rat_tolnas_rift]
+clone = "giant_rat"
+defend_anim = "angry_giant_rat_tolnas_rift_defend"
+death_anim = "angry_giant_rat_tolnas_rift_death"
+
+[angry_giant_rat_tolnas_rift.melee]
+clone = "giant_rat.melee"
+anim = "angry_giant_rat_tolnas_rift_attack"

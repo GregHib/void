@@ -42,3 +42,12 @@ death_anim = "ranalph_devere_death"
 range = 1
 target_hit = { offense = "slash", max = 130 }
 anim = "ranalph_devere_attack"
+
+[undead_one_kharazi_caves]
+clone = "zombie"
+defend_anim = "undead_one_kharazi_caves_defend"
+death_anim = "undead_one_kharazi_caves_death"
+
+[undead_one_kharazi_caves.melee]
+clone = "zombie.melee"
+anim = "undead_one_kharazi_caves_attack"
