@@ -6,6 +6,7 @@ import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -23,35 +24,6 @@ import java.util.concurrent.TimeUnit
  * Chewed bones lay a hero to rest, blessing future bone burying; mangled bones release a ferocious spirit.
  */
 class PyreShips(val drops: DropTables) : Script {
-
-    data class PyreLog(val level: Int, val crafting: Double, val firemaking: Double, val bones: Int)
-
-    val logs = mapOf(
-        "magic_logs" to PyreLog(85, 75.9, 303.8, 5),
-        "yew_logs" to PyreLog(70, 50.6, 202.5, 4),
-        "mahogany_logs" to PyreLog(60, 39.3, 157.5, 4),
-        "maple_logs" to PyreLog(55, 33.7, 135.0, 3),
-        "arctic_pine_logs" to PyreLog(52, 31.2, 125.0, 3),
-        "teak_logs" to PyreLog(45, 26.2, 105.0, 3),
-        "willow_logs" to PyreLog(40, 22.5, 90.0, 2),
-        "oak_logs" to PyreLog(25, 15.0, 60.0, 2),
-        "achey_tree_logs" to PyreLog(11, 10.0, 40.0, 1),
-        "logs" to PyreLog(11, 10.0, 40.0, 1),
-    )
-
-    val carving = mapOf(
-        "inferno_adze" to "carve_pyre_inferno_adze",
-        "volatile_clay_hatchet" to "carve_pyre_volatile_clay",
-        "sacred_clay_hatchet" to "carve_pyre_sacred_clay",
-        "dragon_hatchet" to "carve_pyre_dragon",
-        "rune_hatchet" to "carve_pyre_rune",
-        "adamant_hatchet" to "carve_pyre_adamant",
-        "mithril_hatchet" to "carve_pyre_mithril",
-        "black_hatchet" to "carve_pyre_black",
-        "steel_hatchet" to "carve_pyre_steel",
-        "iron_hatchet" to "carve_pyre_iron",
-        "bronze_hatchet" to "carve_pyre_bronze",
-    )
 
     init {
         objectOperate("Construct", "pyre_site") { (target) ->
@@ -82,35 +54,34 @@ class PyreShips(val drops: DropTables) : Script {
                 message("You need a tinderbox or a bow in order to do this.")
                 return@objectOperate
             }
-            val held = logs.entries.filter { inventory.contains(it.key) }
+            val held = Tables.get("pyre_logs").rows().filter { inventory.contains(it.rowId) }
             if (held.isEmpty()) {
                 message("You don't have any logs.")
                 return@objectOperate
             }
-            val log = held.firstOrNull { (_, log) -> levels.get(Skill.Firemaking) >= log.level && levels.get(Skill.Crafting) >= log.level }
+            val log = held.firstOrNull { levels.get(Skill.Firemaking) >= it.int("level") && levels.get(Skill.Crafting) >= it.int("level") }
             if (log == null) {
-                val lowest = held.last().value.level
+                val lowest = held.last().int("level")
                 has(Skill.Firemaking, lowest, true) && has(Skill.Crafting, lowest, true)
                 return@objectOperate
             }
-            val (logId, pyre) = log
             face(target)
-            carving[hatchet.id]?.let { anim(it) }
+            anim("carve_pyre_${hatchet.id.removeSuffix("_hatchet")}")
             delay(4)
             inventory.transaction {
-                remove(logId)
+                remove(log.rowId)
                 remove(bones)
             }
             if (inventory.transaction.failed) {
                 return@objectOperate
             }
-            exp(Skill.Crafting, pyre.crafting)
-            exp(Skill.Firemaking, pyre.firemaking)
+            exp(Skill.Crafting, log.int("crafting_xp") / 10.0)
+            exp(Skill.Firemaking, log.int("firemaking_xp") / 10.0)
             if (bones == "chewed_bones") {
                 // TODO confirm how long the peaceful spirit stays
                 val npc = NPCs.add("peaceful_barbarian_spirit", target.tile, ticks = 5)
                 npc.face(this)
-                set("barbarian_pyre_bones", (get("barbarian_pyre_bones", 0) + pyre.bones).coerceAtMost(MAX_BLESSED_BONES))
+                set("barbarian_pyre_bones", (get("barbarian_pyre_bones", 0) + log.int("bones")).coerceAtMost(MAX_BLESSED_BONES))
                 // TODO proper message
                 message("The ancient barbarian is laid to rest. Your future prayer training is blessed, as his spirit ascends to a glorious afterlife. Spirits drop an object into your pack.")
                 val reward = drops.get("peaceful_barbarian_spirit_drop_table")?.roll()?.firstOrNull()?.toItem()
