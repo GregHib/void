@@ -18,3 +18,11 @@ range = 1
 target_hit = { offense = "crush", max = 70 }
 anim = "gorad_attack"
 sound = "gorad_attack"
+
+[ogre_shaman_gu_tanoth]
+death_anim = "ogre_shaman_death"
+
+[ogre_shaman_gu_tanoth.magic]
+range = 8
+anim = "ogre_shaman_cast"
+target_hit = { offense = "damage", min = 250, max = 350, accuracy_roll = false }

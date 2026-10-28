@@ -26,6 +26,7 @@ examine = "He looks lost."
 
 [evil_creature_tree_gnome_village]
 id = 6333
+clone = "evil_creature_tree_gnome_village_3"
 
 [elkoy_tree_gnome_village_3]
 id = 5179
@@ -48,4 +49,6 @@ id = 6312
 hitpoints = 10
 style = "crush"
 max_hit_melee = 10
+combat_def = "evil_creature_tree_gnome_village"
+drop_table = "bones"
 examine = "What is that thing!"
