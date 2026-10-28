@@ -9,26 +9,24 @@ import world.gregs.voidps.network.Response
 class PasswordManager(private val account: AccountLoader) {
 
     fun validate(username: String, password: String): Int {
-        if (username.length > 12) {
-            return Response.LOGIN_SERVER_REJECTED_SESSION
-        }
-        val passwordHash = account.password(username)
-        if (passwordHash == null && account.used(username)) {
-            // Username already in use as a display name
+        if (!AccountNames.valid(username)) {
+            // The client shows 11 as a weak password warning, 3 is "Invalid username or password"
             return Response.INVALID_CREDENTIALS
         }
-        if (!account.exists(username)) {
-            if (passwordHash != null) {
-                // Failed to find account file despite AccountDefinition exists in memory (aka existed on startup)
+        val passwordHash = account.password(username)
+        if (passwordHash == null) {
+            if (account.used(username)) {
+                // Username already in use as a display name
+                return Response.INVALID_CREDENTIALS
+            }
+            if (account.exists(username)) {
+                // Failed to find accounts password despite account file existing (created since startup)
                 return Response.ACCOUNT_DISABLED
             }
             return Response.SUCCESS
         }
+        // Accounts created since startup are only in memory until their first save, so the hash is checked whether or not a file exists yet
         try {
-            if (passwordHash == null) {
-                // Failed to find accounts password despite account file existing (created since startup)
-                return Response.ACCOUNT_DISABLED
-            }
             if (BCrypt.checkpw(password, passwordHash)) {
                 return Response.SUCCESS
             }

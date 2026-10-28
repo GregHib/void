@@ -45,12 +45,14 @@ combat_def = "guard"
 id = 1713
 examine = "A deacon in the Humans Against Monsters group. A rather enthusiastic chap."
 
-[ham_member_ham_cave]
+[ham_member_male_ham_cave]
 id = 1714
+combat_def = "ham_member"
 examine = "A member of the 'Humans Against Monsters' group."
 
-[ham_member_ham_cave_2]
+[ham_member_female_ham_cave]
 id = 1715
+combat_def = "ham_member"
 examine = "A member of the 'Humans Against Monsters' group."
 
 [ham_member_ham_cave_3]
