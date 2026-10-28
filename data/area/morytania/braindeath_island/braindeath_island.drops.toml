@@ -6,7 +6,7 @@ drops = [
 ]
 
 [fever_spider_secondary]
-roll = 100
+roll = 192
 drops = [
-    { id = "grimy_kwuarm", chance = 6 },
+    { id = "grimy_kwuarm", chance = 32 },
 ]
