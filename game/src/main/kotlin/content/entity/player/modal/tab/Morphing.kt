@@ -16,12 +16,19 @@ class Morphing : Script {
             morph(this, "easter_egg_${Random.nextInt(0, 6)}")
         }
 
+        itemOption("Wear", "bone_brooch") {
+            anim("bone_brooch_transform")
+            gfx("bone_brooch_transform")
+            delay(4)
+            morph(this, "bone_pile")
+        }
+
         itemOption("Wear", "ring_of_stone") { (item) ->
             morph(this, item.id)
         }
 
         interfaceOption("Ok", "morph:unmorph") {
-            unmorph(this)
+            unmorph(this, playAnimation = true)
         }
     }
 
@@ -35,8 +42,12 @@ class Morphing : Script {
         }
     }
 
-    fun unmorph(player: Player) {
+    fun unmorph(player: Player, playAnimation: Boolean = false) {
+        val boneBrooch = player.transform == "bone_pile"
         player.queue.clear()
+        if (boneBrooch && playAnimation) {
+            player.anim("bone_brooch_unmorph")
+        }
         player.clearTransform()
         player.movementDelay = 0
         player.close("morph")

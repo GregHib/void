@@ -712,6 +712,18 @@ ticks = 6
 walk = false
 run = false
 
+[bone_brooch_transform]
+id = 14870
+ticks = 4
+walk = false
+run = false
+
+[bone_brooch_unmorph]
+id = 14884
+ticks = 4
+walk = false
+run = false
+
 [emote_toy_horsey_brown]
 id = 918
 ticks = 3
