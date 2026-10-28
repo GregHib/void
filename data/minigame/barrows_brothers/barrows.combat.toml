@@ -85,8 +85,11 @@ target_hit = { offense = "stab", max = 230 }
 [crypt_rat_barrows]
 clone = "rat"
 defend_anim = "crypt_rat_barrows_defend"
+defend_sound = "zombie_rat_rimmington_defend"
 death_anim = "crypt_rat_barrows_death"
+death_sound = "zombie_rat_rimmington_death"
 
 [crypt_rat_barrows.melee]
 clone = "rat.melee"
 anim = "crypt_rat_barrows_attack"
+target_sound = "zombie_rat_rimmington_attack"

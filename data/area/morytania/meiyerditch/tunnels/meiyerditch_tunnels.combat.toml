@@ -19,8 +19,11 @@ anim = "mutated_bloodveld_attack"
 [zombie_hand_meiyerditch_tunnels]
 clone = "zombie"
 defend_anim = "zombie_hand_meiyerditch_tunnels_defend"
+defend_sound = "crawling_hand_defend"
 death_anim = "zombie_hand_meiyerditch_tunnels_death"
+death_sound = "crawling_hand_death"
 
 [zombie_hand_meiyerditch_tunnels.melee]
 clone = "zombie.melee"
 anim = "zombie_hand_meiyerditch_tunnels_attack"
+target_sound = "crawling_hand_attack"

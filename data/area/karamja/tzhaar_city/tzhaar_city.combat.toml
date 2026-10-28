@@ -11,7 +11,7 @@ target_hit = { offense = "crush", max = 150 }
 
 [tzhaar_xil]
 clone = "tzhaar_ket"
-defend_sound = "tzhaar_xil_defend"
+defend_sound = "tzhaar_xil_hit"
 death_sound = "tzhaar_xil_death"
 
 [tzhaar_xil.melee]

@@ -32,7 +32,7 @@ range = 8
 anim = "fire_spell"
 gfx = "fire_spell_cast"
 projectile = "fire_bolt"
-target_sound = "fire_bolt"
+target_sound = "fire_bolt_cast"
 target_hit = { offense = "magic", max = 90 }
 impact_gfx = "fire_bolt_impact"
 impact_sound = "fire_bolt_impact"

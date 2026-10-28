@@ -12,3 +12,6 @@ id = 635
 
 [zombie_monkey_defend]
 id = 636
+
+[zombie_monkey_attack]
+id = 629

@@ -102,8 +102,11 @@ sound = "sea_snake_hatchling_attack"
 [penguin_miscellania]
 clone = "chicken"
 defend_anim = "penguin_miscellania_defend"
+defend_sound = "penguin_miscellania_defend"
 death_anim = "penguin_miscellania_death"
+death_sound = "penguin_miscellania_death"
 
 [penguin_miscellania.melee]
 clone = "chicken.melee"
 anim = "penguin_miscellania_attack"
+target_sound = "penguin_miscellania_attack"

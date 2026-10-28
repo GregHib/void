@@ -11,7 +11,7 @@ target_hit = { offense = "crush", max = 30 }
 defend_anim = "sword_defend"
 defend_sound = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [draynor_market_guard.melee]
 range = 1

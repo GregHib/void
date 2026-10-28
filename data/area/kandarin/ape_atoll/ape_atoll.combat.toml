@@ -68,17 +68,23 @@ sound = "monkey_archer_attack"
 [monkey_guard_ape_atoll]
 clone = "guard"
 defend_anim = "monkey_guard_ape_atoll_defend"
+defend_sound = "monkey_guard_ape_atoll_defend"
 death_anim = "monkey_guard_ape_atoll_death"
+death_sound = "monkey_guard_ape_atoll_death"
 
 [monkey_guard_ape_atoll.melee]
 clone = "guard.melee"
 anim = "monkey_guard_ape_atoll_attack"
+target_sound = "monkey_guard_ape_atoll_attack"
 
 [monkey_zombie_ape_atoll]
 clone = "zombie"
 defend_anim = "monkey_zombie_ape_atoll_defend"
+defend_sound = "zombie_monkey_defend"
 death_anim = "monkey_zombie_ape_atoll_death"
+death_sound = "zombie_monkey_death"
 
 [monkey_zombie_ape_atoll.melee]
 clone = "zombie.melee"
 anim = "monkey_zombie_ape_atoll_attack"
+target_sound = "zombie_monkey_attack"

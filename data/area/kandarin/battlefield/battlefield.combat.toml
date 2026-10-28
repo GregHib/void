@@ -22,8 +22,11 @@ sound = "tortoise_attack"
 [mounted_terrorbird_gnome]
 clone = "gnome"
 defend_anim = "mounted_terrorbird_gnome_defend"
+defend_sound = "warped_terrorbird_defend"
 death_anim = "mounted_terrorbird_gnome_death"
+death_sound = "warped_terrorbird_death"
 
 [mounted_terrorbird_gnome.ranged]
 clone = "gnome.ranged"
 anim = "mounted_terrorbird_gnome_attack"
+target_sound = "warped_terrorbird_attack"

@@ -10,8 +10,11 @@ anim = "small_scarab_attack"
 [golem_guard_uzer_mastaba]
 clone = "guard"
 defend_anim = "golem_guard_uzer_mastaba_defend"
+defend_sound = "golem_guard_uzer_mastaba_defend"
 death_anim = "golem_guard_uzer_mastaba_death"
+death_sound = "golem_guard_uzer_mastaba_death"
 
 [golem_guard_uzer_mastaba.melee]
 clone = "guard.melee"
 anim = "golem_guard_uzer_mastaba_attack"
+target_sound = "golem_guard_uzer_mastaba_attack"
