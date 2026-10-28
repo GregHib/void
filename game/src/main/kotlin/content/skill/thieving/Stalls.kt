@@ -28,8 +28,8 @@ import java.util.concurrent.TimeUnit
 class Stalls(val drops: DropTables) : Script {
 
     init {
-        objectOperate("Steal-from", "*_stall") { interaction -> stealFromStall(interaction) }
-        objectOperate("Steal from", "*_stall") { interaction -> stealFromStall(interaction) }
+        objectOperate("Steal-from", "*_stall", handler = ::stealFromStall)
+        objectOperate("Steal from", "*_stall", handler = ::stealFromStall)
     }
 
     private suspend fun Player.stealFromStall(interaction: PlayerOnObjectInteract) {
