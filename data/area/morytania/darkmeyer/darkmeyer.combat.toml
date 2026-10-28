@@ -1,4 +1,5 @@
 [vyrewatch]
+death_anim = "vyrewatch_death"
 
 [vyrewatch.melee]
 range = 1

@@ -1,4 +1,5 @@
 [giant_lobster]
+defend_anim = "giant_lobster_defend"
 death_anim = "giant_lobster_death"
 
 [giant_lobster.melee]

@@ -1,4 +1,5 @@
 [rowdy_slave]
+defend_anim = "rowdy_slave_defend"
 death_anim = "rowdy_slave_death"
 
 [rowdy_slave.melee]
@@ -7,6 +8,7 @@ target_hit = { offense = "crush", max = 20 }
 anim = "rowdy_slave_attack"
 
 [mercenary_captain]
+defend_anim = "mercenary_captain_defend"
 death_anim = "mercenary_captain_death"
 
 [mercenary_captain.melee]

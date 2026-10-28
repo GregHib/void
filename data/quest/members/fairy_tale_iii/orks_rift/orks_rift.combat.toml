@@ -1,16 +1,20 @@
 [ivory_shredflesh_cursed]
+death_anim = "ivory_shredflesh_cursed_death"
 
 [ivory_shredflesh_cursed.melee]
 range = 1
+anim = "ivory_shredflesh_cursed_attack"
 target_hit = { offense = "crush", max = 112 }
 
 [ivory_gromblod_cursed]
+death_anim = "ivory_gromblod_cursed_death"
 
 [ivory_gromblod_cursed.range]
 range = 6
 target_hit = { offense = "range", max = 10 }
 
 [ivory_bre_egth_cursed]
+death_anim = "ivory_bre_egth_cursed_death"
 
 [ivory_bre_egth_cursed.magic]
 range = 6

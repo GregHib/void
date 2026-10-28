@@ -63,3 +63,9 @@ id = 836
 
 [valgerd_attack]
 id = 422
+
+[sea_snake_young_defend]
+id = 3536
+
+[sea_snake_hatchling_defend]
+id = 3536

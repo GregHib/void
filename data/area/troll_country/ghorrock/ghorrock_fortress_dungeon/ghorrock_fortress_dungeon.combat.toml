@@ -1,8 +1,8 @@
 [ice_demon]
-defend_anim = "demon_defend"
-death_anim = "demon_death"
+defend_anim = "ice_demon_defend"
+death_anim = "ice_demon_death"
 
 [ice_demon.magic]
 range = 6
 target_hit = { offense = "magic", max = 230 }
-anim = "demon_attack"
+anim = "ice_demon_attack"

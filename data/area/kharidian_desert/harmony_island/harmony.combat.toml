@@ -1,4 +1,5 @@
 [sorebones]
+defend_anim = "sorebones_defend"
 death_anim = "sorebones_death"
 
 [sorebones.melee]

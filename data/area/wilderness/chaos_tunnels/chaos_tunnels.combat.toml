@@ -72,6 +72,7 @@ anim = "possessed_pickaxe_attack"
 target_hit = { offense = "stab", max = 60 }
 
 [animated_spade]
+defend_anim = "spade_defend"
 death_anim = "spade_death"
 
 [animated_spade.melee]

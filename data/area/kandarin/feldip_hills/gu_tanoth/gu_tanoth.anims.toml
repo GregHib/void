@@ -1,9 +1,9 @@
 [gorad_defend]
-id = 360
+id = 11427
 [gorad_death]
-id = 361
+id = 11418
 [gorad_attack]
-id = 359
+id = 11404
 
 [ogre_chieftain_attack]
 id = 11470

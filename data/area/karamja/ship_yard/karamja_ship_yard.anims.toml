@@ -3,3 +3,6 @@ id = 836
 
 [foreman_attack]
 id = 422
+
+[foreman_defend]
+id = 424
