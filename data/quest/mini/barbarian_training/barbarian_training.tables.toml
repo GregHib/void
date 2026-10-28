@@ -1,0 +1,16 @@
+[barehand_fishing]
+row_id = "item"
+level = "int"          # fishing level
+strength = "int"       # strength level
+
+[.raw_tuna]
+level = 55
+strength = 35
+
+[.raw_swordfish]
+level = 70
+strength = 50
+
+[.raw_shark]
+level = 96
+strength = 76
