@@ -29,6 +29,7 @@ class LighthouseDoorTest : WorldTest() {
         player.objectOption(door, "Walk-through")
         tick(4)
         assertEquals(Tile(2509, 3636), player.tile)
+        assertTrue(player.containsMessage("You unlock the Lighthouse front door."))
 
         player.objectOption(door, "Walk-through")
         tick(4)

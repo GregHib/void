@@ -14,6 +14,7 @@ class LighthouseDoor : Script {
             }
             // Doorway is on the south edge of its tile
             if (tile.y < target.tile.y) {
+                message("You unlock the Lighthouse front door.")
                 walkOverDelay(target.tile)
             } else {
                 walkOverDelay(target.tile.addY(-1))
