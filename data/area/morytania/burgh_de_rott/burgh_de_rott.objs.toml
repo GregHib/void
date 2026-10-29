@@ -1,3 +1,6 @@
+[bank_booth_burgh_de_rott_base]
+id = 12759
+
 [bank_booth_burgh_de_rott]
 id = 12798
 examine = "The bank teller will serve you from here."
@@ -21,3 +24,9 @@ examine = "A wooden gate."
 [burgh_de_rott_low_fence]
 id = 12776
 examine = "Looks slightly lower than the rest, perhaps you can jump it?"
+
+[furnace_burgh_de_rott_base]
+id = 12805
+
+[furnace_burgh_de_rott]
+id = 12809
