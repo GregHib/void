@@ -66,6 +66,8 @@ fun Player.questCompleted(name: String): Boolean {
     return quest(name).startsWith("completed")
 }
 
+fun Player.completedAllQuests(): Boolean = quests.all { questCompleted(it) }
+
 fun Player.questStarted(name: String): Boolean {
     if (skipped(name)) {
         return true
