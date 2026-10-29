@@ -178,3 +178,23 @@ id = "imp"
 check_visual = "line_of_sight"
 check_not_busy = true
 find_keep_hunting = true
+
+# Chaos Dwarf Battlefield Black Guard side, attack the chaos side
+[black_guard_battlefield]
+type = "npc"
+id = "chaos_*_chaos_dwarf_battlefield*"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+
+# Chaos Dwarf Battlefield chaos side, attack the Black Guard side
+[chaos_dwarf_battlefield]
+type = "npc"
+id = "black_guard*_chaos_dwarf_battlefield*"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false

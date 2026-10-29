@@ -1,5 +1,7 @@
 [chaos_dwogre_chaos_dwarf_battlefield]
 id = 8771
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 examine = "A magical cross between an ogre and a dwarf."
 drop_table = "chaos_dwogre"
 hitpoints = 1000
@@ -14,6 +16,8 @@ combat_def = "chaos_dwogre"
 
 [black_guard_chaos_dwarf_battlefield]
 id = 8772
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 hitpoints = 400
 att = 40
 str = 45
@@ -30,18 +34,24 @@ combat_def = "dwarf"
 
 [black_guard_chaos_dwarf_battlefield_2]
 id = 8773
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 clone = "black_guard_chaos_dwarf_battlefield"
 drop_table = "black_guard"
 combat_def = "dwarf"
 
 [black_guard_chaos_dwarf_battlefield_3]
 id = 8774
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 clone = "black_guard_chaos_dwarf_battlefield"
 drop_table = "black_guard"
 combat_def = "dwarf"
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield]
 id = 8776
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
@@ -57,6 +67,8 @@ max_hit_crush = 110
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
 id = 8777
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
@@ -72,6 +84,8 @@ max_hit_crush = 110
 
 [chaos_dwarf_chaos_dwarf_battlefield]
 id = 8778
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 drop_table = "chaos_dwarf"
 combat_def = "chaos_dwarf"
 hitpoints = 610
@@ -81,10 +95,11 @@ def = 28
 attack_speed = 5
 attack_bonus = 13
 max_hit_crush = 63
-hunt_mode = "cowardly"
 
 [chaos_dwarf_chaos_dwarf_battlefield_2]
 id = 8779
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf"
@@ -96,10 +111,11 @@ def = 28
 attack_speed = 5
 attack_bonus = 13
 max_hit_crush = 63
-hunt_mode = "cowardly"
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield]
 id = 8781
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
@@ -113,6 +129,8 @@ max_hit_range = 100
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield_2]
 id = 8782
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
@@ -126,6 +144,8 @@ max_hit_range = 100
 
 [black_guard_berserker_chaos_dwarf_battlefield]
 id = 8783
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 hitpoints = 500
 att = 60
 str = 60
@@ -144,6 +164,8 @@ combat_def = "black_guard_berserker"
 
 [black_guard_berserker_chaos_dwarf_battlefield_2]
 id = 8784
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 clone = "black_guard_berserker_chaos_dwarf_battlefield"
 drop_table = "black_guard_berserker"
 combat_def = "black_guard_berserker"
