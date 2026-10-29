@@ -1,3 +1,7 @@
 [keldagrim_visited]
 format = "boolean"
 persist = true
+
+[ore_hauler_introduced]
+format = "boolean"
+persist = true
