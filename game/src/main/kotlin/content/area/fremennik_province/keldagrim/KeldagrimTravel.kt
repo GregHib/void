@@ -225,7 +225,7 @@ class KeldagrimTravel : Script {
         // Follow the track around the bends out of the station and into the tunnel
         exactMoveDelay(Tile(2938, 10169), delay = 30, direction = Direction.SOUTH_EAST)
         exactMoveDelay(Tile(2938, 10165), delay = 30, direction = Direction.SOUTH)
-        exactMoveDelay(Tile(2940, 10164), delay = 30, direction = Direction.SOUTH_EAST)
+        exactMoveDelay(Tile(2940, 10164), delay = 30, direction = Direction.EAST)
         exactMoveDelay(Tile(2944, 10164), delay = 30, direction = Direction.EAST)
         open("fade_out")
         delay(4)
