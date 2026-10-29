@@ -8,6 +8,8 @@ str = 1
 def = 125
 mage = 125
 max_hit_magic = 121
+max_hit_crush = 121
+attack_speed = 6
 combat_def = "chaos_dwogre"
 
 [black_guard_chaos_dwarf_battlefield]
@@ -17,7 +19,7 @@ att = 40
 str = 45
 def = 45
 style = "crush"
-max_hit_melee = 80
+max_hit_crush = 84
 attack_bonus = 30
 slayer_xp = 40.0
 categories = ["dwarves"]
@@ -44,13 +46,14 @@ categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
 combat_def = "chaos_dwarf_hand_cannoneer"
-attack_speed = 7
+attack_speed = 5
 hitpoints = 1220
 att = 1
 str = 1
 def = 91
 range = 96
-max_hit_range = 110
+max_hit_range = 380
+max_hit_crush = 110
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
 id = 8777
@@ -58,13 +61,14 @@ categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
 combat_def = "chaos_dwarf_hand_cannoneer"
-attack_speed = 7
+attack_speed = 5
 hitpoints = 1220
 att = 1
 str = 1
 def = 91
 range = 96
-max_hit_range = 110
+max_hit_range = 380
+max_hit_crush = 110
 
 [chaos_dwarf_chaos_dwarf_battlefield]
 id = 8778
@@ -76,7 +80,7 @@ str = 42
 def = 28
 attack_speed = 5
 attack_bonus = 13
-max_hit_crush = 60
+max_hit_crush = 63
 hunt_mode = "cowardly"
 
 [chaos_dwarf_chaos_dwarf_battlefield_2]
@@ -91,7 +95,7 @@ str = 42
 def = 28
 attack_speed = 5
 attack_bonus = 13
-max_hit_crush = 60
+max_hit_crush = 63
 hunt_mode = "cowardly"
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield]
@@ -127,7 +131,8 @@ att = 60
 str = 60
 def = 60
 style = "crush"
-max_hit_melee = 130
+max_hit_crush = 133
+attack_speed = 7
 attack_bonus = 55
 xp_bonus = 2.5
 slayer_xp = 50.0
