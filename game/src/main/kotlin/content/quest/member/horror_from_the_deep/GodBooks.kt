@@ -91,12 +91,16 @@ class GodBooks : Script {
         choice {
             for (god in uncompleted) {
                 option(god.replaceFirstChar { it.uppercase() }) {
+                    // TODO sell damaged_book_$god instead once pages can be obtained from clue scrolls
                     inventory.transaction {
                         remove("coins", 5000)
-                        add("damaged_book_$god")
+                        add(book(god))
                     }
                     when (inventory.transaction.error) {
-                        TransactionError.None -> npc<Happy>("Here you go!")
+                        TransactionError.None -> {
+                            set("${god}_book_completed", true)
+                            npc<Happy>("Here you go!")
+                        }
                         is TransactionError.Full -> player<Sad>("Sorry, I don't have enough inventory space.")
                         else -> player<Sad>("Sorry, I don't seem to have enough coins.")
                     }
@@ -114,7 +118,9 @@ class GodBooks : Script {
             for (god in gods) {
                 option<Neutral>(god.replaceFirstChar { it.uppercase() }) {
                     npc<Happy>("I think you're right! Hand it over, and let's see what's inside!")
-                    if (inventory.replace("rusty_casket", "damaged_book_$god")) {
+                    // TODO give damaged_book_$god instead once pages can be obtained from clue scrolls
+                    if (inventory.replace("rusty_casket", book(god))) {
+                        set("${god}_book_completed", true)
                         val name = when (god) {
                             "saradomin" -> "a Holy Book of Saradomin"
                             "zamorak" -> "an Unholy Book of Zamorak"

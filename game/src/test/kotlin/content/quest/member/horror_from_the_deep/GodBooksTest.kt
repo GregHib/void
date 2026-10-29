@@ -60,7 +60,7 @@ class GodBooksTest : WorldTest() {
     }
 
     @Test
-    fun `Buy a damaged book from Jossik`() {
+    fun `Buy a god book from Jossik`() {
         val player = createPlayer(Tile(2509, 3638, 1))
         player.inventory.add("coins", 5000)
         val jossik = createNPC("jossik", Tile(2509, 3639, 1))
@@ -75,8 +75,9 @@ class GodBooksTest : WorldTest() {
         tick()
         player.skipDialogues()
 
-        assertEquals(1, player.inventory.count("damaged_book_guthix"))
+        assertEquals(1, player.inventory.count("guthixs_book_of_balance"))
         assertEquals(0, player.inventory.count("coins"))
+        assertTrue(player["guthix_book_completed", false])
     }
 
     @Test
