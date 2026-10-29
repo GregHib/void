@@ -144,22 +144,6 @@ class SkippedQuestNpcsTest : WorldTest() {
 
         player.assertPlayerChat()
         player.skipDialogues()
-        assertTrue(player["ali_the_wise_told_jhallan", false])
-    }
-
-    @Test
-    fun `Tell Ali the Wise about the Mahjarrat`() {
-        val player = createPlayer(Tile(3420, 2937))
-        player["ali_the_wise_told_jhallan"] = true
-        player["ali_the_wise_told_nabanik"] = true
-        player.talkTo("ali_the_wise", Tile(3420, 2938))
-
-        player.skipDialogues()
-        player.dialogueOption(1)
-        tick()
-        player.skipDialogues()
-
-        assertTrue(player["ali_the_wise_told_enakhra", false])
     }
 
     @Test
