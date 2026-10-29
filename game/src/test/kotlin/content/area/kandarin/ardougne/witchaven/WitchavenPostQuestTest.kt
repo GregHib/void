@@ -1,6 +1,7 @@
 package content.area.kandarin.ardougne.witchaven
 
 import WorldTest
+import dialogueOption
 import npcOption
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -66,5 +67,22 @@ class WitchavenPostQuestTest : WorldTest() {
         tick(6)
 
         assertEquals(Tile(2782, 3273), player.tile)
+    }
+
+    @Test
+    fun `Jeb takes you back from the fishing platform`() {
+        skipMissing(true)
+        val player = createPlayer(Tile(2782, 3275))
+        val jeb = createNPC("jeb", Tile(2782, 3276))
+        assertEquals("jeb_witchaven_3", jeb.def(player).stringId)
+
+        player.npcOption(jeb, "Talk-to")
+        tick(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        tick(6)
+
+        assertEquals(Tile(2719, 3301), player.tile)
     }
 }

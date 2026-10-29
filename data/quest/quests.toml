@@ -3485,6 +3485,7 @@ xp = "3,875 Crafting XP"
 
 [slug_menace]
 id = 95
+variables = ["slug_menace_jeb_platform"]
 name = "The Slug Menace"
 difficulty = 1
 length = 4
