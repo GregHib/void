@@ -3,7 +3,7 @@ package content.skill.smithing
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.statement
-import content.quest.quest
+import content.quest.questCompleted
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -116,9 +116,9 @@ class Anvil : Script {
             interfaces.sendVisibility("smithing", "bullseye_lantern", metal == "steel")
             interfaces.sendItem("smithing", "lantern", ItemDefinitions.get("bullseye_lantern_frame").id, 1)
             interfaces.sendVisibility("smithing", "grapple", metal == "mithril")
-            interfaces.sendVisibility("smithing", "darts", quest("tourist_trap") == "completed")
-            interfaces.sendVisibility("smithing", "claw", quest("death_plateau") == "completed")
-            interfaces.sendVisibility("smithing", "pickaxes", quest("perils_of_ice_mountain") == "completed")
+            interfaces.sendVisibility("smithing", "darts", questCompleted("tourist_trap"))
+            interfaces.sendVisibility("smithing", "claw", questCompleted("death_plateau"))
+            interfaces.sendVisibility("smithing", "pickaxes", questCompleted("perils_of_ice_mountain"))
         }
 
         itemOnObjectOperate("hammer", "anvil*", arrive = false) {

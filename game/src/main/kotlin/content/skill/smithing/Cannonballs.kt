@@ -3,7 +3,7 @@ package content.skill.smithing
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.statement
-import content.quest.quest
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -26,7 +26,7 @@ class Cannonballs : Script {
 
     init {
         itemOnObjectOperate("steel_bar", "furnace*") { (target) ->
-            if (quest("dwarf_cannon") != "completed") {
+            if (!questCompleted("dwarf_cannon")) {
                 noInterest()
                 return@itemOnObjectOperate
             }

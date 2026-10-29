@@ -14,12 +14,10 @@ val quests = setOf(
     "cooks_assistant",
     "demon_slayer",
     "dorics_quest",
-    "goblin_diplomacy",
     "gunnars_ground",
     "the_restless_ghost",
     "rune_mysteries",
     "the_knights_sword",
-    "witches_potion_miniquest",
     "prince_ali_rescue",
     "imp_catcher",
     "pirates_treasure",
@@ -34,11 +32,8 @@ val quests = setOf(
     "nature_spirit",
     "plague_city",
     "priest_in_peril",
-    "rat_catchers",
     "rum_deal",
-    "swan_song",
     "lost_city",
-    "one_small_favour",
     "tears_of_guthix",
     "the_golem",
     "zogre_flesh_eaters",
@@ -59,11 +54,23 @@ fun questStage(name: String, stage: String): Int {
     return def.values.toInt(stage)
 }
 
+/**
+ * Quests which aren't implemented yet are treated as completed so they don't block content
+ */
+private fun skipped(name: String): Boolean = !quests.contains(name) && Settings["quests.requirements.skipMissing", false]
+
 fun Player.questCompleted(name: String): Boolean {
-    if (!quests.contains(name) && Settings["quests.requirements.skipMissing", false]) {
+    if (skipped(name)) {
         return true
     }
     return quest(name).startsWith("completed")
+}
+
+fun Player.questStarted(name: String): Boolean {
+    if (skipped(name)) {
+        return true
+    }
+    return quest(name) != "unstarted"
 }
 
 fun Player.refreshQuestJournal() {
