@@ -203,6 +203,8 @@ class KeldagrimTravel : Script {
         exactMoveDelay(Tile(2914, 10173), delay = 240, direction = Direction.WEST)
         rideCart(false)
         clearMinimap()
+        // Client ignores a teleport that lands while its exact move is still playing
+        delay(1)
         tele(2914, 10174)
     }
 
