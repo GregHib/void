@@ -1,0 +1,3 @@
+[keldagrim_visited]
+format = "boolean"
+persist = true

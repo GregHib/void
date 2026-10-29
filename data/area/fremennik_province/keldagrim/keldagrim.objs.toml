@@ -81,3 +81,24 @@ examine = "A mineral vein that looks distinctly like gold."
 [dwarf_keldagrim_table_big]
 id = 6198
 examine = "Useful for a dwarf."
+
+[keldagrim_tunnel_rellekka]
+id = 5008
+
+[keldagrim_tunnel]
+id = 5014
+
+[keldagrim_cave_entrance]
+id = 5973
+
+[keldagrim_entrance]
+id = 5998
+
+[train_cart_keldagrim]
+id = 7028
+
+[train_cart_white_wolf_mountain]
+id = 7030
+
+[hidden_trapdoor_grand_exchange]
+id = 28094

@@ -1,0 +1,8 @@
+spawns = [
+    { id = "train_cart_keldagrim", x = 2914, y = 10173, type = 10, rotation = 0 },
+    { id = "train_cart_keldagrim", x = 2916, y = 10175, type = 10, rotation = 0 },
+    { id = "train_cart_keldagrim", x = 2918, y = 10175, type = 10, rotation = 0 },
+    { id = "train_cart_keldagrim", x = 2920, y = 10175, type = 10, rotation = 0 },
+    { id = "train_cart_keldagrim", x = 2922, y = 10175, type = 10, rotation = 0 },
+    { id = "train_cart_keldagrim", x = 2924, y = 10175, type = 10, rotation = 0 },
+]
