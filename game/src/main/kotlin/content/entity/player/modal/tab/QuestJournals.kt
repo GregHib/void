@@ -1,6 +1,7 @@
 package content.entity.player.modal.tab
 
 import com.github.michaelbull.logging.InlineLogger
+import content.quest.questPointsTotal
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
@@ -38,7 +39,7 @@ class QuestJournals(
             interfaceOptions.unlock(id, "journals", 0 until 201, "View")
             interfaceOptions.unlockAll(id, "order", 0 until 3)
             sendVariable("quest_points")
-            sendVariable("quest_points_total") // set total quest points available in variables-player.yml
+            set("quest_points_total", questPointsTotal(questDefinitions))
             sendVariable("unstable_foundations")
         }
 

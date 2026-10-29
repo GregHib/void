@@ -3,6 +3,7 @@ package content.quest
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -69,6 +70,11 @@ fun Player.questCompleted(name: String): Boolean {
 }
 
 fun Player.completedAllQuests(): Boolean = quests.all { questCompleted(it) }
+
+/**
+ * Quest points available from the quests which are implemented
+ */
+fun questPointsTotal(definitions: QuestDefinitions): Int = quests.sumOf { definitions.getOrNull(it)?.questPoints?.coerceAtLeast(0) ?: 0 }
 
 fun Player.questStarted(name: String): Boolean {
     if (questSkipped(name)) {
