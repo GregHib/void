@@ -200,12 +200,12 @@ class KeldagrimTravel : Script {
         // Follow the track around the bend into the station
         exactMoveDelay(Tile(2941, 10170), delay = 30, direction = Direction.WEST)
         exactMoveDelay(Tile(2939, 10173), delay = 30, direction = Direction.NORTH_WEST)
-        exactMoveDelay(Tile(2914, 10173), delay = 240, direction = Direction.WEST)
+        exactMoveDelay(Tile(2909, 10173), delay = 288, direction = Direction.WEST)
         rideCart(false)
         clearMinimap()
         // Client ignores a teleport that lands while its exact move is still playing
         delay(1)
-        tele(2914, 10174)
+        tele(2909, 10174)
     }
 
     private suspend fun Player.fromKeldagrim(destination: Tile) {
