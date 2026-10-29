@@ -37,3 +37,6 @@ examine = "I can jump off this one."
 [rocky_shore]
 id = 4559
 examine = "It looks barren."
+
+[lighthouse_doorway]
+id = 4577
