@@ -162,14 +162,6 @@ class KeldagrimTravel : Script {
         tele(if (ferryman.id == "dwarven_ferryman_keldagrim_2") Tile(2864, 10133) else Tile(2836, 10143))
     }
 
-    private val toStation = listOf(
-        Tile(2941, 10170),
-        Tile(2940, 10171),
-        Tile(2940, 10172),
-        Tile(2939, 10173),
-        Tile(2914, 10173),
-    )
-
     private fun Player.rideCart(ride: Boolean) {
         if (ride) {
             renderEmote("mine_cart")
@@ -206,9 +198,9 @@ class KeldagrimTravel : Script {
         rideCart(true)
         open("fade_in")
         // Follow the track around the bend into the station
-        for (tile in toStation) {
-            walkOverDelay(tile)
-        }
+        exactMoveDelay(Tile(2941, 10170), delay = 30, direction = Direction.WEST)
+        exactMoveDelay(Tile(2939, 10173), delay = 30, direction = Direction.NORTH_WEST)
+        exactMoveDelay(Tile(2914, 10173), delay = 240, direction = Direction.WEST)
         rideCart(false)
         clearMinimap()
         tele(2914, 10174)
@@ -227,7 +219,7 @@ class KeldagrimTravel : Script {
         tele(2911, 10171)
         rideCart(true)
         open("fade_in")
-        walkOverDelay(Tile(2936, 10171))
+        exactMoveDelay(Tile(2936, 10171), delay = 240, direction = Direction.EAST)
         open("fade_out")
         delay(3)
         rideCart(false)
