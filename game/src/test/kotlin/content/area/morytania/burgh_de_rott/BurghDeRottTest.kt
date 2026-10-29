@@ -63,8 +63,8 @@ class BurghDeRottTest : WorldTest() {
     @Test
     fun `Cornelius banks for players once the bank is rebuilt`() {
         skipMissing(true)
-        val player = createPlayer(Tile(3496, 3210))
-        val cornelius = createNPC("cornelius_2", Tile(3496, 3212))
+        val player = createPlayer(Tile(3493, 3209))
+        val cornelius = createNPC("cornelius_2", Tile(3493, 3211))
         assertEquals("cornelius_2_2", cornelius.def(player).stringId)
 
         player.npcOption(cornelius, "Talk-to")
