@@ -61,8 +61,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
             definition.varp != -1 -> index(player, definition.varp, false)
             else -> return definition
         }
-        // Same as the client: out of range or unset (-1) entries fall back to the default (last) transform
-        var transform = if (index < 0 || index >= transforms.lastIndex) -1 else transforms[index]
+        var transform = transforms.getOrNull(index) ?: -1
         if (transform == -1) {
             transform = transforms.last()
         }
