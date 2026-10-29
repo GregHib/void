@@ -28,7 +28,10 @@ class Morphing : Script {
         }
 
         interfaceOption("Ok", "morph:unmorph") {
-            unmorph(this, playAnimation = true)
+            if (transform == "bone_pile") {
+                anim("bone_brooch_unmorph")
+            }
+            unmorph(this)
         }
     }
 
@@ -42,12 +45,8 @@ class Morphing : Script {
         }
     }
 
-    fun unmorph(player: Player, playAnimation: Boolean = false) {
-        val boneBrooch = player.transform == "bone_pile"
+    fun unmorph(player: Player) {
         player.queue.clear()
-        if (boneBrooch && playAnimation) {
-            player.anim("bone_brooch_unmorph")
-        }
         player.clearTransform()
         player.movementDelay = 0
         player.close("morph")
