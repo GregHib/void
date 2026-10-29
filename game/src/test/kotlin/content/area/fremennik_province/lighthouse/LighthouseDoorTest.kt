@@ -4,6 +4,7 @@ import WorldTest
 import containsMessage
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
@@ -27,11 +28,14 @@ class LighthouseDoorTest : WorldTest() {
         val door = GameObjects.find(Tile(2509, 3636), "lighthouse_doorway")
 
         player.objectOption(door, "Walk-through")
+        tick(2)
+        assertNotNull(GameObjects.findOrNull(Tile(2509, 3636), "lighthouse_doorway_open"))
         tick(4)
         assertEquals(Tile(2509, 3636), player.tile)
         assertTrue(player.containsMessage("You unlock the Lighthouse front door."))
 
-        player.objectOption(door, "Walk-through")
+        val closed = GameObjects.find(Tile(2509, 3636), "lighthouse_doorway")
+        player.objectOption(closed, "Walk-through")
         tick(4)
         assertEquals(Tile(2509, 3635), player.tile)
     }

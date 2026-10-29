@@ -40,3 +40,6 @@ examine = "It looks barren."
 
 [lighthouse_doorway]
 id = 4577
+
+[lighthouse_doorway_open]
+id = 4578

@@ -3,6 +3,7 @@ package content.area.fremennik_province.lighthouse
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.obj.replace
 
 class LighthouseDoor : Script {
 
@@ -12,6 +13,7 @@ class LighthouseDoor : Script {
                 message("You can't see any way to open the door.")
                 return@objectOperate
             }
+            target.replace("lighthouse_doorway_open", ticks = 3)
             // Doorway is on the south edge of its tile
             if (tile.y < target.tile.y) {
                 message("You unlock the Lighthouse front door.")
