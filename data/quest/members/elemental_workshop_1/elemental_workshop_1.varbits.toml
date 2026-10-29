@@ -4,3 +4,28 @@ persist = true
 format = "map"
 default = "unstarted"
 values = { unstarted = 0, completed = 1 }
+
+[elemental_workshop_left_water_control]
+id = 2058
+format = "boolean"
+persist = true
+
+[elemental_workshop_right_water_control]
+id = 2059
+format = "boolean"
+persist = true
+
+[elemental_workshop_water_wheel]
+id = 2060
+format = "boolean"
+persist = true
+
+[elemental_workshop_furnace]
+id = 2062
+format = "boolean"
+persist = true
+
+[elemental_workshop_bellows]
+id = 2063
+format = "boolean"
+persist = true
