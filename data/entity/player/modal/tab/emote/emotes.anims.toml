@@ -244,6 +244,18 @@ ticks = 4
 walk = false
 run = false
 
+[emote_zombie_head_display]
+id = 2844
+ticks = 4
+walk = false
+run = false
+
+[emote_zombie_head_talk]
+id = 2840
+ticks = 4
+walk = false
+run = false
+
 [emote_scared]
 id = 2836
 ticks = 5
