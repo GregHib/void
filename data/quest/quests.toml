@@ -1931,6 +1931,7 @@ variables = [
   "burgh_de_rott_general_store_wall",
   "burgh_de_rott_bank_booth",
   "burgh_de_rott_bank_wall",
+  "burgh_de_rott_cornelius",
   "burgh_de_rott_furnace",
   "burgh_de_rott_ambush",
   "burgh_de_rott_rebuilt",

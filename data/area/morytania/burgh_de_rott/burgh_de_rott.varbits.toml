@@ -27,6 +27,13 @@ format = "map"
 default = "unstarted"
 values = { unstarted = 0, completed = 1 }
 
+[burgh_de_rott_cornelius]
+id = 1979
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }
+
 [burgh_de_rott_furnace]
 id = 1980
 persist = true
