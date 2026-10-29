@@ -88,4 +88,19 @@ class KeldagrimTravelTest : WorldTest() {
         tick(40)
         assertEquals(Tile(3140, 3507), player.tile)
     }
+
+    @Test
+    fun `Enter the chaos dwarf battlefield and leave again`() {
+        val player = createPlayer(Tile(2817, 10155))
+        val tunnel = createObject("chaos_dwarf_battlefield_tunnel", Tile(2816, 10155), rotation = 2)
+
+        player.objectOption(tunnel, "Enter")
+        tick(3)
+        assertEquals(Tile(1520, 4704), player.tile)
+
+        val doorway = GameObjects.find(Tile(1521, 4704), "chaos_dwarf_battlefield_doorway")
+        player.objectOption(doorway, "Enter")
+        tick(3)
+        assertEquals(Tile(2817, 10155), player.tile)
+    }
 }
