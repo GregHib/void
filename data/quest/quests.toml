@@ -1880,6 +1880,7 @@ xp = "5,000 Slayer XP"
 
 [icthlarins_little_helper]
 id = 63
+variables = ["icthlarins_little_helper", "icthlarins_little_helper_progress"]
 name = "Icthlarin's Little Helper"
 difficulty = 1
 length = 5
@@ -2263,6 +2264,7 @@ xp = "5,000 Thieving XP (plus 4,800 Thieving XP for turning in the flame fragmen
 
 [lost_tribe]
 id = 69
+variables = ["the_lost_tribe"]
 name = "The Lost Tribe"
 difficulty = 1
 length = 3
@@ -2880,6 +2882,7 @@ xp = "4,000 Attack XP<br>4,900 Strength XP"
 
 [rag_and_bone_man]
 id = 85
+variables = ["rag_and_bone_man_1"]
 name = "Rag and Bone Man"
 difficulty = 0
 length = 4
@@ -2895,6 +2898,7 @@ xp = "500 Cooking XP"
 
 [rat_catchers]
 id = 86
+variables = ["ratcatchers"]
 name = "Rat Catchers"
 difficulty = 1
 length = 5
@@ -3660,6 +3664,7 @@ xp = "1,500 Fishing XP"
 
 [tail_of_two_cats]
 id = 104
+variables = ["a_tail_of_two_cats"]
 name = "A Tail of Two Cats"
 difficulty = 1
 length = 5
@@ -3950,6 +3955,7 @@ xp = "3,000 Agility XP<br>3,000 Attack XP"
 
 [vampire_slayer]
 id = 16
+variables = ["vampyre_slayer"]
 name = "Vampire Slayer"
 difficulty = 0
 length = 1
@@ -4130,6 +4136,7 @@ reward = "5,000 coins<br>Lump of dragon metal<br>Talk to Idria to receive 4x 100
 
 [witchs_house]
 id = 109
+variables = ["witches_house"]
 name = "Witch's House"
 difficulty = 1
 length = 1

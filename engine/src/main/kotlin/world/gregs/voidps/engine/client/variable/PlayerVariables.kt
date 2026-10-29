@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -59,6 +60,24 @@ class PlayerVariables(
             }
             if (value != variable.defaultValue) {
                 variable.send(client, value)
+            }
+        }
+        // The client assumes zero for anything unsent
+        for ((key, variable) in VariableDefinitions.definitions) {
+            if (!variable.transmit || data.containsKey(key)) {
+                continue
+            }
+            val default = variable.defaultValue ?: continue
+            if (variable !is VariableDefinition.VarpDefinition && variable !is VariableDefinition.VarbitDefinition) {
+                continue
+            }
+            val int = try {
+                variable.values.toInt(default)
+            } catch (e: ClassCastException) {
+                continue
+            }
+            if (int > 0) {
+                variable.send(client, default)
             }
         }
     }

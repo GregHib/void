@@ -51,12 +51,12 @@ class Banker : Script {
             menu()
         }
 
-        npcApproach("Bank", "banker*,fremennik_banker,sirsal_banker") {
+        npcApproach("Bank", "banker*,fremennik_banker,sirsal_banker,birds_eye_jack_2_2") {
             approachRange(2)
             openBank()
         }
 
-        npcApproach("Collect", "banker*,fremennik_banker,sirsal_banker") {
+        npcApproach("Collect", "banker*,fremennik_banker,sirsal_banker,birds_eye_jack_2_2") {
             approachRange(2)
             openCollection()
         }

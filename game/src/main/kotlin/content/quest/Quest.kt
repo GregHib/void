@@ -26,6 +26,7 @@ val quests = setOf(
     "creature_of_fenkenstrain",
     "druidic_ritual",
     "gertrudes_cat",
+    "ghosts_ahoy",
     "hand_in_the_sand",
     "in_search_of_the_myreque",
     "jungle_potion",
@@ -39,6 +40,7 @@ val quests = setOf(
     "zogre_flesh_eaters",
     // mini-quests
     "enter_the_abyss",
+    "sheep_shearer_miniquest",
 )
 
 fun Player.quest(name: String): String = this[name, "unstarted"]
@@ -57,10 +59,10 @@ fun questStage(name: String, stage: String): Int {
 /**
  * Quests which aren't implemented yet are treated as completed so they don't block content
  */
-private fun skipped(name: String): Boolean = !quests.contains(name) && Settings["quests.requirements.skipMissing", false]
+fun questSkipped(name: String): Boolean = !quests.contains(name) && Settings["quests.requirements.skipMissing", false]
 
 fun Player.questCompleted(name: String): Boolean {
-    if (skipped(name)) {
+    if (questSkipped(name)) {
         return true
     }
     return quest(name).startsWith("completed")
@@ -69,7 +71,7 @@ fun Player.questCompleted(name: String): Boolean {
 fun Player.completedAllQuests(): Boolean = quests.all { questCompleted(it) }
 
 fun Player.questStarted(name: String): Boolean {
-    if (skipped(name)) {
+    if (questSkipped(name)) {
         return true
     }
     return quest(name) != "unstarted"
