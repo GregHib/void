@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class Banker : Script {
 
     init {
-        npcApproach("Talk-to", "banker*,fremennik_banker,sirsal_banker") { (target) ->
+        npcApproach("Talk-to", "banker*,fremennik_banker,sirsal_banker,cornelius_2_2") { (target) ->
             approachRange(2)
             if (target.id == "banker_tutorial_island") {
                 advanceTutorial(52)

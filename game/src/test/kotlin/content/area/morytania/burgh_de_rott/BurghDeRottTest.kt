@@ -1,11 +1,13 @@
 package content.area.morytania.burgh_de_rott
 
 import WorldTest
+import npcOption
 import objectOption
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import skipDialogues
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
@@ -56,6 +58,20 @@ class BurghDeRottTest : WorldTest() {
         tick(3)
 
         assertTrue(player.hasOpen("dialogue_skill_creation"))
+    }
+
+    @Test
+    fun `Cornelius banks for players once the bank is rebuilt`() {
+        skipMissing(true)
+        val player = createPlayer(Tile(3496, 3210))
+        val cornelius = createNPC("cornelius_2", Tile(3496, 3212))
+        assertEquals("cornelius_2_2", cornelius.def(player).stringId)
+
+        player.npcOption(cornelius, "Talk-to")
+        tick(3)
+        player.skipDialogues()
+
+        assertTrue(player.hasOpen("dialogue_multi5"))
     }
 
     @Test
