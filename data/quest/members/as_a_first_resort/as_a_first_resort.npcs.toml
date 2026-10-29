@@ -92,3 +92,19 @@ examine = "A surly-looking little whippersnapper."
 [chomp_as_a_first_resort]
 id = 7074
 examine = "A little nipper."
+
+[grubb_as_a_first_resort]
+id = 7075
+examine = "Ankle-biter of ogrish proportions."
+
+[snarrk_as_a_first_resort]
+id = 7070
+examine = "In desperate need of smiles and soap."
+
+[grunther_as_a_first_resort]
+id = 7076
+examine = "Mama's little darling?"
+
+[irk_as_a_first_resort]
+id = 7071
+examine = "With a smile like that, she can't be up to any good."

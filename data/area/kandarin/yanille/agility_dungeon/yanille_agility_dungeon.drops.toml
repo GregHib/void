@@ -58,3 +58,14 @@ drops = [
     { id = "sinister_key", chance = 10 },
     { table = "gem_drop_table" },
 ]
+
+[sinister_chest_drop_table]
+type = "all"
+drops = [
+    { id = "grimy_torstol" },
+    { id = "grimy_kwuarm" },
+    { id = "grimy_avantoe" },
+    { id = "grimy_irit" },
+    { id = "grimy_ranarr", amount = 3 },
+    { id = "grimy_harralander", amount = 2 },
+]

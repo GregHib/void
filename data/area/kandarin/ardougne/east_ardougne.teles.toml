@@ -151,7 +151,7 @@ delta = { x = 3, level = -1 }
 [varrock_manhole_open]
 option = "Climb-down"
 tile = { x = 2632, y = 3294 }
-delta = { y = 6400}
+to = { x = 2631, y = 9694 }
 
 [34567]
 option = "Climb-up"

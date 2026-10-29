@@ -5,3 +5,27 @@ examine = "I might be able to squeeze through."
 [ourania_crack_exit]
 id = 26845
 examine = "I might be able to squeeze through."
+
+[ourania_gravestone]
+id = 405
+examine = "'Here lies...' is all I can read."
+
+[ourania_grave_of_scorpius]
+id = 2211
+examine = "A weathered old gravestone."
+
+[ourania_curved_bone]
+id = 700
+examine = "Spooky!"
+
+[ourania_standard]
+id = 853
+examine = "A standard."
+
+[ourania_skeleton]
+id = 25088
+examine = "I don't think he'd mind us checking for his wallet now."
+
+[ourania_skeleton_2]
+id = 25087
+examine = "Looks like he's been dead a while now."

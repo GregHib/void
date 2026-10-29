@@ -1,0 +1,4 @@
+[cave_entrance_rantzs_house]
+option = "Enter"
+tile = { x = 2629, y = 2998 }
+to = { x = 2647, y = 9378 }

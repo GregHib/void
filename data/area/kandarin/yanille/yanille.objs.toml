@@ -1,6 +1,6 @@
 [yanille_underwall_tunnel_hole]
 id = 9302
-examine = "A rather strategically placed hole, which appears to be in the ground."
+examine = "A tunnel leading under the wall."
 
 [zogre_outdoor_bell]
 id = 6847
@@ -8,7 +8,7 @@ examine = "A bell to attract the attention of the secretary."
 
 [yanille_underwall_tunnel_castle_wall]
 id = 9301
-examine = "A well constructed castle wall."
+examine = "A tunnel leading under the wall."
 
 [yanille_grapple_wall]
 id = 17047
@@ -21,3 +21,251 @@ examine = "Town wall."
 [watchtowerbush]
 id = 2798
 examine = "A leafy bush."
+
+[picnic_bench]
+id = 611
+examine = "Sit back and enjoy the view."
+
+[yanille_gallows]
+id = 649
+examine = "A macabre variation on he neck tie."
+
+[yanille_bank_table_2]
+id = 590
+examine = "Banking transactions are processed here."
+
+[yanille_bank_table]
+id = 591
+examine = "Banking transactions are recorded here."
+
+[yanille_bank_notice_board]
+id = 961
+examine = "'Ask about our low, low interest rates!'"
+
+[yanille_grandfather_clock]
+id = 683
+examine = "Tick tock, it's a clock."
+
+[yanille_bookcase]
+id = 380
+examine = "A good source of books!"
+
+[yanille_statue]
+id = 574
+examine = "A carving of a figure from history."
+
+[yanille_grave]
+id = 27067
+examine = "An open grave."
+
+[yanille_mushroom]
+id = 1164
+examine = "Not good for eating."
+
+[yanille_chemistry_table]
+id = 618
+examine = "There are some strange chemicals here."
+
+[yanille_magic_portal]
+id = 2156
+examine = "A magical portal of teleportation."
+
+[yanille_magic_portal_2]
+id = 2157
+examine = "A magical portal of teleportation."
+
+[yanille_magic_portal_3]
+id = 2158
+examine = "A magical portal of teleportation."
+
+[yanille_piano]
+id = 680
+examine = "I was always forced to play this as a child."
+
+[yanille_hanging_banner]
+id = 899
+examine = "Mmmm decorative!"
+
+[yanille_hanging_banner_2]
+id = 901
+examine = "Mmmm decorative!"
+
+[yanille_bed]
+id = 419
+examine = "A drab-lookingb bed."
+
+[yanille_landscape]
+id = 891
+examine = "I don't know much about art, but I like this."
+
+[yanille_hole]
+id = 2824
+examine = "A hole."
+
+[yanille_table]
+id = 603
+examine = "Useful for putting things on."
+
+[yanille_cooking_pot]
+id = 2727
+examine = "Something is cooking nicely here."
+
+[yanille_bookcase_2]
+id = 381
+examine = "A good source of books!"
+
+[yanille_bar_pumps]
+id = 885
+examine = "If only I had one of those at home..."
+
+[yanille_bar_pumps_2]
+id = 37157
+examine = "If only I had one of those at home..."
+
+[yanille_dragons_head]
+id = 904
+examine = "Probably looked better mounted on the dragon's neck."
+
+[yanille_dragons_head_2]
+id = 905
+examine = "Not what I would pick as wall decoration."
+
+[yanille_shelves]
+id = 37300
+examine = "Full of lovely drinks!"
+
+[yanille_shelves_2]
+id = 37319
+examine = "Full of lovely drinks!"
+
+[yanille_bed_2]
+id = 417
+examine = "Great for sleeping in."
+
+[yanille_table_2]
+id = 37167
+examine = "Useful for putting things on."
+
+[yanille_bird_cage_stand]
+id = 6264
+examine = "Useful for keeping birds."
+
+[yanille_counter]
+id = 19699
+examine = "A counter made of plain wooden planks."
+
+[yanille_fireplace]
+id = 2724
+examine = "A fire burns brightly here."
+
+[yanille_bookcase_3]
+id = 16707
+examine = "Mostly about magic and colours."
+
+[yanille_pet_shop]
+id = 28351
+examine = "They know how much the puppy in the window is."
+
+[yanille_cat_basket]
+id = 28337
+examine = "It's a basket for cats."
+
+[yanille_dog_baskets]
+id = 28339
+examine = "Enough baskets for any dog's needs."
+
+[yanille_fish_tank]
+id = 28340
+examine = "Lots of little fishies."
+
+[yanille_ball]
+id = 28360
+examine = "Fetch!"
+
+[yanille_pillow]
+id = 28361
+examine = "It's covered in hairs."
+
+[yanille_hay]
+id = 28343
+examine = "It's good for bedding and stuffing."
+
+[yanille_cat]
+id = 28356
+examine = "It seems to be sat happily on the counter."
+
+[yanille_counter_2]
+id = 28364
+examine = "There are a lot of pet supplies here."
+
+[yanille_counter_3]
+id = 28358
+examine = "There are a lot of pet supplies here."
+
+[yanille_counter_4]
+id = 28357
+examine = "There are a lot of pet supplies here."
+
+[yanille_shelves_3]
+id = 28354
+examine = "Lots of things for growing a kitten."
+
+[yanille_shelves_4]
+id = 28355
+examine = "Lots of things for growing a fish."
+
+[yanille_scale]
+id = 28344
+examine = "Things are cheaper by the pound."
+
+[yanille_collars]
+id = 28345
+examine = "Made by the A. Wilson Company."
+
+[yanille_bush]
+id = 1122
+examine = "All the leaves have fallen off."
+
+[yanille_smashed_chair]
+id = 1089
+examine = "Not so good for sitting on."
+
+[yanille_table_3]
+id = 20058
+examine = "A table."
+
+[yanille_a_bunk_bed]
+id = 35156
+examine = "Neatly made up."
+
+[yanille_shelf]
+id = 20061
+examine = "What kind of sick person keeps a skull on their wall?"
+
+[yanille_shelf_2]
+id = 20062
+examine = "Esoteric artifacts."
+
+[yanille_machine]
+id = 20040
+examine = "A machine that needs to be powered by crystals."
+
+[yanille_lever]
+id = 2794
+examine = "A lever for activating something."
+
+[yanille_table_4]
+id = 20060
+examine = "A table."
+
+[yanille_long_branched_tree]
+id = 2327
+examine = "This tree has an unusually long branch on it."
+
+[yanille_ropeswing]
+id = 2324
+examine = "Use this to swing across gaps."
+
+[yanille_branch]
+id = 2326
+examine = "A branch protrudes here."

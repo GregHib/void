@@ -1,3 +1,7 @@
+[vm_plinth]
+id = 588
+examine = "An empty plinth for a statue."
+
 [vm_museum_wallmounted_map_01]
 id = 24390
 examine = "A map of the Museum."
@@ -9,6 +13,10 @@ examine = "A map of the Museum."
 [vm_museum_wallmounted_map_03]
 id = 24392
 examine = "A map of the Museum."
+
+[vm_information_booth]
+id = 24452
+examine = "An information booth."
 
 [vm_timeline_soil_layers]
 id = 24621
@@ -80,6 +88,14 @@ id = 30017
 [vm_timeline_meeting_history]
 id = 38172
 
+[vm_storage_crate]
+id = 24534
+examine = "Filled with all sorts of old stuff."
+
+[vm_tools]
+id = 24535
+examine = "Some tools to work with."
+
 [vm_digsite_finds_saradomin_symbol_old_multi]
 id = 24539
 examine = "A Saradomin symbol from the 4th Age."
@@ -103,6 +119,10 @@ examine = "An ancient coin from Senntisten."
 [vm_digsite_finds_coin_saranthium_multi]
 id = 24549
 examine = "An old coin, accurately dating the city of Saranthium."
+
+[vm_dig_site_specimen_rocks]
+id = 24559
+examine = "Contains Dig Site finds."
 
 [vm_timeline_staff_of_armadyll_multi]
 id = 24624
@@ -451,3 +471,11 @@ examine = "Very majestic."
 [vm_nat_his_snake]
 id = 24569
 examine = "It's a snake!"
+
+[vm_specimen_table]
+id = 24556
+examine = "A table for cleaning specimens."
+
+[vm_rocks]
+id = 24557
+examine = "Looks like a pile of rocks."

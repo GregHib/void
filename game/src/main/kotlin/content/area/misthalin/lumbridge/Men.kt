@@ -14,7 +14,7 @@ import world.gregs.voidps.type.random
 class Men : Script {
 
     init {
-        npcOperate("Talk-to", "man,woman,man_musa_point_2") { (target) ->
+        npcOperate("Talk-to", "man,woman,man_3,woman_2,man_musa_point_2,man_varrock,man_varrock_2,man_varrock_4,man_2") { (target) ->
             player<Happy>("Hello, how's it going?")
             when (random.nextInt(0, 23)) {
                 0 -> {

@@ -9,10 +9,26 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 // Source: https://runescape.wiki/w/Transcript:Cook_(Blue_Moon_Inn)?oldid=27997081
 class CookBlueMoonInn : Script {
     init {
+        npcSpawn("cook_blue_moon_inn") {
+            softTimers.start("cook_blue_moon_inn_cook")
+        }
+
+        npcTimerStart("cook_blue_moon_inn_cook") {
+            TimeUnit.SECONDS.toTicks(7)
+        }
+
+        npcTimerTick("cook_blue_moon_inn_cook") {
+            anim("896")
+            Timer.CONTINUE
+        }
+
         npcOperate("Talk-to", "cook_blue_moon_inn") {
             npc<Angry>("What do you want? I'm busy!")
             choice {

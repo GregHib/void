@@ -37,6 +37,7 @@ combat_def = "cyclops"
 
 [parrots_ardougne]
 id = 1215
+examine = "What a colourful bunch of parrots!"
 
 [parroty_pete]
 id = 1216
@@ -393,6 +394,7 @@ id = 887
 
 [philipe_carnillean]
 id = 888
+examine = "The newest member of the Carnillean family."
 
 [henryeta_carnillean]
 id = 889
@@ -400,6 +402,7 @@ examine = "Ceril Carnillean's wife."
 
 [butler_jones]
 id = 890
+examine = "The Carnellian family butler."
 
 [marion]
 id = 9166
@@ -459,6 +462,7 @@ id = 7581
 
 [lucien_ardougne_2]
 id = 273
+examine = "He walks with a slight limp."
 
 [local_thug_ardougne_2]
 id = 8346

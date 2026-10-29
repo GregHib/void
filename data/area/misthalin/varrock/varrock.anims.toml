@@ -7,6 +7,9 @@ id = 6488
 [varrock_guard_attack]
 id = 6489
 
+[dummy_hit]
+id = 6482
+
 [varrock_guard_death]
 id = 6490
 

@@ -31,9 +31,25 @@ spawns = [
   { id = "doogle_leaves", x = 3157, y = 3400, delay = 100 },
   { id = "doogle_leaves", x = 3156, y = 3401, delay = 100 },
   # 12598
-  { id = "earth_rune", x = 3195, y = 3515, delay = 100 },
+  { id = "earth_rune", x = 3199, y = 3518, delay = 100 },
   { id = "wooden_shield", x = 3204, y = 3515, delay = 48 },
+  { id = "mind_rune", x = 3194, y = 3495, amount = 2, delay = 100 },
   # 12853
+  { id = "empty_pot", x = 3232, y = 3399, delay = 100 },
+  { id = "logs", x = 3243, y = 3397, delay = 100 },
+  { id = "logs", x = 3243, y = 3395, delay = 100 },
+  { id = "leather_body", x = 3244, y = 3398, delay = 100 },
   { id = "spade", x = 3218, y = 3412, level = 1, delay = 100 },
-  { id = "knife", x = 3218, y = 3418, level = 1, delay = 100 }
+  { id = "knife", x = 3218, y = 3418, level = 1, delay = 100 },
+  # 12854
+  { id = "pie_dish", x = 3222, y = 3494, delay = 100 },
+  { id = "coins", x = 3232, y = 3500, amount = 4, delay = 100 },
+  { id = "coins", x = 3228, y = 3504, amount = 3, delay = 100 },
+  { id = "bucket", x = 3222, y = 3491, level = 1, delay = 100 },
+  { id = "bucket", x = 3221, y = 3497, level = 1, delay = 100 },
+  # 13109
+  { id = "empty_jug", x = 3272, y = 3409, delay = 100 },
+  { id = "cup_of_tea", x = 3271, y = 3413 },
+  # 13110
+  { id = "thread", x = 3286, y = 3491, delay = 100 },
 ]
