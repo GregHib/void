@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class KeldagrimTravel : Script {
@@ -114,10 +115,7 @@ class KeldagrimTravel : Script {
         }
 
         objectOperate("Ride", "train_cart_dwarven_mine,train_cart_white_wolf_mountain") {
-            if (!get("keldagrim_visited", false)) {
-                message("You must visit Keldagrim to use this shortcut.")
-                return@objectOperate
-            }
+            // TODO require keldagrim_visited once The Giant Dwarf is added
             choice {
                 option("Travel to Keldagrim") {
                     toKeldagrim()
@@ -127,10 +125,7 @@ class KeldagrimTravel : Script {
         }
 
         objectOperate("Open", "hidden_trapdoor_grand_exchange") {
-            if (!get("keldagrim_visited", false)) {
-                message("You must visit Keldagrim to use this shortcut.")
-                return@objectOperate
-            }
+            // TODO require keldagrim_visited once The Giant Dwarf is added
             statement("This trapdoor leads to a small dwarven mine cart station.<br>The mine cart will take you to Keldagrim.")
             choice {
                 option("Travel to Keldagrim") {
@@ -141,10 +136,7 @@ class KeldagrimTravel : Script {
         }
 
         objectOperate("Ride", "train_cart_keldagrim") {
-            if (!get("keldagrim_visited", false)) {
-                message("You must visit Keldagrim to use this shortcut.")
-                return@objectOperate
-            }
+            // TODO require keldagrim_visited once The Giant Dwarf is added
             choice {
                 option("To the Grand Exchange") {
                     fromKeldagrim(Tile(3140, 3507))
@@ -169,6 +161,14 @@ class KeldagrimTravel : Script {
         }
         tele(if (ferryman.id == "dwarven_ferryman_keldagrim_2") Tile(2864, 10133) else Tile(2836, 10143))
     }
+
+    private val toStation = listOf(
+        Tile(2941, 10170),
+        Tile(2940, 10171),
+        Tile(2940, 10172),
+        Tile(2939, 10173),
+        Tile(2914, 10173),
+    )
 
     private fun Player.rideCart(ride: Boolean) {
         if (ride) {
@@ -198,12 +198,17 @@ class KeldagrimTravel : Script {
         }
         open("fade_out")
         minimap(Minimap.HideMap)
-        delay(6)
+        delay(5)
+        // Turn while the screen is black so the cart doesn't visibly rotate on arrival
+        face(Direction.WEST)
+        delay(1)
         tele(2943, 10170)
         rideCart(true)
         open("fade_in")
-        walkOverDelay(Tile(2939, 10173))
-        walkOverDelay(Tile(2914, 10173))
+        // Follow the track around the bend into the station
+        for (tile in toStation) {
+            walkOverDelay(tile)
+        }
         rideCart(false)
         clearMinimap()
         tele(2914, 10174)
@@ -216,7 +221,9 @@ class KeldagrimTravel : Script {
         }
         open("fade_out")
         minimap(Minimap.HideMap)
-        delay(4)
+        delay(3)
+        face(Direction.EAST)
+        delay(1)
         tele(2911, 10171)
         rideCart(true)
         open("fade_in")

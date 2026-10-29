@@ -1,7 +1,6 @@
 package content.area.fremennik_province.keldagrim
 
 import WorldTest
-import containsMessage
 import dialogueOption
 import npcOption
 import objectOption
@@ -70,21 +69,9 @@ class KeldagrimTravelTest : WorldTest() {
     }
 
     @Test
-    fun `Carts need a visit to Keldagrim first`() {
-        val player = createPlayer(Tile(2996, 9837))
-        val cart = GameObjects.find(Tile(2995, 9836), "train_cart_dwarven_mine")
-
-        player.objectOption(cart, "Ride")
-        tick(2)
-
-        assertTrue(player.containsMessage("You must visit Keldagrim to use this shortcut."))
-    }
-
-    @Test
     fun `Ride the cart from Ice Mountain to Keldagrim and on to the Grand Exchange`() {
         skipMissing()
         val player = createPlayer(Tile(2996, 9837))
-        player["keldagrim_visited"] = true
         player["running"] = true
         val cart = GameObjects.find(Tile(2995, 9836), "train_cart_dwarven_mine")
 
