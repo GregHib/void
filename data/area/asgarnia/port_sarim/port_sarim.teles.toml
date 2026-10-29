@@ -180,7 +180,7 @@ option = "Cross"
 tile = { x = 3047, y = 3206, level = 1 }
 to = { x = 3047, y = 3204 }
 
-[port_sarim_void_outpost_gangplank_enter]
+[port_sarim_lady_lumbridge_gangplank_enter]
 option = "Cross"
 tile = { x = 3047, y = 3205 }
 to = { x = 3047, y = 3207, level = 1 }
