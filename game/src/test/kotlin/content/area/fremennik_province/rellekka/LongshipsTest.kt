@@ -93,7 +93,11 @@ class LongshipsTest : WorldTest() {
         player.npcOption(jarvald, "Talk-to")
         tick(2)
         player.skipDialogues()
-        player.dialogueOption(1)
+        player.dialogueOption(2) // What Jarvald is doing.
+        player.skipDialogues()
+        player.dialogueOption(2) // Can I come?
+        player.skipDialogues()
+        player.dialogueOption(1) // YES
         tick(13)
 
         assertEquals(Tile(2544, 3759), player.tile)
@@ -108,10 +112,49 @@ class LongshipsTest : WorldTest() {
         player.npcOption(jarvald, "Talk-to")
         tick(2)
         player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
         player.dialogueOption(1)
         tick(2)
 
         assertEquals(Tile(2620, 3683), player.tile)
-        assertTrue(player.containsMessage("You cannot afford that."))
+        assertTrue(player.containsMessage("You can not afford that."))
+    }
+
+    @Test
+    fun `Fremenniks sail with Jarvald for free`() {
+        skipMissing()
+        val player = createPlayer(Tile(2620, 3683))
+        val jarvald = createNPC("jarvald_rellekka", Tile(2621, 3683))
+
+        player.npcOption(jarvald, "Talk-to")
+        tick(2)
+        player.skipDialogues()
+        player.dialogueOption(1) // What Jarvald is doing.
+        player.skipDialogues()
+        player.dialogueOption(2) // Can I come?
+        player.skipDialogues()
+        player.dialogueOption(1) // YES
+        tick(13)
+
+        assertEquals(Tile(2544, 3759), player.tile)
+    }
+
+    @Test
+    fun `Jarvald sails back from Waterbirth Island`() {
+        skipMissing()
+        val player = createPlayer(Tile(2545, 3759))
+        val jarvald = createNPC("jarvald_waterbirth_island", Tile(2546, 3759))
+
+        player.npcOption(jarvald, "Talk-to")
+        tick(2)
+        player.skipDialogues()
+        player.dialogueOption(1) // Yes
+        player.skipDialogues()
+        tick(12)
+
+        assertEquals(Tile(2620, 3685), player.tile)
     }
 }
