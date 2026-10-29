@@ -1,6 +1,13 @@
 [buyers_and_cellars]
+id = 7793
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1, completed = 30 }
+
+[buyers_and_cellars_progress]
 id = 7792
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1, completed = 10 }
+values = { unstarted = 0, completed = 10 }
