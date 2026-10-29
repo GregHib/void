@@ -221,9 +221,9 @@ class KeldagrimTravel : Script {
         open("fade_in")
         exactMoveDelay(Tile(2937, 10171), delay = 240, direction = Direction.EAST)
         // Follow the track around the bend out of the station
-        exactMoveDelay(Tile(2938, 10169), delay = 30, direction = Direction.NORTH_EAST)
+        exactMoveDelay(Tile(2938, 10169), delay = 30, direction = Direction.SOUTH_EAST)
         open("fade_out")
-        exactMoveDelay(Tile(2938, 10167), delay = 30, direction = Direction.NORTH)
+        exactMoveDelay(Tile(2938, 10167), delay = 30, direction = Direction.SOUTH)
         delay(4)
         rideCart(false)
         tele(destination)
