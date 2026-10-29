@@ -953,6 +953,7 @@ xp = "2,500 Hunter XP"
 
 [elemental_workshop_i]
 id = 37
+variables = ["elemental_workshop_1"]
 name = "Elemental Workshop I"
 difficulty = 0
 length = 1
