@@ -33,6 +33,19 @@ class IbanBlastTest : WorldTest() {
     }
 
     @Test
+    fun `A new iban staff starts with full charges`() {
+        val player = createPlayer(Tile(3222, 3218))
+        player.levels.set(Skill.Magic, 50)
+        player.equipment.set(EquipSlot.Weapon.index, "ibans_staff")
+        player.inventory.add("fire_rune", 5)
+        player.inventory.add("death_rune", 1)
+
+        assertTrue(player.removeSpellItems("iban_blast"))
+
+        assertEquals(119, player["ibans_staff_charges", 0])
+    }
+
+    @Test
     fun `Checking for iban blast runes doesn't use a charge`() {
         val player = createPlayer(Tile(3222, 3218))
         player.levels.set(Skill.Magic, 50)
