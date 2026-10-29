@@ -44,6 +44,15 @@ check_not_combat_self = true
 check_not_too_strong = true
 check_not_busy = true
 
+[tree_gnome_village_warlord]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = true
+check_afk = false
+
 # Rum Deal zombie swabs; they lose interest once the quest is over, filtered in ZombieSwab
 [zombie_swab]
 type = "player"
