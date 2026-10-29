@@ -30,13 +30,13 @@ class LongshipsTest : WorldTest() {
         val mord = createNPC("mord_gunnars_rellekka", Tile(2644, 3709))
 
         player.npcOption(mord, "Travel-Jatizso")
-        tick(16)
+        tick(18)
         assertEquals(Tile(2421, 3781), player.tile)
         assertTrue(player.containsMessage("The ship arrives at Jatizso."))
 
         val mordJatizso = createNPC("mord_gunnars_jatizo", Tile(2421, 3782))
         player.npcOption(mordJatizso, "Travel-Rellekka")
-        tick(16)
+        tick(18)
         assertEquals(Tile(2644, 3710), player.tile)
     }
 
@@ -47,12 +47,12 @@ class LongshipsTest : WorldTest() {
         val maria = createNPC("maria_gunnars_rellekka", Tile(2644, 3711))
 
         player.npcOption(maria, "Travel-Neitiznot")
-        tick(17)
+        tick(19)
         assertEquals(Tile(2310, 3782), player.tile)
 
         val mariaNeitiznot = createNPC("maria_gunnars", Tile(2311, 3781))
         player.npcOption(mariaNeitiznot, "Travel-Rellekka")
-        tick(17)
+        tick(19)
         assertEquals(Tile(2644, 3710), player.tile)
     }
 
@@ -63,12 +63,12 @@ class LongshipsTest : WorldTest() {
         val sailor = createNPC("sailor_rellekka", Tile(2629, 3693))
 
         player.npcOption(sailor, "Travel-Miscellania")
-        tick(12)
+        tick(14)
         assertEquals(Tile(2581, 3845), player.tile)
 
         val sailorMisc = createNPC("sailor_miscellania", Tile(2581, 3847))
         player.npcOption(sailorMisc, "Travel-Rellekka")
-        tick(10)
+        tick(12)
         assertEquals(Tile(2629, 3693), player.tile)
     }
 
@@ -94,7 +94,7 @@ class LongshipsTest : WorldTest() {
         tick(2)
         player.skipDialogues()
         player.dialogueOption(1)
-        tick(11)
+        tick(13)
 
         assertEquals(Tile(2544, 3759), player.tile)
         assertEquals(0, player.inventory.count("coins"))

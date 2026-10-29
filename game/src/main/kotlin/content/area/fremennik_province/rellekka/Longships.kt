@@ -163,9 +163,10 @@ class Longships : Script {
     private suspend fun Player.sail(name: String, tile: Tile, animation: String, ticks: Int) {
         open("fade_out")
         message("You board the longship...")
+        delay(2)
+        tele(tile)
         open("longship_journey")
         interfaces.sendAnimation("longship_journey", "ship", animation)
-        tele(tile)
         delay(ticks)
         close("longship_journey")
         open("fade_in")
