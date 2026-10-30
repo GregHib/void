@@ -37,25 +37,6 @@ class Firemaking : Script {
 
     fun burnable(id: String) = Tables.intOrNull("firemaking.$id.xp") != null
 
-    // Bows Otto teaches to light fires with and the animation holding each one
-    val bows = mapOf(
-        "training_bow" to "light_fire_training_bow",
-        "shortbow" to "light_fire_shortbow",
-        "longbow" to "light_fire_shortbow",
-        "oak_shortbow" to "light_fire_oak_bow",
-        "oak_longbow" to "light_fire_oak_bow",
-        "willow_shortbow" to "light_fire_willow_bow",
-        "willow_longbow" to "light_fire_willow_bow",
-        "maple_shortbow" to "light_fire_maple_bow",
-        "maple_longbow" to "light_fire_maple_bow",
-        "yew_shortbow" to "light_fire_yew_bow",
-        "yew_longbow" to "light_fire_yew_bow",
-        "magic_shortbow" to "light_fire_magic_bow",
-        "magic_longbow" to "light_fire_magic_bow",
-        "seercull" to "light_fire_seercull",
-        "sacred_clay_bow" to "light_fire_sacred_clay_bow",
-    )
-
     init {
         itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->
             val log = if (burnable(toItem.id)) toItem else fromItem
@@ -76,7 +57,7 @@ class Firemaking : Script {
             lightFire(this, target)
         }
 
-        itemOnItem(bows.keys.joinToString(","), "*logs") { fromItem, toItem, fromSlot, toSlot ->
+        itemOnItem(Tables.get("firemaking_bows").rows().joinToString(",") { it.rowId }, "*logs") { fromItem, toItem, fromSlot, toSlot ->
             val bow = if (burnable(toItem.id)) fromItem else toItem
             val log = if (burnable(toItem.id)) toItem else fromItem
             val logSlot = if (burnable(toItem.id)) toSlot else fromSlot
@@ -132,7 +113,7 @@ class Firemaking : Script {
                     player.message("You attempt to light the logs.", ChatType.Filter)
                     first = false
                 }
-                player.anim(if (bow != null) bows.getValue(bow) else "light_fire")
+                player.anim(if (bow != null) Tables.string("firemaking_bows.$bow.anim") else "light_fire")
                 player.start("action_delay", 4)
                 player.pause(4)
             } else if (remaining > 0) {
