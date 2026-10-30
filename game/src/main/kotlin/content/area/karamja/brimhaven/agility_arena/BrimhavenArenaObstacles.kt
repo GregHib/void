@@ -52,7 +52,7 @@ class BrimhavenArenaObstacles : Script {
             face(direction)
             anim("stepping_stone_jump")
             exactMoveDelay(target.tile, 30, direction)
-            for (i in 0 until 7) {
+            for (i in 0 until 6) {
                 delay()
                 // Balance can only be lost on the second pillar
                 if (i == 1 && arenaFailed(1, 0.15)) {
