@@ -1,0 +1,9 @@
+[brimhaven_arena_paid]
+id = 4455
+format = "boolean"
+persist = true
+
+# Overlay light: green while tagging pillars in a row, red when not
+[brimhaven_arena_active]
+id = 4456
+format = "boolean"

@@ -1,0 +1,6 @@
+# Tagged the pillar the arrow is currently over
+[brimhaven_arena_tagged]
+format = "boolean"
+
+[brimhaven_arena_cycle]
+format = "int"

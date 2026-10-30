@@ -1,0 +1,94 @@
+[brimhaven_agility_arena]
+x = [2752, 2815]
+y = [9536, 9599]
+
+[brimhaven_arena_pressure_pad_1]
+x = [2799, 2800]
+y = [9579, 9579]
+level = 3
+
+[brimhaven_arena_pressure_pad_2]
+x = [2799, 2800]
+y = [9557, 9557]
+level = 3
+
+[brimhaven_arena_pressure_pad_3]
+x = [2772, 2772]
+y = [9584, 9585]
+level = 3
+
+[brimhaven_arena_floor_spikes_1]
+x = [2799, 2800]
+y = [9568, 9568]
+level = 3
+
+[brimhaven_arena_floor_spikes_2]
+x = [2772, 2772]
+y = [9551, 9552]
+level = 3
+
+[brimhaven_arena_floor_spikes_3]
+x = [2761, 2761]
+y = [9573, 9574]
+level = 3
+
+[brimhaven_arena_dart_trap_1]
+x = [2788, 2789]
+y = [9557, 9557]
+level = 3
+
+[brimhaven_arena_dart_trap_2]
+x = [2794, 2794]
+y = [9573, 9574]
+level = 3
+
+[brimhaven_arena_dart_trap_3]
+x = [2777, 2778]
+y = [9568, 9568]
+level = 3
+
+[brimhaven_arena_spinning_blades_1]
+x = [2778, 2778]
+y = [9579, 9579]
+level = 3
+
+[brimhaven_arena_spinning_blades_2]
+x = [2783, 2783]
+y = [9574, 9574]
+level = 3
+
+[brimhaven_arena_spinning_blades_3]
+x = [2778, 2778]
+y = [9557, 9557]
+level = 3
+
+# Each tile of the saw blade cuts on its own
+[brimhaven_arena_saw_blade_1]
+x = [2788, 2788]
+y = [9579, 9579]
+level = 3
+
+[brimhaven_arena_saw_blade_2]
+x = [2789, 2789]
+y = [9579, 9579]
+level = 3
+
+[brimhaven_arena_saw_blade_3]
+x = [2783, 2783]
+y = [9551, 9551]
+level = 3
+
+[brimhaven_arena_saw_blade_4]
+x = [2783, 2783]
+y = [9552, 9552]
+level = 3
+
+[brimhaven_arena_saw_blade_5]
+x = [2761, 2761]
+y = [9584, 9584]
+level = 3
+
+[brimhaven_arena_saw_blade_6]
+x = [2761, 2761]
+y = [9585, 9585]
+level = 3

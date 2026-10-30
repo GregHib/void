@@ -6,10 +6,6 @@ examine = "A slippery log I can walk across."
 id = 2285
 examine = "This must be climbed over."
 
-[rope_swing]
-id = 3566
-examine = "Use this to swing over to the next platform."
-
 [gnome_tree_branch_up]
 id = 35970
 examine = "I can climb up this."

@@ -1,0 +1,74 @@
+[brimhaven_rope_swing]
+id = 1052
+
+[rope_swing_miss]
+id = 1105
+
+[low_wall_climb_over]
+id = 1252
+
+[low_wall_fall]
+id = 1106
+
+[blade_swing]
+id = 1103
+
+[spinning_blades]
+id = 1107
+
+[ticket_dispenser]
+id = 1108
+
+[dart_trap_dodge]
+id = 1110
+
+[floor_spikes]
+id = 1111
+
+[trap_knock_back]
+id = 1114
+
+[trap_jump]
+id = 1115
+
+[hand_holds_grab]
+id = 1117
+
+[hand_holds_shimmy]
+id = 1118
+
+[hand_holds_fall]
+id = 1119
+
+[hand_holds_let_go]
+id = 1120
+
+[hand_holds_grab_reverse]
+id = 1121
+
+[hand_holds_shimmy_reverse]
+id = 1122
+
+[hand_holds_fall_reverse]
+id = 1123
+
+[hand_holds_let_go_reverse]
+id = 1124
+
+[monkey_bars_fall]
+id = 768
+
+[balance_wobble]
+id = 762
+
+[ledge_fall_left]
+id = 760
+
+[ledge_fall_right]
+id = 761
+
+[plank_fall]
+id = 189
+
+[saw_blade_hit]
+id = 846
