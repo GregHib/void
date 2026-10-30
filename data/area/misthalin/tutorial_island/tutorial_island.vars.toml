@@ -13,3 +13,7 @@ persist = true
 [tutorial_designed]
 format = "boolean"
 persist = true
+
+# Pending refusal lines belong to this player and are never persisted.
+[tutorial_feedback_messages]
+persist = false
