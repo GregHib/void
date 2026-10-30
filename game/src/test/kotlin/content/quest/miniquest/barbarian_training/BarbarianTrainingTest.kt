@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 
@@ -278,6 +279,10 @@ internal class BarbarianTrainingTest : WorldTest() {
 
     @Test
     fun `Mangled bones release a ferocious spirit`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = until - 1
+            override fun nextInt(from: Int, until: Int): Int = until - 1
+        })
         val player = trainee(Tile(2506, 3519))
         player["barbarian_training_pyre"] = BarbarianTraining.STARTED
         player.inventory.add("bronze_hatchet")
@@ -291,7 +296,12 @@ internal class BarbarianTrainingTest : WorldTest() {
 
         assertFalse(player.inventory.contains("mangled_bones"))
         assertEquals(BarbarianTraining.STARTED, player.barbarianTraining("pyre"))
-        assertTrue(world.gregs.voidps.engine.entity.character.npc.NPCs.any { it.id == "ferocious_barbarian_spirit" })
+        val spirit = world.gregs.voidps.engine.entity.character.npc.NPCs.first { it.id == "ferocious_barbarian_spirit" }
+        // Straight beside the player so the boat can't block it
+        assertEquals(1, Distance.manhattan(spirit.tile.x, spirit.tile.y, player.tile.x, player.tile.y))
+
+        tick(8)
+        assertTrue(player.levels.get(Skill.Constitution) < 990)
     }
 
     @Test

@@ -3,10 +3,12 @@ package content.quest.miniquest.barbarian_training
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.skill.woodcutting.Hatchet
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -18,14 +20,18 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.map.collision.canFit
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 /**
  * Burning barbarian remains on a pyre ship by Otto's lake.
  * Chewed bones lay a hero to rest, blessing future bone burying; mangled bones release a ferocious spirit.
  */
-class PyreShips(val drops: DropTables) : Script {
+class PyreShips(val drops: DropTables, val stepValidator: StepValidator) : Script {
 
     init {
         objectOperate("Construct", "pyre_site") { (target) ->
@@ -96,9 +102,10 @@ class PyreShips(val drops: DropTables) : Script {
             exp(Skill.Crafting, log.int("crafting_xp") / 10.0)
             exp(Skill.Firemaking, log.int("firemaking_xp") / 10.0)
             if (bones == "chewed_bones") {
-                // TODO confirm how long the peaceful spirit stays
-                val npc = NPCs.add("peaceful_barbarian_spirit", target.tile, ticks = 5)
+                // Removed once it has ascended
+                val npc = NPCs.add("peaceful_barbarian_spirit", target.tile, ticks = 7)
                 npc.face(this)
+                npc.anim("peaceful_barbarian_spirit_ascend")
                 set("barbarian_pyre_bones", (get("barbarian_pyre_bones", 0) + log.int("bones")).coerceAtMost(MAX_BLESSED_BONES))
                 // TODO proper message
                 message("The ancient barbarian is laid to rest. Your future prayer training is blessed, as his spirit ascends to a glorious afterlife. Spirits drop an object into your pack.")
@@ -108,10 +115,18 @@ class PyreShips(val drops: DropTables) : Script {
                 }
                 barbarianTaskDone("pyre")
             } else {
-                val npc = NPCs.add("ferocious_barbarian_spirit", target.tile, ticks = TimeUnit.MINUTES.toTicks(5), owner = this)
-                npc.interactPlayer(this, "Attack")
+                // The site is under the boat so it appears beside the player instead, never diagonally as the boat could block it
+                val spawn = Direction.cardinal.map { tile.add(it) }.filter { stepValidator.canFit(it, collision, size, blockMove) }.randomOrNull(random) ?: tile
+                val npc = NPCs.add("ferocious_barbarian_spirit", spawn, ticks = TimeUnit.MINUTES.toTicks(5), owner = this)
+                npc.anim("ferocious_barbarian_spirit_appear")
+                val player = this
+                npc.queue("appear") {
+                    // Delayed so hunting doesn't cut its appearance short
+                    npc.delay(2)
+                    npc.interactPlayer(player, "Attack")
+                }
             }
-            build(station, BURNING)
+            burn(station)
         }
     }
 
@@ -125,21 +140,36 @@ class PyreShips(val drops: DropTables) : Script {
     }
 
     /**
-     * Shows each of the pyre ship [stages] in place of the boat [station] for their number of ticks
+     * The pyre ship burns, launches and sinks in place of the boat [station] before it reverts
      */
-    fun build(station: GameObject, stages: List<Pair<String, Int>>) {
-        val (id, ticks) = stages.firstOrNull() ?: return
-        station.replace(id, ticks = ticks) {
-            build(station, stages.drop(1))
+    fun burn(station: GameObject) {
+        station.replace("pyre_boat_bones", ticks = 4) {
+            val lit = station.replace("pyre_boat_lit", ticks = 8) {
+                // The boat has sunk 30 cycles into the 57 cycle sink, reverting before it ends stops the boat reappearing
+                val burning = station.replace("pyre_boat_burning", ticks = 4)
+                animate(burning, "pyre_boat_sink", 2)
+            }
+            animate(lit, "pyre_boat_launch", 3)
+        }
+    }
+
+    /**
+     * The launch and sink are played on the stage before (same skeleton) instead of their own objects (25293, 25295)
+     * as the client starts an object's animation part way through, then shows its model again once a one-off animation ends.
+     * An animation sent with a new object is played on the old one, so it's sent once the stage is in place.
+     * Queued blocks run after the tick's zone updates are sent, so the animation reaches the client a tick after [delay].
+     */
+    fun animate(stage: GameObject, anim: String, delay: Int) {
+        World.queue("pyre_ship_${stage.tile.id}", delay) {
+            stage.anim(anim)
         }
     }
 
     companion object {
         const val MAX_BLESSED_BONES = 200
 
-        // TODO confirm the stage timings, carving follows 2009scape and the last three their animation lengths
+        // TODO confirm the stage timings, carving follows 2009scape and the launch and sink their animation lengths
         private const val CARVE_TICKS = 4
-        private val BURNING = listOf("pyre_boat_bones" to 4, "pyre_boat_lit" to 4, "pyre_boat_launched" to 4, "pyre_boat_burning" to 2, "pyre_boat_sinking" to 2)
         val BOWS = listOf("shortbow", "longbow", "oak_shortbow", "oak_longbow", "willow_shortbow", "willow_longbow", "maple_shortbow", "maple_longbow", "yew_shortbow", "yew_longbow", "magic_shortbow", "magic_longbow", "training_bow", "seercull", "sacred_clay_bow")
     }
 }

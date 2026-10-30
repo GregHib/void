@@ -25,11 +25,5 @@ id = 25291
 [pyre_boat_lit]
 id = 25292
 
-[pyre_boat_launched]
-id = 25293
-
 [pyre_boat_burning]
 id = 25294
-
-[pyre_boat_sinking]
-id = 25295
