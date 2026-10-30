@@ -116,7 +116,9 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
             placeStatue(this, local(this, maze.tile("statue")))
         }
 
-        npcOperate("Talk-to", "maze_guardian") { (target) ->
+        // The freed guardian stands on the exit square, walled off from the walkway around the maze.
+        npcApproach("Talk-to", "maze_guardian") { (target) ->
+            approachRange(10)
             player<Neutral>("Hi!")
             npc<Neutral>("Well done on releasing me. Would you like to try another maze?")
             choice {
@@ -212,10 +214,7 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
             player.addOrDrop("law_rune", 10)
         }
         PizazzPoints.add(player, "telekinetic", if (bonus) 10 else 2)
-        if (player["mage_training_arena_camera", false]) {
-            player["mage_training_arena_camera"] = false
-            player.clearCamera()
-        }
+        resetCamera(player)
         refreshSolved(player)
         NPCs.add("maze_guardian", local(player, maze.tile("end")))
         AuditLog.event(player, "mta_maze_solved", maze.rowId, streak)
@@ -227,13 +226,13 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
 
     private fun observe(player: Player) {
         if (player["mage_training_arena_camera", false]) {
-            player["mage_training_arena_camera"] = false
-            player.clearCamera()
+            resetCamera(player)
             return
         }
         val maze = currentMaze(player) ?: return
         player.message("Click observe on the guardian to reset your camera.")
         player["mage_training_arena_camera"] = true
+        player.walkTrigger { resetCamera(player) }
         val camera = local(player, maze.tile("camera"))
         if (maze.rowId == "maze_4") {
             player.moveCamera(camera.add(11, 5), 799, 95, 95)
@@ -247,10 +246,7 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
     private fun leave(player: Player) {
         statues.remove(player.index)
         guardians.remove(player.index)
-        if (player["mage_training_arena_camera", false]) {
-            player["mage_training_arena_camera"] = false
-            player.clearCamera()
-        }
+        resetCamera(player)
         player.clearInstance()
         if (player["logged_out", false]) {
             player.tele(MageTrainingArena.lobby)
@@ -276,6 +272,15 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
         placeStatue(player, local(player, maze.tile("statue")))
         guardians[player.index] = NPCs.add("telekinetic_guardian", local(player, maze.tile("guardian")))
         player.tele(local(player, maze.tile("base")))
+    }
+
+    private fun resetCamera(player: Player) {
+        if (!player["mage_training_arena_camera", false]) {
+            return
+        }
+        player["mage_training_arena_camera"] = false
+        player.walkTrigger = null
+        player.clearCamera()
     }
 
     private fun currentMaze(player: Player): RowDefinition? {

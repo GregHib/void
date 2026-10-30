@@ -132,7 +132,7 @@ camera = { x = 14, y = 15 }
 north = 21
 south = 10
 west = 9
-east = 10
+east = 20
 
 [.maze_7]
 index = 6

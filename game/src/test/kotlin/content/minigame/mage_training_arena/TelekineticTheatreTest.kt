@@ -1,12 +1,18 @@
 package content.minigame.mage_training_arena
 
 import WorldTest
+import containsMessage
 import content.quest.instance
 import content.quest.instanceOffset
+import dialogueContinue
+import dialogueOption
 import floorItemOption
 import interfaceOnFloorItem
+import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -14,6 +20,7 @@ import org.junit.jupiter.api.Test
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import skipDialogues
+import walk
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -131,6 +138,46 @@ internal class TelekineticTheatreTest : WorldTest() {
         tick(3)
 
         assertEquals(start, theatre.statue(player)!!.tile)
+    }
+
+    @Test
+    fun `Walking away resets the observe camera`() {
+        val player = enter("mta-maze-observe-walk")
+        player.tele(local(player, Tile(15, 51)))
+        tick(2)
+
+        player.floorItemOption(theatre.statue(player)!!, "Observe")
+        tick(3)
+        assertTrue(player["mage_training_arena_camera", false])
+
+        player.walk(local(player, Tile(14, 51)))
+        tick(2)
+
+        assertFalse(player["mage_training_arena_camera", false])
+    }
+
+    @Test
+    fun `Freed guardian can be asked for another maze from outside the maze walls`() {
+        val player = enter("mta-maze-next")
+        player.inventory.add("law_rune", 5)
+        player.inventory.add("air_rune", 5)
+        val end = solve(player)
+        tick(15)
+        player.skipDialogues()
+        tick(1)
+        player.tele(local(player, Tile(20, 50)))
+        tick(2)
+
+        player.npcOption(NPCs.first { it.id == "maze_guardian" && it.tile == end }, "Talk-to")
+        tick(2)
+        player.dialogueContinue(2)
+        player.dialogueOption("line1")
+        player.dialogueContinue(2)
+        tick(2)
+
+        assertFalse(player.containsMessage("I can't reach that."))
+        assertNotEquals(1, player["mage_training_arena_telekinetic_maze", 0])
+        assertFalse(NPCs.any { it.id == "maze_guardian" && it.tile == end })
     }
 
     /**
