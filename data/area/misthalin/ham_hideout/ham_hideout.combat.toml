@@ -1,0 +1,4 @@
+[ham_member]
+[ham_member.melee]
+range = 1
+anim = "unarmed_punch"

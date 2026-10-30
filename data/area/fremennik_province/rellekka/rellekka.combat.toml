@@ -1,3 +1,16 @@
+[agnar_rellekka]
+
+[agnar_rellekka.melee]
+clone = "man.melee"
+anim = "axe_smash"
+
+[pontak]
+clone = "man"
+
+[pontak.melee]
+clone = "man.melee"
+anim = "sword_slash"
+
 [fox]
 defend_anim = "fox_defend"
 death_anim = "fox_death"

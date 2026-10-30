@@ -11,6 +11,11 @@ drops = [
     { id = "raw_lobster" },
 ]
 
+[fremmennik_pickpocket]
+drops = [
+    { id = "coins", amount = 40 },
+]
+
 [fremennik_pickpocket]
 drops = [
     { id = "coins", amount = 40 },

@@ -14,7 +14,7 @@ type = "warrior"
 [.bandit_bandit_camp]
 type = "desert_bandit"
 
-[.bandit_bandit_camp_2]
+[.bandit_bandit_camp_6]
 type = "desert_bandit"
 
 [.bandit_pollnivneach_2_2]
@@ -47,7 +47,19 @@ type = "cave_goblin"
 [.cave_goblin_dorgesh_kaan_13]
 type = "cave_goblin"
 
+[.cave_goblin_dorgesh_kaan_19]
+type = "cave_goblin"
+
+[.cave_goblin_dorgesh_kaan_20]
+type = "cave_goblin"
+
 [.cave_goblin_dorgesh_kaan_16]
+type = "cave_goblin"
+
+[.cave_goblin_dorgesh_kaan_17]
+type = "cave_goblin"
+
+[.cave_goblin_dorgesh_kaan_18]
 type = "cave_goblin"
 
 [.cave_goblin_dorgesh_kaan_2]
@@ -77,6 +89,21 @@ type = "cave_goblin"
 [.desert_digsite_workman]
 type = "workman"
 
+[.arvel]
+type = "elf"
+
+[.goreu]
+type = "elf"
+
+[.kelyn]
+type = "elf"
+
+[.mawrth]
+type = "elf"
+
+[.ysgawyn]
+type = "elf"
+
 [.digsite_workman_apron]
 type = "workman"
 
@@ -95,6 +122,9 @@ type = "farmer"
 [.farmer_2]
 type = "farmer"
 
+[.farmer_3]
+type = "farmer"
+
 [.farmer_lumbridge]
 type = "farmer"
 
@@ -105,6 +135,12 @@ type = "farmer"
 type = "fremmennik"
 
 [.freygerd_rellekka]
+type = "fremmennik"
+
+[.lanzig]
+type = "fremmennik"
+
+[.lensa_rellekka]
 type = "fremmennik"
 
 [.gnome]
@@ -197,14 +233,11 @@ type = "guard"
 [.guard_varrock_2]
 type = "guard"
 
-[.ham_member_ham_cave]
-type = "ham_member"
+[.ham_member_male_ham_cave]
+type = "ham_member_male"
 
-[.ham_member_ham_cave_2]
-type = "ham_member"
-
-[.ham_member_ham_cave_3]
-type = "ham_member"
+[.ham_member_female_ham_cave]
+type = "ham_member_female"
 
 [.hero]
 type = "hero"
@@ -216,6 +249,9 @@ type = "human"
 type = "fremmennik"
 
 [.knight_of_ardougne]
+type = "knight"
+
+[.knight_of_ardougne_2]
 type = "knight"
 
 [.lumbridge_man]
@@ -257,10 +293,25 @@ type = "human"
 [.man]
 type = "human"
 
+[.man_ardougne]
+type = "human"
+
 [.man_2]
 type = "human"
 
 [.man_3]
+type = "human"
+
+[.man_4]
+type = "human"
+
+[.man_5]
+type = "human"
+
+[.man_6]
+type = "human"
+
+[.man_7]
 type = "human"
 
 [.man_falador]
@@ -272,7 +323,25 @@ type = "human"
 [.man_al_kharid]
 type = "human"
 
+[.man_varrock]
+type = "human"
+
+[.man_varrock_2]
+type = "human"
+
+[.man_varrock_3]
+type = "human"
+
+[.man_varrock_4]
+type = "human"
+
 [.woman_falador]
+type = "human"
+
+[.woman_ardougne]
+type = "human"
+
+[.woman_varrock]
 type = "human"
 
 [.ikis_krum]
