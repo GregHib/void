@@ -27,11 +27,17 @@ class BrimhavenArenaObstacles : Script {
         // Ropes hang off the platform edge so are reached from two tiles away
         objectApproach("Swing-on", "brimhaven_arena_rope_swing") { (target) ->
             approachRange(2)
+            // Each rope only swings one way, use the one on this side of the gap
+            val rope = nearerRope(target)
             // Swung across away from the way the rope faces
-            val facing = rotationDirection(target.rotation)
+            val facing = rotationDirection(rope.rotation)
             val direction = facing.inverse()
-            val start = target.tile.add(facing.delta.x * 2, facing.delta.y * 2)
+            val start = rope.tile.add(facing.delta.x * 2, facing.delta.y * 2)
             walkToDelay(start)
+            if (tile != start && tile.distanceTo(start) == 1) {
+                // The edge of the platform is past the walkway collision
+                walkOverDelay(start)
+            }
             face(direction)
             if (arenaFailed(1, 0.1)) {
                 anim("rope_swing_miss")
@@ -40,9 +46,9 @@ class BrimhavenArenaObstacles : Script {
                 return@objectApproach
             }
             anim("rope_swing")
-            target.anim("brimhaven_rope_swing")
+            rope.anim("swing_rope")
             delay()
-            exactMoveDelay(target.tile.add(direction.delta.x * 3, direction.delta.y * 3), 60, direction)
+            exactMoveDelay(rope.tile.add(direction.delta.x * 3, direction.delta.y * 3), 60, direction)
             arenaExp(20.0)
         }
 
@@ -243,6 +249,27 @@ class BrimhavenArenaObstacles : Script {
             return GameObjects.findOrNull(tile) { it.id in family } ?: continue
         }
         return null
+    }
+
+    /**
+     * The rope swing pair has one rope for each direction, [target] or its partner, whichever starts on the players side
+     */
+    fun Player.nearerRope(target: GameObject): GameObject {
+        val facing = rotationDirection(target.rotation)
+        val start = target.tile.add(facing.delta.x * 2, facing.delta.y * 2)
+        val end = target.tile.add(facing.delta.x * -3, facing.delta.y * -3)
+        if (tile.distanceTo(start) <= tile.distanceTo(end)) {
+            return target
+        }
+        for (x in -2..2) {
+            for (y in -2..2) {
+                val rope = GameObjects.findOrNull(target.tile.add(x, y), target.id) ?: continue
+                if (rope.rotation == (target.rotation + 2) and 3) {
+                    return rope
+                }
+            }
+        }
+        return target
     }
 
     /**
