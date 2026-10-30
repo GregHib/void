@@ -8,34 +8,43 @@ drops = [
 ]
 
 [lesser_demon_secondary]
-roll = 128
+roll = 4096
 drops = [
-    { id = "steel_full_helm", chance = 4 },
-    { id = "steel_hatchet", chance = 4 },
-    { id = "steel_scimitar", chance = 3 },
-    { id = "mithril_sq_shield" },
-    { id = "mithril_chainbody" },
-    { id = "rune_med_helm" },
-    { id = "fire_rune", amount = 60, chance = 8 },
-    { id = "chaos_rune", amount = 12, chance = 5 },
-    { id = "death_rune", amount = 3, chance = 3 },
-    { id = "fire_rune", amount = 30 },
-    { table = "herb_drop_table" },
-    { id = "coins", amount = 120, chance = 40 },
-    { id = "coins", amount = 40, chance = 29 },
-    { id = "coins", amount = 200, chance = 10 },
-    { id = "coins", amount = 10, chance = 7 },
-    { id = "coins", amount = 450 },
-    { id = "coins", amount = 10, members = false },
-    { id = "jug_of_wine", chance = 3 },
-    { id = "gold_ore", chance = 2 },
-    { table = "gem_drop_table", chance = 4 },
+    { id = "steel_full_helm", chance = 128 },
+    { id = "steel_hatchet", chance = 128 },
+    { id = "steel_scimitar", chance = 96 },
+    { id = "mithril_sq_shield", chance = 32 },
+    { id = "mithril_chainbody", chance = 32 },
+    { id = "rune_med_helm", chance = 32 },
+    { id = "fire_rune", amount = 37, chance = 9 },
+    { id = "fire_rune", amount = 45, chance = 9 },
+    { id = "fire_rune", amount = 60, chance = 256 },
+    { id = "chaos_rune", amount = 7, chance = 9 },
+    { id = "chaos_rune", amount = 12, chance = 160 },
+    { id = "chaos_rune", amount = 13, chance = 9 },
+    { id = "chaos_rune", amount = 24, chance = 9 },
+    { id = "death_rune", min = 3, max = 6, chance = 27 },
+    { id = "fire_rune", amount = 30, chance = 32 },
+    { table = "herb_drop_table", chance = 32, members = true },
+    { id = "coins", amount = 120, chance = 1280 },
+    { id = "coins", amount = 40, chance = 928 },
+    { id = "coins", amount = 200, chance = 320 },
+    { id = "coins", amount = 10, chance = 224 },
+    { id = "coins", amount = 450, chance = 32 },
+    { id = "jug_of_wine", chance = 96 },
+    { table = "gem_drop_table", chance = 128 },
+    { id = "black_2h_sword", chance = 37 },
+    { id = "black_kiteshield", chance = 27 },
+    { id = "gold_ore_noted", min = 1, max = 3, chance = 18 },
+    { id = "cosmic_talisman", members = true },
+    { id = "court_summons", chance = 3, members = true },
 ]
 
 [lesser_demon_tertiary]
 roll = 5000
 drops = [
     { id = "lesser_demon_champions_scroll", members = true },
+    { id = "starved_ancient_effigy", chance = 10 },
 ]
 
 [greater_demon_drop_table]
@@ -43,7 +52,8 @@ type = "all"
 drops = [
   { table = "greater_demon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
-    { table = "greater_demon_charms", members = true },
+  { table = "greater_demon_charms", members = true },
+  { table = "greater_demon_tertiary" },
 ]
 
 [greater_demon_secondary]
@@ -64,11 +74,12 @@ drops = [
   { id = "coins", amount = 220, chance = 10 },
   { id = "coins", amount = 11, chance = 7 },
   { id = "coins", amount = 460 },
-  { id = "nothing", amount = 0, chance = 2 },
   { id = "tuna", chance = 3 },
   { id = "gold_bar", chance = 2 },
   { id = "thread", amount = 10 },
   { table = "gem_drop_table", chance = 5 },
+  { id = "black_2h_sword" },
+  { id = "gold_ore" },
 ]
 
 [black_demon_drop_table]
@@ -76,33 +87,42 @@ type = "all"
 drops = [
   { table = "black_demon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
-    { table = "black_demon_charms" },
+  { table = "black_demon_charms" },
+  { table = "black_demon_tertiary" },
 ]
 
 [black_demon_secondary]
-roll = 128
+roll = 2048
 drops = [
-  { id = "black_sword", chance = 4 },
-  { id = "steel_battleaxe", chance = 3 },
-  { id = "black_hatchet", chance = 2 },
-  { id = "mithril_kiteshield" },
-  { id = "rune_med_helm" },
-  { id = "rune_chainbody" },
-  { id = "air_rune", amount = 50, chance = 8 },
-  { id = "chaos_rune", amount = 10, chance = 7 },
-  { id = "blood_rune", amount = 7, chance = 4 },
-  { id = "fire_rune", amount = 37 },
-  { id = "law_rune", amount = 3 },
-  { table = "herb_drop_table", chance = 23 },
-  { id = "coins", amount = 132, chance = 40 },
-  { id = "coins", amount = 30, chance = 7 },
-  { id = "coins", amount = 44, chance = 6 },
-  { id = "coins", amount = 220, chance = 6 },
-  { id = "coins", amount = 460 },
-  { id = "lobster", chance = 3 },
-  { id = "adamant_bar", chance = 2 },
-  { id = "defence_potion_3" },
-  { table = "rare_drop_table" },
+  { id = "black_sword", chance = 64 },
+  { id = "steel_battleaxe", chance = 48 },
+  { id = "black_hatchet", chance = 32 },
+  { id = "mithril_kiteshield", chance = 16 },
+  { id = "rune_med_helm", chance = 16 },
+  { id = "rune_chainbody", chance = 16 },
+  { id = "air_rune", min = 50, max = 75, chance = 42 },
+  { id = "chaos_rune", amount = 10, chance = 112 },
+  { id = "blood_rune", amount = 7, chance = 64 },
+  { id = "fire_rune", min = 37, max = 40, chance = 5 },
+  { id = "law_rune", amount = 3, chance = 16 },
+  { id = "law_rune", amount = 45, chance = 21 },
+  { table = "herb_drop_table", chance = 368 },
+  { id = "coins", amount = 132, chance = 640 },
+  { id = "coins", amount = 30, chance = 112 },
+  { id = "coins", amount = 44, chance = 96 },
+  { id = "coins", amount = 220, chance = 96 },
+  { id = "coins", amount = 460, chance = 16 },
+  { id = "lobster", min = 1, max = 2, chance = 16 },
+  { id = "adamant_bar", chance = 42 },
+  { id = "defence_potion_3", chance = 21 },
+  { table = "rare_drop_table", chance = 16 },
+  { id = "black_2h_sword", chance = 42 },
+  { id = "black_full_helm", chance = 42 },
+  { id = "rune_full_helm", chance = 21 },
+  { id = "coal_noted", amount = 20, chance = 4 },
+  { id = "bronze_arrow", min = 135, max = 345 },
+  { id = "thread", amount = 10, chance = 42 },
+  { id = "defence_potion_1", chance = 21 },
 ]
 
 [black_demon_charms]
@@ -130,4 +150,17 @@ drops = [
     { id = "green_charm", chance = 3785 },
     { id = "crimson_charm", chance = 26191 },
     { id = "blue_charm", chance = 924 },
+]
+
+[black_demon_tertiary]
+roll = 5000
+drops = [
+  { id = "starved_ancient_effigy", chance = 29 },
+]
+
+[greater_demon_tertiary]
+roll = 5000
+drops = [
+  { id = "ferocious_ring_5", chance = 23 },
+  { id = "starved_ancient_effigy", chance = 10 },
 ]

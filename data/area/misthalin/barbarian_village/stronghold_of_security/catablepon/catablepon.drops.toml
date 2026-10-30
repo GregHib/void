@@ -5,6 +5,7 @@ drops = [
     { table = "catablepon_secondary" },
     { table = "medium_clue_scroll", roll = 101 },
     { table = "catablepon_charms", members = true },
+    { table = "catablepon_tertiary" },
 ]
 
 [catablepon_secondary]
@@ -13,14 +14,13 @@ drops = [
     { id = "adamant_med_helm", members = true },
     { id = "fire_rune", amount = 15, chance = 7 },
     { id = "water_rune", amount = 7, chance = 6 },
-    { id = "chaos_rune", amount = 7, members = true },
     { id = "law_rune", amount = 2, chance = 4 },
-    { id = "cosmic_rune", amount = 2, chance = 3, members = true },
-    { id = "mithril_arrow", min = 5, max = 14, chance = 4 },
-    { table = "herb_drop_table", chance = 3 },
-    { table = "allotment_seed_drop_table" },
+    { id = "cosmic_rune", min = 2, max = 4, chance = 3 },
+    { id = "mithril_arrow", min = 5, max = 17, chance = 4 },
+    { table = "herb_drop_table", chance = 3, members = true },
+    { table = "allotment_seed_drop_table", members = true },
     { id = "rune_essence_noted", amount = 15, chance = 5, members = false },
-    { id = "pure_essence_noted", amount = 15, chance = 5, members = true },
+    { id = "rune_essence_noted", amount = 30, chance = 3 },
     { id = "eye_of_newt", chance = 7 },
     { id = "coal_noted", min = 3, max = 7, chance = 2 },
     { id = "coins", amount = 10, chance = 4, members = false },
@@ -29,8 +29,12 @@ drops = [
     { id = "coins", min = 5, max = 104, chance = 10 },
     { id = "trout", chance = 2 },
     { id = "unlit_torch", chance = 9, members = true },
-    { id = "top_of_sceptre", chance = 3 },
     { table = "gem_drop_table", chance = 2 },
+    { id = "adamant_arrow", min = 5, max = 14, chance = 3 },
+    { id = "salmon", chance = 3 },
+    { id = "black_full_helm", chance = 2 },
+    { id = "chaos_rune", amount = 7, members = true },
+    { id = "pure_essence_noted", amount = 15, chance = 2, members = true },
 ]
 
 [catablepon_charms]
@@ -40,4 +44,11 @@ drops = [
     { id = "green_charm", chance = 1372 },
     { id = "crimson_charm", chance = 2330 },
     { id = "blue_charm", chance = 319 },
+]
+
+[catablepon_tertiary]
+roll = 5000
+drops = [
+    { id = "top_of_sceptre", chance = 150 },
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

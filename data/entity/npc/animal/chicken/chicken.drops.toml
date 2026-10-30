@@ -17,5 +17,7 @@ drops = [
 roll = 128
 drops = [
     { id = "feather", amount = 5, chance = 64 },
-    { id = "feather", amount = 15, chance = 32 }
+    { id = "feather", amount = 10, chance = 3 },
+    { id = "feather", amount = 15, chance = 32 },
+    { id = "egg", chance = 8 },
 ]

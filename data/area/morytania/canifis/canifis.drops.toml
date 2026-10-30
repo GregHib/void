@@ -12,7 +12,6 @@ drops = [
     { id = "steel_hatchet", chance = 10 },
     { id = "steel_arrow", amount = 50, chance = 10 },
     { id = "steel_arrow_p", amount = 5, chance = 10 },
-    { table = "herb_drop_table", chance = 2 },
     { id = "eye_of_newt", chance = 2 },
     { id = "snape_grass", chance = 2 },
     { id = "jangerberries", chance = 2 },
@@ -40,6 +39,7 @@ drops = [
     { id = "fur", chance = 100 },
     { id = "grey_wolf_fur", chance = 100 },
     { id = "blamish_oil" },
+    { table = "herb_drop_table", chance = 2 },
     { table = "gem_drop_table" },
 ]
 
@@ -55,6 +55,7 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "ghoul_tertiary" },
+    { table = "ghoul_secondary" },
 ]
 
 [ghoul_tertiary]
@@ -62,4 +63,11 @@ roll = 5000
 drops = [
     { id = "ghoul_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "ghoul_champions_scroll", lacks = "ghoul_champions_scroll" },
+    { id = "starved_ancient_effigy", chance = 10 },
+]
+
+[ghoul_secondary]
+roll = 128
+drops = [
+    { id = "law_talisman" },
 ]

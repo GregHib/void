@@ -138,30 +138,49 @@ drops = [
 ]
 
 [guard_burthorpe_secondary]
-roll = 128
+roll = 1024
 drops = [
-    { id = "steel_warhammer", chance = 8 },
-    { id = "mithril_warhammer", chance = 6 },
-    { id = "mithril_platebody", chance = 4 },
-    { id = "mithril_full_helm" },
-    { id = "blood_rune", amount = 3 },
-    { id = "chaos_rune", amount = 3 },
-    { id = "nature_rune", amount = 4 },
-    { id = "fire_rune", amount = 22, chance = 2 },
-    { id = "earth_rune", amount = 23, chance = 2 },
-    { id = "air_rune", amount = 25, chance = 2 },
-    { id = "bronze_arrow", amount = 12, chance = 3 },
-    { id = "steel_arrow", amount = 12, chance = 2 },
-    { id = "coins", amount = 2 },
-    { id = "coins", amount = 4, chance = 37 },
-    { id = "coins", amount = 12, chance = 16 },
-    { id = "coins", amount = 18, chance = 9 },
-    { id = "coins", amount = 32, chance = 4 },
-    { id = "coins", amount = 45, chance = 4 },
-    { id = "coins", amount = 50, chance = 2 },
-    { id = "nothing", amount = 0, chance = 18 },
-    { id = "earth_talisman", chance = 3 },
-    { id = "mithril_ore" },
+    { id = "steel_warhammer", chance = 3 },
+    { id = "blood_rune", chance = 8, members = true },
+    { id = "blood_rune", amount = 3, members = true },
+    { id = "blood_rune", amount = 4, members = true },
+    { id = "chaos_rune", chance = 8 },
+    { id = "nature_rune", chance = 8 },
+    { id = "fire_rune", amount = 2, chance = 16 },
+    { id = "earth_rune", amount = 3, chance = 16 },
+    { id = "earth_rune", amount = 6, chance = 14 },
+    { id = "air_rune", amount = 6, chance = 16 },
+    { id = "bronze_arrow", chance = 24 },
+    { id = "bronze_arrow", amount = 2, chance = 16 },
+    { id = "bronze_arrow", amount = 5, chance = 5 },
+    { id = "steel_arrow", chance = 32 },
+    { id = "steel_arrow", amount = 5, chance = 8 },
+    { id = "steel_arrow", amount = 10, chance = 4 },
+    { id = "steel_arrow", amount = 11, chance = 4 },
+    { id = "coins", chance = 151 },
+    { id = "coins", amount = 7, chance = 128 },
+    { id = "coins", amount = 5, chance = 144, members = false },
+    { id = "coins", amount = 25, chance = 32 },
+    { id = "coins", amount = 17, chance = 32 },
+    { id = "coins", amount = 30, chance = 16 },
+    { id = "coins", amount = 4, chance = 64 },
+    { id = "coins", amount = 12, chance = 72 },
+    { id = "body_talisman", chance = 24, members = true },
+    { id = "body_talisman", chance = 32, members = false },
+    { id = "law_talisman", chance = 29, members = true },
+    { id = "iron_dagger", chance = 48 },
+    { id = "iron_sword", chance = 3 },
+    { id = "iron_arrow", chance = 14 },
+    { id = "iron_arrow", amount = 2, chance = 14 },
+    { id = "iron_bolts", min = 2, max = 12, chance = 80, members = true },
+    { id = "grimy_guam", chance = 14, members = true },
+    { id = "grain", chance = 8 },
+    { id = "iron_ore", chance = 8 },
+    { id = "grapes", amount = 3, chance = 29 },
+    { id = "hammer", chance = 14 },
+    { id = "iron_platebody", chance = 3 },
+    { id = "steel_bar", chance = 3 },
+    { table = "allotment_seed_drop_table", chance = 54, members = true },
 ]
 
 [highwayman_drop_table]
@@ -189,8 +208,7 @@ drops = [
 [rooster_secondary]
 roll = 128
 drops = [
-    { id = "feather", amount = 5, chance = 64 },
-    { id = "feather", amount = 15, chance = 32 },
+    { id = "feather", chance = 8 },
 ]
 
 [water_wizard_drop_table]
