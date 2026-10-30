@@ -6,7 +6,10 @@ examine = "A barbarian bed."
 id = 25286
 examine = "A patch of ash-strewn ground."
 
-# TODO confirm which pyre stage objects are used and in what order
+# Pyre ship stages (3x2) replace the boat station in order, each site has one under its ash
+[pyre_boat_station]
+id = 25287
+
 [pyre_carved_log]
 id = 25288
 
@@ -22,5 +25,11 @@ id = 25291
 [pyre_boat_lit]
 id = 25292
 
-[pyre_boat_burning]
+[pyre_boat_launched]
 id = 25293
+
+[pyre_boat_burning]
+id = 25294
+
+[pyre_boat_sinking]
+id = 25295

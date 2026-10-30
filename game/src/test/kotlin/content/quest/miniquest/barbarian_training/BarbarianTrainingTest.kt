@@ -13,6 +13,8 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import skillCreation
@@ -22,6 +24,7 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -36,6 +39,16 @@ internal class BarbarianTrainingTest : WorldTest() {
         override fun nextInt(until: Int): Int = 0
         override fun nextInt(from: Int, until: Int): Int = from
     })
+
+    private fun pyreBuilder(): Player {
+        val player = trainee(Tile(2506, 3519))
+        player["barbarian_training_pyre"] = BarbarianTraining.STARTED
+        player.inventory.add("bronze_hatchet")
+        player.inventory.add("tinderbox")
+        player.inventory.add("logs")
+        player.inventory.add("chewed_bones")
+        return player
+    }
 
     private fun trainee(tile: Tile = emptyTile): Player {
         val player = createPlayer(tile)
@@ -237,16 +250,16 @@ internal class BarbarianTrainingTest : WorldTest() {
     @Test
     fun `Chewed bones pyre ship blesses buried bones`() {
         alwaysSucceed()
-        val player = trainee()
+        val player = trainee(Tile(2506, 3519))
         player["barbarian_training_pyre"] = BarbarianTraining.STARTED
         player.inventory.add("bronze_hatchet")
         player.inventory.add("tinderbox")
         player.inventory.add("oak_logs")
         player.inventory.add("chewed_bones")
-        val site = createObject("pyre_site", emptyTile.addY(1))
+        val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
 
         player.objectOption(site, "Construct")
-        tick(10)
+        tick(14)
 
         assertFalse(player.inventory.contains("chewed_bones"))
         assertEquals(15.0, player.experience.get(Skill.Crafting))
@@ -263,20 +276,53 @@ internal class BarbarianTrainingTest : WorldTest() {
 
     @Test
     fun `Mangled bones release a ferocious spirit`() {
-        val player = trainee()
+        val player = trainee(Tile(2506, 3519))
         player["barbarian_training_pyre"] = BarbarianTraining.STARTED
         player.inventory.add("bronze_hatchet")
         player.inventory.add("tinderbox")
         player.inventory.add("logs")
         player.inventory.add("mangled_bones")
-        val site = createObject("pyre_site", emptyTile.addY(1))
+        val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
 
         player.objectOption(site, "Construct")
-        tick(10)
+        tick(14)
 
         assertFalse(player.inventory.contains("mangled_bones"))
         assertEquals(BarbarianTraining.STARTED, player.barbarianTraining("pyre"))
         assertTrue(world.gregs.voidps.engine.entity.character.npc.NPCs.any { it.id == "ferocious_barbarian_spirit" })
+    }
+
+    @Test
+    fun `Pyre ship stages replace the boat station then revert`() {
+        val player = pyreBuilder()
+        val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
+        val station = Tile(2506, 3516)
+
+        player.objectOption(site, "Construct")
+        tick(2)
+        assertNull(GameObjects.findOrNull(station, "pyre_boat_station"))
+        assertNotNull(GameObjects.findOrNull(station, "pyre_carved_log"))
+
+        tick(12)
+        assertNotNull(GameObjects.findOrNull(station, "pyre_boat_bones"))
+
+        tick(16)
+        assertNotNull(GameObjects.findOrNull(station, "pyre_boat_station"))
+    }
+
+    @Test
+    fun `Pyre sites in use can't be built on`() {
+        val first = pyreBuilder()
+        val second = pyreBuilder()
+        val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
+
+        first.objectOption(site, "Construct")
+        tick(2)
+        second.objectOption(site, "Construct")
+        tick(2)
+
+        assertTrue(second.containsMessage("This pyre site is in use currently."))
+        assertTrue(second.inventory.contains("chewed_bones"))
     }
 
     @Test
