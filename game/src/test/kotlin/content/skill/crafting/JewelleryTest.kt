@@ -48,6 +48,7 @@ class JewelleryTest : WorldTest() {
     fun `Make ring of slaying`() {
         val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 75)
+        player["ring_bling"] = true
         player.inventory.add("ring_mould", "gold_bar", "enchanted_gem")
         val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
 
@@ -61,6 +62,23 @@ class JewelleryTest : WorldTest() {
         assertEquals(1, player.inventory.count("ring_mould"))
         assertEquals(1, player.inventory.count("ring_of_slaying_8"))
         assertEquals(15.0, player.experience.get(Skill.Crafting))
+    }
+
+    @Test
+    fun `Can't make ring of slaying without learning how`() {
+        val player = createPlayer(Tile(3227, 3255))
+        player.levels.set(Skill.Crafting, 75)
+        player.inventory.add("ring_mould", "gold_bar", "enchanted_gem")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
+
+        player.itemOnObject(furnace, 0)
+        tick()
+
+        player.interfaceOption("make_mould_slayer", "make_ring_option_enchanted_gem", "Make 1")
+        tick(3)
+
+        assertEquals(1, player.inventory.count("gold_bar"))
+        assertEquals(0, player.inventory.count("ring_of_slaying_8"))
     }
 
     @TestFactory

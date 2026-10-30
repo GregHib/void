@@ -195,6 +195,7 @@ att = 33
 str = 31
 def = 52
 examine = "Could do with gaining a few pounds."
+categories = ["skeletons", "undead"]
 
 [skeleton_2]
 id = 7815
@@ -203,3 +204,4 @@ att = 15
 str = 18
 def = 17
 examine = "Could do with gaining a few pounds."
+categories = ["skeletons", "undead"]

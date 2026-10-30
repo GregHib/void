@@ -173,3 +173,53 @@ level = 35
 xp = 1050
 life = 90
 chance = [65, 513]
+
+# Bows Otto teaches to light fires with and the animation holding each one
+[firemaking_bows]
+row_id = "item"
+anim = "string"
+
+[.training_bow]
+anim = "light_fire_training_bow"
+
+[.shortbow]
+anim = "light_fire_shortbow"
+
+[.longbow]
+anim = "light_fire_shortbow"
+
+[.oak_shortbow]
+anim = "light_fire_oak_bow"
+
+[.oak_longbow]
+anim = "light_fire_oak_bow"
+
+[.willow_shortbow]
+anim = "light_fire_willow_bow"
+
+[.willow_longbow]
+anim = "light_fire_willow_bow"
+
+[.maple_shortbow]
+anim = "light_fire_maple_bow"
+
+[.maple_longbow]
+anim = "light_fire_maple_bow"
+
+[.yew_shortbow]
+anim = "light_fire_yew_bow"
+
+[.yew_longbow]
+anim = "light_fire_yew_bow"
+
+[.magic_shortbow]
+anim = "light_fire_magic_bow"
+
+[.magic_longbow]
+anim = "light_fire_magic_bow"
+
+[.seercull]
+anim = "light_fire_seercull"
+
+[.sacred_clay_bow]
+anim = "light_fire_sacred_clay_bow"

@@ -96,7 +96,9 @@ object Equipment {
 
     fun isNosePeg(hat: String) = hat == "nose_peg" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
 
-    fun isFaceMask(hat: String) = hat == "face_mask" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
+    fun isFaceMask(hat: String) = hat == "face_mask" || hat == "masked_earmuffs" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
+
+    fun isSpinyHelmet(hat: String) = hat == "spiny_helmet" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
 
     fun dragonFireImmune(target: Character) = target.protectMagic() || antiDragonShield(target) || target.antifire || target.superAntifire
 

@@ -1,0 +1,9 @@
+[turaels_dungeon_ladder_down]
+option = "Climb-down"
+tile = { x = 2931, y = 3539 }
+to = { x = 3098, y = 4959 }
+
+[turaels_dungeon_ladder_up]
+option = "Climb-up"
+tile = { x = 3097, y = 4959 }
+to = { x = 2931, y = 3538 }

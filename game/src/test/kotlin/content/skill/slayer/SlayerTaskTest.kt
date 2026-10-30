@@ -57,8 +57,10 @@ class SlayerTaskTest : WorldTest() {
             player.levels.set(Skill.Slayer, 99)
             player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
             player.equipment.set(EquipSlot.Hat.index, "earmuffs")
+            player["smoking_kills"] = "completed"
             player.slayerMaster = "mazchna"
             player.slayerTask = task
+            player.slayerStreak = 4
             player.slayerTaskRemaining = 1
 
             val npc = createNPC(id, player.tile.addY(1))
@@ -69,7 +71,7 @@ class SlayerTaskTest : WorldTest() {
             assertEquals("mazchna", player.slayerMaster)
             assertEquals("nothing", player.slayerTask)
             assertEquals(0, player.slayerTaskRemaining)
-            assertEquals(1, player.slayerStreak)
+            assertEquals(5, player.slayerStreak)
             assertEquals(1, player.slayerPoints)
             assertTrue(player.experience.get(Skill.Slayer) > 0)
         }
@@ -97,6 +99,33 @@ class SlayerTaskTest : WorldTest() {
         }
     }
 
+    @TestFactory
+    fun `Monsters without configured slayer experience count towards their task`() = listOf(
+        Triple("lesser_demons", "lesser_demon", 79.0),
+        Triple("lesser_demons", "lesser_demon_melzars_maze", 79.0),
+        Triple("gorak", "gorak", 112.0),
+        Triple("fire_giants", "fire_giant_2", 111.0),
+        Triple("cave_horrors", "cave_horror_2", 55.0),
+        Triple("cyclopes", "cyclopse_club", 100.0),
+        Triple("hill_giants", "cyclops_god_wars", 110.0),
+        Triple("spiritual_warriors", "spiritual_warrior_zamorak", 110.0),
+        Triple("spiritual_mages", "spiritual_mage_zamorak", 75.0),
+        Triple("warped_tortoises", "warped_tortoise", 87.0),
+    ).map { (task, id, experience) ->
+        dynamicTest("Kill $id on a $task task") {
+            val player = createPlayer(Tile(3231, 3298))
+            player.slayerMaster = "vannaka"
+            player.slayerTask = task
+            player.slayerTaskRemaining = 2
+            val npc = createNPC(id, player.tile.addY(1))
+
+            scripts.filterIsInstance<NPCDeath>().first().slay(player, npc)
+
+            assertEquals(1, player.slayerTaskRemaining)
+            assertEquals(experience, player.experience.get(Skill.Slayer))
+        }
+    }
+
     @Test
     fun `Banshees drain stats without earmuffs`() {
         setRandom(object : FakeRandom() {
@@ -111,8 +140,10 @@ class SlayerTaskTest : WorldTest() {
         player.levels.set(Skill.Constitution, 990)
         player.levels.set(Skill.Slayer, 15)
         player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
+        player["smoking_kills"] = "completed"
         player.slayerMaster = "mazchna"
         player.slayerTask = "banshees"
+        player.slayerStreak = 4
         player.slayerTaskRemaining = 1
 
         val banshee = createNPC("banshee", player.tile.addY(1))
@@ -125,7 +156,7 @@ class SlayerTaskTest : WorldTest() {
         assertEquals("mazchna", player.slayerMaster)
         assertEquals("nothing", player.slayerTask)
         assertEquals(0, player.slayerTaskRemaining)
-        assertEquals(1, player.slayerStreak)
+        assertEquals(5, player.slayerStreak)
         assertEquals(1, player.slayerPoints)
         assertTrue(player.experience.get(Skill.Slayer) > 0)
         assertEquals(80, player.levels.get(Skill.Attack))
@@ -147,8 +178,10 @@ class SlayerTaskTest : WorldTest() {
         player.levels.set(Skill.Slayer, 22)
         player.inventory.add("ice_cooler")
         player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
+        player["smoking_kills"] = "completed"
         player.slayerMaster = "mazchna"
         player.slayerTask = "lizards"
+        player.slayerStreak = 4
         player.slayerTaskRemaining = 1
 
         val lizard = createNPC("lizard", player.tile.addY(1))
@@ -161,7 +194,7 @@ class SlayerTaskTest : WorldTest() {
         assertEquals("mazchna", player.slayerMaster)
         assertEquals("nothing", player.slayerTask)
         assertEquals(0, player.slayerTaskRemaining)
-        assertEquals(1, player.slayerStreak)
+        assertEquals(5, player.slayerStreak)
         assertEquals(1, player.slayerPoints)
         assertTrue(player.experience.get(Skill.Slayer) > 0)
     }
@@ -176,6 +209,7 @@ class SlayerTaskTest : WorldTest() {
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)
         player.levels.set(Skill.Constitution, 990)
+        player["smoking_kills"] = "completed"
         player.slayerMaster = "mazchna"
         player.slayerTask = "birds"
         player.slayerStreak = 29
@@ -203,6 +237,7 @@ class SlayerTaskTest : WorldTest() {
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)
         player.levels.set(Skill.Constitution, 990)
+        player["smoking_kills"] = "completed"
         player.slayerMaster = "mazchna"
         player.slayerTask = "birds"
         player.slayerStreak = 149
@@ -231,7 +266,7 @@ class SlayerTaskTest : WorldTest() {
 
         // Chaeldar lists jungle_strykewyrm, which had no slayer_tasks entry and threw
         // "Row not found" while rolling, so the master gave no task at all.
-        val (type, amount) = assignTask(player, "chaeldar")
+        val (type, amount) = assignTask(player, "chaeldar")!!
 
         assertTrue(type.isNotEmpty())
         assertTrue(amount > 0)

@@ -22,6 +22,7 @@ slayer_xp = 105.0
 categories = ["dust_devils"]
 respawn_delay = 15
 examine = "The vacuumed face of evil."
+slayer_level = 65
 
 [turoth_chaos_tunnels]
 id = 1629
@@ -35,6 +36,7 @@ categories = ["turoth"]
 immune_cannon = true
 drop_table = "turoth"
 examine = "He's one big leg short!"
+slayer_level = 55
 
 [bloodworm]
 id = 2031
@@ -189,6 +191,7 @@ att = 90
 str = 90
 def = 90
 examine = "Spooky, bandaged dead dude."
+categories = ["zombies"]
 
 [mummy_2_alight]
 id = 1966
@@ -197,6 +200,7 @@ att = 90
 str = 90
 def = 90
 examine = "Spooky, bandaged dead dude."
+categories = ["zombies"]
 
 [mummy_female_alight]
 id = 1967
@@ -205,6 +209,7 @@ att = 90
 str = 90
 def = 90
 examine = "A victim of poor first aid."
+categories = ["zombies"]
 
 [mummy_female_2_alight]
 id = 1968
@@ -213,6 +218,7 @@ att = 90
 str = 90
 def = 90
 examine = "But who's the daddy?"
+categories = ["zombies"]
 
 [waterfiend]
 id = 5361

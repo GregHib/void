@@ -36,6 +36,8 @@ internal object ItemOnItemStateSerializer : KSerializer<Map<String, List<ItemOnI
         element("question", String.serializer().descriptor)
         element("maximum", Int.serializer().descriptor)
         element("members", Boolean.serializer().descriptor)
+        element("variable", String.serializer().descriptor)
+        element("variableMessage", String.serializer().descriptor)
         element("keys", String.serializer().descriptor)
     }
 
@@ -78,6 +80,8 @@ internal object ItemOnItemStateSerializer : KSerializer<Map<String, List<ItemOnI
             encoder.encodeString(definition.question)
             encoder.encodeInt(definition.maximum)
             encoder.encodeBoolean(definition.members)
+            encoder.encodeString(definition.variable)
+            encoder.encodeString(definition.variableMessage)
         }
         encoder.encodeInt(value.size)
         for ((key, list) in value) {
@@ -113,6 +117,8 @@ internal object ItemOnItemStateSerializer : KSerializer<Map<String, List<ItemOnI
                 question = decoder.decodeString(),
                 maximum = decoder.decodeInt(),
                 members = decoder.decodeBoolean(),
+                variable = decoder.decodeString(),
+                variableMessage = decoder.decodeString(),
             )
         }
         val size = decoder.decodeInt()

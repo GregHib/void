@@ -199,6 +199,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_3]
 id = 6008
@@ -207,6 +208,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_4]
 id = 6009
@@ -215,6 +217,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_5]
 id = 6010
@@ -223,6 +226,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_6]
 id = 6011
@@ -231,6 +235,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_7]
 id = 6012
@@ -239,6 +244,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_8]
 id = 6013
@@ -247,6 +253,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_9]
 id = 6014
@@ -255,6 +262,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_10]
 id = 6015
@@ -263,6 +271,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_11]
 id = 6016
@@ -271,6 +280,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_12]
 id = 6017
@@ -279,6 +289,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_13]
 id = 6018
@@ -287,6 +298,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_14]
 id = 6019
@@ -295,6 +307,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_15]
 id = 6020
@@ -303,6 +316,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_16]
 id = 6021
@@ -311,6 +325,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_17]
 id = 6022
@@ -319,6 +334,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_18]
 id = 6023
@@ -327,6 +343,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_19]
 id = 6024
@@ -335,6 +352,7 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]
 
 [werewolf_20]
 id = 6025
@@ -343,3 +361,4 @@ att = 70
 str = 70
 def = 70
 examine = "Eek! A werewolf!"
+categories = ["werewolf", "werewolves"]

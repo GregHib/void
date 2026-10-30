@@ -1,0 +1,8 @@
+[ravenous_snail]
+defend_anim = "thorny_snail_familiar_defend"
+death_anim = "thorny_snail_familiar_death"
+
+[ravenous_snail.melee]
+range = 1
+anim = "thorny_snail_familiar_attack"
+target_hit = { offense = "crush", max = 41 }

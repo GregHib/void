@@ -1,0 +1,3 @@
+[barbarian_training_started]
+format = "boolean"
+persist = true

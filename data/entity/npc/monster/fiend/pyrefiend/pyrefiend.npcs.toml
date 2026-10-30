@@ -41,3 +41,5 @@ att = 52
 str = 30
 def = 22
 examine = "A small fire demon."
+categories = ["demon", "fiery", "pyrefiends"]
+slayer_level = 30

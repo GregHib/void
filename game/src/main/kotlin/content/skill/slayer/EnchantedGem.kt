@@ -16,9 +16,18 @@ import world.gregs.voidps.engine.entity.character.player.name
 
 class EnchantedGem : Script {
 
+    private val femaleMasters = setOf("chaeldar", "sumona", "kuradal", "spria")
+
     init {
         itemOption("Activate", "enchanted_gem") {
+            if (contactNearFairyRing()) {
+                return@itemOption
+            }
             val master = slayerMaster
+            if (master == "") {
+                message("You need something new to hunt; return to a Slayer master.")
+                return@itemOption
+            }
             npc<Happy>(master, "Hello there ${this@itemOption.name}, what can I help you with?")
             choice {
                 howAmIDoing()
@@ -30,7 +39,9 @@ class EnchantedGem : Script {
         }
 
         itemOption("Kills-left", "enchanted_gem,ring_of_slaying_*") {
-            if (slayerTask == "nothing") {
+            if (slayerChallenge != "") {
+                message("You are currently doing a special task for ${slayerMaster.toSentenceCase()}; speak with ${if (slayerMaster in femaleMasters) "her" else "him"} if you need help with this task.")
+            } else if (slayerTask == "nothing") {
                 message("You need something new to hunt; return to a Slayer master.")
             } else {
                 message("Your current assignment is: ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go.")
@@ -40,7 +51,9 @@ class EnchantedGem : Script {
 
     fun ChoiceOption.howAmIDoing() {
         option<Quiz>("How am I doing so far?") {
-            if (slayerTask == "nothing") {
+            if (slayerChallenge != "") {
+                npc<Happy>(slayerMaster, "You're currently working on my special challenge. Your reward point tally is $slayerPoints.")
+            } else if (slayerTask == "nothing") {
                 npc<Confused>(slayerMaster, "You need something new to hunt. Come and see me when you can and I'll give you a new task.")
             } else {
                 npc<Happy>(slayerMaster, "You're currently assigned to kill ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go. Your reward point tally is $slayerPoints.")
@@ -69,13 +82,13 @@ class EnchantedGem : Script {
     fun ChoiceOption.whereAreYou() {
         option<Quiz>("Where are you?") {
             when (slayerMaster) {
-                "turael" -> npc<Neutral>("You'll find me in Burthorpe. I'll be here when you need a new task.")
-                "vannaka" -> npc<Neutral>("You'll find me in Edgeville. I'll be here when you need a new task.")
-                "duradel" -> npc<Neutral>("You'll find me in Shilo Village. I'll be here when you need a new task.")
-                "mazchna" -> npc<Neutral>("You'll find me in Canifis. I'll be here when you need a new task.")
-                "chaeldar" -> npc<Neutral>("You'll find me in Zanaris. I'll be here when you need a new task.")
-                "sumona" -> npc<Neutral>("You'll find me in Pollnivneach. I'll be here when you need a new task.")
-                "kuradal" -> npc<Neutral>("You'll find me in the ancient cavern, near the Dragonkin Forge. I'll be here when you need a new task.")
+                "turael" -> npc<Neutral>(slayerMaster, "You'll find me in Burthorpe. I'll be here when you need a new task.")
+                "vannaka" -> npc<Neutral>(slayerMaster, "You'll find me in Edgeville. I'll be here when you need a new task.")
+                "duradel" -> npc<Neutral>(slayerMaster, "You'll find me in Shilo Village. I'll be here when you need a new task.")
+                "mazchna" -> npc<Neutral>(slayerMaster, "You'll find me in Canifis. I'll be here when you need a new task.")
+                "chaeldar" -> npc<Neutral>(slayerMaster, "You'll find me in Zanaris. I'll be here when you need a new task.")
+                "sumona" -> npc<Neutral>(slayerMaster, "You'll find me in Pollnivneach. I'll be here when you need a new task.")
+                "kuradal" -> npc<Neutral>(slayerMaster, "You'll find me in the ancient cavern, near the Dragonkin Forge. I'll be here when you need a new task.")
             }
             choice {
                 howAmIDoing()

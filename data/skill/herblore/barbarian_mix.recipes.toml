@@ -6,6 +6,8 @@ ticks = 2
 remove = ["agility_potion_2", "caviar"]
 add = ["agility_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your agility potion."
 
 [antifire_mix]
@@ -16,6 +18,8 @@ ticks = 2
 remove = ["antifire_2", "caviar"]
 add = ["antifire_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your antifire potion."
 
 [antipoison_mix_r]
@@ -26,6 +30,8 @@ ticks = 2
 remove = ["antipoison_2", "roe"]
 add = ["antipoison_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the roe into your antipoison potion."
 
 [antipoison_mix_c]
@@ -36,6 +42,8 @@ ticks = 2
 remove = ["antipoison_2", "caviar"]
 add = ["antipoison_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your antipoison potion."
 
 [antipoison_plus_mix]
@@ -46,6 +54,8 @@ ticks = 2
 remove = ["antipoison+_2", "caviar"]
 add = ["antidote+_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your antipoison+ potion."
 
 [attack_mix_r]
@@ -56,6 +66,8 @@ ticks = 2
 remove = ["attack_potion_2", "roe"]
 add = ["attack_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the roe into your attack potion."
 
 [attack_mix_c]
@@ -66,6 +78,8 @@ ticks = 2
 remove = ["attack_potion_2", "caviar"]
 add = ["attack_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your attack potion."
 
 [combat_mix]
@@ -76,6 +90,8 @@ ticks = 2
 remove = ["combat_potion_2", "caviar"]
 add = ["combat_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your combat potion."
 
 [defence_mix]
@@ -86,6 +102,8 @@ ticks = 2
 remove = ["defence_potion_2", "caviar"]
 add = ["defence_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your defence potion."
 
 [energy_mix]
@@ -96,6 +114,8 @@ ticks = 2
 remove = ["energy_potion_2", "caviar"]
 add = ["energy_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your energy potion."
 
 [fishing_mix]
@@ -106,6 +126,8 @@ ticks = 2
 remove = ["fishing_potion_2", "caviar"]
 add = ["fishing_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your fishing potion."
 
 [hunting_mix]
@@ -116,6 +138,8 @@ ticks = 2
 remove = ["hunter_potion_2", "caviar"]
 add = ["hunting_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your hunting potion."
 
 [magic_essence_mix]
@@ -126,6 +150,8 @@ ticks = 2
 remove = ["magic_essence_2", "caviar"]
 add = ["magic_essence_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your magic essence potion."
 
 [relicyms_mix_r]
@@ -136,6 +162,8 @@ ticks = 2
 remove = ["relicyms_balm_2", "roe"]
 add = ["relicyms_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the roe into your Relicym's potion."
 
 [relicyms_mix_c]
@@ -146,6 +174,8 @@ ticks = 2
 remove = ["relicyms_balm_2", "caviar"]
 add = ["relicyms_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your Relicym's potion."
 
 [restore_mix_r]
@@ -156,6 +186,8 @@ ticks = 2
 remove = ["restore_potion_2", "roe"]
 add = ["restore_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the roe into your restore potion."
 
 [restore_mix_c]
@@ -166,6 +198,8 @@ ticks = 2
 remove = ["restore_potion_2", "caviar"]
 add = ["restore_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your restore potion."
 
 [strength_mix_r]
@@ -176,6 +210,8 @@ ticks = 2
 remove = ["strength_potion_2", "roe"]
 add = ["strength_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the roe into your strength potion."
 
 [strength_mix_c]
@@ -186,6 +222,8 @@ ticks = 2
 remove = ["strength_potion_2", "caviar"]
 add = ["strength_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your strength potion."
 
 [prayer_mix]
@@ -196,6 +234,8 @@ ticks = 2
 remove = ["prayer_potion_2", "caviar"]
 add = ["prayer_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your prayer potion."
 
 [super_antipoison_mix]
@@ -206,6 +246,8 @@ ticks = 2
 remove = ["super_antipoison_2", "caviar"]
 add = ["super_antipoison_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super antipoison potion."
 
 [super_attack_mix]
@@ -216,6 +258,8 @@ ticks = 2
 remove = ["super_attack_2", "caviar"]
 add = ["super_attack_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super attack potion."
 
 [super_defence_mix]
@@ -226,6 +270,8 @@ ticks = 2
 remove = ["super_defence_2", "caviar"]
 add = ["super_defence_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super defence potion."
 
 [super_energy_mix]
@@ -236,6 +282,8 @@ ticks = 2
 remove = ["super_energy_2", "caviar"]
 add = ["super_energy_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super energy potion."
 
 [super_magic_mix]
@@ -246,6 +294,8 @@ ticks = 2
 remove = ["super_magic_potion_2", "caviar"]
 add = ["super_magic_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super magic potion."
 
 [super_ranging_mix]
@@ -256,6 +306,8 @@ ticks = 2
 remove = ["super_ranging_potion_2", "caviar"]
 add = ["super_ranging_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super ranging potion."
 
 [super_restore_mix]
@@ -266,6 +318,8 @@ ticks = 2
 remove = ["super_restore_2", "caviar"]
 add = ["super_restore_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super restore potion."
 
 [super_strength_mix]
@@ -276,6 +330,8 @@ ticks = 2
 remove = ["super_strength_2", "caviar"]
 add = ["super_strength_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your super strength potion."
 
 [zamorak_mix]
@@ -286,4 +342,6 @@ ticks = 2
 remove = ["zamorak_brew_2", "caviar"]
 add = ["zamorak_mix_2"]
 animation = "mixing_potion"
+variable = "barbarian_training_herblore"
+variable_message = "You must begin the relevant section of Otto Godblessed's barbarian training."
 message = "You mix the caviar into your Zamorak potion."

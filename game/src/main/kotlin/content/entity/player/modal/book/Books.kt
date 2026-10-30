@@ -13,10 +13,23 @@ class Books {
     private lateinit var types: Map<String, String>
     private lateinit var books: Map<String, List<List<String>>>
     internal lateinit var titles: Map<String, String>
+    private val generators = Object2ObjectOpenHashMap<String, (Player) -> List<List<String>>>()
 
     fun type(name: String) = types[name] ?: "normal"
 
     fun get(name: String) = books.getOrDefault(name, emptyList())
+
+    /**
+     * Pages for [name], or generated for the [player] if the book changes with their progress
+     */
+    fun get(player: Player, name: String) = generators[name]?.invoke(player) ?: get(name)
+
+    /**
+     * Generate the pages of book [name] per player, the title and type still come from its config
+     */
+    fun generate(name: String, pages: (Player) -> List<List<String>>) {
+        generators[name] = pages
+    }
 
     fun title(name: String) = titles.getOrDefault(name, "")
 

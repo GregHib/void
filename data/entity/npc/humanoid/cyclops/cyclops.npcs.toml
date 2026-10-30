@@ -10,10 +10,11 @@ hunt_mode = "anti_zamorak_aggressive"
 respawn_delay = 25
 slayer_xp = 110.0
 drop_table = "cyclops_god_wars"
-categories = ["cyclops"]
+categories = ["cyclops", "cyclopes", "hill_giants"]
 god = "bandos"
 examine = "A one-eyed man-eater."
 
 [cyclops_god_wars_grey]
 id = 6270
 clone = "cyclops_god_wars"
+categories = ["cyclopes", "hill_giants"]

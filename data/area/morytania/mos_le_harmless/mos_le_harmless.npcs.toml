@@ -120,6 +120,7 @@ att = 2
 str = 3
 def = 2
 max_hit_crush = 20
+categories = ["monkeys"]
 
 [crab_mos_le_harmless]
 id = 4346
@@ -187,6 +188,7 @@ att = 70
 str = 70
 def = 55
 examine = "A horrible, emaciated ape like creature with beady pink eyes."
+categories = ["jungle_horrors"]
 
 [jungle_horror_3]
 id = 4349
@@ -195,6 +197,7 @@ att = 70
 str = 70
 def = 55
 examine = "A horrible, emaciated ape like creature with beady pink eyes."
+categories = ["jungle_horrors"]
 
 [jungle_horror_4]
 id = 4350
@@ -203,6 +206,7 @@ att = 70
 str = 70
 def = 55
 examine = "A horrible, emaciated ape like creature with beady pink eyes."
+categories = ["jungle_horrors"]
 
 [jungle_horror_5]
 id = 4351
@@ -211,3 +215,4 @@ att = 70
 str = 70
 def = 55
 examine = "A horrible, emaciated ape like creature with beady pink eyes."
+categories = ["jungle_horrors"]

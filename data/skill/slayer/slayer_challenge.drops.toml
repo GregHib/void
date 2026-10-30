@@ -1,0 +1,17 @@
+[ravenous_ghoul_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[ravenous_vampire_drop_table]
+type = "all"
+drops = [
+    { id = "vampyre_dust" },
+]
+
+[ravenous_snail_drop_table]
+type = "all"
+drops = [
+    { id = "thin_snail" },
+]

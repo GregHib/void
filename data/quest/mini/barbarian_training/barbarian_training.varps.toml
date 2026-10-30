@@ -1,0 +1,6 @@
+# Ancient pages copied into My notes
+[barbarian_notes]
+id = 1024
+persist = true
+format = "bitwise"
+values = [ "ancient_page_1", "ancient_page_2", "ancient_page_3", "ancient_page_4", "ancient_page_5", "ancient_page_6", "ancient_page_7", "ancient_page_8", "ancient_page_9", "ancient_page_10", "ancient_page_11", "ancient_page_12", "ancient_page_13", "ancient_page_14", "ancient_page_15", "ancient_page_16", "ancient_page_17", "ancient_page_18", "ancient_page_19", "ancient_page_20", "ancient_page_21", "ancient_page_22", "ancient_page_23", "ancient_page_24", "ancient_page_25", "ancient_page_26" ]

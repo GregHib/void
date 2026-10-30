@@ -111,6 +111,7 @@ att = 20
 str = 16
 def = 22
 examine = "A social killer."
+categories = ["wolves"]
 
 [wolf_level_25_2]
 id = 6048
@@ -119,6 +120,7 @@ att = 20
 str = 16
 def = 22
 examine = "Not man's best friend."
+categories = ["wolves"]
 
 [wolf_level_25_3]
 id = 6049
@@ -127,6 +129,7 @@ att = 20
 str = 16
 def = 22
 examine = "Not man's best friend."
+categories = ["wolves"]
 
 [big_wolf_3]
 id = 7005
@@ -135,3 +138,4 @@ att = 60
 str = 61
 def = 62
 examine = "Must be the pack leader."
+categories = ["wolves"]

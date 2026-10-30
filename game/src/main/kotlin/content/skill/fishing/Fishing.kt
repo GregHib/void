@@ -1,6 +1,8 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.quest.miniquest.barbarian_training.barbarianTaskDone
+import content.quest.miniquest.barbarian_training.barbarianTrainingStarted
 import content.skill.constitution.drink.JUJU_SHARK_PERCENT
 import content.skill.constitution.drink.jujuActive
 import content.skill.summoning.familiarActsAsHarpoon
@@ -64,6 +66,7 @@ class Fishing : Script {
         player.closeDialogue()
         val tile = target.tile
         var first = true
+        var barehandTicks = 0
         fishing@ while (true) {
             if (player.inventory.isFull()) {
                 player.message("Your inventory is too full to hold any more fish.")
@@ -82,8 +85,12 @@ class Fishing : Script {
             val tackles = spot.itemList("${option.lowercase()}_tackle")
             // The ibis and granite lobster spear fish themselves, standing in for a harpoon.
             val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) || (tackle == "harpoon" && player.familiarActsAsHarpoon()) }
+                ?: if (option == "Harpoon" && player.barbarianTrainingStarted("barehand")) BAREHAND else null
             if (tackle == null) {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
+                break@fishing
+            }
+            if (tackle == BAREHAND && (!player.has(Skill.Fishing, fish.minOf { Tables.intOrNull("barehand_fishing.$it.level") ?: Int.MAX_VALUE }, true) || !player.has(Skill.Strength, fish.minOf { Tables.intOrNull("barehand_fishing.$it.strength") ?: Int.MAX_VALUE }, true))) {
                 break@fishing
             }
 
@@ -103,14 +110,14 @@ class Fishing : Script {
                 player.message("You don't have any ${required?.toTitleCase()?.plural(2)}.")
                 break
             }
-            if (first) {
+            if (first && tackle != BAREHAND) {
                 player.message(ItemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
             }
             val remaining = player.remaining("action_delay")
             if (remaining < 0) {
                 player.face(target)
                 val rod = tackle == "fishing_rod" || tackle == "fly_fishing_rod" || tackle == "barbarian_rod"
-                player.anim("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
+                player.anim(if (tackle == BAREHAND) "barehand_fishing" else "fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle}")
                 player.pause(5)
             } else if (remaining > 0) {
                 return
@@ -118,6 +125,14 @@ class Fishing : Script {
             if (first) {
                 first = false
             }
+            // Barehand attempts take longer than a harpoon but catch fish at the same rate, so roll once for every harpoon attempt's worth of ticks
+            var rolls = 1
+            if (tackle == BAREHAND) {
+                barehandTicks += BAREHAND_ATTEMPT_TICKS
+                rolls = barehandTicks / HARPOON_ATTEMPT_TICKS
+                barehandTicks -= rolls * HARPOON_ATTEMPT_TICKS
+            }
+            var caught = false
             for (item in fish) {
                 val row = Rows.getOrNull("fishing.$item") ?: continue
                 if (bait != row.item("bait")) {
@@ -127,14 +142,30 @@ class Fishing : Script {
                 val chance = row.intRange("chance")
                 val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
-                if (level >= requiredLevel && success(level + player.familiarBoost(Skill.Fishing), chance)) {
+                val barehand = Rows.getOrNull("barehand_fishing.$item")
+                if (tackle == BAREHAND && (barehand == null || level < barehand.int("level") || player.levels.get(Skill.Strength) < barehand.int("strength"))) {
+                    continue
+                }
+                if (level >= requiredLevel && (0 until rolls).any { success(level + player.familiarBoost(Skill.Fishing), chance) }) {
                     if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
                     player.exp(Skill.Fishing, experience.toDouble())
+                    if (tackle == BAREHAND) {
+                        player.exp(Skill.Strength, experience / 10.0)
+                        player.anim("barehand_${item.removePrefix("raw_")}")
+                        player.barbarianTaskDone("barehand")
+                    }
                     addCatch(player, item)
+                    caught = true
                     break
                 }
+            }
+            if (tackle == BAREHAND) {
+                if (!caught) {
+                    player.anim("barehand_miss")
+                }
+                player.pause(4)
             }
             player.stop("action_delay")
         }
@@ -159,6 +190,14 @@ class Fishing : Script {
             is TransactionError.Full -> player.inventoryFull()
             else -> logger.warn { "Error adding fish $fish ${player.inventory.transaction.error}" }
         }
+    }
+
+    companion object {
+        private const val BAREHAND = "barehand"
+        private const val HARPOON_ATTEMPT_TICKS = 5
+
+        // Reaching into the water then pulling out a fish or wiping hands off
+        private const val BAREHAND_ATTEMPT_TICKS = 9
     }
 
     fun bigCatch(catch: String): Boolean = when {

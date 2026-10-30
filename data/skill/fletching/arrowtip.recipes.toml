@@ -181,10 +181,12 @@ maximum = 10
 [broad_arrows]
 skill = "fletching"
 level = 52
-xp = 150.0
+xp = 225.0
 ticks = 2
 remove = [{ id = "headless_arrow", amount = 15 }, { id = "broad_arrow_heads", amount = 15 }]
 add = [{ id = "broad_arrow", amount = 15 }]
+variable = "broader_fletching"
+variable_message = "You need to unlock the ability to fletch these from a slayer master."
 message = "You attach arrows heads to 15 arrow shafts."
 question = "How many set of 15 would you like to make?"
 maximum = 10

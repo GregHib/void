@@ -1,0 +1,35 @@
+# TODO confirm the 2011 rewards, this is the OSRS table
+# Rewards for laying a barbarian hero to rest with chewed bones
+[peaceful_barbarian_spirit_drop_table]
+roll = 256
+drops = [
+    { id = "dragon_full_helm", chance = 1 },
+    { table = "peaceful_barbarian_spirit_rewards", chance = 255 },
+]
+
+[peaceful_barbarian_spirit_rewards]
+roll = 128
+drops = [
+    { id = "ranarr_potion_unf_noted", amount = 2, chance = 8 },
+    { id = "super_antipoison_mix_2", chance = 4 },
+    { id = "antifire_mix_1", chance = 4 },
+    { id = "antifire_mix_2", chance = 4 },
+    { id = "fishing_mix_2", chance = 4 },
+    { id = "prayer_mix_1", chance = 4 },
+    { id = "prayer_mix_2", chance = 4 },
+    { id = "super_attack_mix_1", chance = 4 },
+    { id = "super_attack_mix_2", chance = 4 },
+    { id = "super_strength_mix_1", chance = 4 },
+    { id = "super_strength_mix_2", chance = 4 },
+    { id = "super_defence_mix_1", chance = 4 },
+    { id = "super_defence_mix_2", chance = 4 },
+    { id = "death_rune", min = 8, max = 15, chance = 18 },
+    { id = "blood_rune", min = 4, max = 7, chance = 10 },
+    { id = "silver_bolts", amount = 5, chance = 6 },
+    { id = "rune_arrow", amount = 10, chance = 6 },
+    { id = "runite_bolts", amount = 10, chance = 6 },
+    { id = "diamond_noted", amount = 2, chance = 8 },
+    { id = "mithril_grapple", amount = 2, chance = 6 },
+    { id = "adamant_dart_p", amount = 20, chance = 6 },
+    { id = "adamant_knife", amount = 20, chance = 6 },
+]

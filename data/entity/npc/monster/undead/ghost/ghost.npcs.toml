@@ -100,6 +100,7 @@ att = 63
 str = 63
 def = 68
 examine = "Eeek! A ghost!"
+categories = ["ghosts", "undead"]
 
 [ghost_level_76_2]
 id = 5373
@@ -108,6 +109,7 @@ att = 63
 str = 63
 def = 68
 examine = "Eeek! A ghost!"
+categories = ["ghosts", "undead"]
 
 [ghost_level_76_3]
 id = 5374
@@ -116,3 +118,4 @@ att = 63
 str = 63
 def = 68
 examine = "Eeek! A ghost!"
+categories = ["ghosts", "undead"]

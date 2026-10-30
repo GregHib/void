@@ -107,6 +107,7 @@ att = 20
 str = 20
 def = 20
 examine = "I don't think insect repellent will work..."
+categories = ["kalphites"]
 
 [kalphite_queen_2]
 id = 1159

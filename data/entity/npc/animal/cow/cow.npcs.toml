@@ -60,13 +60,16 @@ id = 12366
 id = 955
 hitpoints = 80
 examine = "Converts grass to beef."
+categories = ["cows"]
 
 [cow_calf_4]
 id = 1766
 hitpoints = 60
 examine = "Young, but still beefy."
+categories = ["cows"]
 
 [cow_calf_5]
 id = 1768
 hitpoints = 60
 examine = "Young, but still beefy."
+categories = ["cows"]
