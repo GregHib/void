@@ -480,8 +480,9 @@ internal class BarbarianTrainingTest : WorldTest() {
     }
 
     @Test
-    fun `My notes only shows copied pages`() {
+    fun `My notes only shows copied pages in order`() {
         val player = trainee()
+        player.addVarbit("barbarian_notes", "ancient_page_26")
         player.addVarbit("barbarian_notes", "ancient_page_2")
         player.inventory.add("my_notes")
 
@@ -490,10 +491,21 @@ internal class BarbarianTrainingTest : WorldTest() {
 
         assertTrue(player.hasOpen("book_long"))
         val pages = get<Books>().get(player, "my_notes")
-        assertEquals(13, pages.size)
-        assertTrue(pages[0].take(15).all { it.isEmpty() })
-        assertEquals("...metallic for missiles and", pages[0][15])
-        assertTrue(pages.drop(1).flatten().all { it.isEmpty() })
+        assertEquals(1, pages.size)
+        assertEquals("...metallic for missiles and", pages[0][0])
+        assertEquals(get<Books>().get("my_notes")[25].first(), pages[0][15])
+    }
+
+    @Test
+    fun `Empty my notes still opens`() {
+        val player = trainee()
+        player.inventory.add("my_notes")
+
+        player.itemOption("Read", "my_notes")
+        tick()
+
+        assertTrue(player.hasOpen("book_long"))
+        assertEquals(listOf(emptyList<String>()), get<Books>().get(player, "my_notes"))
     }
 
     @Test
