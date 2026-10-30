@@ -116,6 +116,25 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
     }
 
     @Test
+    fun `Entering zone doesn't resend private updates`() {
+        // Given
+        val zone = Zone(11, 11, 1)
+        val lastZone = Zone(100, 100, 1)
+        player.tile = zone.tile
+        player.viewport!!.lastBatchZone = lastZone
+        every { update.private } returns true
+        every { update.visible(player.name) } returns true
+        // Given
+        ZoneBatchUpdates.add(zone, update)
+        // When
+        ZoneBatchUpdates.send(player)
+        // Then
+        verify(exactly = 0) {
+            client.send(update)
+        }
+    }
+
+    @Test
     fun `External private updates are ignored`() {
         // Given
         val zone = Zone(11, 11, 1)
