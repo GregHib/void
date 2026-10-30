@@ -306,14 +306,6 @@ examine = "Makes you cry."
 [border]
 id = 3550
 
-[pillar_8]
-id = 3578
-examine = "It's a small step for a player, a giant leap for player kind."
-
-[pillar_9]
-id = 3579
-examine = "It's a small step for a player, a giant leap for player kind."
-
 [flagpole_5]
 id = 3680
 examine = "The flag of Asgarnia."

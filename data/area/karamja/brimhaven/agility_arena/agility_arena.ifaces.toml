@@ -1,0 +1,46 @@
+[brimhaven_arena_overlay]
+id = 5
+type = "overlay"
+
+[brimhaven_arena_ticket_exchange]
+id = 6
+type = "main_screen"
+
+[.toadflax]
+id = 8
+options = { Buy = 0 }
+
+[.snapdragon]
+id = 9
+options = { Buy = 0 }
+
+[.wergali]
+id = 10
+options = { Buy = 0 }
+
+[.pirates_hook]
+id = 13
+options = { Buy = 0 }
+
+[.experience_1]
+id = 24
+options = { Buy = 0 }
+
+[.experience_10]
+id = 25
+options = { Buy = 0 }
+
+[.experience_25]
+id = 26
+options = { Buy = 0 }
+
+[.experience_100]
+id = 27
+options = { Buy = 0 }
+
+[.experience_1000]
+id = 28
+options = { Buy = 0 }
+
+[.close]
+id = 36

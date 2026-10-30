@@ -1,0 +1,123 @@
+[brimhaven_arena_entrance_ladder]
+id = 3617
+examine = "Leads down into the Agility Arena."
+
+[brimhaven_arena_exit_ladder]
+id = 3618
+examine = "Leads back to Brimhaven."
+
+[brimhaven_arena_climbing_rope]
+id = 3610
+examine = "I can use this rope to climb back to the top."
+
+[brimhaven_arena_ticket_dispenser]
+id = 3608
+examine = "Releases a ticket when the flashing arrow is above it."
+
+[brimhaven_arena_ticket_dispenser_2]
+clone = "brimhaven_arena_ticket_dispenser"
+id = 3581
+
+[brimhaven_arena_balancing_rope]
+id = 3551
+examine = "I can balance on this rope."
+
+[brimhaven_arena_balancing_rope_middle]
+id = 3552
+examine = "I can balance on this rope."
+
+[brimhaven_arena_log_balance]
+id = 3553
+examine = "I can balance on this log."
+
+[brimhaven_arena_log_balance_2]
+clone = "brimhaven_arena_log_balance"
+id = 3557
+
+[brimhaven_arena_balancing_ledge]
+id = 3559
+examine = "Tread carefully!"
+
+[brimhaven_arena_balancing_ledge_2]
+clone = "brimhaven_arena_balancing_ledge"
+id = 3561
+
+[brimhaven_arena_monkey_bars]
+id = 3564
+examine = "Now, I'm the king of the swingers, oh, the jungle VIP."
+
+[brimhaven_arena_monkey_bars_middle]
+id = 3563
+examine = "Now, I'm the king of the swingers, oh, the jungle VIP."
+
+[brimhaven_arena_low_wall]
+id = 3565
+examine = "It looks like I can clamber over this."
+
+[brimhaven_arena_rope_swing]
+id = 3566
+examine = "Use this to swing over to the next platform."
+
+[brimhaven_arena_blade]
+id = 3567
+examine = "I might want to avoid this nasty blade."
+
+[brimhaven_arena_blade_left]
+id = 3568
+examine = "I might want to avoid this nasty blade."
+
+[brimhaven_arena_blade_right]
+id = 3569
+examine = "I might want to avoid this nasty blade."
+
+[brimhaven_arena_plank]
+id = 3570
+examine = "Walk the plank! Ya land lubber!"
+
+[brimhaven_arena_plank_2]
+clone = "brimhaven_arena_plank"
+id = 3571
+
+[brimhaven_arena_plank_3]
+clone = "brimhaven_arena_plank"
+id = 3572
+
+[brimhaven_arena_plank_middle]
+id = 3573
+examine = "Walk the plank! Ya land lubber!"
+
+[brimhaven_arena_plank_middle_2]
+id = 3574
+examine = "Walk the plank! Ya land lubber!"
+
+[brimhaven_arena_plank_broken]
+id = 3576
+examine = "Walk the plank! Ya land lubber!"
+
+[brimhaven_arena_pillar]
+id = 3578
+examine = "It's a small step for a player, a giant leap for player kind."
+
+[brimhaven_arena_pillar_middle]
+id = 3579
+examine = "It's a small step for a player, a giant leap for player kind."
+
+[brimhaven_arena_spinning_blades]
+id = 3580
+examine = "Makes sliced human."
+
+[brimhaven_arena_floor_spikes]
+id = 3582
+examine = "Makes human colanders."
+
+[brimhaven_arena_hand_holds]
+id = 3583
+examine = "I can use these to climb across to the other side."
+
+[brimhaven_arena_hand_holds_middle]
+id = 3584
+examine = "I can use these to climb across to the other side."
+
+[brimhaven_arena_pressure_pad]
+id = 3585
+examine = "Looks suspiciously like a pressure pad to me."

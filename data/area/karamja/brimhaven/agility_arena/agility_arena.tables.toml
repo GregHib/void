@@ -1,0 +1,153 @@
+# Pirate Jackie the Fruit's ticket exchange, keyed by interface component
+[agility_arena_rewards]
+tickets = "int"
+experience = "int"
+item = "item"
+
+[.experience_1]
+tickets = 1
+experience = 240
+
+[.experience_10]
+tickets = 10
+experience = 2480
+
+[.experience_25]
+tickets = 25
+experience = 6500
+
+[.experience_100]
+tickets = 100
+experience = 28000
+
+[.experience_1000]
+tickets = 1000
+experience = 320000
+
+[.toadflax]
+tickets = 3
+item = "clean_toadflax"
+
+[.snapdragon]
+tickets = 10
+item = "clean_snapdragon"
+
+[.wergali]
+tickets = 5
+item = "clean_wergali"
+
+[.pirates_hook]
+tickets = 800
+item = "pirate_hook_left"
+
+# Ticket dispensers the arrow can point at, one every 11 tiles (2805,9590 is the exit ladder)
+[brimhaven_arena_dispensers]
+tile = "tile"
+
+[.dispenser_1]
+tile = { x = 2761, y = 9546, level = 3 }
+
+[.dispenser_2]
+tile = { x = 2761, y = 9557, level = 3 }
+
+[.dispenser_3]
+tile = { x = 2761, y = 9568, level = 3 }
+
+[.dispenser_4]
+tile = { x = 2761, y = 9579, level = 3 }
+
+[.dispenser_5]
+tile = { x = 2761, y = 9590, level = 3 }
+
+[.dispenser_6]
+tile = { x = 2772, y = 9546, level = 3 }
+
+[.dispenser_7]
+tile = { x = 2772, y = 9557, level = 3 }
+
+[.dispenser_8]
+tile = { x = 2772, y = 9568, level = 3 }
+
+[.dispenser_9]
+tile = { x = 2772, y = 9579, level = 3 }
+
+[.dispenser_10]
+tile = { x = 2772, y = 9590, level = 3 }
+
+[.dispenser_11]
+tile = { x = 2783, y = 9546, level = 3 }
+
+[.dispenser_12]
+tile = { x = 2783, y = 9557, level = 3 }
+
+[.dispenser_13]
+tile = { x = 2783, y = 9568, level = 3 }
+
+[.dispenser_14]
+tile = { x = 2783, y = 9579, level = 3 }
+
+[.dispenser_15]
+tile = { x = 2783, y = 9590, level = 3 }
+
+[.dispenser_16]
+tile = { x = 2794, y = 9546, level = 3 }
+
+[.dispenser_17]
+tile = { x = 2794, y = 9557, level = 3 }
+
+[.dispenser_18]
+tile = { x = 2794, y = 9568, level = 3 }
+
+[.dispenser_19]
+tile = { x = 2794, y = 9579, level = 3 }
+
+[.dispenser_20]
+tile = { x = 2794, y = 9590, level = 3 }
+
+[.dispenser_21]
+tile = { x = 2805, y = 9546, level = 3 }
+
+[.dispenser_22]
+tile = { x = 2805, y = 9557, level = 3 }
+
+[.dispenser_23]
+tile = { x = 2805, y = 9568, level = 3 }
+
+[.dispenser_24]
+tile = { x = 2805, y = 9579, level = 3 }
+
+# Plank crossing lanes, from the first to the last plank between the two ends; one or two lanes are safe at a time
+[brimhaven_arena_plank_lanes]
+from = "tile"
+to = "tile"
+lane = "int"
+
+[.lane_1]
+from = { x = 2798, y = 9591, level = 3 }
+to = { x = 2801, y = 9591, level = 3 }
+lane = 0
+
+[.lane_2]
+from = { x = 2798, y = 9590, level = 3 }
+to = { x = 2801, y = 9590, level = 3 }
+lane = 1
+
+[.lane_3]
+from = { x = 2798, y = 9589, level = 3 }
+to = { x = 2801, y = 9589, level = 3 }
+lane = 2
+
+[.lane_4]
+from = { x = 2765, y = 9558, level = 3 }
+to = { x = 2768, y = 9558, level = 3 }
+lane = 0
+
+[.lane_5]
+from = { x = 2765, y = 9557, level = 3 }
+to = { x = 2768, y = 9557, level = 3 }
+lane = 1
+
+[.lane_6]
+from = { x = 2765, y = 9556, level = 3 }
+to = { x = 2768, y = 9556, level = 3 }
+lane = 2
