@@ -9,3 +9,34 @@ id = 4379
 
 [portal_of_death]
 id = 4380
+
+[goblin_stronghold_of_security]
+id = 11260
+hitpoints = 120
+att = 3
+def = 4
+examine = "An ugly green creature."
+
+[goblin_stronghold_of_security_2]
+id = 11261
+hitpoints = 160
+att = 12
+str = 13
+def = 7
+examine = "An ugly green creature."
+
+[wolf_stronghold_of_security_3]
+id = 11262
+hitpoints = 150
+att = 10
+str = 15
+def = 10
+examine = "Not man's best friend."
+
+[wolf_stronghold_of_security_4]
+id = 11263
+hitpoints = 100
+att = 10
+str = 10
+def = 10
+examine = "Not man's best friend."

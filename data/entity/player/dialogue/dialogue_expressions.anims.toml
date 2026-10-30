@@ -613,7 +613,7 @@ id = 4281
 [expression_cat_neutral]
 id = 8373
 
-[expression_cat_quiz]
+[expression_cat_old_quiz]
 id = 8375
 
 [expression_cat_angry]
@@ -621,6 +621,36 @@ id = 9178
 
 [expression_cat_unamused]
 id = 9187
+
+[expression_cat_idle]
+id = 8581
+
+[expression_cat_sad]
+id = 8582
+
+[expression_cat_happy]
+id = 9179
+
+[expression_cat_quiz]
+id = 9180
+
+[expression_cat_shocked]
+id = 9181
+
+[expression_cat_scared]
+id = 9183
+
+[expression_cat_hungry_thirsty]
+id = 9189
+
+[expression_cat_confused]
+id = 9190
+
+[expression_cat_hypnotised]
+id = 9192
+
+[expression_cat_fussy]
+id = 9202
 
 [expression_dog_down]
 id = 6550
@@ -646,28 +676,28 @@ id = 585
 [expression_child_angry]
 id = 7168
 
-[expression_child_shifty]
+[expression_child_bored]
 id = 7169
 
-[expression_child_quiz]
+[expression_child_confused]
 id = 7170
 
-[expression_child_evil]
+[expression_child_evil_laugh]
 id = 7171
 
-[expression_child_neutral]
+[expression_child_happy]
 id = 7172
+
+[expression_child_neutral]
+id = 7173
 
 [expression_child_idle]
-id = 7172
-
-[expression_child_happy]
-id = 7173
+id = 7174
 
 [expression_child_laugh]
 id = 7175
 
-[expression_child_confused]
+[expression_child_quiz]
 id = 7176
 
 [expression_child_sad]
@@ -675,6 +705,18 @@ id = 7177
 
 [expression_child_scared]
 id = 7178
+
+[expression_child_shifty]
+id = 7179
+
+[expression_child_scared_alt]
+id = 9682
+
+[expression_child_cry]
+id = 9683
+
+[expression_child_angry_alt]
+id = 9684
 
 [expression_child_shock]
 id = 7180

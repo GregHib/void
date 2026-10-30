@@ -57,6 +57,17 @@ interface Character :
     val collisionFlag: Int
     var walkTrigger: (() -> Unit)?
 
+    /**
+     * Ticks the character is delayed for (0 = not delayed, -1 = until next tick)
+     * Not in [variables] for performance due to usage in core engine loops.
+     */
+    var delay: Int
+
+    var dead: Boolean
+
+    val delayed: Boolean
+        get() = delay != 0
+
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
 
     fun clearWalkTrigger() {
@@ -208,9 +219,7 @@ interface Character :
     /**
      * Turn to face a [direction]
      */
-    fun face(direction: Direction, update: Boolean = true): Boolean {
-        return face(Delta(direction.delta.x * 100, direction.delta.y * 100), update)
-    }
+    fun face(direction: Direction, update: Boolean = true): Boolean = face(Delta(direction.delta.x * 100, direction.delta.y * 100), update)
 
     /**
      * Turn to face a [tile]
@@ -313,7 +322,7 @@ interface Character :
             return
         }
         if (!cancellable) {
-            this["delay"] = ticks
+            delay = ticks
         }
         suspendCancellableCoroutine {
             suspension = Suspension.Delay(it, ticks)
@@ -421,5 +430,4 @@ interface Character :
             interact.launched = true
         }
     }
-
 }

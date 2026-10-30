@@ -21,17 +21,17 @@ class Dororan : Script {
 
     init {
         itemOnItem("chisel", "ring_from_jeffery") { _, _ ->
-            println("Item on item")
             if (quest("gunnars_ground") == "jeffery_ring") {
                 noInterest()
                 return@itemOnItem
             }
-            item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
-            println("Engraved")
-            anim("engrave")
-            exp(Skill.Crafting, 125.0)
-            inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
+            if (!inventory.replace("ring_from_jeffery", "dororans_engraved_ring")) {
+                return@itemOnItem
+            }
             set("gunnars_ground", "engraved_ring")
+            exp(Skill.Crafting, 125.0)
+            anim("engrave")
+            item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
         }
 
         npcOperate("Talk-to", "dororan_*") {
@@ -82,7 +82,7 @@ class Dororan : Script {
                                     npc<Happy>("'With beauty blessed.'")
                                     choice {
                                         option("Engrave the bracelet.") {
-                                            if (levels.get(Skill.Crafting) < 72) {
+                                            if (levels.get(Skill.Crafting) < 42) {
                                                 item("ruby_bracelet", "you need a Crafting level of at least 42 to engrave the ruby bracelet.")
                                                 npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                                 return@option
@@ -102,8 +102,7 @@ class Dororan : Script {
                                     npc<Pleased>("What can I do for you?")
                                     someThingElse()
                                 }
-                                option<Idle>("I don't have time right now.") {
-                                }
+                                option<Idle>("I don't have time right now.")
                             }
                         }
                     } else if (get("dororan_dragonstone_necklace", 0) != 1) {
@@ -112,7 +111,7 @@ class Dororan : Script {
                             npc<Happy>("There's not much room...how about just 'Gudrun'?")
                             choice {
                                 option("Engrave the necklace.") {
-                                    if (levels.get(Skill.Crafting) < 42) {
+                                    if (levels.get(Skill.Crafting) < 72) {
                                         item("dragonstone_necklace", "you need a Crafting level of at least 72 to engrave the dragonstone necklace.")
                                         npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                         return@option
@@ -155,8 +154,7 @@ class Dororan : Script {
                         npc<Pleased>("What can I do for you?")
                         someThingElse()
                     }
-                    option<Idle>("I don't have time right now.") {
-                    }
+                    option<Idle>("I don't have time right now.")
                 }
             } else {
                 someThingElse()
@@ -1004,8 +1002,7 @@ class Dororan : Script {
                         npc<Pleased>("By all means.")
                         lovePoemMenu()
                     }
-                    option<Idle>("I'll return with a ring from Jeffery.") {
-                    }
+                    option<Idle>("I'll return with a ring from Jeffery.")
                 }
             }
             option<Idle>("I'll return with a ring from Jeffery.")
@@ -1161,8 +1158,7 @@ class Dororan : Script {
                     set("gunnars_ground", "started")
                     started()
                 }
-                option("No.") {
-                }
+                option("No.")
             }
         }
     }

@@ -1,0 +1,27 @@
+[fist_of_guthix_tutorial_complete]
+format = "boolean"
+persist = true
+
+[fist_of_guthix_fiara_identity]
+format = "string"
+persist = true
+
+[fist_of_guthix_seen_fiara_introduction]
+format = "boolean"
+persist = true
+
+[fist_of_guthix_completed_fiara_what_is_this_place_dialogue]
+format = "boolean"
+persist = true
+
+[fist_of_guthix_spoken_to_alran]
+format = "boolean"
+persist = true
+
+[fist_of_guthix_spoken_to_getorix]
+format = "boolean"
+persist = true
+
+[fist_of_guthix_spoken_to_pontimer]
+format = "boolean"
+persist = true

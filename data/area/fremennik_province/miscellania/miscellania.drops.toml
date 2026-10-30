@@ -25,37 +25,50 @@ drops = [
 [sea_snake_hatchling_drop_table]
 type = "all"
 drops = [
+    { id = "big_bones" },
     { id = "bones" },
     { table = "sea_snake_hatchling_secondary" },
     { table = "medium_clue_scroll", roll = 128 },
+    { table = "sea_snake_hatchling_tertiary" },
 ]
 
 [sea_snake_hatchling_secondary]
-roll = 128
+roll = 1024
 drops = [
-    { id = "water_rune", amount = 15, chance = 2 },
-    { id = "mist_rune", chance = 2 },
-    { id = "broad_arrows", amount = 4, chance = 2 },
-    { id = "coins", amount = 44, chance = 60 },
-    { id = "coins", amount = 32, chance = 11 },
-    { id = "coins", amount = 24, chance = 9 },
-    { id = "coins", amount = 23, chance = 7 },
-    { id = "adamant_dart_tip", amount = 2, chance = 10 },
-    { id = "fishing_bait", amount = 50, chance = 4 },
-    { id = "pearl_bolt_tips", amount = 3, chance = 4 },
-    { id = "water_orb", chance = 3 },
-    { id = "raw_bass", amount = 2, chance = 4 },
-    { id = "raw_lobster", chance = 2 },
-    { id = "seaweed", amount = 5, chance = 2 },
-    { id = "edible_seaweed", amount = 5, chance = 2 },
-    { id = "oyster_pearl", amount = 2 },
-    { id = "oyster_pearls" },
-    { id = "casket" },
-    { table = "gem_drop_table" },
+    { id = "water_rune", amount = 15, chance = 13 },
+    { id = "mist_rune", chance = 13 },
+    { id = "coins", amount = 44, chance = 380 },
+    { id = "coins", amount = 32, chance = 70 },
+    { id = "coins", amount = 24, chance = 58 },
+    { id = "coins", amount = 23, chance = 45 },
+    { id = "adamant_dart_tip", amount = 2, chance = 64 },
+    { id = "fishing_bait", amount = 50, chance = 26 },
+    { id = "pearl_bolt_tips", chance = 26 },
+    { id = "water_orb", chance = 19 },
+    { id = "raw_bass", amount = 2, chance = 26 },
+    { id = "raw_lobster", chance = 13 },
+    { id = "oyster_pearl", amount = 2, chance = 6 },
+    { id = "oyster_pearls", chance = 6 },
+    { id = "casket", chance = 6 },
+    { id = "guam_seed", chance = 26 },
+    { id = "spirit_weed_seed", chance = 26 },
+    { id = "chaos_talisman", min = 1, max = 3, chance = 2 },
+    { id = "seaweed_noted", amount = 5, chance = 26 },
+    { id = "edible_seaweed_noted", amount = 5, chance = 26 },
+    { id = "broad_arrow", chance = 13 },
+    { id = "broad_arrow", amount = 4, chance = 13 },
+    { table = "herb_drop_table", chance = 32 },
+    { table = "uncommon_seed_drop_table", chance = 89 },
 ]
 
 [alrik_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
+]
+
+[sea_snake_hatchling_tertiary]
+roll = 5000
+drops = [
+    { id = "giant_snake_spine", chance = 1250 },
 ]

@@ -3,15 +3,14 @@ package world.gregs.voidps.engine.client.update
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.character.mode.DefaultMode
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
-import world.gregs.voidps.engine.entity.character.mode.Wander
-import world.gregs.voidps.engine.entity.character.mode.Wander.Companion.wanders
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.npc.flagTransform
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -27,12 +26,15 @@ class NPCTask(
         if (character.mode == EmptyMode) {
             // An idle familiar (its owner still has it as their follower) resumes following its
             // owner rather than wandering or standing still after a fight ends.
-            val ownerIndex = character["owner_index", -1]
+            val ownerIndex = character.ownerIndex
             val owner = if (ownerIndex != -1) Players.indexed(ownerIndex) else null
             if (owner != null && owner["follower_index", -1] == character.index) {
                 character.mode = Follow(character, owner)
-            } else if (wanders(character)) {
-                character.mode = Wander(character)
+            } else {
+                val mode = DefaultMode.get(character)
+                if (mode != null) {
+                    character.mode = mode
+                }
             }
         }
         healthRegen(character)
@@ -43,7 +45,7 @@ class NPCTask(
     }
 
     private fun lifecycle(npc: NPC) {
-        if (npc.contains("delay")) {
+        if (npc.delayed) {
             return
         }
         if (npc.lifecycle == 0) {
@@ -59,9 +61,11 @@ class NPCTask(
                     // Revert
                     npc.visuals.transform.id = npc.def.id
                     npc.flagTransform()
-                    npc.clear("transform_id")
+                    npc.transformId = npc.id
                 }
             }
+        } else if (npc.queue.contains("death")) {
+            return
         } else if (++npc.lifecycle == 0) {
             // Despawn
             NPCs.remove(npc)
@@ -71,7 +75,7 @@ class NPCTask(
     private fun reset(npc: NPC) {
         npc.clearAnim()
         npc.hide = false
-        npc.clear("dead")
+        npc.dead = false
         npc.mode = EmptyMode
         npc.levels.clear()
         val respawn = npc.get<Tile>("respawn_tile") ?: return
@@ -81,9 +85,19 @@ class NPCTask(
     }
 
     private fun healthRegen(character: NPC) {
-        if (!character.hasClock("under_attack") && character.regenCounter++ >= character.def["regen_rate_ticks", 25] && character.levels.get(Skill.Constitution) < character.levels.getMax(Skill.Constitution)) {
-            character.levels.restore(Skill.Constitution, 10)
-            character.regenCounter = 0
+        if (character.levels.get(Skill.Constitution) >= character.levels.getMax(Skill.Constitution)) {
+            if (character.regenCounter < character.def.regenRate) {
+                character.regenCounter++
+            }
+            return
         }
+        if (character.hasClock("under_attack")) {
+            return
+        }
+        if (character.regenCounter++ < character.def.regenRate) {
+            return
+        }
+        character.levels.restore(Skill.Constitution, 10)
+        character.regenCounter = 0
     }
 }

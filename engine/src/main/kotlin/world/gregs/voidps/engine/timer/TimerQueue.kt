@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.timer
 
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.GameLoop
 import java.util.*
 
 class TimerQueue(
@@ -46,6 +46,9 @@ class TimerQueue(
                 is World -> TimerApi.tick(timer.name)
                 else -> return
             }
+            if (!names.contains(timer.name) || queue.any { it.name == timer.name }) {
+                continue
+            }
             when (interval) {
                 Timer.CANCEL -> {
                     names.remove(timer.name)
@@ -73,7 +76,13 @@ class TimerQueue(
         }
     }
 
-    override fun clear(name: String): Boolean = names.remove(name) && queue.removeIf { it.name == name }
+    override fun clear(name: String): Boolean {
+        if (!names.remove(name)) {
+            return false
+        }
+        queue.removeIf { it.name == name }
+        return true
+    }
 
     override fun clearAll() {
         names.clear()

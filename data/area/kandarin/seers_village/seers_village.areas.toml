@@ -9,3 +9,31 @@ x = [2728, 2772]
 y = [3424, 3455]
 tags = ["penguin_area"]
 hint = "near the bees and flax."
+bot_capacity = 4
+
+[seers_village_bank]
+x = [2721, 2730]
+y = [3490, 3493]
+tags = ["bank"]
+
+[seers_village_spinning_wheel]
+x = [2709, 2715]
+y = [3469, 3473]
+level = 1
+bot_capacity = 2
+
+[sorcerers_tower_magic_trees]
+x = [2696, 2709]
+y = [3394, 3403]
+bot_capacity = 4
+
+[seers_village_maple_trees]
+x = [2719, 2735]
+y = [3494, 3505]
+bot_capacity = 4
+
+[seers_village_yews]
+# nav-editor: named area only
+x = [2753, 2767]
+y = [3427, 3436]
+level = 0

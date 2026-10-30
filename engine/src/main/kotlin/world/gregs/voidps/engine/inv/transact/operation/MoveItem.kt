@@ -49,11 +49,15 @@ object MoveItem {
             return
         }
         val transaction = link(target)
-        if (!target.stackable(fromItem.id) && fromItem.amount == 1) {
-            // Move single non-stackable items to keep charges
+        if (fromItem.amount == 1 && (!target.stackable(fromItem.id) || !target.contains(fromItem.id))) {
+            // Move single items without an existing stack to keep charges
+            if (target.restricted(fromItem.id)) {
+                transaction.error = TransactionError.Invalid
+                return
+            }
             val freeIndex = target.freeIndex()
             if (freeIndex == -1) {
-                transaction.error = TransactionError.Full()
+                transaction.error = TransactionError.Full(item = fromItem.id)
                 return
             }
             transaction.set(freeIndex, fromItem, from = inventory.id, fromIndex = fromIndex)
@@ -164,7 +168,7 @@ object MoveItem {
      */
     private fun TransactionOperation.mergeStacks(transaction: TransactionOperation, id: String, amount: Int, target: Inventory, toItem: Item, toIndex: Int): Boolean {
         if (id != toItem.id || !target.stackable(toItem.id)) {
-            transaction.error = TransactionError.Full()
+            transaction.error = TransactionError.Full(item = id)
             return false
         }
         transaction.increaseStack(toIndex, amount)

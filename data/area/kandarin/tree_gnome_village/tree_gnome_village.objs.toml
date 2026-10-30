@@ -1,0 +1,7 @@
+[hedge]
+id = 1116
+examine = "Keeps the neighbours out!"
+
+[hedgecorner]
+id = 1117
+examine = "Keeps the neighbours out!"

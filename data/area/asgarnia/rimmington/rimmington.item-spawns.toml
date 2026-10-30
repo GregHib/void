@@ -2,4 +2,9 @@ spawns = [
   { id = "snape_grass", x = 2906, y = 3297, delay = 10, members = true },
   { id = "snape_grass", x = 2907, y = 3295, delay = 10, members = true },
   { id = "snape_grass", x = 2917, y = 3274, delay = 10, members = true },
+  { id = "logs", x = 2959, y = 3205, delay = 100 },
+  { id = "logs", x = 2958, y = 3205, delay = 100 },
+  { id = "bronze_arrow", x = 2957, y = 3205, delay = 100 },
+  { id = "bronze_pickaxe", x = 2963, y = 3216, delay = 100 },
+  { id = "bronze_scimitar", x = 2965, y = 3211, level = 1, delay = 100 },
 ]

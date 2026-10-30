@@ -1,10 +1,7 @@
 package content.quest.member.hand_in_the_sand
 
-import content.entity.obj.door.Door
 import content.entity.player.bank.ownsItem
-import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.quest.messageScroll
@@ -49,14 +46,6 @@ class HandInTheSand : Script {
             }
             addOrDrop("sandys_rota")
             statement("You quickly sift through some of the papers on Sandy's desk and find a work rota for Bert.")
-        }
-
-        objectOperate("Open", "magic_guild_door_closed,magic_guild_door_2_closed") { (target) ->
-            if (!hasMax(Skill.Magic, 66)) {
-                npc<Neutral>("You need a magic level of 66 for admittance to the guild. The magical energy inside the guild is unsafe for anyone below that level. For any other business please ring for attention.")
-                return@objectOperate
-            }
-            Door.openDoor(this, target)
         }
 
         itemOption("Activate", "magical_orb") {

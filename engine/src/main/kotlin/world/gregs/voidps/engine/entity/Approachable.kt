@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.interact.*
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.event.Wildcards
  * See `character.approachRange()` for setting the required distance
  */
 interface Approachable {
-
 
     /*
         Player approaches
@@ -31,9 +31,15 @@ interface Approachable {
         }
     }
 
-    fun objectApproach(option: String, obj: String = "*", handler: suspend Player.(PlayerOnObjectInteract) -> Unit) {
+    /**
+     * [range] overrides the default approach distance so the handler can launch from further away
+     */
+    fun objectApproach(option: String, obj: String = "*", range: Int? = null, handler: suspend Player.(PlayerOnObjectInteract) -> Unit) {
         Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
+            if (range != null) {
+                playerObjectRange.put("$option:$id", range)
+            }
             playerObject.getOrPut("$option:$id") { mutableListOf() }.add(handler)
         }
     }
@@ -115,7 +121,6 @@ interface Approachable {
         }
     }
 
-
     /*
         NPC approaches
      */
@@ -151,6 +156,7 @@ interface Approachable {
         val itemOnNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnNPCInteract) -> Unit>>(25)
 
         val playerObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerOnObjectInteract) -> Unit>>(50)
+        private val playerObjectRange = Object2IntOpenHashMap<String>(2).apply { defaultReturnValue(-1) }
         val onObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOnObjectInteract) -> Unit>>(2)
         val itemOnObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnObjectInteract) -> Unit>>(2)
 
@@ -165,7 +171,19 @@ interface Approachable {
 
         var npcMark: (Player.(NPC) -> Unit)? = null
 
+        /**
+         * Approach distance registered for an object [option], null for the default
+         */
+        fun objectRange(option: String, id: String): Int? {
+            var range = playerObjectRange.getInt("$option:$id")
+            if (range == -1) {
+                range = playerObjectRange.getInt("$option:*")
+            }
+            return if (range == -1) null else range
+        }
+
         override fun close() {
+            playerObjectRange.clear()
             playerPlayer.clear()
             onPlayer.clear()
             playerNpc.clear()

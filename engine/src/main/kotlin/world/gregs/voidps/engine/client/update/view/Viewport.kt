@@ -18,7 +18,7 @@ class Viewport {
     val playerChanges = ArrayWriter(3000)
     val playerUpdates = ArrayWriter(7500)
     val npcChanges = ArrayWriter(3000)
-    val npcUpdates = ArrayWriter(4000)
+    val npcUpdates = ArrayWriter(7500)
 
     var lastLoadZone: Zone = Zone.EMPTY
     var lastBatchZone: Zone = Zone.EMPTY

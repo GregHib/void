@@ -39,6 +39,7 @@ drops = [
 ```
 
 ## Types
+
 There are two table types by default a tables type will be `first`.
 * `all` - drop every item listed
 * `first` - drop only one item
@@ -62,6 +63,7 @@ drops = [
 Most tables however roll a random number between 0 and `roll` and select the first drop in the list that the cumulative `chance` is within.
 
 For example take this table:
+
 ```toml
 [talisman_drop_table]
 roll = 70
@@ -82,12 +84,12 @@ drops = [
 > [!WARNING]
 > Drops chances should never exceed the tables `roll` as that could mistakenly give some drops a 0% chance.
 
-
 ## Nesting
 
 Tables can also be drops themselves allowing for nesting and control over "groups" of drops.
 
 The following example will always drop `bones` and `raw_rat_meat` but `giant_rat_bones` will only have a 25% of being dropped
+
 ```toml
 [giant_rat_drop_table]
 type = "all"
@@ -109,6 +111,7 @@ drops = [
     { id = "giant_rat_bone" }
 ]
 ```
+
 ## Conditionals
 
 ### Variables
@@ -125,7 +128,7 @@ drops = [
 
 ### Items
 
-Drops can also have optional conditions if a player owns (has on them or in their bank) or does not own a particular item using the `owns` or `lacks` fields. 
+Drops can also have optional conditions if a player owns (has on them or in their bank) or does not own a particular item using the `owns` or `lacks` fields.
 
 ```toml
 drops = [
@@ -190,8 +193,8 @@ drops = [
 > The converter doesn't verify item ids, so an item named "Wizard hat" will be
 > converted to `wizard_hat` even though the `.items.toml` id is `black_wizard_hat`.
 > Any incorrect ids will be printed out on server startup: `[ItemDrop] - Invalid drop id wizard_hat`.
-
-
+>
 > [!WARNING]
 > The converter won't correctly convert most [variable conditions](#variables) such as drop limits, dynamic drop rates,
 > quest requirements or other exceptions. These will need to be added manually.
+

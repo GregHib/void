@@ -77,4 +77,8 @@ examine = "Physician to Neitiznot's militia."
 
 [honour_guard_ice_troll_caves]
 id = 5517
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
 examine = "One of your militia."

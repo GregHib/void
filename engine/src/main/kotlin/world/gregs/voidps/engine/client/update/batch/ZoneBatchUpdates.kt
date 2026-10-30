@@ -48,7 +48,7 @@ object ZoneBatchUpdates : Runnable {
      * Adds [update] to the batch update for [zone]
      */
     fun add(zone: Zone, update: ZoneUpdate) {
-        batches.getOrPut(zone.id) { ObjectArrayList() }.add(update)
+        batches.getOrPut(zone.id) { pool.borrow() }.add(update)
     }
 
     /**

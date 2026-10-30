@@ -36,7 +36,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -66,7 +65,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -89,7 +87,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -112,7 +109,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -136,7 +132,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -165,7 +160,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -192,7 +186,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -218,7 +211,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -241,7 +233,6 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
 
     @Nested
@@ -263,8 +254,5 @@ class InterfaceApiTest {
         }
 
         override val apis = listOf(InterfaceApi)
-
     }
-
-
 }

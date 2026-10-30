@@ -90,6 +90,10 @@ combat_def = "ice_troll"
 [ice_troll_troll_country_8]
 id = 1942
 clone = "ice_troll_troll_country_5"
+hitpoints = 800
+att = 100
+str = 120
+def = 120
 combat_def = "ice_troll"
 
 [troll_father_troll_country]

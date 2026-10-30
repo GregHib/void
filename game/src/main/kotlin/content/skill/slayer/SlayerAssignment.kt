@@ -37,6 +37,7 @@ class SlayerAssignment : Script {
             }
             slayerPoints -= 30
             slayerTask = "nothing"
+//            message("<green>Your assignment has now been cleared. You may freely choose another. 548 Slayer points remaining.")
             //    npc<Happy>(player["slayer_npc", ""], "") TODO proper message and save npc id on interface open
         }
 
@@ -63,6 +64,8 @@ class SlayerAssignment : Script {
                 }
             }
 
+//            message("<green>Removed Cave bugs from my ignore list.")
+//            message("<red>Sorry, you'll need at least 250 Quest Points to buy this ability.")
             if (!blocked) {
                 message("You don't have any free block slots.") // TODO proper message
             }

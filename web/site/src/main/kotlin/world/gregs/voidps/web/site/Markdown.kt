@@ -114,8 +114,7 @@ fun renderMarkdown(markdown: String): MarkdownDocument {
  */
 private val imageRun = Regex("(?:<img\\b[^>]*>\\s*){2,}")
 
-private fun groupImageRuns(html: String): String =
-    imageRun.replace(html) { match -> "<div class=\"image-row\">${match.value.trim()}</div>" }
+private fun groupImageRuns(html: String): String = imageRun.replace(html) { match -> "<div class=\"image-row\">${match.value.trim()}</div>" }
 
 private val headingImage = Regex("!\\[([^]]*)]\\([^)]*\\)")
 private val headingLink = Regex("\\[([^]]*)]\\([^)]*\\)")
@@ -176,9 +175,8 @@ private class AlertGeneratingProvider : GeneratingProvider {
         visitor.consumeHtml("</div>")
     }
 
-    private fun iconSpan(path: String): String =
-        """<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" """ +
-            """stroke-linecap="square" aria-hidden="true">$path</svg>"""
+    private fun iconSpan(path: String): String = """<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" """ +
+        """stroke-linecap="square" aria-hidden="true">$path</svg>"""
 }
 
 /** Highlights fenced code blocks and wires up [CodeTabs] groups for consecutive fences. */
@@ -187,9 +185,8 @@ private class CodeFenceGeneratingProvider(private val slots: Map<Int, CodeTabs.S
     override fun processNode(visitor: HtmlGenerator.HtmlGeneratingVisitor, text: String, node: ASTNode) {
         val language = node.children.find { it.type == MarkdownTokenTypes.FENCE_LANG }
             ?.getTextInNode(text)?.toString()?.trim()?.takeIf { it.isNotEmpty() }
-        val code = node.children
-            .filter { it.type == MarkdownTokenTypes.CODE_FENCE_CONTENT }
-            .joinToString("\n") { it.getTextInNode(text) }
+        val content = node.children.filter { it.type == MarkdownTokenTypes.CODE_FENCE_CONTENT }
+        val code = if (content.isEmpty()) "" else text.substring(content.first().startOffset, content.last().endOffset)
         val block = codeBlockHtml(language, highlightHtml(language, code))
 
         val slot = slots[node.startOffset]
@@ -246,9 +243,8 @@ private object CodeTabs {
         return slots
     }
 
-    private fun fenceLanguage(fence: ASTNode, source: String): String =
-        fence.children.find { it.type == MarkdownTokenTypes.FENCE_LANG }
-            ?.getTextInNode(source)?.toString()?.trim()?.takeIf { it.isNotEmpty() } ?: "text"
+    private fun fenceLanguage(fence: ASTNode, source: String): String = fence.children.find { it.type == MarkdownTokenTypes.FENCE_LANG }
+        ?.getTextInNode(source)?.toString()?.trim()?.takeIf { it.isNotEmpty() } ?: "text"
 
     private fun collectGroups(node: ASTNode, source: String, slots: MutableMap<Int, Slot>) {
         val children = node.children

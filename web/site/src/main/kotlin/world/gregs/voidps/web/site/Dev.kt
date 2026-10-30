@@ -25,12 +25,7 @@ object Dev {
 
     private const val WORLD_LABEL = "World 9 · void-eu-1 · rev 231"
 
-    private val worlds = listOf(
-        WorldEntry(9, "Germany · Falkenstein", members = true, mode = "PvP", players = 812, capacity = 2000, ping = 38, status = WorldStatus.Online),
-        WorldEntry(12, "United Kingdom · London", mode = "Normal", players = 1743, capacity = 2000, ping = 64, status = WorldStatus.Online),
-        WorldEntry(18, "United States · Ashburn", mode = "Deadman", players = 1980, capacity = 2000, ping = 186, status = WorldStatus.Full),
-        WorldEntry(30, "Germany · Falkenstein", mode = "Normal", players = 1622, capacity = 2000, ping = 37, status = WorldStatus.Restarting),
-    )
+    private val worlds = defaultWorlds
 
     private data class ErrorEntry(val level: String, val tone: BadgeTone, val time: String, val text: String, val meta: String)
 
@@ -111,10 +106,16 @@ object Dev {
                 }
                 span {
                     style = "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)"
-                    +"${world.mode} · ${"%,d".format(world.players)}${world.ping?.let { " · ${it}ms" } ?: ""}"
+                    val live = world.live
+                    xText("'${jsString(world.mode)} · ' + voidFormatNumber($live.players) + ($live.ping != null ? ' · ' + $live.ping + 'ms' : '')")
+                    +world.mode
                 }
             }
-            ui.badge(world.status.label, tone = world.status.tone, dot = world.status.dot)
+            span {
+                for (status in WorldStatus.entries) {
+                    ui.badge(status.label, tone = status.tone, dot = status.dot, showWhen = "${world.live}.status === '${status.name}'")
+                }
+            }
         }
     }
 
@@ -143,15 +144,20 @@ object Dev {
     }
 
     fun dashboardPage(): String = voidPage(
-        title = "Void — developer panel",
+        title = "Void - Developer Panel",
         description = "Live world telemetry, error console and staff tools for Void administrators.",
         assetPrefix = "../",
         data = "devDashboardApp()",
         head = { script(src = "../js/dev.js") {} },
     ) {
         ui.siteHeader(
-            pages, active = "dashboard", assetPrefix = "../",
-            panelTag = "DEV PANEL", worldLabel = WORLD_LABEL, liveModel = "live", devPanelHref = pages.first().href,
+            pages,
+            active = "dashboard",
+            assetPrefix = "../",
+            panelTag = "DEV PANEL",
+            worldLabel = WORLD_LABEL,
+            liveModel = "live",
+            devPanelHref = pages.first().href,
         )
 
         main {
@@ -508,15 +514,20 @@ object Dev {
     }
 
     fun playersPage(): String = voidPage(
-        title = "Void — player management",
+        title = "Void - Player Management",
         description = "Look up any account, inspect its live state and take moderation actions.",
         assetPrefix = "../",
         data = "devPlayersApp()",
         head = { script(src = "../js/dev.js") {} },
     ) {
         ui.siteHeader(
-            pages, active = "players", assetPrefix = "../",
-            panelTag = "DEV PANEL", worldLabel = WORLD_LABEL, liveModel = null, devPanelHref = pages.first().href,
+            pages,
+            active = "players",
+            assetPrefix = "../",
+            panelTag = "DEV PANEL",
+            worldLabel = WORLD_LABEL,
+            liveModel = null,
+            devPanelHref = pages.first().href,
         )
 
         main {
@@ -529,9 +540,13 @@ object Dev {
                 attributes["@input.debounce.250ms"] = "search()"
                 attributes["@keyup.enter"] = "searchEnter()"
                 ui.textInput(
-                    "dev-player-search", "Look up player", model = "query",
+                    "dev-player-search",
+                    "Look up player",
+                    model = "query",
                     hint = "Press enter to jump straight to the top match.",
-                    placeholder = "name…", mono = true, icon = Icons.SEARCH,
+                    placeholder = "name…",
+                    mono = true,
+                    icon = Icons.SEARCH,
                 )
                 ui.panel(
                     title = "Results",
@@ -597,8 +612,12 @@ object Dev {
                 ui.tabs(
                     model = "ptab",
                     items = listOf(
-                        TabItem("skills", "Skills"), TabItem("gear", "Gear"), TabItem("variables", "Variables"),
-                        TabItem("activity", "Activity"), TabItem("chat", "Chat"), TabItem("moderation", "Moderation"),
+                        TabItem("skills", "Skills"),
+                        TabItem("gear", "Gear"),
+                        TabItem("variables", "Variables"),
+                        TabItem("activity", "Activity"),
+                        TabItem("chat", "Chat"),
+                        TabItem("moderation", "Moderation"),
                     ),
                 )
 
@@ -699,10 +718,14 @@ object Dev {
                                 "padding:var(--space-6);border-bottom:1px solid var(--border-subtle);background:var(--surface-inset)"
                             ui.textInput("dev-var-filter", "Filter by name", model = "varFilter", placeholder = "varbit, slayer, config…", mono = true)
                             ui.select(
-                                "dev-var-scope", "Scope", model = "varScope",
+                                "dev-var-scope",
+                                "Scope",
+                                model = "varScope",
                                 options = listOf(
-                                    "All scopes" to "All scopes", "Account" to "Account",
-                                    "Session" to "Session", "World" to "World",
+                                    "All scopes" to "All scopes",
+                                    "Account" to "Account",
+                                    "Session" to "Session",
+                                    "World" to "World",
                                 ),
                             )
                             ui.button("Reset", variant = ButtonVariant.Secondary, size = ButtonSize.Small, onClick = "resetVarFilter()")
@@ -806,14 +829,20 @@ object Dev {
                         div {
                             style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-6)"
                             ui.select(
-                                "dev-mod-reason", "Reason", model = "modReason",
+                                "dev-mod-reason",
+                                "Reason",
+                                model = "modReason",
                                 options = listOf(
-                                    "Offensive language" to "Offensive language", "Botting / macroing" to "Botting / macroing",
-                                    "Scamming" to "Scamming", "Other" to "Other",
+                                    "Offensive language" to "Offensive language",
+                                    "Botting / macroing" to "Botting / macroing",
+                                    "Scamming" to "Scamming",
+                                    "Other" to "Other",
                                 ),
                             )
                             ui.select(
-                                "dev-mod-duration", "Duration", model = "modDuration",
+                                "dev-mod-duration",
+                                "Duration",
+                                model = "modDuration",
                                 options = listOf("24 hours" to "24 hours", "48 hours" to "48 hours", "7 days" to "7 days", "Permanent" to "Permanent"),
                             )
                             ui.textInput("dev-mod-note", "Staff note", model = "modNote", placeholder = "visible to staff only")

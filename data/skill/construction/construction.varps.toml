@@ -1,0 +1,27 @@
+[furniture_creation_hide_cross_1]
+id = 1485
+format = "boolean"
+
+[furniture_creation_hide_cross_2]
+id = 1486
+format = "boolean"
+
+[furniture_creation_hide_cross_3]
+id = 1487
+format = "boolean"
+
+[furniture_creation_hide_cross_4]
+id = 1488
+format = "boolean"
+
+[furniture_creation_hide_cross_5]
+id = 1489
+format = "boolean"
+
+[furniture_creation_hide_cross_6]
+id = 1490
+format = "boolean"
+
+[furniture_creation_hide_cross_7]
+id = 1491
+format = "boolean"

@@ -4,14 +4,12 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
-import world.gregs.voidps.engine.entity.character.mode.ModeType
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -46,9 +44,7 @@ open class Movement(
             return
         }
         val tile = strategy.destination(character)
-        // Players, and owned familiars (which a player directs around the map), use full
-        // pathfinding so they route around obstacles. Other NPCs use cheap single-step movement.
-        val pathfinds = character is Player || (character is NPC && character["owner_index", -1] != -1)
+        val pathfinds = Steps.smartPathing(character)
         if (pathfinds && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, tile, tile.noCollision, noRun = strategy.forceWalk(character))
@@ -67,7 +63,7 @@ open class Movement(
             return false
         }
         val npc = character as? NPC ?: return false
-        if (npc.def["allowed_under", false]) {
+        if (npc.def.allowedUnder) {
             return false
         }
         if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) {
@@ -118,7 +114,7 @@ open class Movement(
         if (character.hasClock("movement_delay")) {
             return false
         }
-        if (character.contains("delay")) {
+        if (character.delayed) {
             // Inactive delays block movement unless there's a queue in action
             return character.suspension != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }
@@ -231,7 +227,7 @@ open class Movement(
             return strategy.reached(character)
         }
         val character = character
-        if ((character !is NPC || !character.def["allowed_under", false]) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
+        if ((character !is NPC || !character.def.allowedUnder) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         val nearest = strategy.nearest(character)
@@ -241,7 +237,7 @@ open class Movement(
         if (!strategy.requiresLineOfSight()) {
             return true
         }
-        return lineValidator.hasLineOfSight(character, strategy.tile, strategy.width, strategy.height)
+        return strategy.hasLineOfSight(lineValidator, character)
     }
 
     companion object {
@@ -256,7 +252,7 @@ open class Movement(
             character.tile = character.tile.add(delta)
             val to = character.tile
             character.visuals.moved = true
-            if (Settings["world.players.collision", false] && !character.contains("dead")) {
+            if (playerCollision && !character.dead) {
                 move(character, from, to)
             }
             if (character is Player) {
@@ -278,6 +274,8 @@ open class Movement(
             }
         }
 
+        private val playerCollision by Settings.bool("world.players.collision", false)
+
         private fun Player.original(tile: Tile): Tile {
             if (!Instances.reserved(tile.region)) {
                 return tile
@@ -287,19 +285,23 @@ open class Movement(
         }
 
         private fun move(character: Character, from: Tile, to: Tile) {
+            if (from == to) {
+                return
+            }
             val mask = character.collisionFlag
             val size = character.size
+            if (size == 1) {
+                Collisions.move(from.x, from.y, from.level, to.x, to.y, to.level, mask)
+                return
+            }
             for (x in 0 until size) {
                 for (y in 0 until size) {
-                    val fromX = from.x + x
-                    val fromY = from.y + y
-                    val toX = to.x + x
-                    val toY = to.y + y
-
-                    if (fromX != toX || fromY != toY || from.level != to.level) {
-                        Collisions.remove(fromX, fromY, from.level, mask)
-                        Collisions.add(toX, toY, to.level, mask)
-                    }
+                    Collisions.remove(from.x + x, from.y + y, from.level, mask)
+                }
+            }
+            for (x in 0 until size) {
+                for (y in 0 until size) {
+                    Collisions.add(to.x + x, to.y + y, to.level, mask)
                 }
             }
         }

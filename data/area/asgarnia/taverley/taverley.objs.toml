@@ -5,3 +5,11 @@ examine = "I wonder what's inside."
 [crystal_chest_open]
 id = 173
 examine = "Perhaps I should search it."
+
+[trapdoor_wolf_whistle_opened]
+id = 28676
+examine = "Where does it go?"
+
+[trapdoor_wolf_whistle_closed]
+id = 28675
+examine = "Where does it go?"

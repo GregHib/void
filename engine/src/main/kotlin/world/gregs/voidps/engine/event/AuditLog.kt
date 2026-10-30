@@ -54,11 +54,13 @@ object AuditLog {
     }
 
     private fun add(block: StringBuilder.() -> Unit) {
-        logs.add(buildString {
-            append(System.currentTimeMillis()).append("\t")
-            append(GameLoop.tick).append("\t")
-            block()
-        })
+        logs.add(
+            buildString {
+                append(System.currentTimeMillis()).append("\t")
+                append(GameLoop.tick).append("\t")
+                block()
+            },
+        )
     }
 
     fun save(directory: File = File(Settings["storage.players.logs"]), now: LocalDateTime = LocalDateTime.now()) {
@@ -67,12 +69,13 @@ object AuditLog {
         }
         val hourTime = now.withMinute(0).withSecond(0).withNano(0)
         val file = directory.resolve("${ISO_LOCAL_FORMAT.format(hourTime)}.tsv")
-        file.appendText(buildString {
-            for (log in logs) {
-                appendLine(log)
-            }
-        })
+        file.appendText(
+            buildString {
+                for (log in logs) {
+                    appendLine(log)
+                }
+            },
+        )
         logs.clear()
     }
-
 }

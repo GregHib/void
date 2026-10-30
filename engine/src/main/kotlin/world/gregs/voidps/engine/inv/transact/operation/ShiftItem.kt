@@ -19,9 +19,12 @@ object ShiftItem {
         if (failed) {
             return
         }
-        // The last index is invalid
-        if (!inventory.inBounds(index + 1)) {
+        if (!inventory.inBounds(index)) {
             error = TransactionError.Invalid
+            return
+        }
+        // The last index has nowhere to shift to
+        if (index == inventory.size - 1) {
             return
         }
         val freeIndex = (index + 1 until inventory.size).firstOrNull { inventory[it].isEmpty() }

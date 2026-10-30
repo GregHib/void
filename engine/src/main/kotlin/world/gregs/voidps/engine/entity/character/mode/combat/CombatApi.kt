@@ -73,7 +73,7 @@ interface CombatApi {
     fun npcCombatSwing(handler: NPC.(target: Character) -> Unit) {
         Script.checkLoading()
         require(swingNpc == null) { "Only one npc swing handler can be registered" }
-        swingNpc =  handler
+        swingNpc = handler
     }
 
     /**
@@ -174,9 +174,7 @@ interface CombatApi {
         private val npcCondition = Object2ObjectOpenHashMap<String, NPC.(Character) -> Boolean>(30)
         private val canAttack = Object2ObjectOpenHashMap<String, Player.(NPC) -> Boolean>()
 
-        fun canAttack(player: Player, npc: NPC): Boolean {
-            return canAttack[npc.id]?.invoke(player, npc) ?: true
-        }
+        fun canAttack(player: Player, npc: NPC): Boolean = canAttack[npc.id]?.invoke(player, npc) ?: true
 
         fun attack(player: Player, attack: CombatAttack) {
             for (handler in attacks[attack.type] ?: emptyList()) {
@@ -191,13 +189,9 @@ interface CombatApi {
             npcAttack[id]?.invoke(npc, target) ?: return
         }
 
-        fun impact(npc: NPC, target: Character, id: String): Boolean {
-            return npcImpact[id]?.invoke(npc, target) ?: true
-        }
+        fun impact(npc: NPC, target: Character, id: String): Boolean = npcImpact[id]?.invoke(npc, target) ?: true
 
-        fun condition(npc: NPC, target: Character, condition: String): Boolean {
-            return npcCondition[condition]?.invoke(npc, target) ?: true
-        }
+        fun condition(npc: NPC, target: Character, condition: String): Boolean = npcCondition[condition]?.invoke(npc, target) ?: true
 
         fun attack(npc: NPC, attack: CombatAttack) {
             for (handler in attackNpc[npc.id] ?: emptyList()) {

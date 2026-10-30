@@ -14,8 +14,7 @@ class Flynn : Script {
         npcOperate("Talk-to", "flynn") {
             npc<Happy>("Hello. Do you want to buy or sell any maces?")
             choice {
-                option<Neutral>("No, thanks.") {
-                }
+                option<Neutral>("No, thanks.")
                 option("Well, I'll have a look, at least.") {
                     player<Neutral>("Well, I'll have a look, at least.")
                     openShop("flynns_mace_market")

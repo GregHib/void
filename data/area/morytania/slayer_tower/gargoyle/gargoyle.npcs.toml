@@ -16,4 +16,8 @@ examine = "Flies like a rock."
 
 [gargoyle_smashed]
 id = 1827
+hitpoints = 1050
+att = 75
+str = 105
+def = 107
 examine = "Flies like a rock."

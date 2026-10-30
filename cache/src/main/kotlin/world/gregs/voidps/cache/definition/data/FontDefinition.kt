@@ -1,8 +1,11 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.serialization.ParamsSerializer
 
+@Serializable
 data class FontDefinition(
     override var id: Int = -1,
     var glyphWidths: ByteArray = byteArrayOf(),
@@ -11,6 +14,7 @@ data class FontDefinition(
     var topPadding: Int = 0,
     var bottomPadding: Int = 0,
     override var stringId: String = "",
+    @Serializable(with = ParamsSerializer::class)
     override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {
@@ -197,7 +201,7 @@ data class FontDefinition(
                     "reg" -> addKernelWidth(174)
                     "blue", "orange", "green", "red", "red_orange", "yellow", "lime", "gold", "white",
                     "black", "navy", "maroon", "purple", "brown", "violet", "dark_green", "dark_red",
-                        -> colour = tag
+                    -> colour = tag
                     else -> if (tag.startsWith("col=")) {
                         colour = tag
                     } else {
@@ -222,7 +226,7 @@ data class FontDefinition(
             if (totalWidth > widths[if (widths.size > output.size) output.size else widths.size - 1]) {
                 if (lineLength >= 0) {
                     if (colour != null && output.isNotEmpty()) {
-                        output.add("<${colour}>${input.substring(lineStart, lineLength + 1 - wordStart)}")
+                        output.add("<$colour>${input.substring(lineStart, lineLength + 1 - wordStart)}")
                     } else {
                         output.add(input.substring(lineStart, lineLength + 1 - wordStart))
                     }
@@ -232,7 +236,7 @@ data class FontDefinition(
                     totalWidth -= wordWidth
                 } else {
                     if (colour != null && output.isNotEmpty()) {
-                        output.add("<${colour}>${input.substring(lineStart, currentWidth)}")
+                        output.add("<$colour>${input.substring(lineStart, currentWidth)}")
                     } else {
                         output.add(input.substring(lineStart, currentWidth))
                     }
@@ -250,7 +254,7 @@ data class FontDefinition(
         }
         if (lineStart < input.length) {
             if (colour != null && output.isNotEmpty()) {
-                output.add("<${colour}>${input.substring(lineStart)}")
+                output.add("<$colour>${input.substring(lineStart)}")
             } else {
                 output.add(input.substring(lineStart))
             }

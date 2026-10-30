@@ -62,12 +62,25 @@ class Equipping : Script {
         if (!player.hasRequirements(item, true)) {
             return
         }
+        val blocked: Set<EquipSlot>? = player["blocked_equip_slots"]
+        if (blocked != null && (blocked.contains(item.slot) || (blocked.contains(EquipSlot.Shield) && item.type == EquipType.TwoHanded))) {
+            player.message(player["blocked_equip_message", "You can't equip that here."])
+            return
+        }
         if (item.id.contains("greegree") && player.tile !in Areas["ape_atoll"] && player.tile !in Areas["ape_atoll_agility_dungeon"]) {
             player.message("You attempt to use the Monkey Greegree but nothing happens.")
             return
         }
         if (item.slot == EquipSlot.Hat && player.tile in Areas["west_ardougne"]) {
             player.message("You should leave your gas mask on while you're in West Ardougne.")
+            return
+        }
+        if (player["house_ring", ""] == "boxing" && !item.id.startsWith("boxing_gloves")) {
+            player.message("You can't wear weapons or armour in the boxing ring (except boxing gloves).")
+            return
+        }
+        if (player["house_ring", ""] == "fencing" && item.slot != EquipSlot.Weapon) {
+            player.message("You can't wear any armour in the fencing ring.")
             return
         }
         if (item.id.endsWith("goblin_mail")) {

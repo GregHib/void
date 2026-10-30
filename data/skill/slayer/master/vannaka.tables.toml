@@ -68,7 +68,7 @@ tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You
 #weight = 7
 #tip = "Elves are quick, agile, and vicious fighters which often favour bows and polearms."
 
-[.fire_giant]
+[.fire_giants]
 amount = [40, 90]
 weight = 7
 tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
@@ -113,7 +113,7 @@ amount = [40, 90]
 weight = 8
 tip = "Infernal Mages are dangerous spell users, beware of their magic spells and go properly prepared."
 
-[.ice_giant]
+[.ice_giants]
 amount = [30, 80]
 weight = 7
 tip = "Like other giants, ice giants often wield large weapons. Try using fire spells to melt them before they can hit you. Ice giants can be found underground to the south of Port Sarim."

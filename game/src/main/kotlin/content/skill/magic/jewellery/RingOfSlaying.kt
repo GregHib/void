@@ -9,14 +9,14 @@ class RingOfSlaying : Script {
 
     init {
         itemOption("Rub", "ring_of_slaying_#") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             menu(it.inventory, it.slot)
         }
 
         itemOption("Rub", "ring_of_slaying_#", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             menu(it.inventory, it.slot)

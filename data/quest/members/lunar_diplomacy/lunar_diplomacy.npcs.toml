@@ -19,3 +19,11 @@ style = "crush"
 max_hit_melee = 90
 hunt_mode = "cowardly"
 examine = "It's like looking in the mirror."
+
+[moss_giant_lunar_diplomacy]
+id = 4534
+hitpoints = 850
+att = 30
+str = 30
+def = 30
+examine = "His beard seems to have a life of its own."

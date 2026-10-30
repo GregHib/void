@@ -34,8 +34,5 @@ data class ItemOnPlayerInteract(
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - target=$target, id='$id', item=$item, slot=$slot"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - target=$target, id='$id', item=$item, slot=$slot"
 }

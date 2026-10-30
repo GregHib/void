@@ -27,5 +27,4 @@ class InterfaceOnFloorItemInteractTest : OnInteractTest() {
     }
 
     override fun interact() = InterfaceOnFloorItemInteract(FloorItem(Tile.EMPTY, "floor_item"), "id", 0, Player(), null)
-
 }

@@ -1,13 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
-import it.unimi.dsi.fastutil.Hash
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import org.jetbrains.annotations.TestOnly
-import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.data.definition.ItemDefinitions.loaded
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.DefinitionsState
 
 /**
  * Also known as AttributeMaps in cs2 or rows
@@ -42,21 +37,17 @@ object StructDefinitions : DefinitionsDecoder<StructDefinition> {
 
     override fun empty() = StructDefinition.EMPTY
 
+    fun install(state: DefinitionsState<StructDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
+    }
+
+    /**
+     * Applies the config at [path] to the already decoded [definitions].
+     */
     fun load(path: String): StructDefinitions {
-        timedLoad("struct config") {
-            val ids = Object2IntOpenHashMap<String>(512, Hash.VERY_FAST_LOAD_FACTOR)
-            Config.fileReader(path) {
-                while (nextPair()) {
-                    val stringId = key()
-                    val id = int()
-                    require(!ids.containsKey(stringId)) { "Duplicate struct id found '$stringId' at $path." }
-                    ids[stringId] = id
-                    definitions[id].stringId = stringId
-                }
-            }
-            this.ids = ids
-            ids.size
-        }
+        ids = StructLoader.parse(definitions, path)
         return this
     }
 }

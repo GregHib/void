@@ -1,5 +1,4 @@
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.obj.ObjectTeleports
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.*
@@ -12,35 +11,25 @@ import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
-import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.cache.definition.data.EnumDefinition
-import world.gregs.voidps.cache.definition.data.GraphicDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.data.*
-import world.gregs.voidps.engine.data.config.RowDefinition
-import world.gregs.voidps.engine.data.config.TableDefinition
-import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.MapDefinitions
+import world.gregs.voidps.engine.data.definition.MapLoader
+import world.gregs.voidps.engine.data.load.LoadContext
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.LoaderGraph
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.*
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
-import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -59,23 +48,30 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import java.io.File
+import java.nio.channels.FileChannel
+import java.nio.channels.FileLock
+import java.nio.file.StandardOpenOption
 import java.util.*
 import kotlin.system.measureTimeMillis
 
 /**
  * Sets up a fully functioning game test environment (without networking)
- * Each class re-loads all config files so use sparingly
+ * The world is booted once and shared between consecutive [WorldTest] classes,
+ * [WorldTestListener] shuts it down before any other test class runs.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
-    private lateinit var engine: GameLoop
-    private lateinit var accountDefs: AccountDefinitions
-    private lateinit var accounts: AccountManager
-    private var saves: File? = null
+    private val engine: GameLoop
+        get() = world!!.engine
+    private val accountDefs: AccountDefinitions
+        get() = world!!.accountDefinitions
+    private val accounts: AccountManager
+        get() = world!!.accounts
     lateinit var settings: Properties
-    lateinit var scripts: List<Script>
+    val scripts: List<Script>
+        get() = world!!.scripts
 
     open var loadNpcs: Boolean = false
 
@@ -149,62 +145,28 @@ abstract class WorldTest : KoinTest {
     @BeforeAll
     fun beforeAll() {
         settings = Settings.load(properties)
+        if (world == null) {
+            world = boot()
+        }
+        File(properties["storage.players.path"] as String).mkdirs()
+    }
+
+    private fun boot(): SharedWorld {
         stopKoin()
-        val (ids, components) = interfaceIds
-        InterfaceDefinitions.set(interfaceDefinitions, ids, components)
+        // Other tests may have replaced the definitions so install them again
+        graph.install(loaded)
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
             modules(
-                engineModule(configFiles),
+                engineModule(),
                 gameModule(configFiles),
+                definitionsModule(),
+                gameDefinitionsModule(),
                 module {
                     single(createdAtStart = true) { cache }
                     single(createdAtStart = true) { huffman }
-                    single(createdAtStart = true) {
-                        ItemDefinitions.set(itemDefinitions, itemIds)
-                        ItemDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        AnimationDefinitions.set(animationDefinitions, animationIds)
-                        AnimationDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        GraphicDefinitions.set(graphicDefinitions, graphicIds)
-                        GraphicDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        InventoryDefinitions.set(inventoryDefinitions, inventoryIds)
-                        InventoryDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        StructDefinitions.set(structDefinitions, structIds)
-                        StructDefinitions
-                    }
-                    single(createdAtStart = true) { quickChatPhraseDefinitions }
-                    single(createdAtStart = true) { weaponStyleDefinitions }
-                    single(createdAtStart = true) { weaponAnimationDefinitions }
-                    single(createdAtStart = true) {
-                        EnumDefinitions.set(enumDefinitions, enumIds)
-                        EnumDefinitions
-                    }
-                    single(createdAtStart = true) {
-                        Tables.set(tableDefinitions)
-                        Rows.set(rowDefinitions, rowIds)
-                        Tables
-                    }
-                    single(createdAtStart = true) { fontDefinitions }
-                    single(createdAtStart = true) { objectTeleports }
-                    single(createdAtStart = true) { itemOnItemDefinitions }
-                    single(createdAtStart = true) { variableDefinitions }
-                    single(createdAtStart = true) { dropTables }
-                    single(createdAtStart = true) {
-                        ObjectDefinitions.set(objectDefinitions, objectIds)
-                        ObjectDefinitions
-                    }
-                    single { ammoDefinitions }
                     single { mapDefinitions }
-                    single { objectCollisionAdd }
                     single { objectCollisionAdd }
                     single { objectCollisionRemove }
                     single {
@@ -220,16 +182,13 @@ abstract class WorldTest : KoinTest {
             )
         }
 
-        NPCDefinitions.set(npcDefinitions, npcIds)
-        engineLoad(configFiles)
+        engineLoad()
         Wildcards.load(Settings["storage.wildcards"])
-        scripts = ContentLoader().load()
+        val scripts = ContentLoader().load()
         Wildcards.clear()
-        saves = File(Settings["storage.players.path"])
-        saves?.mkdirs()
+        val engine: GameLoop
         val millis = measureTimeMillis {
             val tickStages = getTickStages(
-                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
@@ -239,14 +198,13 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages)
             Spawn.world(configFiles)
         }
-        accountDefs = get()
-        accounts = get()
         logger.info { "World startup took ${millis}ms" }
         for (x in 0 until 24 step 8) {
             for (y in 0 until 24 step 8) {
                 Collisions.allocateIfAbsent(x, y, 0)
             }
         }
+        return SharedWorld(engine, scripts, get(), get())
     }
 
     @BeforeEach
@@ -254,7 +212,8 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(configFiles)
+            NPCSpawnLoader.install(npcSpawns)
+            loadNpcSpawns()
         }
         setRandom(FakeRandom())
     }
@@ -272,13 +231,54 @@ abstract class WorldTest : KoinTest {
 
     @AfterAll
     fun afterAll() {
-        saves?.deleteRecursively()
-        Script.clear()
-        stopKoin()
+        File(properties["storage.players.path"] as String).deleteRecursively()
     }
+
+    private class SharedWorld(
+        val engine: GameLoop,
+        val scripts: List<Script>,
+        val accountDefinitions: AccountDefinitions,
+        val accounts: AccountManager,
+    )
 
     companion object {
         private const val TIME: Long = 43_200_000 // 12:00:00
+        private var world: SharedWorld? = null
+
+        /**
+         * Tear down the shared world so non-[WorldTest] classes start without koin or content scripts loaded
+         */
+        fun shutdown() {
+            if (world == null) {
+                return
+            }
+            world = null
+            Script.clear()
+            stopKoin()
+        }
+
+        private var forkLock: FileLock? = null
+
+        /**
+         * Claims a temp directory unique to this test JVM so parallel forks don't share files.
+         * Slots are reused between runs so cached files (e.g. bot chat model) persist.
+         */
+        private val forkDirectory: String by lazy {
+            generateSequence(0) { it + 1 }.firstNotNullOf { slot ->
+                val dir = File("../temp/data/test-fork-$slot/")
+                dir.mkdirs()
+                val channel = FileChannel.open(dir.resolve(".lock").toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE)
+                val lock = channel.tryLock()
+                if (lock == null) {
+                    channel.close()
+                    null
+                } else {
+                    forkLock = lock
+                    "../temp/data/test-fork-$slot/"
+                }
+            }
+        }
+
         private val properties: Properties by lazy {
             val properties = Properties()
             properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
@@ -287,16 +287,22 @@ abstract class WorldTest : KoinTest {
                     properties[key] = value.replace("./", "../")
                 }
             }
-            properties["storage.players.path"] = "../temp/data/test-saves/"
-            properties["storage.players.logs"] = "../temp/data/test-logs/"
+            properties["storage.players.path"] = "${forkDirectory}saves/"
+            properties["storage.players.logs"] = "${forkDirectory}logs/"
+            properties["storage.players.errors"] = "${forkDirectory}errors/"
             properties["storage.players.logs.seconds"] = Int.MAX_VALUE
-            properties["storage.grand.exchange.offers.buy.path"] = "../temp/data/test-grand_exchange/buy_offers/"
-            properties["storage.grand.exchange.offers.sell.path"] = "../temp/data/test-grand_exchange/sell_offers/"
-            properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
-            properties["storage.grand.exchange.offers.path"] = "../temp/data/test-grand_exchange/offers.toml"
-            properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
+            properties["storage.grand.exchange.offers.buy.path"] = "${forkDirectory}grand_exchange/buy_offers/"
+            properties["storage.grand.exchange.offers.sell.path"] = "${forkDirectory}grand_exchange/sell_offers/"
+            properties["storage.grand.exchange.offers.claim.path"] = "${forkDirectory}grand_exchange/claimable_offers.toml"
+            properties["storage.grand.exchange.offers.path"] = "${forkDirectory}grand_exchange/offers.toml"
+            properties["storage.grand.exchange.history.path"] = "${forkDirectory}grand_exchange/price_history/"
+            // Don't write map caches as parallel forks would clash
+            properties["storage.caching.active"] = false
+            properties["storage.snapshots.active"] = false
             properties["storage.caching.path"] = "../data/.temp/"
+            properties["bots.chat.model"] = "${forkDirectory}bot_chat.model"
             properties["quests.requirements.skipMissing"] = false
+            properties["construction.freeBuild"] = false
             properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
             properties["events.shootingStars.enabled"] = false
@@ -319,122 +325,16 @@ abstract class WorldTest : KoinTest {
         }
         private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-        private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(configFiles.find(Settings["definitions.ammoGroups"])) }
-        private val objectDefinitions: Array<ObjectDefinition> by lazy {
-            ObjectDecoder(member = true, lowDetail = false).load(cache)
-        }
-        private val objectIds: Map<String, Int> by lazy {
-            ObjectDefinitions.init(objectDefinitions).load(configFiles.list(Settings["definitions.objects"]))
-            ObjectDefinitions.ids
-        }
-        private val npcDefinitions: Array<NPCDefinition> by lazy {
-            NPCDecoder(member = true).load(cache)
-        }
-        private val npcIds: Map<String, Int> by lazy {
-            NPCDefinitions.init(npcDefinitions).load(configFiles.list(Settings["definitions.npcs"]))
-            NPCDefinitions.ids
-        }
-        val itemDefinitions: Array<ItemDefinition> by lazy {
-            ItemDecoder().load(cache)
-        }
-        val itemIds: Map<String, Int> by lazy {
-            ItemDefinitions.init(itemDefinitions).load(configFiles.list(Settings["definitions.items"]))
-            ItemDefinitions.ids
-        }
-        private val animationDefinitions: Array<AnimationDefinition> by lazy {
-            AnimationDecoder().load(cache)
-        }
-        private val animationIds: Map<String, Int> by lazy {
-            AnimationDefinitions.init(animationDefinitions).load(configFiles.list(Settings["definitions.animations"]))
-            AnimationDefinitions.ids
-        }
-        private val graphicDefinitions: Array<GraphicDefinition> by lazy {
-            GraphicDecoder().load(cache)
-        }
-        private val graphicIds: Map<String, Int> by lazy {
-            GraphicDefinitions.init(graphicDefinitions).load(configFiles.list(Settings["definitions.graphics"]))
-            GraphicDefinitions.ids
-        }
-        private val interfaceDefinitions: Array<InterfaceDefinition> by lazy {
-            InterfaceDecoder().load(cache)
-        }
-        private val interfaceIds: Pair<Map<String, Int>, Map<String, Int>> by lazy {
-            InterfaceDefinitions.init(interfaceDefinitions).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
-            InterfaceDefinitions.ids to InterfaceDefinitions.componentIds
-        }
-        private val inventoryDefinitions: Array<InventoryDefinition> by lazy {
-            InventoryDecoder().load(cache)
-        }
-        private val inventoryIds: Map<String, Int> by lazy {
-            itemIds
-            InventoryDefinitions.init(inventoryDefinitions).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
-            InventoryDefinitions.ids
-        }
-        private val structDefinitions: Array<StructDefinition> by lazy {
-            StructDecoder().load(cache)
-        }
-        private val structIds: Map<String, Int> by lazy {
-            StructDefinitions.init(structDefinitions).load(configFiles.find(Settings["definitions.structs"]))
-            StructDefinitions.ids
-        }
-        private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-        private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
-        private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
-        private val enumDefinitions: Array<EnumDefinition> by lazy {
-            animationIds
-            graphicIds
-            itemIds
-            interfaceIds
-            inventoryIds
-            npcIds
-            structIds
-            objectIds
-            tableDefinitions
-            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
-            EnumDefinitions.definitions
-        }
 
-        private val tableDefinitions: Map<String, TableDefinition> by lazy {
-            animationIds
-            graphicIds
-            itemIds
-            npcIds
-            objectIds
-            variableDefinitions
-            Tables.load(configFiles.list(Settings["definitions.tables"]))
-            Tables.definitions
-        }
-
-        private val rowDefinitions: Array<RowDefinition> by lazy {
-            tableDefinitions
-            Rows.definitions
-        }
-
-        private val rowIds: Map<String, Int> by lazy {
-            tableDefinitions
-            Rows.ids
-        }
-
-        private val enumIds: Map<String, Int> by lazy {
-            enumDefinitions
-            EnumDefinitions.ids
-        }
+        // Maps are only loaded by the tests which need them
+        private val graph: LoaderGraph by lazy { LoaderGraph((engineLoaders() + gameLoaders()).filter { it != MapLoader && it != NPCSpawnLoader }) }
+        private val loaded: Map<Loader<*>, Any> by lazy { graph.run(configFiles, cache, null) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
-        private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
-        private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
-        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy {
-            itemIds.size
-            ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"]))
-        }
-        private val variableDefinitions: VariableDefinitions by lazy {
-            VariableDefinitions.load(configFiles)
-        }
-        private val dropTables: DropTables by lazy {
-            itemIds
-            DropTables().load(configFiles.list(Settings["spawns.drops"]))
-        }
+
+        // Spawns are only needed by the tests which load npcs
+        private val npcSpawns: List<NPCSpawn> by lazy { NPCSpawnLoader.load(LoadContext(configFiles, cache)) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load() }
         val emptyTile = Tile(2655, 4640)
     }
 }

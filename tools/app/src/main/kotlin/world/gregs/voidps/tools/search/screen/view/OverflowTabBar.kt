@@ -63,7 +63,7 @@ fun OverflowTabBar(
             .fillMaxWidth()
             .height(40.dp)
             .background(BgPanel)
-            .border(BorderStroke(0.5.dp, BorderColor))
+            .border(BorderStroke(0.5.dp, BorderColor)),
     ) {
         // Reserve space for the actions slot (Reload + Load path buttons) and more button
         val actionsWidth = 75.dp
@@ -102,10 +102,14 @@ fun OverflowTabBar(
                             .clickable { moreMenuExpanded = true }
                             .background(if (overflowContainsSelected) BgDark else Color.Transparent)
                             .then(
-                                if (overflowContainsSelected) Modifier.border(
-                                    BorderStroke(2.dp, AccentBlue),
-                                    RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp)
-                                ) else Modifier
+                                if (overflowContainsSelected) {
+                                    Modifier.border(
+                                        BorderStroke(2.dp, AccentBlue),
+                                        RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp),
+                                    )
+                                } else {
+                                    Modifier
+                                },
                             )
                             .padding(horizontal = 10.dp),
                         verticalAlignment = Alignment.CenterVertically,
@@ -115,18 +119,19 @@ fun OverflowTabBar(
                             // Show which overflow tab is active
                             Text(
                                 tabStates[selectedIdx].label,
-                                fontSize = 13.sp, color = TextPrimary,
-                                fontWeight = FontWeight.Medium
+                                fontSize = 13.sp,
+                                color = TextPrimary,
+                                fontWeight = FontWeight.Medium,
                             )
                             Divider(
                                 modifier = Modifier.height(12.dp).width(0.5.dp),
-                                color = BorderColor
+                                color = BorderColor,
                             )
                         }
                         Text(
                             if (overflowContainsSelected) "▾" else "+${overflowTabs.size} ▾",
                             fontSize = 12.sp,
-                            color = if (overflowContainsSelected) AccentLight else TextSecond
+                            color = if (overflowContainsSelected) AccentLight else TextSecond,
                         )
                     }
 
@@ -146,28 +151,28 @@ fun OverflowTabBar(
                                 text = {
                                     Row(
                                         verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                        horizontalArrangement = Arrangement.spacedBy(6.dp),
                                     ) {
                                         Text(
                                             state.label,
                                             fontSize = 13.sp,
                                             color = if (isSelected) TextPrimary else TextSecond,
                                             fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal,
-                                            modifier = Modifier.weight(1f)
+                                            modifier = Modifier.weight(1f),
                                         )
                                         when {
                                             state.loading -> CircularProgressIndicator(
                                                 color = TextMuted,
                                                 modifier = Modifier.size(8.dp),
-                                                strokeWidth = 1.5.dp
+                                                strokeWidth = 1.5.dp,
                                             )
                                             hasFilters -> Box(
                                                 Modifier.size(6.dp)
-                                                    .background(AccentBlue, RoundedCornerShape(3.dp))
+                                                    .background(AccentBlue, RoundedCornerShape(3.dp)),
                                             )
                                             isSelected -> Box(
                                                 Modifier.size(6.dp)
-                                                    .background(AccentLight, RoundedCornerShape(3.dp))
+                                                    .background(AccentLight, RoundedCornerShape(3.dp)),
                                             )
                                         }
                                     }
@@ -200,23 +205,30 @@ fun TabItem(state: TabState, isSelected: Boolean, hasFilters: Boolean, onClick: 
             .clickable(onClick = onClick)
             .background(if (isSelected) BgDark else Color.Transparent)
             .then(
-                if (isSelected) Modifier.border(
-                    BorderStroke(2.dp, AccentBlue),
-                    RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp)
-                ) else Modifier
+                if (isSelected) {
+                    Modifier.border(
+                        BorderStroke(2.dp, AccentBlue),
+                        RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp),
+                    )
+                } else {
+                    Modifier
+                },
             )
             .padding(horizontal = 14.dp),
         contentAlignment = Alignment.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
             Text(
-                state.label, fontSize = 13.sp,
+                state.label,
+                fontSize = 13.sp,
                 color = if (isSelected) TextPrimary else TextSecond,
-                fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal
+                fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal,
             )
             when {
                 state.loading -> CircularProgressIndicator(
-                    color = TextMuted, modifier = Modifier.size(8.dp), strokeWidth = 1.5.dp
+                    color = TextMuted,
+                    modifier = Modifier.size(8.dp),
+                    strokeWidth = 1.5.dp,
                 )
                 hasFilters -> Box(Modifier.size(6.dp).background(AccentBlue, RoundedCornerShape(3.dp)))
             }

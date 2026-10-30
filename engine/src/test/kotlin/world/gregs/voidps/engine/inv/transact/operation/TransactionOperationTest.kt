@@ -74,17 +74,19 @@ abstract class TransactionOperationTest : KoinMock() {
         return inventory
     }
 
-    protected fun assertErrorDeficient(amount: Int) {
+    protected fun assertErrorDeficient(amount: Int, item: String = "item") {
         val error = transaction.error
         assertTrue(error is TransactionError.Deficient) { "Expected TransactionError.Deficient, Found $error" }
         error as TransactionError.Deficient
         assertEquals(amount, error.amount)
+        assertEquals(item, error.item)
     }
 
-    protected fun assertErrorFull(amount: Int) {
+    protected fun assertErrorFull(amount: Int, item: String = "item") {
         val error = transaction.error
         assertTrue(error is TransactionError.Full) { "Expected TransactionError.Full, Found $error" }
         error as TransactionError.Full
         assertEquals(amount, error.amount)
+        assertEquals(item, error.item)
     }
 }

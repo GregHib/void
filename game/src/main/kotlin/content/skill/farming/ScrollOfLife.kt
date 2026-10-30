@@ -25,6 +25,7 @@ object ScrollOfLife {
                 }
             }
 //            player.message("The secret is yours! You read the scroll and unlock the long-lost technique of regaining seeds from dead farming patches.")
+//            player.message("The secret is yours! You unlock the Efficient Smithing trait; 2% chance to refund bars you've used to create your smithing items.")
         }
     }
 }

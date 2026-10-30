@@ -67,6 +67,24 @@ class CommandsTest {
     }
 
     @Test
+    fun `Alias is invalid if no rights`() {
+        register("name", rights = PlayerRights.Admin)
+        commands.alias("name", "thing")
+
+        val command = commands.find(player, "thing")
+        assertNull(command)
+        assertTrue(player.containsMessage("Unauthorized command: name"))
+    }
+
+    @Test
+    fun `Can't call an alias without rights`() = runTest {
+        register("name", rights = PlayerRights.Admin)
+        commands.alias("name", "thing")
+        commands.call(player, "thing")
+        assertEquals(0, calls)
+    }
+
+    @Test
     fun `Invalid command name`() {
         val command = commands.find(player, "thing")
         assertNull(command)
@@ -216,7 +234,15 @@ class CommandsTest {
 
     @Test
     fun `Call with exception gets caught`() {
-        commands.register("name", listOf(CommandSignature { _, _ -> calls++; throw IllegalStateException("error") }))
+        commands.register(
+            "name",
+            listOf(
+                CommandSignature { _, _ ->
+                    calls++
+                    throw IllegalStateException("error")
+                },
+            ),
+        )
         assertDoesNotThrow {
             runTest {
                 commands.call(player, "name")

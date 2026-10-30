@@ -24,9 +24,9 @@ id = 7783
 
 [aberrant_spectre_pollninveach]
 id = 7801
-str = 70
+str = 1
 def = 90
-mage = 115
+mage = 105
 combat_def = "aberrant_spectre"
 hunt_mode = "aggressive"
 respawn_delay = 30

@@ -46,6 +46,10 @@ data class PlayerBossRow(val boss: String, val name: String, val kills: Int, val
 @Serializable
 data class PlayerBosses(val totalKills: Int, val items: List<PlayerBossRow>)
 
+/** A player's fastest completion of each floor they've cleared, ranked against every recorded completion of that floor. */
+@Serializable
+data class PlayerFloors(val floorsCleared: Int, val maxFloor: Int, val items: List<FloorTimeRow>)
+
 @Serializable
 data class PlayerQuestRow(
     val id: String,

@@ -24,21 +24,37 @@ drop_table = "crypt_rat"
 [skeleton_barrows]
 id = 2036
 clone = "skeleton_unarmed"
+hitpoints = 510
+att = 72
+str = 72
+def = 72
 examine = "Could do with gaining a few pounds."
 
 [skeleton_barrows_2]
 id = 2037
 clone = "skeleton_mace_shield"
+hitpoints = 510
+att = 72
+str = 72
+def = 72
 examine = "Could do with gaining a few pounds."
 
 [skeleton_barrows_3]
 id = 5381
 clone = "skeleton_unarmed"
+hitpoints = 510
+att = 72
+str = 72
+def = 72
 examine = "Could do with gaining a few pounds."
 
 [skeleton_barrows_4]
 id = 5422
 clone = "skeleton_longsword"
+hitpoints = 510
+att = 72
+str = 72
+def = 72
 examine = "Could do with gaining a few pounds."
 
 [ahrim_the_blighted]
@@ -80,7 +96,6 @@ id = 2028
 hitpoints = 1000
 def = 100
 range = 100
-ranged_strength = 55
 combat_def = "karil_the_tainted"
 hunt_mode = "cowardly"
 categories = ["barrows_brothers"]

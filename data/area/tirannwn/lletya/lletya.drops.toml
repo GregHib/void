@@ -1,0 +1,11 @@
+[elf_pickpocket]
+roll = 128
+drops = [
+    { id = "coins", min = 280, max = 350, chance = 105 },
+    { id = "death_rune", amount = 2, chance = 8 },
+    { id = "nature_rune", amount = 3, chance = 5 },
+    { id = "jug_of_wine", chance = 6 },
+    { id = "diamond", chance = 1 },
+    { id = "fire_orb", chance = 2 },
+    { id = "gold_ore", chance = 1 },
+]

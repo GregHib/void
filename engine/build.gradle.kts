@@ -1,8 +1,10 @@
 plugins {
     id("shared")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 dependencies {
+    implementation(libs.kotlinx.serialization.core)
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":network"))

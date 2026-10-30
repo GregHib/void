@@ -19,3 +19,4 @@ examine = "I wonder what happens if I rub it."
 clone = "antique_lamp_easy"
 id = 11139   # overrides cloned value
 ```
+

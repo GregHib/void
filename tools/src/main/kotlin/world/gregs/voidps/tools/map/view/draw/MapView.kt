@@ -44,10 +44,14 @@ class MapView : JPanel() {
     private var offsetYd = 0.0
     var offsetX: Int
         get() = offsetXd.toInt()
-        set(value) { offsetXd = value.toDouble() }
+        set(value) {
+            offsetXd = value.toDouble()
+        }
     var offsetY: Int
         get() = offsetYd.toInt()
-        set(value) { offsetYd = value.toDouble() }
+        set(value) {
+            offsetYd = value.toDouble()
+        }
     var level = 0
         private set
 
@@ -99,7 +103,7 @@ class MapView : JPanel() {
     fun reload(files: ConfigFiles = configFiles()) {
         val areaFiles = files.list(Settings["map.areas"])
         AreaSet.load(areaFiles, areaSet)
-        graph.reload(NavigationGraph.loadGraph(files.list(Settings["bots.nav.definitions"]), emptyList()))
+        graph.reload(NavigationGraph.loadGraph(NavigationGraph.parseEdges(files.list(Settings["bots.nav.definitions"])), emptyList()))
     }
 
     fun updateLevel(level: Int) {

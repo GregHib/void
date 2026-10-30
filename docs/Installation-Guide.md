@@ -1,4 +1,3 @@
-
 Requirements:
 - Java installed [Eclipse Java Download Link](https://adoptium.net/en-GB/temurin/releases?package=jre)
 - 410MB storage space
@@ -23,7 +22,6 @@ Make sure it's the newest date/latest version
 [Cache List Link](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A)
 
 <img width="600" height="350" alt="image" src="https://github.com/user-attachments/assets/3c470fba-0cd2-43f4-bf2e-4a467b767970" />
-
 
 # Step 4: Extract the void.zip contents
 
@@ -62,11 +60,9 @@ Double click the client.jar and the client should load
 
 <img width="778" height="749" alt="image" src="https://github.com/user-attachments/assets/60e2080f-4c31-4384-aac8-35c7ee2c8605" />
 
-
 # Step 8: Login and have fun!
 
 Just login with any user-name and password; no account creation required!
 
 <img width="767" height="535" alt="image" src="https://github.com/user-attachments/assets/a04ced29-4391-4b76-ad8f-3a6775330c51" />
-
 

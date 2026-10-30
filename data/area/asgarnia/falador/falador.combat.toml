@@ -36,11 +36,12 @@ death_sound = "human_death"
 
 [air_wizard.strike]
 range = 5
-anim = "air_spell"
-projectile = "air_spell_cast"
+anim = "wind_spell_staff"
+gfx = "wind_spell_cast"
+projectile = "wind_strike"
 target_hit = { offense = "magic", max = 10 }
-target_sound = "air_strike_cast"
-impact_sound = "air_strike_impact"
+target_sound = "wind_strike_cast"
+impact_sound = "wind_strike_impact"
 
 [water_wizard]
 defend_anim = "human_defend"
@@ -49,7 +50,7 @@ death_sound = "human_death"
 
 [water_wizard.strike]
 range = 5
-anim = "water_spell"
+anim = "water_spell_staff"
 projectile = "water_spell_cast"
 target_hit = { offense = "magic", max = 20 }
 target_sound = "water_strike_cast"
@@ -62,7 +63,7 @@ death_sound = "human_death"
 
 [earth_wizard.strike]
 range = 5
-anim = "earth_spell"
+anim = "earth_spell_staff"
 projectile = "earth_spell_cast"
 target_hit = { offense = "magic", max = 60 }
 target_sound = "earth_strike_cast"
@@ -75,7 +76,7 @@ death_sound = "human_death"
 
 [fire_wizard.strike]
 range = 5
-anim = "fire_spell"
+anim = "fire_spell_staff"
 projectile = "fire_spell_cast"
 target_hit = { offense = "magic", max = 40 }
 target_sound = "fire_strike_cast"

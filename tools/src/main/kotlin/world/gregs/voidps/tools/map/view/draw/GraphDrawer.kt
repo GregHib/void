@@ -178,9 +178,9 @@ class GraphDrawer(
     }
 
     private fun canTravel(steps: StepValidator, x: Int, y: Int, level: Int, collision: CollisionStrategy) = steps.canTravel(x = x, z = y - 1, level = level, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
-            steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
-            steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
-            steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
+        steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
 
     /**
      * Draws an arrow of [length] at [offset] along the line [x1], [y1] -> [x2], [y2]

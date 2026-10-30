@@ -43,6 +43,12 @@ object GeneralStores {
         player.sendInventory(this, false)
     }
 
+    fun unbind(player: Player) {
+        for (store in stores.values) {
+            store.transaction.changes.unbind(player)
+        }
+    }
+
     fun unbind(player: Player, key: String): Inventory = get(key).apply {
         this.transaction.changes.unbind(player)
     }

@@ -169,7 +169,7 @@ sealed class Condition(val priority: Int) {
                     min = 1
                 }
                 val ids = toIds(id)
-                items.add(BotItem(ids, min, max))
+                items.add(BotItem(ids, min, max, usable = map["usable"] as? Boolean ?: false, equippable = map["equippable"] as? Boolean ?: false))
             }
             return items
         }
@@ -194,6 +194,8 @@ sealed class Condition(val priority: Int) {
                         ids = toIds(id),
                         min = min,
                         max = max,
+                        usable = value["usable"] as? Boolean ?: false,
+                        equippable = value["equippable"] as? Boolean ?: false,
                     )
                 }
             }
@@ -296,11 +298,28 @@ sealed class Condition(val priority: Int) {
 
         private fun parseArea(list: List<Map<String, Any>>): Condition? {
             val map = list.single()
-            if (map.containsKey("id")) {
-                val present = map["present"] as? Boolean ?: true
-                return BotInArea(id = map["id"] as String, present = present)
+            val ids = buildList {
+                val id = map["id"] as? String
+                if (id != null) {
+                    add(id)
+                }
+                addAll(strings(map["ids"]))
             }
-            return null
+            val tags = strings(map["tags"]).toSet()
+            if (ids.isEmpty() && tags.isEmpty()) {
+                return null
+            }
+            val present = map["present"] as? Boolean ?: true
+            return BotInArea(ids = ids, tags = tags, present = present)
+        }
+
+        /**
+         * Accepts a list or comma separated string
+         */
+        private fun strings(value: Any?): List<String> = when (value) {
+            is String -> value.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+            is List<*> -> value.map { it as String }
+            else -> emptyList()
         }
 
         private fun parseCombat(list: List<Map<String, Any>>): Condition? {

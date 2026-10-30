@@ -27,7 +27,12 @@ fun Ui.badge(
 ) {
     receiver.span {
         val radius = if (pill) "var(--radius-pill)" else "var(--radius-xs)"
-        style = "display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;" +
+        if (showWhen != null) {
+            // x-show clears any inline `display` it doesn't own (see base.css).
+            attributes["class"] = "void-inline-flex"
+        }
+        val display = if (showWhen != null) "" else "display:inline-flex;"
+        style = "${display}align-items:center;gap:var(--space-3);padding:0 10px;height:20px;" +
             "background:${tone.background};color:${tone.color};border:1px solid ${tone.border};" +
             "border-radius:$radius;font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
             "letter-spacing:var(--tracking-caps);text-transform:uppercase;justify-self:start"

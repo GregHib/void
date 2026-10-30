@@ -1,13 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
-import it.unimi.dsi.fastutil.Hash
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
-import world.gregs.config.Config
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.load.DefinitionsState
 
 object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
 
@@ -18,7 +13,7 @@ object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
         private set
 
     val size: Int
-        get() = ItemDefinitions.definitions.size
+        get() = definitions.size
 
     override fun empty() = AnimationDefinition.EMPTY
 
@@ -41,38 +36,17 @@ object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
         loaded = false
     }
 
+    fun install(state: DefinitionsState<AnimationDefinition>) {
+        definitions = state.definitions
+        ids = state.ids
+        loaded = true
+    }
+
+    /**
+     * Applies the configs in [paths] to the already decoded [definitions].
+     */
     fun load(paths: List<String>): AnimationDefinitions {
-        timedLoad("animation config") {
-            val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val stringId = section()
-                        var id = -1
-                        val params = Object2ObjectOpenHashMap<Int, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "id" -> id = int()
-                                "ticks" -> params[Params.TICKS] = int()
-                                "infinite" -> params[Params.INFINITE] = boolean()
-                                "walk" -> params[Params.WALK] = boolean()
-                                "run" -> params[Params.RUN] = boolean()
-                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                            }
-                        }
-                        require(!ids.containsKey(stringId)) { "Duplicate animation id found '$stringId' at $path." }
-                        require(id != -1) { "Missing id for animation '$stringId' at $path." }
-                        ids[stringId] = id
-                        definitions[id].stringId = stringId
-                        if (params.isNotEmpty()) {
-                            definitions[id].params = params
-                        }
-                    }
-                }
-            }
-            this.ids = ids
-            ids.size
-        }
+        ids = AnimationLoader.parse(definitions, paths)
         return this
     }
 }

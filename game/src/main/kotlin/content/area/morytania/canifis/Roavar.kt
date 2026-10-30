@@ -5,10 +5,9 @@ import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -24,8 +23,8 @@ class Roavar : Script {
                     choice {
                         option<Happy>("Yes please.") {
                             inventory.transaction {
-                                add("moonlight_mead")
                                 remove("coins", 5)
+                                add("moonlight_mead")
                             }
                             when (inventory.transaction.error) {
                                 is TransactionError.Deficient -> {
@@ -34,9 +33,7 @@ class Roavar : Script {
                                     player<Confused>("The one that says; 'Please Do Not Ask For Credit As Being Attacked By A Large Angry Werewolf Inn Keeper Often Offends'?")
                                     npc<Angry>("Bingo.")
                                 }
-                                is TransactionError.Full -> if (inventory.remove("coins", 5) && addOrDrop("moonlight_mead")) {
-                                    npc<Neutral>("Here ya go pal. Enjoy!")
-                                }
+                                is TransactionError.Full -> inventoryFull()
                                 TransactionError.None -> npc<Neutral>("Here ya go pal. Enjoy!")
                                 else -> {}
                             }

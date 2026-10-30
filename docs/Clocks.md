@@ -48,6 +48,7 @@ objectOperate("Close", "door_*") {
 ```
 
 By adding the `stuck_door` clock as a [persistant variable](character-variables) to the `*.vars.toml` file we make sure that the player can't reset the clock by logging out and back in.
+
 ```toml
 [stuck_door]
 format = "int"
@@ -56,3 +57,4 @@ persist = true
 
 > [!TIP]
 > See [Character Variables](character-variables) for more details on how variables are saved
+

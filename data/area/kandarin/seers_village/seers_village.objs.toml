@@ -9,3 +9,11 @@ examine = "Used for spinning thread."
 [bank_deposit_box_seers_village]
 id = 25937
 examine = "Lets you put items into your bank."
+
+[25938]
+id = 25938
+examine = "I can climb up this."
+
+[25939]
+id = 25939
+examine = "I can climb down this."

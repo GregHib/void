@@ -254,6 +254,27 @@ class GameObjectsTest : KoinMock() {
     }
 
     @Test
+    fun `Get the original object under a replacement`() {
+        val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        assertNull(GameObjects.original(original))
+
+        val replacement = GameObjects.replace(original, "test", collision = false)
+        assertEquals(original, GameObjects.original(replacement))
+
+        GameObjects.remove(replacement, collision = false)
+        assertNull(GameObjects.original(original))
+    }
+
+    @Test
+    fun `No original object under an added object`() {
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.add(obj)
+
+        assertNull(GameObjects.original(obj))
+    }
+
+    @Test
     fun `Replacing a replacement is undone back to the original`() {
         val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
         val first = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
@@ -270,6 +291,24 @@ class GameObjectsTest : KoinMock() {
         assertTrue(GameObjects.contains(original))
         assertFalse(GameObjects.contains(first))
         assertFalse(GameObjects.contains(second))
+    }
+
+    @Test
+    fun `Replacing a permanent replacement is undone back to it`() {
+        val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val permanent = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val temporary = GameObject(id = 456, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.replace(original, permanent, collision = false)
+        GameObjects.replace(permanent, temporary, ticks = 5, collision = false)
+        repeat(5) {
+            assertFalse(GameObjects.contains(permanent))
+            assertTrue(GameObjects.contains(temporary))
+            GameObjects.timers.run()
+        }
+        assertTrue(GameObjects.contains(permanent))
+        assertFalse(GameObjects.contains(original))
+        assertFalse(GameObjects.contains(temporary))
     }
 
     /**

@@ -8,3 +8,9 @@ tags = ["multi_combat"]
 x = [2653, 2656]
 y = [3439, 3443]
 tags = ["teleport"]
+
+[ranging_guild_magic_trees]
+# nav-editor: named area only
+x = [2689, 2699]
+y = [3422, 3429]
+level = 0

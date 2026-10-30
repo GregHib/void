@@ -15,6 +15,10 @@ values = [ "None", "Mod", "Admin" ]
 format = "string"
 persist = true
 
+[choose_name]
+format = "boolean"
+persist = true
+
 [lifetime_xp]
 format = "long"
 persist = true
@@ -28,5 +32,9 @@ format = "boolean"
 persist = true
 
 [insta_kill]
+format = "boolean"
+persist = true
+
+[world_map_hidden]
 format = "boolean"
 persist = true

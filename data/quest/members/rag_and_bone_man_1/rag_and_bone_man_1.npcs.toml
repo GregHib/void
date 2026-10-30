@@ -1,0 +1,15 @@
+[vulture]
+id = 3676
+hitpoints = 100
+att = 40
+str = 40
+def = 10
+examine = "If you see them circling, run."
+
+[vulture_2]
+id = 6792
+hitpoints = 100
+att = 40
+str = 40
+def = 10
+examine = "If you see them circling, run."

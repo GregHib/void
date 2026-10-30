@@ -11,6 +11,7 @@ Entity is a broad category for everything that exists in the game world, with a 
 > Item's are considered a part of [interfaces](interfaces) not entities, for more info see [Inventories](inventories).
 
 # World
+
 Although only an entity due to technicality the World also has a number of operations the same as other entities.
 
 World spawn and despawn are called on server startup and shutdown:
@@ -33,3 +34,4 @@ worldTimerTick("timer_name") {
 worldTimerStop("timer_name") {
 }
 ```
+

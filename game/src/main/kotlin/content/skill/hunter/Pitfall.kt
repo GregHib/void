@@ -1,7 +1,6 @@
 package content.skill.hunter
 
 import content.entity.combat.attacker
-import content.entity.combat.dead
 import content.entity.combat.target
 import content.entity.combat.underAttack
 import content.skill.melee.weapon.attackSpeed
@@ -117,10 +116,6 @@ class Pitfall : Script {
                 message("The pitfall trap that you constructed has collapsed.")
                 Timer.CANCEL
             }
-        }
-
-        objectOperate("Trap", "pitfall_*") {
-            // Temp to avoid #1059
         }
     }
 

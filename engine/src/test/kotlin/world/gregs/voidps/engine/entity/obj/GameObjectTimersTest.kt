@@ -58,4 +58,20 @@ class GameObjectTimersTest {
         repeat(5) { timers.run() }
         assertEquals(1, invoked)
     }
+
+    @Test
+    fun `Block can add and cancel timers while running`() {
+        val obj = GameObject(12345)
+        val other = GameObject(54321)
+        var added = 0
+        timers.add(other, 2) { added = -1 }
+        timers.add(obj, 1) {
+            timers.cancel(other)
+            timers.add(obj, 2) { added++ }
+        }
+        timers.run()
+        assertEquals(0, added)
+        repeat(2) { timers.run() }
+        assertEquals(1, added)
+    }
 }

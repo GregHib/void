@@ -1,6 +1,6 @@
 Queues are an alternative to [delays](https://osrs-docs.com/docs/mechanics/delays/) for executing code after a set amount of time. In most cases a delay should be used when [interacting](interaction) however in some cases, like during interface interactions, you may need to use a queue to delay to a later point in time. Unlike [Timers](timers) a Queue only runs once.
 
-There are 4 types of [Queues](https://github.com/GregHib/void/blob/a4af3f90fdc33c890935abc9531f903e06b1a6d0/engine/src/main/kotlin/world/gregs/voidps/engine/queue/ActionPriority.kt#L3): 
+There are 4 types of [Queues](https://github.com/GregHib/void/blob/a4af3f90fdc33c890935abc9531f903e06b1a6d0/engine/src/main/kotlin/world/gregs/voidps/engine/queue/ActionPriority.kt#L3):
 * [Weak](#weak-queues) - Removed by interuptions and String queues
 * [Normal](#normal-queues) - Skipped if interface is open
 * [Strong](#strong-queues) - Closes interfaces and cancels Weak actions
@@ -14,6 +14,7 @@ Queues are easy enough to start and can be started on any [Character](entities),
 ## Normal queues
 
 Normal queues are for regular, do something in a few ticks or do something suspendable now
+
 ```kotlin
 player.queue("welcome") {
     statement("Welcome to Lumbridge! To get more help, simply click on the Lumbridge Guide or one of the Tutors - these can be found by looking for the question mark icon on your minimap. If you find you are lost at any time, look for a signpost or use the Lumbridge Home Teleport spell.")
@@ -23,6 +24,7 @@ player.queue("welcome") {
 ## Weak queues
 
 Weak queues are often used for item-on-item interactions and other interruptable skills
+
 ```kotlin
 player.weakQueue("cast_silver", 3) {
     inventory.replace("silver_bar", data.item)
@@ -50,6 +52,7 @@ player.strongQueue("teleport") {
 ## Soft queues
 
 Soft queues are used for things that have to happen and nothing short of death will stop them.
+
 ```kotlin
 player.softQueue("remove_ammo") {
     player.equipment.remove(ammo, required)
@@ -65,3 +68,4 @@ World.queue("shooting_star_event_timer", TimeUnit.MINUTES.toTicks(minutes)) {
     startCrashedStarEvent()
 }
 ```
+

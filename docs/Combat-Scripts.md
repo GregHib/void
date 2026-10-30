@@ -1,7 +1,6 @@
 > [!NOTE]
 > Combat scripting is somewhat experimental and is subject to change as more bosses and monsters are added.
 
-
 While fighting in combat two characters will take it in turns to swing at one another dealing a random amount of damage which varies based on levels and equipment used. Each swing is broken up into several stages and determines the number of ticks delay to wait afterwards until swinging again.
 
 # Anatomy of an attack
@@ -21,8 +20,6 @@ While fighting in combat two characters will take it in turns to swing at one an
   * Deflection
 
 ![swing-stages-magic](https://github.com/GregHib/void/assets/5911414/f4f280a4-aac0-4531-8f5b-58e7c65deb9e)
-
-
 
 ## Swing style
 
@@ -148,3 +145,4 @@ specialAttackHit("korasis_sword") { character ->
     character.gfx("disrupt_hit")
 }
 ```
+

@@ -34,7 +34,7 @@ fun matchesFilter(rawValue: Any?, filter: FieldFilter): Boolean {
             is ByteArray -> rawValue.any { it.toString().contains(query, ignoreCase = true) }
             is Array<*> -> rawValue.any { it?.toString()?.contains(query, ignoreCase = true) == true }
             is Map<*, *> -> rawValue.keys.any { it.toString().contains(query, ignoreCase = true) } ||
-                    rawValue.values.any { it.toString().contains(query, ignoreCase = true) }
+                rawValue.values.any { it.toString().contains(query, ignoreCase = true) }
             else -> displayValue(rawValue).contains(query, ignoreCase = true)
         }
         MatchMode.PARAM_KEY -> {
@@ -42,7 +42,7 @@ fun matchesFilter(rawValue: Any?, filter: FieldFilter): Boolean {
             val queryId = Params.idOrNull(query)?.takeIf { it != -1 } ?: query.toIntOrNull()
             rawValue.keys.any { k ->
                 k.toString() == queryId?.toString() ||
-                        (k is Int && ParamLookup.of(k)?.contains(query, ignoreCase = true) == true)
+                    (k is Int && ParamLookup.of(k)?.contains(query, ignoreCase = true) == true)
             }
         }
         MatchMode.PARAM_VALUE -> {

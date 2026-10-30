@@ -11,6 +11,10 @@ id = 1170
 
 [the_shaikahan_karamja_jungle_instance]
 id = 1173
+hitpoints = 1000
+att = 80
+str = 80
+def = 25
 
 [fishing_spot_karamja_karambwan_west]
 id = 1176

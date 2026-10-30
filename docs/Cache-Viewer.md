@@ -3,6 +3,7 @@ The cache viewer is a tool to quickly and easily search through game [definition
 If you're playing in-game it's better to use the [/find command](Commands#unlock).
 
 ## Setup
+
 A prebuilt jar can be found here: [download link](https://mega.nz/folder/FFcDgKAB#FqARRP5MSx69S15--7MZNA).
 
 Alternatively you can run the definition-browser using the following gradle command:
@@ -26,8 +27,8 @@ Once the cache is loaded (this can take a minute) you'll see the main interface.
 
 On the top row you'll find a Global search "All", a list of different types of definitions, and a reload and change directory button.
 
-
 ### Search All
+
 In the All tab you'll find a search bar where you can enter any word, name or id and it'll search within all definitions.
 
 <img width="986" height="593" alt="image" src="https://github.com/user-attachments/assets/a54c58d2-ebd4-47dd-9dc8-619c3d54e0a7" />
@@ -42,7 +43,6 @@ The details panel displays lots of information about the selected definition, ev
 <img width="284" height="466" alt="image" src="https://github.com/user-attachments/assets/2ff62957-81b3-482b-81ab-53b91ee0f83f" />
 <img width="282" height="258" alt="image" src="https://github.com/user-attachments/assets/00dacfb1-d654-46cc-9566-364ecaa25aac" />
 
-
 ### Filter
 
 In the main definition tabs you can view all the definition's for a given type and filter by any value
@@ -55,7 +55,4 @@ You can select whichever columns you want to display, preview the [details](#det
 Multi-select, and copy to clipboard with ctrl + c or right click
 
 <img width="986" height="634" alt="image" src="https://github.com/user-attachments/assets/2836c434-b43b-4c73-9e41-007ec59c1eb0" />
-
-
-
 

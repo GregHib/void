@@ -3,7 +3,6 @@ package content.area.morytania.slayer_tower
 import WorldTest
 import containsMessage
 import content.entity.combat.attacker
-import content.entity.combat.dead
 import itemOnNpc
 import npcOption
 import org.junit.jupiter.api.Test

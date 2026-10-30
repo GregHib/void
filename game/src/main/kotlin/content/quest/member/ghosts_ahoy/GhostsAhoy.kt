@@ -202,14 +202,7 @@ class GhostsAhoy : Script {
             }
         }
 
-        teleportTakeOff("*") {
-            if (transform.contains("ahoy_ghost_disguise")) {
-                message("Please remove your ghost disguise before teleporting.")
-                false
-            } else {
-                true
-            }
-        }
+        blockTeleports("Please remove your ghost disguise before teleporting.") { transform.contains("ahoy_ghost_disguise") }
 
         // === Object hooks ===
 

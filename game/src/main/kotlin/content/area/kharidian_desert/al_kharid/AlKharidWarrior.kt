@@ -1,6 +1,5 @@
 package content.area.kharidian_desert.al_kharid
 
-import content.entity.combat.dead
 import content.entity.combat.inCombat
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer

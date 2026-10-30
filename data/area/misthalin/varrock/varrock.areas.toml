@@ -12,14 +12,17 @@ tags = ["teleport"]
 x = [3152, 3287]
 y = [9856, 9919]
 tags = ["multi_combat"]
+bot_capacity = 6
 
 [varrock_south_east_mine]
 x = [3281, 3290]
 y = [3360, 3371]
+bot_capacity = 10
 
 [varrock_south_west_mine]
 x = [3171, 3184]
 y = [3364, 3380]
+bot_capacity = 11
 
 [varrock_east_bank]
 x = [3250, 3257]
@@ -30,6 +33,11 @@ tags = ["bank"]
 x = [3179, 3194]
 y = [3432, 3446]
 tags = ["bank"]
+
+[varrock_palace_yew_trees]
+x = [3201, 3225]
+y = [3499, 3508]
+bot_capacity = 3
 
 [lumber_yard_teleport]
 x = [3300, 3302]

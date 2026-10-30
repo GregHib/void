@@ -1,18 +1,21 @@
-
 Tables store content data of most shapes and sizes in `*.tables.toml` files.
 
 They function similar to a spreadsheet storing data in rows and columns.
 
 ## Example
+
 ### Fletching darts
-| Row (item) | Level (int) | XP (int) |
-| ---------- | ----------- | -------- |
-| bronze_dart_tip | 10 | 18 |
-| iron_dart_tip | 22 | 38 |
-| steel_dart_tip | 37 | 75 |
+
+|   Row (item)    | Level (int) | XP (int) |
+|-----------------|-------------|----------|
+| bronze_dart_tip | 10          | 18       |
+| iron_dart_tip   | 22          | 38       |
+| steel_dart_tip  | 37          | 75       |
 
 ## Format
+
 The top of a table lists the column types
+
 ```toml
 [fletching_darts] # Table name
 row_id = "item"   # Row type (optional)
@@ -22,6 +25,7 @@ xp = "int"        # column 2
 ```
 
 Rows can then be added to that table in the same file using the `.` prefix to refer to the parent
+
 ```
 [.bronze_dart_tip] # First row
 level = 10
@@ -68,6 +72,7 @@ boolean = false
 ```
 
 These values can be overridden in the table header
+
 ```toml
 [picking]
 item = "item"
@@ -86,3 +91,4 @@ message = "You pick a cabbage."
 val chance = Tables.int("picking.cabbages.chance") // 1
 val respawn = Tables.int("picking.cabbages.respawn") // 0
 ```
+

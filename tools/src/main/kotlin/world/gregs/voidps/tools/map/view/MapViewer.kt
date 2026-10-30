@@ -32,7 +32,7 @@ class MapViewer {
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(files.list(Settings["definitions.objects"]))
-                MapDefinitions(CollisionDecoder(), cache).load(files)
+                MapDefinitions(CollisionDecoder(), cache).load()
             }
             val view = MapView()
             view.reload(files)

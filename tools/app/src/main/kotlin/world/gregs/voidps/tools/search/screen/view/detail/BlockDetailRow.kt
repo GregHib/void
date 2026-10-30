@@ -70,14 +70,14 @@ fun BlockDetailRow(
             Box(
                 Modifier
                     .background(TagBg, RoundedCornerShape(2.dp))
-                    .padding(horizontal = 4.dp, vertical = 1.dp)
+                    .padding(horizontal = 4.dp, vertical = 1.dp),
             ) {
                 val text = when (raw) {
-                    is ByteArray -> "${typeStr}[${raw.size}]"
-                    is ShortArray -> "${typeStr}[${raw.size}]"
-                    is IntArray -> "${typeStr}[${raw.size}]"
-                    is Array<*> -> "${typeStr}[${raw.size}]"
-                    is Map<*, *> -> "${typeStr}[${raw.size}]"
+                    is ByteArray -> "$typeStr[${raw.size}]"
+                    is ShortArray -> "$typeStr[${raw.size}]"
+                    is IntArray -> "$typeStr[${raw.size}]"
+                    is Array<*> -> "$typeStr[${raw.size}]"
+                    is Map<*, *> -> "$typeStr[${raw.size}]"
                     else -> typeStr
                 }
                 Text(text, fontSize = 11.sp, color = AccentLight.copy(alpha = 0.7f))

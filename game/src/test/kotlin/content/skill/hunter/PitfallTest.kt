@@ -1,6 +1,7 @@
 package content.skill.hunter
 
 import WorldTest
+import containsMessage
 import content.entity.combat.attacker
 import content.entity.combat.inCombat
 import npcOption
@@ -28,8 +29,9 @@ class PitfallTest : WorldTest() {
         player.levels.set(Skill.Hunter, 99)
 
         player.objectOption(pit, "Trap")
-        tick(2)
+        tick(3)
         assertEquals("spiked", player["pitfall_horned_graahk_14", "empty"])
+        assertFalse(player.containsMessage("Nothing interesting happens"))
 
         val graahk = createNPC("horned_graahk", Tile(2777, 3004))
 

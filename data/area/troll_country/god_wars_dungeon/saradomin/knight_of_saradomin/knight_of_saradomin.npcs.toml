@@ -1,9 +1,9 @@
 [knight_of_saradomin]
 id = 6258
-hitpoints = 1080
+hitpoints = 1350
 att = 75
-str = 90
-def = 82
+str = 85
+def = 70
 mage = 60
 attack_bonus = 13
 combat_def = "knight_of_saradomin"
@@ -15,10 +15,10 @@ examine = "A valiant knight."
 
 [knight_of_saradomin_female]
 id = 6259
-hitpoints = 1350
+hitpoints = 1080
 att = 75
-str = 85
-def = 70
+str = 90
+def = 82
 mage = 60
 combat_def = "knight_of_saradomin"
 max_hit_crush = 110

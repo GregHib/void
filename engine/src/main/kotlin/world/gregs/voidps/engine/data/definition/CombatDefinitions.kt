@@ -6,9 +6,8 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatAttack
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
-import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
-import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.type.Delta
 
 /**
@@ -22,38 +21,46 @@ class CombatDefinitions {
 
     fun getOrNull(key: String) = definitions[key]
 
+    val all: Map<String, CombatDefinition>
+        get() = definitions
+
+    fun install(state: Map<String, CombatDefinition>) {
+        definitions = state
+    }
+
     fun load(paths: List<String>): CombatDefinitions {
-        timedLoad("combat definition") {
-            val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
-            val attackClones = mutableListOf<Triple<CombatDefinition, String, String>>()
-            val definitionClones = mutableListOf<Pair<String, String>>()
-            for (path in paths) {
-                Config.fileReader(path) {
-                    while (nextSection()) {
-                        val section = section()
-                        if (section.contains(".")) {
-                            attack(section, definitions, attackClones)
-                        } else {
-                            definition(definitions, section, definitionClones)
-                        }
+        definitions = parse(paths)
+        return this
+    }
+
+    internal fun parse(paths: List<String>): Map<String, CombatDefinition> {
+        val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
+        val attackClones = mutableListOf<Triple<CombatDefinition, String, String>>()
+        val definitionClones = mutableListOf<Pair<String, String>>()
+        for (path in paths) {
+            Config.fileReader(path) {
+                while (nextSection()) {
+                    val section = section()
+                    if (section.contains(".")) {
+                        attack(section, definitions, attackClones)
+                    } else {
+                        definition(definitions, section, definitionClones)
                     }
                 }
             }
-            for ((definition, attack, clone) in attackClones) {
-                val original = definition.attacks[attack]!!
-                val (id, att) = clone.split(".")
-                val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.${attack}'.")
-                (definition.attacks as MutableMap<String, CombatAttack>)[attack] = override(original, clone)
-            }
-            for ((name, clone) in definitionClones) {
-                val original = definitions[name]!!
-                val clone = definitions[clone] ?: throw IllegalArgumentException("Unable to find combat definition '$clone' to clone for '${original.npc}'.")
-                definitions[name] = override(original, clone)
-            }
-            this.definitions = definitions
-            this.definitions.size
         }
-        return this
+        for ((definition, attack, clone) in attackClones) {
+            val original = definition.attacks[attack]!!
+            val (id, att) = clone.split(".")
+            val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.$attack'.")
+            (definition.attacks as MutableMap<String, CombatAttack>)[attack] = override(original, clone)
+        }
+        for ((name, clone) in definitionClones) {
+            val original = definitions[name]!!
+            val clone = definitions[clone] ?: throw IllegalArgumentException("Unable to find combat definition '$clone' to clone for '${original.npc}'.")
+            definitions[name] = override(original, clone)
+        }
+        return definitions
     }
 
     private fun ConfigReader.definition(definitions: Object2ObjectOpenHashMap<String, CombatDefinition>, section: String, clones: MutableList<Pair<String, String>>) {
@@ -224,7 +231,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.drains(list: MutableList<CombatDefinition.Drain>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -234,7 +241,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.drain(drainSkills: MutableList<CombatDefinition.Drain>) {
         if (peek != '{') {
-            throw IllegalArgumentException("Expected { skill = \"\", amount = 2 } found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Expected { skill = \"\", amount = 2 } found literal '$peek'. ${exception()}")
         }
         var skill = ""
         var min = 0
@@ -258,7 +265,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.projectiles(list: MutableList<Projectile>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -271,7 +278,7 @@ class CombatDefinitions {
             list.add(Projectile(string()))
             return
         } else if (peek != '{') {
-            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Map expected but found literal '$peek'. ${exception()}")
         }
         var id = ""
         var delay: Int? = null
@@ -298,7 +305,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.hits(list: MutableList<CombatHit>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -308,7 +315,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.hit(list: MutableList<CombatHit>) {
         if (peek != '{') {
-            throw IllegalArgumentException("Expected { offense = \"\", max = 100 } found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Expected { offense = \"\", max = 100 } found literal '$peek'. ${exception()}")
         }
         var offense = ""
         var defence: String? = null
@@ -342,7 +349,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.sounds(list: MutableList<CombatDefinition.CombatSound>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -355,17 +362,19 @@ class CombatDefinitions {
             list.add(CombatDefinition.CombatSound(string()))
             return
         } else if (peek != '{') {
-            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Map expected but found literal '$peek'. ${exception()}")
         }
         var id = ""
         var delay = 0
         var radius = 0
+        var area = false
         var offset: Delta? = null
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
                 "radius" -> radius = int()
+                "area" -> area = boolean()
                 "offset_x" -> {
                     val x = int()
                     offset = offset?.copy(x = x) ?: Delta(x = x, y = 0, level = 0)
@@ -377,12 +386,12 @@ class CombatDefinitions {
                 else -> throw IllegalArgumentException("Unknown key '$key' in sound definition. ${exception()}")
             }
         }
-        list.add(CombatDefinition.CombatSound(id, delay, radius, offset))
+        list.add(CombatDefinition.CombatSound(id, delay, radius, offset, area))
     }
 
     private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>) {
         if (peek != '[') {
-            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("List expected but found literal '$peek'. ${exception()}")
         }
         list.clear()
         while (nextElement()) {
@@ -395,7 +404,7 @@ class CombatDefinitions {
             list.add(CombatDefinition.CombatGfx(string()))
             return
         } else if (peek != '{') {
-            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
+            throw IllegalArgumentException("Map expected but found literal '$peek'. ${exception()}")
         }
         var id = ""
         var delay: Int? = null
@@ -432,7 +441,7 @@ class CombatDefinitions {
         sounds = original.sounds.ifEmpty { clone.sounds },
         projectileOrigin = if (original.projectileOrigin != CombatAttack.EMPTY.projectileOrigin) original.projectileOrigin else clone.projectileOrigin,
         projectileOriginX = if (original.projectileOriginX != CombatAttack.EMPTY.projectileOriginX) original.projectileOriginX else clone.projectileOriginX,
-        projectileOriginY = if (original.projectileOriginX != CombatAttack.EMPTY.projectileOriginY) original.projectileOriginY else clone.projectileOriginY,
+        projectileOriginY = if (original.projectileOriginY != CombatAttack.EMPTY.projectileOriginY) original.projectileOriginY else clone.projectileOriginY,
         projectiles = original.projectiles.ifEmpty { clone.projectiles },
         targetAnim = if (original.targetAnim != CombatAttack.EMPTY.targetAnim) original.targetAnim else clone.targetAnim,
         targetGfx = original.targetGfx.ifEmpty { clone.targetGfx },
@@ -461,5 +470,4 @@ class CombatDefinitions {
         defendSound = original.defendSound ?: clone.defendSound,
         deathSound = original.deathSound ?: clone.deathSound,
     )
-
 }

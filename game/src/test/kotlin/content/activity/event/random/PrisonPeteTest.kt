@@ -2,6 +2,7 @@ package content.activity.event.random
 
 import WorldTest
 import dialogueContinue
+import itemOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
@@ -132,6 +133,28 @@ class PrisonPeteTest : WorldTest() {
         assertFalse(player.inventory.contains("prison_key_prison_pete"))
         assertEquals(0, player.get("prison_pete_keys", 0))
         assertEquals("prison_pete", player.get<String>("random_event"))
+    }
+
+    @Test
+    fun `Returning the key item hands it to Pete`() {
+        val player = enter("pp_return")
+        val pete = createNPC("prison_pete", player.tile.addY(3))
+        player.pullLever()
+        player.popBalloon(correct = true)
+
+        player.itemOption("Return", "prison_key_prison_pete")
+        tick(8)
+        player.skipDialogues()
+        tick(3)
+        if (player.dialogue != null) {
+            player.skipDialogues()
+        }
+        tick()
+
+        assertEquals("prison_pete", pete.id)
+        assertFalse(player.inventory.contains("prison_key_prison_pete"))
+        assertEquals(1, player.get("prison_pete_keys", 0))
+        assertEquals(0, player.get("prison_pete_pending", 0))
     }
 
     @Test

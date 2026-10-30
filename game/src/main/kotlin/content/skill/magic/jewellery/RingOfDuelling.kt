@@ -10,7 +10,7 @@ class RingOfDuelling : Script {
 
     init {
         itemOption("Rub", "ring_of_duelling_#") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             choice("Where would you like to teleport to?") {
@@ -37,7 +37,7 @@ class RingOfDuelling : Script {
     }
 
     private fun teleport(player: Player, option: ItemOption) {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return
         }
         val area = when (option.option) {

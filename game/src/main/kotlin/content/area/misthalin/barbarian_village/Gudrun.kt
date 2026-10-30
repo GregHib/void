@@ -80,8 +80,7 @@ class Gudrun : Script {
             option<Idle>("Yes.") {
                 cutscene()
             }
-            option<Idle>("Not right now.") {
-            }
+            option<Idle>("Not right now.")
         }
     }
 
@@ -325,8 +324,7 @@ class Gudrun : Script {
             option<Idle>("Where is he?") {
                 npc<Neutral>("In the longhouse at the north end of the village, drinking and shouting.")
             }
-            option<Idle>("I'll see what I can do.") {
-            }
+            option<Idle>("I'll see what I can do.")
         }
     }
 
@@ -449,8 +447,7 @@ class Gudrun : Script {
             option<Idle>("Who are you?") {
                 whoAreYou()
             }
-            option<Idle>("Actually, no. Goodbye") {
-            }
+            option<Idle>("Actually, no. Goodbye")
         }
     }
 
@@ -460,8 +457,7 @@ class Gudrun : Script {
             option<Happy>("What is this place?") {
                 whatIsThisPlace()
             }
-            option<Pleased>("Goodbye.") {
-            }
+            option<Pleased>("Goodbye.")
         }
     }
 
@@ -472,8 +468,7 @@ class Gudrun : Script {
             option<Idle>("Who are you?") {
                 whoAreYou()
             }
-            option<Pleased>("Goodbye.") {
-            }
+            option<Pleased>("Goodbye.")
         }
     }
 

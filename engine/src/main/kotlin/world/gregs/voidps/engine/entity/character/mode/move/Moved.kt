@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 
 interface Moved {
@@ -82,6 +81,5 @@ interface Moved {
             playerMoved.clear()
             npcMoved.clear()
         }
-
     }
 }

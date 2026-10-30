@@ -10,7 +10,7 @@ class DigSitePendant : Script {
 
     init {
         itemOption("Rub", "dig_site_pendant_#") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             message("You rub the pendant...", ChatType.Filter)

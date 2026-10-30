@@ -43,17 +43,6 @@ class GameFrame : Script {
         interfaceOpened("toplevel*") {
             openGameFrame(this)
         }
-
-        interfaceRefresh("toplevel*,dialogue_npc*") {
-            interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
-            softTimers.start("wilderness_level_refresh")
-        }
-
-        timerStart("wilderness_level_refresh") { 1 }
-
-        timerStop("wilderness_level_refresh") {
-            interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
-        }
     }
 
     fun openGameFrame(player: Player) {

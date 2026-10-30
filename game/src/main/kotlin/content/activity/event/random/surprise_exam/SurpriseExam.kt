@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -73,7 +74,8 @@ class SurpriseExam : Script {
         itemOption("Read", "book_of_knowledge") { (item, slot) ->
             val skill = skillLamp()
             if (inventory.remove(slot, item.id)) {
-                exp(skill, levels.getMax(skill) * XP_PER_LEVEL)
+                val level = if (skill == Skill.Constitution) levels.getMax(skill) / 10 else levels.getMax(skill)
+                exp(skill, level * XP_PER_LEVEL)
                 statement("You feel more knowledgeable about ${skill.name.lowercase()}.")
             }
         }

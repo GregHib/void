@@ -2,7 +2,7 @@
 type = "all"
 drops = [
     { id = "bones" },
-    { table = "black_guard_low_secondary" },
+    { table = "black_guard_low_own_secondary" },
 ]
 
 [black_guard_low_secondary]
@@ -27,4 +27,34 @@ drops = [
     { id = "iron_bar", chance = 3 },
     { id = "coal", chance = 2 },
     { table = "gem_drop_table" },
+]
+
+[black_guard_low_own_secondary]
+roll = 256
+drops = [
+    { id = "bronze_pickaxe", chance = 26 },
+    { id = "bronze_med_helm", chance = 8 },
+    { id = "bronze_battleaxe", chance = 4 },
+    { id = "iron_battleaxe", chance = 2 },
+    { id = "bronze_bolts", amount = 6, chance = 13 },
+    { id = "chaos_rune", amount = 2, chance = 8 },
+    { id = "nature_rune", amount = 2, chance = 8 },
+    { id = "coins", amount = 4, chance = 39 },
+    { id = "coins", amount = 10, chance = 30 },
+    { id = "coins", amount = 30, chance = 4 },
+    { id = "hammer", chance = 20 },
+    { id = "bronze_bar", chance = 14 },
+    { id = "iron_ore", chance = 8 },
+    { id = "tin_ore", chance = 6 },
+    { id = "copper_ore", chance = 6 },
+    { id = "iron_bar", chance = 6 },
+    { id = "coal", chance = 4 },
+    { id = "bronze_warhammer", chance = 8 },
+    { id = "black_warhammer", chance = 8 },
+    { id = "uncut_sapphire", chance = 8 },
+    { id = "uncut_emerald", chance = 8 },
+    { id = "uncut_ruby", chance = 8 },
+    { id = "uncut_diamond" },
+    { id = "loop_half_of_a_key" },
+    { id = "keg_of_beer", chance = 8 },
 ]

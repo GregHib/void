@@ -10,7 +10,7 @@ class TeleportCrystal : Script {
 
     init {
         itemOption("Activate", "crystal_teleport_seed_#") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             val item = it.item.id

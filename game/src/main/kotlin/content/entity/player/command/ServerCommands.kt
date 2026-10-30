@@ -1,12 +1,6 @@
 package content.entity.player.command
 
 import content.bot.BotManager
-import content.entity.obj.ObjectTeleports
-import content.entity.obj.ship.CharterShips
-import content.entity.player.modal.book.Books
-import content.entity.world.music.MusicTracks
-import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
-import content.skill.farming.FarmingDefinitions
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -18,34 +12,12 @@ import world.gregs.voidps.engine.data.AccountDefinitionsReloader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
-import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.data.definition.GraphicDefinitions
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.InventoryDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
-import world.gregs.voidps.engine.data.definition.JingleDefinitions
-import world.gregs.voidps.engine.data.definition.MidiDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.data.definition.PatrolDefinitions
-import world.gregs.voidps.engine.data.definition.PrayerDefinitions
-import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.AuditLog
@@ -69,6 +41,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
         val configs = setOf(
             "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
             "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings", "accounts",
+            "enums", "structs", "hunt_modes", "weapon_styles", "weapon_animations", "ammo", "canoes", "item_spawns", "nav",
         )
         adminCommand(
             "reload",
@@ -80,61 +53,35 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
 
     fun reload(player: Player, args: List<String>) {
         val files = configFiles()
-        when (args.joinToString("_")) {
-            "combat" -> get<CombatDefinitions>().load(files.list(Settings["definitions.combatAttacks"]))
-            "book", "books" -> {
-                get<Books>().load(files.list(Settings["definitions.books"]))
+        val alias = args.joinToString("_")
+        val loader = loaders[alias]
+        if (loader != null) {
+            if (loader == "items") {
+                FloorItems.clear()
+            }
+            val reloaded = Main.reload(loader, files)
+            if ("books" in reloaded) {
                 val menu = player.menu
                 if (menu != null && menu.startsWith("book_")) {
                     player.open(menu)
                 }
             }
-            "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
-            "tracks", "songs", "music_tracks" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
-            "fairy_ring", "fairy_rings", "fairy_codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))
-            "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
-            "objects", "objs" -> {
-                ObjectDefinitions.load(files.list(Settings["definitions.objects"]))
+            if ("objects" in reloaded) {
                 loadObjectSpawns(files.list(Settings["spawns.objects"]))
             }
-            "item_defs", "items", "floor_items" -> {
-                val itemSpawns: ItemSpawns = get()
+            if ("items" in reloaded) {
+                loadItemSpawns(files.list(Settings["spawns.items"]))
+            }
+            if ("npc_spawns" in reloaded) {
+                loadNpcSpawns()
+            }
+            return
+        }
+        when (alias) {
+            "item_spawns", "floor_item_spawns" -> {
                 FloorItems.clear()
-                ItemDefinitions.load(files.list(Settings["definitions.items"]))
-                loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
+                loadItemSpawns(files.list(Settings["spawns.items"]))
             }
-            "npcs" -> {
-                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
-                loadNpcSpawns(files, reload = true)
-            }
-            "npc_defs" -> {
-                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
-            }
-            "areas" -> Areas.load(files.list(Settings["map.areas"]))
-            "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
-            "anim_defs", "anims", "animations" -> AnimationDefinitions.load(files.list(Settings["definitions.animations"]))
-            "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {
-                get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
-            }
-            "graphic_defs", "graphics", "gfx", "gfxs" -> GraphicDefinitions.load(files.list(Settings["definitions.graphics"]))
-            "item_on_item", "item-on-item", "ioi", "recipes" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
-            "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
-            "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
-            "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
-            "midi", "midis" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
-            "vars", "variables" -> VariableDefinitions.load(files)
-            "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
-            "interfaces" -> {
-                InterfaceDefinitions.definitions.onEach { int ->
-                    int.components?.values?.onEach { comp -> comp.stringId = "" }
-                    int.stringId = ""
-                }
-                InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
-            }
-            "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
-            "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
-            "drops", "drop_tables" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
-            "cs2", "cs2s", "client_scripts" -> get<ClientScriptDefinitions>().load(files.list(Settings["definitions.clientScripts"]))
             "settings", "setting", "game_setting", "game_settings", "games_settings", "properties", "props" -> {
                 Settings.load()
                 SettingsReload.now()
@@ -145,7 +92,6 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
                 }
             }
             "bots" -> get<BotManager>().load(files)
-            "tables", "rows", "dbs", "spells" -> Tables.load(files.list(Settings["definitions.tables"]))
         }
     }
 
@@ -194,6 +140,51 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
         }
         World.queue("system_update", ticks) {
             Main.server.stop()
+        }
+    }
+
+    private companion object {
+        /** Reload command arguments to the name of the loader they reload */
+        val loaders = buildMap {
+            fun alias(loader: String, vararg names: String) {
+                for (name in names) {
+                    put(name, loader)
+                }
+            }
+            alias("combat", "combat")
+            alias("books", "book", "books")
+            alias("object_teleports", "stairs", "tele", "teles", "teleports")
+            alias("music_tracks", "tracks", "songs", "music_tracks")
+            alias("objects", "objects", "objs")
+            alias("items", "item_defs", "items", "floor_items")
+            alias("enums", "enum", "enums")
+            alias("structs", "struct", "structs")
+            alias("hunt_modes", "hunt", "hunt_modes", "hunt_mode")
+            alias("weapon_styles", "weapon_styles", "weapon_style", "styles")
+            alias("weapon_animations", "weapon_animations", "weapon_anims", "weapon_animation")
+            alias("ammo", "ammo", "ammo_groups", "ammunition")
+            alias("canoes", "canoe", "canoes")
+            alias("npcs", "npcs", "npc_defs")
+            alias("npc_spawns", "npc_spawns", "spawns")
+            alias("areas", "areas")
+            alias("render_emotes", "emotes", "render_anims", "render_emotes")
+            alias("animations", "anim_defs", "anims", "animations")
+            alias("inventories", "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops")
+            alias("graphics", "graphic_defs", "graphics", "gfx", "gfxs")
+            alias("item_on_item", "item_on_item", "item-on-item", "ioi", "recipes")
+            alias("sounds", "sound", "sounds", "sound effects")
+            alias("farming", "produce", "farming")
+            alias("quests", "quest", "quests")
+            alias("midis", "midi", "midis")
+            alias("variables", "vars", "variables")
+            alias("jingles", "music", "music effects", "jingles")
+            alias("interfaces", "interfaces")
+            alias("patrols", "patrols", "paths")
+            alias("prayers", "prayers")
+            alias("drop_tables", "drops", "drop_tables")
+            alias("client_scripts", "cs2", "cs2s", "client_scripts")
+            alias("tables", "tables", "rows", "dbs", "spells")
+            alias("nav_edges", "nav", "nav_graph", "nav_edges", "navigation", "ai_graph")
         }
     }
 }

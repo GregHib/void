@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.stack.NeverStack
@@ -24,6 +25,13 @@ internal class ClearItemTest : TransactionOperationTest() {
 
         // Assert that the item was not removed from the inventory
         assertEquals(1, inventory[0].amount)
+    }
+
+    @Test
+    fun `Clear an invalid index`() {
+        transaction.clear(-1)
+        assertFalse(transaction.commit())
+        assertEquals(TransactionError.Invalid, transaction.error)
     }
 
     @Test

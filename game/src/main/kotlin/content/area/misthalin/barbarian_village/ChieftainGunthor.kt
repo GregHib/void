@@ -99,8 +99,7 @@ class ChieftainGunthor : Script {
 
     suspend fun Player.seeHimTry() {
         choice {
-            option<Neutral>("I'm going!") {
-            }
+            option<Neutral>("I'm going!")
             option<Neutral>("I'd like to see him try.") {
                 npc<Angry>("haakon_the_champion", "Come here and say that to my face, outerlander!")
             }

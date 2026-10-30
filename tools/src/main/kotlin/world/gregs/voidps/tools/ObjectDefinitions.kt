@@ -18,7 +18,7 @@ object ObjectDefinitions {
             .load(configFiles().getValue(Settings["definitions.objects"]))
         ObjectDefinitions.definitions.findTransforms(29585)
         for (def in ObjectDefinitions.definitions) {
-            if(def.stringId.startsWith("slayer_tower_chain")) {
+            if (def.stringId.startsWith("slayer_tower_chain")) {
                 println("${def.id} ${def.name} ${def.options?.toList()}")
             }
         }

@@ -58,12 +58,12 @@ fun main() = application {
                 AppScreen.PICKER -> CachePickerScreen(
                     initialPath = AppPrefs.cacheDir,
                     error = loadError,
-                    onDirectorySelected = { tryLoad(it) }
+                    onDirectorySelected = { tryLoad(it) },
                 )
                 AppScreen.BROWSER -> DefinitionBrowser(
                     tabs = tabs,
                     onReload = { currentPath?.let { tryLoad(it) } },
-                    onChangePath = { screen = AppScreen.PICKER }
+                    onChangePath = { screen = AppScreen.PICKER },
                 )
             }
         }

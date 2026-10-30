@@ -83,7 +83,7 @@ tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You
 #weight = 10
 #tip = "Elves are quick, agile and vicious fighters that often favour bows, polearms and snide remarks. Their dedication to trees, bushes and music is an affront to me, so go and cause havoc in their vile villages. You'll need to travel far to the west."
 
-[.fire_giant]
+[.fire_giants]
 amount = [120, 185]
 weight = 10
 tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. Prove that bigger isn't always better by defeating some. They lurk in the smoke dungeon, west of here, telling tales of your weakness."

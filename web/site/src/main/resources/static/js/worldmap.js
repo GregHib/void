@@ -81,6 +81,13 @@ window.worldMapApp = function () {
   // a query could have meant, a place name the least.
   var KIND_ORDER = ['Player', 'Area', 'Place'];
 
+  // Online player locations come from the connected world's own web server (its `web` address in
+  // `worlds.json`, see WorldsRoutes.kt's `/players`), which already leaves out anyone in the
+  // wilderness or opted out with `::world_map`.
+  var PLAYERS_PATH = '/api/v1/players';
+  var PLAYERS_REFRESH_MS = 30000;
+  var PLAYERS_TIMEOUT_MS = 5000;
+
   function pxPerTile(zoom) {
     return BASE_PX_PER_TILE * Math.pow(2, zoom - BASE_ZOOM);
   }
@@ -138,7 +145,7 @@ window.worldMapApp = function () {
     return Math.round(value * dpr) / dpr;
   }
 
-  return {
+  var app = {
     gameX: 3200,
     gameY: 3200,
     level: 0,
@@ -151,7 +158,7 @@ window.worldMapApp = function () {
     displayPanelOpen: true,
     teleportPanelOpen: true,
     tilesMissing: false,
-    ptab: 'players',
+    ptab: 'search',
     tpX: '3200',
     tpY: '3200',
     tpZ: '0',
@@ -160,10 +167,14 @@ window.worldMapApp = function () {
     hoverAreaNames: [],
     levelLabels: ['SURFACE', 'FLOOR 1', 'FLOOR 2', 'FLOOR 3'],
 
-    // Online players, injected server-side by [WorldMap.playersScript] on a Site.FULL build and
-    // absent otherwise. The console's list, its name filter and the search index all read this
-    // one array — as do the pins, rendered from the same source server-side.
-    players: window.VOID_PLAYERS || [],
+    // Online players, `{name, x, y, level}` each, refreshed by `loadPlayers` every
+    // PLAYERS_REFRESH_MS. The pins, the console's list, its name filter and the search index all
+    // read this one array.
+    players: [],
+    // Set once a refresh fails, so the players pane can say the world isn't answering rather than
+    // that nobody's online; cleared by the next refresh that succeeds.
+    playersError: false,
+    _playersTimer: null,
     playerQuery: '',
     // Name of the player whose console row is highlighted and whose pin is ringed on the map
     // (see `renderPlayers`); '' for none.
@@ -178,6 +189,7 @@ window.worldMapApp = function () {
     _offsetX: 0,
     _offsetY: 0,
     _scale: BASE_PX_PER_TILE,
+    _hoverInside: false,
     // Tiles no longer in the wanted set (e.g. the previous native zoom's, after a zoom crossing)
     // aren't removed until their replacements finish loading — otherwise the already-loaded old
     // tile disappears immediately while the new one is still fading in from opacity 0, flashing
@@ -193,6 +205,12 @@ window.worldMapApp = function () {
     // good — see `onTileSettled`. Deliberately never resets on pan/zoom, so panning past the one
     // generated corner of an otherwise-empty tile set doesn't make the message flicker back.
     _tileSuccessCount: 0,
+    // Keys of tiles that failed to load (open ocean, mostly — the tile set has no image there), so
+    // panning back over them doesn't create an `<img>` for each again. `map-tiles-sw.js` already
+    // answers those repeats from its cache, but every one still costs an element, a decode attempt
+    // and a console 404. An `<img>` error can't tell a 404 from a dropped connection, so this is
+    // cleared whenever the browser comes back online (see boot) rather than trusted for the visit.
+    _emptyTiles: {},
     // Areas and place names can't change after load, so the half of the search index built from
     // them is built once on first use rather than per keystroke — the surface alone has several
     // thousand place names. Players are merged in per query instead, that list being live.
@@ -209,6 +227,10 @@ window.worldMapApp = function () {
       this.areaPolygonLayer = root.querySelector('#wm-area-polygons');
       this.areaLabelLayer = root.querySelector('#wm-area-labels');
       this.playerLayer = root.querySelector('#wm-players');
+      this.hoverTile = root.querySelector('#wm-hover-tile');
+      this.navBoot(root);
+      this.areaBoot();
+      this.mapEditBoot();
 
       this.readStateFromUrl();
       this.tpX = String(Math.round(this.gameX));
@@ -217,11 +239,16 @@ window.worldMapApp = function () {
       this.hoverX = Math.round(this.gameX);
       this.hoverY = Math.round(this.gameY);
 
+      registerTileCache();
       this.attachInteraction();
       this.scheduleRender();
 
       var self = this;
       window.addEventListener('resize', function () {
+        self.scheduleRender();
+      });
+      window.addEventListener('online', function () {
+        self._emptyTiles = {};
         self.scheduleRender();
       });
 
@@ -239,6 +266,30 @@ window.worldMapApp = function () {
       // The selected player's pin is ringed by `renderPlayers`, which only runs from render().
       self.$watch('selectedPlayer', function () {
         self.scheduleRender();
+      });
+
+      // Polling stops while the tab is hidden — nobody's looking at the pins — and catches up
+      // the moment it's shown again rather than waiting out the rest of the interval. It's also
+      // tied to the navbar's world switcher (the `world` store in void.js): any change of world —
+      // a switch or a disconnect — clears every pin straight away, since they belong to the world
+      // being left, and a newly connected one loads without waiting for the interval. Runs once
+      // immediately, which stands in for the first load.
+      Alpine.effect(function () {
+        var world = Alpine.store('world').current;
+        self.clearPlayers();
+        if (world != null) {
+          self.loadPlayers();
+        }
+      });
+      self._playersTimer = setInterval(function () {
+        if (!document.hidden) {
+          self.loadPlayers();
+        }
+      }, PLAYERS_REFRESH_MS);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) {
+          self.loadPlayers();
+        }
       });
       // A changed query invalidates whichever row the arrow keys had landed on.
       self.$watch('searchQuery', function () {
@@ -363,6 +414,17 @@ window.worldMapApp = function () {
           return;
         }
         pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+        // A nav graph point or area vertex pressed in an editor (see navgraph.js/areas.js) is
+        // dragged instead of the map. Only ever for the first finger — a second one still starts
+        // a pinch. Only the active editor (see mapedit.js) takes the press.
+        if (pointerCount() === 1 && (self.navPointerDown(e) || self.areaPointerDown(e))) {
+          try {
+            vp.setPointerCapture(e.pointerId);
+          } catch (err) {
+            // See below.
+          }
+          return;
+        }
         try {
           vp.setPointerCapture(e.pointerId);
         } catch (err) {
@@ -399,11 +461,14 @@ window.worldMapApp = function () {
         var scale = pxPerTile(self.zoom);
         var localX = e.clientX - rect.left - rect.width / 2;
         var localY = e.clientY - rect.top - rect.height / 2;
-        self.hoverX = Math.round(self.gameX + localX / scale);
-        self.hoverY = Math.round(self.gameY - localY / scale);
+        // Floored, not rounded: tile (x, y) covers the map from x to x + 1 (see `updateHoverTile`).
+        self.hoverX = Math.floor(self.gameX + localX / scale);
+        self.hoverY = Math.floor(self.gameY - localY / scale);
+        self._hoverInside = true;
         self.updateHoverAreas();
+        self.updateHoverTile();
 
-        if (!dragging) {
+        if (self.navPointerMove(e) || self.areaPointerMove(e) || !dragging) {
           return;
         }
         var dx = e.clientX - lastX;
@@ -417,6 +482,13 @@ window.worldMapApp = function () {
       });
 
       function endDrag(e) {
+        if (!pinching && pointers[e.pointerId] && e.type === 'pointerup') {
+          self.navPointerUp(e);
+          self.areaPointerUp(e);
+        } else if (pointers[e.pointerId]) {
+          self.navPointerCancel();
+          self.areaPointerCancel();
+        }
         delete pointers[e.pointerId];
         try {
           vp.releasePointerCapture(e.pointerId);
@@ -454,6 +526,18 @@ window.worldMapApp = function () {
       vp.addEventListener('pointerup', endDrag);
       vp.addEventListener('pointercancel', endDrag);
       vp.addEventListener('pointerleave', endDrag);
+      vp.addEventListener('pointerleave', function () {
+        self._hoverInside = false;
+        self.updateHoverTile();
+        self.navPointerLeave();
+        self.areaPointerLeave();
+      });
+      // Right-click deletes in the editors (see navgraph.js/areas.js) instead of opening the menu.
+      vp.addEventListener('contextmenu', function (e) {
+        if (self.navContextMenu(e) || self.areaContextMenu(e)) {
+          e.preventDefault();
+        }
+      });
 
       vp.addEventListener(
         'wheel',
@@ -562,14 +646,77 @@ window.worldMapApp = function () {
       this.selectPlayer(first.name);
     },
 
-    // "Kick", from a pin's right-click menu or a players row — placeholder until the server bridge
-    // is wired up, same as the player list it acts on.
+    clearPlayers: function () {
+      var self = this;
+      this.players = [];
+      this.playersError = false;
+      this.selectedPlayer = '';
+      this.$nextTick(function () {
+        self.scheduleRender();
+      });
+    },
+
+    // Replaces `players` with the connected world's current list. A failed refresh keeps the last
+    // list rather than wiping the map, so one dropped request doesn't blink every pin out — that
+    // list can only be this world's, as switching clears it (see `boot`). Does nothing while no
+    // world is connected, and drops any answer for a world that's no longer the connected one, so
+    // a slow reply from the previous world can't land on the new one's map.
+    loadPlayers: function () {
+      var self = this;
+      var world = Alpine.store('world').current;
+      if (world == null) {
+        return;
+      }
+      var stillConnected = function () {
+        return Alpine.store('world').current === world;
+      };
+      var timeout = null;
+      window.voidWorldWeb(world)
+        .then(function (base) {
+          if (!base) {
+            throw new Error('No web address for world ' + world);
+          }
+          var controller = typeof AbortController === 'function' ? new AbortController() : null;
+          timeout = controller ? setTimeout(function () { controller.abort(); }, PLAYERS_TIMEOUT_MS) : null;
+          return fetch(base + PLAYERS_PATH, { cache: 'no-store', signal: controller ? controller.signal : undefined });
+        })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('HTTP ' + response.status);
+          }
+          return response.json();
+        })
+        .then(function (list) {
+          if (!stillConnected()) {
+            return;
+          }
+          self.players = Array.isArray(list) ? list : [];
+          self.playersError = false;
+          // Pins are stamped out by Alpine's `x-for`, so they only exist to be positioned once it
+          // has re-rendered.
+          self.$nextTick(function () {
+            self.scheduleRender();
+          });
+        })
+        .catch(function () {
+          if (stillConnected()) {
+            self.playersError = true;
+          }
+        })
+        .finally(function () {
+          clearTimeout(timeout);
+        });
+    },
+
+    // "Kick", from a pin's right-click menu or a players row ([Site.FULL] builds only) — a
+    // placeholder until there's a staff endpoint for it.
     kickPlayer: function (name) {
       console.log('Kick requested for ' + name + ' (server bridge not wired up yet)');
     },
 
     // Everything the search box can jump to that isn't a player, as one flat list: areas (from
-    // `window.VOID_AREAS`, the same polygons the area layer draws) and place names (from
+    // `areaShapes`, the same polygons the area layer draws — the loaded files' once there are any,
+    // which is also why areas.js drops this cache on every edit) and place names (from
     // `window.VOID_MAP_LABELS`, the cache's own map text). Players are merged in per query by
     // `searchResults` instead — this list is cached for the life of the page and that one isn't
     // stable.
@@ -581,7 +728,7 @@ window.worldMapApp = function () {
         return this._searchEntries;
       }
       var entries = [];
-      var areas = window.VOID_AREAS || [];
+      var areas = this.areaShapes();
       for (var i = 0; i < areas.length; i++) {
         var area = areas[i];
         var minX = Math.min.apply(null, area.x);
@@ -598,6 +745,7 @@ window.worldMapApp = function () {
           level: area.minLevel,
           width: maxX - minX,
           height: maxY - minY,
+          area: area.name,
         });
       }
       var labels = window.VOID_MAP_LABELS || [];
@@ -707,6 +855,9 @@ window.worldMapApp = function () {
       }
       var zoom = result.kind === 'Area' ? this.zoomFitting(result.width, result.height) : Math.max(this.zoom, FOCUS_ZOOM);
       this.focusOn(result.x, result.y, result.level, zoom);
+      if (result.area) {
+        this.areaSelectNamed(result.area);
+      }
     },
 
     // The zoom at which a `width` x `height` box of game tiles fits inside the viewport with
@@ -807,6 +958,8 @@ window.worldMapApp = function () {
       } else if (this.areaLabelLayer) {
         this.areaLabelLayer.innerHTML = '';
       }
+      this.updateHoverTile();
+      this.renderNavGraph(rect);
       this.renderPlayers();
       // Re-checked on every render (not just pointermove) so panning/zooming/changing level under
       // a stationary cursor, or toggling the polygon layer on, keeps the hover state honest.
@@ -850,6 +1003,9 @@ window.worldMapApp = function () {
             this.tileEls[key] = revived;
             continue;
           }
+          if (this._emptyTiles[key]) {
+            continue;
+          }
           pending.push({ key: key, x: tx, y: ty, dist: (tx - centerX) * (tx - centerX) + (ty - centerY) * (ty - centerY) });
         }
       }
@@ -864,6 +1020,10 @@ window.worldMapApp = function () {
         img.className = 'wm-tile';
         img.alt = '';
         img.draggable = false;
+        // CORS rather than no-cors, so `map-tiles-sw.js` gets a readable response it can afford to
+        // cache instead of an opaque one - see that file's header.
+        img.crossOrigin = 'anonymous';
+        img._tileKey = tile.key;
         img.style.position = 'absolute';
         this.positionTile(img, tile.x, tile.y, rowPx, zoomRatio);
         img.style.opacity = '0';
@@ -885,6 +1045,7 @@ window.worldMapApp = function () {
         });
         img.addEventListener('error', function () {
           onTileError.call(this);
+          self._emptyTiles[this._tileKey] = true;
           self._pendingTileLoads--;
           self.checkTilesMissing();
           self.flushStaleTiles();
@@ -1089,11 +1250,15 @@ window.worldMapApp = function () {
       return (targetWidth / refWidth) * REF_SIZE;
     },
 
-    // `window.VOID_AREAS` is injected server-side by [WorldMap.areasScript] — each entry's `x`/`y`
-    // are game-space polygon vertices (box areas pre-expanded to four corners), drawn here as one
-    // SVG <polygon> apiece rather than DOM divs since a polygon isn't expressible as a CSS box.
+    // `areaShapes()` — `window.VOID_AREAS` (injected server-side by [WorldMap.areasScript]), or the
+    // areas of the files loaded into the editor (areas.js) — each entry's `x`/`y` game-space polygon
+    // vertices (box areas pre-expanded to four corners), drawn as one SVG <polygon> apiece rather
+    // than DOM divs since a polygon isn't expressible as a CSS box. A vertex is a tile, and an area
+    // includes the tiles on its edges, so each vertex sits in the middle of its tile rather than on
+    // the tile's south-west corner — the outline then runs through the edge tiles it takes in. The
+    // editor's handles are drawn in the same SVG, over the polygons.
     renderAreaPolygons: function (offsetX, offsetY, scale) {
-      var areas = window.VOID_AREAS || [];
+      var areas = this.areaShapes();
       var level = this.level;
       var html = '';
       for (var i = 0; i < areas.length; i++) {
@@ -1103,23 +1268,45 @@ window.worldMapApp = function () {
         }
         var points = '';
         for (var p = 0; p < area.x.length; p++) {
-          var x = offsetX + area.x[p] * scale;
-          var y = offsetY - area.y[p] * scale;
+          var x = offsetX + (area.x[p] + 0.5) * scale;
+          var y = offsetY - (area.y[p] + 0.5) * scale;
           points += x.toFixed(1) + ',' + y.toFixed(1) + ' ';
         }
-        html += '<polygon class="wm-area-polygon" data-i="' + i + '" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
+        html += '<polygon class="wm-area-polygon' + this.areaShapeClass(area) + '" data-i="' + i + '" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
       }
-      this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;overflow:visible">' + html + '</svg>' : '';
+      html += this.renderAreaEditor();
+      this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">' + html + '</svg>' : '';
     },
 
-    // Which `window.VOID_AREAS` entries (see [renderAreaPolygons]) the cursor's current game tile
+    // Outlines the game tile under the cursor (`hoverX`/`hoverY`). Tile (x, y) is the square from
+    // game x to x + 1 and y to y + 1 — the same 4px block of the zoom-8 tile image the region grid's
+    // lines bound — so its top edge on screen is y + 1 (Y is flipped, see the file header). Hidden
+    // once a tile is too small on screen to make out, and while the cursor is off the map.
+    updateHoverTile: function () {
+      var el = this.hoverTile;
+      if (!el) {
+        return;
+      }
+      var scale = this._scale;
+      if (!this._hoverInside || scale < 3) {
+        el.style.display = 'none';
+        return;
+      }
+      el.style.display = 'block';
+      el.style.left = this._offsetX + this.hoverX * scale + 'px';
+      el.style.top = this._offsetY - (this.hoverY + 1) * scale + 'px';
+      el.style.width = scale + 'px';
+      el.style.height = scale + 'px';
+    },
+
+    // Which `areaShapes()` entries (see [renderAreaPolygons]) the cursor's current game tile
     // (`hoverX`/`hoverY`) falls inside, on the current level. Drives both `hoverAreaNames` (read by
     // the bottom-left panel via Alpine reactivity) and the `wm-area-polygon-hover` highlight class —
     // the latter toggled directly on the existing `<polygon>` elements rather than going through a
     // full `renderAreaPolygons` rebuild, since this runs on every `pointermove` and a full innerHTML
     // rebuild per mouse pixel would be wasteful (and would restart the fill/stroke transition).
     updateHoverAreas: function () {
-      var areas = window.VOID_AREAS || [];
+      var areas = this.areaShapes();
       var level = this.level;
       var x = this.hoverX;
       var y = this.hoverY;
@@ -1130,7 +1317,7 @@ window.worldMapApp = function () {
         if (level < area.minLevel || level > area.maxLevel) {
           continue;
         }
-        if (pointInPolygon(x, y, area.x, area.y)) {
+        if (VoidAreas.contains(area.x, area.y, x, y)) {
           names.push(area.name);
           hovered[i] = true;
         }
@@ -1189,14 +1376,16 @@ window.worldMapApp = function () {
     },
 
     renderPlayers: function () {
-      // Absent entirely on a non-[Site.FULL] build — WorldMap.kt only renders the pin layer,
-      // its display toggle and the console's player tabs while that (placeholder) content is on.
       if (!this.playerLayer) {
         return;
       }
       var nodes = this.playerLayer.children;
       for (var i = 0; i < nodes.length; i++) {
         var el = nodes[i];
+        // The `x-for` template the pins are stamped from sits among them.
+        if (el.tagName === 'TEMPLATE') {
+          continue;
+        }
         var onLevel = parseInt(el.getAttribute('data-level'), 10) === this.level;
         el.style.display = onLevel ? '' : 'none';
         // Ringed and tooltip-pinned while this player is the console's selected one.
@@ -1212,6 +1401,9 @@ window.worldMapApp = function () {
       var nodes = layer.children;
       for (var i = 0; i < nodes.length; i++) {
         var el = nodes[i];
+        if (el.tagName === 'TEMPLATE') {
+          continue;
+        }
         var gx = parseFloat(el.getAttribute('data-gx'));
         var gy = parseFloat(el.getAttribute('data-gy'));
         el.style.left = offsetX + gx * scale + 'px';
@@ -1219,7 +1411,27 @@ window.worldMapApp = function () {
       }
     },
   };
+  // The editors' state and methods live in navgraph.js, areas.js and mapedit.js (loaded before this
+  // file).
+  return Object.assign(app, window.navGraphMethods(), window.areaEditorMethods(), window.mapEditMethods());
 };
+
+// Neither tile source gives browsers a long-lived HTTP cache - the remote host sends a five-minute
+// max-age, and the site's own web server only caches tiles server-side, which saves it work but
+// not anyone's bandwidth - so `map-tiles-sw.js` keeps its own copy client-side (see its header).
+// The base is resolved to an absolute URL first, since a local `map-tiles` one would otherwise
+// resolve against the worker's location rather than this page's. Service workers need a secure
+// context (HTTPS or localhost); anywhere else this is a no-op and tiles just load straight from
+// the network as before.
+function registerTileCache() {
+  if (!('serviceWorker' in navigator) || !window.isSecureContext) {
+    return;
+  }
+  var base = new URL(window.VOID_TILE_BASE || 'map-tiles', window.location.href).href;
+  navigator.serviceWorker.register('map-tiles-sw.js?base=' + encodeURIComponent(base)).catch(function (e) {
+    console.warn('Map tile cache unavailable', e);
+  });
+}
 
 function onTileLoad() {
   this.style.opacity = '1';
@@ -1229,23 +1441,6 @@ function onTileError() {
   // Missing tile (ocean, ungenerated zoom, or a level with nothing on it) — leave transparent
   // rather than showing a broken-image icon.
   this.style.display = 'none';
-}
-
-// Standard even-odd ray-casting point-in-polygon test (ties broken however they fall on an edge —
-// unlike the server's [world.gregs.voidps.type.area.Polygon.pointInPolygon], exact edge inclusion
-// doesn't need to match pixel-for-pixel here, this is just for the hover highlight).
-function pointInPolygon(x, y, xs, ys) {
-  var inside = false;
-  for (var i = 0, j = xs.length - 1; i < xs.length; j = i++) {
-    var xi = xs[i];
-    var yi = ys[i];
-    var xj = xs[j];
-    var yj = ys[j];
-    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
-      inside = !inside;
-    }
-  }
-  return inside;
 }
 
 function escapeHtml(text) {

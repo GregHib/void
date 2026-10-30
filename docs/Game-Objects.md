@@ -18,6 +18,7 @@ examine = "This is a size-9 star."
 This information can be obtained using `obj.def["examine", ""]` see [definition extras](definitions#definition-extras) for more info.
 
 ### Spawns
+
 Permanent object changes should be added to [`/data/*.obj-spawns.toml`](https://github.com/GregHib/void/blob/main/data/area/misthalin/edgeville/edgeville.obj-spawns.toml) files to be spawned every time the world loads:
 
 ```toml
@@ -49,6 +50,7 @@ New objects can be spawned with `GameObjects` `add()` function allowing scripts 
 // Temporarily add a fire for 60 ticks
 val obj = GameObjects.add("fire", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = 60)
 ```
+
 > [!WARNING]
 > Adding a object will override existing objects with the same `ObjectLayer`.
 
@@ -78,10 +80,11 @@ objectOperate("Slash", "web*") {
 
 Due to the shear number of objects in the world they are stored with little information compared to other entities, a game object stores:
 
-| Data | Description |
-|---|---|
-| Id | The type of object as a [String identifier](string-identifiers). |
-| Tile | The position of the object as an x, y, level coordinate. |
-| [Definition](definitions) | Definition data about this particular type of object. |
-| [Shape](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/obj/ObjectShape.kt) | The type of object, used for layering and interaction path finding. |
-| Rotation | A number between 0-3 which represents the direction the object is facing. |
+|                                                             Data                                                              |                                Description                                |
+|-------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| Id                                                                                                                            | The type of object as a [String identifier](string-identifiers).          |
+| Tile                                                                                                                          | The position of the object as an x, y, level coordinate.                  |
+| [Definition](definitions)                                                                                                     | Definition data about this particular type of object.                     |
+| [Shape](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/entity/obj/ObjectShape.kt) | The type of object, used for layering and interaction path finding.       |
+| Rotation                                                                                                                      | A number between 0-3 which represents the direction the object is facing. |
+

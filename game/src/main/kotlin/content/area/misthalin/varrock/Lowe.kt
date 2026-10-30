@@ -15,8 +15,7 @@ class Lowe : Script {
                 option<Neutral>("Yes, please.") {
                     openShop("lowes_archery_emporium")
                 }
-                option<Neutral>("No, I prefer to bash things close up.") {
-                }
+                option<Neutral>("No, I prefer to bash things close up.")
             }
         }
     }

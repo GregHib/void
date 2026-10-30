@@ -25,6 +25,8 @@ id = 8473
 
 [fiara]
 id = 7600
+interacts = false
+dialogue = "old"
 examine = "A trusted and fierce-temped creature of Guthix."
 
 [movario_tears_of_guthix_cavern_2]

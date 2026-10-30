@@ -1,10 +1,8 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.PathFinder
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.ModeType
-import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
 
@@ -26,7 +24,7 @@ data class NPCCharacterTargetStrategy(
         get() = character.size
 
     override fun destination(source: Character): Tile {
-        if (source is NPC && source["owner_index", -1] == -1) {
+        if (source is NPC && source.ownerIndex == -1) {
             val def = source.transformDef
             if (def.walkMode.toInt() == ModeType.EMPTY && !def.stringId.startsWith("rand_ice_lord_boss_")) {
                 return Tile.EMPTY
@@ -41,8 +39,8 @@ data class NPCCharacterTargetStrategy(
                 targetX = character.tile.x,
                 targetZ = character.tile.y,
                 targetWidth = character.size,
-                targetHeight = character.size
-            ).packed
+                targetHeight = character.size,
+            ).packed,
         )
     }
 }

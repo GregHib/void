@@ -9,6 +9,6 @@ hunt_mode = "zamorak_aggressive"
 slayer_xp = 60.0
 respawn_delay = 25
 drop_table = "vampyre"
-categories = ["vampyre"]
+categories = ["vampyres"]
 god = "zamorak"
 examine = "It looks really hungry."

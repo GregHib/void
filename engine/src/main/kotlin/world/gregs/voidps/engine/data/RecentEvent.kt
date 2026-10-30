@@ -6,5 +6,5 @@ package world.gregs.voidps.engine.data
 data class RecentEvent(
     val time: Int = 0,
     val title: String = "",
-    val description: String = ""
+    val description: String = "",
 )

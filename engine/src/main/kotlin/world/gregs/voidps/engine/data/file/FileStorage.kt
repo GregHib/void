@@ -13,6 +13,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import java.io.File
 import java.io.Writer
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.util.*
 
 class FileStorage(
@@ -74,17 +76,19 @@ class FileStorage(
     override fun offers(days: Int): OpenOffers {
         val offers = OpenOffers()
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
+        recover(buy)
         if (buy.exists()) {
             loadOffers(buy, offers, false)
         }
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
+        recover(sell)
         if (sell.exists()) {
             loadOffers(sell, offers, true)
         }
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
         if (file.exists()) {
             Config.fileReader(file) {
-                assert(key() == "counter")
+                check(key() == "counter") { "Expected 'counter' in grand exchange offers file." }
                 offers.counter = int()
             }
         }
@@ -110,18 +114,50 @@ class FileStorage(
 
     override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
-        if (buy.deleteRecursively()) {
-            buy.mkdirs()
-        }
-        saveOffers(buy, offers.buyByItem)
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
-        if (sell.deleteRecursively()) {
-            sell.mkdirs()
-        }
-        saveOffers(sell, offers.sellByItem)
+        val buyStaged = stage(buy) { saveOffers(it, offers.buyByItem) }
+        val sellStaged = stage(sell) { saveOffers(it, offers.sellByItem) }
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
-        Config.fileWriter(file) {
+        file.absoluteFile.parentFile.mkdirs()
+        Config.atomicFileWriter(file) {
             writePair("counter", offers.counter)
+        }
+        swap(buyStaged, buy)
+        swap(sellStaged, sell)
+    }
+
+    /**
+     * Writes a new copy of [target] into a temporary sibling directory.
+     */
+    private fun stage(target: File, write: (File) -> Unit): File {
+        val staged = File(target.absoluteFile.parentFile, "${target.name}.tmp")
+        staged.deleteRecursively()
+        staged.mkdirs()
+        write(staged)
+        return staged
+    }
+
+    /**
+     * Replaces [target] with [staged]. The previous directory is kept as a backup until the swap completes
+     * so [recover] can restore it if the process dies in between.
+     */
+    private fun swap(staged: File, target: File) {
+        val backup = File(target.absoluteFile.parentFile, "${target.name}.old")
+        backup.deleteRecursively()
+        if (target.exists()) {
+            Files.move(target.toPath(), backup.toPath())
+        }
+        Files.move(staged.toPath(), target.toPath())
+        backup.deleteRecursively()
+    }
+
+    /**
+     * Restores a directory whose swap was interrupted after the old copy was moved aside.
+     */
+    private fun recover(target: File) {
+        val backup = File(target.absoluteFile.parentFile, "${target.name}.old")
+        if (!target.exists() && backup.exists()) {
+            Files.move(backup.toPath(), target.toPath())
         }
     }
 
@@ -154,7 +190,7 @@ class FileStorage(
                 while (nextSection()) {
                     val id = section().toInt()
                     val (offer, price) = readOffer(id)
-                    offers.add(id, item, price, sell)
+                    offers.add(id, item, price, sell, offer.lastActive)
                     tree.getOrPut(price) { mutableListOf() }.add(offer)
                 }
             }
@@ -198,11 +234,11 @@ class FileStorage(
         Config.fileReader(file) {
             while (nextPair()) {
                 val id = key().toInt()
-                assert(nextElement())
+                check(nextElement()) { "Missing claim amount for $id." }
                 val amount = int()
-                assert(nextElement())
+                check(nextElement()) { "Missing claim price for $id." }
                 val coins = int()
-                assert(!nextElement())
+                check(!nextElement()) { "Unexpected extra claim value for $id." }
                 claims[id] = Claim(amount = amount, price = coins)
             }
         }
@@ -212,7 +248,7 @@ class FileStorage(
     override fun saveClaims(claims: Map<Int, Claim>) {
         val file = directory.resolve(Settings["storage.grand.exchange.offers.claim.path"])
         file.parentFile.mkdirs()
-        Config.fileWriter(file) {
+        Config.atomicFileWriter(file) {
             for ((id, claim) in claims) {
                 writeKey(id.toString())
                 list(2) { index ->
@@ -229,7 +265,7 @@ class FileStorage(
     override fun priceHistory(): Map<String, PriceHistory> {
         val directory = directory.resolve(Settings["storage.grand.exchange.history.path"])
         val history = mutableMapOf<String, PriceHistory>()
-        for (file in directory.listFiles() ?: return emptyMap()) {
+        for (file in directory.listFiles { it.isFile } ?: return emptyMap()) {
             Config.fileReader(file) {
                 val priceHistory = PriceHistory()
                 while (nextSection()) {
@@ -331,6 +367,25 @@ class FileStorage(
     }
 
     override fun exists(accountName: String): Boolean = directory.resolve("${accountName.lowercase()}.toml").exists()
+
+    override fun create(account: PlayerSave): Boolean {
+        directory.mkdirs()
+        val file = directory.resolve("${account.name.lowercase()}.toml")
+        if (!file.createNewFile()) {
+            return false
+        }
+        val temp = directory.resolve("${account.name.lowercase()}.toml.tmp")
+        try {
+            account.save(temp)
+            Files.move(temp.toPath(), file.toPath(), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING)
+        } catch (e: Exception) {
+            file.delete()
+            throw e
+        } finally {
+            temp.delete()
+        }
+        return true
+    }
 
     override fun save(accounts: List<PlayerSave>) {
         for (account in accounts) {

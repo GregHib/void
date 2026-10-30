@@ -1,5 +1,6 @@
 package content.area.kandarin.tree_gnome_stronghold
 
+import content.entity.obj.door.Door.opened
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
@@ -21,7 +22,7 @@ class TreeGnomeStronghold : Script {
                 delay()
                 face(target)
             }
-            target.replace(target.id.replace("_closed", "_opened"), ticks = 4)
+            target.replace(target.def.opened, ticks = 4)
             walkOverDelay(tile.addY(if (tile.y < target.tile.y) 2 else -2))
         }
 

@@ -21,3 +21,9 @@ id = 3705
 
 [altar_pray]
 id = 645
+
+[mah4_reward_kneel_and_pray]
+id = 12563
+
+[mah4_reward_stand_and_pray]
+id = 12564

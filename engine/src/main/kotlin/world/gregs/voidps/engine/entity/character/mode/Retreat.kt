@@ -21,7 +21,7 @@ class Retreat(
     }
 
     override fun tick() {
-        if (target is Character && target["dead", false]) {
+        if (target is Character && target.dead) {
             npc.mode = EmptyMode
             return
         }

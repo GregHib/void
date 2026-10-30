@@ -336,7 +336,7 @@ class DungeonGenerator(
     /**
      * Populate dungeons rooms with valid map zones
      */
-    private fun populateMap(grid: Array<DungeonRoom?>, theme: String): Boolean {
+    internal fun populateMap(grid: Array<DungeonRoom?>, theme: String): Boolean {
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
             val typeName = room.type.name.lowercase()

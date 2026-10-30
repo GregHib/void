@@ -2,7 +2,6 @@ package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.Bonus
-import content.entity.combat.dead
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.equip.Equipment
 import content.skill.magic.spell.spell

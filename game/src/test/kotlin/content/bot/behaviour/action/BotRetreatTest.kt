@@ -7,7 +7,6 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.BotHasClock
-import content.entity.combat.dead
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach

@@ -22,11 +22,12 @@ fun Character.clearTransform() {
             soundDistance = 0
         }
         flagAppearance()
+        clear("transform_id")
     } else if (this is NPC) {
         visuals.transform.id = def.id
         flagTransform()
+        transformId = id
     }
-    clear("transform_id")
     collision = remove("old_collision") ?: return
 }
 
@@ -35,7 +36,11 @@ fun Character.transform(id: String, collision: Boolean = true) {
         clearTransform()
         return
     }
-    this["transform_id"] = id
+    if (this is NPC) {
+        transformId = id
+    } else {
+        this["transform_id"] = id
+    }
     val definition = NPCDefinitions.get(id)
     if (this is Player) {
         appearance.apply {
@@ -60,4 +65,8 @@ fun Character.transform(id: String, collision: Boolean = true) {
 }
 
 val Character.transform: String
-    get() = this["transform_id", ""]
+    get() = if (this is NPC) {
+        if (transformed) transformId else ""
+    } else {
+        this["transform_id", ""]
+    }

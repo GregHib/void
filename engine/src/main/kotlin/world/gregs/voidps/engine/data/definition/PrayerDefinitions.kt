@@ -8,7 +8,6 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArraySet
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.PrayerDefinition
-import world.gregs.voidps.engine.timedLoad
 
 class PrayerDefinitions {
 
@@ -28,61 +27,65 @@ class PrayerDefinitions {
     fun getGroup(group: Int) = groups[group]
 
     fun load(path: String): PrayerDefinitions {
-        timedLoad("prayer definition") {
-            val definitions = Object2ObjectOpenHashMap<String, PrayerDefinition>()
-            val prayers = Int2ObjectArrayMap<PrayerDefinition>()
-            val curses = Int2ObjectArrayMap<PrayerDefinition>()
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val stringId = section()
-                    var index = -1
-                    var level = 1
-                    var drain = 0
-                    val groups = IntArrayList()
-                    val bonuses = Object2IntOpenHashMap<String>()
-                    val drains = Object2IntOpenHashMap<String>()
-                    var members = false
-                    while (nextPair()) {
-                        when (val key = key()) {
-                            "index" -> index = int()
-                            "level" -> level = int()
-                            "drain" -> drain = int()
-                            "groups" -> while (nextElement()) {
-                                groups.add(int())
-                            }
-                            "bonuses" -> while (nextEntry()) {
-                                bonuses[key()] = int()
-                            }
-                            "drains" -> while (nextEntry()) {
-                                bonuses[key()] = int()
-                            }
-                            "members" -> members = boolean()
-                            else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+        val definitions = Object2ObjectOpenHashMap<String, PrayerDefinition>()
+        val prayers = Int2ObjectArrayMap<PrayerDefinition>()
+        val curses = Int2ObjectArrayMap<PrayerDefinition>()
+        Config.fileReader(path) {
+            while (nextSection()) {
+                val stringId = section()
+                var index = -1
+                var level = 1
+                var drain = 0
+                val groups = IntArrayList()
+                val bonuses = Object2IntOpenHashMap<String>()
+                val drains = Object2IntOpenHashMap<String>()
+                var members = false
+                while (nextPair()) {
+                    when (val key = key()) {
+                        "index" -> index = int()
+                        "level" -> level = int()
+                        "drain" -> drain = int()
+                        "groups" -> while (nextElement()) {
+                            groups.add(int())
                         }
-                        val id = stringId.substring(0, stringId.lastIndexOf('_'))
-                        val isCurse = stringId.endsWith("_curse")
-                        val definition = PrayerDefinition(index, level, drain, groups, drains, bonuses, members, isCurse, id)
-                        definitions[id] = definition
-                        if (isCurse) {
-                            curses[index] = definition
-                        } else {
-                            prayers[index] = definition
+                        "bonuses" -> while (nextEntry()) {
+                            bonuses[key()] = int()
                         }
+                        "drains" -> while (nextEntry()) {
+                            drains[key()] = int()
+                        }
+                        "members" -> members = boolean()
+                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }
                 }
-            }
-            val groups = Int2ObjectOpenHashMap<MutableSet<String>>(16)
-            for (prayer in definitions.values) {
-                for (group in prayer.groups) {
-                    groups.getOrPut(group) { ObjectArraySet(5) }.add(prayer.stringId)
+                val id = stringId.substring(0, stringId.lastIndexOf('_'))
+                val isCurse = stringId.endsWith("_curse")
+                val definition = PrayerDefinition(index, level, drain, groups, drains, bonuses, members, isCurse, id)
+                definitions[id] = definition
+                if (isCurse) {
+                    curses[index] = definition
+                } else {
+                    prayers[index] = definition
                 }
             }
-            this.prayers = Array(prayers.size) { prayers[it] }
-            this.curses = Array(curses.size) { curses[it] }
-            this.groups = groups
-            this.definitions = definitions
-            this.definitions.size
         }
+        val groups = Int2ObjectOpenHashMap<MutableSet<String>>(16)
+        for (prayer in definitions.values) {
+            for (group in prayer.groups) {
+                groups.getOrPut(group) { ObjectArraySet(5) }.add(prayer.stringId)
+            }
+        }
+        this.prayers = Array(prayers.size) { prayers[it] }
+        this.curses = Array(curses.size) { curses[it] }
+        this.groups = groups
+        this.definitions = definitions
         return this
+    }
+
+    internal fun copyFrom(other: PrayerDefinitions) {
+        definitions = other.definitions
+        prayers = other.prayers
+        curses = other.curses
+        groups = other.groups
     }
 }

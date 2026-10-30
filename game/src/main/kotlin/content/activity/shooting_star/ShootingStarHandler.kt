@@ -20,6 +20,10 @@ object ShootingStarHandler {
     var currentStarTile = Tile.EMPTY
     var currentActiveObject: GameObject? = null
 
+    var nextLocation: StarLocationData? = null
+    var nextTier: Int = 0
+    var nextStarTick: Int = -1
+
     fun addStarDustCollected() {
         totalCollected++
     }

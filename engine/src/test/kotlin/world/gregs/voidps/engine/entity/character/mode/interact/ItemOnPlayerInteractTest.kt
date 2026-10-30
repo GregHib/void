@@ -26,5 +26,4 @@ class ItemOnPlayerInteractTest : OnInteractTest() {
     }
 
     override fun interact() = ItemOnPlayerInteract(Player(0), "id", Item("item"), 0, Player(1))
-
 }

@@ -4,7 +4,6 @@ hitpoints = 200
 att = 21
 str = 21
 def = 21
-attack_speed = 5
 style = "slash"
 max_hit_melee = 30
 attack_bonus = 8

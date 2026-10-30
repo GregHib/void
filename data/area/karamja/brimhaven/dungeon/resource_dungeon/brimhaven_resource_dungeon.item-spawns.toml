@@ -1,0 +1,3 @@
+spawns = [
+    { id = "hammer", x = 1114, y = 4519, delay = 100 },
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "number": 1,
+    "name": "Local",
+    "region": "Your PC",
+    "mode": "Normal",
+    "description": "The world running on your machine.",
+    "host": "",
+    "address": "localhost:43594",
+    "web": "http://localhost:8080",
+    "tags": [],
+    "links": {
+      "Source code": "https://github.com/GregHib/void",
+      "Documentation": "docs/index.html"
+    },
+    "note": ""
+  },
+  {
+    "number": 2,
+    "name": "2011Scape",
+    "region": "USA",
+    "mode": "Normal",
+    "description": "A live server with community.",
+    "host": "",
+    "address": "2011.rs:43594",
+    "web": "https://2011.rs/",
+    "tags": ["Vanilla", "Community", "Double XP Weekends"],
+    "links": {
+      "2011.rs": "https://2011.rs/",
+      "World rules": "https://2011.rs/rules",
+      "Forums": "https://2011.rs/services/m=forum/"
+    },
+    "note": "Recommended for first-time accounts."
+  }
+]

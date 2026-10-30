@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.noAid
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
@@ -33,7 +34,7 @@ class VengeanceOther(
                 return@onPlayerApproach
             }
             if (!get("accept_aid", true)) {
-                message("This player is not currently accepting aid.") // TODO proper message
+                noAid()
                 return@onPlayerApproach
             }
             if (!removeSpellItems("vengeance_other")) {

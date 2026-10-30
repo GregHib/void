@@ -1,4 +1,9 @@
 spawns = [
 # 12082
   { id = "white_apron_port_sarim", x = 3016, y = 3229, delay = 100 },
+  { id = "white_apron", x = 3009, y = 3204, delay = 100 },
+  { id = "banana", x = 3009, y = 3207, delay = 100 },
+  { id = "bronze_bolts", x = 3028, y = 3259, level = 1, delay = 100 },
+  { id = "bronze_bolts", x = 3016, y = 3244, level = 1, delay = 100 },
+  { id = "ahabs_beer", x = 3049, y = 3257 },
 ]

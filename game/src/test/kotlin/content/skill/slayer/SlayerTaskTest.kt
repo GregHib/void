@@ -2,6 +2,7 @@ package content.skill.slayer
 
 import FakeRandom
 import WorldTest
+import content.entity.death.NPCDeath
 import itemOnNpc
 import npcOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -70,6 +71,28 @@ class SlayerTaskTest : WorldTest() {
             assertEquals(0, player.slayerTaskRemaining)
             assertEquals(1, player.slayerStreak)
             assertEquals(1, player.slayerPoints)
+            assertTrue(player.experience.get(Skill.Slayer) > 0)
+        }
+    }
+
+    @TestFactory
+    fun `Vampyres count towards a vampyre task`() = listOf(
+        "vampire",
+        "vampyre_god_wars",
+        "vampyre_juvinate_3",
+        "vampyre_juvenile_3",
+        "vampyre_juvenile_female",
+    ).map { id ->
+        dynamicTest("Kill $id on a vampyre task") {
+            val player = createPlayer(Tile(3231, 3298))
+            player.slayerMaster = "mazchna"
+            player.slayerTask = "vampyres"
+            player.slayerTaskRemaining = 2
+            val npc = createNPC(id, player.tile.addY(1))
+
+            scripts.filterIsInstance<NPCDeath>().first().slay(player, npc)
+
+            assertEquals(1, player.slayerTaskRemaining)
             assertTrue(player.experience.get(Skill.Slayer) > 0)
         }
     }

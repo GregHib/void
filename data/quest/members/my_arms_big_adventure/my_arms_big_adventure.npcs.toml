@@ -17,7 +17,6 @@ att = 130
 str = 130
 def = 100
 range = 130
-attack_speed = 6
 style = "crush"
 max_hit_melee = 140
 max_hit_range = 200

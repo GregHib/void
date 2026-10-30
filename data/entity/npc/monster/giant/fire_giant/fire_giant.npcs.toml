@@ -32,3 +32,18 @@ clone = "fire_giant"
 id = 110
 clone = "fire_giant"
 
+[fire_giant_2]
+id = 7003
+hitpoints = 1110
+att = 65
+str = 65
+def = 65
+examine = "A very large elemental adversary."
+
+[fire_giant_3]
+id = 7004
+hitpoints = 1110
+att = 65
+str = 65
+def = 65
+examine = "A very large elemental adversary."

@@ -17,3 +17,8 @@ persist = true
 [ibans_staff_charges]
 format = "int"
 default = 120
+
+# Ticks remaining on a Teleport Block; varbit 4163 belongs to the duel arena in 634
+[teleport_block]
+format = "int"
+persist = true

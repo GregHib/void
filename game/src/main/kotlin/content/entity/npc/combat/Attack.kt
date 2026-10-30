@@ -10,6 +10,7 @@ import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import content.entity.proj.shootNearest
+import content.skill.dungeoneering.dungeonRoomBounds
 import net.pearx.kasechange.toPascalCase
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script
@@ -45,9 +46,9 @@ class Attack(
         npcCombatSwing { primaryTarget ->
             val defId = if (primaryTarget is Player) {
                 val def = def(primaryTarget)
-                def["combat_def", get("transform_id", def.stringId)]
+                def["combat_def", if (transformed) transformId else def.stringId]
             } else {
-                def["combat_def", get("transform_id", id)]
+                def["combat_def", transformId]
             }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (definition.attacks.isEmpty()) {
@@ -209,7 +210,7 @@ class Attack(
         if (attackRange == 1) {
             return strategy.reached(source)
         }
-        if (!source.def["allowed_under", false] && Overlap.isUnder(source.tile, source.size, source.size, strategy.tile, strategy.width, strategy.height)) {
+        if (!source.def.allowedUnder && Overlap.isUnder(source.tile, source.size, source.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         val nearest = strategy.nearest(source)
@@ -232,7 +233,11 @@ class Attack(
             }
             return setOf(target)
         }
-        val area = Areas.getOrNull(area)?.area ?: return setOf(target)
+        val area = if (area == "dungeoneering_room") {
+            target.dungeonRoomBounds()
+        } else {
+            Areas.getOrNull(area)?.area ?: return setOf(target)
+        }
         val set = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
             set.addAll(Players.at(zone))
@@ -275,7 +280,13 @@ class Attack(
     @JvmName("playSounds")
     private fun Character.play(list: List<CombatDefinition.CombatSound>, delay: Int? = null) {
         for (sound in list) {
-            if (sound.radius == 0) {
+            if (sound.area) {
+                areaSound(
+                    id = sound.id,
+                    tile = if (sound.offset != null) tile.add(sound.offset!!) else tile,
+                    delay = delay ?: sound.delay,
+                )
+            } else if (sound.radius == 0) {
                 sound(id = sound.id, delay = delay ?: sound.delay)
             } else {
                 areaSound(

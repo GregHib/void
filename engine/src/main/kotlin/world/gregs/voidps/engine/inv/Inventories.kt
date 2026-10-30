@@ -80,10 +80,13 @@ class Inventories(
         return Inventory(
             data = data,
             id = inventoryId,
-            itemRule = if (shop) ShopRestrictions(data) else validItemRule,
+            itemRule = validItemRule,
             stackRule = stackRule,
             amountBounds = amountBounds,
         ).apply {
+            if (shop) {
+                itemRule = ShopRestrictions(this)
+            }
             transaction.changes.bind(player)
         }
     }

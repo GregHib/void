@@ -15,4 +15,13 @@ examine = "A fearsome magical water creature."
 [wallasalki_1]
 clone = "wallasalki"
 id = 2884
+att = 1
+str = 1
 drop_table = "wallasalki"
+
+[wallasalki_2]
+id = 9096
+hitpoints = 1200
+def = 80
+mage = 100
+examine = "A fearsome magical water creature."

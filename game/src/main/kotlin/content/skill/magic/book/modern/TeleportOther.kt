@@ -33,7 +33,7 @@ class TeleportOther : Script {
                 message("That player won't let you teleport them.")
                 return@onPlayerApproach
             }
-            if (target.menu != null || target.dialogue != null || target.mode != EmptyMode || contains("delay")) {
+            if (target.menu != null || target.dialogue != null || target.mode != EmptyMode || delayed) {
                 message("That player is busy.")
                 return@onPlayerApproach
             }

@@ -3,6 +3,7 @@ Game settings are listed in the [`game.properties`](https://github.com/GregHib/v
 The most common and useful ones to players will be:
 
 ## Server name
+
 ```properties
 # The name of the game server
 server.name=Void
@@ -15,8 +16,8 @@ server.name=Void
 network.port=43594
 ```
 
-
 ## Admin
+
 ```properties
 # The admin username (always sets administrative privileges on login)
 development.admin.name=Greg
@@ -48,6 +49,7 @@ bots.spawnSeconds=60
 ```
 
 ## Running
+
 ```properties
 # Whether players energy drains while running
 players.energy.drain=true

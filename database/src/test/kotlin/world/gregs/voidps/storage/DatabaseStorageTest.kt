@@ -8,7 +8,9 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.data.AbuseReport
 import kotlin.test.assertEquals
 
-class DatabaseStorageTest : StorageTest(), DatabaseTest {
+class DatabaseStorageTest :
+    StorageTest(),
+    DatabaseTest {
 
     override val storage = DatabaseStorage()
 

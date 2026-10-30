@@ -1,0 +1,7 @@
+[fairytale2_gorakcloudfloor_endside]
+id = 16187
+examine = "Thick cloud."
+
+[fairytale2_gorakcloudfloor_blocker]
+id = 16189
+examine = "Thick cloud."

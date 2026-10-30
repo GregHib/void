@@ -1,5 +1,6 @@
 package content.area.realm.corporeal_beasts_lair
 
+import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -28,7 +29,8 @@ class CorporealBeastsLair : Script {
         }
 
         objectOperate("Peek-in", "corporeal_beast_lair_door") { (target) ->
-            // TODO proper message
+            statement("You peek through the door.")
+            // TODO camera
             val lair = Areas["corporeal_beasts_lair"]
             if (Players.count { it.tile in lair } > 0) {
                 message("The lair is occupied with foes trying to defeat the beast.")

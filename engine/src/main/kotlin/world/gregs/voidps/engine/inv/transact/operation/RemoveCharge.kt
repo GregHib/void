@@ -32,7 +32,7 @@ object RemoveCharge {
         }
         // Check if there is enough charges to remove
         if (item.value < amount) {
-            error = TransactionError.Deficient(amount = item.value)
+            error = TransactionError.Deficient(amount = item.value, item = item.id)
             return
         }
         // Reduce the charges in the stack

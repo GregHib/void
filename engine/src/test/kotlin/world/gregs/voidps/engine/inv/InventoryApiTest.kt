@@ -26,18 +26,20 @@ class InventoryApiTest {
         }
 
         override fun invoke(args: List<String>) {
-            InventoryApi.changed(Player(), InventorySlotChanged(
-                "inv",
-                1,
-                Item("item"),
-                "from",
-                2,
-                Item("from"),
-            ))
+            InventoryApi.changed(
+                Player(),
+                InventorySlotChanged(
+                    "inv",
+                    1,
+                    Item("item"),
+                    "from",
+                    2,
+                    Item("from"),
+                ),
+            )
         }
 
         override val apis = listOf(InventoryApi)
-
     }
 
     @Nested
@@ -59,15 +61,17 @@ class InventoryApiTest {
         }
 
         override fun invoke(args: List<String>) {
-            InventoryApi.add(Player(), ItemAdded(
-                Item("item"),
-                "inv",
-                1,
-            ))
+            InventoryApi.add(
+                Player(),
+                ItemAdded(
+                    Item("item"),
+                    "inv",
+                    1,
+                ),
+            )
         }
 
         override val apis = listOf(InventoryApi)
-
     }
 
     @Nested
@@ -89,15 +93,16 @@ class InventoryApiTest {
         }
 
         override fun invoke(args: List<String>) {
-            InventoryApi.remove(Player(), ItemRemoved(
-                "inv",
-                1,
-                Item("item"),
-            ))
+            InventoryApi.remove(
+                Player(),
+                ItemRemoved(
+                    "inv",
+                    1,
+                    Item("item"),
+                ),
+            )
         }
 
         override val apis = listOf(InventoryApi)
-
     }
-
 }

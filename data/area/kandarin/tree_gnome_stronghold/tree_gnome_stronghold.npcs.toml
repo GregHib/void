@@ -153,7 +153,6 @@ examine = "He looks like he needs something useful to do."
 id = 479
 hitpoints = 30
 attack_bonus = 2
-ranged_strength = 2
 combat_def = "gnome"
 respawn_delay = 30
 examine = "It's a tree gnome trooper."

@@ -48,5 +48,4 @@ class CommandArgumentTest {
         assertFalse(arg.canParse("1"))
         assertFalse(arg.canParse("yes"))
     }
-
 }

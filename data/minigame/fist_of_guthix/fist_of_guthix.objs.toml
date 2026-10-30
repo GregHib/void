@@ -1,0 +1,31 @@
+[fist_of_guthix_lobby_passageway]
+id = 30224
+examine = "A passageway to another cave system."
+
+[fist_of_guthix_lobby_scoreboard]
+id = 30205
+examine = "The scoreboard."
+
+[fist_of_guthix_shop_counter]
+id = 30212
+examine = "The shop counter."
+
+[fist_of_guthix_shop_shelf]
+id = 30209
+examine = "A shop shelf."
+
+[fist_of_guthix_shop_small_shelf]
+id = 30210
+examine = "A small shop shelf."
+
+[fist_of_guthix_spear_barrel]
+id = 30211
+examine = "A barrel full of spears."
+
+[fist_of_guthix_crates]
+id = 30206
+examine = "Some crates with a helmet on top."
+
+[fist_of_guthix_crates_2]
+id = 30207
+examine = "Some crates."

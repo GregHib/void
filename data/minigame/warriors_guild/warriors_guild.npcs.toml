@@ -89,12 +89,18 @@ combat_def = "cyclops"
 [cyclopse_club_lepard]
 id = 4291
 clone = "cyclopse_hammer_steel"
+hitpoints = 750
+def = 26
 drop_table = "cyclops"
 combat_def = "cyclops"
 
 [cyclopse_club]
 id = 6080
 clone = "cyclopse_hammer"
+hitpoints = 750
+att = 47
+str = 50
+def = 26
 drop_table = "cyclops"
 combat_def = "cyclops"
 

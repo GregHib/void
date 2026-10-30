@@ -122,10 +122,10 @@ examine = "Must be a guard or something."
 
 [tzhaar_ket_shield]
 id = 2612
-hitpoints = 2000
-att = 200
-str = 180
-def = 190
+hitpoints = 1400
+att = 120
+str = 140
+def = 120
 mage = 40
 combat_def = "tzhaar_ket"
 max_hit_crush = 190
@@ -333,3 +333,12 @@ slayer_xp = 140.0
 categories = ["tzhaar"]
 respawn_delay = 50
 examine = "Must be a guard or something."
+
+[tzhaar_mej_2]
+id = 2593
+hitpoints = 1000
+att = 80
+str = 80
+def = 80
+mage = 120
+examine = "The Mej caste protect the TzHaar using powerful fire magic."

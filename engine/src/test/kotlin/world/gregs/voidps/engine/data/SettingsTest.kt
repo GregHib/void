@@ -58,5 +58,23 @@ class SettingsTest {
         assertEquals(43594, settings["network.port", -1])
     }
 
+    @Test
+    fun `Cached settings refresh when settings change`() {
+        val live = settings.bool("server.live", false)
+        val port = settings.int("network.port", -1)
+        assertFalse(live.value)
+        assertEquals(-1, port.value)
+
+        settings.load(example)
+        assertTrue(live.value)
+        assertEquals(43594, port.value)
+
+        settings.load(mapOf("server.live" to "false"))
+        assertFalse(live.value)
+
+        settings.clear()
+        assertEquals(-1, port.value)
+    }
+
     private fun Settings.load(string: String) = load(string.byteInputStream(Charsets.UTF_8))
 }

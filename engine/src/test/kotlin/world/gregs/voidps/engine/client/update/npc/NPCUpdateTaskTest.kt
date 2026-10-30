@@ -110,7 +110,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
-        every { npc.def } returns NPCDefinition(params = mapOf(Params.CRAWL to true))
+        every { npc.crawls } returns true
         every { NPCs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North

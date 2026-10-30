@@ -158,7 +158,7 @@ class EvilTwin : Script {
      */
     private suspend fun Player.setupHouse(): NPC {
         smallInstance(Region(HOUSE_REGION), levels = 1)
-        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        setInstanceLogout(RandomEvents.origin(this))
         val offset = instanceOffset()
         set("evil_twin_claw_x", CLAW_HOME.x)
         set("evil_twin_claw_y", CLAW_HOME.y)

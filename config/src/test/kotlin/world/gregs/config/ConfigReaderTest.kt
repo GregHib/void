@@ -175,6 +175,37 @@ internal class ConfigReaderTest {
     }
 
     @Test
+    fun `Over-long strings report the line instead of overflowing`() {
+        val long = "a".repeat(11)
+        Config.stringReader("\"$long\"", maxStringLength = 10) {
+            val error = assertThrows<IllegalArgumentException> { string() }
+            assertTrue(error.message!!.contains("line=1"))
+        }
+        Config.stringReader("'$long'", maxStringLength = 10) {
+            assertThrows<IllegalArgumentException> { string() }
+        }
+        Config.stringReader("[$long]", maxStringLength = 10) {
+            assertThrows<IllegalArgumentException> { section() }
+        }
+        Config.stringReader("$long = 1", maxStringLength = 10) {
+            assertThrows<IllegalArgumentException> { key() }
+        }
+        Config.stringReader("\"${"a".repeat(10)}\"", maxStringLength = 10) {
+            assertEquals("a".repeat(10), string())
+        }
+    }
+
+    @Test
+    fun `Overflowing numbers are rejected instead of wrapping`() {
+        Config.stringReader("2147483647") { assertEquals(Int.MAX_VALUE, int()) }
+        Config.stringReader("2147483648") { assertThrows<IllegalArgumentException> { int() } }
+        Config.stringReader("99999999999") { assertThrows<IllegalArgumentException> { int() } }
+        Config.stringReader("9223372036854775807") { assertEquals(Long.MAX_VALUE, long()) }
+        Config.stringReader("9223372036854775808") { assertThrows<IllegalArgumentException> { long() } }
+        Config.stringReader("99999999999999999999") { assertThrows<IllegalArgumentException> { value() } }
+    }
+
+    @Test
     fun `Read double`() {
         Config.stringReader("12.34") {
             assertEquals(12.34, double())

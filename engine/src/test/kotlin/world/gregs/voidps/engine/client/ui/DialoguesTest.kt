@@ -27,7 +27,6 @@ class DialoguesTest {
         }
 
         override val apis = listOf(Dialogues)
-
     }
 
     @Nested
@@ -48,7 +47,5 @@ class DialoguesTest {
         }
 
         override val apis = listOf(Dialogues)
-
     }
-
 }

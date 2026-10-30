@@ -1,15 +1,18 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.ScriptTest
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.script
 import world.gregs.voidps.engine.script.KoinMock
 import kotlin.test.assertEquals
 
@@ -34,7 +37,42 @@ class TeleportTest {
         }
 
         override val apis = listOf(Teleport)
+    }
 
+    @Nested
+    inner class BlockTeleportsTest : ScriptTest {
+        override val checks = listOf(
+            listOf("modern"),
+            listOf("jewellery"),
+            listOf("fairy_ring"),
+        )
+        override val failedChecks = emptyList<List<String>>()
+
+        override fun Script.register(args: List<String>, caller: Caller) {
+            blockTeleports {
+                caller.call()
+                true
+            }
+        }
+
+        override fun invoke(args: List<String>) {
+            Teleport.takeOff(Player(), args[0], "spell")
+        }
+
+        override val apis = listOf(Teleport)
+
+        @Test
+        fun `Blocks every teleport type`() {
+            script { blockTeleports { true } }
+            assertFalse(Teleport.takeOff(Player(), "modern", "spell"))
+            assertFalse(Teleport.takeOff(Player(), "skull_sceptre", ""))
+        }
+
+        @Test
+        fun `Allows teleports when not blocked`() {
+            script { blockTeleports { false } }
+            assertTrue(Teleport.takeOff(Player(), "modern", "spell"))
+        }
     }
 
     @Nested
@@ -51,15 +89,18 @@ class TeleportTest {
         }
 
         override fun invoke(args: List<String>) {
-            Teleport.land(Player(), "tele")
+            runTest {
+                Teleport.land(Player(), "tele")
+            }
         }
 
         override val apis = listOf(Teleport)
-
     }
 
     @Nested
-    inner class ObjTeleportTakeOffTest : KoinMock(), ScriptTest {
+    inner class ObjTeleportTakeOffTest :
+        KoinMock(),
+        ScriptTest {
         override val checks = listOf(
             listOf("option", "obj"),
             listOf("option", "*"),
@@ -89,12 +130,12 @@ class TeleportTest {
         }
 
         override val apis = listOf(Teleport)
-
     }
 
-
     @Nested
-    inner class ObjTeleportLandTest : KoinMock(), ScriptTest {
+    inner class ObjTeleportLandTest :
+        KoinMock(),
+        ScriptTest {
         override val checks = listOf(
             listOf("option", "obj"),
             listOf("option", "*"),
@@ -124,7 +165,5 @@ class TeleportTest {
         }
 
         override val apis = listOf(Teleport)
-
     }
-
 }

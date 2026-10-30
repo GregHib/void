@@ -33,8 +33,5 @@ data class InterfaceOnObjectInteract(
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - $id:${target.def(player).stringId} target=$target, interface='$id', index=$index"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - $id:${target.def(player).stringId} target=$target, interface='$id', index=$index"
 }

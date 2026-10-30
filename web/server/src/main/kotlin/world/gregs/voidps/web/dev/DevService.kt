@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.web.api.model.*
+import world.gregs.voidps.web.hiscores.HiscoresService
 import world.gregs.voidps.web.hiscores.HiscoresService.Companion.combatLevel
 import world.gregs.voidps.web.hiscores.HiscoresService.Companion.displayMax
 import world.gregs.voidps.web.hiscores.HiscoresService.Companion.displayName
@@ -29,17 +30,20 @@ import java.time.format.DateTimeFormatter
  * anything else that only exists in an in-memory `Player` (session state, live chat, moderation
  * actions). Those would need a channel from the game engine into this module that doesn't exist
  * yet; see the class doc on [DevPlayerOverview].
+ *
+ * Search runs over the [HiscoresService] snapshot, which is up to a minute old, but each player
+ * view loads just that one account fresh from [Storage].
  */
 class DevService(
     private val storage: Storage,
+    private val hiscores: HiscoresService,
 ) {
 
     fun searchPlayers(query: String?, limit: Int): DevPlayerSearchResult {
-        val accounts = storage.accounts()
         val q = query?.trim()?.lowercase()
-        val rows = accounts
+        val rows = hiscores.accountsByName()
+            .asSequence()
             .filter { q.isNullOrEmpty() || it.displayName().lowercase().contains(q) || it.name.lowercase().contains(q) }
-            .sortedBy { it.displayName().lowercase() }
             .take(limit)
             .map { save ->
                 DevPlayerSearchRow(
@@ -48,11 +52,11 @@ class DevService(
                     meta = save.lastSeenLabel(),
                 )
             }
-        return DevPlayerSearchResult(rows)
+        return DevPlayerSearchResult(rows.toList())
     }
 
     fun overview(name: String): DevPlayerOverview? {
-        val save = storage.accounts().find(name) ?: return null
+        val save = load(name) ?: return null
         return DevPlayerOverview(
             name = save.displayName(),
             rights = save.rights(),
@@ -69,7 +73,7 @@ class DevService(
     }
 
     fun skills(name: String): DevPlayerSkills? {
-        val save = storage.accounts().find(name) ?: return null
+        val save = load(name) ?: return null
         val items = Skill.all.map { skill ->
             DevSkillRow(
                 skill = skill.id(),
@@ -84,7 +88,7 @@ class DevService(
     }
 
     fun inventories(name: String): DevPlayerInventories? {
-        val save = storage.accounts().find(name) ?: return null
+        val save = load(name) ?: return null
         val equipment = (save.inventories["worn_equipment"] ?: emptyArray()).mapIndexedNotNull { index, item ->
             val slot = EQUIPMENT_SLOTS[index] ?: return@mapIndexedNotNull null
             DevEquipmentRow(slot = slot, item = if (item.isEmpty()) "—" else itemName(item))
@@ -100,7 +104,7 @@ class DevService(
     }
 
     fun variables(name: String, query: String?): DevPlayerVariables? {
-        val save = storage.accounts().find(name) ?: return null
+        val save = load(name) ?: return null
         val q = query?.trim()?.lowercase()
         val rows = save.variables.entries
             .filter { (key, _) -> q.isNullOrEmpty() || key.lowercase().contains(q) }
@@ -110,7 +114,7 @@ class DevService(
     }
 
     fun events(name: String, page: Int, pageSize: Int): DevPlayerEvents? {
-        val save = storage.accounts().find(name) ?: return null
+        val save = load(name) ?: return null
         val sorted = save.recentEvents.sortedByDescending { it.time }
         val from = (page * pageSize).coerceIn(0, sorted.size)
         val to = (from + pageSize).coerceIn(from, sorted.size)
@@ -135,10 +139,19 @@ class DevService(
         else -> "string"
     }
 
-    private fun List<PlayerSave>.find(name: String): PlayerSave? =
-        firstOrNull { it.displayName().equals(name, ignoreCase = true) || it.name.equals(name, ignoreCase = true) }
+    /**
+     * Loads just the one account. Display names are resolved to account names through the hiscores
+     * snapshot; anything it doesn't know yet (e.g. an account made in the last minute) is tried as
+     * an account name directly, but only if it looks like one, as [Storage] may use it as a file name.
+     */
+    private fun load(name: String): PlayerSave? {
+        val accountName = hiscores.accountName(name) ?: name.takeIf { ACCOUNT_NAME.matches(it) } ?: return null
+        return storage.load(accountName)
+    }
 
     companion object {
+        private val ACCOUNT_NAME = Regex("[A-Za-z0-9_ -]{1,12}")
+
         /** Indexed by [world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot.index]; unused indices (6, 8, 11) are gaps in that enum. */
         private val EQUIPMENT_SLOTS = mapOf(
             0 to "Head", 1 to "Cape", 2 to "Amulet", 3 to "Weapon", 4 to "Body", 5 to "Shield",

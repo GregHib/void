@@ -6,8 +6,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
@@ -31,6 +31,10 @@ interface Spawn {
         }
     }
 
+    /**
+     * Floor item is added to the world, even if it's only visible to its owner.
+     * Not called when an item respawns or is revealed.
+     */
     fun floorItemSpawn(id: String = "*", handler: FloorItem.() -> Unit) {
         Script.checkLoading()
         Wildcards.find(id, Wildcard.Item) { key ->

@@ -13,10 +13,10 @@ examine = "A large boisterous bird, a delicacy for ogres."
 
 [jubbly_bird_chompy]
 id = 3476
-hitpoints = 100
+hitpoints = 200
 att = 5
 str = 5
-def = 3
+def = 6
 combat_def = "chompy_bird"
 slayer_xp = 10.0
 categories = ["birds"]

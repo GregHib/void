@@ -48,6 +48,8 @@ internal class SaveQueueTest : KoinMock() {
         override fun saveReport(report: AbuseReport) {
         }
 
+        override fun create(account: PlayerSave): Boolean = false
+
         override fun exists(accountName: String): Boolean = false
 
         override fun load(accountName: String): PlayerSave? = null
@@ -120,9 +122,7 @@ internal class SaveQueueTest : KoinMock() {
     fun `Shutdown save writes to the fallback before the job completes`() {
         val dumped = CopyOnWriteArrayList<String>()
         val storage = object : TestStorage() {
-            override fun save(accounts: List<PlayerSave>) {
-                throw IOException("Disk full")
-            }
+            override fun save(accounts: List<PlayerSave>): Unit = throw IOException("Disk full")
         }
         val fallback = object : TestStorage() {
             override fun save(accounts: List<PlayerSave>) {

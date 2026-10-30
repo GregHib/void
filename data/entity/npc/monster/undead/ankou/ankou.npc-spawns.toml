@@ -3,9 +3,11 @@ spawns = [
     { id = "ankou_mid", x = 3139, y = 3747 },
     { id = "ankou_mid", x = 3141, y = 3737 },
     { id = "ankou_mid", x = 3157, y = 3735 },
+    { id = "ankou_mid", x = 3162, y = 3716 },
     { id = "ankou_mid", x = 3164, y = 3727 },
     { id = "ankou_mid", x = 3165, y = 3746 },
     { id = "ankou_mid", x = 3172, y = 3713 },
+    { id = "ankou_mid", x = 3175, y = 3717 },
     { id = "ankou_mid", x = 3177, y = 3724 },
     # Stronghold of Security (fourth level)
     { id = "ankou_high", x = 2315, y = 5229 },

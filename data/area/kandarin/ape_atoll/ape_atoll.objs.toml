@@ -1,5 +1,6 @@
 [food_stall]
 id = 4875
+empty = "monkey_stall_empty"
 level = 5
 exp = 16.0
 restock = 6
@@ -7,54 +8,90 @@ chance = "200-480"
 message = "You attempt to steal from the stall but you miss your chance..."
 examine = "This table has ripe bananas on show."
 
-[food_stall_empty]
+[monkey_stall_empty]
 id = 4797
 examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [crafting_stall]
 id = 4874
+empty = "monkey_stall_empty"
 level = 5
 exp = 20.0
 restock = 8
 chance = "128-512"
 examine = "This table has crafting paraphernalia on it."
 
-[crafting_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
-
 [general_stall]
 id = 4876
+empty = "monkey_stall_empty"
 level = 5
 exp = 25.0
 restock = 8
 chance = "128-512"
 examine = "This table has items of a general nature on it."
 
-[general_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
-
 [magic_stall]
 id = 4877
+empty = "monkey_stall_empty"
 level = 65
 exp = 90.0
 restock = 12
 chance = "20-180"
 examine = "This table has items of a general nature on it."
 
-[magic_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
-
 [scimitar_stall]
 id = 4878
+empty = "monkey_stall_empty"
 level = 65
 exp = 210.0
 restock = 32
 chance = "20-180"
 examine = "This table has items of a general nature on it."
 
-[scimitar_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
+[mm_bananatreefull]
+id = 4749
+examine = "It's a banana tree, full of bananas."
+
+[mm_long_jungle_grass1]
+id = 4812
+examine = "Looks good for hiding in..."
+
+[mm_long_jungle_grass2]
+id = 4813
+examine = "Looks good for hiding in..."
+
+[mm_long_jungle_grass3]
+id = 4814
+examine = "Looks good for hiding in..."
+
+[mm_jungle_plant_fern]
+id = 4825
+examine = "A small fernlike plant."
+
+[mm_bamboo_tree_base]
+id = 4845
+examine = "A terribly tall tropical tree."
+
+[mm_bamboo_tree_mid]
+id = 4846
+examine = "A terribly tall tropical tree."
+
+[mm_bamboo_tree_uppermid]
+id = 4847
+examine = "A terribly tall tropical tree."
+
+[mm_bamboo_tree_top]
+id = 4848
+examine = "Leaves of a tropical tree."
+
+[mm_glowfungus_small]
+id = 4856
+examine = "It's a small patch of glowing fungus."
+
+[mm_glowfungus_med]
+id = 4857
+examine = "It's a medium patch of glowing fungus."
+
+[mm_glowfungus_big]
+id = 4862
+examine = "It's a large patch of glowing fungus."

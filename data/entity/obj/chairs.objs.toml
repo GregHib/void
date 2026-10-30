@@ -234,34 +234,6 @@ examine = "The ideal thing to sit on."
 id = 12888
 examine = "This needs dusting before I'll sit on it."
 
-[chair_53]
-id = 13581
-examine = "It's not the best chair but you think it would take your weight."
-
-[chair_54]
-id = 13582
-examine = "The ideal thing to sit on."
-
-[chair_55]
-id = 13583
-examine = "A comfortable seat."
-
-[chair_56]
-id = 13584
-examine = "A comfortable seat."
-
-[chair_57]
-id = 13585
-examine = "A comfortable seat."
-
-[chair_58]
-id = 13586
-examine = "A comfortable seat."
-
-[chair_59]
-id = 13587
-examine = "A comfortable seat."
-
 [fishing_contest_chair]
 id = 14050
 examine = "For sitting."

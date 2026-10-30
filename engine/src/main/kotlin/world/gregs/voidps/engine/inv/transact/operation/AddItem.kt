@@ -49,7 +49,7 @@ object AddItem {
         }
         // Check if the stack would exceed the maximum integer value
         if (item.amount + amount.toLong() > Int.MAX_VALUE) {
-            error = TransactionError.Full(Int.MAX_VALUE - item.amount)
+            error = TransactionError.Full(Int.MAX_VALUE - item.amount, item.id)
             return -1
         }
         // Combine the stacks and update the item in the inventory
@@ -71,7 +71,7 @@ object AddItem {
             return emptySlot
         }
         // No empty slot was found
-        error = TransactionError.Full()
+        error = TransactionError.Full(item = id)
         return -1
     }
 
@@ -86,7 +86,7 @@ object AddItem {
             // Find an empty slot in the inventory
             emptySlot = inventory.freeIndex()
             if (emptySlot == -1) {
-                error = TransactionError.Full(count)
+                error = TransactionError.Full(count, id)
                 return -1
             }
             // Add one item to the empty slot

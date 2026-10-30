@@ -11,7 +11,7 @@ data class PlayerOnFloorItemInteract(
     override val target: FloorItem,
     override val option: String,
     val player: Player,
-    val shape: Int?
+    val shape: Int?,
 ) : InteractOption(player, target, shape = shape) {
     override fun hasOperate() = Operation.playerFloorItem.containsKey(option)
 
@@ -33,8 +33,5 @@ data class PlayerOnFloorItemInteract(
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - $option target=$target, shape=$shape"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - $option target=$target, shape=$shape"
 }

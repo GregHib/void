@@ -72,8 +72,8 @@ class NetTrap : Script {
         }
 
         itemOnObjectOperate("*", "net,*_net_setup") { (target, item) ->
-            var trap = if (target.id == "net") {
-                GameObjects.getLayer(target.tile.add(target.direction().inverse()), ObjectLayer.GROUND)!!
+            val trap = if (target.id == "net") {
+                GameObjects.getLayer(target.tile.add(target.direction().inverse()), ObjectLayer.GROUND) ?: return@itemOnObjectOperate
             } else {
                 target
             }

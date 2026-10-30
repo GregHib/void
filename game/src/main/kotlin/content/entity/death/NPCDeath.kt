@@ -5,7 +5,6 @@ import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeon
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.attackers
 import content.entity.combat.damageDealers
-import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
@@ -66,8 +65,8 @@ class NPCDeath(
                 // Credit a familiar's kill to its owner so loot, slayer and the kill log go to the
                 // player rather than the familiar npc.
                 var killer = killer
-                if (killer is NPC && killer.contains("owner_index")) {
-                    killer = Players.indexed(killer["owner_index", -1])
+                if (killer is NPC && killer.ownerIndex != -1) {
+                    killer = Players.indexed(killer.ownerIndex)
                 }
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile
@@ -94,7 +93,7 @@ class NPCDeath(
                 }
                 hide = true
                 val respawn = get<Tile>("respawn_tile")
-                if (respawn != null && onDeath.respawn) {
+                if (lifecycle >= 0 && respawn != null && onDeath.respawn) {
                     damageDealers.clear()
                     respawn(npc["respawn_delay", 60])
                 } else {

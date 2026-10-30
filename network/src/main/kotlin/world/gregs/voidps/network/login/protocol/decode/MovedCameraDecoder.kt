@@ -12,5 +12,4 @@ class MovedCameraDecoder : Decoder(4) {
         val yaw = packet.readUShort().toInt()
         return null
     }
-
 }

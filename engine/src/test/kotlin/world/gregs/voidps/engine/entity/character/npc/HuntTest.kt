@@ -34,7 +34,6 @@ class HuntTest {
         }
 
         override val apis = listOf(Hunt)
-
     }
 
     @Nested
@@ -55,7 +54,6 @@ class HuntTest {
         }
 
         override val apis = listOf(Hunt)
-
     }
 
     @Nested
@@ -79,11 +77,12 @@ class HuntTest {
         }
 
         override val apis = listOf(Hunt)
-
     }
 
     @Nested
-    inner class HuntObjectTest : KoinMock(), ScriptTest {
+    inner class HuntObjectTest :
+        KoinMock(),
+        ScriptTest {
         override val checks = listOf(
             listOf("mode"),
         )
@@ -105,7 +104,5 @@ class HuntTest {
         }
 
         override val apis = listOf(Hunt)
-
     }
-
 }

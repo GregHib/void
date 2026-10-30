@@ -1,0 +1,316 @@
+[construction_build]
+id = 3683
+
+[construction_remove]
+id = 3685
+
+# Ids from the Fury emulator, guessed
+[light_fireplace]
+id = 3658
+
+[fill_glass_barrel]
+id = 3660
+
+[fill_beer_barrel]
+id = 3661
+
+[fill_cider_barrel]
+id = 3662
+
+[fill_asgarnian_ale_barrel]
+id = 3663
+
+[fill_greenmans_ale_barrel]
+id = 3664
+
+[fill_dragon_bitter_barrel]
+id = 3665
+
+[fill_chefs_delight_barrel]
+id = 3666
+
+# Placeholder, Fury used 3687 for torches and burners
+[light_torch]
+id = 3687
+
+[chair_sit]
+id = 4103
+
+[chair_sit_diagonal]
+id = 4104
+
+[chair_get_up]
+id = 4105
+
+[chair_get_up_diagonal]
+id = 4106
+
+# Seated anims hold the seat model in the right hand while the seat object is hidden
+[sit_crude_wooden_chair]
+id = 4073
+
+[sit_crude_wooden_chair_diagonal]
+id = 4074
+
+[sit_wooden_chair]
+id = 4075
+
+[sit_wooden_chair_diagonal]
+id = 4076
+
+[sit_rocking_chair]
+id = 4079
+
+[sit_rocking_chair_diagonal]
+id = 4080
+
+[sit_oak_chair]
+id = 4081
+
+[sit_oak_chair_diagonal]
+id = 4082
+
+[sit_oak_armchair]
+id = 4083
+
+[sit_oak_armchair_diagonal]
+id = 4084
+
+[sit_teak_armchair]
+id = 4085
+
+[sit_teak_armchair_diagonal]
+id = 4086
+
+[sit_mahogany_armchair]
+id = 4087
+
+[sit_mahogany_armchair_diagonal]
+id = 4088
+
+[sit_wooden_bench]
+id = 4089
+
+[sit_oak_bench]
+id = 4091
+
+[sit_carved_oak_bench]
+id = 4093
+
+[sit_teak_dining_bench]
+id = 4095
+
+[sit_carved_teak_bench]
+id = 4097
+
+[sit_mahogany_bench]
+id = 4099
+
+[sit_gilded_bench]
+id = 4101
+
+[sit_oak_throne]
+id = 4111
+
+[sit_teak_throne]
+id = 4112
+
+[sit_mahogany_throne]
+id = 4113
+
+[sit_gilded_throne]
+id = 4114
+
+[sit_skeleton_throne]
+id = 4115
+
+[sit_crystal_throne]
+id = 4116
+
+[sit_demonic_throne]
+id = 4117
+
+[human_use_windchimes]
+id = 3674
+
+[musical_windchimes]
+id = 3576
+
+[musical_bells]
+id = 3577
+
+# Guessed from other servers
+[ring_bell_pull]
+id = 3668
+
+# Guessed from other servers
+[study_lectern]
+id = 3652
+
+# Guessed from other servers
+[make_tablet]
+id = 3645
+
+# Guessed from other servers
+[pull_throne_room_lever]
+id = 3611
+
+# Guessed from other servers
+[throne_room_lever_pulled]
+id = 3612
+
+# Guessed from other servers
+[pick_lock]
+id = 3692
+
+# Guessed from other servers
+[force_lock]
+id = 3693
+
+[expression_crawling_hand_neutral]
+id = 9494
+
+[expression_crawling_hand_happy]
+id = 9495
+
+[expression_crawling_hand_sad]
+id = 9496
+
+[expression_kalphite_queen_angry]
+id = 6243
+
+[expression_kalphite_queen_laugh]
+id = 6244
+
+[expression_kalphite_queen_happy]
+id = 6245
+
+[expression_kalphite_queen_neutral]
+id = 6246
+
+[telescope_observe]
+id = 3649
+
+[telescope_observe_object]
+id = 3650
+
+[human_poh_build_wall]
+id = 3684
+
+[human_study_ready]
+id = 3653
+
+[human_get_over_combatring_nogloves]
+id = 3688
+
+[human_get_over_combatring_redgloves]
+id = 3689
+
+# Blue gloves id assumed to follow red
+[human_get_over_combatring_bluegloves]
+id = 3690
+
+[balance_beam_jumpoff]
+id = 3598
+
+[balance_beam_getup]
+id = 3599
+
+[poh_jester_elevate]
+id = 3588
+
+[human_throw_hoop1]
+id = 3602
+
+[human_throw_hoop2]
+id = 3603
+
+[ii_human_dart_throw]
+id = 6600
+
+[human_bow]
+id = 426
+
+[human_unarmedkick]
+id = 423
+
+[human_openheavychest]
+id = 8778
+
+[elemental_orb_closes]
+id = 3585
+
+[hangman_hangs]
+id = 3601
+
+[crystal_ball1_air]
+id = 4043
+
+[crystal_ball2_air]
+id = 4044
+
+[crystal_ball1_earth]
+id = 4045
+
+[crystal_ball2_earth]
+id = 4046
+
+[crystal_ball1_water]
+id = 4047
+
+[crystal_ball2_water]
+id = 4048
+
+[crystal_ball1_fire]
+id = 4049
+
+[crystal_ball2_fire]
+id = 4050
+
+[crystal_ball1_air_battlestaff]
+id = 4051
+
+[crystal_ball2_air_battlestaff]
+id = 4052
+
+[crystal_ball1_earth_battlestaff]
+id = 4053
+
+[crystal_ball2_earth_battlestaff]
+id = 4054
+
+[crystal_ball1_water_battlestaff]
+id = 4055
+
+[crystal_ball2_water_battlestaff]
+id = 4056
+
+[crystal_ball1_fire_battlestaff]
+id = 4057
+
+[crystal_ball2_fire_battlestaff]
+id = 4058
+
+[crystal_ball1_air_mystic]
+id = 4059
+
+[crystal_ball2_air_mystic]
+id = 4060
+
+[crystal_ball1_earth_mystic]
+id = 4061
+
+[crystal_ball2_earth_mystic]
+id = 4062
+
+[crystal_ball1_water_mystic]
+id = 4063
+
+[crystal_ball2_water_mystic]
+id = 4064
+
+[crystal_ball1_fire_mystic]
+id = 4065
+
+[crystal_ball2_fire_mystic]
+id = 4066

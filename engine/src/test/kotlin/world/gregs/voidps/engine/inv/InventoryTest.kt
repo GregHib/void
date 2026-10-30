@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.stack.NeverStack
+import world.gregs.voidps.engine.inv.transact.TransactionError
 
 internal class InventoryTest {
     private lateinit var inventory: Inventory
@@ -293,5 +294,22 @@ internal class InventoryTest {
         assertTrue(inventory.contains("stackable", 15))
         // Then
         assertFalse(inventory.contains("stackable", 16))
+    }
+
+    @Test
+    fun `Nested transaction joins the outer transaction`() {
+        // Given
+        inventory = Inventory.debug(2)
+        // When
+        val success = inventory.transaction {
+            set(0, Item("outer", 1))
+            inventory.transaction {
+                set(1, Item("inner", 1))
+            }
+            error = TransactionError.Invalid
+        }
+        // Then
+        assertFalse(success)
+        assertTrue(inventory.isEmpty())
     }
 }

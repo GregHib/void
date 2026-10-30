@@ -17,3 +17,7 @@ examine = "Town wall."
 [yanille_grapple_wall_jump]
 id = 17048
 examine = "Town wall."
+
+[watchtowerbush]
+id = 2798
+examine = "A leafy bush."

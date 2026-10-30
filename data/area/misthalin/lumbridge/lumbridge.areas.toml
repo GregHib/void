@@ -5,26 +5,32 @@ y = [3136, 3136, 3336, 3336, 3346, 3349, 3347, 3347, 3337, 3333, 3333, 3330, 333
 [lumbridge_north_trees]
 x = [3220, 3234]
 y = [3244, 3249]
+bot_capacity = 7
 
 [lumbridge_west_yew_tree]
 x = [3164, 3168]
 y = [3218, 3222]
+bot_capacity = 1
 
 [lumbridge_north_west_yew_tree]
 x = [3183, 3187]
 y = [3225, 3229]
+bot_capacity = 1
 
 [lumbridge_west_trees]
 x = [3186, 3197]
 y = [3238, 3250]
+bot_capacity = 4
 
 [lumbridge_east_trees]
 x = [3260, 3267]
 y = [3214, 3226]
+bot_capacity = 4
 
 [lumbridge_cow_trees]
 x = [3254, 3264]
 y = [3249, 3254]
+bot_capacity = 4
 
 [bobs_axe_shop]
 x = [3227, 3233]
@@ -35,6 +41,7 @@ x = [3207, 3210]
 y = [3215, 3222]
 level = 2
 tags = ["bank"]
+bot_capacity = 5
 
 [lumbridge_castle_portcullis]
 x = [3227, 3230]
@@ -45,6 +52,7 @@ tags = ["high"]
 [lumbridge_swamp_east_copper_mine]
 x = [3227, 3231]
 y = [3143, 3149]
+bot_capacity = 4
 
 [lumbridge_catacombs]
 x = [3740, 4031]
@@ -57,14 +65,17 @@ y = [3303, 3309]
 [lumbridge_swamp_east_tin_mine]
 x = [3222, 3226]
 y = [3145, 3149]
+bot_capacity = 4
 
 [lumbridge_swamp_west_coal_mine]
 x = [3143, 3147]
 y = [3148, 3154]
+bot_capacity = 4
 
 [lumbridge_swamp_west_mithril_mine]
 x = [3143, 3149]
 y = [3143, 3147]
+bot_capacity = 2
 
 [lumbridge_swamp_west_adamantite_mine]
 x = [3147, 3149]
@@ -73,6 +84,7 @@ y = [3145, 3149]
 [lumbridge_east_cow_field]
 x = [3253, 3253, 3251, 3251, 3249, 3246, 3244, 3244, 3240, 3240, 3242, 3242, 3240, 3240, 3241, 3256, 3257, 3260, 3261, 3263, 3265, 3265, 3266, 3266, 3265, 3265, 3266, 3266, 3265, 3265, 3264]
 y = [3255, 3272, 3274, 3276, 3278, 3278, 3280, 3281, 3285, 3286, 3288, 3294, 3296, 3297, 3298, 3298, 3299, 3299, 3298, 3298, 3296, 3293, 3292, 3286, 3285, 3276, 3275, 3272, 3271, 3256, 3255]
+bot_capacity = 6
 
 [lumbridge_east_goblin_settlement]
 x = [3262, 3259, 3253, 3251, 3251, 3249, 3245, 3242, 3242, 3240, 3240, 3239, 3239, 3252, 3252, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266]
@@ -81,10 +93,12 @@ y = [3215, 3218, 3222, 3223, 3227, 3228, 3232, 3235, 3239, 3241, 3249, 3251, 325
 [lumbridge_chicken_pen]
 x = [3225, 3225, 3237, 3237]
 y = [3287, 3301, 3301, 3287]
+bot_capacity = 6
 
 [lumbridge_castle_courtyard]
 x = [3218, 3224, 3224, 3218]
 y = [3208, 3208, 3229, 3229]
+bot_capacity = 3
 
 [lumbridge_general_store]
 x = [3211, 3218]
@@ -93,10 +107,12 @@ y = [3239, 3243]
 [lumbridge_swamp_fishing_area]
 x = [3240, 3247]
 y = [3142, 3157]
+bot_capacity = 5
 
 [lumbridge_river_fishing_area]
 x = [3238, 3240]
 y = [3241, 3255]
+bot_capacity = 3
 
 [hanks_fishing_shop]
 x = [3191, 3198]
@@ -105,6 +121,7 @@ y = [3251, 3255]
 [lumbridge_south_river_fishing_area]
 x = [3258, 3259]
 y = [3203, 3207]
+bot_capacity = 4
 
 [lumbridge_teleport]
 x = [3221, 3222]
@@ -114,6 +131,7 @@ tags = ["teleport"]
 [lumbridge_combat_tutors]
 x = [3202, 3214]
 y = [3250, 3256]
+bot_capacity = 5
 
 [lumbridge_swamp_giant_rats]
 x = [3212, 3232]
@@ -122,11 +140,13 @@ y = [3173, 3190]
 [lumbridge_firemaking_spot]
 x = [3220, 3221]
 y = [3257, 3259]
+bot_capacity = 3
 
 [lumbridge_kitchen]
 x = [3205, 3212]
 y = [3212, 3217]
 level = 0
+bot_capacity = 12
 
 [lumbridge_south_cooking_range]
 x = [3230, 3237]
@@ -135,6 +155,7 @@ y = [3195, 3198]
 [lumbridge_furnace]
 x = [3222, 3229]
 y = [3252, 3257]
+bot_capacity = 10
 
 [freds_farmhouse]
 x = [3184, 3192]
@@ -149,11 +170,25 @@ hint = "in the south of the kingdom of Misthalin."
 [lumbridge_thieving_area]
 x = [3220, 3225]
 y = [3236, 3242]
+bot_capacity = 2
 
 [lumbridge_west_cow_field]
 x = [3156, 3202]
 y = [3316, 3341]
+bot_capacity = 6
 
 [lumbridge_cemetery]
 x = [3234, 3252]
 y = [3190, 3206]
+
+[lumbridge_spinning_wheel]
+x = [3208, 3212]
+y = [3212, 3216]
+level = 1
+bot_capacity = 2
+
+[lumbridge_sheep_pen]
+x = [3193, 3212]
+y = [3260, 3276]
+level = 0
+bot_capacity = 2

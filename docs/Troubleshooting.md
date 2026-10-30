@@ -86,7 +86,6 @@ Exception in thread "main" org.koin.core.error.InstanceCreationException: Could 
 
 This is a generic error in the preload step in setup. Scroll down further for the real error.
 
-
 ## Running with Gradle Wrapper
 
 ```bash
@@ -113,6 +112,6 @@ org.gradle.java.home=C:/Users/Greg/.jdks/openjdk-19.0.1/
 
 Press the `Reload All Gradle Project` button.
 
-
 > [!IMPORTANT]
 > If you have tried all of the above steps and still are having problems please create a [New Issue](https://github.com/GregHib/void/issues/new) with the problem described, what you have tried, and any errors or logs you have and I'll try to help you out.
+

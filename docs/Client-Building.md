@@ -12,8 +12,9 @@
 # Modify an existing 634 deob
 
 1. Update the RSA keys to match - [modified-files](https://github.com/GregHib/void-client/commit/a112069f0faa589fe880180fb8fff9fc10c49816)
-3. Disable the lobby by setting the initial login stage to 2 - [modified-files](https://github.com/GregHib/void-client/pull/2)
-4. Fix the area sound packet from (id = 5, size = 6) to size = 8 - [modified-files](https://github.com/GregHib/void-client/commit/51da151e3563d01c27284f57d88cc15dab4fbcd4)
-5. Support java 6+ by skipping `Runtime.load0` call - [modified-files](https://github.com/GregHib/void-client/pull/3)
+2. Disable the lobby by setting the initial login stage to 2 - [modified-files](https://github.com/GregHib/void-client/pull/2)
+3. Fix the area sound packet from (id = 5, size = 6) to size = 8 - [modified-files](https://github.com/GregHib/void-client/commit/51da151e3563d01c27284f57d88cc15dab4fbcd4)
+4. Support java 6+ by skipping `Runtime.load0` call - [modified-files](https://github.com/GregHib/void-client/pull/3)
 
 > [Code changes can be found here](https://gist.github.com/GregHib/900e90082314f949b04ff5c0d3e4d8ab) however naming will likely differ in your deob client.
+

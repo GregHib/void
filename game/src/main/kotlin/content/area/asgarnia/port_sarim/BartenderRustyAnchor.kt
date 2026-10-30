@@ -8,9 +8,12 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class BartenderRustyAnchor : Script {
@@ -25,7 +28,13 @@ class BartenderRustyAnchor : Script {
                     }
                 }
                 option<Neutral>("Have you heard any rumours here?") {
-                    npc<Neutral>("Well, there was a guy in here earlier saying the goblins up by the mountain are arguing again, about the colour of their armour of all things.")
+                    if (!questCompleted("goblin_diplomacy")) {
+                        npc<Neutral>("Well, there was a guy in here earlier saying the goblins up by the mountain are arguing again, about the colour of their armour of all things.")
+                        npc<Neutral>("Knowing the goblins it could easily turn into a full blown war, which wouldn't be good. Goblin wars make such a mess of the countryside.")
+                        player<Neutral>("Well if I have the time I'll go and see if I can knock some sense into them.")
+                    } else {
+                        npc<Neutral>("No, it hasn't been very busy lately.")
+                    }
                 }
                 if (onBarCrawl(target)) {
                     option("I'm doing Alfred Grimhand's barcrawl.") {
@@ -40,6 +49,11 @@ class BartenderRustyAnchor : Script {
                 return@itemOnNPCOperate
             }
             barCrawl(target)
+        }
+
+        objectOperate("Enter", "port_sarim_bar_trapdoor") {
+            talkWith(NPCs.find(tile.region.toLevel(tile.level), "bartender_rusty_anchor_inn_3"))
+            npc<Neutral>("You're not getting in there, mate, it's locked up.")
         }
     }
 

@@ -1,6 +1,5 @@
 package content.quest.free.piratetreasure
 
-import content.entity.combat.dead
 import content.entity.combat.hit.directHit
 import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Happy

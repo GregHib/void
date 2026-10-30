@@ -1,0 +1,141 @@
+# Normalisation applied to player chat before it's understood (see docs/Bot-Chat.md)
+# Row id is the replacement, underscores become spaces: [.i_am] words = ["im"] turns "im" into "i am"
+[chat_slang]
+words = "list<string>"
+
+[.you]
+words = ["u", "ya", "yu"]
+
+[.your]
+words = ["ur", "yor"]
+
+[.yours]
+words = ["urs"]
+
+[.are]
+words = ["r"]
+
+[.i_am]
+words = ["im"]
+
+[.i_have]
+words = ["ive"]
+
+[.you_are]
+words = ["youre"]
+
+[.what_is]
+words = ["whats", "wats"]
+
+[.what]
+words = ["wat", "wot", "wut"]
+
+[.where_is]
+words = ["wheres"]
+
+[.how_is]
+words = ["hows"]
+
+[.who_is]
+words = ["whos"]
+
+[.level]
+words = ["lvl", "lv"]
+
+[.levels]
+words = ["lvls"]
+
+[.combat]
+words = ["cb", "cmb"]
+
+[.experience]
+words = ["xp", "exp"]
+
+[.please]
+words = ["pls", "plz", "plox", "pl0x"]
+
+[.thank_you]
+words = ["ty", "thx", "thanks", "tyvm", "cheers", "thnx"]
+
+[.no_problem]
+words = ["np"]
+
+[.you_are_welcome]
+words = ["yw"]
+
+[.ok]
+words = ["k", "kk", "okay", "okey"]
+
+[.yes]
+words = ["yea", "yeah", "yep", "yup", "ye", "sure"]
+
+[.no]
+words = ["nah", "nope", "naw"]
+
+[.congratulations]
+words = ["gz", "grats", "gratz", "congrats"]
+
+[.i_do_not_know]
+words = ["idk"]
+
+[.do_not_know]
+words = ["dunno"]
+
+[.do_not]
+words = ["dont"]
+
+[.can_not]
+words = ["cant", "cannot"]
+
+[.want_to]
+words = ["wanna"]
+
+[.going_to]
+words = ["gonna"]
+
+[.got_to]
+words = ["gotta"]
+
+[.see_you]
+words = ["cya"]
+
+[.got_to_go]
+words = ["gtg", "g2g"]
+
+[.talk_to_you_later]
+words = ["ttyl"]
+
+[.lol]
+words = ["lmao", "lmfao", "rofl", "roflcopters", "haha", "hehe", "xd"]
+
+[.mate]
+words = ["m8", "bro", "dude"]
+
+[.newb]
+words = ["noob", "nub", "n00b"]
+
+[.woot]
+words = ["w00t", "wo0t"]
+
+# Row id is the token a smiley becomes
+[chat_smileys]
+words = "list<string>"
+
+[.smile_face]
+words = [":)", ":-)", "(:", ":d", ":-d", ";)", ";-)", "=)"]
+
+[.sad_face]
+words = [":(", ":-(", ":'(", "):", "=("]
+
+[.tongue_face]
+words = [":p", ":-p"]
+
+[.shock_face]
+words = [":o", ":-o", "o_o", "o.o"]
+
+# Single word item/npc names too common in chat to be treated as entities
+[chat_stop_words]
+words = "list<string>"
+
+[.common]
+words = ["a", "an", "the", "i", "me", "you", "it", "is", "yes", "no", "ok", "hi", "hey", "yo", "sup", "hello", "bye", "what", "where", "who", "how", "why", "help", "please", "lol", "nice", "cool", "good", "bad", "man", "woman", "boy", "girl", "guard", "bank", "nothing", "null", "mate", "king", "queen", "hero", "noob", "newb", "bot", "player", "level", "train", "go", "come", "follow", "stop", "sorry", "thanks", "thank", "love", "hate", "fun", "boss", "gold", "money", "cash", "gp", "food", "rock", "rocks", "tree", "trees", "fire", "water", "air", "earth", "mind", "body", "death", "blood", "law", "nature", "chaos", "cosmic", "soul", "astral", "ring", "key", "book", "note", "rope", "bread", "cake", "wine", "beer", "egg", "milk", "ball", "doll", "hat", "cape", "boots", "gloves", "coins", "armour", "cat", "items", "item", "watch", "will", "log", "logs", "stuff", "gear", "dog", "thing", "things", "adventurer", "back", "banana", "bed", "chair", "cheese", "chest", "dad", "directions", "dummy", "hand", "mouse", "potato", "row", "run", "skeleton", "stranger", "teacher", "threads", "turtles", "npc", "thaks"]

@@ -3,6 +3,7 @@ Errors can be pretty daunting, here's how you break down what an error on void l
 # Koin errors
 
 Koin is what void uses to startup so if something fails first you'll see a koin error about failing to create an instance
+
 ```kotlin
 ERROR [[Koin]] * Instance creation error : could not create instance for '[Singleton: 'world.gregs.voidps.engine.entity.item.drop.DropTables']'
 ```
@@ -10,7 +11,6 @@ ERROR [[Koin]] * Instance creation error : could not create instance for '[Singl
 This error tells us that it was trying to startup and load DropTables but failed.
 
 Koin errors won't always be useful, the real cause is normally found below.
-
 
 # Log lines
 
@@ -22,6 +22,7 @@ world.gregs.voidps.engine.entity.item.drop.DropTables.load$lambda$0(DropTables.k
 world.gregs.voidps.engine.TimedLoaderKt.timedLoad(TimedLoader.kt:18)
 world.gregs.voidps.engine.entity.item.drop.DropTables.load(DropTables.kt:23)
 ```
+
 This tells us the error occurred in:
 - `DropTables` line 23
 - `TimedLoader` line 18
@@ -51,7 +52,6 @@ If you did a search for "fellstalk_seed" you'd see a usage in a `*.drops.toml` b
 Searching on the rs3 wiki you'd find [fellstalk seed](https://runescape.wiki/w/Fellstalk_seed) was added on 6th of September 2011.
 
 Void's 634 revision is only up to January 2011, so the cause of this error is fellstalk seed doesn't exist in this revision.
-
 
 # Your turn
 
@@ -171,6 +171,7 @@ Caused by: java.lang.IllegalArgumentException: Duplicate item id found 'dragon_s
 ```
 
 ## Quiz:
+
 - When did the error occur?
 - What system failed?
 - Why was there an error?
@@ -187,5 +188,4 @@ Caused by: java.lang.IllegalArgumentException: Duplicate item id found 'dragon_s
 <li>Rename the duplicate</li>
 </ul>
 </details>
-
 

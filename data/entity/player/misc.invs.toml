@@ -39,9 +39,13 @@ id = 133
 
 [dueloffer]
 id = 134
+width = 4
+height = 7
 
 [duelwinnings]
 id = 136
+width = 5
+height = 6
 
 [trail_puzzleinv]
 id = 140
@@ -351,9 +355,6 @@ id = 376
 [misc_resources_collected]
 id = 390
 
-[poh_furniture_menu_inv]
-id = 398
-
 [skill_guide_thieving_other]
 id = 415
 
@@ -386,9 +387,6 @@ id = 438
 
 [eyeglo_inv_out]
 id = 439
-
-[poh_costume_menu_inv]
-id = 445
 
 [skill_guide_hunting_tracking]
 id = 469
@@ -491,9 +489,6 @@ id = 548
 
 [mob_offer]
 id = 550
-
-[poh_pethouse]
-id = 552
 
 [evq_inv_bow]
 id = 563

@@ -15,7 +15,8 @@ import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -138,7 +139,6 @@ object Weapon {
         if (character.spell.isNotBlank()) {
             return "magic"
         }
-        val definitions = get<WeaponStyleDefinitions>()
         if (character is NPC && !character.categories.contains("human")) {
             return when (character.combatStyle) {
                 "range" -> "range"
@@ -147,11 +147,11 @@ object Weapon {
             }
         }
         val style = if (character is NPC) {
-            definitions.get(character.def["weapon_style", "unarmed"])
+            Rows.get("weapon_styles.${character.def["weapon_style", "unarmed"]}").rowId
         } else {
-            definitions.get(weapon.def["weapon_style", 0])
+            Tables.get("weapon_styles").rows().getOrNull(weapon.def["weapon_style", 0])?.rowId
         }
-        return when (style.stringId) {
+        return when (style) {
             "pie", "bow", "crossbow", "thrown", "chinchompa", "sling" -> "range"
             "fixed_device" -> if (character.attackType == "aim_and_fire") "range" else "melee"
             "salamander" -> when (character.attackType) {
@@ -251,7 +251,7 @@ val Character.attackSpeed: Int
 var Character.attackRange: Int
     get() {
         val default = if (this is NPC) {
-            val combatDefinition = get<CombatDefinitions>().get(transformDef["combat_def", id])
+            val combatDefinition = get<CombatDefinitions>().get(transformDef["combat_def", transformId])
             transformDef["attack_range", combatDefinition.attackRange]
         } else {
             1

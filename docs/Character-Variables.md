@@ -20,10 +20,12 @@ val burrow = giantMole["burrow", false]
 ```kotlin
 val burrow: Boolean = giantMole["burrow"]
 ```
+
 > [!WARNING]
 > This is the unsafe version and will throw an exception is the value hasn't previously been set and doesn't have a default listed in the [variables](#player-variables) config file.
 
 ## Setters
+
 Setting a value is straight-forward, it's important to use descriptive names to make sure values don't conflict with other content.
 
 ```kotlin
@@ -53,3 +55,4 @@ format = "map"        # The format the value is stored in (might differ from the
 default = "unstarted" # The default value if left unset
 values = { unstarted = 0, started = 1, completed = 2 } # Map for converting values before sending to client
 ```
+

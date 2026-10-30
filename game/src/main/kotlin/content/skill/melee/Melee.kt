@@ -5,13 +5,13 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
+import world.gregs.voidps.engine.entity.character.player.Player
 
-class Melee(val styleDefinitions: WeaponStyleDefinitions, val animationDefinitions: WeaponAnimationDefinitions) : Script {
+class Melee : Script {
 
     init {
         combatPrepare("melee") {
@@ -24,16 +24,23 @@ class Melee(val styleDefinitions: WeaponStyleDefinitions, val animationDefinitio
                 CombatApi.special(this, target, id)
                 return@combatSwing
             }
-            val type: String? = weapon.def.getOrNull("weapon_type")
-            val definition = if (type != null) animationDefinitions.get(type) else null
-            var animation = definition?.attackTypes?.getOrDefault(Params.id(attackType), definition.attackTypes[Params.DEFAULT])
-            if (animation == null) {
-                val id = weapon.def["weapon_style", 0]
-                val style = styleDefinitions.get(id)
-                animation = "${style.stringId}_$attackType"
-            }
-            anim(animation)
+            anim(attackAnimation())
             hit(target)
         }
     }
+}
+
+/**
+ * The animation for the weapon being wielded and the attack style it's being used with
+ */
+fun Player.attackAnimation(): String {
+    val type: String? = weapon.def.getOrNull("weapon_type")
+    val definition = if (type != null) Rows.get("weapon_anims.$type") else null
+    var animation = definition?.stringOrNull(attackType) ?: definition?.stringOrNull("default")
+    if (animation == null) {
+        val id = weapon.def["weapon_style", 0]
+        val style = Tables.get("weapon_styles").rows().getOrNull(id)
+        animation = "${style?.rowId}_$attackType"
+    }
+    return animation
 }

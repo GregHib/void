@@ -48,7 +48,6 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.input.pointer.pointerInput
-import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -58,11 +57,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.jetbrains.compose.resources.painterResource
 import world.gregs.void.app.generated.resources.Res
 import world.gregs.void.app.generated.resources.arrow_drop_down
 import world.gregs.void.app.generated.resources.arrow_right
 import world.gregs.void.app.generated.resources.close
-import world.gregs.void.app.generated.resources.open_in_new
 import world.gregs.void.app.generated.resources.search
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.tools.search.AccentBlue
@@ -72,7 +71,6 @@ import world.gregs.voidps.tools.search.BgDark
 import world.gregs.voidps.tools.search.BgPanel
 import world.gregs.voidps.tools.search.BgSelected
 import world.gregs.voidps.tools.search.BorderColor
-import world.gregs.voidps.tools.search.LinkColor
 import world.gregs.voidps.tools.search.TagBg
 import world.gregs.voidps.tools.search.TagText
 import world.gregs.voidps.tools.search.TextMuted
@@ -99,7 +97,8 @@ fun GlobalSearchTab(
     var debouncedQuery by remember { mutableStateOf("") }
     LaunchedEffect(globalState.query) {
         if (globalState.query.isBlank()) {
-            debouncedQuery = ""; return@LaunchedEffect
+            debouncedQuery = ""
+            return@LaunchedEffect
         }
         delay(150.milliseconds)
         debouncedQuery = globalState.query
@@ -133,7 +132,7 @@ fun GlobalSearchTab(
                                 } catch (_: Exception) {
                                     null
                                 },
-                                prop.name == "params"
+                                prop.name == "params",
                             ).lowercase().contains(q)
                         }.map { it.name }
                         GlobalResult(def, state.label, matched)
@@ -146,9 +145,9 @@ fun GlobalSearchTab(
                         { if (it.matchedFields.contains("id")) 0 else 1 },
                         { it.tabLabel },
                         { it.definition.id },
-                    )
+                    ),
                 )
-                .take(500)  // cap results to keep the list snappy
+                .take(500) // cap results to keep the list snappy
         }
         searching = false
     }
@@ -163,7 +162,6 @@ fun GlobalSearchTab(
     }
 
     Column(modifier = Modifier.fillMaxSize().background(BgDark)) {
-
         // Search bar
         Row(
             modifier = Modifier
@@ -174,9 +172,10 @@ fun GlobalSearchTab(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Icon(
-                painterResource(Res.drawable.search), null,
+                painterResource(Res.drawable.search),
+                null,
                 tint = if (globalState.query.isNotBlank()) AccentBlue else TextMuted,
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(16.dp),
             )
             Box(
                 modifier = Modifier
@@ -186,7 +185,7 @@ fun GlobalSearchTab(
                     .border(
                         0.5.dp,
                         if (globalState.query.isNotBlank()) AccentBlue.copy(0.5f) else BorderColor,
-                        RoundedCornerShape(6.dp)
+                        RoundedCornerShape(6.dp),
                     )
                     .padding(horizontal = 10.dp),
                 contentAlignment = Alignment.CenterStart,
@@ -207,11 +206,13 @@ fun GlobalSearchTab(
             }
             if (globalState.query.isNotEmpty()) {
                 Text(
-                    "Clear", fontSize = 12.sp, color = AccentBlue,
+                    "Clear",
+                    fontSize = 12.sp,
+                    color = AccentBlue,
                     modifier = Modifier.clickable {
                         globalState.query = ""
                         globalState.selectedItem = null
-                    }
+                    },
                 )
             }
         }
@@ -233,13 +234,15 @@ fun GlobalSearchTab(
             ) {
                 Text(
                     "${results.size}${if (results.size == 500) "+" else ""} results",
-                    fontSize = 12.sp, color = AccentBlue, fontWeight = FontWeight.Medium
+                    fontSize = 12.sp,
+                    color = AccentBlue,
+                    fontWeight = FontWeight.Medium,
                 )
                 Text("for", fontSize = 12.sp, color = TextMuted)
                 Box(
                     Modifier
                         .background(TagBg, RoundedCornerShape(3.dp))
-                        .padding(horizontal = 6.dp, vertical = 1.dp)
+                        .padding(horizontal = 6.dp, vertical = 1.dp),
                 ) {
                     Text(debouncedQuery, fontSize = 12.sp, color = TagText, fontFamily = FontFamily.Monospace)
                 }
@@ -247,11 +250,15 @@ fun GlobalSearchTab(
                 val allCollapsed = grouped.keys.all { it in globalState.collapsedSections }
                 Text(
                     if (allCollapsed) "Expand all" else "Collapse all",
-                    fontSize = 11.sp, color = AccentBlue,
+                    fontSize = 11.sp,
+                    color = AccentBlue,
                     modifier = Modifier.clickable {
-                        globalState.collapsedSections = if (allCollapsed) emptySet()
-                        else grouped.keys.toSet()
-                    }
+                        globalState.collapsedSections = if (allCollapsed) {
+                            emptySet()
+                        } else {
+                            grouped.keys.toSet()
+                        }
+                    },
                 )
                 Text("across ${tabStates.count { !it.loading }} tabs", fontSize = 11.sp, color = TextMuted)
             }
@@ -272,11 +279,11 @@ fun GlobalSearchTab(
                             item {
                                 Box(
                                     Modifier.fillMaxWidth().padding(64.dp),
-                                    contentAlignment = Alignment.Center
+                                    contentAlignment = Alignment.Center,
                                 ) {
                                     Column(
                                         horizontalAlignment = Alignment.CenterHorizontally,
-                                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                                        verticalArrangement = Arrangement.spacedBy(8.dp),
                                     ) {
                                         if (searching) {
                                             CircularProgressIndicator(color = AccentBlue, modifier = Modifier.size(12.dp), strokeWidth = 1.5.dp)
@@ -284,7 +291,8 @@ fun GlobalSearchTab(
                                         Text("Search across all tabs", fontSize = 14.sp, color = TextSecond)
                                         Text(
                                             "Matches name, stringId, id, and all other fields",
-                                            fontSize = 12.sp, color = TextMuted
+                                            fontSize = 12.sp,
+                                            color = TextMuted,
                                         )
                                     }
                                 }
@@ -294,7 +302,7 @@ fun GlobalSearchTab(
                             grouped.forEach { (tabLabel, groupResults) ->
                                 val isCollapsed = tabLabel in globalState.collapsedSections
                                 // Group header
-                                stickyHeader(key = "header_${tabLabel}") {
+                                stickyHeader(key = "header_$tabLabel") {
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -302,7 +310,6 @@ fun GlobalSearchTab(
                                             .clickable {
                                                 val wasCollapsed = tabLabel in globalState.collapsedSections
                                                 globalState.collapsedSections = if (isCollapsed) {
-
                                                     globalState.collapsedSections - tabLabel
                                                 } else {
                                                     globalState.collapsedSections + tabLabel
@@ -311,9 +318,9 @@ fun GlobalSearchTab(
                                                     var idx = 0
                                                     for ((label, results) in grouped) {
                                                         if (label == tabLabel) break
-                                                        idx += 1  // the header
+                                                        idx += 1 // the header
                                                         if (label !in globalState.collapsedSections) {
-                                                            idx += results.size  // its items, using the NEW collapsed state
+                                                            idx += results.size // its items, using the NEW collapsed state
                                                         }
                                                     }
                                                     listState.animateScrollToItem(idx)
@@ -327,18 +334,19 @@ fun GlobalSearchTab(
                                             painterResource(if (isCollapsed) Res.drawable.arrow_right else Res.drawable.arrow_drop_down),
                                             if (isCollapsed) "expand" else "collapse",
                                             tint = TextSecond,
-                                            modifier = Modifier.width(12.dp)
+                                            modifier = Modifier.width(12.dp),
                                         )
                                         Box(
                                             Modifier
                                                 .background(TagBg, RoundedCornerShape(3.dp))
-                                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                                                .padding(horizontal = 6.dp, vertical = 2.dp),
                                         ) {
                                             Text(tabLabel, fontSize = 11.sp, color = TagText)
                                         }
                                         Text(
                                             "${groupResults.size} match${if (groupResults.size != 1) "es" else ""}",
-                                            fontSize = 11.sp, color = TextMuted
+                                            fontSize = 11.sp,
+                                            color = TextMuted,
                                         )
                                     }
                                     Divider(color = BorderColor, thickness = 0.5.dp)
@@ -347,7 +355,7 @@ fun GlobalSearchTab(
                                 if (!isCollapsed) {
                                     items(
                                         groupResults,
-                                        key = { "${it.tabLabel}_${it.definition.id}_${it.definition.hashCode()}" }
+                                        key = { "${it.tabLabel}_${it.definition.id}_${it.definition.hashCode()}" },
                                     ) { result ->
                                         val isSelected = globalState.selectedItem == result.definition
                                         val def = result.definition
@@ -365,9 +373,11 @@ fun GlobalSearchTab(
                                         ) {
                                             // ID
                                             Text(
-                                                "#${def.id}", fontSize = 12.sp,
-                                                color = AccentBlue, fontFamily = FontFamily.Monospace,
-                                                modifier = Modifier.width(48.dp)
+                                                "#${def.id}",
+                                                fontSize = 12.sp,
+                                                color = AccentBlue,
+                                                fontFamily = FontFamily.Monospace,
+                                                modifier = Modifier.width(48.dp),
                                             )
 
                                             // Name / stringId
@@ -387,7 +397,7 @@ fun GlobalSearchTab(
                                                             Box(
                                                                 Modifier
                                                                     .background(AccentBlue.copy(0.1f), RoundedCornerShape(2.dp))
-                                                                    .padding(horizontal = 4.dp, vertical = 1.dp)
+                                                                    .padding(horizontal = 4.dp, vertical = 1.dp),
                                                             ) {
                                                                 Text(field, fontSize = 10.sp, color = AccentLight)
                                                             }
@@ -405,14 +415,15 @@ fun GlobalSearchTab(
                                                     .clickable {
                                                         onNavigate(
                                                             result.tabLabel,
-                                                            mapOf("id" to def.id.toString())
+                                                            mapOf("id" to def.id.toString()),
                                                         )
                                                     }
                                                     .padding(horizontal = 6.dp, vertical = 3.dp),
                                             ) {
                                                 Text(
                                                     "→ ${result.tabLabel}",
-                                                    fontSize = 11.sp, color = TextSecond
+                                                    fontSize = 11.sp,
+                                                    color = TextSecond,
                                                 )
                                             }
                                         }
@@ -425,11 +436,12 @@ fun GlobalSearchTab(
                                 item {
                                     Box(
                                         Modifier.fillMaxWidth().padding(16.dp),
-                                        contentAlignment = Alignment.Center
+                                        contentAlignment = Alignment.Center,
                                     ) {
                                         Text(
                                             "Results capped at 500 — refine your query",
-                                            fontSize = 12.sp, color = TextMuted
+                                            fontSize = 12.sp,
+                                            color = TextMuted,
                                         )
                                     }
                                 }
@@ -440,7 +452,7 @@ fun GlobalSearchTab(
                         modifier = Modifier
                             .align(Alignment.CenterEnd)
                             .fillMaxHeight(),
-                        adapter = rememberScrollbarAdapter(listState)
+                        adapter = rememberScrollbarAdapter(listState),
                     )
                 }
                 // Detail panel — reuses the same DetailPanel composable
@@ -486,7 +498,7 @@ fun GlobalSearchTab(
                             .width(clampedWidth)
                             .fillMaxHeight()
                             .background(BgPanel)
-                            .border(BorderStroke(0.5.dp, BorderColor))
+                            .border(BorderStroke(0.5.dp, BorderColor)),
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp),
@@ -498,15 +510,17 @@ fun GlobalSearchTab(
                                 Box(
                                     Modifier
                                         .background(TagBg, RoundedCornerShape(3.dp))
-                                        .padding(horizontal = 5.dp, vertical = 1.dp)
+                                        .padding(horizontal = 5.dp, vertical = 1.dp),
                                 ) {
                                     Text(label, fontSize = 11.sp, color = TagText)
                                 }
                             }
                             Spacer(Modifier.weight(1f))
                             Icon(
-                                painterResource(Res.drawable.close), null, tint = TextSecond,
-                                modifier = Modifier.size(16.dp).clickable { globalState.selectedItem = null }
+                                painterResource(Res.drawable.close),
+                                null,
+                                tint = TextSecond,
+                                modifier = Modifier.size(16.dp).clickable { globalState.selectedItem = null },
                             )
                         }
                         Divider(color = BorderColor, thickness = 0.5.dp)

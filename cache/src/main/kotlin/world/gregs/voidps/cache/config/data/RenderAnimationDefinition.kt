@@ -51,7 +51,7 @@ data class RenderAnimationDefinition(
     var anIntArray3255: IntArray? = null,
     var anIntArrayArray3249: Array<IntArray?>? = null,
     override var stringId: String = "",
-    override var params: Map<Int, Any>? = null
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Parameterized {
     override fun equals(other: Any?): Boolean {

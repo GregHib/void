@@ -30,6 +30,9 @@ data class Aggregate(
         close = price
         volume += amount
         count++
+        if (amount <= 0) {
+            return
+        }
 
         val midpoint = (high.toLong() + low) / 2
 

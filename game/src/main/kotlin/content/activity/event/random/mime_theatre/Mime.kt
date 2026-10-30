@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
@@ -157,15 +158,17 @@ class Mime : Script {
             set("unlocked_emote_$unlock", true)
         }
         clearWalkTrigger()
-        addOrDrop("random_event_gift")
         rewardCostumePoint("mime")
         clear("mime_emote")
         clear("mime_correct")
 
         // Clear the event state (so the teleport isn't blocked) then modern-teleport home.
-        val origin = Tile(this["random_event_origin", tile.id])
+        val origin = RandomEvents.origin(this)
         RandomEvents.completeInPlace(this)
         teleport(origin, "modern")
+        longQueue("mime_reward") {
+            addOrDrop("random_event_gift")
+        }
     }
 
     companion object {

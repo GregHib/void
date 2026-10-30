@@ -8,6 +8,7 @@ General long term direction, see the [project board](https://github.com/users/Gr
 - Webclient
 
 ## Coming Up
+
 (In no particular order)
 
 - Cannon dwarves
@@ -21,6 +22,7 @@ General long term direction, see the [project board](https://github.com/users/Gr
 - Castle Wars
 
 ## Recently Completed
+
 - [Minigame: Vinesweeper](github.com/GregHib/void/pull/1273)
 - [Misc: Adventurer's Log](github.com/GregHib/void/pull/1306)
 - [Quest: Biohazard](github.com/GregHib/void/pull/1260)
@@ -40,3 +42,4 @@ General long term direction, see the [project board](https://github.com/users/Gr
 - [Quest: The Golem](https://github.com/GregHib/void/pull/1195)
 - [Quest: Create of Fenkenstrain](https://github.com/GregHib/void/pull/1187)
 - [Quest: Jungle Potion](https://github.com/GregHib/void/pull/1173)
+

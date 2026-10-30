@@ -14,6 +14,11 @@ examine = "A ball of electrical energy."
 
 [killerwatt_attacking]
 id = 3201
+hitpoints = 510
+att = 50
+str = 50
+def = 40
+range = 67
 combat_def = "killerwatt"
 drop_table = "killerwatt"
 examine = "An angry electrical shock!"

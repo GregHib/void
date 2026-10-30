@@ -60,15 +60,13 @@ object Wildcards {
         map(type)[key] = values.split(",")
     }
 
-    private fun fingerprint(type: Wildcard): Int {
-        return when (type) {
-            Wildcard.Npc -> NPCDefinitions.ids.keys.hashCode()
-            Wildcard.Object -> ObjectDefinitions.ids.keys.hashCode()
-            Wildcard.Interface -> InterfaceDefinitions.ids.keys.hashCode()
-            Wildcard.Component -> InterfaceDefinitions.componentIds.keys.hashCode()
-            Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
-            Wildcard.Variables -> VariableDefinitions.definitions.keys.hashCode()
-        }
+    private fun fingerprint(type: Wildcard): Int = when (type) {
+        Wildcard.Npc -> NPCDefinitions.ids.keys.hashCode()
+        Wildcard.Object -> ObjectDefinitions.ids.keys.hashCode()
+        Wildcard.Interface -> InterfaceDefinitions.ids.keys.hashCode()
+        Wildcard.Component -> InterfaceDefinitions.componentIds.keys.hashCode()
+        Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
+        Wildcard.Variables -> VariableDefinitions.definitions.keys.hashCode()
     }
 
     fun get(key: String, type: Wildcard): Set<String> {
@@ -133,7 +131,11 @@ object Wildcards {
     }
 
     private fun resolve(wildcard: String, type: Wildcard): List<String> {
-        val list = set(type).filter { wildcardEquals(wildcard, it) }
+        val first = wildcard.indexOfFirst { it == '*' || it == '#' }
+        val last = wildcard.indexOfLast { it == '*' || it == '#' }
+        val prefix = if (first == -1) "" else wildcard.substring(0, first)
+        val suffix = if (last == -1) "" else wildcard.substring(last + 1)
+        val list = set(type).filter { it.startsWith(prefix) && it.endsWith(suffix) && wildcardEquals(wildcard, it) }
         require(list.isNotEmpty()) { "No matches found for ${type.name} wildcard '$wildcard'" }
         changes = true
         return list

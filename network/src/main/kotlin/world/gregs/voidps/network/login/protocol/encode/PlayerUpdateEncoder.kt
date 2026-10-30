@@ -10,6 +10,6 @@ fun Client.updatePlayers(
     changes: ArrayWriter,
     updates: ArrayWriter,
 ) = send(PLAYER_UPDATING, changes.position() + updates.position(), SHORT) {
-    writeBytes(changes.toArray())
-    writeBytes(updates.toArray())
+    writeBytes(changes.array(), 0, changes.position())
+    writeBytes(updates.array(), 0, updates.position())
 }

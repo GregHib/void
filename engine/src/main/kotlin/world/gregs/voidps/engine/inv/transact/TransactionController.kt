@@ -37,7 +37,22 @@ abstract class TransactionController {
      * @param transaction the transaction to check if is linked
      * @return a boolean indicating whether the transaction is linked
      */
-    fun linked(transaction: Transaction): Boolean = transactions.contains(transaction)
+    fun linked(transaction: Transaction): Boolean = allLinked().contains(transaction)
+
+    /**
+     * @return every transaction linked directly or indirectly to this transaction
+     */
+    private fun allLinked(): Set<Transaction> {
+        val all = LinkedHashSet<Transaction>()
+        val queue = ArrayDeque<TransactionController>(transactions)
+        while (queue.isNotEmpty()) {
+            val transaction = queue.removeFirst()
+            if (transaction !== this && all.add(transaction as Transaction)) {
+                queue.addAll(transaction.transactions)
+            }
+        }
+        return all
+    }
 
     /**
      * Function to revert the transaction to the last saved state.
@@ -50,7 +65,7 @@ abstract class TransactionController {
         if (!success) {
             logger.warn { "Failed to revert transaction $this." }
         }
-        for (transaction in transactions) {
+        for (transaction in allLinked()) {
             if (!transaction.state.revert()) {
                 throw IllegalStateException("Failed to revert history for transaction $transaction.")
             }
@@ -60,7 +75,7 @@ abstract class TransactionController {
     }
 
     /**
-     * @return the first error from any linked transactions
+     * @return the first error from any directly or indirectly linked transactions
      */
     protected fun error() = transactions.fold(internalError) { e, txn -> if (e != TransactionError.None) e else txn.error }
 
@@ -85,7 +100,7 @@ abstract class TransactionController {
      * This includes sending the changes for the linked transactions.
      */
     private fun sendChanges() {
-        transactions.forEach { txn ->
+        allLinked().forEach { txn ->
             txn.changes.send()
         }
         changes.send()
@@ -95,7 +110,7 @@ abstract class TransactionController {
      * Resets the transaction and its linked transactions.
      */
     private fun resetAll() {
-        transactions.forEach(Transaction::reset)
+        allLinked().forEach(Transaction::reset)
         reset()
     }
 

@@ -26,6 +26,7 @@ class AccountDefinitionsReloader(
 ) {
     private val logger = InlineLogger()
     private val reloading = AtomicBoolean(false)
+
     // SupervisorJob so a failed reload doesn't cancel the scope and kill future reloads
     private val scope = CoroutineScope(SupervisorJob() + io)
     private val handler = CoroutineExceptionHandler { _, exception ->

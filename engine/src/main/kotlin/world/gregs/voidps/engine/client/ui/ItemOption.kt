@@ -8,7 +8,5 @@ data class ItemOption(
     val inventory: String,
     val option: String,
 ) {
-    override fun toString(): String {
-        return "$option:${item.id}:${inventory} slot=$slot"
-    }
+    override fun toString(): String = "$option:${item.id}:$inventory slot=$slot"
 }

@@ -8,6 +8,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
@@ -21,6 +22,7 @@ class TablesTest {
         val default: Any,
     )
 
+    @Suppress("KotlinMisorderedAssertEqualsArguments")
     @Test
     fun `Test loading a table`() {
         AnimationDefinitions.set(arrayOf(AnimationDefinition(id = 0, stringId = "anim_id")), mapOf("anim_id" to 0))
@@ -45,19 +47,22 @@ class TablesTest {
                 Field("npc_field", ColumnType.ColumnEntity, -1),
                 Field("anim_field", ColumnType.ColumnEntity, -1),
                 Field("gfx_field", ColumnType.ColumnEntity, -1),
+                Field("dir_field", ColumnType.ColumnDirection, Direction.NONE),
                 Field("tile_field", ColumnType.ColumnInt, 0),
                 Field("int_list", ColumnType.ColumnList(ColumnType.ColumnInt), emptyList<Int>()),
                 Field("str_list", ColumnType.ColumnList(ColumnType.ColumnString), emptyList<String>()),
                 Field("item_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()),
                 Field("obj_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()),
                 Field("npc_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()),
+                Field("dir_list", ColumnType.ColumnList(ColumnType.ColumnDirection), emptyList<Direction>()),
                 Field("int_int", ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt), Pair(0, 0)),
                 Field("str_int", ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt), Pair("", 0)),
                 Field("int_str", ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString), Pair(0, "")),
                 Field("int_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt)), emptyList<Pair<Int, Int>>()),
                 Field("str_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt)), emptyList<Pair<String, Int>>()),
                 Field("int_str_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString)), emptyList<Pair<Int, String>>()),
-            ), definition
+            ),
+            definition,
         )
         assertContentEquals(intArrayOf(0, 1, 2), definition.rows)
 
@@ -72,12 +77,14 @@ class TablesTest {
             0, // npc_field
             0, // anim_field
             0, // gfx_field
+            Direction.NORTH, // dir_field
             Tile.id(1, 2, 3), // tile_field
             listOf(1, 2, 3), // int list
             listOf("one", "two"), // str list
             listOf(0), // item list
             listOf(0), // obj list
             listOf(0), // npc list
+            listOf(Direction.NORTH, Direction.SOUTH), // dir list
             Pair(1, 2), // int pair
             Pair("one", 2), // str/int pair
             Pair(1, "two"), // int/str pair
@@ -98,11 +105,14 @@ class TablesTest {
         assertEquals("npc_id", Tables.npc("header.row.npc_field"))
         assertEquals("anim_id", Tables.anim("header.row.anim_field"))
         assertEquals("gfx_id", Tables.gfx("header.row.gfx_field"))
+        assertEquals(Direction.NORTH, Tables.dir("header.row.dir_field"))
         assertEquals(Tile(1, 2, 3), Tables.tile("header.row.tile_field"))
         assertEquals(listOf(1, 2, 3), Tables.intList("header.row.int_list"))
         assertEquals(listOf("one", "two"), Tables.stringList("header.row.str_list"))
         assertEquals(listOf("item_id"), Tables.itemList("header.row.item_list"))
         assertEquals(listOf("obj_id"), Tables.objList("header.row.obj_list"))
+        assertEquals(listOf("npc_id"), Tables.npcList("header.row.npc_list"))
+        assertEquals(listOf(Direction.NORTH, Direction.SOUTH), Tables.dirList("header.row.dir_list"))
         assertEquals(Pair(1, 2), Tables.intPair("header.row.int_int"))
         assertEquals(Pair("one", 2), Tables.strIntPair("header.row.str_int"))
         assertEquals(Pair(1, "two"), Tables.intStrPair("header.row.int_str"))
@@ -121,13 +131,15 @@ class TablesTest {
         assertEquals(emptyList(), Tables.intList("header.row_two.int_list"))
         assertEquals(emptyList(), Tables.stringList("header.row_two.str_list"))
         assertEquals(emptyList(), Tables.itemList("header.row_two.item_list"))
+        assertEquals(emptyList(), Tables.objList("header.row_two.obj_list"))
+        assertEquals(emptyList(), Tables.npcList("header.row_two.npc_list"))
+        assertEquals(emptyList(), Tables.dirList("header.row_two.dir_list"))
         assertEquals(Pair(0, 0), Tables.intPair("header.row_two.int_int"))
         assertEquals(Pair("", 0), Tables.strIntPair("header.row_two.str_int"))
         assertEquals(Pair(0, ""), Tables.intStrPair("header.row_two.int_str"))
         assertEquals(emptyList(), Tables.intPairList("header.row_two.int_int_list"))
         assertEquals(emptyList(), Tables.strIntList("header.row_two.str_int_list"))
         assertEquals(emptyList(), Tables.intStrList("header.row_two.int_str_list"))
-
 
         assertEquals(3, Tables.int("header.row_three.int_field"))
         assertEquals("text", Tables.string("header.row_three.string_field"))

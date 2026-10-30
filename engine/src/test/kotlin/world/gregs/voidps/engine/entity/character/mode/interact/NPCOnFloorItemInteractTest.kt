@@ -29,5 +29,4 @@ class NPCOnFloorItemInteractTest : OnInteractTest() {
     }
 
     override fun interact() = NPCOnFloorItemInteract(FloorItem(Tile.EMPTY, "floor_item"), "option", NPC("npc"), null)
-
 }

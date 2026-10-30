@@ -4,7 +4,6 @@ hitpoints = 140
 att = 6
 str = 5
 def = 5
-attack_speed = 6
 style = "stab"
 max_hit_melee = 20
 attack_bonus = 8

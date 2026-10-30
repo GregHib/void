@@ -34,9 +34,9 @@ object NPCDefinitions {
                 val strengthBonus = def["strength", 0.0]
                 val attackBonus = def["attack_bonus", 0]
 
-                val averageLevel = floor((att + str + defence + min(hp, 20_000)) / 4.0).toInt()// 650
+                val averageLevel = floor((att + str + defence + min(hp, 20_000)) / 4.0).toInt() // 650
                 val averageDefBonus = floor((stabDef + slashDef + crushDef) / 3.0).toInt() // 80
-                val xpBonus = 1 + 0.025 * floor((39 * averageLevel * (averageDefBonus + strengthBonus + attackBonus))/ 200000.0).toInt()
+                val xpBonus = 1 + 0.025 * floor((39 * averageLevel * (averageDefBonus + strengthBonus + attackBonus)) / 200000.0).toInt()
 //                println("Bonus: ${xpBonus}")
 //                println("Actual: ${2.0 - xpBonus}")
             }

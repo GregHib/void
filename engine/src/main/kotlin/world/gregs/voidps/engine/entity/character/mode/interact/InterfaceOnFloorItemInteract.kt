@@ -12,7 +12,7 @@ data class InterfaceOnFloorItemInteract(
     val id: String,
     val index: Int,
     val player: Player,
-    val approachRange: Int?
+    val approachRange: Int?,
 ) : Interact(player, target, approachRange = approachRange) {
     override fun hasOperate() = Operation.onFloorItem.containsKey("$id:*") || Operation.onFloorItem.containsKey("$id:${target.id}") || Operation.onFloorItem.containsKey("*:${target.id}")
 
@@ -34,8 +34,5 @@ data class InterfaceOnFloorItemInteract(
         }
     }
 
-    override fun toString(): String {
-        return "${player.name} ${player.tile} - $id:${target.id} target=$target, interface='$id', index=$index, approachRange=$approachRange"
-    }
-
+    override fun toString(): String = "${player.name} ${player.tile} - $id:${target.id} target=$target, interface='$id', index=$index, approachRange=$approachRange"
 }

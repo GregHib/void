@@ -1,0 +1,6 @@
+[golem]
+id = 85
+hitpoints = 700
+att = 35
+str = 60
+def = 30

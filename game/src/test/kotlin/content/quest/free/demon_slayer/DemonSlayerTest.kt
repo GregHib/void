@@ -2,6 +2,7 @@ package content.quest.free.demon_slayer
 
 import WorldTest
 import content.entity.combat.hit.damage
+import content.quest.instance
 import content.quest.quest
 import dialogueContinue
 import dialogueOption
@@ -10,7 +11,11 @@ import itemOnObject
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,13 +25,15 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class DemonSlayerTest : WorldTest() {
 
     override var loadNpcs: Boolean = true
 
     @Test
+    @Order(1)
     fun `Complete demon slayer`() {
-        val player = createPlayer(Tile(3203, 3424))
+        val player = createPlayer(Tile(3203, 3424), "demon_slayer_complete")
         player.experience.set(Skill.Attack, Level.experience(Skill.Attack, 50))
         player.experience.set(Skill.Strength, Level.experience(Skill.Strength, 50))
         player.experience.set(Skill.Defence, Level.experience(Skill.Defence, 50))
@@ -151,18 +158,71 @@ class DemonSlayerTest : WorldTest() {
         assertEquals("delrith_weakened", delrith.def(player).stringId)
 
         player.npcOption(delrith, "Banish")
-        tick(4)
-        player.dialogueContinue(1)
         val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
-        repeat(5) {
-            val option = DemonSlayerSpell.getWord(player, it + 1)
-            player.dialogueOption("line${words.indexOf(option) + 1}")
-            player.dialogueContinue(1)
-            tick(3)
+        var wordIndex = 1
+        tickIf(200) {
+            when (player.dialogue) {
+                "dialogue_multi5" -> {
+                    val option = DemonSlayerSpell.getWord(player, wordIndex)
+                    player.dialogueOption("line${words.indexOf(option) + 1}", "dialogue_multi5")
+                    wordIndex++
+                }
+                null -> {}
+                else -> player.dialogueContinue(1)
+            }
+            player.quest("demon_slayer") != "completed"
         }
-        tick(14)
-        player.dialogueContinue(1)
-        tick(1)
         assertEquals("completed", player.quest("demon_slayer"))
+    }
+
+    @Test
+    @Order(2)
+    fun `Leaving and re-entering the stone circle returns to the same instance`() {
+        val player = createPlayer(Tile(3222, 3380), "demon_slayer_rejoin")
+        player["demon_slayer"] = "delrith"
+        player["demon_slayer_silverlight"] = true
+        player["demon_slayer_summoned"] = true
+
+        player.tele(3222, 3367)
+        tick(3)
+        val instance = player.instance()
+        assertNotNull(instance)
+        val delrith = NPCs.find(player.tile.regionLevel, "delrith")
+
+        // Step out of the circle
+        player.tele(player.tile.add(0, 12))
+        tick(3)
+        assertNull(player.instance())
+        assertEquals(3379, player.tile.y)
+
+        // Back in
+        player.tele(3222, 3367)
+        tick(3)
+        assertEquals(instance, player.instance())
+        assertEquals(delrith, NPCs.find(player.tile.regionLevel, "delrith"))
+    }
+
+    @Test
+    @Order(3)
+    fun `Re-entering after delrith is gone creates a new instance`() {
+        val player = createPlayer(Tile(3222, 3380), "demon_slayer_recreate")
+        player["demon_slayer"] = "delrith"
+        player["demon_slayer_silverlight"] = true
+        player["demon_slayer_summoned"] = true
+
+        player.tele(3222, 3367)
+        tick(3)
+        val instance = player.instance()
+        NPCs.remove(NPCs.find(player.tile.regionLevel, "delrith"))
+        NPCs.run()
+
+        player.tele(player.tile.add(0, 12))
+        tick(3)
+        player.tele(3222, 3367)
+        tick(3)
+
+        assertNotNull(player.instance())
+        assertNotEquals(instance, player.instance())
+        assertNotNull(NPCs.findOrNull(player.tile.regionLevel, "delrith"))
     }
 }

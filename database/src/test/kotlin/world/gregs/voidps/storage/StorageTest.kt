@@ -52,6 +52,42 @@ abstract class StorageTest {
     }
 
     @Test
+    fun `Create a new account`() {
+        assertTrue(storage.create(save))
+
+        val account = storage.load(save.name)
+
+        assertNotNull(account)
+        assertEquals(save.name, account.name)
+        assertEquals(save.password, account.password)
+        assertEquals(save.variables.keys, account.variables.keys)
+        assertTrue(storage.exists(save.name))
+    }
+
+    @Test
+    fun `Create an existing account fails without overriding`() {
+        storage.save(listOf(save))
+
+        val duplicate = save.copy(password = "different")
+        assertFalse(storage.create(duplicate))
+
+        val account = storage.load(save.name)
+        assertNotNull(account)
+        assertEquals(save.password, account.password)
+    }
+
+    @Test
+    fun `Create an email named account`() {
+        val email = save.copy(name = "Someone@Example.com")
+        assertTrue(storage.create(email))
+
+        assertTrue(storage.exists("someone@example.com"))
+        val account = storage.load("someone@example.com")
+        assertNotNull(account)
+        assertEquals("Someone@Example.com", account.name)
+    }
+
+    @Test
     fun `Store an existing account overrides data`() {
         storage.save(listOf(save))
 
@@ -70,7 +106,7 @@ abstract class StorageTest {
                 put("Bob", ClanRank.Captain)
                 remove("Greg")
             },
-            offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
+            offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer() },
             history = listOf(ExchangeHistory("item", 123, 321)),
             kills = mapOf("chickens" to 4, "kree_arra" to 2),
             records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
@@ -133,6 +169,47 @@ abstract class StorageTest {
         (account.variables["unlocked_music_0"] as MutableList<Any>).add("scape_theme")
         @Suppress("UNCHECKED_CAST")
         (account.variables["favourite_numbers"] as MutableList<Any>).add(64)
+    }
+
+    @Test
+    fun `Load every account`() {
+        val other = save.copy(
+            name = "zezima",
+            experience = IntArray(25) { 100 },
+            levels = IntArray(25) { 2 },
+            variables = mapOf("display_name" to "Zezima", "meaning" to 7),
+            inventories = mapOf("inventory" to Array(28) { Item.EMPTY }.apply { this[0] = Item("coins", 5) }),
+            offers = emptyArray(),
+            history = emptyList(),
+            kills = mapOf("chickens" to 1),
+            records = emptyMap(),
+            recentEvents = listOf(RecentEvent(1, "First", "a"), RecentEvent(2, "Second", "b")),
+        )
+        storage.save(listOf(save, other))
+
+        val accounts = storage.accounts().associateBy { it.name }
+
+        assertEquals(setOf(save.name, other.name), accounts.keys)
+        for (expected in listOf(save, other)) {
+            val account = accounts.getValue(expected.name)
+            assertContentEquals(expected.experience, account.experience)
+            assertContentEquals(expected.levels, account.levels)
+            assertEquals(expected.variables, account.variables)
+            assertEquals(expected.inventories.keys, account.inventories.keys)
+            for ((key, value) in expected.inventories) {
+                assertContentEquals(value, account.inventories[key])
+            }
+            assertEquals(expected.offers.map { it.id }, account.offers.filter { !it.isEmpty() }.map { it.id })
+            assertEquals(expected.history, account.history)
+            assertEquals(expected.kills, account.kills)
+            assertEquals(expected.records, account.records)
+            assertEquals(expected.recentEvents, account.recentEvents)
+        }
+    }
+
+    @Test
+    fun `No accounts gives empty list`() {
+        assertTrue(storage.accounts().isEmpty())
     }
 
     @Test

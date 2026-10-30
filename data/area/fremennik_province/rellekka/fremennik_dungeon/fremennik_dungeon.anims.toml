@@ -9,3 +9,6 @@ id = 2590
 
 [agilty_shortcut_jump]
 id = 10738
+
+[agilty_shortcut_jump_fail]
+id = 10740

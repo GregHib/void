@@ -38,10 +38,11 @@ fun Player.fletchLogDialog(
     hasTool: Player.() -> Boolean = { inventory.contains("knife") },
     onMissingTool: Player.() -> Unit = { message("You need a knife to do that.") },
 ) {
-    val displayItems = Tables.itemListOrNull("fletchables.$logId.products")?.toMutableList() ?: return
-    if (!Settings["fletching.moreArrowShafts", false] && logId != "logs") {
-        displayItems.remove("arrow_shaft")
+    val displayItems = fletchableProducts(logId)
+    if (displayItems.isEmpty()) {
+        return
     }
+
     weakQueue("fletching_make_dialog") {
         val (selected, amount) = makeAmount(
             displayItems,
@@ -106,4 +107,10 @@ fun getFletched(itemName: String): String = when {
     itemName.contains("stock", ignoreCase = true) -> "a Stock"
     itemName.contains("shaft", ignoreCase = true) -> "Shafts"
     else -> "null"
+}
+
+/** Products in the same order as the log's make-menu, including the arrow-shaft setting. */
+fun fletchableProducts(logId: String): List<String> {
+    val products = Tables.itemListOrNull("fletchables.$logId.products") ?: return emptyList()
+    return if (!Settings["fletching.moreArrowShafts", false] && logId != "logs") products.filter { it != "arrow_shaft" } else products
 }

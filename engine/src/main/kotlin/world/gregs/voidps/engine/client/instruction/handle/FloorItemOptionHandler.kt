@@ -18,7 +18,7 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractFloorItem): Boolean {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return false
         }
         val (id, x, y, optionIndex) = instruction

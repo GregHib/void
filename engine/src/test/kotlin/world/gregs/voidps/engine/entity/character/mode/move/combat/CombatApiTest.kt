@@ -34,7 +34,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -56,7 +55,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -78,7 +76,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -100,7 +97,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -124,7 +120,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -148,7 +143,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -173,7 +167,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -195,7 +188,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -218,7 +210,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -241,7 +232,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -264,7 +254,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -289,7 +278,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -312,7 +300,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -335,7 +322,6 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
 
     @Nested
@@ -358,7 +344,5 @@ class CombatApiTest {
         }
 
         override val apis = listOf(CombatApi)
-
     }
-
 }

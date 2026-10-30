@@ -11,6 +11,7 @@ scripts.txt
 /data/wildcards.txt
 /data/.temp/*
 /data/avatars/*
+/data/void-client.js.map
 
 # tools
 *.jar

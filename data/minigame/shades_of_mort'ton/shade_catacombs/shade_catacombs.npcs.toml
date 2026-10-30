@@ -89,12 +89,12 @@ examine = "The shadowy remains of a long-departed soul."
 
 [asyn_shadow_shade_catacombs]
 id = 1247
-hitpoints = 940
-att = 110
-str = 96
-def = 80
-mage = 50
-range = 50
+hitpoints = 900
+att = 102
+str = 84
+def = 70
+mage = 1
+range = 1
 style = "crush"
 max_hit_melee = 110
 hunt_mode = "cowardly"
@@ -107,10 +107,10 @@ combat_def = "asyn_shadow"
 
 [fiyr_shadow_shade_catacombs]
 id = 1249
-hitpoints = 900
-att = 102
-str = 84
-def = 70
+hitpoints = 1100
+att = 120
+str = 100
+def = 85
 style = "crush"
 max_hit_melee = 90
 slayer_xp = 90.0
@@ -135,4 +135,12 @@ slayer_xp = 90.0
 categories = ["shades"]
 immune_poison = true
 drop_table = "asyn_shade"
+examine = "The shadowy remains of a long departed soul."
+
+[fiyr_shade]
+id = 1250
+hitpoints = 1100
+att = 120
+str = 100
+def = 85
 examine = "The shadowy remains of a long departed soul."

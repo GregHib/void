@@ -13,7 +13,7 @@ class InterfaceOnNPCInteractTest : OnInteractTest() {
         listOf("*", "npc"),
         listOf("id", "*"),
     )
-    
+
     override val operate: Script.(args: List<String>, caller: Caller) -> Unit = { args, caller ->
         onNPCOperate(args[0], args[1]) {
             caller.call()
@@ -27,5 +27,4 @@ class InterfaceOnNPCInteractTest : OnInteractTest() {
     }
 
     override fun interact() = InterfaceOnNPCInteract(NPC("npc", def = NPCDefinition(0, stringId = "npc")), "id", 0, Player())
-
 }

@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.inv.transact.operation
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 /**
@@ -27,6 +26,7 @@ object MoveItemLimit {
         }
 
         val transaction = link(target)
+        val mark = transaction.changes.mark()
         val added = transaction.addToLimit(replace, amount)
         if (added == 0) {
             return 0
@@ -37,8 +37,7 @@ object MoveItemLimit {
         }
         if (removed < added) {
             // Undo and redo changes to target so items are in the correct place
-            transaction.remove(replace, added)
-            transaction.changes.clear()
+            transaction.changes.undo(mark)
             if (removed > 0) {
                 transaction.add(replace, removed)
             }

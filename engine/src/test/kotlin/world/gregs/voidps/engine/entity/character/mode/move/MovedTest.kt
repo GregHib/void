@@ -16,7 +16,7 @@ class MovedTest {
     @Nested
     inner class MovedTest : ScriptTest {
         override val checks = listOf(
-            listOf<String>()
+            listOf<String>(),
         )
         override val failedChecks = emptyList<List<String>>()
 
@@ -32,7 +32,6 @@ class MovedTest {
         }
 
         override val apis = listOf(Moved)
-
     }
 
     @Nested
@@ -102,5 +101,4 @@ class MovedTest {
 
         override val apis = listOf(Moved)
     }
-
 }

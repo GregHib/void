@@ -44,7 +44,7 @@ class ConfigReader(
         val inherit = byte == DOT
         var bufferIndex = 0
         while (byte != EOF && byte != CLOSE_BRACKET) {
-            stringBuffer[bufferIndex++] = byte.toByte()
+            append(bufferIndex++, byte)
             byte = input.read()
         }
         byte = input.read() // Skip ]
@@ -119,26 +119,33 @@ class ConfigReader(
             if (byte == BACKSLASH) {
                 byte = input.read()
                 if (byte == DOUBLE_QUOTE) {
-                    stringBuffer[bufferIndex++] = DOUBLE_QUOTE.toByte()
+                    append(bufferIndex++, DOUBLE_QUOTE)
                     byte = input.read()
                     continue
                 } else {
-                    stringBuffer[bufferIndex++] = BACKSLASH.toByte()
+                    append(bufferIndex++, BACKSLASH)
                 }
             }
 
-            stringBuffer[bufferIndex++] = byte.toByte()
+            append(bufferIndex++, byte)
             byte = input.read()
         }
         byte = input.read() // Skip closing quote
         return String(stringBuffer, 0, bufferIndex)
     }
 
+    private fun append(index: Int, value: Int) {
+        if (index >= stringBuffer.size) {
+            throw IllegalArgumentException("Value exceeds maximum length of ${stringBuffer.size} characters. ${exception()}")
+        }
+        stringBuffer[index] = value.toByte()
+    }
+
     private fun literalString(): String {
         var bufferIndex = 0
         byte = input.read() // skip opening quote
         while (byte != EOF && byte != SINGLE_QUOTE) {
-            stringBuffer[bufferIndex++] = byte.toByte()
+            append(bufferIndex++, byte)
             byte = input.read()
         }
         require(byte == SINGLE_QUOTE) { "Strings must be quoted" }
@@ -149,7 +156,7 @@ class ConfigReader(
     private fun bareKey(): String {
         var bufferIndex = 0
         while (byte != EOF && byte != SPACE && byte != TAB && byte != EQUALS && byte != RETURN && byte != NEWLINE) {
-            stringBuffer[bufferIndex++] = byte.toByte()
+            append(bufferIndex++, byte)
             byte = input.read()
         }
         require(bufferIndex > 0) { "No key found. ${exception()}" }
@@ -197,7 +204,11 @@ class ConfigReader(
         while (isDigit() || byte == UNDERSCORE) {
             if (byte != UNDERSCORE) {
                 val digit = byte - ZERO
-                value = value * 10 + digit
+                try {
+                    value = Math.addExact(Math.multiplyExact(value, 10), digit)
+                } catch (e: ArithmeticException) {
+                    throw IllegalArgumentException("Number is too large for an int. ${exception()}", e)
+                }
             }
             byte = input.read()
         }
@@ -223,7 +234,11 @@ class ConfigReader(
         while (isDigit() || byte == UNDERSCORE) {
             if (byte != UNDERSCORE) {
                 val digit = byte - ZERO
-                value = value * 10 + digit
+                try {
+                    value = Math.addExact(Math.multiplyExact(value, 10L), digit.toLong())
+                } catch (e: ArithmeticException) {
+                    throw IllegalArgumentException("Number is too large for a long. ${exception()}", e)
+                }
             }
             byte = input.read()
         }

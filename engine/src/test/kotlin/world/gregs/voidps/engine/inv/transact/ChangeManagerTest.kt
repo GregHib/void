@@ -5,6 +5,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import io.mockk.verify
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -49,5 +50,20 @@ internal class ChangeManagerTest {
         change.clear()
         change.send()
         verify(exactly = 0) { InventoryApi.changed(player, any()) }
+    }
+
+    @Test
+    fun `Undo changes since mark`() {
+        val player = mockk<Player>(relaxed = true)
+        change.bind(player)
+        change.track("inventory", 0, Item.EMPTY, 0, Item("item", 1))
+        inventory.items[0] = Item("item", 1)
+        val mark = change.mark()
+        change.track("inventory", 0, Item("item", 1), 0, Item("item", 2))
+        inventory.items[0] = Item("item", 2)
+        change.undo(mark)
+        assertEquals(Item("item", 1), inventory[0])
+        change.send()
+        verify(exactly = 1) { InventoryApi.changed(player, any()) }
     }
 }

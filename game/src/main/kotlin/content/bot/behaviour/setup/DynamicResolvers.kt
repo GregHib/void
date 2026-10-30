@@ -7,16 +7,19 @@ import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.action.BotIntEntry
 import content.bot.behaviour.action.BotInteractNpc
-import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
+import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.BotItem
+import content.bot.behaviour.condition.BotVariable
 import content.bot.behaviour.condition.Condition
 import content.entity.npc.shop.stock.Price
 import content.entity.player.bank.bank
+import content.entity.player.bank.isNote
+import content.entity.player.bank.noted
 import content.entity.player.bank.ownsItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -61,10 +64,13 @@ object DynamicResolvers {
     private fun buyItems(player: Player, items: List<BotItem>): Resolver? {
         for (entry in items) {
             val amount = entry.min ?: 1
-            if (entry.ids.any { id -> player.inventory.contains(id, amount) }) {
+            if (entry.ids.any { id -> player.inventory.contains(id, amount) && valid(player, Item(id), entry) }) {
                 continue
             }
             for (id in entry.ids) {
+                if (!valid(player, Item(id), entry)) {
+                    continue
+                }
                 for ((location, npc) in sampleItems[id] ?: emptyList()) {
                     val actions = mutableListOf<BotAction>()
                     actions.add(BotGoTo(location))
@@ -161,14 +167,16 @@ object DynamicResolvers {
     private fun withdraw(player: Player, items: List<BotItem>): Resolver? {
         val actions = mutableListOf<BotAction>()
         actions.add(BotGoToNearest("bank"))
-        actions.add(BotInteractObject("Use-quickly", "bank_booth*", success = BotInterfaceOpen("bank")))
+        actions.add(BotOpenBank())
         actions.add(BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))))
         var found = false
         for (entry in items) {
-            val item = player.bank.items.firstOrNull { item -> valid(player, item, entry) }
+            val item = player.bank.items.firstOrNull { item -> valid(player, item, entry) || item.noted?.let { valid(player, it, entry) } == true }
             if (item == null) {
                 continue
             }
+            val output = if (valid(player, item, entry)) item else item.noted!!
+            actions.add(BotInterfaceOption("Toggle item/note withdrawl", "bank:note_mode", success = BotVariable("bank_notes", output.isNote, false)))
             withdraw(actions, entry, item)
             found = true
         }
@@ -187,7 +195,7 @@ object DynamicResolvers {
         }
         val actions = mutableListOf(
             BotGoToNearest("bank"),
-            BotInteractObject("Use-quickly", "bank_booth*", success = BotInterfaceOpen("bank")),
+            BotOpenBank(),
             BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))),
             BotCloseInterface,
         )
@@ -203,7 +211,7 @@ object DynamicResolvers {
                 continue
             }
             val entry = equipment[slot] ?: continue
-            if (!entry.ids.contains(item.id)) {
+            if (!valid(player, item, entry)) {
                 continue
             }
             actions.add(BotInterfaceOption("Equip", "inventory:inventory:${item.id}", success = BotEquipmentSetup(mapOf(slot to entry))))

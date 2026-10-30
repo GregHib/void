@@ -42,8 +42,9 @@ examine = "'No Humans'."
 id = 56898
 examine = "This looks like a sensible thing to step into."
 
-[door_xmas_2010]
+[door_xmas_2010_closed]
 id = 56900
+opened = "locked_door_13_opened"
 examine = "The door is now clear of ice."
 
 [door_2_xmas_2010]

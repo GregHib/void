@@ -40,9 +40,22 @@ class AccountDefinitions(
     fun update(accountName: String, newName: String, previousDisplayName: String) {
         val definition = definitions.remove(previousDisplayName.lowercase()) ?: return
         definitions[newName.lowercase()] = definition
+        clans.remove(previousDisplayName.lowercase())?.let {
+            it.ownerDisplayName = newName
+            clans[newName.lowercase()] = it
+        }
         definition.displayName = newName
         definition.previousName = previousDisplayName
         displayNames[accountName.lowercase()] = newName
+    }
+
+    /**
+     * Removes an account added with [add] which failed to persist
+     */
+    fun remove(accountName: String) {
+        val displayName = displayNames.remove(accountName.lowercase()) ?: return
+        definitions.remove(displayName.lowercase())
+        clans.remove(displayName.lowercase())
     }
 
     fun clan(displayName: String) = clans[displayName.lowercase()]

@@ -13,6 +13,7 @@ id = 11468
 
 [estate_agent_seers_village]
 id = 11469
+collision = "indoors"
 
 [idria_seers_village]
 id = 1596
@@ -83,6 +84,10 @@ id = 12190
 
 [barbarian_seers_village_11]
 id = 12230
+hitpoints = 200
+att = 6
+str = 7
+def = 3
 
 [wizard_seers_village_2]
 id = 11455
@@ -113,3 +118,4 @@ id = 11457
 
 [estate_agent_seers_village_2]
 id = 11459
+collision = "indoors"

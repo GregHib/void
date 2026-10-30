@@ -82,7 +82,7 @@ class GrandExchangeCollection(val exchange: GrandExchange) : Script {
                         if (offer.completed > 0) {
                             history.add(0, ExchangeHistory(offer))
                         }
-                        offers[box] = ExchangeOffer.EMPTY
+                        offers[box] = ExchangeOffer()
                         exchange.offers.remove(offer)
                         GrandExchange.clearSelection(this)
                     }

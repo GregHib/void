@@ -7,6 +7,10 @@ examine = "He lives again!"
 
 [market_guard_thorvalds_test]
 id = 9122
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 examine = "Fighting to the death for his home and his family."
 
 [fremennik_warrior_thorvalds_test]
@@ -18,10 +22,22 @@ id = 9124
 
 [pontak_thorvalds_test]
 id = 9125
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 
 [jennella_thorvalds_test]
 id = 9126
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 
 [sassilik_thorvalds_test]
 id = 9127
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 

@@ -68,7 +68,7 @@ tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You
 #weight = 12
 #tip = "Elves are skilled fighters across all disciplines from whom you could learn a lot. I recommend challenging only one type of elf combatant at a time."
 
-[.fire_giant]
+[.fire_giants]
 amount = [170, 250]
 weight = 10
 tip = "Like other giants, fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. Remember the days when these were a challenge to you and laugh."

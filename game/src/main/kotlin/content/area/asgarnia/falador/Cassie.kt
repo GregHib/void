@@ -16,8 +16,7 @@ class Cassie : Script {
                 option<Neutral>("Yes please.") {
                     openShop("cassies_shield_shop")
                 }
-                option<Neutral>("No thank you.") {
-                }
+                option<Neutral>("No thank you.")
             }
         }
     }

@@ -52,7 +52,6 @@ import world.gregs.voidps.tools.search.displayValue
 import kotlin.collections.forEach
 import kotlin.reflect.KProperty1
 
-
 @Composable
 fun ResultRow(
     item: Definition,
@@ -80,11 +79,11 @@ fun ResultRow(
                     awaitPointerEventScope {
                         while (true) {
                             val event = awaitPointerEvent(PointerEventPass.Initial)
-                            if (event.type == PointerEventType.Press
-                                && event.buttons.isSecondaryPressed
+                            if (event.type == PointerEventType.Press &&
+                                event.buttons.isSecondaryPressed
                             ) {
                                 val pos = event.changes.first().position
-                                menuOffset = DpOffset(pos.x.toDp(), 0.dp)  // y=0 so it anchors below the row naturally
+                                menuOffset = DpOffset(pos.x.toDp(), 0.dp) // y=0 so it anchors below the row naturally
                                 showMenu = true
                                 // consume only the right-click
                                 event.changes.forEach { it.consume() }
@@ -97,7 +96,7 @@ fun ResultRow(
                         // Check shift state via pointer position isn't available here,
                         // so we use a separate hover-tracked shift state (see below)
                         onClick()
-                    }
+                    },
                 )
                 .padding(horizontal = 12.dp, vertical = 7.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -113,11 +112,15 @@ fun ResultRow(
                 val isId = prop.name == "id"
                 Box(modifier = Modifier.weight(if (isId) 0.5f else 1f)) {
                     Text(
-                        txt, fontSize = 12.sp, maxLines = 1,
+                        txt,
+                        fontSize = 12.sp,
+                        maxLines = 1,
                         color = when {
-                            isId -> AccentBlue; txt == "null" || txt == "-1" -> TextMuted; else -> TextPrimary
+                            isId -> AccentBlue
+                            txt == "null" || txt == "-1" -> TextMuted
+                            else -> TextPrimary
                         },
-                        fontFamily = if (isId) FontFamily.Monospace else FontFamily.Default
+                        fontFamily = if (isId) FontFamily.Monospace else FontFamily.Default,
                     )
                 }
                 if (idx < columns.lastIndex) Spacer(Modifier.width(8.dp))
@@ -136,8 +139,9 @@ fun ResultRow(
             if (isMulti) {
                 Text(
                     "${targets.size} rows selected",
-                    fontSize = 10.sp, color = TextMuted,
-                    modifier = Modifier.padding(start = 10.dp, top = 6.dp, bottom = 4.dp)
+                    fontSize = 10.sp,
+                    color = TextMuted,
+                    modifier = Modifier.padding(start = 10.dp, top = 6.dp, bottom = 4.dp),
                 )
                 HorizontalDivider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(bottom = 4.dp))
                 // Copy all selected as TSV (with header)
@@ -157,7 +161,8 @@ fun ResultRow(
                                         prop.get(row)
                                     } catch (_: Exception) {
                                         null
-                                    }, prop.name == "params"
+                                    },
+                                    prop.name == "params",
                                 )
                             }
                         }
@@ -169,8 +174,9 @@ fun ResultRow(
                 // Copy a single field across all selected rows
                 Text(
                     "Copy column across selection",
-                    fontSize = 10.sp, color = TextMuted,
-                    modifier = Modifier.padding(start = 10.dp, top = 8.dp, bottom = 4.dp)
+                    fontSize = 10.sp,
+                    color = TextMuted,
+                    modifier = Modifier.padding(start = 10.dp, top = 8.dp, bottom = 4.dp),
                 )
                 HorizontalDivider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(bottom = 4.dp))
             } else {
@@ -184,7 +190,7 @@ fun ResultRow(
                     } catch (_: Exception) {
                         null
                     },
-                    prop.name == "params"
+                    prop.name == "params",
                 )
                 val copyText = if (isMulti) {
                     targets.joinToString("\n") { row ->
@@ -193,27 +199,39 @@ fun ResultRow(
                                 prop.get(row)
                             } catch (_: Exception) {
                                 null
-                            }, prop.name == "params"
+                            },
+                            prop.name == "params",
                         )
                     }
-                } else singleVal
+                } else {
+                    singleVal
+                }
 
                 DropdownMenuItem(
                     text = {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                prop.name, fontSize = 11.sp, color = TextSecond,
+                                prop.name,
+                                fontSize = 11.sp,
+                                color = TextSecond,
                                 fontFamily = FontFamily.Monospace,
-                                modifier = Modifier.widthIn(min = 60.dp)
+                                modifier = Modifier.widthIn(min = 60.dp),
                             )
                             Text(
-                                if (isMulti) "(${targets.size} values)"
-                                else singleVal.take(40) + if (singleVal.length > 40) "…" else "",
-                                fontSize = 11.sp, color = if (isMulti) TextSecond else TextPrimary
+                                if (isMulti) {
+                                    "(${targets.size} values)"
+                                } else {
+                                    singleVal.take(40) + if (singleVal.length > 40) "…" else ""
+                                },
+                                fontSize = 11.sp,
+                                color = if (isMulti) TextSecond else TextPrimary,
                             )
                         }
                     },
-                    onClick = { copyToClipboard(copyText); showMenu = false },
+                    onClick = {
+                        copyToClipboard(copyText)
+                        showMenu = false
+                    },
                     modifier = Modifier.height(30.dp),
                 )
             }
@@ -233,7 +251,8 @@ fun ResultRow(
                                     prop.get(item)
                                 } catch (_: Exception) {
                                     null
-                                }, prop.name == "params"
+                                },
+                                prop.name == "params",
                             )
                         }
                         copyToClipboard(all)

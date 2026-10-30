@@ -5,9 +5,11 @@ plugins {
     id("shared")
     application
     alias(libs.plugins.shadow)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 dependencies {
+    implementation(libs.kotlinx.serialization.core)
     implementation(project(":engine"))
     implementation(project(":cache"))
     implementation(project(":network"))
@@ -30,6 +32,13 @@ dependencies {
     testImplementation(libs.bundles.testing)
 }
 
+kotlin {
+    compilerOptions {
+        // Compile lambdas to classes instead of invokedynamic so they can be preloaded in parallel on startup
+        freeCompilerArgs.addAll("-Xlambdas=class", "-Xsam-conversions=class")
+    }
+}
+
 application {
     mainClass.set("Main")
     tasks.run.get().workingDir = rootProject.projectDir
@@ -47,6 +56,16 @@ tasks {
     named("classes") {
         dependsOn("scriptMetadata")
     }
+
+    val main = sourceSets.getByName("main")
+    val preloadDirectory = layout.buildDirectory.dir("generated/preload")
+    val classPreload =
+        register("classPreload", ClassPreloadTask::class.java) {
+            classesDirs.from(main.output.classesDirs)
+            packageName = "content"
+            outputDirectory = preloadDirectory
+        }
+    main.output.dir(mapOf("builtBy" to classPreload), preloadDirectory)
 
     register("scriptMetadata", ScriptMetadataTask::class.java) {
         val main = sourceSets.getByName("main")
@@ -113,6 +132,10 @@ tasks {
 
     test {
         jvmArgs("-XX:-OmitStackTraceInFastThrow")
+        systemProperty("net.bytebuddy.experimental", "true")
+        maxParallelForks =
+            (findProperty("testForks") as String?)?.toInt() ?: (Runtime.getRuntime().availableProcessors() / 2).coerceIn(1, 2)
+        maxHeapSize = "3g"
     }
 }
 
@@ -175,28 +198,5 @@ distributions {
 dependencies {
     allprojects.filter { it.name != "tools" }.forEach {
         jacocoAggregation(it)
-    }
-}
-
-spotless {
-    kotlin {
-        target("**/*.kt", "**/*.kts")
-        targetExclude("temp/", "**/build/**", "**/out/**")
-        ktlint()
-            .editorConfigOverride(
-                mapOf(
-                    "ktlint_code_style" to "intellij_idea",
-                    "ktlint_standard_no-wildcard-imports" to "disabled",
-                    "ktlint_standard_package-name" to "disabled",
-                ),
-            )
-    }
-    kotlinGradle {
-        target("*.gradle.kts")
-        ktlint()
-    }
-    flexmark {
-        target("**/*.md")
-        flexmark()
     }
 }

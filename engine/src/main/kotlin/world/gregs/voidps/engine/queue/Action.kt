@@ -16,5 +16,4 @@ data class Action<C : Character>(
      * @return if action was executed this call
      */
     fun process(): Boolean = --remaining <= 0
-
 }

@@ -31,7 +31,7 @@ class CooksAssistantTest : WorldTest() {
 
     @BeforeAll
     fun beforeAllLocal() {
-        loadItemSpawns(get(), configFiles.list(Settings["spawns.items"]))
+        loadItemSpawns(configFiles.list(Settings["spawns.items"]))
     }
 
     @Test

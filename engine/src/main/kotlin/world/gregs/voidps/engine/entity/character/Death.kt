@@ -96,6 +96,8 @@ interface Death {
         override fun close() {
             playerHandlers.clear()
             npcHandlers.clear()
+            npcDeathHandlers.clear()
+            npcAfterHandlers.clear()
         }
     }
 }

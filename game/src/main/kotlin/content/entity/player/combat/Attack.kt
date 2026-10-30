@@ -123,12 +123,11 @@ class Attack : Script {
     }
 
     /**
-     * Replaces the current [Interact.override] when combat is triggered via [Interact] to
-     * allow the first [CombatApi.combatSwing] to occur on the same tick.
-     * After [Interact] is complete it is switched to [CombatMovement]
+     * Replaces the current [Interact] with [CombatMovement] after this tick's movement
+     * so the first swing can occur on the same tick the target comes into range.
      */
     fun Interact.combatInteraction(target: Character) {
-        updateInteraction {
+        replace {
             Combat.combat(character, target)
         }
     }

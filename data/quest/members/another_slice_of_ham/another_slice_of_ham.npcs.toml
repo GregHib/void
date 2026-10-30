@@ -8,3 +8,68 @@ style = "crush"
 max_hit_melee = 50
 hunt_mode = "cowardly"
 examine = "Former advisor to the Duke of Lumbridge."
+
+[sigmund_another_slice_of_ham]
+id = 3713
+hitpoints = 700
+att = 55
+str = 55
+def = 44
+examine = "What is he plotting this time?"
+
+[zanik_another_slice_of_ham]
+id = 3714
+hitpoints = 300
+att = 35
+str = 20
+def = 30
+range = 55
+examine = "The Chosen Commander."
+
+[guard_another_slice_of_ham]
+id = 3715
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+examine = "He looks a bit aggressive."
+
+[sigmund_another_slice_of_ham_2]
+id = 3716
+hitpoints = 700
+att = 55
+str = 55
+def = 44
+examine = "What is he plotting this time?"
+
+[sigmund_another_slice_of_ham_3]
+id = 3717
+hitpoints = 700
+att = 55
+str = 55
+def = 44
+examine = "What is he plotting this time?"
+
+[sigmund_another_slice_of_ham_4]
+id = 3718
+hitpoints = 700
+att = 55
+str = 55
+def = 44
+examine = "What is he plotting this time?"
+
+[sigmund_another_slice_of_ham_5]
+id = 3719
+hitpoints = 700
+att = 55
+str = 55
+def = 44
+examine = "What is he plotting this time?"
+
+[sigmund_another_slice_of_ham_6]
+id = 3720
+hitpoints = 700
+att = 55
+str = 55
+def = 44
+examine = "What is he plotting this time?"

@@ -1,7 +1,6 @@
 package content.area.asgarnia.dwarven_mines.living_rock_caverns
 
 import content.entity.combat.damageDealers
-import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.effect.transform

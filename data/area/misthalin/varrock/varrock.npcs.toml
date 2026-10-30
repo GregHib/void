@@ -194,7 +194,7 @@ id = 2091
 att = 6
 str = 5
 def = 2
-hitpoints = 133
+hitpoints = 100
 slayer_xp = 10.0
 combat_def = "giant_rat"
 drop_table = "giant_rat"
@@ -204,6 +204,7 @@ hunt_mode = "cowardly"
 
 [master_farmer_varrock]
 id = 2235
+combat_def = "farmer"
 examine = "A master at farming."
 
 [tanner_varrock]
@@ -273,6 +274,8 @@ examine = "He tries to keep order around here."
 
 [sawmill_operator]
 id = 4250
+shop = "construction_supplies"
+examine = "He changes the shape of wood."
 
 [assistant_serf]
 id = 5066
@@ -416,6 +419,7 @@ id = 7744
 
 [fluffs_normal]
 id = 7742
+dialogue = "cat"
 
 [will]
 id = 7737
@@ -429,10 +433,12 @@ examine = "A busy housewife."
 
 [philop]
 id = 782
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [kanel]
 id = 784
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [rogue]
@@ -456,9 +462,9 @@ id = 8904
 id = 8906
 
 [man_varrock_4]
+clone = "man"
 id = 12346
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
@@ -484,16 +490,16 @@ shop = "urists_crafting_supplies"
 examine = "A crafter at the pinnacle of his art."
 
 [man_varrock]
+clone = "man"
 id = 12345
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
 [man_varrock_2]
+clone = "man"
 id = 12347
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
@@ -551,18 +557,18 @@ examine = "He tries to keep order around here. His bizarre uniform isn't helping
 drop_table = "guard"
 
 [man_varrock_3]
+clone = "man"
 id = 5923
 examine = "One of Gielinor's many citizens."
 drop_table = "man"
-combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
 
 [woman_varrock]
+clone = "woman"
 id = 5924
 examine = "One of Gielinor's many citizens."
 drop_table = "woman"
-combat_def = "woman"
 hitpoints = 70
 max_hit_crush = 10
 
@@ -608,10 +614,12 @@ examine = "A retired vampyre hunter."
 
 [shilop]
 id = 781
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [wilough]
 id = 783
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [treznor]
@@ -661,3 +669,48 @@ id = 7002
 
 [hartwin_2]
 id = 8140
+
+[dark_wizard_level_7]
+id = 4658
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_7_2]
+id = 4659
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_20]
+id = 4660
+hitpoints = 240
+att = 17
+str = 17
+def = 14
+mage = 22
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_20_2]
+id = 4661
+hitpoints = 240
+att = 17
+str = 17
+def = 14
+mage = 22
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_7_3]
+id = 8830
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+examine = "A practicer of dark arts."

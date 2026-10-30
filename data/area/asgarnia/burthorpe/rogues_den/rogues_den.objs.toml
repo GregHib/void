@@ -1,0 +1,7 @@
+[roguesden_trap_floor_spikes]
+id = 7227
+examine = "It's the floor..."
+
+[roguesden_trap_floor_explosion]
+id = 7230
+examine = "It's the floor..."

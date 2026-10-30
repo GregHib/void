@@ -47,3 +47,11 @@ drop_table = "icefiend"
 categories = ["icefiend", "icefiends"]
 god = "zamorak"
 examine = "A small ice demon."
+
+[icefiend_2]
+id = 6217
+hitpoints = 150
+att = 10
+str = 10
+def = 12
+examine = "A small ice demon."

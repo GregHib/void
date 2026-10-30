@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.player.chat.noAid
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
@@ -38,7 +39,7 @@ class EnergyTransfer : Script {
                 return@onPlayerApproach
             }
             if (!get("accept_aid", true)) {
-                message("This player is not currently accepting aid.") // TODO proper message
+                noAid()
                 return@onPlayerApproach
             }
             if (!removeSpellItems("energy_transfer")) {
@@ -47,7 +48,7 @@ class EnergyTransfer : Script {
             start("movement_delay", 2)
             anim("lunar_cast")
             target.gfx("energy_transfer")
-            sound("energy_transfer")
+            sound("telekinetic_grab")
             exp(Skill.Magic, Tables.int("spells.energy_transfer.xp") / 10.0)
             damage(random.nextInt(95, 100))
             specialAttackEnergy = 0

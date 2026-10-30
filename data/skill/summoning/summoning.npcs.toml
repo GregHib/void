@@ -1,5 +1,4 @@
 [spirit_terrorbird_familiar]
-summoning_time_minutes = 36
 id = 6794
 hitpoints = 2330
 att = 47
@@ -11,7 +10,6 @@ combat_def = "spirit_terrorbird_familiar"
 interacts = false
 
 [granite_crab_familiar]
-summoning_time_minutes = 18
 id = 6796
 hitpoints = 160
 att = 15
@@ -21,11 +19,9 @@ range = 0
 mage = 0
 combat_def = "granite_crab_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [praying_mantis_familiar]
-summoning_time_minutes = 69
 id = 6798
 hitpoints = 4280
 att = 72
@@ -37,7 +33,6 @@ combat_def = "praying_mantis_familiar"
 interacts = false
 
 [giant_ent_familiar]
-summoning_time_minutes = 49
 id = 6800
 hitpoints = 4670
 att = 72
@@ -47,11 +42,9 @@ range = 72
 mage = 72
 combat_def = "giant_ent_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_cobra_familiar]
-summoning_time_minutes = 56
 id = 6802
 hitpoints = 3140
 att = 57
@@ -63,7 +56,6 @@ combat_def = "spirit_cobra_familiar"
 interacts = false
 
 [spirit_dagannoth_familiar]
-summoning_time_minutes = 57
 id = 6804
 hitpoints = 5280
 att = 75
@@ -75,7 +67,6 @@ combat_def = "spirit_dagannoth_familiar"
 interacts = false
 
 [thorny_snail_familiar]
-summoning_time_minutes = 16
 id = 6806
 hitpoints = 280
 att = 1
@@ -87,14 +78,11 @@ combat_def = "thorny_snail_familiar"
 interacts = false
 
 [beaver_familiar]
-summoning_time_minutes = 27
 id = 6808
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [karamthulhu_overlord_familiar]
-summoning_time_minutes = 44
 id = 6809
 hitpoints = 2760
 att = 53
@@ -106,7 +94,6 @@ combat_def = "karamthulhu_overlord_familiar"
 interacts = false
 
 [hydra_familiar]
-summoning_time_minutes = 49
 id = 6811
 hitpoints = 4900
 att = 72
@@ -118,7 +105,6 @@ combat_def = "hydra_familiar"
 interacts = false
 
 [spirit_jelly_familiar]
-summoning_time_minutes = 43
 id = 6992
 hitpoints = 2550
 att = 50
@@ -130,7 +116,6 @@ combat_def = "spirit_jelly_familiar"
 interacts = false
 
 [bunyip_familiar]
-summoning_time_minutes = 44
 id = 6813
 hitpoints = 400
 att = 72
@@ -142,7 +127,6 @@ combat_def = "bunyip_familiar"
 interacts = false
 
 [war_tortoise_familiar]
-summoning_time_minutes = 43
 id = 6815
 hitpoints = 3480
 att = 72
@@ -154,14 +138,11 @@ combat_def = "war_tortoise_familiar"
 interacts = false
 
 [fruit_bat_familiar]
-summoning_time_minutes = 45
 id = 6817
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [abyssal_parasite_familiar]
-summoning_time_minutes = 30
 id = 6818
 hitpoints = 2340
 att = 49
@@ -172,11 +153,9 @@ mage = 49
 combat_def = "abyssal_parasite_familiar"
 interacts = false
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 7
 summoning_beast_of_burden_essence = 1
 
 [abyssal_lurker_familiar]
-summoning_time_minutes = 41
 id = 6820
 hitpoints = 3080
 att = 56
@@ -191,7 +170,6 @@ summoning_beast_of_burden_capacity = 12
 summoning_beast_of_burden_essence = 1
 
 [unicorn_stallion_familiar]
-summoning_time_minutes = 54
 summoning_special_cost = 20
 id = 6822
 hitpoints = 1000
@@ -204,15 +182,12 @@ combat_def = "unicorn_stallion_familiar"
 interacts = false
 
 [magpie_familiar]
-summoning_time_minutes = 34
 id = 6824
 interacts = false
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 examine = "Check your pockets!"
 
 [dreadfowl_familiar]
-summoning_time_minutes = 4
 id = 6825
 hitpoints = 160
 att = 15
@@ -224,7 +199,6 @@ combat_def = "dreadfowl_familiar"
 interacts = false
 
 [stranger_plant_familiar]
-summoning_time_minutes = 49
 id = 6827
 hitpoints = 3220
 att = 72
@@ -234,11 +208,9 @@ range = 72
 mage = 72
 combat_def = "stranger_plant_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_wolf_familiar]
-summoning_time_minutes = 6
 id = 6829
 hitpoints = 150
 att = 10
@@ -250,7 +222,6 @@ combat_def = "spirit_wolf_familiar"
 interacts = false
 
 [desert_wyrm_familiar]
-summoning_time_minutes = 19
 id = 6831
 hitpoints = 470
 att = 20
@@ -262,7 +233,6 @@ combat_def = "desert_wyrm_familiar"
 interacts = false
 
 [evil_turnip_familiar]
-summoning_time_minutes = 30
 id = 6833
 hitpoints = 1670
 att = 38
@@ -272,11 +242,9 @@ range = 28
 mage = 34
 combat_def = "evil_turnip_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [vampire_bat_familiar]
-summoning_time_minutes = 33
 id = 6835
 hitpoints = 1050
 att = 30
@@ -288,7 +256,6 @@ combat_def = "vampire_bat_familiar"
 interacts = false
 
 [spirit_scorpion_familiar]
-summoning_time_minutes = 17
 id = 6837
 hitpoints = 670
 att = 20
@@ -300,7 +267,6 @@ combat_def = "spirit_scorpion_familiar"
 interacts = false
 
 [arctic_bear_familiar]
-summoning_time_minutes = 28
 id = 6839
 hitpoints = 3810
 att = 72
@@ -312,7 +278,6 @@ combat_def = "arctic_bear_familiar"
 interacts = false
 
 [spirit_spider_familiar]
-summoning_time_minutes = 15
 id = 6841
 hitpoints = 180
 att = 15
@@ -326,7 +291,6 @@ summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [bloated_leech_familiar]
-summoning_time_minutes = 34
 id = 6843
 hitpoints = 2110
 att = 45
@@ -338,7 +302,6 @@ combat_def = "bloated_leech_familiar"
 interacts = false
 
 [spirit_kalphite_familiar]
-summoning_time_minutes = 22
 id = 6994
 hitpoints = 770
 att = 25
@@ -350,7 +313,6 @@ combat_def = "spirit_kalphite_familiar"
 interacts = false
 
 [honey_badger_familiar]
-summoning_time_minutes = 25
 id = 6845
 hitpoints = 1100
 att = 29
@@ -362,7 +324,6 @@ combat_def = "honey_badger_familiar"
 interacts = false
 
 [albino_rat_familiar]
-summoning_time_minutes = 22
 id = 6847
 hitpoints = 680
 att = 22
@@ -372,11 +333,9 @@ range = 22
 mage = 22
 combat_def = "albino_rat_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [granite_lobster_familiar]
-summoning_time_minutes = 47
 id = 6849
 hitpoints = 4180
 att = 72
@@ -386,19 +345,15 @@ range = 72
 mage = 72
 combat_def = "granite_lobster_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [macaw_familiar]
-summoning_time_minutes = 31
 id = 6851
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 examine = "Lovely plumage."
 
 [bronze_minotaur_familiar]
-summoning_time_minutes = 30
 id = 6853
 hitpoints = 1330
 att = 33
@@ -410,7 +365,6 @@ combat_def = "bronze_minotaur_familiar"
 interacts = false
 
 [iron_minotaur_familiar]
-summoning_time_minutes = 37
 id = 6855
 hitpoints = 1930
 att = 42
@@ -422,7 +376,6 @@ combat_def = "iron_minotaur_familiar"
 interacts = false
 
 [steel_minotaur_familiar]
-summoning_time_minutes = 46
 id = 6857
 hitpoints = 2600
 att = 51
@@ -434,7 +387,6 @@ combat_def = "steel_minotaur_familiar"
 interacts = false
 
 [mithril_minotaur_familiar]
-summoning_time_minutes = 55
 id = 6859
 hitpoints = 3400
 att = 60
@@ -446,7 +398,6 @@ combat_def = "mithril_minotaur_familiar"
 interacts = false
 
 [adamant_minotaur_familiar]
-summoning_time_minutes = 66
 id = 6861
 hitpoints = 4410
 att = 72
@@ -458,7 +409,6 @@ combat_def = "adamant_minotaur_familiar"
 interacts = false
 
 [rune_minotaur_familiar]
-summoning_time_minutes = 151
 id = 6863
 hitpoints = 5700
 att = 80
@@ -470,7 +420,6 @@ combat_def = "rune_minotaur_familiar"
 interacts = false
 
 [smoke_devil_familiar]
-summoning_time_minutes = 48
 id = 6865
 hitpoints = 3000
 att = 55
@@ -482,7 +431,6 @@ combat_def = "smoke_devil_familiar"
 interacts = false
 
 [bull_ant_familiar]
-summoning_time_minutes = 30
 id = 6867
 hitpoints = 1540
 att = 36
@@ -494,7 +442,6 @@ combat_def = "bull_ant_familiar"
 interacts = false
 
 [wolpertinger_familiar]
-summoning_time_minutes = 62
 id = 6869
 hitpoints = 6510
 att = 85
@@ -506,7 +453,6 @@ combat_def = "wolpertinger_familiar"
 interacts = false
 
 [compost_mound_familiar]
-summoning_time_minutes = 24
 id = 6871
 hitpoints = 930
 att = 25
@@ -516,11 +462,9 @@ range = 25
 mage = 25
 combat_def = "compost_mound_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [pack_yak_familiar]
-summoning_time_minutes = 58
 id = 6873
 hitpoints = 7100
 att = 87
@@ -532,7 +476,6 @@ combat_def = "pack_yak_familiar"
 interacts = false
 
 [spirit_cockatrice_familiar]
-summoning_time_minutes = 36
 id = 6875
 hitpoints = 1730
 att = 39
@@ -542,11 +485,9 @@ range = 39
 mage = 39
 combat_def = "spirit_cockatrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_guthatrice_familiar]
-summoning_time_minutes = 36
 id = 6877
 hitpoints = 1730
 att = 39
@@ -556,11 +497,9 @@ range = 39
 mage = 39
 combat_def = "spirit_guthatrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_saratrice_familiar]
-summoning_time_minutes = 36
 id = 6879
 hitpoints = 1730
 att = 39
@@ -570,11 +509,9 @@ range = 39
 mage = 39
 combat_def = "spirit_saratrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_zamatrice_familiar]
-summoning_time_minutes = 36
 id = 6881
 hitpoints = 1730
 att = 39
@@ -584,11 +521,9 @@ range = 39
 mage = 39
 combat_def = "spirit_zamatrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_pengatrice_familiar]
-summoning_time_minutes = 36
 id = 6883
 hitpoints = 1730
 att = 39
@@ -598,11 +533,9 @@ range = 39
 mage = 39
 combat_def = "spirit_pengatrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_coraxatrice_familiar]
-summoning_time_minutes = 36
 id = 6885
 hitpoints = 1730
 att = 39
@@ -612,11 +545,9 @@ range = 39
 mage = 39
 combat_def = "spirit_coraxatrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [spirit_vulatrice_familiar]
-summoning_time_minutes = 36
 id = 6887
 hitpoints = 1730
 att = 39
@@ -626,11 +557,9 @@ range = 39
 mage = 39
 combat_def = "spirit_vulatrice_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [barker_toad_familiar]
-summoning_time_minutes = 8
 id = 6889
 hitpoints = 3400
 att = 60
@@ -642,14 +571,11 @@ combat_def = "barker_toad_familiar"
 interacts = false
 
 [ibis_familiar]
-summoning_time_minutes = 38
 id = 6991
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [swamp_titan_familiar]
-summoning_time_minutes = 56
 id = 7329
 hitpoints = 5660
 att = 77
@@ -661,7 +587,6 @@ combat_def = "swamp_titan_familiar"
 interacts = false
 
 [spirit_mosquito_familiar]
-summoning_time_minutes = 12
 id = 7331
 hitpoints = 430
 att = 5
@@ -673,7 +598,6 @@ combat_def = "spirit_mosquito_familiar"
 interacts = false
 
 [void_spinner_familiar]
-summoning_time_minutes = 27
 id = 7333
 hitpoints = 590
 att = 31
@@ -685,7 +609,6 @@ combat_def = "void_spinner_familiar"
 interacts = false
 
 [forge_regent_familiar]
-summoning_time_minutes = 45
 id = 7335
 hitpoints = 4410
 att = 72
@@ -697,7 +620,6 @@ combat_def = "forge_regent_familiar"
 interacts = false
 
 [spirit_larupia_familiar]
-summoning_time_minutes = 49
 id = 7337
 hitpoints = 2680
 att = 52
@@ -709,7 +631,6 @@ combat_def = "spirit_larupia_familiar"
 interacts = false
 
 [geyser_titan_familiar]
-summoning_time_minutes = 69
 id = 7339
 hitpoints = 6100
 att = 85
@@ -721,7 +642,6 @@ combat_def = "geyser_titan_familiar"
 interacts = false
 
 [lava_titan_familiar]
-summoning_time_minutes = 61
 id = 7341
 hitpoints = 5280
 att = 75
@@ -733,7 +653,6 @@ combat_def = "lava_titan_familiar"
 interacts = false
 
 [steel_titan_familiar]
-summoning_time_minutes = 64
 id = 7343
 hitpoints = 7540
 att = 130
@@ -745,7 +664,6 @@ combat_def = "steel_titan_familiar"
 interacts = false
 
 [obsidian_golem_familiar]
-summoning_time_minutes = 55
 id = 7345
 hitpoints = 4060
 att = 72
@@ -757,7 +675,6 @@ combat_def = "obsidian_golem_familiar"
 interacts = false
 
 [talon_beast_familiar]
-summoning_time_minutes = 49
 id = 7347
 hitpoints = 4540
 att = 72
@@ -784,7 +701,6 @@ summoning_beast_of_burden_capacity = 20
 summoning_beast_of_burden_essence = 1
 
 [void_torcher_familiar]
-summoning_time_minutes = 94
 id = 7351
 hitpoints = 1210
 att = 31
@@ -796,7 +712,6 @@ combat_def = "void_torcher_familiar"
 interacts = false
 
 [giant_chinchompa_familiar]
-summoning_time_minutes = 31
 id = 7353
 hitpoints = 970
 att = 25
@@ -808,7 +723,6 @@ combat_def = "giant_chinchompa_familiar"
 interacts = false
 
 [fire_titan_familiar]
-summoning_time_minutes = 62
 id = 7355
 hitpoints = 4760
 att = 72
@@ -820,7 +734,6 @@ combat_def = "fire_titan_familiar"
 interacts = false
 
 [moss_titan_familiar]
-summoning_time_minutes = 58
 id = 7357
 hitpoints = 4760
 att = 72
@@ -832,7 +745,6 @@ combat_def = "moss_titan_familiar"
 interacts = false
 
 [ice_titan_familiar]
-summoning_time_minutes = 64
 id = 7359
 hitpoints = 4760
 att = 72
@@ -844,7 +756,6 @@ combat_def = "ice_titan_familiar"
 interacts = false
 
 [spirit_tz-kih_familiar]
-summoning_time_minutes = 18
 id = 7361
 hitpoints = 630
 att = 20
@@ -868,7 +779,6 @@ combat_def = "spirit_graahk_familiar"
 interacts = false
 
 [spirit_kyatt_familiar]
-summoning_time_minutes = 49
 id = 7365
 hitpoints = 2680
 att = 52
@@ -880,7 +790,6 @@ combat_def = "spirit_kyatt_familiar"
 interacts = false
 
 [void_shifter_familiar]
-summoning_time_minutes = 94
 id = 7367
 hitpoints = 1210
 att = 31
@@ -892,7 +801,6 @@ combat_def = "void_shifter_familiar"
 interacts = false
 
 [pyrelord_familiar]
-summoning_time_minutes = 32
 id = 7377
 hitpoints = 1930
 att = 60
@@ -904,7 +812,6 @@ combat_def = "pyrelord_familiar"
 interacts = false
 
 [void_ravager_familiar]
-summoning_time_minutes = 27
 id = 7370
 hitpoints = 1210
 att = 31
@@ -914,11 +821,9 @@ range = 31
 mage = 31
 combat_def = "void_ravager_familiar"
 summoning_beast_of_burden = 1
-summoning_beast_of_burden_capacity = 30
 interacts = false
 
 [ravenous_locust_familiar]
-summoning_time_minutes = 24
 id = 7372
 hitpoints = 3700
 att = 72
@@ -930,7 +835,6 @@ combat_def = "ravenous_locust_familiar"
 interacts = false
 
 [iron_titan_familiar]
-summoning_time_minutes = 60
 id = 7375
 hitpoints = 6940
 att = 120
@@ -1213,7 +1117,6 @@ id = 11224
 interacts = false
 
 [meerkats_familiar]
-summoning_time_minutes = 40
 id = 11640
 interacts = false
 

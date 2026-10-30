@@ -1,8 +1,10 @@
 ### [**Home**](./home)
+
 - [Roadmap](./roadmap)
 - [Content Progress](./content-progress)
 
 # Players
+
 - Getting Started
   - [Installation](installation-guide)
   - [First launch](installation-guide#step-6-launch-the-server)
@@ -14,6 +16,7 @@
 - [Common issues](troubleshooting)
 
 # Content Creation
+
 - [Cheat Sheet](content-cheat-sheet)
 - [Overview](content-creation)
   - [Content Added](content-progress)
@@ -41,6 +44,7 @@
       - [Shops](shops)
   - [Definitions](definitions)
     - [Cache viewer](cache-viewer)
+    - [Transformations](transformations)
   - [Config Files](config-files)
     - [Tables](data-tables)
   - [Variables](character-variables)
@@ -65,6 +69,7 @@
   - [Interactive Map](https://greghib.github.io/void-map/)
 
 # Developers
+
 - [Setup](ide-setup)
 - Architecture
   - [Philosophy](philosophy)
@@ -81,8 +86,10 @@
   - [Item Charges & Degrading](charges-and-degrading)
   - Movement Modes
   - [Bot Architecture](bot-architecture)
+    - [Bot Chat](bot-chat)
   - [Database Storage](storage)
   - Delta's
   - [Drops and variables](drop-tables)
 - Contributing
   - [Guidelines](https://github.com/GregHib/void/blob/main/CONTRIBUTING.md)
+

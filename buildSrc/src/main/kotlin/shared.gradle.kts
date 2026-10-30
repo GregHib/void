@@ -24,6 +24,28 @@ kotlin {
     }
 }
 
+spotless {
+    kotlin {
+        target("src/**/*.kt", "src/**/*.kts")
+        val rules = mutableMapOf<String, Any>(
+            "ktlint_code_style" to "intellij_idea",
+            "ktlint_standard_no-wildcard-imports" to "disabled",
+            "ktlint_standard_package-name" to "disabled",
+            "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+        )
+        if (path == ":tools:render") {
+            // Ported client renderer which keeps its original obfuscated names
+            rules["ktlint_standard_property-naming"] = "disabled"
+            rules["ktlint_standard_function-naming"] = "disabled"
+            rules["ktlint_standard_class-naming"] = "disabled"
+        }
+        ktlint().editorConfigOverride(rules)
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+    }
+}
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
@@ -31,6 +53,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.13.4")
 }
+
+val hotSwapArgs = listOf("-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition")
+tasks.withType<Test>().configureEach { jvmArgs(hotSwapArgs) }
+tasks.withType<JavaExec>().configureEach { jvmArgs(hotSwapArgs) }
+
+val coverage = providers.gradleProperty("coverage").isPresent
 
 if (name != "tools") {
     tasks.test {
@@ -41,10 +69,16 @@ if (name != "tools") {
             events("passed", "skipped", "failed")
             exceptionFormat = TestExceptionFormat.FULL
         }
-        finalizedBy(tasks.jacocoTestReport)
+        extensions.configure<JacocoTaskExtension> {
+            isEnabled = coverage
+        }
+        if (coverage) {
+            finalizedBy(tasks.jacocoTestReport)
+        }
     }
 
     tasks.jacocoTestReport {
+        enabled = coverage
         dependsOn(tasks.test)
         reports {
             xml.required = true

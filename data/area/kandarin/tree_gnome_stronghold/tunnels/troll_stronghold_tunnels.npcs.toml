@@ -6,7 +6,6 @@ str = 75
 def = 40
 mage = 0
 range = 0
-attack_speed = 6
 style = "crush"
 max_hit_melee = 110
 attack_bonus = 20
@@ -111,7 +110,6 @@ str = 90
 def = 25
 mage = 0
 range = 0
-attack_speed = 6
 style = "crush"
 max_hit_melee = 130
 attack_bonus = 20
@@ -124,6 +122,10 @@ combat_def = "twig"
 
 [berry_troll_awake]
 id = 1127
+hitpoints = 900
+att = 40
+str = 90
+def = 25
 examine = "He's guarding the cells."
 
 [berry_troll_sleeping]
@@ -132,7 +134,6 @@ hitpoints = 900
 att = 40
 str = 90
 def = 25
-attack_speed = 6
 style = "melee"
 max_hit_melee = 130
 attack_bonus = 20
@@ -164,7 +165,6 @@ str = 90
 def = 25
 mage = 0
 range = 0
-attack_speed = 6
 style = "crush"
 max_hit_melee = 130
 attack_bonus = 20
@@ -236,3 +236,11 @@ id = 4950
 [ug]
 id = 1553
 examine = "A frail little troll."
+
+[twig]
+id = 1126
+hitpoints = 900
+att = 40
+str = 90
+def = 25
+examine = "He's guarding the cells."

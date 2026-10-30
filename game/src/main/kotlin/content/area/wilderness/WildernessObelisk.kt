@@ -23,7 +23,7 @@ class WildernessObelisk : Script {
                 return@objectOperate
             }
             val definition = Areas.getOrNull(target.id) ?: return@objectOperate
-            val rectangle = (definition.area as Rectangle)
+            val rectangle = definition.area as? Rectangle ?: return@objectOperate
             replace(target, Tile(rectangle.minX - 1, rectangle.minY - 1))
             replace(target, Tile(rectangle.maxX + 1, rectangle.minY - 1))
             replace(target, Tile(rectangle.minX - 1, rectangle.maxY + 1))

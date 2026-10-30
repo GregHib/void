@@ -77,8 +77,6 @@ enum class Direction(deltaX: Int, deltaY: Int) {
 
         private val array = arrayOf(SOUTH_WEST, SOUTH, SOUTH_EAST, WEST, NONE, EAST, NORTH_WEST, NORTH, NORTH_EAST)
 
-        fun of(deltaX: Int, deltaY: Int): Direction {
-            return array.getOrNull((deltaX + 1) + (deltaY + 1) * 3) ?: NONE
-        }
+        fun of(deltaX: Int, deltaY: Int): Direction = array.getOrNull((deltaX + 1) + (deltaY + 1) * 3) ?: NONE
     }
 }

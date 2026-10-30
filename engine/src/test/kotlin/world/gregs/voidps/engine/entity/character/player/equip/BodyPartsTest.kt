@@ -7,6 +7,7 @@ import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -54,6 +55,18 @@ internal class BodyPartsTest {
         every { item.def.equipIndex } returns 2
         body.update(BodyPart.Back, false)
         assertEquals(2 or 0x8000, body.get(1))
+    }
+
+    @Test
+    fun `Equipped item changes hash`() {
+        val item = item("123")
+        every { equipment[1] } returns item
+        every { item.def.type } returns EquipType.None
+        every { item.def.contains("equip") } returns true
+        every { item.def.equipIndex } returns 2
+        val before = body.hashCode()
+        body.update(BodyPart.Back, false)
+        assertNotEquals(before, body.hashCode())
     }
 
     @Test

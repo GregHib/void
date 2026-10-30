@@ -50,10 +50,6 @@ class RequestAssist : Script {
             if (filter == "off" || (filter == "friends" && !target.friend(this))) {
                 return@playerOperate
             }
-            if (!get("accept_aid", true)) {
-                message("This player is not currently accepting aid.") // TODO proper message
-                return@playerOperate
-            }
             if (target.hasRequest(this, "assist")) {
                 message("Sending assistance response.", ChatType.Assist)
             } else {

@@ -15,7 +15,7 @@ import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 class InterfaceOnNPCOptionHandler(private val handler: InterfaceHandler) : InstructionHandler<InteractInterfaceNPC>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceNPC): Boolean {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return false
         }
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction

@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.tools.map.obj.GameObjectOption
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
 import world.gregs.voidps.type.Distance.euclidean
-import world.gregs.voidps.type.Distance.nearest
 import world.gregs.voidps.type.Distance.levenshtein
+import world.gregs.voidps.type.Distance.nearest
 import world.gregs.voidps.type.Tile
 import kotlin.math.*
 

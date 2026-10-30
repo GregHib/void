@@ -1,0 +1,7 @@
+[vc_rat_wall1]
+id = 10335
+examine = "Observe the rats."
+
+[vc_rat_wall1_inactive]
+id = 10337
+examine = "Observe the rats."

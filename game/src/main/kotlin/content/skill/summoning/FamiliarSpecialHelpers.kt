@@ -91,7 +91,7 @@ fun Player.familiarSpecialHit(
         val landDelay = CLIENT_TICKS.toTicks(flight)
         targetGfx?.let { gfx -> target.queue("familiar_special_gfx", landDelay) { target.gfx(gfx) } }
         // hit() lands its damage a tick after the projectile's flight; run onLand on that same tick
-        // (queued after the hit) so an on-impact stun - which sets the target's "delay" and would
+        // (queued after the hit) so an on-impact stun - which sets the target's delayTicks and would
         // otherwise block the still-pending hit's queue - only fires once the damage has landed.
         onLand?.let { land -> target.queue("familiar_special_land", landDelay + 1) { land(target) } }
     } else {

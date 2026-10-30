@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.client
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.concurrent.ConcurrentHashMap
@@ -25,8 +26,13 @@ class ConnectionQueue(
     override fun run() {
         val disconnect = disconnect.iterator()
         while (disconnect.hasNext()) {
-            disconnect.next().invoke()
+            val block = disconnect.next()
             disconnect.remove()
+            try {
+                block.invoke()
+            } catch (e: Exception) {
+                logger.error(e) { "Error disconnecting client." }
+            }
         }
         val iterator = waiting.iterator()
         var count = 0
@@ -35,5 +41,9 @@ class ConnectionQueue(
             next.resume(Unit)
             iterator.remove()
         }
+    }
+
+    companion object {
+        private val logger = InlineLogger()
     }
 }

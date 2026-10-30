@@ -89,26 +89,17 @@ examine = "It's a grill."
 id = 11423
 examine = "It's a grill."
 
-[door_rehnison_opened]
-id = 2538
-examine = "A door."
-
 [door_rehnison_closed]
 id = 2537
+opened = "chaos_druid_tower_locked_door_opened"
 examine = "The door is closed."
-
-[door_civic_office_opened]
-id = 2529
-examine = "A door."
 
 [door_civic_office_closed]
 id = 2528
+opened = "edgeville_dungeon_door_opened"
 examine = "The door is closed."
-
-[door_elena_prison_opened]
-id = 2527
-examine = "The door of a small prison."
 
 [door_elena_prison_closed]
 id = 2526
+opened = "gate_71_opened"
 examine = "The door of a small prison."

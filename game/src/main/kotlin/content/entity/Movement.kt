@@ -3,6 +3,7 @@ package content.entity
 import content.area.misthalin.Border
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
@@ -25,13 +26,13 @@ class Movement : Script {
 
     init {
         playerSpawn {
-            if (Players.add(this) && Settings["world.players.collision", false]) {
+            if (Players.add(this) && playerCollision) {
                 add(this)
             }
         }
 
         npcSpawn {
-            if (Settings["world.npcs.collision", false]) {
+            if (npcCollision) {
                 add(this)
             }
         }
@@ -49,7 +50,12 @@ class Movement : Script {
         }
 
         instruction<Walk> { player ->
-            if (player.contains("delay")) {
+            if (player.delayed) {
+                return@instruction
+            }
+            val blocked: String? = player["no_movement_message"]
+            if (blocked != null) {
+                player.message(blocked)
                 return@instruction
             }
             if (player.mode is Interact) {
@@ -81,7 +87,7 @@ class Movement : Script {
         }
 
         playerDespawn {
-            if (Settings["world.players.collision", false]) {
+            if (playerCollision) {
                 remove(this)
             }
         }
@@ -91,7 +97,7 @@ class Movement : Script {
         }
 
         npcDespawn {
-            if (Settings["world.npcs.collision", false]) {
+            if (npcCollision) {
                 remove(this)
             }
         }
@@ -115,5 +121,10 @@ class Movement : Script {
                 Collisions.remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
             }
         }
+    }
+
+    companion object {
+        private val npcCollision by Settings.bool("world.npcs.collision", false)
+        private val playerCollision by Settings.bool("world.players.collision", false)
     }
 }

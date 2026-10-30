@@ -36,7 +36,6 @@ Now you can extend the `Script` interface and add an init function
 
 <img width="436" height="247" alt="image" src="https://github.com/user-attachments/assets/4dd407e1-516c-4cf2-b33f-adc6f9a03214" />
 
-
 Now you can write your content using event handlers // TODO
 
 That's it! Scripts are discovered automatically next time your run the server.
@@ -44,10 +43,10 @@ That's it! Scripts are discovered automatically next time your run the server.
 **Next up**: [adding event handlers](event-handlers)
 
 ### Notes
+
 - Keep scripts focused to one [entity](entity) or one behaviour if an entity has a lot of options
 - Make sure scripts are located in the `content.` package (unless otherwise specified in [properties](properties))
 - Scripts are organised by location first, by type second
-
 
 ## Troubleshooting
 
@@ -72,6 +71,7 @@ ERROR [ContentLoader] Otherwise make sure the return type is written explicitly.
 ```
 
 You can fix this by running
+
 ```gradle
 gradle collectSourcePaths
 ```

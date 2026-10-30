@@ -26,16 +26,13 @@ examine = "Use this to leave Puro-Puro."
 id = 12046
 examine = "A magic door."
 
-[zanaris_magic_door_opened]
-id = 12046
-examine = "A magic door."
-
 [magic_door_zanaris_closed]
 id = 12045
 examine = "A magic door."
 
 [zanaris_magic_door_closed]
 id = 12047
+opened = "magic_door_zanaris_opened"
 examine = "A magic door."
 
 [cow_wheel]

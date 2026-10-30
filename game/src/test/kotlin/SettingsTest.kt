@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 internal class SettingsTest {
@@ -8,9 +9,15 @@ internal class SettingsTest {
     fun `Assert important properties are active`() {
         Settings.load()
         assertTrue(Settings["development.accountCreation", false])
+        assertTrue(Settings["accounts.registration", false])
+        assertEquals(3, Settings["accounts.registration.maxPerIP", 0])
+        assertEquals(60, Settings["accounts.registration.windowMinutes", 0])
         assertTrue(Settings["world.npcs.randomWalk", false])
         assertTrue(Settings["world.npcs.aggression", false])
         assertTrue(Settings["world.npcs.collision", false])
+        assertFalse(Settings["web.server.enabled", false])
+        assertTrue(Settings["grandExchange.enabled", false])
+        assertTrue(Settings["bots.chat.enabled", false])
         assertEquals(30, Settings["bots.count", 0])
     }
 }

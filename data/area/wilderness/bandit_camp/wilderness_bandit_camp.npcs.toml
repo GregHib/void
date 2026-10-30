@@ -26,6 +26,20 @@ examine = "A warrior touched by chaos."
 drop_table = "dark_warrior"
 combat_def = "guard"
 
+[bandit_bandit_camp_wilderness]
+id = 195
+drop_table = "bandit"
+combat_def = "guard"
+hitpoints = 270
+att = 17
+str = 17
+def = 17
+attack_bonus = 11
+max_hit_stab = 30
+respawn_delay = 15
+hunt_mode = "aggressive"
+examine = "A wilderness outlaw."
+
 [guard_bandit]
 id = 196
 hitpoints = 270
@@ -40,7 +54,7 @@ hunt_mode = "aggressive"
 slayer_xp = 29.0
 categories = ["bandits"]
 respawn_delay = 100
-examine = "A wilderness outlaw."
+examine = "Bandit Camp guard."
 drop_table = "guard_bandit"
 combat_def = "guard"
 
@@ -101,9 +115,11 @@ id = 326
 [fat_tony]
 id = 596
 shop = "tonys_pizza_bases"
+collision = "indoors"
 examine = "A pizza expert; in both making and eating."
 
 [noterazzo]
 id = 597
 shop = "bandit_duty_free"
+collision = "indoors"
 examine = "The lawless shopkeeper."

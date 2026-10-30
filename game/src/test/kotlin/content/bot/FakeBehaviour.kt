@@ -4,12 +4,11 @@ import content.bot.behaviour.Behaviour
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.condition.Condition
 
-class FakeBehaviour : Behaviour {
+class FakeBehaviour(override val produces: Set<String> = emptySet()) : Behaviour {
     override val id: String = ""
     override val timeout: Int = 100
     override val requires: List<Condition> = emptyList()
     override val setup: List<Condition> = emptyList()
     override val actions: List<BotAction> = emptyList()
     override val reactive: List<BotAction> = emptyList()
-    override val produces: Set<String> = emptySet()
 }

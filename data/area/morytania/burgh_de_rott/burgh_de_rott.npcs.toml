@@ -17,6 +17,8 @@ str = 40
 def = 30
 max_hit_crush = 50
 hunt_mode = "cowardly"
+slayer_xp = 65.0
+categories = ["vampyres"]
 
 [vampyre_juvinate_4]
 id = 3523
@@ -28,6 +30,8 @@ str = 40
 def = 30
 max_hit_crush = 50
 hunt_mode = "cowardly"
+slayer_xp = 65.0
+categories = ["vampyres"]
 
 [vampyre_juvinate_5]
 id = 3524
@@ -39,6 +43,8 @@ str = 40
 def = 30
 max_hit_crush = 50
 hunt_mode = "cowardly"
+slayer_xp = 65.0
+categories = ["vampyres"]
 
 [vampyre_juvinate_6]
 id = 3525
@@ -50,6 +56,8 @@ str = 40
 def = 30
 max_hit_crush = 50
 hunt_mode = "cowardly"
+slayer_xp = 65.0
+categories = ["vampyres"]
 
 [vampyre_juvenile]
 id = 3531
@@ -62,6 +70,7 @@ att = 40
 str = 30
 def = 30
 max_hit_crush = 40
+slayer_xp = 60.0
 
 [vampyre_juvenile_2]
 id = 3532
@@ -74,9 +83,11 @@ att = 40
 str = 30
 def = 30
 max_hit_crush = 40
+slayer_xp = 60.0
 
 [vampyre_juvenile_3]
 id = 3533
+categories = ["vampyres"]
 drop_table = "empty"
 combat_def = "vampyre"
 hitpoints = 600
@@ -84,6 +95,7 @@ att = 40
 str = 30
 def = 30
 max_hit_crush = 40
+slayer_xp = 60.0
 
 [elisabeta]
 id = 3540

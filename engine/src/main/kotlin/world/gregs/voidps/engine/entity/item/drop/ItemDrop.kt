@@ -49,6 +49,4 @@ data class ItemDrop(
         result = 31 * result + amount.hashCode()
         return result
     }
-
-
 }

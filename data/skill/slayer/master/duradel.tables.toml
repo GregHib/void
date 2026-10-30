@@ -58,7 +58,7 @@ amount = [130, 200]
 weight = 10
 tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You'll often find them in caves near sea water. There is no joy so great as to cleanse these from the face of Gielinor."
 
-[.fire_giant]
+[.fire_giants]
 amount = [130, 200]
 weight = 10
 tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. Remember the days when these were a challenge to you, and laugh."

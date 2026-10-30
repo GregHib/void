@@ -1,0 +1,11 @@
+[tol_pipe01]
+id = 21875
+examine = "A water pipe. Plain and simple."
+
+[tol_pipe02]
+id = 21876
+examine = "A water pipe. Plain and simple."
+
+[eyeglo_torch]
+id = 17237
+examine = "A wooden torch."

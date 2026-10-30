@@ -1,1 +1,9 @@
+.git
+.gradle
+.idea
+.claude
+**/build/*
+!game/build/libs
+!game/build/libs/void-server-db-*.jar
+data/saves
 saves

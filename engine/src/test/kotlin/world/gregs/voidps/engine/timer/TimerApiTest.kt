@@ -32,7 +32,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -55,7 +54,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -77,7 +75,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -101,7 +98,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -124,7 +120,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -146,7 +141,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -169,7 +163,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -192,7 +185,6 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
 
     @Nested
@@ -214,7 +206,5 @@ class TimerApiTest {
         }
 
         override val apis = listOf(TimerApi)
-
     }
-
 }

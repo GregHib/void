@@ -7,7 +7,6 @@ import content.bot.behaviour.activity.Loadout
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.Condition
-import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -29,6 +28,18 @@ interface Behaviour {
     val produces: Set<String>
 }
 
+/**
+ * Skill trained taken from [Behaviour.produces] e.g. "skill:mining" -> "mining"
+ */
+val Behaviour.skill: String?
+    get() = produces.firstOrNull { it.startsWith("skill:") }?.removePrefix("skill:")
+
+/**
+ * Item gathered or made taken from [Behaviour.produces] e.g. "item:iron_ore" -> "iron_ore"
+ */
+val Behaviour.product: String?
+    get() = produces.firstOrNull { it.startsWith("item:") }?.removePrefix("item:")
+
 fun loadBehaviours(
     files: ConfigFiles,
     activities: MutableMap<String, BotActivity>,
@@ -39,25 +50,23 @@ fun loadBehaviours(
     loadSetups(resolvers, templates, files.list(Settings["bots.setups"]))
 }
 
-fun loadGraph(files: ConfigFiles): NavigationGraph {
-    val templates = loadTemplates(files.list(Settings["bots.templates"]))
+internal fun loadNavigationShortcuts(templatePaths: List<String>, shortcutPaths: List<String>): List<NavigationShortcut> {
     val shortcuts = mutableListOf<NavigationShortcut>()
-    loadShortcuts(shortcuts, templates, files.list(Settings["bots.shortcuts"]))
-    return NavigationGraph.loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
+    loadShortcuts(shortcuts, loadTemplates(templatePaths), shortcutPaths)
+    return shortcuts
 }
 
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot activity") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, capacity, timeout, requires, setup, actions, reactive, produces ->
+        load(paths) { id, template, fields, _, timeout, requires, setup, actions, reactive, produces ->
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, capacity, timeout, requires, setup, actions, reactive, produces))
+                fragments.add(Fragment(id, template, fields, 1, timeout, requires, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 activities[id] = BotActivity(
                     id = id,
-                    capacity = capacity,
                     timeout = timeout,
                     requires = Condition.parse(requires, debug),
                     setup = Condition.parse(setup, debug),
@@ -163,7 +172,9 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                         "actions" -> actions(actions)
                         "reactive" -> actions(reactive)
                         "produces" -> produces(produces)
-                        "weight", "capacity" -> value = int()
+                        "weight" -> value = int()
+                        // Deprecated: capacity is now set per area with `bot_capacity`
+                        "capacity" -> int()
                         "timeout" -> timeout = int()
                         "fields" -> fields = map()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
@@ -262,7 +273,6 @@ private data class Fragment(
 ) {
     fun activity(template: Template) = BotActivity(
         id = id,
-        capacity = int,
         timeout = timeout,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),

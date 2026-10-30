@@ -386,7 +386,7 @@ class FamiliarCombatSpecials : Script {
         if (random.nextInt(10) != 0) {
             return
         }
-        val owner = Players.indexed(familiar["owner_index", -1]) ?: return
+        val owner = Players.indexed(familiar.ownerIndex) ?: return
         if (owner.follower?.index != familiar.index) {
             return
         }

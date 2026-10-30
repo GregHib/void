@@ -34,9 +34,12 @@ fun SearchField(value: String, onValueChange: (String) -> Unit, placeholder: Str
     ) {
         if (value.isEmpty()) Text(placeholder, color = TextMuted, fontSize = 12.sp)
         BasicTextField(
-            value, onValueChange, singleLine = true,
+            value,
+            onValueChange,
+            singleLine = true,
             textStyle = TextStyle(color = TextPrimary, fontSize = 12.sp),
-            cursorBrush = SolidColor(AccentBlue), modifier = Modifier.fillMaxWidth()
+            cursorBrush = SolidColor(AccentBlue),
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }

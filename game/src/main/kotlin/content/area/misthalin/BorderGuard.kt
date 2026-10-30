@@ -46,7 +46,7 @@ class BorderGuard : Script {
 
     fun enter(player: Player, def: AreaDefinition) {
         val border = def.area as Rectangle
-        player["delay"] = 3
+        player.delay = 3
         player.steps.update(noCollision = true, noRun = true)
         val guards = guards[border] ?: return
         changeGuardState(guards)

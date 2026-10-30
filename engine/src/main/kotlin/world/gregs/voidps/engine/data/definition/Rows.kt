@@ -37,5 +37,4 @@ object Rows {
         this.ids = emptyMap()
         loaded = false
     }
-
 }

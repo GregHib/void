@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @Disabled("Flaky")
 internal class GameLoopTest {
@@ -75,7 +75,8 @@ internal class GameLoopTest {
         delay(5)
 
         // Then
-        assertFalse(job.isActive)
-        assertEquals(1, count)
+        assertTrue(job.isActive)
+        assertEquals(5, count)
+        job.cancelAndJoin()
     }
 }

@@ -1,0 +1,9 @@
+[agrith_naar]
+id = 2919
+hitpoints = 950
+att = 83
+str = 90
+def = 82
+mage = 100
+range = 100
+examine = "A summoned demon."

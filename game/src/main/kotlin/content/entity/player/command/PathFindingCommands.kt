@@ -3,8 +3,8 @@ package content.entity.player.command
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.NavigationGraphLoader
 import content.bot.behaviour.action.BotGoTo
-import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.setup.Resolver
 import content.bot.bot
 import content.bot.isBot
@@ -107,12 +107,11 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
         }
 
         adminCommand("col") {
-            val collisions: Collisions = get()
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and CollisionFlag.WALL_NORTH == 0}")
-            println("Can move north? ${collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
-            println(collisions[tile.x, tile.y, tile.level])
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH == 0}")
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and CollisionFlag.WALL_NORTH == 0}")
+            println("Can move north? ${Collisions[tile.x, tile.y, tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
+            println(Collisions[tile.x, tile.y + 1, tile.level])
             println(tile.minus(y = 1))
 
             println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
@@ -136,7 +135,7 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
         }
 
         adminCommand("walk_to_bank") {
-            val graph: NavigationGraph = get()
+            val graph = NavigationGraphLoader.graph
             val output = mutableListOf<Int>()
             println(
                 "Path took ${

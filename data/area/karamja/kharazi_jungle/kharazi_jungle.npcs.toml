@@ -208,3 +208,17 @@ id = 13164
 
 [zamorak_jadinko_kharazi_jungle_9]
 id = 13165
+
+[tribesman_2]
+id = 2496
+hitpoints = 390
+att = 23
+str = 27
+def = 26
+
+[tribesman_3]
+id = 2497
+hitpoints = 390
+att = 23
+str = 27
+def = 26

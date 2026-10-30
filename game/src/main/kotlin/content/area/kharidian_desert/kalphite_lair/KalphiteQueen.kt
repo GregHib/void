@@ -39,6 +39,7 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
         npcSpawn("kalphite_queen") {
             clearTransform()
         }
+
         npcCombatDamage("kalphite_queen") {
             if (random.nextInt(20) != 0) {
                 return@npcCombatDamage
@@ -55,8 +56,7 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             if (it.type == "range" && it.damage > 0) {
                 it.target.levels.drain(Skill.Prayer, 1)
             } else if (it.type == "magic") {
-                set("chain_hits", mutableSetOf(it.target.index))
-                chainGlow(this, it.target)
+                chainGlow(this, it.target, it.special)
             }
         }
 
@@ -111,23 +111,28 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
         }
     }
 
-    fun chainGlow(source: NPC, target: Character) {
+    fun chainGlow(source: NPC, target: Character, first: Boolean) {
         if (target !is Player || !target.inMultiCombat) {
             return
         }
+        if (first) {
+            source["chain_hits"] = mutableSetOf(target.index)
+        }
         val chain: MutableSet<Int> = source.getOrPut("chain_hits") { mutableSetOf() }
+        if (!first && chain.contains(target.index)) {
+            return
+        }
         for (tile in target.tile.spiral(4)) {
             for (player in Players.at(tile)) {
                 if (chain.contains(player.index) || !Target.attackable(source, player)) {
                     continue
                 }
-
                 if (!lineOfSight.hasLineOfSight(target, player)) {
                     continue
                 }
                 chain.add(player.index)
                 val time = target.shoot(id = "kalphite_queen_lightning_travel", target = player)
-                source.hit(player, Item.EMPTY, "magic", special = true, delay = time)
+                source.hit(player, Item.EMPTY, "magic", delay = time)
                 return
             }
         }

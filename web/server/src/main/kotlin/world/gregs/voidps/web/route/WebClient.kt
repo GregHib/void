@@ -1,53 +1,35 @@
 package world.gregs.voidps.web.route
 
-import io.ktor.server.html.respondHtml
-import io.ktor.server.http.content.staticZip
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.http.content.LocalPathContent
+import io.ktor.server.response.respond
+import io.ktor.server.response.respondRedirect
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
-import kotlinx.html.body
-import kotlinx.html.div
-import kotlinx.html.head
-import kotlinx.html.id
-import kotlinx.html.link
-import kotlinx.html.script
-import kotlinx.html.style
-import kotlinx.html.title
-import kotlinx.html.unsafe
 import java.nio.file.Path
+import kotlin.io.path.exists
 
-internal fun Routing.webclient(port: Int, webclientZip: Path) {
+/**
+ * Serves the web client `void-client.js` (and its `.js.map` alongside it, if present) under `/play/`; the page that
+ * hosts it is the site's `play.html` (see `Play.kt` in `web/site`), so a bare `/play` redirects there.
+ */
+internal fun Routing.webclient(webclient: Path) {
     route("/play") {
         get {
-            call.respondHtml {
-                head {
-                    title("Void")
-                    style {
-                        +"""
-                            html, body { margin: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
-                            #client { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
-                            canvas { display: block; outline: none; }
-                        """
-                    }
-                    script {
-                        unsafe {
-                            +"window.CONFIG = { url: \"ws://localhost:${port}/proxy\" };"
-                        }
-                    }
-                    link {
-                        rel = "icon"
-                        type = "image/x-icon"
-                        href = "/play/favicon.ico"
-                    }
-                }
-                body {
-                    div {
-                        id = "client"
-                    }
-                    script(src = "/play/void-client.js") {}
-                }
+            call.respondRedirect("/play.html")
+        }
+        get("/void-client.js") {
+            call.respond(LocalPathContent(webclient, ContentType.Application.JavaScript))
+        }
+        get("/void-client.js.map") {
+            val map = webclient.resolveSibling("${webclient.fileName}.map")
+            if (map.exists()) {
+                call.respond(LocalPathContent(map, ContentType.Application.Json))
+            } else {
+                call.respond(HttpStatusCode.NotFound)
             }
         }
-        staticZip("", "", webclientZip)
     }
 }

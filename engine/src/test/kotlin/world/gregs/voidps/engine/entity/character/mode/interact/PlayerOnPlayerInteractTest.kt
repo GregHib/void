@@ -9,7 +9,7 @@ class PlayerOnPlayerInteractTest : OnInteractTest() {
     override val checks = listOf(
         listOf("option"),
     )
-    
+
     override val failedChecks = listOf(
         listOf("*"),
     )
@@ -27,5 +27,4 @@ class PlayerOnPlayerInteractTest : OnInteractTest() {
     }
 
     override fun interact() = PlayerOnPlayerInteract(Player(1), "option", Player(2))
-
 }

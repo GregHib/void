@@ -61,3 +61,20 @@ max_hit_melee = 100
 hunt_mode = "cowardly"
 drop_table = "sea_troll"
 examine = "An aquatic troll."
+
+[skeleton_mage_swan_song]
+id = 3844
+hitpoints = 1000
+att = 10
+str = 10
+def = 60
+mage = 50
+examine = "An undead worker of dark magic."
+
+[sea_troll_level_58]
+id = 3845
+hitpoints = 400
+att = 75
+str = 15
+def = 75
+examine = "An aquatic troll."

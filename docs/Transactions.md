@@ -83,6 +83,3 @@ player.inventory.transaction {
 
 `link()` returns the transaction for the linked inventory on which you can apply operations on like normal. If an operation fails in a linked transaction the parent transaction will also fail.
 
-
-
-

@@ -23,7 +23,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractObject): Boolean {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return false
         }
         val (objectId, x, y, option) = instruction

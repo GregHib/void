@@ -12,7 +12,7 @@ class InterfaceOnObjectInteractTest : OnInteractTest() {
         listOf("*", "obj"),
         listOf("id", "*"),
     )
-    
+
     override val operate: Script.(args: List<String>, caller: Caller) -> Unit = { args, caller ->
         onObjectOperate(args[0], args[1]) {
             caller.call()
@@ -26,5 +26,4 @@ class InterfaceOnObjectInteractTest : OnInteractTest() {
     }
 
     override fun interact() = InterfaceOnObjectInteract(GameObject(0), "id", 0, Player())
-
 }

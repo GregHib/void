@@ -1,10 +1,12 @@
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.obj.ObjectTeleports
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.core.module.Module
@@ -12,27 +14,26 @@ import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.config.decoder.InventoryDecoder
-import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.data.load.Loader
+import world.gregs.voidps.engine.data.load.LoaderGraph
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
+import world.gregs.voidps.network.RegistrationServer
 import world.gregs.voidps.network.login.protocol.decoders
 import world.gregs.voidps.web.WebServer
 import java.nio.file.Paths
 import java.util.*
 import kotlin.concurrent.thread
 import kotlin.io.path.exists
+import kotlin.system.exitProcess
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -44,11 +45,23 @@ object Main {
     lateinit var server: GameServer
         private set
 
+    private lateinit var graph: LoaderGraph
+    private lateinit var loaded: Map<Loader<*>, Any>
+    private lateinit var cache: Cache
+
+    fun reload(name: String, files: ConfigFiles): List<String> {
+        val (reloaded, results) = graph.reload(name, files, cache, loaded)
+        loaded = results
+        return reloaded
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
+        ContentLoader.preload()
         val settings = settings()
+        val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
@@ -58,18 +71,19 @@ object Main {
         AuditLog.info("login online")
 
         // Content
-        val configFiles = configFiles()
+        val configFiles = runBlocking { files.await() }
         try {
             preload(cache, configFiles)
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
+            exitProcess(1)
         }
 
         // Web server
         var site: Job? = null
         if (Settings["web.server.enabled", false]) {
-            site = webServer(port)
+            site = webServer(port, cache)
             if (site == null) {
                 server.stop()
                 return
@@ -81,6 +95,7 @@ object Main {
         val decoders = decoders(get<Huffman>())
         val accountLoader: PlayerAccountLoader = get()
         val loginServer = LoginServer.load(settings, decoders, accountLoader)
+        val registrationServer = RegistrationServer.load(settings, accountLoader)
 
         // Game world
         val stages = getTickStages()
@@ -88,6 +103,7 @@ object Main {
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
+        server.registrationServer = registrationServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
         runBlocking {
@@ -109,16 +125,26 @@ object Main {
     }
 
     private fun preload(cache: Cache, configFiles: ConfigFiles) {
-        configFiles.update()
         startKoin {
             slf4jLogger(level = Level.ERROR)
-            modules(
-                engineModule(configFiles),
-                gameModule(configFiles),
-                cache(cache, configFiles),
-            )
         }
-        engineLoad(configFiles)
+        this.cache = cache
+        graph = LoaderGraph(engineLoaders() + gameLoaders())
+        loaded = graph.run(configFiles, cache)
+        val modules = listOf(
+            engineModule(),
+            gameModule(configFiles),
+            definitionsModule(),
+            gameDefinitionsModule(),
+            module {
+                single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
+                single { loaded.getValue(MapLoader) as MapDefinitions }
+                single { cache }
+            },
+        )
+        GlobalContext.loadKoinModules(modules, createEagerInstances = false)
+        createEagerInstances(modules)
+        engineLoad()
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader().load()
         Wildcards.update(Settings["storage.wildcards"])
@@ -130,77 +156,28 @@ object Main {
         )
     }
 
-    private fun cache(cache: Cache, files: ConfigFiles): Module {
-        val members = Settings["world.members", false]
-        val module = module {
-            single(createdAtStart = true) {
-                get<ObjectDefinitions>()
-                MapDefinitions(CollisionDecoder(), cache).load(files)
-            }
-            single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"])) }
-            single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
-            single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"])) }
-            single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
-            single(createdAtStart = true) {
-                get<AnimationDefinitions>()
-                get<GraphicDefinitions>()
-                get<ItemDefinitions>()
-                get<InterfaceDefinitions>()
-                get<InventoryDefinitions>()
-                get<NPCDefinitions>()
-                get<StructDefinitions>()
-                get<ObjectDefinitions>()
-                get<Tables>()
-                EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
-            }
-            single(createdAtStart = true) {
-                get<AnimationDefinitions>()
-                get<GraphicDefinitions>()
-                get<ItemDefinitions>()
-                get<NPCDefinitions>()
-                get<ObjectDefinitions>()
-                get<VariableDefinitions>()
-                Tables.load(files.list(Settings["definitions.tables"]))
-            }
-            single(createdAtStart = true) { GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
-            single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
-            }
-            single(createdAtStart = true) { StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"])) }
-            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-            single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
-            single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
-            single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
-            single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"]))
-            }
-            single(createdAtStart = true) {
-                VariableDefinitions.load(files)
-            }
-            single(createdAtStart = true) {
-                get<ItemDefinitions>()
-                DropTables().load(files.list(Settings["spawns.drops"]))
-            }
-            single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
-        }
-        return module
+    /**
+     * Creates all [modules] `createdAtStart` singletons in parallel.
+     * Dependencies must be requested with `get()` so koin can block until they're created.
+     */
+    private fun createEagerInstances(modules: List<Module>) = runBlocking(Dispatchers.Default) {
+        val koin = GlobalContext.get()
+        modules
+            .flatMap { it.eagerInstances }
+            .map { factory -> async { koin.get<Any>(factory.beanDefinition.primaryType, factory.beanDefinition.qualifier) } }
+            .awaitAll()
     }
 
     @Suppress("HttpUrlsUsage")
-    private fun webServer(port: Int): Job? {
-        val path = Paths.get(Settings["web.client.zip", ""])
+    private fun webServer(port: Int, cache: Cache): Job? {
+        val path = Paths.get(Settings["web.client.path", ""])
         if (!path.exists()) {
-            logger.error { "No webclient zip file found at path: $path" }
+            logger.error { "No webclient file found at path: $path" }
             return null
         }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>())
+        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>(), cache)
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }

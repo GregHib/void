@@ -32,7 +32,7 @@ class CommandSignatureTest {
 
     @Test
     fun `Optional arguments are optional`() {
-        val sig = sig(stringArg("a"), stringArg("b", optional = true),)
+        val sig = sig(stringArg("a"), stringArg("b", optional = true))
 
         Assertions.assertEquals(1, sig.score(listOf("required")))
         Assertions.assertEquals(2, sig.score(listOf("required", "optional")))
@@ -45,5 +45,4 @@ class CommandSignatureTest {
     }
 
     private fun sig(vararg args: CommandArgument) = CommandSignature(args.toList()) { player, args -> }
-
 }

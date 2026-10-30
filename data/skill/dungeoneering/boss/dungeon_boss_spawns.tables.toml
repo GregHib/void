@@ -26,3 +26,27 @@ ids = [
 ]
 tile = { x = 199, y = 5015 }
 direction = "south"
+
+[.astea_frostweb]
+ids = [
+    "rand_ancient_mage_0_melee",
+    "rand_ancient_mage_1_melee",
+    "rand_ancient_mage_2_melee",
+    "rand_ancient_mage_3_melee",
+    "rand_ancient_mage_4_melee",
+    "rand_ancient_mage_5_melee",
+    "rand_ancient_mage_6_melee",
+    "rand_ancient_mage_7_melee",
+    "rand_ancient_mage_8_melee",
+    "rand_ancient_mage_9_melee",
+    "rand_ancient_mage_10_melee",
+    "rand_ancient_mage_11_melee",
+    "rand_ancient_mage_12_melee",
+    "rand_ancient_mage_13_melee",
+    "rand_ancient_mage_14_melee",
+    "rand_ancient_mage_15_melee",
+    "rand_ancient_mage_16_melee",
+    "rand_ancient_mage_17_melee",
+]
+tile = { x = 245, y = 5002 }
+direction = "south"

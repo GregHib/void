@@ -8,7 +8,6 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
 import content.entity.combat.Target
-import content.entity.combat.dead
 import content.entity.combat.target
 import content.entity.effect.frozen
 import world.gregs.voidps.engine.client.variable.start

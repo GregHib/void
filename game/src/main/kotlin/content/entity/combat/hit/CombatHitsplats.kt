@@ -71,8 +71,8 @@ class CombatHitsplats : Script {
         val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
         val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
         val sourceIndex = when {
-            this is NPC && this["owner_index", -1] != -1 -> this["owner_index", -1]
-            source is NPC -> source["owner_index", -1].takeIf { it != -1 } ?: -source.index
+            this is NPC && ownerIndex != -1 -> ownerIndex
+            source is NPC -> source.ownerIndex.takeIf { it != -1 } ?: -source.index
             else -> source.index
         }
         visuals.hits.add(HitSplat(amount, mark, percentage, delay, critical, sourceIndex, soak))

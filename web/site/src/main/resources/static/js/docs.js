@@ -120,16 +120,43 @@ window.voidToggleDocsSection = function (btn) {
       });
     });
 
+    function items() {
+      return Array.prototype.slice.call(results.querySelectorAll('.docs-search-result'));
+    }
+
+    function setActive(list, index) {
+      list.forEach(function (el, i) { el.classList.toggle('active', i === index); });
+      if (index >= 0 && list[index]) {
+        list[index].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
     input.addEventListener('keydown', function (event) {
+      var list = items();
+      var current = list.findIndex(function (el) { return el.classList.contains('active'); });
       if (event.key === 'Escape') {
         results.hidden = true;
         input.blur();
+      } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        if (list.length === 0) {
+          return;
+        }
+        event.preventDefault();
+        results.hidden = false;
+        var step = event.key === 'ArrowDown' ? 1 : -1;
+        setActive(list, (current + step + list.length) % list.length);
       } else if (event.key === 'Enter') {
-        var first = results.querySelector('.docs-search-result');
-        if (first) {
-          window.location = first.getAttribute('href');
+        var target = list[current] || list[0];
+        if (target) {
+          window.location = target.getAttribute('href');
         }
       }
+    });
+
+    results.addEventListener('mousemove', function (event) {
+      var hovered = event.target.closest('.docs-search-result');
+      var list = items();
+      setActive(list, hovered ? list.indexOf(hovered) : -1);
     });
 
     document.addEventListener('click', function (event) {

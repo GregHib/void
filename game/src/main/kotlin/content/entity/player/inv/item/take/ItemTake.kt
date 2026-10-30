@@ -67,7 +67,7 @@ class ItemTake : Script {
             }
             when (player.inventory.transaction.error) {
                 TransactionError.None -> {
-                    player.sound("take_item")
+                    player.sound("pick_2")
                     return true
                 }
                 is TransactionError.Full -> player.inventoryFull()

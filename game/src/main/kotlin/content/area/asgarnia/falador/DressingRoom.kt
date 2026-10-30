@@ -29,7 +29,7 @@ class DressingRoom : Script {
 
         timerStop("dressing_room") {
             clearGfx()
-            this["delay"] = 1
+            delay = 1
             closeMenu()
             gfx("dressing_room_finish")
             flagAppearance()

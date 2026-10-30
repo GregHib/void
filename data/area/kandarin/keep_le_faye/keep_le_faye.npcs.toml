@@ -1,24 +1,56 @@
 [sir_lucan_keep_le_faye]
 id = 6158
+hitpoints = 1050
+att = 105
+str = 110
+def = 99
 
 [sir_lancelot_keep_le_faye]
 id = 6160
+hitpoints = 1150
+att = 110
+str = 110
+def = 110
 
 [sir_bedivere_keep_le_faye]
 id = 6161
+hitpoints = 900
+att = 99
+str = 95
+def = 99
 
 [sir_tristram_keep_le_faye]
 id = 6162
+hitpoints = 1050
+att = 99
+str = 99
+def = 99
 
 [sir_pelleas_keep_le_faye]
 id = 6163
+hitpoints = 990
+att = 95
+str = 99
+def = 98
 
 [sir_gawain_keep_le_faye]
 id = 6164
+hitpoints = 1100
+att = 110
+str = 105
+def = 100
 
 [sir_kay_keep_le_faye]
 id = 6165
+hitpoints = 1100
+att = 110
+str = 110
+def = 100
 
 [renegade_knight_keep_le_faye]
 id = 6188
+hitpoints = 480
+att = 28
+str = 28
+def = 28
 examine = "He isn't very friendly."

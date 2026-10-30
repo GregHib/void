@@ -1,13 +1,17 @@
 package content.area.fremennik_province.rellekka
 
+import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 class FremennikSlayerDungeon : Script {
     init {
@@ -45,10 +49,20 @@ class FremennikSlayerDungeon : Script {
             walkToDelay(start)
             face(direction)
             delay()
-            anim("agilty_shortcut_jump")
+            val success = Settings["agility.disableCourseFailure", false] || Level.success(levels.get(Skill.Agility), 1..254)
+            if (success) {
+                anim("agilty_shortcut_jump")
+            } else {
+                anim("agilty_shortcut_jump_fail")
+            }
             exactMoveDelay(start.addX(direction.delta.x * 7), direction = direction, startDelay = 30, delay = 120)
-            message("Your feet skid as you land on the floor.")
-            exp(Skill.Agility, 10.0) // TODO proper amount
+            if (success) {
+                message("Your feet skid as you land on the floor.")
+            } else {
+                directHit(random.nextInt(70, 90)) // TODO proper values
+                message("You land badly and take some damage.")
+            }
+            exp(Skill.Agility, 5.0)
         }
     }
 }

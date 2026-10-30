@@ -1,0 +1,7 @@
+[sir_palomedes_kings_ransom]
+id = 1882
+hitpoints = 1000
+att = 105
+str = 105
+def = 100
+examine = "One of the Knights of the Round Table."

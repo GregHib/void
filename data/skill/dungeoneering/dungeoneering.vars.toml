@@ -44,10 +44,70 @@ persist = true
 format = "boolean"
 persist = true
 
+[resource_dungeon_52849_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52855_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52853_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52850_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52862_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52857_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52856_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52851_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52852_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52863_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52858_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52860_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52854_xp]
+format = "boolean"
+persist = true
+
+[resource_dungeon_52859_xp]
+format = "boolean"
+persist = true
+
 [dungeoneering_party_size]
 format = "list"
 persist = true
 values = ["small", "medium", "large"]
+
+[in_dungeoneering]
+format = "boolean"
+persist = true
 
 [dungeoneering_stored_kinship]
 format = "boolean"

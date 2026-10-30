@@ -71,7 +71,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
     familiarNpc.mode = Follow(familiarNpc, this)
     queue("summon_familiar", 2) {
         follower = familiarNpc
-        familiarNpc["owner_index"] = index
+        familiarNpc.ownerIndex = index
         familiarNpc.anim("${familiarNpc.id.removeSuffix("_familiar")}_spawn")
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
         // Tells the cast button on familiar_details how many points this familiar's special costs.
@@ -339,6 +339,11 @@ class Summoning : Script {
         }
 
         itemOption("Summon", "*_pouch") { option ->
+            val blocked: String? = get("no_summoning_message")
+            if (blocked != null) {
+                message(blocked)
+                return@itemOption
+            }
             val familiarLevel = EnumDefinitions.get("summoning_pouch_levels").int(option.item.def.id)
             val familiarId = EnumDefinitions.get("summoning_familiar_ids").int(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
@@ -478,7 +483,7 @@ class Summoning : Script {
         npcDeath("*_familiar") { death ->
             death.respawn = false
             death.dropItems = false
-            val owner = Players.indexed(this["owner_index", -1]) ?: return@npcDeath
+            val owner = Players.indexed(ownerIndex) ?: return@npcDeath
             if (owner.follower?.index == index) {
                 // Familiar slain in combat: drop its stored items and dismiss it.
                 // The death flow despawns the NPC, so don't remove it again here.

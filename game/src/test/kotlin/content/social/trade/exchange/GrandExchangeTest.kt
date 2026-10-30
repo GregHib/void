@@ -9,8 +9,10 @@ import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -44,6 +46,61 @@ class GrandExchangeTest : WorldTest() {
         exchange = get()
         exchange.clear()
         clerk = createNPC("grand_exchange_clerk_short", Tile(3164, 3488))
+    }
+
+    @Test
+    fun `Edit sell quantity with a large stack of unnoteable items`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("fire_rune", 2_140_000_000)
+
+        sell(seller, "fire_rune")
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(100_000)
+
+        assertEquals(100_000, seller.get<Int>("grand_exchange_quantity"))
+        tick()
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(Int.MAX_VALUE)
+        assertEquals(2_140_000_000, seller.get<Int>("grand_exchange_quantity"))
+    }
+
+    @Test
+    fun `Combined noted and unnoted sell quantities saturate at integer maximum`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword_noted", Int.MAX_VALUE)
+        seller.inventory.add("rune_longsword")
+
+        sell(seller, "rune_longsword")
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(100_000)
+
+        assertEquals(100_000, seller.get<Int>("grand_exchange_quantity"))
+        tick()
+        seller.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (seller.suspension as Suspension.IntEntry).resume(Int.MAX_VALUE)
+        assertEquals(Int.MAX_VALUE, seller.get<Int>("grand_exchange_quantity"))
+    }
+
+    @Test
+    fun `Instant sells do not share a synthetic buyer limit`() {
+        Settings.load(mapOf("grandExchange.instantOffer" to "true", "grandExchange.instantSellUnderMarketPrice" to "0.0"))
+        val definition = ItemDefinitions.get("rune_longsword")
+        val originalParams = definition.params
+        definition.params = (originalParams ?: emptyMap()) + (Params.LIMIT to 1)
+        try {
+            for (name in listOf("sellerone", "sellertwo")) {
+                val seller = createPlayer(Tile(3164, 3487), name)
+                seller.inventory.add("rune_longsword")
+                sell(seller, "rune_longsword")
+                confirm(seller)
+                tick()
+                val offer = seller.offers[1]
+                assertEquals(OfferState.CompletedSell, offer.state)
+                assertEquals(1, offer.completed)
+            }
+        } finally {
+            definition.params = originalParams
+        }
     }
 
     @Test

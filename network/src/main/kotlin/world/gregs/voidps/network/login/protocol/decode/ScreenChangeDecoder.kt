@@ -15,5 +15,4 @@ class ScreenChangeDecoder : Decoder(6) {
         height = packet.readUShort().toInt(),
         antialiasLevel = packet.readUByte().toInt(),
     )
-
 }

@@ -17,28 +17,25 @@ data class CommandArgument(
         return if (optional) "[$key$type]" else "($key$type)"
     }
 
-    fun canParse(value: String): Boolean {
-        return when (type) {
-            ArgType.String -> true
-            ArgType.Int -> value.toSIIntOrNull() != null
-            ArgType.Double -> value.toDoubleOrNull() != null
-            ArgType.Boolean -> value.equals("true", ignoreCase = true) || value.equals("false", ignoreCase = true)
-        }
+    fun canParse(value: String): Boolean = when (type) {
+        ArgType.String -> true
+        ArgType.Int -> value.toSIIntOrNull() != null
+        ArgType.Double -> value.toDoubleOrNull() != null
+        ArgType.Boolean -> value.equals("true", ignoreCase = true) || value.equals("false", ignoreCase = true)
     }
-
 }
 
 enum class ArgType { String, Int, Double, Boolean }
 
-fun intArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.Int, optional = optional, autofill = autofill, description = desc,)
+fun intArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.Int, optional = optional, autofill = autofill, description = desc)
 
 fun intArg(key: String, desc: String = "", optional: Boolean = false, autofill: Set<String>) = CommandArgument(key, ArgType.Int, optional = optional, autofill = { autofill }, description = desc)
 
-fun boolArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.Boolean, optional = optional, autofill = autofill, description = desc,)
+fun boolArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.Boolean, optional = optional, autofill = autofill, description = desc)
 
 fun boolArg(key: String, desc: String = "", optional: Boolean = false, autofill: Set<String>) = CommandArgument(key, ArgType.Boolean, optional = optional, autofill = { autofill }, description = desc)
 
-fun stringArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.String, optional = optional, autofill = autofill, description = desc,)
+fun stringArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.String, optional = optional, autofill = autofill, description = desc)
 
 fun stringArg(key: String, desc: String = "", optional: Boolean = false, autofill: Set<String>) = CommandArgument(key, ArgType.String, optional = optional, autofill = { autofill }, description = desc)
 

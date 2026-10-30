@@ -16,10 +16,12 @@ stoage.database.poolSize=4 # Number of connections to use
 ```
 
 ### JDBC
+
 Java database connectivity (JDBC) is a specification for connecting to multiple types of SQL databases.
 By default Void only comes bundled with the Postgresql Driver but can support all major database providers.
 
 ## Driver Support
+
 > [!CAUTION]
 > MySql is no longer supported due to lack of ARRAY type support
 
@@ -38,7 +40,6 @@ implementation("com.mysql:mysql-connector-j:8.3.0")
 ```
 
 Which will create `/game/build/distributions/void-dev.zip` for you to use.
-
 
 3. In `game.properties` set the driver class name and jdbc url (as well as login credentials)
 

@@ -34,7 +34,7 @@ object RemoveItem {
             return
         }
         // The item was not found in the inventory
-        error = TransactionError.Deficient()
+        error = TransactionError.Deficient(item = id)
     }
 
     /**
@@ -84,7 +84,7 @@ object RemoveItem {
         }
         // Check if there is enough items to remove
         if (item.amount < amount) {
-            error = TransactionError.Deficient(amount = item.amount)
+            error = TransactionError.Deficient(amount = item.amount, item = item.id)
             return
         }
         // Reduce the amount in the stack
@@ -115,6 +115,6 @@ object RemoveItem {
             }
         }
         // The required amount of the item was not found
-        error = TransactionError.Deficient(amount = removed)
+        error = TransactionError.Deficient(amount = removed, item = id)
     }
 }

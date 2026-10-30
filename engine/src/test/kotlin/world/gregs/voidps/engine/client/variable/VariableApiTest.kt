@@ -32,7 +32,6 @@ class VariableApiTest {
         }
 
         override val apis = listOf(VariableApi)
-
     }
 
     @Nested
@@ -59,7 +58,6 @@ class VariableApiTest {
         }
 
         override val apis = listOf(VariableApi)
-
     }
 
     @Nested
@@ -83,7 +81,6 @@ class VariableApiTest {
         }
 
         override val apis = listOf(VariableApi)
-
     }
 
     @Nested
@@ -107,7 +104,5 @@ class VariableApiTest {
         }
 
         override val apis = listOf(VariableApi)
-
     }
-
 }

@@ -39,8 +39,8 @@ internal class InterfaceOptionsTest {
                                 Params.PRIMARY to false,
                                 Params.OPTIONS to staticOptions,
                             ),
-                        )
-                    )
+                        ),
+                    ),
                 ),
                 InterfaceDefinition(
                     components = mutableMapOf(
@@ -51,10 +51,12 @@ internal class InterfaceOptionsTest {
                                 Params.PRIMARY to false,
                                 Params.OPTIONS to arrayOf("one", "two", "three"),
                             ),
-                        )
-                    )
-                )
-            ), mapOf(name to 0, "${name}_2" to 1), mapOf("$name:$comp" to 0, "${name}_2:$comp" to 0)
+                        ),
+                    ),
+                ),
+            ),
+            mapOf(name to 0, "${name}_2" to 1),
+            mapOf("$name:$comp" to 0, "${name}_2:$comp" to 0),
         )
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any()) } just Runs

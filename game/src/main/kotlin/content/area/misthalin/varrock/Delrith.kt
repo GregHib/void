@@ -15,9 +15,11 @@ import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.free.demon_slayer.DemonSlayerSpell
 import content.quest.instanceOffset
+import content.quest.leaveInstance
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
+import content.quest.rejoinInstance
 import content.quest.smallInstance
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
@@ -72,7 +74,8 @@ class Delrith : Script {
             }
             start("demon_slayer_instance_exit", 2)
             tele(tile.minus(instanceOffset()))
-            clearInstance()
+            // Remembered so stepping back into the circle returns to the same fight
+            leaveInstance("demon_slayer")
             val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
             Script.launch {
                 cutscene.end(destroyInstance = false)
@@ -173,6 +176,9 @@ class Delrith : Script {
     }
 
     suspend fun Player.cutscene() {
+        if (get("demon_slayer_summoned", false) && rejoin()) {
+            return
+        }
         val region = Region(12852)
         val instance = smallInstance(region)
         val offset = instanceOffset()
@@ -286,6 +292,21 @@ class Delrith : Script {
         for (wizard in wizards) {
             wizard.mode = EmptyMode
         }
+    }
+
+    /**
+     * Return to the instance left earlier if it still exists and Delrith hasn't been banished
+     */
+    fun Player.rejoin(): Boolean {
+        val instance = rejoinInstance("demon_slayer") ?: return false
+        if (NPCs.findOrNull(instance.toLevel(0), "delrith") == null) {
+            clearInstance()
+            return false
+        }
+        steps.clear()
+        playTrack("delrith")
+        tele(tile.add(instanceOffset()))
+        return true
     }
 
     fun Player.questComplete() {

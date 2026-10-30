@@ -458,7 +458,7 @@ class EvilTree :
         push(player)
         player.anim("evil_root_knock_back")
         player.gfx("stun_long")
-        player["delay"] = STUN_TICKS
+        player.delay = STUN_TICKS
         player.start("stunned", STUN_TICKS)
         player.start("movement_delay", STUN_TICKS)
     }

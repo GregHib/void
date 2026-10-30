@@ -124,3 +124,8 @@ examine = "It's sporting the height of wool-based fashion."
 clone = "sheep"
 id = 8877
 examine = "Freshly sheared."
+
+[ram]
+id = 3672
+hitpoints = 80
+examine = "White and fluffy."

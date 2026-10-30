@@ -4,10 +4,10 @@ categories = ["zombies"]
 examine = "I wonder if he'd let me borrow his hatchet?"
 drop_table = "zombie"
 combat_def = "zombie"
-hitpoints = 220
-att = 8
-str = 9
-def = 10
+hitpoints = 200
+att = 20
+str = 20
+def = 20
 max_hit_crush = 20
 
 [rook_temple_trekking]
@@ -81,7 +81,6 @@ str = 186
 def = 75
 mage = 50
 range = 50
-attack_speed = 10
 style = "crush"
 max_hit_melee = 200
 hunt_mode = "cowardly"
@@ -92,8 +91,7 @@ id = 1521
 hitpoints = 550
 att = 150
 str = 6
-def = 2
-attack_speed = 8
+def = 20
 style = "slash"
 max_hit_melee = 20
 hunt_mode = "cowardly"
@@ -106,7 +104,6 @@ hitpoints = 650
 att = 215
 str = 16
 def = 30
-attack_speed = 8
 style = "slash"
 max_hit_melee = 30
 hunt_mode = "cowardly"
@@ -119,7 +116,6 @@ hitpoints = 750
 att = 320
 str = 26
 def = 40
-attack_speed = 8
 style = "slash"
 max_hit_melee = 40
 hunt_mode = "cowardly"
@@ -170,7 +166,6 @@ str = 76
 def = 75
 mage = 50
 range = 115
-attack_speed = 6
 style = "crush"
 max_hit_melee = 120
 hunt_mode = "cowardly"
@@ -179,6 +174,8 @@ examine = "I'm glad I can't see the rest of it!"
 [tentacle_submerged]
 id = 3621
 clone = "tentacle_visible"
+att = 230
+range = 50
 
 [undead_lumberjack_level_30]
 id = 1524
@@ -225,7 +222,10 @@ clone = "undead_lumberjack_level_30"
 
 [undead_lumberjack_level_35]
 id = 5684
-hitpoints = 120
+hitpoints = 110
+att = 87
+str = 6
+def = 11
 style = "crush"
 max_hit_melee = 20
 xp_bonus = -10.0
@@ -394,7 +394,10 @@ clone = "undead_lumberjack_level_50"
 
 [undead_lumberjack_level_55]
 id = 5716
-hitpoints = 120
+hitpoints = 150
+att = 133
+str = 16
+def = 15
 style = "crush"
 max_hit_melee = 40
 xp_bonus = -10.0
@@ -434,7 +437,7 @@ clone = "undead_lumberjack_level_55"
 
 [undead_lumberjack_level_60]
 id = 5724
-hitpoints = 120
+hitpoints = 160
 att = 137
 str = 26
 def = 16
@@ -477,7 +480,10 @@ clone = "undead_lumberjack_level_60"
 
 [undead_lumberjack_level_64]
 id = 5732
-hitpoints = 120
+hitpoints = 170
+att = 147
+str = 26
+def = 17
 style = "crush"
 max_hit_melee = 40
 xp_bonus = -10.0
@@ -517,7 +523,10 @@ clone = "undead_lumberjack_level_64"
 
 [undead_lumberjack_level_70]
 id = 5740
-hitpoints = 120
+hitpoints = 180
+att = 163
+str = 26
+def = 18
 style = "crush"
 max_hit_melee = 40
 xp_bonus = -10.0
@@ -554,3 +563,33 @@ clone = "undead_lumberjack_level_70"
 [undead_lumberjack_level_70_8]
 id = 5747
 clone = "undead_lumberjack_level_70"
+
+[asyn_shadow_temple_trekking]
+id = 3616
+hitpoints = 940
+att = 110
+str = 96
+def = 80
+mage = 50
+range = 50
+examine = "The shadowy remains of a long-departed soul."
+
+[shade_temple_trekking]
+id = 3617
+hitpoints = 1150
+att = 130
+str = 136
+def = 100
+mage = 50
+range = 50
+examine = "Dead, but not gone."
+
+[head_temple_trekking]
+id = 3620
+hitpoints = 1500
+att = 73
+str = 186
+def = 75
+mage = 50
+range = 50
+examine = "I'm glad I can't see the rest of it!"

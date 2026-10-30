@@ -31,6 +31,22 @@ internal class ConnectionQueueTest {
     }
 
     @Test
+    fun `Failing disconnect doesn't stop others or throw`() = runTest {
+        var called = false
+        queue.disconnect {
+            throw IllegalStateException("Failed")
+        }
+        queue.disconnect {
+            called = true
+        }
+
+        queue.run()
+        queue.run()
+
+        assertTrue(called)
+    }
+
+    @Test
     fun `Await for next run`() = runTest {
         var called = false
         val job = launch(Dispatchers.Unconfined) {

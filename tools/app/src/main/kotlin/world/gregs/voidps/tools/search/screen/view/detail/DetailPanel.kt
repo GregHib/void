@@ -66,9 +66,12 @@ fun DetailPanel(
             )
 
             val visibleProperties = remember(fieldSearch, properties) {
-                if (fieldSearch.isBlank()) properties
-                else properties.filter { prop ->
-                    prop.name.contains(fieldSearch, ignoreCase = true)
+                if (fieldSearch.isBlank()) {
+                    properties
+                } else {
+                    properties.filter { prop ->
+                        prop.name.contains(fieldSearch, ignoreCase = true)
+                    }
                 }
             }
 
@@ -114,7 +117,7 @@ fun DetailPanel(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .fillMaxHeight(),
-            adapter = rememberScrollbarAdapter(scrollState)
+            adapter = rememberScrollbarAdapter(scrollState),
         )
     }
 }
@@ -140,4 +143,3 @@ private fun resolveLabel(item: Definition, properties: List<KProperty1<Definitio
         else -> ""
     }
 }
-

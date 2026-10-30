@@ -1,0 +1,6 @@
+spawns = [
+    { id = "grimy_marrentill", x = 982, y = 4578, delay = 100 },
+    { id = "grimy_ranarr", x = 980, y = 4570, delay = 100 },
+    { id = "grimy_harralander", x = 1007, y = 4572, delay = 100 },
+    { id = "grimy_irit", x = 1007, y = 4573, delay = 100 },
+]

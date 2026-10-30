@@ -127,7 +127,7 @@ class Huffman {
             }
             sb.toString()
         } catch (e: Throwable) {
-            e.printStackTrace()
+            logger.debug(e) { "Failed to decompress message." }
             null
         }
     }

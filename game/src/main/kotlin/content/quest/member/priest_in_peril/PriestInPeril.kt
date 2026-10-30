@@ -257,7 +257,7 @@ class PriestInPeril : Script {
                 player<Quiz>("Hmmm... from the looks of things, it seems as though somebody has been trying to force this door open. It's still securely locked however.")
                 return@objectOperate
             }
-            enterDoor(target)
+            enterDoor(target, delay = 1)
         }
 
         objectOperate("Open", "pip_underground_door2_closed") { (target) ->
@@ -266,7 +266,7 @@ class PriestInPeril : Script {
                 message("The door is securely locked shut.")
                 return@objectOperate
             }
-            enterDoor(target)
+            enterDoor(target, delay = 1)
         }
 
         objectOperate("Climb-up", "priestperil_temple_stair_sw_lower") {

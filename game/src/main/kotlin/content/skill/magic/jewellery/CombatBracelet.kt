@@ -12,7 +12,7 @@ class CombatBracelet : Script {
 
     init {
         itemOption("Rub", "combat_bracelet_#") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             choice("Where would you like to teleport to?") {
@@ -43,7 +43,7 @@ class CombatBracelet : Script {
     }
 
     private fun teleport(player: Player, option: ItemOption) {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return
         }
         val area = when (option.option) {

@@ -7,3 +7,4 @@ NPCs have a lot of different "ranges" to determine what behaviours they can do w
 - Aggression/Hunt range - How far from their current tile can an NPC attack targets from. Max range + Attack Range.
 - Retreat interaction range
 - Attack range - How far from their current tile can an NPC hit you. E.g. 1 tile for melee, 2 for halberds, 8 for magic.
+

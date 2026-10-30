@@ -40,3 +40,13 @@ examine = "A water elemental."
 [elemental_rock_elemental_workshop]
 id = 4911
 examine = "An elemental rock."
+
+[earth_elemental_2]
+id = 4910
+hitpoints = 350
+att = 20
+str = 35
+def = 35
+mage = 10
+range = 30
+examine = "An earth elemental."

@@ -29,6 +29,5 @@ class PlayerOnObjectInteractTest : OnInteractTest() {
         }
     }
 
-    override fun interact() = PlayerOnObjectInteract(GameObject(0),"option", Player())
-
+    override fun interact() = PlayerOnObjectInteract(GameObject(0), "option", Player())
 }

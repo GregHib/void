@@ -75,17 +75,23 @@ class ActionQueue<C : Character>(
             weakQueue.clear()
             return
         }
-        var action = queue.peek()
+        val list = if (priority == ActionPriority.Engine) engineQueue else queue
+        var action = list.peek()
         while (action != null) {
             val next = action.next
             if (action.priority == priority) {
-                queue.remove(action)
+                list.remove(action)
             }
             action = next
         }
     }
 
-    fun clear(name: String): Boolean = queue.clear(name) || weakQueue.clear(name) || engineQueue.clear(name)
+    fun clear(name: String): Boolean {
+        val normal = queue.clear(name)
+        val weak = weakQueue.clear(name)
+        val engine = engineQueue.clear(name)
+        return normal || weak || engine
+    }
 
     fun clear() {
         queue.clear()
@@ -95,7 +101,7 @@ class ActionQueue<C : Character>(
 
     private fun canProcess() = noDelay() && noInterrupt()
 
-    private fun noDelay() = !character.contains("delay")
+    private fun noDelay() = !character.delayed
 
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasMenuOpen() && character.dialogue == null)
 
@@ -116,7 +122,10 @@ class ActionQueue<C : Character>(
                         is Suspension.Continue -> suspension.resume()
                         is Suspension.Custom -> suspension.resume()
                         is Suspension.Delay -> suspension.resume()
-                        else -> {}
+                        else -> {
+                            suspension.cancel()
+                            character.suspension = null
+                        }
                     }
                     suspension = character.suspension
                 }

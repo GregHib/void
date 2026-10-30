@@ -2,14 +2,6 @@
 id = 7808
 examine = "Turns vegetation into compost."
 
-[compost_bin_full]
-id = 7810
-examine = "This bin is full of compostable items."
-
-[compost_bin_closed]
-id = 7813
-examine = "Turns vegetation into compost."
-
 [farming_compost_bin_falador]
 id = 7836
 

@@ -1,0 +1,175 @@
+[resource_dungeons]
+level = "int"
+xp = "int"
+destination = "tile"
+entering = "boolean"
+first_time_key = "string"
+clone = "clone"
+
+[.52849]
+level = 10
+xp = 1100
+destination = { x = 991, y = 4585 }
+entering = true
+first_time_key = "resource_dungeon_52849_xp"
+
+[.52867]
+clone = "52849"
+destination = { x = 3132, y = 9933 }
+entering = false
+
+[.52855]
+level = 15
+xp = 1500
+destination = { x = 1041, y = 4575 }
+entering = true
+first_time_key = "resource_dungeon_52855_xp"
+
+[.52864]
+clone = "52855"
+destination = { x = 3034, y = 9772 }
+entering = false
+
+[.52853]
+level = 20
+xp = 1600
+destination = { x = 1135, y = 4589 }
+entering = true
+first_time_key = "resource_dungeon_52853_xp"
+
+[.52868]
+clone = "52853"
+destination = { x = 3104, y = 9826 }
+entering = false
+
+[.52850]
+level = 25
+xp = 2100
+destination = { x = 1186, y = 4598 }
+entering = true
+first_time_key = "resource_dungeon_52850_xp"
+
+[.52869]
+clone = "52850"
+destination = { x = 2845, y = 9557 }
+entering = false
+
+[.52862]
+level = 30
+xp = 2400
+destination = { x = 3513, y = 3666 }
+entering = true
+first_time_key = "resource_dungeon_52862_xp"
+
+[.52861]
+clone = "52862"
+destination = { x = 3498, y = 3633 }
+entering = false
+
+[.52857]
+level = 35
+xp = 3000
+destination = { x = 1256, y = 4592 }
+entering = true
+first_time_key = "resource_dungeon_52857_xp"
+
+[.52873]
+clone = "52857"
+destination = { x = 2578, y = 9898 }
+entering = false
+
+[.52856]
+level = 45
+xp = 4400
+destination = { x = 1052, y = 4521 }
+entering = true
+first_time_key = "resource_dungeon_52856_xp"
+
+[.52866]
+clone = "52856"
+destination = { x = 3022, y = 9741 }
+entering = false
+
+[.52851]
+level = 55
+xp = 6200
+destination = { x = 1394, y = 4588 }
+entering = true
+first_time_key = "resource_dungeon_52851_xp"
+
+[.52870]
+clone = "52851"
+destination = { x = 2854, y = 9841 }
+entering = false
+
+[.52852]
+level = 60
+xp = 7000
+destination = { x = 1000, y = 4522 }
+entering = true
+first_time_key = "resource_dungeon_52852_xp"
+
+[.52865]
+clone = "52852"
+destination = { x = 2912, y = 9810 }
+entering = false
+
+[.52863]
+level = 65
+xp = 8500
+destination = { x = 1312, y = 4590 }
+entering = true
+first_time_key = "resource_dungeon_52863_xp"
+
+[.52876]
+clone = "52863"
+destination = { x = 3164, y = 9878 }
+entering = false
+
+[.52858]
+level = 70
+xp = 9600
+destination = { x = 1238, y = 4524 }
+entering = true
+first_time_key = "resource_dungeon_52858_xp"
+
+[.52874]
+clone = "52858"
+destination = { x = 3160, y = 5521 }
+entering = false
+
+[.52860]
+level = 75
+xp = 11400
+destination = { x = 1182, y = 4515 }
+entering = true
+first_time_key = "resource_dungeon_52860_xp"
+
+[.52872]
+clone = "52860"
+destination = { x = 3298, y = 3307 }
+entering = false
+
+[.52854]
+level = 80
+xp = 12800
+destination = { x = 1140, y = 4499 }
+entering = true
+first_time_key = "resource_dungeon_52854_xp"
+
+[.52871]
+clone = "52854"
+destination = { x = 2697, y = 9442 }
+entering = false
+
+[.52859]
+level = 85
+xp = 15000
+destination = { x = 1297, y = 4510 }
+entering = true
+first_time_key = "resource_dungeon_52859_xp"
+
+[.52875]
+clone = "52859"
+destination = { x = 3033, y = 9599 }
+entering = false

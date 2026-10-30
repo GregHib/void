@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -37,7 +36,7 @@ internal class DropTest : WorldTest() {
 
     @Test
     fun `Floor item respawns after delay`() {
-        loadItemSpawns(get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]))
+        loadItemSpawns(configFiles().list(Settings["spawns.items"]))
         val tile = Tile(3244, 3157)
         val player = createPlayer(tile)
 

@@ -33,8 +33,7 @@ class Clerk : Script {
             option<Quiz>("Who is through that door?") {
                 throughThatDoor()
             }
-            option<Idle>("I'm just looking thanks.") {
-            }
+            option<Idle>("I'm just looking thanks.")
         }
     }
 
@@ -50,8 +49,7 @@ class Clerk : Script {
                     option<Angry>("This is urgent though! Someone's been kidnapped!") {
                         urgent()
                     }
-                    option<Idle>("Okay, I'll leave him alone.") {
-                    }
+                    option<Idle>("Okay, I'll leave him alone.")
                     option<Quiz>("Do you know when he will be available?") {
                         npc<Idle>("Oh I don't know, an hour or so maybe.")
                     }
@@ -63,21 +61,18 @@ class Clerk : Script {
     suspend fun Player.permission() {
         npc<Idle>("Rather you than me! The mourners normally deal with that stuff, you should speak to them. Their headquarters are right near the city gate.")
         choice {
-            option<Idle>("I'll try asking them then.") {
-            }
+            option<Idle>("I'll try asking them then.")
             option<Quiz>("Surely you don't let them run everything for you?") {
                 npc<Idle>("Well, they do know what they're doing here. If they did start doing something badly Bravek, the city warder, would have the power to override them. I can't see that happening though.")
                 choice {
-                    option<Idle>("I'll try asking them then.") {
-                    }
+                    option<Idle>("I'll try asking them then.")
                     option<Quiz>("Can I speak to Bravek anyway?") {
                         npc<Idle>("He has asked not to be disturbed.")
                         choice {
                             option<Angry>("This is urgent though! Someone's been kidnapped!") {
                                 urgent()
                             }
-                            option<Idle>("Okay, I'll leave him alone.") {
-                            }
+                            option<Idle>("Okay, I'll leave him alone.")
                             option<Quiz>("Do you know when he will be available?") {
                                 npc<Idle>("Oh I don't know, an hour or so maybe.")
                             }

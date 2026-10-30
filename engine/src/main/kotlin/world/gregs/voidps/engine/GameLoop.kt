@@ -3,6 +3,7 @@ package world.gregs.voidps.engine
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.milliseconds
 
 class GameLoop(
     private val stages: List<Runnable>,
@@ -13,23 +14,32 @@ class GameLoop(
     fun start(scope: CoroutineScope) = scope.launch {
         var start: Long
         var took: Long
+        while (isActive) {
+            start = System.nanoTime()
+            for (stage in stages) {
+                safeTick(stage)
+            }
+            took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
+            if (took > MILLI_WARNING_THRESHOLD) {
+                logger.warn { "Tick $tick took ${took}ms" }
+            } else if (took > MILLI_THRESHOLD) {
+                logger.debug { "Tick $tick took ${took}ms" }
+            }
+            delay((delay - took).milliseconds)
+            tick++
+        }
+    }
+
+    private fun safeTick(stage: Runnable) {
         try {
-            while (isActive) {
-                start = System.nanoTime()
-                tick()
-                took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
-                if (took > MILLI_WARNING_THRESHOLD) {
-                    logger.warn { "Tick $tick took ${took}ms" }
-                } else if (took > MILLI_THRESHOLD) {
-                    logger.debug { "Tick $tick took ${took}ms" }
-                }
-                delay(delay - took)
-                tick++
+            tick(stage)
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Throwable) {
+            if (e is VirtualMachineError && e !is StackOverflowError) {
+                throw e
             }
-        } catch (e: Exception) {
-            if (e !is CancellationException) {
-                logger.error(e) { "Error in game loop!" }
-            }
+            logger.error(e) { "Error in ${stage::class.simpleName} on tick $tick" }
         }
     }
 

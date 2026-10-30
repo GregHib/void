@@ -22,6 +22,11 @@ class DungeonMap(
     var region = Region.EMPTY
     val players = mutableListOf<Int>()
 
+    /**
+     * The party has moved on to another floor, logged out players can't return
+     */
+    var ended = false
+
     val members: List<Player>
         get() = players.mapNotNull { i -> Players.indexed(i) }
 
@@ -215,7 +220,7 @@ class DungeonMap(
 
     fun tile(room: DungeonRoom, x: Int, y: Int): Tile {
         val rotX = rotateX(x, y, room.rotation, 15)
-        val rotY = rotateY(rotX, y, room.rotation, 15)
+        val rotY = rotateY(x, y, room.rotation, 15)
         return tile(room).add(rotX, rotY)
     }
 

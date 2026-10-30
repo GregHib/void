@@ -1,0 +1,15 @@
+[ork]
+id = 4458
+hitpoints = 290
+att = 13
+str = 16
+def = 14
+examine = "Ugly, fierce and with a bad attitude."
+
+[ork_2]
+id = 4459
+hitpoints = 290
+att = 13
+str = 16
+def = 14
+examine = "Ugly, fierce and with a bad attitude."

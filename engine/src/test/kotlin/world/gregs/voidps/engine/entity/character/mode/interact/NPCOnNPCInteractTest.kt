@@ -9,7 +9,7 @@ class NPCOnNPCInteractTest : OnInteractTest() {
     override val checks = listOf(
         listOf("option"),
     )
-    
+
     override val failedChecks = listOf(
         listOf("*"),
     )
@@ -27,5 +27,4 @@ class NPCOnNPCInteractTest : OnInteractTest() {
     }
 
     override fun interact() = NPCOnNPCInteract(NPC("npc_1"), "option", NPC("npc_2"))
-
 }

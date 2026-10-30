@@ -95,7 +95,7 @@ internal class CombatTest : WorldTest() {
     fun `Familiar kill drops loot for its owner`() {
         val owner = createPlayer(emptyTile)
         val familiar = createNPC("spirit_wolf_familiar", emptyTile.addX(1))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         val npc = createNPC("giant_rat", emptyTile.addY(4))
         // The familiar dealt the killing damage.
         npc.damageDealers[familiar] = 100
@@ -112,7 +112,7 @@ internal class CombatTest : WorldTest() {
     fun `A 0 hit on a familiar is attributed to its owner so the owner sees the blue splat`() {
         val owner = createPlayer(emptyTile)
         val familiar = createNPC("spirit_wolf_familiar", emptyTile.addX(1))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         val attacker = createNPC("giant_rat", emptyTile.addY(4))
 
         // An npc lands a 0 (blocked) hit on the familiar.

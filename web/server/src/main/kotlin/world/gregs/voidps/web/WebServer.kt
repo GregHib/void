@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.web.api.route.api
 import world.gregs.voidps.web.api.route.apiPlugins
+import world.gregs.voidps.web.route.ProxyLimits
 import world.gregs.voidps.web.route.proxy
 import world.gregs.voidps.web.route.webclient
 import java.io.File
@@ -32,18 +33,19 @@ import java.nio.file.Paths
 import kotlin.time.Duration.Companion.seconds
 
 class WebServer(
-    webclientZip: Path?,
+    webclient: Path?,
     port: Int,
     serverAddress: String,
     serverPort: Int,
     storage: Storage,
-    questDefinitions: QuestDefinitions
+    questDefinitions: QuestDefinitions,
+    cache: Cache,
 ) {
     private val embeddedServer = embeddedServer(CIO, port = port) {
         install(WebSockets.Plugin) {
             pingPeriod = 15.seconds
             timeout = 30.seconds
-            maxFrameSize = Long.MAX_VALUE
+            maxFrameSize = MAX_FRAME_SIZE
             masking = false
         }
         apiPlugins()
@@ -57,11 +59,15 @@ class WebServer(
             } else {
                 staticFiles("/", file)
             }
-            if (webclientZip != null) {
-                proxy(serverAddress, serverPort)
-                webclient(port, webclientZip)
+            if (webclient != null) {
+                val limits = ProxyLimits(
+                    maxPerHost = Settings["network.maxClientPerIP", 10],
+                    maxTotal = Settings["web.proxy.maxConnections", 500],
+                )
+                proxy(serverAddress, serverPort, limits)
+                webclient(webclient)
             }
-            api(storage, questDefinitions)
+            api(storage, questDefinitions, cache)
         }
     }
 
@@ -74,6 +80,9 @@ class WebServer(
     }
 
     companion object {
+        /** Largest websocket frame accepted from a client; game client packets are far smaller. */
+        private const val MAX_FRAME_SIZE = 1024L * 1024L
+
         @JvmStatic
         fun main(args: Array<String>) {
             Settings.load("./game/src/main/resources/game.properties")
@@ -85,9 +94,9 @@ class WebServer(
 
             val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
             ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-            val path = Paths.get(Settings["web.client.zip"])
+            val path = Paths.get(Settings["web.client.path"])
             val storage = FileStorage(File(Settings["storage.players.path"]))
-            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions).start()
+            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions, cache).start()
         }
     }
 }

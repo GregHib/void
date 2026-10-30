@@ -47,4 +47,8 @@ examine = "A wretched slave of Iban."
 
 [unicorn_underground_pass_dungeon]
 id = 987
+hitpoints = 190
+att = 11
+str = 13
+def = 13
 

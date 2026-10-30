@@ -43,12 +43,6 @@ class TearsOfGuthix : Script {
                         "<navy>Guthix cave if I brought her a <maroon>bowl<navy> made from the stone in <maroon>the",
                         "<maroon>cave on the South side of the chasm<navy>.",
                     )
-                    listOf(
-                        "<str>I met Juna the serpent in a deep chasm beneath the",
-                        "<str>Lumbridge Swamp Caves.",
-                        "<navy>I made a bowl out of <maroon>magical stone<navy> in order to catch", // TODO proper message
-                        "<navy>the <maroon>Tears of Guthix<navy>.",
-                    )
                 }
                 else -> listOf(
                     "<navy>I can start this quest by speaking to <maroon>Juna the serpent<navy> who lives",

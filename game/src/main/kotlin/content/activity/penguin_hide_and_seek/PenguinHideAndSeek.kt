@@ -5,7 +5,6 @@ import content.entity.player.command.find
 import content.quest.questCompleted
 import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
-import world.gregs.config.Config
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.modCommand
@@ -19,6 +18,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -27,12 +27,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.type.Tile
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.Month
-import java.time.ZoneOffset
-import java.time.ZonedDateTime
+import java.time.*
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.TimeUnit
@@ -133,19 +128,20 @@ class PenguinHideAndSeek(
         timedLoad("penguin location") {
             week = weeksSince(day)
             val random = Random(week)
-            val easy = load(files, "spawns.penguins.easy")
+
+            val easy = Tables.get("penguin_locations_easy").rows()
             var spots = easy.shuffled(random).take(5)
             var i = 0
-            for ((type, tile) in spots) {
-                val penguin = NPCs.add("hidden_penguin_$i", tile)
-                penguin.transform(disguise(type), collision = false)
+            for (row in spots) {
+                val penguin = NPCs.add("hidden_penguin_$i", row.tile("tile"))
+                penguin.transform(disguise(row.string("disguise")), collision = false)
                 penguins[i++] = penguin
             }
-            val hard = load(files, "spawns.penguins.hard")
+            val hard = Tables.get("penguin_locations_hard").rows()
             spots = hard.shuffled(random).take(5)
-            for ((type, tile) in spots) {
-                val penguin = NPCs.add("hidden_penguin_$i", tile)
-                penguin.transform(disguise(type), collision = false)
+            for (row in spots) {
+                val penguin = NPCs.add("hidden_penguin_$i", row.tile("tile"))
+                penguin.transform(disguise(row.string("disguise")), collision = false)
                 penguins[i++] = penguin
             }
             bear = bearLocations.random(random)
@@ -224,29 +220,6 @@ class PenguinHideAndSeek(
             .minusDays(daysSinceReset.toLong())
             .truncatedTo(ChronoUnit.DAYS)
         return ChronoUnit.WEEKS.between(epoch, lastReset).toInt()
-    }
-
-    private fun load(files: ConfigFiles, path: String): List<Pair<String, Tile>> {
-        val locations = mutableListOf<Pair<String, Tile>>()
-        Config.fileReader(files.find(Settings[path])) {
-            while (nextSection()) {
-                section()
-                var disguise = ""
-                var x = 0
-                var y = 0
-                while (nextPair()) {
-                    val key = key()
-                    when (key) {
-                        "disguise" -> disguise = string()
-                        "x" -> x = int()
-                        "y" -> y = int()
-                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                    }
-                }
-                locations.add(disguise to Tile(x, y))
-            }
-        }
-        return locations
     }
 
     private fun listPenguins(player: Player, args: List<String>) {

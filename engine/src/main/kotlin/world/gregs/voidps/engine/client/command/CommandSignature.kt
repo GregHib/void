@@ -41,7 +41,5 @@ data class CommandSignature(
         return score
     }
 
-    fun usage(): String {
-        return args.joinToString(" ")
-    }
+    fun usage(): String = args.joinToString(" ")
 }

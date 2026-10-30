@@ -189,5 +189,4 @@ interface Reader {
      * @param bitCount number of bits to be written
      */
     fun readBits(bitCount: Int): Int
-
 }

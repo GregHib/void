@@ -44,7 +44,6 @@ class Rockslug : Script {
 
     fun salt(player: Player, target: NPC) {
         if (!player.inventory.remove("bag_of_salt")) {
-            player.message("You need a bag of salt to kill the rockslug.") // TODO proper message
             return
         }
         val hitpoints = target.levels.get(Skill.Constitution)

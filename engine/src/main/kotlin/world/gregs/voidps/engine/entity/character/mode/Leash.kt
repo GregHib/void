@@ -80,7 +80,7 @@ class Leash(
      * combat movement steps npcs out from under their opponent.
      */
     override fun stepOut(): Boolean {
-        if (npc.def["allowed_under", false] || !underTarget()) {
+        if (npc.def.allowedUnder || !underTarget()) {
             return false
         }
         clearSteps()

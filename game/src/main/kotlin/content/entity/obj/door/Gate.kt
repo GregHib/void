@@ -17,8 +17,7 @@ object Gate {
         flip: Boolean,
         ticks: Int,
         collision: Boolean,
-        current: String,
-        next: String,
+        next: (ObjectDefinition) -> String,
         objRotation: Int,
         hingeTileRotation: Int,
         tileRotation: Int,
@@ -29,11 +28,11 @@ object Gate {
         val tile = Door.tile(first, hingeTileRotation)
         Replace.objects(
             first,
-            first.def(player).stringId.replace(current, next),
+            next(first.def(player)),
             tile,
             first.rotation(objRotation),
             second,
-            second.def(player).stringId.replace(current, next),
+            next(second.def(player)),
             Door.tile(tile, second.rotation, tileRotation),
             second.rotation(objRotation),
             ticks,

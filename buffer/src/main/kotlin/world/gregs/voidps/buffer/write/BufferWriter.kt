@@ -107,12 +107,10 @@ class BufferWriter(
         bitIndex = index
     }
 
-    override fun position(): Int {
-        return if (bitIndex != -1) {
-            (bitIndex + 7) / 8
-        } else {
-            buffer.position()
-        }
+    override fun position(): Int = if (bitIndex != -1) {
+        (bitIndex + 7) / 8
+    } else {
+        buffer.position()
     }
 
     override fun position(index: Int) {

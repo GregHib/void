@@ -14,11 +14,11 @@ target_hit = { offense = "crush", max = 110 }
 defend_anim = "death_spawn_defend"
 defend_sound = "death_spawn_defend"
 death_anim = "death_spawn_death"
-death_sound = "death_spawn_death"
+death_sound = "vampyre_death"
 
 [death_spawn.melee]
 range = 1
 anim = "death_spawn_attack"
-target_sound = "death_spawn_attack"
+target_sound = "vampyre_attack"
 target_hit = { offense = "slash", max = 20 }
 

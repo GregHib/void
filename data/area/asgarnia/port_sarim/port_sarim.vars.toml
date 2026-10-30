@@ -1,0 +1,5 @@
+[skippy_state]
+format = "list"
+persist = true
+default = "unstarted"
+values = ["unstarted", "need_bucket_of_water"]

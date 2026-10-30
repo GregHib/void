@@ -171,11 +171,6 @@ to = { x = 3285, y = 5508 }
 [chaos_tunnels_portal]
 option = "Enter"
 tile = { x = 3265, y = 5491 }
-to = { x = 3260, y = 5491 }
-
-[chaos_tunnels_portal]
-option = "Enter"
-tile = { x = 3265, y = 5491 }
 to = { x = 3259, y = 5446 }
 
 [chaos_tunnels_portal]
@@ -205,8 +200,78 @@ to = { x = 3254, y = 5451 }
 
 [chaos_tunnels_portal]
 option = "Enter"
+tile = { x = 3296, y = 5455 }
+to = { x = 3299, y = 5450 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3299, y = 5450 }
+to = { x = 3296, y = 5455 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3283, y = 5448 }
+to = { x = 3287, y = 5448 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3287, y = 5448 }
+to = { x = 3283, y = 5448 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3197, y = 5448 }
+to = { x = 3204, y = 5445 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3204, y = 5445 }
+to = { x = 3197, y = 5448 }
+
+[chaos_tunnels_portal]
+option = "Enter"
 tile = { x = 3241, y = 5445 }
 to = { x = 3233, y = 5445 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3290, y = 5463 }
+to = { x = 3302, y = 5469 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3285, y = 5474 }
+to = { x = 3286, y = 5470 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3286, y = 5470 }
+to = { x = 3285, y = 5474 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3280, y = 5460 }
+to = { x = 3273, y = 5460 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3273, y = 5460 }
+to = { x = 3280, y = 5460 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3302, y = 5469 }
+to = { x = 3290, y = 5463 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3317, y = 5496 }
+to = { x = 3307, y = 5496 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3307, y = 5496 }
+to = { x = 3317, y = 5496 }
 
 [chaos_tunnels_portal]
 option = "Enter"
@@ -430,6 +495,11 @@ to = { x = 3162, y = 5545 }
 
 [chaos_tunnels_portal]
 option = "Enter"
+tile = { x = 3162, y = 5545 }
+to = { x = 3166, y = 5553 }
+
+[chaos_tunnels_portal]
+option = "Enter"
 tile = { x = 3162, y = 5557 }
 to = { x = 3158, y = 5561 }
 
@@ -495,6 +565,16 @@ to = { x = 3178, y = 5460 }
 
 [chaos_tunnels_portal]
 option = "Enter"
+tile = { x = 3167, y = 5471 }
+to = { x = 3171, y = 5473 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3171, y = 5473 }
+to = { x = 3167, y = 5471 }
+
+[chaos_tunnels_portal]
+option = "Enter"
 tile = { x = 3178, y = 5460 }
 to = { x = 3168, y = 5456 }
 
@@ -522,6 +602,16 @@ to = { x = 3192, y = 5472 }
 option = "Enter"
 tile = { x = 3185, y = 5478 }
 to = { x = 3191, y = 5482 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3167, y = 5478 }
+to = { x = 3171, y = 5478 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3171, y = 5478 }
+to = { x = 3167, y = 5478 }
 
 [chaos_tunnels_portal]
 option = "Enter"

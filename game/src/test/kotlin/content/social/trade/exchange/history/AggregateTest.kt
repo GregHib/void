@@ -73,4 +73,14 @@ class AggregateTest {
         assertEquals(15L, aggregate.volumeHigh)
         assertEquals(0L, aggregate.volumeLow)
     }
+
+    @Test
+    fun `Zero amount update doesn't produce NaN averages`() {
+        val aggregate = Aggregate()
+
+        aggregate.update(price = 100, amount = 0)
+
+        assertEquals(0.0, aggregate.averageHigh)
+        assertEquals(0.0, aggregate.averageLow)
+    }
 }

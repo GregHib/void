@@ -10,13 +10,8 @@ import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.queue.longQueue
@@ -105,21 +100,30 @@ class Cutscene(
     }
 }
 
-fun Player.smallInstance(region: Region? = null, levels: Int = 4, logout: Boolean = true): Region {
-    val instance = Instances.small()
+fun Player.smallInstance(region: Region? = null, levels: Int = 4, logout: Boolean = true, timeout: Int = 0): Region {
+    val instance = Instances.small(timeout)
     if (region != null) {
         get<DynamicZones>().copy(region, instance, levels)
         set("instance_offset", instance.offset(region).id)
     }
     set("instance_logout", logout)
-    set("instance", instance.id)
+    joinInstance(instance)
     return instance
 }
 
-fun Player.largeInstance(): Region {
-    val instance = Instances.large()
-    set("instance", instance.id)
+fun Player.largeInstance(logout: Boolean = true, timeout: Int = 0): Region {
+    val instance = Instances.large(timeout)
+    set("instance_logout", logout)
+    joinInstance(instance)
     return instance
+}
+
+/**
+ * Links the player to an allocated [instance] so it can be looked up (e.g. after logging back in)
+ */
+fun Player.joinInstance(instance: Region) {
+    set("instance", instance.id)
+    set("instance_key", Instances.key(instance) ?: return)
 }
 
 /**
@@ -150,38 +154,61 @@ fun Player.instanceLogout(): Tile? {
     return Tile(logout)
 }
 
+/**
+ * The instance the player belongs to, or null if it has since been freed
+ */
 fun Player.instance(): Region? {
     val id: Int = get("instance") ?: return null
-    return Region(id)
+    val region = Region(id)
+    if (!Instances.reserved(region)) {
+        return region
+    }
+    return if (Instances.valid(region, get<Long>("instance_key"))) region else null
 }
 
+/**
+ * Unlinks the player from their instance but remembers it as [name], so it can be re-entered
+ * with [rejoinInstance] until it's freed.
+ */
+fun Player.leaveInstance(name: String): Boolean {
+    val id: Int = get("instance") ?: return false
+    val key: Long? = get("instance_key")
+    if (key != null) {
+        set("${name}_instance", id)
+        set("${name}_instance_key", key)
+        set("${name}_instance_offset", instanceOffset().id)
+    }
+    return clearInstance()
+}
+
+/**
+ * Re-links the player to the instance previously left with [leaveInstance], if it hasn't been freed.
+ */
+fun Player.rejoinInstance(name: String): Region? {
+    val id: Int = remove("${name}_instance") ?: return null
+    val key: Long? = remove("${name}_instance_key")
+    val offset: Long? = remove("${name}_instance_offset")
+    val region = Region(id)
+    if (!Instances.valid(region, key)) {
+        return null
+    }
+    joinInstance(region)
+    if (offset != null) {
+        set("instance_offset", offset)
+    }
+    return region
+}
+
+/**
+ * Unlinks the player from their instance, which is freed automatically once empty
+ */
 fun Player.clearInstance(): Boolean {
-    val id: Int = remove("instance") ?: return false
+    remove<Int>("instance") ?: return false
+    clear("instance_key")
     clear("instance_offset")
     // Only meaningful while inside the instance; leaving it set sends the next instance exit
     // (and any death drop) back to an exit tile that has nothing to do with where the player is.
     clear("instance_logout_tile")
-    val region = Region(id)
-    // "instance" is persisted, and everything below deletes objects, collision, npcs and floor
-    // items with nothing to put them back
-    if (!Instances.reserved(region)) {
-        return true
-    }
-    Instances.free(region)
-    get<DynamicZones>().clear(region)
-    // clears all region levels
-    for (level in 0..3) {
-        NPCs.clear(Region(id).toLevel(level))
-    }
-    val cuboid = Region(id).toCuboid() // Region.toCuboid() already defaults to levels=4
-    for (zone in cuboid.toZones()) {
-        // Floor items too, or they'd linger and resurface when the instance is reused.
-        for (item in FloorItems.at(zone).flatten()) {
-            FloorItems.remove(item)
-        }
-        GameObjects.clear(zone)
-        Collisions.clear(zone)
-    }
     return true
 }
 
@@ -228,4 +255,5 @@ fun Player.copyChunks(instance: Region, base: Tile, width: Int, height: Int, lev
     set("instance_offset", offset.id)
     return offset
 }
+
 fun Player.startCutscene(name: String, region: Region, offset: Delta): Cutscene = Cutscene(this, name, region, offset)

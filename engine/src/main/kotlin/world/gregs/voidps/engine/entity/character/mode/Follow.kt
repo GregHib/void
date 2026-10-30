@@ -66,7 +66,7 @@ class Follow(
      */
     override fun stepOut(): Boolean {
         val npc = character as? NPC ?: return false
-        if (npc.def["allowed_under", false] || !underTarget()) {
+        if (npc.def.allowedUnder || !underTarget()) {
             return false
         }
         clearSteps()

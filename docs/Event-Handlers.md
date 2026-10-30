@@ -55,6 +55,7 @@ See [Wildcards](wildcards) for details.
 ## Handler Scope
 
 Handlers run in the context of the entity that triggered them:
+
 ```kotlin
 npcSpawn("sheep") {
     say("Baa!") // npc.say("Baa!")
@@ -75,10 +76,10 @@ interfaceOption("Yes", "quest_intro:startyes_layer") {
 
 ## Interactions
 
-
 [Interactions](interaction) fire when a Character performs an action on an Entity. They fall into two categories *operate* (adjacent) and *approach* (from a distance).
 
 Player -> Target
+
 ```kotlin
 npcOperate("Talk-to", "doric") { }
 
@@ -86,11 +87,13 @@ objectOperate("Steal-cowbell", "dairy_cow") { }
 ```
 
 Item/Interface -> Target
+
 ```kotlin
 itemOnNPCOperate("wool", "fred_the_farmer_lumbridge") { }
 ```
 
 NPC -> Target
+
 ```kotlin
 npcOperateFloorItem("Take") {
 }

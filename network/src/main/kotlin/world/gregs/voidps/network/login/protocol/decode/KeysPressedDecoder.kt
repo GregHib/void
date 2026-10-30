@@ -15,7 +15,7 @@ class KeysPressedDecoder : Decoder(BYTE) {
 
     override suspend fun decode(packet: Source): Instruction? {
         var option: Int? = null
-        while (packet.remaining > 0) {
+        while (packet.remaining >= 3) {
             val key = packet.readUByte().toInt()
             val delta = packet.readUShort().toInt()
             if (key == 83) {
@@ -29,5 +29,4 @@ class KeysPressedDecoder : Decoder(BYTE) {
         }
         return null
     }
-
 }

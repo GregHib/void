@@ -7,8 +7,7 @@ class CommandTest {
 
     private fun command(vararg signatures: CommandSignature) = Command("test", signatures = signatures.toList())
 
-    private fun sig(vararg args: CommandArgument) =
-        CommandSignature(args.toList()) { _, _ -> }
+    private fun sig(vararg args: CommandArgument) = CommandSignature(args.toList()) { _, _ -> }
 
     @Test
     fun `No signatures`() {
@@ -65,5 +64,4 @@ class CommandTest {
         val result = meta.first(listOf("x"))
         assertEquals(s1, result)
     }
-
 }

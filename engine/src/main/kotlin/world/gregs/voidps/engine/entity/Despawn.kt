@@ -39,6 +39,10 @@ interface Despawn {
         }
     }
 
+    /**
+     * Floor item is removed from the world.
+     * Not called for item respawns or when all items are cleared.
+     */
     fun floorItemDespawn(id: String = "*", handler: FloorItem.() -> Unit) {
         Script.checkLoading()
         Wildcards.find(id, Wildcard.Item) { key ->

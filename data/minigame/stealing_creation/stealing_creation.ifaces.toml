@@ -12,7 +12,7 @@ id = 810
 
 [stealing_creation_rewards]
 id = 811
+type = "main_screen"
 
 [stealing_creation_kiln]
 id = 813
-

@@ -39,7 +39,8 @@ object SpawnSorter {
 //        print("[${file.name}]$text")
     }
 
-    fun regionName(region: Int): String? = when (region) {9528 -> "piscatoris_falconry_area"
+    fun regionName(region: Int): String? = when (region) {
+        9528 -> "piscatoris_falconry_area"
         10129, 13717 -> "eagles_eyrie"
         12944, 13200 -> "sophanem_dungeon"
         13981, 13465, 13464 -> "varrock_dig_site_caves"
@@ -57,7 +58,7 @@ object SpawnSorter {
         8524 -> "draynor_instance"
         7250 -> "ancient_cavern_cave"
         12848 -> "kalphite_hive"
-        12847, 12846, 13359, 13614, 13615, 13102, 13360, 13357, 13101, 12845, 12844, 13100  -> "kharidian_desert"
+        12847, 12846, 13359, 13614, 13615, 13102, 13360, 13357, 13101, 12845, 12844, 13100 -> "kharidian_desert"
         13616 -> "uzer_hunter_area"
         10322 -> "barbarian_assault_lobby"
         7244 -> "crash_site"
@@ -68,7 +69,7 @@ object SpawnSorter {
         11166, 11421, 11676 -> "troll_stronghold_tunnels"
         11421 -> "keldagrim_entrance_tunnel"
         7499, 7755, 8011, 8012 -> "fishing_trawler"
-        1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 9047, 2377, 2370, 2371, 2372, 2373, 2374, 2375, 2376, 2378, 2379, 850, 9559, 1602, 1603, 1604, 1605, 1606, 1607, 1608, 1609, 1610, 1611, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343,848,1346, 1347, 1348, 1349, 1350, 1351, 1352, 1353, 1354, 1355, 835, 837, 839, 841, 843 -> "dungeoneering"
+        1858, 1859, 1860, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 9047, 2377, 2370, 2371, 2372, 2373, 2374, 2375, 2376, 2378, 2379, 850, 9559, 1602, 1603, 1604, 1605, 1606, 1607, 1608, 1609, 1610, 1611, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 848, 1346, 1347, 1348, 1349, 1350, 1351, 1352, 1353, 1354, 1355, 835, 837, 839, 841, 843 -> "dungeoneering"
         8519, 8521, 8009, 8520 -> "ibans_lair"
         12891, 12892, 13147, 13148, 13403, 13404 -> "nomads_temple"
         13656 -> "ice_cave"
@@ -87,7 +88,7 @@ object SpawnSorter {
         17500 -> "fremennik_spiritual_realm"
         9545 -> "kharazi_caves"
         10329, 10074, 10330, 10073 -> "ancient_guthix_temple"
-        10075, 10331  -> "guthixian_temple"
+        10075, 10331 -> "guthixian_temple"
         10544 -> "hazelmeres_island"
         7490, 18008 -> "black_knights_fortress_basement"
         12188, 12187, 12189 -> "black_knights_catacombs"

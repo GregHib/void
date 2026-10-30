@@ -86,7 +86,7 @@ internal class SetChargeTest : TransactionOperationTest() {
         transaction.set(0, Item("item", 1))
         transaction.setCharge(0, 11)
         assertFalse(transaction.commit())
-        assertEquals(TransactionError.Full(10), transaction.error)
+        assertEquals(TransactionError.Full(10, "item"), transaction.error)
         assertTrue(inventory.isEmpty())
     }
 

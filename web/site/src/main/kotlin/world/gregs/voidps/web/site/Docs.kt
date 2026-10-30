@@ -62,8 +62,7 @@ object Docs {
     }
 
     /** Resolves a sidebar/content link's `href` relative to `docs/`; external links pass through. */
-    private fun resolveHref(href: String): String =
-        if (href.startsWith("http://") || href.startsWith("https://")) href else href.removePrefix("./")
+    private fun resolveHref(href: String): String = if (href.startsWith("http://") || href.startsWith("https://")) href else href.removePrefix("./")
 
     /** Flattens `_Sidebar.md`'s tree into the depth-first order its entries appear in, keeping
      *  only hrefs that resolve to a known doc (drops external links and group labels with none). */
@@ -277,7 +276,10 @@ object Docs {
                         "letter-spacing:var(--tracking-wide);color:var(--text-faint);margin-bottom:var(--space-6)"
                     +"Docs"
                     icon(Icons.CHEVRON_RIGHT, size = 12)
-                    span { style = "color:var(--parch-200)"; +source.title }
+                    span {
+                        style = "color:var(--parch-200)"
+                        +source.title
+                    }
                 }
                 h1 {
                     style = "margin:0 0 var(--space-6);font:var(--type-title);color:var(--parch-50)"

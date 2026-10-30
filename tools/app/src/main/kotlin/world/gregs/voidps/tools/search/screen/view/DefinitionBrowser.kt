@@ -76,7 +76,14 @@ fun DefinitionBrowser(
                         val props = getProperties(state.clazz)
                         state.searchIndex = state.definitions.associate { def ->
                             def.id to props.joinToString(" ") { prop ->
-                                displayValue(try { prop.get(def) } catch (_: Exception) { null }, prop.name == "params")
+                                displayValue(
+                                    try {
+                                        prop.get(def)
+                                    } catch (_: Exception) {
+                                        null
+                                    },
+                                    prop.name == "params",
+                                )
                             }.lowercase()
                         }
                     } catch (e: Exception) {
@@ -159,7 +166,7 @@ fun DefinitionBrowser(
                             Text("Load path", fontSize = 11.sp, color = AccentLight)
                         }
                     }
-                }
+                },
             )
             when (selectedIdx) {
                 0 -> GlobalSearchTab(
@@ -200,7 +207,9 @@ fun resolveDisplayName(tabLabel: String, id: Number, link: FieldLink? = null, it
                         ?.also { it.isAccessible = true }
                         ?.get(item)
                         ?.toString()
-                } else id.toString()
+                } else {
+                    id.toString()
+                }
                 fieldVal == itemVal
             }
         }

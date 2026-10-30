@@ -4,59 +4,80 @@ examine = "The bank teller will serve you from here."
 
 [bakery_stall_keldagrim]
 id = 6163
+empty = "dwarf_market_empty_stall"
 level = 5
 exp = 16.0
 restock = 4
 examine = "Bread and cakes are spread out over it."
 
-[bakery_stall_keldagrim_empty]
+[dwarf_market_empty_stall]
 id = 6984
 examine = "Empty market stall."
 
 [crossbow_stall]
 id = 17031
+empty = "dwarf_market_empty_stall"
 level = 49
 exp = 52.0
 restock = 8
 examine = "A whole lot of crossbow items."
 
-[crossbow_stall_empty]
-id = 6984
-examine = "Empty market stall."
-
 [silver_stall_keldagrim]
 id = 6164
+empty = "dwarf_market_empty_stall"
 level = 50
 exp = 205.0
 restock = 32
 examine = "Finely wrought wares of silver."
 
-[silver_stall_keldagrim_empty]
-id = 6984
-examine = "Empty market stall."
-
 [gem_stall_keldagrim]
 id = 6162
+empty = "dwarf_market_empty_stall"
 level = 75
 exp = 408.0
 restock = 100
 examine = "Finest precious stones."
 
-[gem_stall_keldagrim_empty]
-id = 6984
-examine = "Empty market stall."
-
 [crafting_stall_keldagrim]
 id = 6166
+empty = "dwarf_market_empty_stall"
 level = 5
 exp = 20.0
 restock = 8
 examine = "A whole lot of tools for crafting."
 
-[crafting_stall_keldagrim_empty]
-id = 6984
-examine = "Empty market stall."
-
 [clothes_stall_keldagrim]
 id = 6165
 examine = "I can get clothes made up from this stall."
+
+[dwarf_keldagrim_lamp_stand]
+id = 6203
+examine = "Gives out light, but then you knew that already."
+
+[ridable_trackstraight_gdecor]
+id = 7022
+examine = "Tracks for the carts to run over."
+
+[keldagrim_trackstraight_gdecor]
+id = 8887
+examine = "Cart tracks."
+
+[keldagrim_track_supports]
+id = 8899
+examine = "A support for the tracks."
+
+[keldagrim_track_supports5]
+id = 8903
+examine = "A support for the tracks."
+
+[dwarf_firewall_centre_straight]
+id = 5979
+examine = "It's a sheer wall of fire, rising as high as you can see."
+
+[dwarf_gold_mine]
+id = 5989
+examine = "A mineral vein that looks distinctly like gold."
+
+[dwarf_keldagrim_table_big]
+id = 6198
+examine = "Useful for a dwarf."

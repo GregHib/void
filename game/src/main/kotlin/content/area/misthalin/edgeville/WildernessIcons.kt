@@ -26,13 +26,11 @@ class WildernessIcons :
             if (to == true) {
                 options.set(1, "Attack")
                 open("wilderness_skull")
-                //    setVar("no_pvp_zone", false)
                 resetIcons()
                 updateIcon()
             } else if (to == null) {
                 options.remove("Attack")
                 close("wilderness_skull")
-                //    setVar("no_pvp_zone", true)
                 resetIcons()
             }
         }

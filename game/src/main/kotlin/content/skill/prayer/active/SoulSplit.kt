@@ -1,6 +1,5 @@
 package content.skill.prayer.active
 
-import content.entity.combat.dead
 import content.entity.proj.shoot
 import content.skill.prayer.praying
 import content.skill.summoning.isFamiliar

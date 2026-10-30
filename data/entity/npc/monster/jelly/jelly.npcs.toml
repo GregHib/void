@@ -35,3 +35,12 @@ clone = "jelly"
 [jelly_small_green]
 id = 1642
 clone = "jelly"
+
+[jelly_2]
+id = 8617
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+examine = "There's always room for jelly."

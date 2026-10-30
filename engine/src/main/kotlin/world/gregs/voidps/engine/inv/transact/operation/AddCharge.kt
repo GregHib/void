@@ -30,7 +30,7 @@ object AddCharge {
         }
         // Check if the stack would exceed the maximum value
         if (item.value + amount.toLong() > maximum) {
-            error = TransactionError.Full(maximum - item.value)
+            error = TransactionError.Full(maximum - item.value, item.id)
             return
         }
         // Combine the charges and update the item in the inventory

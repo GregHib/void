@@ -26,7 +26,7 @@ examine = "He's playing both sides!"
 
 [zamorak_wizard]
 id = 1007
-hitpoints = 760
+hitpoints = 800
 att = 24
 str = 24
 def = 24
@@ -37,3 +37,12 @@ hunt_mode = "cowardly"
 immune_poison = true
 drop_table = "zamorak_wizard"
 examine = "A servant of Zamorak."
+
+[saradomin_wizard]
+id = 1264
+hitpoints = 1200
+att = 100
+str = 80
+def = 80
+mage = 80
+examine = "A follower of Saradomin."

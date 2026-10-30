@@ -15,3 +15,19 @@ examine = "A dark-hearted knight."
 [black_knight_1]
 id = 179
 clone = "black_knight"
+
+[black_knight_2]
+id = 2698
+hitpoints = 420
+att = 25
+str = 25
+def = 25
+examine = "A dark-hearted knight."
+
+[black_knight_3]
+id = 6189
+hitpoints = 420
+att = 25
+str = 25
+def = 25
+examine = "A dark-hearted knight."

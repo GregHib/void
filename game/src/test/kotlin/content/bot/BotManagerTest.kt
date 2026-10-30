@@ -9,15 +9,20 @@ import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotAtTile
+import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.setRandom
 
 class BotManagerTest {
@@ -53,10 +58,12 @@ class BotManagerTest {
     }
 
     @Test
-    fun `Activity capacity is respected`() {
+    fun `Area capacity is respected`() {
+        setAreas("mine_area" to 1)
         val activity = testActivity(
             id = "mine",
             plan = listOf(BotWait(1)),
+            setup = listOf(BotInArea("mine_area")),
         )
         val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
 
@@ -68,6 +75,57 @@ class BotManagerTest {
 
         assertEquals(1, bot1.frames.size)
         assertEquals("idle", bot2.frames.first().behaviour.id)
+    }
+
+    @Test
+    fun `Hard failure releases only the failed bots activity slot`() {
+        setAreas("mine_area" to 2)
+        val activity = testActivity(id = "mine", plan = listOf(BotWait(1)), setup = listOf(BotInArea("mine_area")))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val failedBot = testBot(activity, name = "failed")
+        val survivingBot = testBot(activity, name = "surviving")
+        val replacementBot = testBot(activity, name = "replacement")
+        val extraBot = testBot(activity, name = "extra")
+
+        manager.tick(failedBot)
+        manager.tick(survivingBot)
+        assertFalse(manager.slots.hasFree(activity))
+
+        failedBot.frame().fail(Reason.Timeout)
+        manager.tick(failedBot)
+        assertTrue(failedBot.noTask())
+        assertEquals("mine", survivingBot.activity!!.id)
+
+        manager.tick(replacementBot)
+        assertEquals("mine", replacementBot.activity!!.id)
+        manager.tick(extraBot)
+
+        assertEquals("idle", extraBot.activity!!.id, "The surviving bot and replacement should occupy both mining slots")
+    }
+
+    @Test
+    fun `Idle bot takes available work after its wait completes`() {
+        setAreas("mine_area" to 1)
+        val activity = testActivity(id = "mine", plan = listOf(BotWait(1)), setup = listOf(BotInArea("mine_area")))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val worker = testBot(activity, name = "worker")
+        val waitingBot = testBot(activity, name = "waiting")
+
+        manager.tick(worker)
+        manager.tick(waitingBot)
+        assertEquals("idle", waitingBot.activity!!.id)
+
+        manager.tick(waitingBot)
+        val waitTicks = (waitingBot.frame().state as BehaviourState.Wait).ticks
+        manager.stop(worker)
+        assertTrue(manager.slots.hasFree(activity))
+
+        repeat(waitTicks) { manager.tick(waitingBot) }
+        manager.tick(waitingBot) // Complete idle and release its slot.
+        assertTrue(waitingBot.noTask())
+        manager.tick(waitingBot) // Choose the next activity with mining now available.
+
+        assertEquals("mine", waitingBot.activity!!.id, "Bot should leave idle when the mining slot becomes available")
     }
 
     @Test
@@ -127,9 +185,11 @@ class BotManagerTest {
 
     @Test
     fun `Completed activity most likely to be reassigned on success`() {
+        setAreas("cook_area" to 1)
         val activity = testActivity(
             id = "cook",
             plan = listOf(BotWait(1)),
+            setup = listOf(BotInArea("cook_area")),
         )
         val test = testActivity(
             id = "test",
@@ -145,8 +205,8 @@ class BotManagerTest {
         manager.tick(bot)
 
         assertFalse(manager.slots.hasFree(activity))
-        assertEquals(activity, bot.previous)
-        assertEquals(activity, bot.frames.peek().behaviour)
+        assertEquals(activity.bind("cook_area"), bot.previous)
+        assertEquals(activity.bind("cook_area"), bot.frames.peek().behaviour)
         assertEquals(1, bot.frames.size)
     }
 
@@ -187,6 +247,59 @@ class BotManagerTest {
 
         assertEquals("idle", bot.frames.first().behaviour.id)
         assertTrue("fish" in bot.blocked)
+    }
+
+    @Test
+    fun `Completed activity is remembered as last successful`() {
+        val activity = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bot = testBot(activity)
+
+        repeat(10) { manager.tick(bot) }
+
+        assertEquals(activity, bot.lastSuccessful)
+    }
+
+    @Test
+    fun `Failed activity isn't remembered as last successful`() {
+        val activity = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bot = testBot(activity)
+
+        manager.tick(bot)
+        manager.tick(bot)
+        bot.frame().fail(Reason.Requirement(BotAtTile()))
+        manager.tick(bot)
+
+        assertNull(bot.lastSuccessful)
+    }
+
+    @Test
+    fun `Bot favours the skill of its last successful activity once it can't repeat it`() {
+        val fish = skillActivity("fish", "fishing")
+        val copper = skillActivity("copper", "mining")
+        val mine = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(fish.id to fish, copper.id to copper, mine.id to mine), world = FakeWorld())
+        // Random picks the first eligible activity, which is fishing
+        val bot = testBot(fish, copper, mine)
+        bot.lastSuccessful = mine
+
+        bot.blocked.add(mine.id)
+        manager.tick(bot)
+
+        assertEquals(copper, bot.previous)
+    }
+
+    @Test
+    fun `Bot picks at random without a last successful activity`() {
+        val fish = skillActivity("fish", "fishing")
+        val mine = skillActivity("mine", "mining")
+        val manager = BotManager(mutableMapOf(fish.id to fish, mine.id to mine), world = FakeWorld())
+        val bot = testBot(fish, mine)
+
+        manager.tick(bot)
+
+        assertEquals(fish, bot.previous)
     }
 
     @Test
@@ -388,9 +501,11 @@ class BotManagerTest {
             weight = 1,
             actions = listOf(BotWait(1)),
         )
+        setAreas("work_area" to 1)
         val activity = testActivity(
             id = "work",
             resolves = listOf(condition),
+            setup = listOf(BotInArea("work_area")),
             plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
@@ -406,10 +521,105 @@ class BotManagerTest {
         assertFalse(manager.slots.hasFree(activity))
     }
 
+    private fun setAreas(vararg areas: Pair<String, Int?>, tags: Map<String, Set<String>> = emptyMap()) {
+        val definitions = areas.associate { (name, capacity) ->
+            name to AreaDefinition(
+                name = name,
+                area = Rectangle(0, 0, 10, 10),
+                tags = tags[name] ?: emptySet(),
+                params = capacity?.let { mapOf(Params.BOT_CAPACITY to it) },
+            )
+        }
+        val tagged = mutableMapOf<String, MutableSet<AreaDefinition>>()
+        for ((name, set) in tags) {
+            for (tag in set) {
+                tagged.getOrPut(tag) { mutableSetOf() }.add(definitions.getValue(name))
+            }
+        }
+        Areas.set(definitions, tagged)
+    }
+
+    @Test
+    fun `Activity with multiple areas is bound to one with free slots`() {
+        setAreas("field_a" to 1, "field_b" to 1)
+        val activity = testActivity("cows", plan = listOf(BotWait(1)), setup = listOf(BotInArea(listOf("field_a", "field_b"))))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bots = List(3) { testBot(activity, name = "bot$it") }
+
+        bots.forEach { manager.tick(it) }
+
+        val areas = bots.take(2).map { (it.activity as BotActivity).boundArea }
+        assertEquals(setOf("field_a", "field_b"), areas.toSet())
+        assertEquals("idle", bots[2].activity!!.id, "Both fields are full")
+        assertEquals(BotInArea(areas[0]!!), (bots[0].activity as BotActivity).area)
+    }
+
+    @Test
+    fun `Tagged areas are included`() {
+        setAreas("field_a" to 1, "field_b" to 1, "field_c" to 1, tags = mapOf("field_b" to setOf("cow_field"), "field_c" to setOf("cow_field")))
+        val activity = testActivity("cows", plan = listOf(BotWait(1)), setup = listOf(BotInArea(listOf("field_a"), setOf("cow_field"))))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bots = List(4) { testBot(activity, name = "bot$it") }
+
+        bots.forEach { manager.tick(it) }
+
+        assertEquals(setOf("field_a", "field_b", "field_c"), bots.take(3).map { (it.activity as BotActivity).boundArea }.toSet())
+        assertEquals("idle", bots[3].activity!!.id)
+    }
+
+    @Test
+    fun `Repeated activity stays in the previous area`() {
+        setAreas("field_a" to 1, "field_b" to 1)
+        val activity = testActivity("cows", plan = listOf(BotWait(1)), setup = listOf(BotInArea(listOf("field_a", "field_b"))))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bot = testBot(activity)
+        manager.tick(bot)
+        val first = (bot.activity as BotActivity).boundArea
+        manager.stop(bot)
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+
+        manager.tick(bot)
+
+        assertEquals(first, (bot.activity as BotActivity).boundArea)
+    }
+
+    @Test
+    fun `Closer areas are more likely`() {
+        Areas.set(
+            mapOf(
+                "near" to AreaDefinition("near", Rectangle(0, 0, 4, 4)),
+                "far" to AreaDefinition("far", Rectangle(3000, 3000, 3004, 3004)),
+            ),
+        )
+        val activity = testActivity("cows", plan = listOf(BotWait(1)), setup = listOf(BotInArea(listOf("far", "near"))))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
+        val bot = testBot(activity)
+        // A mid roll would land on 'far' if weights were equal, but 'near' is much heavier
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until / 2
+        })
+
+        assertEquals("near", manager.bind(bot, activity).boundArea)
+    }
+
+    @Test
+    fun `Unknown area or empty tag fails validation`() {
+        setAreas("field_a" to 1)
+        val missing = testActivity("a", plan = listOf(BotWait(1)), setup = listOf(BotInArea(listOf("field_a", "nope"))))
+        assertThrows(IllegalArgumentException::class.java) { BotManager(mutableMapOf(missing.id to missing), world = FakeWorld()).validateAreas() }
+        val tag = testActivity("b", plan = listOf(BotWait(1)), setup = listOf(BotInArea(emptyList(), setOf("no_tag"))))
+        assertThrows(IllegalArgumentException::class.java) { BotManager(mutableMapOf(tag.id to tag), world = FakeWorld()).validateAreas() }
+    }
+
+    private fun skillActivity(id: String, skill: String) = BotActivity(id = id, timeout = 50, actions = listOf(BotWait(1)), produces = setOf("skill:$skill"))
+
     fun testActivity(
         id: String,
         requires: List<Condition> = emptyList(),
         resolves: List<Condition> = emptyList(),
         plan: List<BotAction>,
-    ) = BotActivity(id, 1, 50, requires, resolves, plan)
+        setup: List<Condition> = emptyList(),
+    ) = BotActivity(id = id, timeout = 50, requires = requires, setup = resolves + setup, actions = plan)
 }

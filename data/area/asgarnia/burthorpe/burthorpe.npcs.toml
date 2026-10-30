@@ -112,10 +112,10 @@ examine = "Barman of the Toad and Chicken."
 
 [guard_burthorpe]
 id = 1076
-hitpoints = 220
-att = 19
-str = 18
-def = 14
+hitpoints = 400
+att = 30
+str = 30
+def = 30
 combat_def = "guard"
 attack_bonus = 4
 respawn_delay = 50

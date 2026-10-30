@@ -26,11 +26,17 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
                 message("You must choose an item first.")
                 return@interfaceOption
             }
-            val slot: Int = get("grand_exchange_box") ?: return@interfaceOption
-            val itemId: String = get("grand_exchange_item") ?: return@interfaceOption
-            val amount: Int = get("grand_exchange_quantity") ?: return@interfaceOption
-            val price: Int = get("grand_exchange_price") ?: return@interfaceOption
+            val slot: Int? = get("grand_exchange_box")
+            val itemId: String? = get("grand_exchange_item")
+            val amount: Int? = get("grand_exchange_quantity")
+            val price: Int? = get("grand_exchange_price")
+            if (slot == null || itemId == null || amount == null || price == null) {
+                logger.warn { "Incomplete GE offer $name slot=$slot item=$itemId amount=$amount price=$price" }
+                message("Your offer is incomplete, please try again.")
+                return@interfaceOption
+            }
             if (amount < 1 || price < 0) {
+                message("You must enter a valid quantity and price.")
                 return@interfaceOption
             }
             if (price.toLong() * amount > Int.MAX_VALUE) {
@@ -45,8 +51,9 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
                         var removed = removeToLimit("coins", total)
                         if (removed < total && Settings["grandExchange.useBankCoins", false]) {
                             val txn = link(bank)
-                            removed += txn.removeToLimit("coins", total - removed)
-                            fromBank = true
+                            val bankRemoved = txn.removeToLimit("coins", total - removed)
+                            removed += bankRemoved
+                            fromBank = bankRemoved > 0
                         }
                         if (removed < total) {
                             error = TransactionError.Deficient(total - removed)
@@ -54,10 +61,10 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
                     }
                     when (inventory.transaction.error) {
                         TransactionError.None -> {
+                            offers[slot] = exchange.buy(this, Item(itemId, amount), price)
                             if (fromBank) {
                                 message("Payment has been taken from your bank.")
                             }
-                            offers[slot] = exchange.buy(this, Item(itemId, amount), price)
                         }
                         is TransactionError.Deficient -> {
                             notEnough("coins")
@@ -101,7 +108,7 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
             if (collectionBox.isEmpty()) {
                 val offer = offers.getOrNull(box)
                 if (offer != null && offer.state.cancelled) {
-                    offers[box] = ExchangeOffer.EMPTY
+                    offers[box] = ExchangeOffer()
                     exchange.offers.remove(offer)
                     exchange.refresh(this, box)
                 }

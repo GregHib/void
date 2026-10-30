@@ -14,7 +14,7 @@ import kotlin.math.absoluteValue
 class OpenOffers(
     val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
     val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
-    private val activity: SortedSet<Activity> = TreeSet(Comparator { a1, a2 -> a1.lastActive.compareTo(a2.lastActive) }),
+    private val activity: SortedSet<Activity> = TreeSet(compareBy<Activity> { it.lastActive }.thenBy { it.id }),
     var counter: Int = 0,
 ) {
 
@@ -51,8 +51,8 @@ class OpenOffers(
         add(offer.id, offer.item, offer.price, offer.state.sell)
     }
 
-    fun add(id: Int, item: String, price: Int, sell: Boolean) {
-        activity.add(Activity(item, if (sell) -price else price, id))
+    fun add(id: Int, item: String, price: Int, sell: Boolean, lastActive: Long = epochMilliseconds()) {
+        activity.add(Activity(item, if (sell) -price else price, id, lastActive))
     }
 
     fun buy(account: String, offer: ExchangeOffer): OpenOffer {

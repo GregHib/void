@@ -1,32 +1,32 @@
 [spiritual_ranger_drop_table]
 type = "all"
 drops = [
+    { id = "bones" },
     { table = "spiritual_ranger_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
 ]
 
 [spiritual_ranger_secondary]
-roll = 128
+roll = 256
 drops = [
-    { id = "oak_shortbow", chance = 5 },
-    { id = "steel_crossbow", chance = 3 },
-    { id = "maple_longbow", chance = 4 },
-    { id = "magic_shortbow", min = 1, max = 2 },
-    { id = "mithril_arrow_p+", chance = 11 },
-    { id = "steel_arrow", amount = 12, chance = 4 },
-    { id = "iron_arrow", amount = 12, chance = 15 },
-    { id = "bronze_arrow", amount = 16, chance = 13 },
-    { id = "bronze_arrow_p+" },
-    { id = "body_rune", amount = 12, chance = 4 },
-    { id = "rune_arrow", amount = 5, chance = 2 },
-    { id = "adamant_arrow", amount = 12 },
-    { id = "adamant_arrow_p++", amount = 3, chance = 3 },
-    { id = "adamant_fire_arrows_unlit", amount = 4, chance = 2 },
-    { id = "nothing", amount = 0 },
-    { id = "headless_arrow", amount = 12, chance = 10 },
-    { id = "iron_arrowtips", amount = 5, chance = 11 },
-    { id = "adamant_arrowtips", amount = 13, chance = 9 },
-    { id = "bowstring", amount = 7, chance = 18 },
-    { id = "broken_arrow" },
-    { id = "oak_longbow_u", amount = 12, chance = 9 },
+    { id = "oak_shortbow", chance = 10 },
+    { id = "steel_crossbow", chance = 6 },
+    { id = "maple_longbow", chance = 8 },
+    { id = "magic_shortbow", chance = 2 },
+    { id = "mithril_arrow_p+", chance = 16 },
+    { id = "steel_arrow", min = 1, max = 12, chance = 8 },
+    { id = "iron_arrow", min = 1, max = 24, chance = 30 },
+    { id = "bronze_arrow", min = 1, max = 58, chance = 26 },
+    { id = "body_rune", min = 1, max = 12, chance = 8 },
+    { id = "rune_arrow", min = 1, max = 5, chance = 4 },
+    { id = "adamant_arrow", amount = 3, chance = 2 },
+    { id = "adamant_arrow_p++", min = 1, max = 12 },
+    { id = "headless_arrow", amount = 12, chance = 20 },
+    { id = "iron_arrowtips", amount = 5, chance = 22 },
+    { id = "adamant_arrowtips", min = 1, max = 13, chance = 18 },
+    { id = "broken_arrow", chance = 2 },
+    { id = "adamant_fire_arrows_lit", amount = 4 },
+    { id = "bowstring_noted", amount = 7, chance = 16 },
+    { id = "oak_longbow_u_noted", amount = 11, chance = 16 },
+    { table = "rare_drop_table", chance = 4 },
 ]

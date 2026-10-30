@@ -175,3 +175,12 @@ examine = "He seems a little out of place."
 [thaerisk_cemphier_2]
 id = 8418
 examine = "A wise druid."
+
+[druid]
+id = 14
+hitpoints = 300
+att = 28
+str = 28
+def = 32
+mage = 25
+examine = "A nature lover."

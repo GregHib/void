@@ -4,7 +4,6 @@ hitpoints = 600
 att = 43
 str = 43
 def = 43
-attack_speed = 6
 style = "crush"
 max_hit_melee = 70
 attack_bonus = 22
@@ -62,6 +61,10 @@ examine = "It uses its tail to hunt and skewer fish."
 
 [spined_larupia]
 id = 5104
+hitpoints = 280
+att = 40
+str = 40
+def = 28
 combat_def = "panther"
 respawn_delay = 50
 max_hit_slash = 50

@@ -36,6 +36,10 @@ class ShopOpen(val inventoryDefinitions: InventoryDefinitions) : Script {
             }
         }
 
+        playerDespawn {
+            GeneralStores.unbind(this)
+        }
+
         shopOpen { id ->
             val definition = inventoryDefinitions.getOrNull(id) ?: return@shopOpen
             val currency: String = definition["currency", "coins"]

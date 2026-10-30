@@ -1,5 +1,7 @@
 package content.entity.obj
 
+import content.entity.obj.door.Door.closed
+import content.entity.obj.door.Door.opened
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks
@@ -13,7 +15,7 @@ class TrapDoors : Script {
             if (target.def.transforms != null) {
                 return@objectOperate
             }
-            target.replace(target.id.replace("_closed", "_opened"), ticks = TimeUnit.MINUTES.toTicks(3))
+            target.replace(target.def.opened, ticks = TimeUnit.MINUTES.toTicks(3))
         }
 
         objectOperate("Close", "trapdoor_*_opened") { (target) ->
@@ -21,7 +23,7 @@ class TrapDoors : Script {
             if (target.def.transforms != null) {
                 return@objectOperate
             }
-            target.replace(target.id.replace("_opened", "_closed"), ticks = TimeUnit.MINUTES.toTicks(3))
+            target.replace(target.def.closed, ticks = TimeUnit.MINUTES.toTicks(3))
         }
     }
 }

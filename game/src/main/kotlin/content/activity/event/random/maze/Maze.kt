@@ -37,7 +37,7 @@ import world.gregs.voidps.type.random
  */
 class Maze : Script {
 
-    private val duration = 300
+    private val duration = 100
 
     // Wall tile to the player tiles it can't be opened from
     private val oneWayWalls = mapOf(
@@ -52,11 +52,11 @@ class Maze : Script {
             startMaze()
         }
 
-        timerStart("maze") { 1 }
+        timerStart("maze") { 5 }
 
         timerTick("maze") {
             val ticks = dec("maze_ticks")
-            set("maze_timer_bar", ticks / 3)
+            set("maze_timer_bar", ticks)
             when {
                 instance() == null -> {
                     RandomEvents.fail(this)
@@ -137,14 +137,14 @@ class Maze : Script {
         // Allocate the instance before the old-man intro so a resumed maze timer (on relog) sees a
         // live instance during the intro delay instead of failing the event.
         smallInstance(Region(MAZE_REGION), levels = 1)
-        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        setInstanceLogout(RandomEvents.origin(this))
         mysteriousOldMan()
         val start = Tables.get("maze_start_points").rows().random(random).tile("tile")
         kidnap(start.add(instanceOffset()))
         closeTabs()
         minimap(Minimap.HideMap)
         set("maze_ticks", duration)
-        set("maze_timer_bar", duration / 3)
+        set("maze_timer_bar", duration)
         open("maze_timer")
         softTimers.start("maze")
         message("You need to reach the maze centre, then you'll be returned to where you were.")

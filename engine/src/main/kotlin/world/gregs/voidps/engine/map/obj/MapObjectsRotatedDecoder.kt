@@ -9,31 +9,39 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
 /**
- * Adds all objects except bridges from a single [zone], into a different zone, with [zoneRotation] applied.
+ * Adds all objects except bridges from a single [zone] and [level], into a different zone and [targetLevel], with [zoneRotation] applied.
  */
 class MapObjectsRotatedDecoder : MapObjectDecoder() {
 
     internal var zoneRotation: Int = 0
     internal lateinit var zone: Rectangle
+    internal var level: Int = 0
+    internal var targetLevel: Int = 0
 
     fun decode(cache: Cache, settings: ByteArray, from: Zone, to: Zone, rotation: Int, keys: IntArray?) {
         val objectData = cache.data(Index.MAPS, "l${from.region.x}_${from.region.y}", xtea = keys) ?: return
+        decode(objectData, settings, from, to, rotation)
+    }
+
+    fun decode(objectData: ByteArray, settings: ByteArray, from: Zone, to: Zone, rotation: Int) {
         val x = from.tile.x.rem(64)
         val y = from.tile.y.rem(64)
         zone = Rectangle(x, y, x + 7, y + 7)
         zoneRotation = rotation
+        level = from.level
+        targetLevel = to.level
         super.decode(objectData, settings, to.tile.x, to.tile.y)
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
-        if (objectId > ObjectDefinitions.definitions.size || !zone.contains(localX, localY)) {
+        if (objectId > ObjectDefinitions.definitions.size || level != this.level || !zone.contains(localX, localY)) {
             return
         }
         val def = ObjectDefinitions.getValue(objectId)
         val objRotation = (rotation + zoneRotation) and 0x3
         val rotX = rotateX(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, rotation, zoneRotation)
         val rotY = rotateY(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, rotation, zoneRotation)
-        GameObjects.set(objectId, regionTileX + rotX, regionTileY + rotY, level, shape, objRotation, def)
+        GameObjects.set(objectId, regionTileX + rotX, regionTileY + rotY, targetLevel, shape, objRotation, def)
     }
 
     internal fun rotateX(

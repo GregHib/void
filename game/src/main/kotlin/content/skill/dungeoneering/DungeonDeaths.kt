@@ -44,7 +44,7 @@ class DungeonDeaths : Script {
             room.monsters--
         }
 
-        npcDeath("rand_ice_lord_boss_*") {
+        npcDeath("rand_ice_lord_boss_*,rand_ancient_mage_*") {
             val room = dungeonRoomBounds()
             var door = findDoor(room.minX - 1, room.minY - 1, "rand_dungeon_end_trapdoor_locked_frozen")
             if (door == null) {

@@ -39,15 +39,18 @@ class Certer : Script {
         }
 
         interfaceOption("Select", "certer_identify:option_*") {
+            if (get<String>("random_event") != "certer") {
+                return@interfaceOption
+            }
             val correct = it.component.removePrefix("option_").toInt() == get("certer_answer", 0)
             close("certer_identify")
+            RandomEvents.completeInPlace(this)
             if (correct) {
                 npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
                 addOrDrop("random_event_gift")
             } else {
                 npc<Neutral>("giles", "Sorry, I don't think so.")
             }
-            RandomEvents.completeInPlace(this)
         }
     }
 

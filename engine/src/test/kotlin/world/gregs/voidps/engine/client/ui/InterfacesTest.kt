@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.ui
 
-import io.mockk.every
 import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

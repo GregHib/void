@@ -65,7 +65,7 @@ class WorldMap : Script {
 
         interfaceOption(id = "toplevel*:world_map") {
             if (frozen) {
-                message("You cannot do this at the moment.") // TODO proper message
+                message("Please finish what you're doing before opening the world map.")
             } else if (get("show_daemonheim_map", false)) {
                 open("dungeon_map")
             } else {

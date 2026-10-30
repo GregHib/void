@@ -12,7 +12,6 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import java.util.PriorityQueue
@@ -260,50 +259,68 @@ class NavigationGraph(
     }
 
     companion object {
-        fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>): NavigationGraph {
+        fun loadGraph(edges: List<Edge>, shortcuts: List<NavigationShortcut>): NavigationGraph {
             val builder = Builder()
-            timedLoad("nav graph edge") {
-                for (path in paths) {
-                    Config.fileReader(path) {
-                        while (nextPair()) {
-                            val list = key()
-                            assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
-                            while (nextElement()) {
-                                var from = Tile.EMPTY
-                                var to = Tile.EMPTY
-                                var cost = 0
-                                val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
-                                val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
-                                while (nextEntry()) {
-                                    when (val key = key()) {
-                                        "from" -> from = readTile()
-                                        "to" -> to = readTile()
-                                        "cost" -> cost = int()
-                                        "actions" -> actions(actions)
-                                        "requires" -> requirements(requirements)
-                                        else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                                    }
-                                }
-                                when {
-                                    actions.isEmpty() -> {
-                                        val cost = Distance.manhattan(from.x, from.y, to.x, to.y)
-                                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotWalkTo(to.x, to.y)), null)
-                                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotWalkTo(from.x, from.y)), null)
-                                    }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), null)
-                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), Condition.parse(requirements, exception()))
+            for (edge in edges) {
+                val from = edge.from
+                val to = edge.to
+                val conditions = if (edge.requirements.isEmpty()) null else Condition.parse(edge.requirements, edge.debug)
+                if (edge.actions.isEmpty()) {
+                    val weight = if (edge.cost > 0) edge.cost else Distance.manhattan(from.x, from.y, to.x, to.y)
+                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), weight, listOf(BotWalkTo(to.x, to.y)), conditions)
+                    builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), weight, listOf(BotWalkTo(from.x, from.y)), conditions)
+                } else {
+                    builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), edge.cost, ActionParser.parse(edge.actions, edge.debug), conditions)
+                }
+            }
+            for (shortcut in shortcuts) {
+                builder.add(shortcut)
+            }
+            return builder.build()
+        }
+
+        /**
+         * The edges as they are in the config files, before being turned into actions and conditions.
+         */
+        class Edge(
+            val from: Tile,
+            val to: Tile,
+            val cost: Int,
+            val actions: List<Pair<String, Map<String, Any>>>,
+            val requirements: List<Pair<String, List<Map<String, Any>>>>,
+            val debug: String,
+        )
+
+        fun parseEdges(paths: List<String>): List<Edge> {
+            val edges = ArrayList<Edge>()
+            for (path in paths) {
+                Config.fileReader(path) {
+                    while (nextPair()) {
+                        val list = key()
+                        assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
+                        while (nextElement()) {
+                            var from = Tile.EMPTY
+                            var to = Tile.EMPTY
+                            var cost = 0
+                            val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
+                            val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                            while (nextEntry()) {
+                                when (val key = key()) {
+                                    "from" -> from = readTile()
+                                    "to" -> to = readTile()
+                                    "cost" -> cost = int()
+                                    "actions" -> actions(actions)
+                                    "requires" -> requirements(requirements)
+                                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                                 }
                             }
+                            val debug = if (actions.isEmpty() && requirements.isEmpty()) "" else exception()
+                            edges.add(Edge(from, to, cost, actions, requirements, debug))
                         }
                     }
                 }
-                for (shortcut in shortcuts) {
-                    builder.add(shortcut)
-                }
-                builder.edgeCount
             }
-//            builder.print()
-            return builder.build()
+            return edges
         }
 
         fun ConfigReader.readTile(): Tile {
