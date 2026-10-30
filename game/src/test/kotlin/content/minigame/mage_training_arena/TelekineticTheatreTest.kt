@@ -72,6 +72,24 @@ internal class TelekineticTheatreTest : WorldTest() {
     }
 
     @Test
+    fun `Casting from a corner wastes the runes without moving the statue`() {
+        val player = enter("mta-maze-corner")
+        player.inventory.add("law_rune", 5)
+        player.inventory.add("air_rune", 5)
+        player.tele(local(player, Tile(9, 51)))
+        tick(2)
+        val before = theatre.statue(player)!!.tile
+
+        player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", theatre.statue(player)!!)
+        tick(15)
+
+        assertEquals(before, theatre.statue(player)!!.tile)
+        assertEquals(4, player.inventory.count("law_rune"))
+        assertEquals(43.0, player.experience.get(Skill.Magic))
+        assertTrue(player.containsMessage("Invalid move!"))
+    }
+
+    @Test
     fun `Reaching the exit square awards points and frees the guardian`() {
         val player = enter("mta-maze-win")
         player.inventory.add("law_rune", 5)

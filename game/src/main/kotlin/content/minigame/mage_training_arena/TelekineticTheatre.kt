@@ -301,19 +301,26 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
     private fun local(player: Player, offset: Tile): Tile = region.tile.add(offset).add(player.instanceOffset())
 
     /**
-     * The side of the maze the player stands on decides where the statue travels.
+     * The side of the maze the player stands on decides where the statue travels; corners are on two sides so don't move it.
      */
     private fun direction(player: Player, maze: RowDefinition): Direction? {
         val origin = region.tile.add(player.instanceOffset())
         val x = player.tile.x - origin.x
         val y = player.tile.y - origin.y
-        return when {
+        val vertical = when {
             y >= maze.int("north") -> Direction.NORTH
             y <= maze.int("south") -> Direction.SOUTH
+            else -> null
+        }
+        val horizontal = when {
             x <= maze.int("west") -> Direction.WEST
             x >= maze.int("east") -> Direction.EAST
             else -> null
         }
+        if (vertical != null && horizontal != null) {
+            return null
+        }
+        return vertical ?: horizontal
     }
 
     private fun refreshSolved(player: Player) {
