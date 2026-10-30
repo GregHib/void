@@ -2,8 +2,9 @@
 type = "all"
 drops = [
   { id = "bones" },
-  { table = "black_knight_secondary" },
+  { table = "black_knight_own_secondary" },
   { table = "black_knight_charms", members = true },
+  { table = "black_knight_tertiary" },
 ]
 
 [black_knight_secondary]
@@ -43,4 +44,48 @@ drops = [
   { id = "green_charm", chance = 3380 },
   { id = "crimson_charm", chance = 1690 },
   { id = "blue_charm", chance = 1690 },
+]
+
+[black_knight_own_secondary]
+roll = 4096
+drops = [
+  { id = "iron_sword", chance = 128 },
+  { id = "iron_full_helm", chance = 64 },
+  { id = "steel_mace", chance = 32 },
+  { id = "mithril_arrow", amount = 3, chance = 128 },
+  { id = "body_rune", amount = 9, chance = 96 },
+  { id = "chaos_rune", amount = 4, chance = 11 },
+  { id = "chaos_rune", amount = 6, chance = 96 },
+  { id = "earth_rune", amount = 10, chance = 96 },
+  { id = "death_rune", amount = 2, chance = 64 },
+  { id = "law_rune", amount = 3, chance = 64 },
+  { id = "law_rune", amount = 4, chance = 11 },
+  { id = "cosmic_rune", amount = 7, chance = 32 },
+  { id = "mind_rune", amount = 2, chance = 32 },
+  { id = "mind_rune", amount = 9, chance = 11 },
+  { table = "herb_drop_table", chance = 96, members = true },
+  { table = "allotment_seed_drop_table", chance = 102, members = true },
+  { id = "steel_bar", chance = 192 },
+  { id = "tin_ore", chance = 32 },
+  { id = "pot_of_flour", chance = 32 },
+  { id = "coins", amount = 35, chance = 672 },
+  { id = "coins", amount = 5, chance = 576, members = false },
+  { id = "coins", amount = 10, chance = 96, members = false },
+  { id = "coins", amount = 6, chance = 352 },
+  { id = "coins", amount = 58, chance = 320 },
+  { id = "coins", amount = 12, chance = 288 },
+  { id = "coins", amount = 80, chance = 64 },
+  { id = "coins", chance = 448 },
+  { id = "bread", chance = 32 },
+  { table = "gem_drop_table", chance = 96 },
+  { id = "nature_rune", amount = 6 },
+  { id = "black_full_helm", chance = 11 },
+  { id = "black_2h_sword", chance = 11 },
+  { id = "black_sword", chance = 6 },
+]
+
+[black_knight_tertiary]
+roll = 5000
+drops = [
+  { id = "starved_ancient_effigy", chance = 29 },
 ]

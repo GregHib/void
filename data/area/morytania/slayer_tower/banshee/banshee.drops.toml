@@ -4,30 +4,33 @@ drops = [
     { table = "banshee_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
     { table = "banshee_charms" },
+    { table = "banshee_tertiary" },
 ]
 
 [banshee_secondary]
-roll = 512
+roll = 256
 drops = [
-    { id = "iron_mace", chance = 2 },
-    { id = "iron_dagger", chance = 2 },
-    { id = "iron_kiteshield" },
-    { id = "mystic_gloves_dark" },
-    { id = "air_rune", amount = 3, chance = 12 },
-    { id = "cosmic_rune", amount = 2, chance = 12 },
-    { id = "chaos_rune", amount = 3, chance = 8 },
-    { id = "fire_rune", amount = 7, chance = 4 },
-    { id = "chaos_rune", amount = 7, chance = 4 },
-    { table = "herb_drop_table", chance = 136 },
-    { id = "pure_essence_noted", amount = 13, chance = 88 },
-    { id = "iron_ore", chance = 4 },
-    { id = "coins", amount = 13, chance = 40 },
-    { id = "coins", amount = 26, chance = 32 },
-    { id = "coins", amount = 35, chance = 32 },
-    { id = "fishing_bait", amount = 15, chance = 88 },
-    { id = "fishing_bait", amount = 7, chance = 20 },
-    { id = "eye_of_newt", chance = 4 },
-    { table = "gem_drop_table", chance = 8 },
+    { id = "iron_mace", chance = 4 },
+    { id = "iron_dagger", chance = 4 },
+    { id = "iron_kiteshield", chance = 2 },
+    { id = "air_rune", amount = 3, chance = 6 },
+    { id = "cosmic_rune", amount = 2, chance = 6 },
+    { id = "chaos_rune", amount = 3, chance = 4 },
+    { id = "chaos_rune", amount = 6, chance = 3 },
+    { id = "fire_rune", amount = 6, chance = 4 },
+    { id = "fire_rune", amount = 7, chance = 2 },
+    { id = "chaos_rune", amount = 7, chance = 2 },
+    { table = "herb_drop_table", chance = 66 },
+    { id = "pure_essence_noted", amount = 13, chance = 42 },
+    { id = "iron_ore", chance = 2 },
+    { id = "coins", amount = 26, chance = 16 },
+    { id = "coins", amount = 35, chance = 16 },
+    { id = "fishing_bait", amount = 15, chance = 8 },
+    { id = "fishing_bait", amount = 7, chance = 10 },
+    { id = "eye_of_newt", chance = 2 },
+    { table = "gem_drop_table", chance = 4 },
+    { id = "adamant_kiteshield" },
+    { id = "mystic_gloves_light" },
 ]
 
 [banshee_charms]
@@ -37,4 +40,12 @@ drops = [
     { id = "green_charm", chance = 70 },
     { id = "crimson_charm", chance = 10 },
     { id = "blue_charm", chance = 2 },
+]
+
+[banshee_tertiary]
+roll = 5000
+drops = [
+    { id = "mystic_gloves_dark", chance = 10 },
+    { id = "starved_ancient_effigy", chance = 10 },
+    { id = "banshee_champions_scroll", lacks = "banshee_champions_scroll" },
 ]

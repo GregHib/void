@@ -3,7 +3,7 @@ type = "all"
 drops = [
     { table = "big_bones" },
     { table = "lizard_unique" },
-    { table = "lizard_secondary" },
+    { table = "lizard_own_secondary" },
     { table = "lizard_tertiary" },
 ]
 
@@ -39,6 +39,7 @@ roll = 10000
 drops = [
     { id = "long_bone", chance = 25 },
     { id = "curved_bone", chance = 2 },
+    { id = "desert_lizard_bone", chance = 2500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]
 
 [lizard_herbs]
@@ -66,7 +67,8 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "lizard_unique" },
-    { table = "lizard_secondary" },
+    { table = "small_lizard_secondary" },
+    { table = "small_lizard_tertiary" },
 ]
 
 [desert_lizard_drop_table]
@@ -74,7 +76,7 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "lizard_unique" },
-    { table = "lizard_secondary" },
+    { table = "desert_lizard_secondary" },
     { table = "desert_lizard_tertiary" },
 ]
 
@@ -84,4 +86,83 @@ drops = [
     { id = "desert_lizard_bone", chance = 2500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "long_bone", chance = 25 },
     { id = "curved_bone", chance = 2 },
+]
+
+[desert_lizard_secondary]
+roll = 128
+drops = [
+    { id = "fire_rune", min = 5, max = 32, chance = 8 },
+    { id = "nature_rune", amount = 5, chance = 4 },
+    { id = "copper_ore", chance = 3 },
+    { id = "silver_bar", chance = 2 },
+    { id = "silver_ore", chance = 3 },
+    { id = "tin_ore", chance = 4 },
+    { id = "mithril_ore" },
+    { id = "kebab", chance = 13 },
+    { id = "waterskin_0", amount = 2, chance = 8 },
+    { table = "gem_drop_table", chance = 6 },
+    { id = "iron_ore_noted", chance = 8 },
+    { id = "coal_noted", chance = 4 },
+    { id = "knife", chance = 10 },
+    { id = "waterskin_1", chance = 4 },
+    { id = "waterskin_2" },
+    { id = "waterskin_3" },
+    { id = "waterskin_4", amount = 2 },
+    { table = "herb_drop_table", chance = 10 },
+    { table = "allotment_seed_drop_table", chance = 15 },
+]
+
+[lizard_own_secondary]
+roll = 128
+drops = [
+    { id = "fire_rune", min = 5, max = 32, chance = 8 },
+    { id = "nature_rune", amount = 5, chance = 4 },
+    { id = "copper_ore", chance = 3 },
+    { id = "silver_bar", chance = 2 },
+    { id = "silver_ore", chance = 3 },
+    { id = "tin_ore", chance = 4 },
+    { id = "mithril_ore" },
+    { id = "kebab", chance = 13 },
+    { id = "waterskin_0", amount = 2, chance = 4 },
+    { table = "gem_drop_table", chance = 6 },
+    { id = "coal_noted", chance = 4 },
+    { id = "iron_ore_noted", chance = 8 },
+    { id = "knife", chance = 10 },
+    { id = "waterskin_1", chance = 4 },
+    { id = "waterskin_2" },
+    { id = "waterskin_3" },
+    { id = "waterskin_4", amount = 2 },
+    { table = "herb_drop_table", chance = 10 },
+    { table = "allotment_seed_drop_table", chance = 15 },
+]
+
+[small_lizard_secondary]
+roll = 512
+drops = [
+    { id = "fire_rune", min = 5, max = 32, chance = 16 },
+    { id = "nature_rune", amount = 5, chance = 16 },
+    { id = "copper_ore", chance = 12 },
+    { id = "silver_bar", chance = 8 },
+    { id = "silver_ore", chance = 12 },
+    { id = "tin_ore", chance = 16 },
+    { id = "mithril_ore", chance = 4 },
+    { id = "kebab", chance = 52 },
+    { id = "waterskin_0", amount = 2, chance = 16 },
+    { table = "gem_drop_table", chance = 24 },
+    { id = "coal_noted", chance = 16 },
+    { id = "iron_ore_noted", chance = 32 },
+    { id = "knife", chance = 40 },
+    { id = "waterskin_1", chance = 16 },
+    { id = "waterskin_2", chance = 4 },
+    { id = "waterskin_3", chance = 4 },
+    { id = "waterskin_4", amount = 2, chance = 4 },
+    { id = "long_bone" },
+    { table = "herb_drop_table", chance = 40 },
+    { table = "allotment_seed_drop_table", chance = 60 },
+]
+
+[small_lizard_tertiary]
+roll = 5000
+drops = [
+    { id = "desert_lizard_bone", chance = 312, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]
