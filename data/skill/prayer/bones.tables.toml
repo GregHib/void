@@ -10,6 +10,9 @@ bonemeal = "skeletal_monkey_bonemeal"
 xp = 45
 bonemeal = "bonemeal_bones"
 
+[.bones_dungeoneering]
+xp = 45
+
 [.burnt_bones]
 xp = 45
 bonemeal = "burnt_bonemeal"
@@ -37,6 +40,9 @@ bonemeal = "large_zombie_monkey_bonemeal"
 [.big_bones]
 xp = 150
 bonemeal = "big_bonemeal"
+
+[.big_bones_dungeoneering]
+xp = 150
 
 [.jogre_bones]
 xp = 150
@@ -84,6 +90,9 @@ bonemeal = "wyvern_bonemeal"
 xp = 720
 bonemeal = "dragon_bonemeal"
 
+[.dragon_bones_dungeoneering]
+xp = 720
+
 [.fayrg_bones]
 xp = 840
 bonemeal = "fayrg_bonemeal"
@@ -106,7 +115,6 @@ bonemeal = "ourg_bonemeal"
 
 [.frost_dragon_bones_dungeoneering]
 xp = 1800
-bonemeal = "frost_dragon_bonemeal"
 
 [.frost_dragon_bones]
 xp = 1800
