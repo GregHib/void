@@ -28,7 +28,9 @@ import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.RegistrationServer
 import world.gregs.voidps.network.login.protocol.decoders
+import world.gregs.voidps.network.login.registration.RegistrationLimiter
 import world.gregs.voidps.web.WebServer
+import world.gregs.voidps.web.account.AccountService
 import java.nio.file.Paths
 import java.util.*
 import kotlin.concurrent.thread
@@ -42,6 +44,7 @@ import kotlin.system.exitProcess
 object Main {
 
     private val logger = InlineLogger()
+    private const val MIN_API_KEY_LENGTH = 32
     lateinit var server: GameServer
         private set
 
@@ -171,17 +174,31 @@ object Main {
     @Suppress("HttpUrlsUsage")
     private fun webServer(port: Int, cache: Cache): Job? {
         val path = Paths.get(Settings["web.client.path", ""])
-        if (!path.exists()) {
-            logger.error { "No webclient file found at path: $path" }
+        val webclient = if (path.exists()) {
+            path
+        } else {
+            logger.warn { "No webclient file found at path: $path; webclient disabled." }
+            null
+        }
+        val apiKey = if (Settings["web.api.enabled", false]) Settings["web.api.token", ""] else null
+        if (apiKey != null && apiKey.length < MIN_API_KEY_LENGTH) {
+            logger.error { "web.api.token must be at least $MIN_API_KEY_LENGTH characters when web.api.enabled is true, generate one with `openssl rand -hex 32`." }
             return null
         }
+        val accounts = apiKey?.let { accountService() }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>(), cache)
+        val webServer = WebServer(webclient, webPort, address, port, get<Storage>(), get<QuestDefinitions>(), cache, apiKey, accounts)
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }
             webServer.start()
         }
+    }
+
+    private fun accountService(): AccountService {
+        val limit = Settings["web.api.registration.maxPerIP", 3]
+        val minutes = Settings["web.api.registration.windowMinutes", 60L]
+        return AccountService(get(), get(), get(), get(), RegistrationLimiter(limit, minutes * 60_000L))
     }
 }

@@ -66,6 +66,12 @@ class AccountDefinitions(
 
     fun get(displayName: String) = definitions[displayName.lowercase()]
 
+    /**
+     * Whether [name] is used as a display name or account name by an account other than [except]
+     * Display names can't match other accounts' names so either can identify an account without ambiguity
+     */
+    fun taken(name: String, except: String? = null): Boolean = listOfNotNull(get(name), getByAccount(name)).any { except == null || !it.accountName.equals(except, ignoreCase = true) }
+
     fun getValue(displayName: String) = definitions.getValue(displayName.lowercase())
 
     fun load(storage: Storage = get()): AccountDefinitions {

@@ -7,8 +7,12 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.createRouteScopedPlugin
 import io.ktor.server.application.install
 import io.ktor.server.application.log
+import io.ktor.server.auth.Authentication
+import io.ktor.server.auth.UserIdPrincipal
+import io.ktor.server.auth.bearer
 import io.ktor.server.plugins.BadRequestException
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.origin
 import io.ktor.server.plugins.statuspages.StatusPages
 import io.ktor.server.response.header
 import io.ktor.server.response.respond
@@ -21,6 +25,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
+import world.gregs.voidps.web.account.AccountService
 import world.gregs.voidps.web.api.ApiException
 import world.gregs.voidps.web.api.model.ErrorBody
 import world.gregs.voidps.web.api.model.ErrorResponse
@@ -28,6 +33,7 @@ import world.gregs.voidps.web.avatar.AvatarService
 import world.gregs.voidps.web.exchange.ExchangeService
 import world.gregs.voidps.web.hiscores.HiscoresService
 import java.io.File
+import java.security.MessageDigest
 
 /**
  * The JSON dialect the API speaks. Nulls are written rather than omitted because several fields
@@ -41,12 +47,35 @@ val apiJson: Json = Json {
     ignoreUnknownKeys = true
 }
 
-fun Application.apiPlugins(json: Json = apiJson) {
+/**
+ * @param apiKey shared secret trusted backends send as `Authorization: Bearer <key>` to use [accountRoutes], null to disable
+ */
+fun Application.apiPlugins(json: Json = apiJson, apiKey: String? = null) {
     install(ContentNegotiation) {
         json(json)
     }
+    if (apiKey != null) {
+        val expected = apiKey.toByteArray()
+        val logger = log
+        install(Authentication) {
+            bearer(API_KEY_AUTH) {
+                authenticate { credential ->
+                    if (MessageDigest.isEqual(expected, credential.token.toByteArray())) {
+                        UserIdPrincipal(API_KEY_AUTH)
+                    } else {
+                        logger.warn("Rejected api request with invalid key from ${request.origin.remoteHost}")
+                        null
+                    }
+                }
+            }
+        }
+    }
     install(SSE)
     install(StatusPages) {
+        // Authentication challenges respond without a body, give them the same envelope as every other error
+        status(HttpStatusCode.Unauthorized) { call, status ->
+            call.respond(status, ErrorResponse(ErrorBody("unauthorized", "Authentication required")))
+        }
         exception<BadRequestException> { call, cause ->
             val message = cause.message ?: "Malformed request"
             call.respond(HttpStatusCode.BadRequest, ErrorResponse(ErrorBody("bad_request", message)))
@@ -76,9 +105,13 @@ private fun ApiException.status(): HttpStatusCode = when (this) {
     is ApiException.Conflict -> HttpStatusCode.Conflict
     is ApiException.Validation -> HttpStatusCode.UnprocessableEntity
     is ApiException.RateLimited -> HttpStatusCode.TooManyRequests
+    is ApiException.Unavailable -> HttpStatusCode.ServiceUnavailable
 }
 
 const val API_PATH = "/api/v1"
+
+/** Authentication provider for the shared key given to [apiPlugins]. */
+const val API_KEY_AUTH = "api-key"
 
 /**
  * Lets any origin read every response under this route, errors included. The site reads
@@ -98,8 +131,9 @@ private val AllowAnyOrigin = createRouteScopedPlugin("AllowAnyOrigin") {
 /**
  * Mounts every route under [API_PATH]. Public routes sit at the top level; `/account` and `/dev`
  * wrap themselves in the authentication providers registered by [apiPlugins].
+ * @param accounts enables the shared key protected [accountRoutes], null to disable
  */
-fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, cache: Cache) {
+fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, cache: Cache, accounts: AccountService? = null) {
     val hiscores = HiscoresService(storage, questDefinitions)
     val exchange = ExchangeService(storage)
 //    val dev = DevService(storage, hiscores)
@@ -116,5 +150,8 @@ fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, cache: Cac
 //        devRoutes(dev)
         avatarRoutes(avatars)
         worldsRoutes()
+        if (accounts != null) {
+            accountRoutes(accounts)
+        }
     }
 }

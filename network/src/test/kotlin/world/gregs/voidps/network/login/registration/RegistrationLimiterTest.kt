@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.login.registration
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -42,6 +43,19 @@ class RegistrationLimiterTest {
         assertFalse(limiter.allow(address))
         now = 1000L
         assertTrue(limiter.allow(address))
+    }
+
+    @Test
+    fun `Remaining time counts down to the end of the window`() {
+        val limiter = limiter()
+        val address = "123.456.789"
+        assertEquals(0L, limiter.remaining(address))
+        limiter.allow(address)
+        assertEquals(1000L, limiter.remaining(address))
+        now = 750L
+        assertEquals(250L, limiter.remaining(address))
+        now = 2000L
+        assertEquals(0L, limiter.remaining(address))
     }
 
     @Test

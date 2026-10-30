@@ -46,6 +46,7 @@ fun engineModule() = module {
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     single(createdAtStart = true) { AccountDefinitions().load() }
+    single { AccountStorage(OfflineStorage(get()), get(), get(), Contexts.Game) }
     // Map
     single { DynamicZones(get()) }
     // Network

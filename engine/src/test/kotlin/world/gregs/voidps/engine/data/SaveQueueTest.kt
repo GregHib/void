@@ -229,6 +229,25 @@ internal class SaveQueueTest : KoinMock() {
         assertTrue(written.contains("logged_out_player"), "Shutdown dropped a save left pending by a logout")
     }
 
+    @Test
+    fun `Pending save can be edited before it's written`() {
+        val written = CopyOnWriteArrayList<PlayerSave>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                written.addAll(accounts)
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "player", passwordHash = "old"))
+
+        assertEquals("new", queue.edit("player") { it.copy(password = "new") }?.password)
+        assertEquals(null, queue.edit("other") { it.copy(password = "new") })
+
+        queue.run()
+        waitFor("pending to drain") { queue.empty() }
+        assertEquals("new", written.single().password)
+    }
+
     private fun waitFor(description: String, condition: () -> Boolean) {
         val deadline = System.currentTimeMillis() + 5000
         while (!condition()) {

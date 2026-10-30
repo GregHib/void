@@ -30,6 +30,14 @@ class RegistrationLimiter(
         return window!!.count <= limit
     }
 
+    /**
+     * Milliseconds until [address]'s current window ends and it may try again, zero when it has no window
+     */
+    fun remaining(address: String): Long {
+        val window = attempts[address] ?: return 0
+        return (windowMillis - (clock() - window.start)).coerceAtLeast(0)
+    }
+
     fun clear() {
         attempts.clear()
     }
