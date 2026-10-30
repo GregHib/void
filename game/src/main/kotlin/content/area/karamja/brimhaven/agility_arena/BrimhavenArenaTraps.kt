@@ -147,7 +147,7 @@ class BrimhavenArenaTraps : Script {
         delay(2)
         anim("dart_trap_dodge", delay = 20)
         delay(5)
-        exactMoveDelay(trap.add(direction.delta.x * 2, direction.delta.y * 2), 60, direction)
+        walkOverDelay(trap.add(direction.delta.x * 2, direction.delta.y * 2))
         arenaExp(30.0)
         delay(2)
         clearCamera()
