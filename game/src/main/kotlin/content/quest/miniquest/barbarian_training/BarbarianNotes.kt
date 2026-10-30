@@ -24,17 +24,20 @@ class BarbarianNotes(val books: Books) : Script {
             }
         }
 
-        // TODO confirm the layout, follows 2009scape with one page per side
         books.generate("my_notes", ::pages)
     }
 
+    /**
+     * One copied page per side, in page order, so the notes read without gaps
+     */
     fun pages(player: Player): List<List<String>> {
         val notes = books.get("my_notes")
-        return notes.indices.chunked(2).map { sides ->
-            sides.flatMap { index ->
-                val lines = if (player.containsVarbit("barbarian_notes", "ancient_page_${index + 1}")) notes[index] else emptyList()
-                lines + List(LINES_PER_SIDE - lines.size) { "" }
-            }
+        val copied = notes.filterIndexed { index, _ -> player.containsVarbit("barbarian_notes", "ancient_page_${index + 1}") }
+        if (copied.isEmpty()) {
+            return listOf(emptyList())
+        }
+        return copied.chunked(2).map { sides ->
+            sides.flatMap { lines -> lines + List(LINES_PER_SIDE - lines.size) { "" } }
         }
     }
 
