@@ -57,7 +57,8 @@ class PyreShips(val drops: DropTables, val stepValidator: StepValidator) : Scrip
                 message("You need a hatchet in order to do this.")
                 return@objectOperate
             }
-            if (!inventory.contains("tinderbox") && !BOWS.any { carriesItem(it) }) {
+            val bow = Tables.get("firemaking_bows").rows().firstOrNull { carriesItem(it.rowId) }
+            if (!inventory.contains("tinderbox") && bow == null) {
                 // TODO proper message
                 message("You need a tinderbox or a bow in order to do this.")
                 return@objectOperate
@@ -80,18 +81,21 @@ class PyreShips(val drops: DropTables, val stepValidator: StepValidator) : Scrip
                 return@objectOperate
             }
             face(target)
-            // Each carving stage reverts by itself if the player stops part way through
+            // Each stage reverts by itself if the player stops part way through
             // Object timers run before players so the previous stage has reverted when the next is placed
             val carve = "carve_pyre_${hatchet.id.removeSuffix("_hatchet")}"
             station.replace("pyre_carved_log", ticks = CARVE_TICKS)
             anim(carve)
             delay(CARVE_TICKS)
             station.replace("pyre_carved_log_2", ticks = CARVE_TICKS)
-            delay(2)
             anim(carve)
-            delay(2)
-            station.replace("pyre_boat", ticks = CARVE_TICKS)
             delay(CARVE_TICKS)
+            station.replace("pyre_boat", ticks = BONES_TICKS)
+            delay(BONES_TICKS)
+            station.replace("pyre_boat_bones", ticks = LIGHT_TICKS)
+            anim(if (inventory.contains("tinderbox") || bow == null) "light_fire" else bow.string("anim"))
+            delay(LIGHT_TICKS)
+            clearAnim()
             inventory.transaction {
                 remove(log.rowId)
                 remove(bones)
@@ -140,17 +144,15 @@ class PyreShips(val drops: DropTables, val stepValidator: StepValidator) : Scrip
     }
 
     /**
-     * The pyre ship burns, launches and sinks in place of the boat [station] before it reverts
+     * The lit pyre ship launches and sinks in place of the boat [station] before it reverts
      */
     fun burn(station: GameObject) {
-        station.replace("pyre_boat_bones", ticks = 4) {
-            val lit = station.replace("pyre_boat_lit", ticks = 8) {
-                // The boat has sunk 30 cycles into the 57 cycle sink, reverting before it ends stops the boat reappearing
-                val burning = station.replace("pyre_boat_burning", ticks = 4)
-                animate(burning, "pyre_boat_sink", 2)
-            }
-            animate(lit, "pyre_boat_launch", 3)
+        val lit = station.replace("pyre_boat_lit", ticks = 8) {
+            // The boat has sunk 30 cycles into the 57 cycle sink, reverting before it ends stops the boat reappearing
+            val burning = station.replace("pyre_boat_burning", ticks = 4)
+            animate(burning, "pyre_boat_sink", 2)
         }
+        animate(lit, "pyre_boat_launch", 3)
     }
 
     /**
@@ -168,8 +170,9 @@ class PyreShips(val drops: DropTables, val stepValidator: StepValidator) : Scrip
     companion object {
         const val MAX_BLESSED_BONES = 200
 
-        // TODO confirm the stage timings, carving follows 2009scape and the launch and sink their animation lengths
-        private const val CARVE_TICKS = 4
-        val BOWS = listOf("shortbow", "longbow", "oak_shortbow", "oak_longbow", "willow_shortbow", "willow_longbow", "maple_shortbow", "maple_longbow", "yew_shortbow", "yew_longbow", "magic_shortbow", "magic_longbow", "training_bow", "seercull", "sacred_clay_bow")
+        // TODO confirm the stage timings, carving and the launch and sink follow their animation lengths
+        private const val CARVE_TICKS = 5
+        private const val BONES_TICKS = 2
+        private const val LIGHT_TICKS = 4
     }
 }

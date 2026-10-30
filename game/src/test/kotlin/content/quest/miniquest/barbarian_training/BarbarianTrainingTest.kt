@@ -262,7 +262,7 @@ internal class BarbarianTrainingTest : WorldTest() {
         val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
 
         player.objectOption(site, "Construct")
-        tick(14)
+        tick(17)
 
         assertFalse(player.inventory.contains("chewed_bones"))
         assertEquals(15.0, player.experience.get(Skill.Crafting))
@@ -292,7 +292,7 @@ internal class BarbarianTrainingTest : WorldTest() {
         val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
 
         player.objectOption(site, "Construct")
-        tick(14)
+        tick(18)
 
         assertFalse(player.inventory.contains("mangled_bones"))
         assertEquals(BarbarianTraining.STARTED, player.barbarianTraining("pyre"))
