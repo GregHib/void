@@ -45,7 +45,7 @@ drops = [
 type = "all"
 drops = [
     { id = "bones" },
-    { table = "black_guard_low_secondary" },
+    { table = "black_guard_high_own_secondary" },
     { table = "black_guard_tertiary" },
 ]
 
@@ -80,24 +80,64 @@ drops = [
 [trade_floor_guard_drop_table]
 type = "all"
 drops = [
+    { id = "bones" },
     { table = "trade_floor_guard_secondary" },
     { table = "easy_clue_scroll", roll = 16 },
+    { table = "trade_floor_guard_tertiary" },
 ]
 
 [trade_floor_guard_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "bones", chance = 64 },
-    { id = "bronze_warhammer", chance = 64 },
-    { id = "iron_warhammer", chance = 64 },
-    { id = "steel_warhammer", chance = 64 },
-    { id = "black_warhammer", chance = 64 },
-    { id = "coins", chance = 64 },
-    { id = "iron_ore", chance = 64 },
-    { id = "tin_ore", chance = 64 },
-    { id = "grimy_guam", chance = 64 },
-    { id = "cake", chance = 64 },
-    { id = "keg_of_beer", chance = 64 },
-    { id = "bucket_of_water", chance = 64 },
-    { id = "nature_talisman", chance = 64 },
+    { id = "bronze_warhammer", chance = 4 },
+    { id = "iron_warhammer", chance = 4 },
+    { id = "steel_warhammer", chance = 4 },
+    { id = "black_warhammer", chance = 4 },
+    { id = "coins", amount = 35, chance = 8 },
+    { id = "coins", amount = 46, chance = 8 },
+    { id = "coins", amount = 57, chance = 8 },
+    { id = "iron_ore", amount = 2, chance = 8 },
+    { id = "tin_ore", chance = 8 },
+    { id = "grimy_guam", chance = 4 },
+    { id = "cake", chance = 8 },
+    { id = "keg_of_beer", chance = 8 },
+    { id = "bucket_of_water", chance = 8 },
+    { id = "grimy_cadantine", chance = 4 },
+]
+
+[black_guard_high_own_secondary]
+roll = 256
+drops = [
+    { id = "bronze_pickaxe", chance = 7 },
+    { id = "bronze_med_helm", chance = 13 },
+    { id = "bronze_battleaxe", chance = 7 },
+    { id = "iron_battleaxe", chance = 7 },
+    { id = "bronze_bolts", amount = 6, chance = 7 },
+    { id = "chaos_rune", amount = 2, chance = 7 },
+    { id = "nature_rune", amount = 2, chance = 7 },
+    { id = "coins", amount = 15, chance = 86 },
+    { id = "coins", amount = 17, chance = 10 },
+    { id = "coins", amount = 22, chance = 18 },
+    { id = "coins", amount = 27, chance = 6 },
+    { id = "hammer", chance = 7 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "iron_ore", chance = 7 },
+    { id = "tin_ore", chance = 2 },
+    { id = "copper_ore", chance = 3 },
+    { id = "iron_bar", chance = 7 },
+    { id = "coal", chance = 7 },
+    { id = "bronze_warhammer", chance = 6 },
+    { id = "black_warhammer", chance = 4 },
+    { id = "uncut_sapphire", chance = 7 },
+    { id = "uncut_emerald", chance = 7 },
+    { id = "uncut_ruby", chance = 7 },
+    { id = "uncut_diamond" },
+    { id = "loop_half_of_a_key" },
+    { id = "keg_of_beer", chance = 8 },
+]
+
+[trade_floor_guard_tertiary]
+roll = 5000
+drops = [
+    { table = "medium_clue_scroll", chance = 10 },
 ]

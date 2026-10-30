@@ -27,28 +27,28 @@ drops = [
 ]
 
 [ghast_secondary]
-roll = 128
+roll = 512
 drops = [
-    { id = "iron_mace", chance = 3 },
-    { id = "iron_dagger", chance = 2 },
-    { id = "bronze_kiteshield" },
-    { id = "body_rune", amount = 3, chance = 2 },
-    { id = "air_rune", amount = 4, chance = 3 },
-    { id = "chaos_rune", amount = 4 },
-    { id = "cosmic_rune", amount = 2 },
-    { id = "fire_rune", amount = 7 },
-    { table = "herb_drop_table", chance = 33 },
-    { id = "coins", amount = 10, chance = 10 },
-    { id = "coins", amount = 18, chance = 21 },
-    { id = "coins", amount = 26, chance = 8 },
-    { id = "coins", amount = 35, chance = 6 },
-    { id = "coins", chance = 2 },
-    { id = "fishing_bait", amount = 7, chance = 26 },
-    { id = "nothing", amount = 0, chance = 3 },
-    { id = "tinderbox", chance = 2 },
-    { id = "eye_of_newt" },
-    { id = "tin_ore" },
-    { table = "gem_drop_table" },
+    { id = "iron_mace", chance = 12 },
+    { id = "iron_dagger", chance = 8 },
+    { id = "bronze_kiteshield", chance = 4 },
+    { id = "body_rune", chance = 8 },
+    { id = "air_rune", chance = 12 },
+    { id = "chaos_rune", chance = 4 },
+    { id = "cosmic_rune", chance = 4 },
+    { id = "fire_rune", chance = 4 },
+    { table = "herb_drop_table", chance = 132 },
+    { id = "coins", amount = 10, chance = 40 },
+    { id = "coins", amount = 18, chance = 84 },
+    { id = "coins", amount = 26, chance = 32 },
+    { id = "coins", amount = 35, chance = 24 },
+    { id = "coins", chance = 8 },
+    { id = "fishing_bait", chance = 104 },
+    { id = "tinderbox", chance = 8 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "tin_ore", chance = 4 },
+    { table = "gem_drop_table", chance = 4 },
+    { id = "summer_pie" },
 ]
 
 [myre_blamish_snail_drop_table]

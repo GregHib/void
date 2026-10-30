@@ -1,34 +1,43 @@
 [scabaras_lancer_drop_table]
 type = "all"
 drops = [
+    { id = "bones" },
     { table = "scabaras_lancer_secondary" },
     { table = "easy_clue_scroll", roll = 16 },
+    { table = "scabaras_lancer_tertiary" },
 ]
 
 [scabaras_lancer_secondary]
-roll = 1498
+roll = 384
 drops = [
-    { id = "bones", chance = 64 },
-    { id = "rune_battleaxe", chance = 64 },
-    { id = "dragon_spear", chance = 64 },
-    { id = "battlestaff", chance = 64 },
-    { id = "dragon_med_helm", chance = 64 },
-    { id = "adamant_kiteshield", chance = 64 },
-    { id = "blood_rune", amount = 7, chance = 64 },
-    { id = "lava_rune", chance = 64 },
-    { id = "coins", chance = 64 },
-    { id = "rune_arrow", amount = 9, chance = 64 },
-    { id = "adamant_arrow", chance = 64 },
-    { id = "swordfish", chance = 64 },
-    { id = "sapphire", chance = 64 },
-    { id = "uncut_emerald", chance = 64 },
-    { id = "emerald", min = 1, max = 2, chance = 64 },
-    { id = "ruby", chance = 64 },
-    { id = "raw_swordfish", chance = 64 },
-    { id = "herb", min = 1, max = 2, chance = 64 },
-    { id = "desert_goat_horn", amount = 3, chance = 64 },
-    { id = "marrentill_tar", chance = 64 },
-    { id = "cactus_seed", chance = 64 },
-    { id = "court_summons", chance = 64 },
-    { id = "rune_warhammer", chance = 6 },
+    { id = "battlestaff", chance = 6 },
+    { id = "adamant_kiteshield", chance = 2 },
+    { id = "blood_rune", amount = 7, chance = 12 },
+    { id = "lava_rune", min = 20, max = 37, chance = 24 },
+    { id = "coins", amount = 15, chance = 30 },
+    { id = "coins", amount = 29, chance = 18 },
+    { id = "coins", amount = 60, chance = 126 },
+    { id = "coins", amount = 300, chance = 7 },
+    { id = "rune_arrow", amount = 9, chance = 6 },
+    { id = "adamant_arrow", amount = 24, chance = 12 },
+    { id = "swordfish", chance = 12 },
+    { id = "sapphire", chance = 12 },
+    { id = "emerald", min = 1, max = 2, chance = 9 },
+    { id = "ruby", chance = 2 },
+    { id = "raw_swordfish", chance = 12 },
+    { id = "herb", min = 1, max = 2, chance = 16 },
+    { id = "desert_goat_horn", amount = 3, chance = 6 },
+    { id = "marrentill_tar", chance = 3 },
+    { id = "cactus_seed" },
+    { id = "court_summons", chance = 2 },
+    { id = "rune_warhammer", chance = 2 },
+    { id = "waterskin_4", chance = 3 },
+    { table = "rare_drop_table", chance = 6 },
+]
+
+[scabaras_lancer_tertiary]
+roll = 5000
+drops = [
+    { table = "hard_clue_scroll", chance = 29 },
+    { id = "scabarite_notes_1", chance = 176 },
 ]
