@@ -63,12 +63,23 @@ class MazeTest : WorldTest() {
         tick(10)
         assertNotNull(player.instance())
 
-        tick(305)
+        tick(505)
 
         assertNull(player.instance())
         assertNull(player.get<String>("random_event"))
         assertEquals(0, player.inventory.count("coins"))
         assertTrue(player.tile.x in 3221..3223 && player.tile.y in 3217..3219, "Expected exile to Lumbridge, was at ${player.tile}")
+    }
+
+    @Test
+    fun `Maze timer decays once every five game ticks`() {
+        val player = createPlayer(Tile(3221, 3218), "maze_timer_rate")
+        RandomEvents.start(player, "maze")
+        tick(10)
+
+        val initial = player.get("maze_timer_bar", 0)
+        tick(5)
+        assertEquals(initial - 1, player["maze_timer_bar"])
     }
 
     @Test
