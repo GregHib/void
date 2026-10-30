@@ -5,6 +5,7 @@ import java.awt.GraphicsEnvironment
 import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -12,10 +13,7 @@ import java.net.http.HttpResponse
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardCopyOption
-import java.security.DigestInputStream
-import java.security.MessageDigest
 import java.time.Duration
-import java.util.HexFormat
 import java.util.Properties
 import java.util.zip.ZipInputStream
 import javax.swing.JOptionPane
@@ -23,21 +21,18 @@ import kotlin.io.path.exists
 import kotlin.io.path.name
 
 /**
- * Downloads and installs the game cache files at startup when they are missing or out of date.
+ * Downloads and installs the game cache files at startup when they are missing.
  *
- * Expects `<baseUrl>/version.json` containing `{"file": "cache.zip", "sha256": "<hex>"}` and the zip at `<baseUrl>/<file>`.
- * The zip is verified against the sha256 before any file is touched, then `main_file_cache.*` entries (at any depth) are
- * staged as `.part` files and atomically moved into place. The installed sha is recorded in [MARKER_FILE] so the on-disk
- * cache files themselves are never hashed (they are modified by tooling after install).
+ * No network requests are made when the cache files already exist.
+ * `main_file_cache.*` entries (at any depth) in the zip at `url` are staged as `.part` files
+ * and only moved into place once all required files have been extracted.
  */
 class CacheDownloader(
-    baseUrl: String,
+    private val url: String,
     private val cachePath: Path,
     private val fetcher: Fetcher = HttpFetcher(),
     private val confirm: (String) -> Boolean = ::prompt,
 ) {
-
-    private val baseUrl = baseUrl.trimEnd('/')
 
     fun interface Fetcher {
         @Throws(IOException::class)
@@ -48,51 +43,21 @@ class CacheDownloader(
         override fun close() = stream.close()
     }
 
-    data class Version(val file: String, val sha256: String)
-
     /**
      * @return false if the server should not start; the cache is missing and couldn't be installed
      */
     fun ensure(): Boolean {
-        val present = filesPresent()
-        val version = fetchVersion()
-        if (version == null) {
-            if (present) {
-                logger.warn { "Could not check for cache updates from '$baseUrl'; continuing with existing cache." }
-                return true
-            }
-            logger.error { "No cache files found in '$cachePath' and cannot reach '$baseUrl' to download them." }
+        if (filesPresent(cachePath)) {
+            return true
+        }
+        if (!confirm("No game cache files were found in '$cachePath'.\nDo you want to download and install the cache from $url?")) {
+            logger.info { "Cache download declined." }
             return false
         }
-        if (!present) {
-            if (!confirm("No game cache files were found in '$cachePath'.\nDo you want to download and install the cache from $baseUrl?")) {
-                logger.info { "Cache download declined." }
-                return false
-            }
-            return install(version)
-        }
-        val installed = installedSha()
-        if (installed == null) {
-            writeMarker(version.sha256)
-            logger.info { "Recorded installed cache version ${version.sha256}." }
-            return true
-        }
-        if (installed == version.sha256) {
-            logger.debug { "Cache is up to date." }
-            return true
-        }
-        if (!confirm("A new game cache version is available.\nDo you want to download it and overwrite the files in '$cachePath'?")) {
-            logger.warn { "Cache update declined; continuing with existing cache. You will be asked again on next start." }
-            return true
-        }
-        return install(version)
-    }
-
-    private fun install(version: Version): Boolean {
         val zip = try {
-            download(version)
+            download()
         } catch (e: Exception) {
-            logger.error(e) { "Failed to download cache '${version.file}' from '$baseUrl'." }
+            logger.error(e) { "Failed to download cache from '$url'." }
             return false
         }
         try {
@@ -103,50 +68,24 @@ class CacheDownloader(
         } finally {
             Files.deleteIfExists(zip)
         }
-        writeMarker(version.sha256)
-        logger.info { "Cache ${version.sha256} installed to '$cachePath'." }
+        logger.info { "Cache installed to '$cachePath'." }
         return true
     }
 
-    internal fun filesPresent(): Boolean = REQUIRED_FILES.all { cachePath.resolve(it).exists() }
-
-    internal fun fetchVersion(): Version? {
-        val json = try {
-            fetcher.open(URI.create("$baseUrl/$VERSION_FILE")).use { it.stream.readAllBytes().decodeToString() }
-        } catch (e: Exception) {
-            logger.debug(e) { "Unable to fetch '$baseUrl/$VERSION_FILE'." }
-            return null
-        }
-        val version = parseVersion(json)
-        if (version == null) {
-            logger.warn { "Malformed '$baseUrl/$VERSION_FILE': expected {\"file\": \"...\", \"sha256\": \"...\"}." }
-        }
-        return version
-    }
-
     /**
-     * Downloads [Version.file] to [TEMP_FILE], verifying the sha256 while streaming.
-     * @throws IOException if the download fails or the checksum doesn't match
+     * Downloads the cache zip to [TEMP_FILE].
+     * @throws IOException if the download fails or is incomplete
      */
-    internal fun download(version: Version): Path {
-        require(FILE_NAME_PATTERN.matches(version.file)) { "Invalid cache file name '${version.file}'." }
+    internal fun download(): Path {
         Files.createDirectories(cachePath)
         cleanStaged()
         val temp = cachePath.resolve(TEMP_FILE)
-        val digest = MessageDigest.getInstance("SHA-256")
-        val uri = URI.create("$baseUrl/${version.file}")
-        logger.info { "Downloading cache from '$uri'." }
+        logger.info { "Downloading cache from '$url'." }
         try {
-            fetcher.open(uri).use { download ->
-                DigestInputStream(download.stream, digest).use { input ->
-                    Files.newOutputStream(temp).use { output ->
-                        copy(input, output, download.length)
-                    }
+            fetcher.open(URI.create(url)).use { download ->
+                Files.newOutputStream(temp).use { output ->
+                    copy(download.stream, output, download.length)
                 }
-            }
-            val actual = HexFormat.of().formatHex(digest.digest())
-            if (actual != version.sha256) {
-                throw IOException("Checksum mismatch for '${version.file}': expected ${version.sha256} but was $actual.")
             }
         } catch (e: Exception) {
             Files.deleteIfExists(temp)
@@ -155,7 +94,7 @@ class CacheDownloader(
         return temp
     }
 
-    private fun copy(input: InputStream, output: java.io.OutputStream, length: Long) {
+    private fun copy(input: InputStream, output: OutputStream, length: Long) {
         val buffer = ByteArray(BUFFER_SIZE)
         var total = 0L
         var next = if (length > 0) length / 10 else UNKNOWN_LENGTH_STEP
@@ -217,24 +156,7 @@ class CacheDownloader(
         }
     }
 
-    internal fun installedSha(): String? {
-        val marker = cachePath.resolve(MARKER_FILE)
-        if (!marker.exists()) {
-            return null
-        }
-        val sha = Files.readString(marker).trim().lowercase()
-        return if (SHA_PATTERN.matches(sha)) sha else null
-    }
-
-    internal fun writeMarker(sha256: String) {
-        Files.createDirectories(cachePath)
-        Files.writeString(cachePath.resolve(MARKER_FILE), "$sha256\n")
-    }
-
     private fun cleanStaged() {
-        if (!cachePath.exists()) {
-            return
-        }
         Files.newDirectoryStream(cachePath) { it.name.endsWith(STAGED_SUFFIX) }.use { stream ->
             for (path in stream) {
                 Files.deleteIfExists(path)
@@ -246,12 +168,11 @@ class CacheDownloader(
         get() = this / (1024 * 1024)
 
     private class HttpFetcher : Fetcher {
-        private val client = HttpClient.newBuilder()
-            .followRedirects(HttpClient.Redirect.NORMAL)
-            .connectTimeout(Duration.ofSeconds(10))
-            .build()
-
         override fun open(uri: URI): Download {
+            val client = HttpClient.newBuilder()
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .connectTimeout(Duration.ofSeconds(10))
+                .build()
             val request = HttpRequest.newBuilder(uri).GET().timeout(Duration.ofSeconds(30)).build()
             val response = client.send(request, HttpResponse.BodyHandlers.ofInputStream())
             if (response.statusCode() != 200) {
@@ -265,37 +186,30 @@ class CacheDownloader(
 
     companion object {
         private val logger = InlineLogger()
-        const val MARKER_FILE = "cache.sha256"
         const val TEMP_FILE = "cache.zip.part"
-        const val VERSION_FILE = "version.json"
         private const val STAGED_SUFFIX = ".part"
         private const val CACHE_FILE_PREFIX = "${FileCache.CACHE_FILE_NAME}."
         private val REQUIRED_FILES = listOf("${FileCache.CACHE_FILE_NAME}.dat2", "${FileCache.CACHE_FILE_NAME}.idx255")
         private const val BUFFER_SIZE = 64 * 1024
         private const val UNKNOWN_LENGTH_STEP = 25L * 1024 * 1024
-        private val FILE_NAME_PATTERN = Regex("[A-Za-z0-9_-][A-Za-z0-9._-]*")
-        private val SHA_PATTERN = Regex("[0-9a-f]{64}")
-        private val FILE_KEY = Regex("\"file\"\\s*:\\s*\"([^\"]+)\"")
-        private val SHA_KEY = Regex("\"sha256\"\\s*:\\s*\"([0-9a-fA-F]{64})\"")
 
         /**
          * Reads `storage.cache.download.url` and `storage.cache.path` from [properties].
          * @return false if the server should not start
          */
         fun ensure(properties: Properties): Boolean {
+            val path = Path.of(properties.getProperty("storage.cache.path", "./data/cache/"))
+            if (filesPresent(path)) {
+                return true
+            }
             val url = properties.getProperty("storage.cache.download.url", "").trim()
             if (url.isBlank()) {
                 return true
             }
-            val path = Path.of(properties.getProperty("storage.cache.path", "./data/cache/"))
             return CacheDownloader(url, path).ensure()
         }
 
-        internal fun parseVersion(json: String): Version? {
-            val file = FILE_KEY.find(json)?.groupValues?.get(1) ?: return null
-            val sha = SHA_KEY.find(json)?.groupValues?.get(1) ?: return null
-            return Version(file, sha.lowercase())
-        }
+        internal fun filesPresent(path: Path): Boolean = REQUIRED_FILES.all { path.resolve(it).exists() }
 
         internal fun prompt(message: String): Boolean {
             if (GraphicsEnvironment.isHeadless()) {
