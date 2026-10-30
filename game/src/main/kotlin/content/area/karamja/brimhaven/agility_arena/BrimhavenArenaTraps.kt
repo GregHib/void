@@ -3,6 +3,7 @@ package content.area.karamja.brimhaven.agility_arena
 import content.area.karamja.brimhaven.agility_arena.BrimhavenAgilityArena.Companion.arenaDamage
 import content.area.karamja.brimhaven.agility_arena.BrimhavenAgilityArena.Companion.arenaExp
 import content.area.karamja.brimhaven.agility_arena.BrimhavenAgilityArena.Companion.arenaFailed
+import content.area.karamja.brimhaven.agility_arena.BrimhavenAgilityArena.Companion.hitBySawBlade
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -33,6 +35,10 @@ class BrimhavenArenaTraps : Script {
             }
         }
 
+        for (i in 1..6) {
+            entered("brimhaven_arena_spinning_blades_approach_$i") { trap("spinning_blades", it) }
+        }
+
         // The blade can swing out while stood under it, catching the player as they step off
         for (i in 1..6) {
             exited("brimhaven_arena_saw_blade_$i") { leaveSawBlade() }
@@ -48,11 +54,16 @@ class BrimhavenArenaTraps : Script {
         if (direction == Direction.NONE) {
             return
         }
+        val area = definition.area as Cuboid
         if (direction.isDiagonal()) {
-            val area = definition.area as Cuboid
             direction = if (area.width >= area.height) direction.horizontal() else direction.vertical()
         }
         if (type == "saw_blade" && !bladeSwinging(tile)) {
+            return
+        }
+        // Approaching the blades jumps over them from the tile before, unless walking away from them
+        val centre = if (definition.name.contains("approach")) tile.add(direction) else tile
+        if (type == "spinning_blades" && (1..3).none { Areas["brimhaven_arena_spinning_blades_$it"].first() == centre }) {
             return
         }
         steps.clear()
@@ -72,15 +83,16 @@ class BrimhavenArenaTraps : Script {
                 }
                 "spinning_blades" -> {
                     delay(3)
-                    spinningBlades(trap)?.anim("spinning_blades")
+                    spinningBlades(centre)?.anim("spinning_blades")
                     jumpOrKnockBack(trap, start, direction, 40, 0.15, 28.0, "You were hit by the spinning blades.")
                 }
                 "dart_trap" -> darts(trap, start, direction)
                 "saw_blade" -> {
-                    // Hit while the blade is still out
+                    // Hit while the blade is still out, knocked back clear of both blade tiles
                     delay(1)
+                    val back = if ((1..6).any { Areas["brimhaven_arena_saw_blade_$it"].first() == start }) start.add(direction.inverse()) else start
                     anim("saw_blade_hit")
-                    exactMoveDelay(start, 30, direction)
+                    exactMoveDelay(back, 30, direction)
                     damage(arenaDamage())
                     message("You were hit by the saw blade!")
                 }
@@ -94,14 +106,7 @@ class BrimhavenArenaTraps : Script {
         if (blade.level != tile.level || blade.distanceTo(tile) != 1 || queue.contains("brimhaven_arena_trap") || !bladeSwinging(blade)) {
             return
         }
-        val direction = Direction.of(tile.x - blade.x, tile.y - blade.y)
-        steps.clear()
-        strongQueue("brimhaven_arena_trap") {
-            anim("saw_blade_hit")
-            exactMoveDelay(blade, 30, direction)
-            damage(arenaDamage())
-            message("You were hit by the saw blade!")
-        }
+        hitBySawBlade(blade, Direction.of(tile.x - blade.x, tile.y - blade.y))
     }
 
     suspend fun Player.jumpOrKnockBack(trap: Tile, start: Tile, direction: Direction, level: Int, chance: Double, experience: Double, message: String) {

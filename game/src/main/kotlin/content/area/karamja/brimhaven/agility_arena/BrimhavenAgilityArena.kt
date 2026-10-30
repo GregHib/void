@@ -27,9 +27,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.login.protocol.encode.HintType
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.random
@@ -189,6 +191,13 @@ class BrimhavenAgilityArena : Script {
             GameObjects.replace(start, "brimhaven_arena_blade", shape = 10, ticks = BLADE_TICKS, collision = false)
             val end = GameObjects.findOrNull(right, "brimhaven_arena_blade_right") ?: continue
             GameObjects.remove(end, ticks = BLADE_TICKS, collision = false)
+            // Anyone stood under the blade is knocked off the end of it, along the walkway
+            for ((tile, other) in listOf(left to right, right to left)) {
+                val away = Direction.of(tile.x - other.x, tile.y - other.y)
+                for (player in Players.at(tile)) {
+                    player.hitBySawBlade(tile.add(away), away.inverse())
+                }
+            }
         }
     }
 
@@ -245,6 +254,22 @@ class BrimhavenAgilityArena : Script {
          */
         fun Player.arenaExp(experience: Double) {
             exp(Skill.Agility, if (karamjaGloves() >= 2) experience * 1.1 else experience)
+        }
+
+        /**
+         * Knocked onto [tile] by a saw blade, facing [direction]
+         */
+        fun Player.hitBySawBlade(tile: Tile, direction: Direction) {
+            if (queue.contains("brimhaven_arena_trap")) {
+                return
+            }
+            steps.clear()
+            strongQueue("brimhaven_arena_trap") {
+                anim("saw_blade_hit")
+                exactMoveDelay(tile, 30, direction)
+                damage(arenaDamage())
+                message("You were hit by the saw blade!")
+            }
         }
 
         /**

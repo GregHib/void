@@ -62,6 +62,37 @@ x = [2778, 2778]
 y = [9557, 9557]
 level = 3
 
+# A border stops players walking onto the blades from one side, so they jump from the tile before
+[brimhaven_arena_spinning_blades_approach_1]
+x = [2777, 2777]
+y = [9579, 9579]
+level = 3
+
+[brimhaven_arena_spinning_blades_approach_2]
+x = [2779, 2779]
+y = [9579, 9579]
+level = 3
+
+[brimhaven_arena_spinning_blades_approach_3]
+x = [2783, 2783]
+y = [9573, 9573]
+level = 3
+
+[brimhaven_arena_spinning_blades_approach_4]
+x = [2783, 2783]
+y = [9575, 9575]
+level = 3
+
+[brimhaven_arena_spinning_blades_approach_5]
+x = [2777, 2777]
+y = [9557, 9557]
+level = 3
+
+[brimhaven_arena_spinning_blades_approach_6]
+x = [2779, 2779]
+y = [9557, 9557]
+level = 3
+
 # Each tile of the saw blade cuts on its own
 [brimhaven_arena_saw_blade_1]
 x = [2788, 2788]
