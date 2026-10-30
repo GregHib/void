@@ -199,6 +199,6 @@ object Main {
     private fun accountService(): AccountService {
         val limit = Settings["web.api.registration.maxPerIP", 3]
         val minutes = Settings["web.api.registration.windowMinutes", 60L]
-        return AccountService(get(), get(), get(), RegistrationLimiter(limit, minutes * 60_000L))
+        return AccountService(get(), get(), get(), get(), RegistrationLimiter(limit, minutes * 60_000L))
     }
 }

@@ -3,19 +3,43 @@ package world.gregs.voidps.web.account
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.dsl.module
 import org.mindrot.jbcrypt.BCrypt
-import world.gregs.voidps.engine.client.AccountUpdate
 import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.client.PlayerAccountUpdater
+import world.gregs.voidps.engine.client.variable.StringValues
+import world.gregs.voidps.engine.data.AbuseReport
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.OfflineStorage
+import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.data.exchange.Claim
+import world.gregs.voidps.engine.data.exchange.OpenOffers
+import world.gregs.voidps.engine.data.exchange.PriceHistory
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.network.login.registration.RegistrationLimiter
 import world.gregs.voidps.network.login.registration.RegistrationResponse
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.web.api.ApiException
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -23,29 +47,104 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class AccountServiceTest {
 
+    private val definitions = AccountDefinitions()
     private lateinit var loader: PlayerAccountLoader
-    private lateinit var updater: PlayerAccountUpdater
-    private lateinit var definitions: AccountDefinitions
+    private lateinit var accounts: AccountManager
+    private lateinit var saveQueue: SaveQueue
     private lateinit var service: AccountService
+    private val saved = mutableMapOf<String, PlayerSave>()
+    private var online: Player? = null
 
     @BeforeEach
     fun setup() {
-        Settings.load(mapOf("web.api.registration" to "true"))
-        definitions = AccountDefinitions()
+        saved.clear()
+        startKoin {
+            modules(module { single { definitions } })
+        }
+        Settings.load(mapOf("web.api.registration" to "true", "storage.disabled" to "false"))
+        VariableDefinitions.set(
+            mapOf(
+                "display_name" to VariableDefinition.CustomVariableDefinition(StringValues, null, persistent = true),
+                "rights" to VariableDefinition.CustomVariableDefinition(StringValues, null, persistent = true),
+            ),
+        )
         loader = mockk()
         coEvery { loader.create(any(), any(), any(), any()) } answers {
             val name = firstArg<String>()
-            definitions.merge(mapOf(name to AccountDefinition(name, thirdArg<String?>() ?: name, "", "hash")), emptyMap()) { false }
+            account(name, thirdArg<String?>() ?: name)
             RegistrationResponse.SUCCESS
         }
-        updater = mockk()
-        service = AccountService(loader, updater, definitions, RegistrationLimiter(2, 60_000L) { 0L })
+        accounts = mockk(relaxed = true)
+        val files = object : Storage {
+            override fun names(): Map<String, AccountDefinition> = emptyMap()
+
+            override fun clans(): Map<String, Clan> = emptyMap()
+
+            override fun save(accounts: List<PlayerSave>) {
+                for (account in accounts) {
+                    saved[account.name] = account
+                }
+            }
+
+            override fun offers(days: Int): OpenOffers = OpenOffers()
+
+            override fun saveOffers(offers: OpenOffers) {
+            }
+
+            override fun claims(): Map<Int, Claim> = emptyMap()
+
+            override fun saveClaims(claims: Map<Int, Claim>) {
+            }
+
+            override fun priceHistory(): Map<String, PriceHistory> = emptyMap()
+
+            override fun savePriceHistory(history: Map<String, PriceHistory>) {
+            }
+
+            override fun saveReport(report: AbuseReport) {
+            }
+
+            override fun create(account: PlayerSave): Boolean = false
+
+            override fun exists(accountName: String): Boolean = saved.containsKey(accountName)
+
+            override fun load(accountName: String): PlayerSave? = saved[accountName]
+
+            override fun accounts(): List<PlayerSave> = saved.values.toList()
+        }
+        saveQueue = SaveQueue(files)
+        val dispatcher = UnconfinedTestDispatcher()
+        val storage = AccountStorage(OfflineStorage(files), saveQueue, definitions, dispatcher, dispatcher)
+        service = AccountService(loader, storage, accounts, definitions, RegistrationLimiter(2, 60_000L) { 0L })
     }
 
-    private fun account(accountName: String, displayName: String) {
+    @AfterEach
+    fun teardown() {
+        online?.let { Players.remove(it) }
+        online = null
+        stopKoin()
+    }
+
+    /**
+     * An existing account known to the server and, unless [offline] is false, saved in storage
+     */
+    private fun account(accountName: String, displayName: String, vararg variables: Pair<String, Any>, offline: Boolean = true) {
         definitions.merge(mapOf(accountName to AccountDefinition(accountName, displayName, "", "hash")), emptyMap()) { false }
+        if (offline) {
+            saved[accountName] = PlayerSave(accountName, "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("display_name" to displayName, *variables), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
+        }
+    }
+
+    private fun login(accountName: String, displayName: String = accountName): Player {
+        account(accountName, displayName)
+        val player = Player(accountName = accountName, passwordHash = "hash", index = 1)
+        player["display_name"] = displayName
+        Players.add(player)
+        online = player
+        return player
     }
 
     private suspend fun assertField(field: String, block: suspend () -> Unit) {
@@ -122,61 +221,118 @@ internal class AccountServiceTest {
     }
 
     @Test
-    fun `Password is validated then hashed`() = runTest {
+    fun `Password is validated then hashed into storage`() = runTest {
         account("Bob", "Bob")
-        coEvery { updater.password("Bob", any()) } returns AccountUpdate.SUCCESS
 
         assertField("password") { service.password("Bob", "bob") }
         service.password("Bob", "newpass1")
 
-        coVerify(exactly = 1) { updater.password("Bob", match { BCrypt.checkpw("newpass1", it) }) }
+        assertTrue(BCrypt.checkpw("newpass1", saved["Bob"]!!.password))
+        assertTrue(BCrypt.checkpw("newpass1", definitions.getByAccount("Bob")!!.passwordHash))
+        coVerify(exactly = 0) { accounts.logout(any(), any()) }
     }
 
     @Test
-    fun `Rename normalises and maps results`() = runTest {
-        account("bob@example.com", "Bobby")
-        account("Bob", "Bob")
-        coEvery { updater.rename("bob@example.com", "Bobby Two") } returns AccountUpdate.TAKEN
-        coEvery { updater.rename("Bob", "Bad") } returns AccountUpdate.INVALID
-        coEvery { updater.rename("Bob", "Gone") } returns AccountUpdate.NOT_FOUND
-        coEvery { updater.rename("Bob", "Busy") } returns AccountUpdate.BUSY
+    fun `Online password change logs the player out`() = runTest {
+        val player = login("Bob")
 
-        assertEquals("name_taken", assertThrows<ApiException.Conflict> { service.rename("Bob@Example.com", "Bobby__Two") }.code)
-        assertField("displayName") { service.rename("Bob", "Bad") }
-        assertEquals("account_not_found", assertThrows<ApiException.NotFound> { service.rename("Bob", "Gone") }.code)
-        assertEquals("account_busy", assertThrows<ApiException.Conflict> { service.rename("Bob", "Busy") }.code)
+        service.password("Bob", "newpass1")
+
+        assertTrue(BCrypt.checkpw("newpass1", player.passwordHash))
+        assertTrue(saveQueue.saving("Bob"))
+        coVerify(exactly = 1) { accounts.logout(player, false) }
+    }
+
+    @Test
+    fun `Rename offline account`() = runTest {
+        account("bob@example.com", "Bob")
+
+        val account = service.rename("Bob@Example.com", "Bobby__Two")
+
+        assertEquals("Bobby Two", account.displayName)
+        assertEquals("Bob", account.previousName)
+        val save = saved["bob@example.com"]!!
+        assertEquals("Bobby Two", save.variables["display_name"])
+        assertEquals(listOf("Bob"), save.variables["name_history"])
+        assertNull(definitions.get("Bob"))
+        assertEquals("bob@example.com", definitions.get("Bobby Two")?.accountName)
+    }
+
+    @Test
+    fun `Rename online player`() = runTest {
+        val player = login("Bob")
+
+        service.rename("Bob", "Bobby")
+
+        assertEquals("Bobby", player.name)
+        assertEquals("Bob", definitions.get("Bobby")?.accountName)
+        assertTrue(saveQueue.saving("Bob"))
+        coVerify(exactly = 0) { accounts.logout(any(), any()) }
+    }
+
+    @Test
+    fun `Rename validates the new name`() = runTest {
+        account("Bob", "Bob")
+        account("alice@example.com", "Alice")
+        account("Carol", "Caz")
+
+        assertField("displayName") { service.rename("Bob", "Bob!") }
+        assertField("displayName") { service.rename("Bob", "Thirteen chars") }
+        assertEquals("name_taken", assertThrows<ApiException.Conflict> { service.rename("Bob", "alice") }.code)
+        assertEquals("name_taken", assertThrows<ApiException.Conflict> { service.rename("Bob", "Carol") }.code)
+        service.rename("Bob", "bob")
+
+        assertEquals("bob", saved["Bob"]?.variables?.get("display_name"))
+    }
+
+    @Test
+    fun `Accounts missing from storage are not found`() = runTest {
+        account("Bob", "Bob", offline = false)
+
+        assertEquals("account_not_found", assertThrows<ApiException.NotFound> { service.rename("Bob", "Bobby") }.code)
+        assertThrows<ApiException.NotFound> { service.password("Bob", "newpass1") }
+        assertEquals("hash", definitions.getByAccount("Bob")?.passwordHash)
     }
 
     @Test
     fun `Password and rename only reach accounts by account name`() = runTest {
         account("bob@example.com", "Bob Cat")
-        coEvery { updater.password("bob@example.com", any()) } returns AccountUpdate.SUCCESS
 
         assertThrows<ApiException.NotFound> { service.password("Bob Cat", "newpass1") }
         assertThrows<ApiException.NotFound> { service.rename("Bob Cat", "Bobby") }
         service.password("Bob@Example.com", "newpass1")
 
-        coVerify(exactly = 1) { updater.password("bob@example.com", any()) }
-        coVerify(exactly = 0) { updater.rename(any(), any()) }
+        assertTrue(BCrypt.checkpw("newpass1", saved["bob@example.com"]!!.password))
     }
 
     @Test
-    fun `Unknown accounts aren't passed to the updater`() = runTest {
+    fun `Unknown accounts are not found`() = runTest {
         assertThrows<ApiException.NotFound> { service.password("alice", "newpass1") }
         assertThrows<ApiException.NotFound> { service.rename("alice", "Alicia") }
-
-        coVerify(exactly = 0) { updater.password(any(), any()) }
-        coVerify(exactly = 0) { updater.rename(any(), any()) }
     }
 
     @Test
-    fun `Staff accounts are forbidden`() = runTest {
-        account("Mod Bob", "Mod Bob")
-        coEvery { updater.password("Mod Bob", any()) } returns AccountUpdate.PROTECTED
-        coEvery { updater.rename("Mod Bob", any()) } returns AccountUpdate.PROTECTED
+    fun `Offline staff accounts are forbidden`() = runTest {
+        account("Mod Bob", "Mod Bob", "rights" to "mod")
 
         assertThrows<ApiException.Forbidden> { service.password("Mod Bob", "newpass1") }
         assertThrows<ApiException.Forbidden> { service.rename("Mod Bob", "Bobby") }
+        assertEquals("hash", saved["Mod Bob"]?.password)
+        assertEquals("Mod Bob", saved["Mod Bob"]?.variables?.get("display_name"))
+        assertEquals("Mod Bob", definitions.get("Mod Bob")?.accountName)
+    }
+
+    @Test
+    fun `Online staff accounts are forbidden`() = runTest {
+        val player = login("Mod Bob")
+        player.rights = PlayerRights.Admin
+
+        assertThrows<ApiException.Forbidden> { service.password("Mod Bob", "newpass1") }
+        assertThrows<ApiException.Forbidden> { service.rename("Mod Bob", "Bobby") }
+        assertEquals("hash", player.passwordHash)
+        assertEquals("Mod Bob", player.name)
+        assertFalse(saveQueue.saving("Mod Bob"))
+        coVerify(exactly = 0) { accounts.logout(any(), any()) }
     }
 
     @Test

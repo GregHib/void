@@ -1,13 +1,20 @@
 package world.gregs.voidps.web.account
 
 import org.mindrot.jbcrypt.BCrypt
-import world.gregs.voidps.engine.client.AccountUpdate
 import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.client.PlayerAccountUpdater
+import world.gregs.voidps.engine.data.AccountManager
+import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.DisplayNames
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.rename
+import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.network.login.AccountNames
 import world.gregs.voidps.network.login.registration.RegistrationLimiter
 import world.gregs.voidps.network.login.registration.RegistrationResponse
@@ -21,7 +28,8 @@ import world.gregs.voidps.web.api.model.AccountResponse
  */
 class AccountService(
     private val loader: PlayerAccountLoader,
-    private val updater: PlayerAccountUpdater,
+    private val storage: AccountStorage,
+    private val accounts: AccountManager,
     private val definitions: AccountDefinitions,
     private val limiter: RegistrationLimiter,
 ) {
@@ -74,13 +82,28 @@ class AccountService(
     }
 
     /**
-     * Sets the password of account [name]; logs the player out if they're online
+     * Sets the password of account [name]; an online player is logged out so their session doesn't outlive the reset
      */
     suspend fun password(name: String, password: String) {
         val accountName = existing(name)
         validatePassword(password, accountName)
         val hash = BCrypt.hashpw(password, BCrypt.gensalt())
-        updater.password(accountName, hash).check(name)
+        val edited = storage.edit(
+            accountName,
+            online = { player ->
+                protect(player)
+                player.passwordHash = hash
+                accounts.logout(player, safely = false)
+            },
+            offline = { save ->
+                protect(save)
+                save.copy(password = hash)
+            },
+        )
+        if (!edited) {
+            throw ApiException.NotFound("account", name)
+        }
+        AuditLog.info("$accountName password changed")
     }
 
     /**
@@ -88,7 +111,30 @@ class AccountService(
      */
     suspend fun rename(name: String, displayName: String): AccountResponse {
         val accountName = existing(name)
-        updater.rename(accountName, normalise(displayName)).check(name)
+        val display = normalise(displayName)
+        if (!DisplayNames.valid(display)) {
+            throw ApiException.Validation("displayName", "Display name must be 1-12 letters, numbers or spaces.")
+        }
+        if (definitions.taken(display, except = accountName)) {
+            throw nameTaken()
+        }
+        val edited = storage.edit(
+            accountName,
+            online = { player ->
+                protect(player)
+                if (player.name != display) {
+                    player.rename(display)
+                }
+            },
+            offline = { save ->
+                protect(save)
+                save.rename(display)
+            },
+        )
+        if (!edited) {
+            throw ApiException.NotFound("account", name)
+        }
+        AuditLog.info("$accountName renamed to $display")
         return account(accountName) ?: throw unavailable()
     }
 
@@ -110,16 +156,26 @@ class AccountService(
         }
     }
 
-    private fun AccountUpdate.check(name: String) {
-        when (this) {
-            AccountUpdate.SUCCESS -> return
-            AccountUpdate.NOT_FOUND -> throw ApiException.NotFound("account", name)
-            AccountUpdate.INVALID -> throw ApiException.Validation("displayName", "Display name must be 1-12 letters, numbers or spaces.")
-            AccountUpdate.TAKEN -> throw nameTaken()
-            AccountUpdate.BUSY -> throw ApiException.Conflict("account_busy", "Account is being saved, try again shortly.")
-            AccountUpdate.UNAVAILABLE -> throw unavailable()
-            AccountUpdate.PROTECTED -> throw ApiException.Forbidden("Staff accounts can only be changed in-game.")
+    /**
+     * Staff accounts can only be changed in-game
+     */
+    private fun protect(player: Player) = protect(player.rights != PlayerRights.None)
+
+    private fun protect(save: PlayerSave) = protect((save.variables["rights"] as? String ?: "none") != "none")
+
+    private fun protect(staff: Boolean) {
+        if (staff) {
+            throw ApiException.Forbidden("Staff accounts can only be changed in-game.")
         }
+    }
+
+    /**
+     * The offline equivalent of [Player.rename]
+     */
+    private fun PlayerSave.rename(displayName: String): PlayerSave {
+        val previous = variables["display_name"] as? String ?: name
+        val history = (variables["name_history"] as? List<*>)?.filterIsInstance<String>().orEmpty()
+        return copy(variables = variables + ("display_name" to displayName) + ("name_history" to history + previous))
     }
 
     private fun nameTaken() = ApiException.Conflict("name_taken", "That name is already in use.")

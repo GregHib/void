@@ -73,7 +73,7 @@ They're protected by a single shared key, so they're for trusted server-side cal
 
 When creating, `name` is either a 1-12 character username (which is also the display name) or an email address, in which case `displayName` is required.
 `{name}` in an `/accounts` path is always the account name, never a display name. Display names can't match another account's name, and `/names/{name}` checks whether a name is free as either. Changing a password logs the player out if they're online, and staff accounts (any rights) can only be changed in-game.
-Errors use the api's `{"error": {"code", "message", "details"?}}` envelope: `400` `bad_request`, `401` `unauthorized` (missing or wrong key), `403` `forbidden` (creation disabled or a staff account), `404` `account_not_found`, `409` `name_taken`/`account_busy`, `422` `validation_failed` (`details` names the `name`, `displayName` or `password` field), `429` `rate_limited` (with `Retry-After`), `503` `unavailable`.
+Errors use the api's `{"error": {"code", "message", "details"?}}` envelope: `400` `bad_request`, `401` `unauthorized` (missing or wrong key), `403` `forbidden` (creation disabled or a staff account), `404` `account_not_found`, `409` `name_taken`, `422` `validation_failed` (`details` names the `name`, `displayName` or `password` field), `429` `rate_limited` (with `Retry-After`), `503` `unavailable`.
 
 Send the end user's address as `X-Forwarded-For` when creating accounts so `web.api.registration.maxPerIP` limits players rather than the caller:
 

@@ -142,6 +142,12 @@ class SaveQueue(
 
     fun saving(name: String) = pending.containsKey(name)
 
+    /**
+     * Applies [change] to a save waiting to be written so it isn't lost when that save reaches storage
+     * @return the changed save, or null if no save is pending for [name]
+     */
+    fun edit(name: String, change: (PlayerSave) -> PlayerSave): PlayerSave? = pending.computeIfPresent(name) { _, save -> change(save) }
+
     fun empty(): Boolean = pending.isEmpty()
 
     companion object {
