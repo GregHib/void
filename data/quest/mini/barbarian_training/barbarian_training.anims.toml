@@ -72,3 +72,16 @@ id = 11060
 
 [carve_pyre_volatile_clay]
 id = 11061
+
+# Played on the lit and burning pyre ship stages (25292, 25294)
+[pyre_boat_launch]
+id = 6734
+
+[pyre_boat_sink]
+id = 6736
+
+[peaceful_barbarian_spirit_ascend]
+id = 6724
+
+[ferocious_barbarian_spirit_appear]
+id = 6725
