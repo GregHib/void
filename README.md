@@ -47,7 +47,7 @@
 
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
-5. Run the [latest client.jar](https://github.com/GregHib/void-client/releases) and login with any username and password to create a new account.
+4. Run the [latest client.jar](https://github.com/GregHib/void-client/releases) and login with any username and password to create a new account.
 
 ## Webclient setup (experimental)
 

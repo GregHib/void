@@ -68,7 +68,7 @@ object Main {
         val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
 
         // Cache files
-        if (!timed("cache files") { CacheDownloader.ensure(settings) }) {
+        if (!CacheDownloader.ensure(settings)) {
             return
         }
 
