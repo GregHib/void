@@ -23,7 +23,7 @@ class ChaosDwarfBattlefield : Script {
             if (target !is NPC || tile !in Areas["chaos_dwarf_battlefield"]) {
                 return@combatAttack
             }
-            // Only the dwogre being attacked fights back
+            // Dwogres fight alone, attacking one doesn't turn the rest of the chaos side on the player
             if (target.id.startsWith("chaos_dwogre")) {
                 return@combatAttack
             }

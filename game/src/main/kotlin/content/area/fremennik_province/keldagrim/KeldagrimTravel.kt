@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.renderEmote
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
@@ -195,11 +196,15 @@ class KeldagrimTravel : Script {
         face(Direction.WEST)
         delay(1)
         tele(2943, 10170)
+        sound("cart_away", delay = 30)
         rideCart(true)
         open("fade_in")
         // Follow the track around the bend into the station
+        sound("forget_cart_turn")
         exactMoveDelay(Tile(2941, 10170), delay = 30, direction = Direction.WEST)
+        sound("forget_cart_turn")
         exactMoveDelay(Tile(2939, 10173), delay = 30, direction = Direction.NORTH_WEST)
+        sound("forget_cart_turn")
         exactMoveDelay(Tile(2909, 10173), delay = 288, direction = Direction.WEST)
         rideCart(false)
         clearMinimap()
