@@ -353,7 +353,7 @@ bone_drops = [
 ]
 fruit_per_reward = 16
 xp = 500
-rune_rewards = ["nature_rune", "water_rune", "earth_rune"]
+rune_rewards = ["blood_rune", "death_rune", "earth_rune", "water_rune", "nature_rune"]
 hit = 20
 interval = 10
 death_penalty = 10

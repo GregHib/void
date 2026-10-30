@@ -85,7 +85,8 @@ class CreatureGraveyard : Script {
                 PizazzPoints.add(this, "graveyard", 1)
                 exp(Skill.Magic, Tables.int("mta_graveyard.settings.xp") / 10.0)
                 sound("mta_deposit_fruit")
-                statement("Congratulations - you've been awarded ${ItemDefinitions.get(rune).name.lowercase().an()} and extra magic XP.")
+                val name = ItemDefinitions.get(rune).name.lowercase()
+                statement("Congratulations - you've been awarded${name.an()} $name and extra magic XP.")
             }
             set("mage_training_arena_fruit_deposited", total)
         }

@@ -4,6 +4,8 @@ import WorldTest
 import containsMessage
 import content.entity.combat.hit.directHit
 import interfaceOption
+import io.mockk.every
+import io.mockk.spyk
 import itemOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -78,6 +81,11 @@ internal class CreatureGraveyardTest : WorldTest() {
         player.tele(chute.tile.addY(-1))
         tick(2)
 
+        val interfaces = spyk(player.interfaces)
+        player.interfaces = interfaces
+        val text = mutableListOf<String>()
+        every { interfaces.sendText(any(), any(), capture(text)) } answers { callOriginal() }
+
         player.objectOption(chute, "Deposit")
         tick(5)
         player.skipDialogues()
@@ -87,7 +95,10 @@ internal class CreatureGraveyardTest : WorldTest() {
         assertEquals(2, player["mage_training_arena_fruit_deposited", 0])
         assertEquals(1, PizazzPoints.get(player, "graveyard"))
         assertEquals(50.0, player.experience.get(Skill.Magic))
-        assertEquals(1, listOf("nature_rune", "water_rune", "earth_rune").sumOf { player.inventory.count(it) })
+        val rune = listOf("blood_rune", "death_rune", "earth_rune", "water_rune", "nature_rune").single { player.inventory.contains(it) }
+        assertEquals(1, player.inventory.count(rune))
+        val name = rune.replace('_', ' ')
+        assertTrue(text.joinToString(" ").contains("you've been awarded${name.an()} $name and extra magic XP.")) { text.toString() }
     }
 
     @Test
