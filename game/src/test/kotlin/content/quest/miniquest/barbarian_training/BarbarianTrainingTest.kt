@@ -21,7 +21,9 @@ import skillCreation
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -308,6 +310,23 @@ internal class BarbarianTrainingTest : WorldTest() {
 
         tick(16)
         assertNotNull(GameObjects.findOrNull(station, "pyre_boat_station"))
+    }
+
+    @Test
+    fun `Logging out part way through carving reverts the pyre ship`() {
+        val player = pyreBuilder()
+        val site = GameObjects.find(Tile(2506, 3518), "pyre_site")
+        val station = Tile(2506, 3516)
+
+        player.objectOption(site, "Construct")
+        tick(3)
+        Despawn.player(player)
+        Players.remove(player)
+        tick(8)
+
+        assertNotNull(GameObjects.findOrNull(station, "pyre_boat_station"))
+        assertNull(GameObjects.findOrNull(station, "pyre_carved_log_2"))
+        assertNull(GameObjects.findOrNull(station, "pyre_boat"))
     }
 
     @Test

@@ -74,12 +74,18 @@ class PyreShips(val drops: DropTables) : Script {
                 return@objectOperate
             }
             face(target)
-            build(station, CARVING)
+            // Each carving stage reverts by itself if the player stops part way through
+            // Object timers run before players so the previous stage has reverted when the next is placed
             val carve = "carve_pyre_${hatchet.id.removeSuffix("_hatchet")}"
+            station.replace("pyre_carved_log", ticks = CARVE_TICKS)
             anim(carve)
-            delay(6)
+            delay(CARVE_TICKS)
+            station.replace("pyre_carved_log_2", ticks = CARVE_TICKS)
+            delay(2)
             anim(carve)
-            delay(6)
+            delay(2)
+            station.replace("pyre_boat", ticks = CARVE_TICKS)
+            delay(CARVE_TICKS)
             inventory.transaction {
                 remove(log.rowId)
                 remove(bones)
@@ -105,8 +111,7 @@ class PyreShips(val drops: DropTables) : Script {
                 val npc = NPCs.add("ferocious_barbarian_spirit", target.tile, ticks = TimeUnit.MINUTES.toTicks(5), owner = this)
                 npc.interactPlayer(this, "Attack")
             }
-            // Object timers run before players so the carving stages have reverted by now
-            station(target)?.let { build(it, BURNING) }
+            build(station, BURNING)
         }
     }
 
@@ -133,7 +138,7 @@ class PyreShips(val drops: DropTables) : Script {
         const val MAX_BLESSED_BONES = 200
 
         // TODO confirm the stage timings, carving follows 2009scape and the last three their animation lengths
-        private val CARVING = listOf("pyre_carved_log" to 4, "pyre_carved_log_2" to 4, "pyre_boat" to 4)
+        private const val CARVE_TICKS = 4
         private val BURNING = listOf("pyre_boat_bones" to 4, "pyre_boat_lit" to 4, "pyre_boat_launched" to 4, "pyre_boat_burning" to 2, "pyre_boat_sinking" to 2)
         val BOWS = listOf("shortbow", "longbow", "oak_shortbow", "oak_longbow", "willow_shortbow", "willow_longbow", "maple_shortbow", "maple_longbow", "yew_shortbow", "yew_longbow", "magic_shortbow", "magic_longbow", "training_bow", "seercull", "sacred_clay_bow")
     }
