@@ -154,6 +154,18 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
     }
 
     /**
+     * Re-sends the items on [tile] so clients rebuild the pile
+     */
+    fun refresh(tile: Tile) {
+        for (floorItem in at(tile)) {
+            if (floorItem.owner == HIDDEN) {
+                continue
+            }
+            ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemUpdate(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.amount, floorItem.owner))
+        }
+    }
+
+    /**
      * Hide a spawned item from everyone until it's revealed again after [FloorItem.respawnTicks]
      * The item never leaves the world so no despawn or spawn events are emitted.
      */
