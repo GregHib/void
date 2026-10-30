@@ -34,11 +34,11 @@ class Mogre : Script {
     )
 
     init {
-        objectOperate("Lure", "ominous_fishing_spot*") {
+        objectApproach("Lure", "ominous_fishing_spot*") {
             message("Something seems to have scared all the fishes away...")
         }
 
-        objectOperate("Bait", "ominous_fishing_spot*") {
+        objectApproach("Bait", "ominous_fishing_spot*") {
             message("Something seems to have scared all the fishes away...")
         }
 
