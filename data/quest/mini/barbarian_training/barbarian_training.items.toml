@@ -86,6 +86,7 @@ tradeable = false
 weight = 0.01
 destroy = "I can obtain another from Otto."
 examine = "Records from my discoveries beneath the lake."
+book = "my_notes"
 kept = "Vanish"
 
 [barbarian_skills]

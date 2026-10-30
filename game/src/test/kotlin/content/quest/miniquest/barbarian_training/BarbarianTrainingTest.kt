@@ -380,6 +380,48 @@ internal class BarbarianTrainingTest : WorldTest() {
     }
 
     @Test
+    fun `Copying an ancient page adds it to my notes`() {
+        val player = trainee()
+        player.inventory.add("ancient_page_3")
+
+        player.itemOption("Copy to log", "ancient_page_3")
+        tick()
+
+        assertFalse(player.inventory.contains("ancient_page_3"))
+        assertTrue(player.containsVarbit("barbarian_notes", "ancient_page_3"))
+        assertTrue(player.containsMessage("You copy the scrap of information to your logbook."))
+    }
+
+    @Test
+    fun `Copying an ancient page twice tells the player`() {
+        val player = trainee()
+        player.addVarbit("barbarian_notes", "ancient_page_3")
+        player.inventory.add("ancient_page_3")
+
+        player.itemOption("Copy to log", "ancient_page_3")
+        tick()
+
+        assertTrue(player.containsMessage("You already have this information in your logbook."))
+    }
+
+    @Test
+    fun `My notes only shows copied pages`() {
+        val player = trainee()
+        player.addVarbit("barbarian_notes", "ancient_page_2")
+        player.inventory.add("my_notes")
+
+        player.itemOption("Read", "my_notes")
+        tick()
+
+        assertTrue(player.hasOpen("book_long"))
+        val pages = get<Books>().get(player, "my_notes")
+        assertEquals(13, pages.size)
+        assertTrue(pages[0].take(15).all { it.isEmpty() })
+        assertEquals("...metallic for missiles and", pages[0][15])
+        assertTrue(pages.drop(1).flatten().all { it.isEmpty() })
+    }
+
+    @Test
     fun `Trained players confirm before diving into the whirlpool`() {
         val player = trainee(Tile(2511, 3516))
         player["barbarian_training_pyre"] = BarbarianTraining.STARTED
