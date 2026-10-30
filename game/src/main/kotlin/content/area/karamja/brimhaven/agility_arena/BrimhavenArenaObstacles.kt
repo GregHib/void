@@ -52,7 +52,7 @@ class BrimhavenArenaObstacles : Script {
             face(direction)
             anim("stepping_stone_jump")
             exactMoveDelay(target.tile, 30, direction)
-            for (i in 0 until 6) {
+            for (i in 0 until 7) {
                 delay()
                 // Balance can only be lost on the second pillar
                 if (i == 1 && arenaFailed(1, 0.15)) {
@@ -182,25 +182,26 @@ class BrimhavenArenaObstacles : Script {
             val facing = rotationDirection(target.rotation)
             val wall = facing.rotate(-2)
             val suffix = if (direction == facing) "" else "_reverse"
-            // Seven moves along the wall from one hold to the other
+            // Grab the first hold and swing to the second, shimmy along to the second to last, then jump down below the last
             walkToDelay(target.tile)
             face(wall)
+            // Every swing takes two ticks, each starting as the last one catches its hold
             anim("hand_holds_grab$suffix")
-            exactMoveDelay(tile.add(direction), 30, wall)
-            delay()
+            exactMoveDelay(tile.add(direction), 60, wall, startDelay = 15)
             for (i in 0 until 5) {
                 // Only the third hand hold can be missed
-                if (i == 1 && arenaFailed(20, 0.15)) {
+                if (i == 0 && arenaFailed(20, 0.15)) {
                     anim("hand_holds_fall$suffix")
                     delay(2)
                     arenaFall(tile, "You missed a hand hold!")
                     return@objectOperate
                 }
                 anim("hand_holds_shimmy$suffix")
-                exactMoveDelay(tile.add(direction), 90, wall)
+                exactMoveDelay(tile.add(direction), 60, wall)
             }
             anim("hand_holds_let_go$suffix")
-            exactMoveDelay(tile.add(direction), 60, wall)
+            exactMoveDelay(tile.add(direction), 60, wall, startDelay = 15)
+            delay()
             arenaExp(22.0)
         }
     }

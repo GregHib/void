@@ -147,7 +147,7 @@ class BrimhavenAgilityArenaTest : WorldTest() {
         player.levels.set(Skill.Agility, 99)
 
         player.objectOption(GameObjects.find(Tile(2792, 9592, 3), "brimhaven_arena_hand_holds"), "Climb-across")
-        tick(24)
+        tick(20)
 
         assertEquals(Tile(2785, 9592, 3), player.tile)
         assertEquals(22.0, player.experience.get(Skill.Agility))
