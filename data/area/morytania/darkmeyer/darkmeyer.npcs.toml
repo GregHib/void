@@ -24,7 +24,7 @@ respawn_delay = 25
 examine = "An evil, bloodsucking vampyre."
 drop_table = "vyrewatch"
 max_hit_crush = 110
-combat_def = "vyrewatch"
+combat_def = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_2]
 id = 4807
@@ -37,7 +37,7 @@ def = 85
 mage = 120
 range = 120
 max_hit_crush = 130
-combat_def = "vyrewatch"
+combat_def = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_3]
 id = 4819
@@ -50,7 +50,7 @@ def = 85
 mage = 120
 range = 120
 max_hit_crush = 130
-combat_def = "vyrewatch"
+combat_def = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_4]
 id = 4832

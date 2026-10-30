@@ -1,6 +1,6 @@
 [thing_under_the_bed]
 defend_anim = "bed_defend"
-defend_sound = "bed_defend"
+defend_sound = "bed_block"
 death_anim = "bed_death"
 death_sound = "bed_death"
 

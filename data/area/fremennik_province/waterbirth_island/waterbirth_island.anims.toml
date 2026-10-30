@@ -45,3 +45,6 @@ id = 1581
 
 [dagannoth_fledgeling_attack]
 id = 1579
+
+[dagannoth_fledgeling_defend]
+id = 1580

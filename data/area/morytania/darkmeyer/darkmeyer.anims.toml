@@ -1,2 +1,17 @@
 [vyrewatch_attack]
-id = 7435
+id = 4685
+
+[vyrewatch_death]
+id = 9112
+
+[vyrewatch_darkmeyer_attack]
+id = 4701
+
+[vyrewatch_darkmeyer_defend]
+id = 4704
+
+[vyrewatch_darkmeyer_death]
+id = 4708
+
+[vyrewatch_defend]
+id = 4691

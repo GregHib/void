@@ -14,3 +14,12 @@ id = 7581
 
 [scabaras_locust_attack]
 id = 7586
+
+[scabaras_locust_defend]
+id = 7585
+
+[locust_lancer_defend]
+id = 7585
+
+[locust_ranger_defend]
+id = 7585

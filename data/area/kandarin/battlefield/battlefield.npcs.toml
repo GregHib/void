@@ -149,17 +149,17 @@ categories = ["birds"]
 respawn_delay = 30
 drop_table = "bones"
 examine = "These gnomes know how to get around!"
-combat_def = "gnome"
+combat_def = "mounted_terrorbird_gnome"
 
 [mounted_terrorbird_gnome_battlefield_2]
 id = 6110
 clone = "mounted_terrorbird_gnome_battlefield"
-combat_def = "gnome"
+combat_def = "mounted_terrorbird_gnome"
 
 [mounted_terrorbird_gnome_battlefield_3]
 id = 6111
 clone = "mounted_terrorbird_gnome_battlefield"
-combat_def = "gnome"
+combat_def = "mounted_terrorbird_gnome"
 
 [tortoise_battlefield]
 id = 3808

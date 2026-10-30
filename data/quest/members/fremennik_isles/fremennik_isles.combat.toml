@@ -1,13 +1,13 @@
 [ice_troll_king]
-defend_anim = "ogre_defend"
+defend_anim = "troll_defend"
 defend_sound = "giant_defend"
-death_anim = "ogre_death"
+death_anim = "troll_death"
 death_sound = "giant_death"
 
 [ice_troll_king.melee]
 chance = 75
 range = 1
-anim = "ogre_attack"
+anim = "troll_attack"
 target_sound = "giant_attack"
 target_hit = { offense = "crush", max = 210 }
 

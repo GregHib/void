@@ -72,6 +72,7 @@ anim = "possessed_pickaxe_attack"
 target_hit = { offense = "stab", max = 60 }
 
 [animated_spade]
+defend_anim = "spade_defend"
 death_anim = "spade_death"
 
 [animated_spade.melee]
@@ -99,6 +100,7 @@ death_sound = "waterfiend_death"
 
 [waterfiend.magic]
 range = 4
+anim = "waterfiend_attack"
 target_sound = "waterfiend_attack"
 projectile = "water_wave"
 target_hit = { offense = "magic", max = 120 }
@@ -107,6 +109,7 @@ miss_sound = "spell_splash"
 
 [waterfiend.range]
 range = 4
+anim = "waterfiend_attack"
 target_sound = "waterfiend_attack"
 projectile = "ice_arrow"
 target_hit = { offense = "range", defence = "magic", max = 120 }
@@ -115,7 +118,7 @@ target_hit = { offense = "range", defence = "magic", max = 120 }
 defend_anim = "human_defend"
 defend_sound = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [dagonhai_monk.magic]
 range = 10
@@ -154,7 +157,7 @@ target_hit = { offense = "crush", max = 254 }
 defend_anim = "human_defend"
 defend_sound = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [dagonhai_elite.attack]
 range = 10

@@ -1,5 +1,8 @@
 [baby_tanglefoot]
+defend_anim = "baby_tanglefoot_defend"
+death_anim = "baby_tanglefoot_death"
 
 [baby_tanglefoot.melee]
 range = 1
+anim = "baby_tanglefoot_attack"
 target_hit = { offense = "slash", max = 50 }

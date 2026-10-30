@@ -1,0 +1,38 @@
+[flying_female_vampire]
+clone = "vampyre"
+defend_anim = "flying_female_vampire_defend"
+death_anim = "flying_female_vampire_death"
+
+[flying_female_vampire.melee]
+clone = "vampyre.melee"
+anim = "flying_female_vampire_attack"
+
+[flying_female_vampire.bite]
+clone = "vampyre.bite"
+anim = "flying_female_vampire_attack"
+
+[vampyre_juvenile_male]
+clone = "vampyre"
+defend_anim = "vampyre_juvenile_male_defend"
+death_anim = "vampyre_juvenile_male_death"
+
+[vampyre_juvenile_male.melee]
+clone = "vampyre.melee"
+anim = "vampyre_juvenile_male_attack"
+
+[vampyre_juvenile_male.bite]
+clone = "vampyre.bite"
+anim = "vampyre_juvenile_male_attack"
+
+[vampyre_juvenile_female]
+clone = "vampyre"
+defend_anim = "vampyre_juvenile_female_defend"
+death_anim = "vampyre_juvenile_female_death"
+
+[vampyre_juvenile_female.melee]
+clone = "vampyre.melee"
+anim = "vampyre_juvenile_female_attack"
+
+[vampyre_juvenile_female.bite]
+clone = "vampyre.bite"
+anim = "vampyre_juvenile_female_attack"

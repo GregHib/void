@@ -5,21 +5,27 @@ shop = "summoning_supplies"
 
 [ogre_shaman_gu_tanoth]
 id = 5175
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_2]
 id = 5180
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_3]
 id = 5183
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_4]
 id = 5186
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_5]
 id = 5189
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_6]
 id = 5192
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_chieftain]
 id = 852
@@ -89,7 +95,7 @@ categories = ["ogres"]
 respawn_delay = 50
 drop_table = "city_guard"
 examine = "Tries to keep the peace."
-combat_def = "guard"
+combat_def = "ogre"
 
 [scared_skavid_gu_tanoth]
 id = 863
@@ -126,7 +132,7 @@ categories = ["ogres"]
 respawn_delay = 12
 drop_table = "city_guard"
 examine = "Big and ugly looking."
-combat_def = "guard"
+combat_def = "ogre"
 
 [ogre_trader_gu_tanoth]
 id = 873
@@ -155,6 +161,9 @@ def = 99
 style = "magic"
 max_hit_magic = 300
 respawn_delay = 51
+combat_def = "ogre_shaman_gu_tanoth"
+damage_cap = 0
+immune_poison = true
 examine = "Seems intelligent... for an ogre."
 
 [ogre_shaman_gu_tanoth_2_2]

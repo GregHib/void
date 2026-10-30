@@ -1,7 +1,20 @@
 [warped_tortoise]
+defend_anim = "warped_tortoise_defend"
 death_anim = "warped_tortoise_death"
 
 [warped_tortoise.melee]
 range = 1
 target_hit = { offense = "crush", max = 120 }
 anim = "warped_tortoise_attack"
+
+[warped_terrorbird]
+clone = "terrorbird"
+defend_anim = "warped_terrorbird_defend"
+defend_sound = "warped_terrorbird_defend"
+death_anim = "warped_terrorbird_death"
+death_sound = "warped_terrorbird_death"
+
+[warped_terrorbird.melee]
+clone = "terrorbird.melee"
+anim = "warped_terrorbird_attack"
+target_sound = "warped_terrorbird_attack"

@@ -26,6 +26,7 @@ clone = "goat_kharidian_desert"
 clone = "goat_kharidian_desert.melee"
 
 [desert_wolf]
+defend_anim = "desert_wolf_defend"
 death_anim = "desert_wolf_death"
 
 [desert_wolf.melee]

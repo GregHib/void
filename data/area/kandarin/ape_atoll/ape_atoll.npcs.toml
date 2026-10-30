@@ -242,14 +242,14 @@ categories = ["monkeys"]
 respawn_delay = 50
 examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
 drop_table = "monkey_guard"
-combat_def = "guard"
+combat_def = "monkey_guard_ape_atoll"
 hunt_mode = "cowardly"
 
 [monkey_guard_ape_atoll_4]
 id = 1460
 clone = "monkey_guard_ape_atoll_3"
 drop_table = "monkey_guard"
-combat_def = "guard"
+combat_def = "monkey_guard_ape_atoll"
 hunt_mode = "cowardly"
 
 [elder_guard_ape_atoll]
@@ -276,7 +276,7 @@ categories = ["monkeys", "zombies"]
 respawn_delay = 50
 drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey."
-combat_def = "zombie"
+combat_def = "monkey_zombie_ape_atoll"
 
 [monkey_zombie_large]
 id = 1466
@@ -294,7 +294,7 @@ categories = ["monkeys", "zombies"]
 respawn_delay = 12
 drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey stands here, blocking the way."
-combat_def = "zombie"
+combat_def = "monkey_zombie_ape_atoll"
 
 [monkey_zombie_small]
 id = 1467
@@ -312,7 +312,7 @@ categories = ["monkeys", "zombies"]
 respawn_delay = 50
 examine = "A recently deceased monkey. Its flesh seems to be worse for the wear."
 drop_table = "monkey_zombie"
-combat_def = "zombie"
+combat_def = "monkey_zombie_ape_atoll"
 
 [scorpion_ape_atoll]
 id = 1477

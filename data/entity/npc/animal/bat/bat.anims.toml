@@ -9,3 +9,12 @@ id = 4917
 
 [bat_death]
 id = 4918
+
+[giant_bat_brine_cavern_defend]
+id = 2622
+
+[giant_bat_brine_cavern_death]
+id = 2620
+
+[giant_bat_brine_cavern_attack]
+id = 2621

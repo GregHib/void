@@ -19,11 +19,11 @@ id = 1877
 [bandit_pollnivneach]
 id = 1879
 hitpoints = 300
-att = 40
-str = 50
-def = 20
+att = 59
+str = 70
+def = 30
 style = "slash"
-max_hit_melee = 70
+max_hit_melee = 90
 attack_bonus = 9
 respawn_delay = 50
 drop_table = "bones"
@@ -65,6 +65,16 @@ id = 3127
 
 [bandit_pollnivneach_2]
 id = 7478
+hitpoints = 300
+att = 40
+str = 50
+def = 20
+style = "slash"
+max_hit_melee = 70
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "bones"
+examine = "Tough-looking."
 
 [sumona]
 id = 7779

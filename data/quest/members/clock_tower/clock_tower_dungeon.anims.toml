@@ -3,3 +3,15 @@ id = 836
 
 [head_thief_attack]
 id = 390
+
+[head_thief_defend]
+id = 388
+
+[dungeon_rat_clocktower_dungeon_attack]
+id = 4933
+
+[dungeon_rat_clocktower_dungeon_defend]
+id = 4934
+
+[dungeon_rat_clocktower_dungeon_death]
+id = 4935

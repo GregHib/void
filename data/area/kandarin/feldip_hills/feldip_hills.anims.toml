@@ -30,3 +30,24 @@ id = 8640
 
 [ogress_champion_attack]
 id = 8636
+
+[ogress_warrior_attack]
+id = 8636
+
+[ogress_warrior_defend]
+id = 8638
+
+[ogress_warrior_death]
+id = 8640
+
+[ogress_warrior_spear_attack]
+id = 8637
+
+[ogress_warrior_spear_defend]
+id = 8639
+
+[ogress_warrior_spear_death]
+id = 8641
+
+[ogress_defend]
+id = 8638

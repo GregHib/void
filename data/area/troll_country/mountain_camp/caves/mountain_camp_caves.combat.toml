@@ -1,0 +1,8 @@
+[the_kendal]
+clone = "bear"
+defend_anim = "the_kendal_defend"
+death_anim = "the_kendal_death"
+
+[the_kendal.melee]
+clone = "bear.melee"
+anim = "the_kendal_attack"

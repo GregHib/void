@@ -8,9 +8,12 @@ impact_poison = 10
 
 [jungle_spider_ape_atoll]
 clone = "spider"
+defend_anim = "giant_spider_defend"
+death_anim = "giant_spider_death"
 
 [jungle_spider_ape_atoll.melee]
 clone = "spider.melee"
+anim = "giant_spider_attack"
 target_hit = { offense = "stab", max = 100 }
 impact_poison = 10
 
@@ -61,3 +64,27 @@ range = 6
 target_hit = { offense = "range", max = 200 }
 anim = "monkey_archer_attack"
 sound = "monkey_archer_attack"
+
+[monkey_guard_ape_atoll]
+clone = "guard"
+defend_anim = "monkey_guard_ape_atoll_defend"
+defend_sound = "monkey_guard_ape_atoll_defend"
+death_anim = "monkey_guard_ape_atoll_death"
+death_sound = "monkey_guard_ape_atoll_death"
+
+[monkey_guard_ape_atoll.melee]
+clone = "guard.melee"
+anim = "monkey_guard_ape_atoll_attack"
+target_sound = "monkey_guard_ape_atoll_attack"
+
+[monkey_zombie_ape_atoll]
+clone = "zombie"
+defend_anim = "monkey_zombie_ape_atoll_defend"
+defend_sound = "zombie_monkey_defend"
+death_anim = "monkey_zombie_ape_atoll_death"
+death_sound = "zombie_monkey_death"
+
+[monkey_zombie_ape_atoll.melee]
+clone = "zombie.melee"
+anim = "monkey_zombie_ape_atoll_attack"
+target_sound = "zombie_monkey_attack"

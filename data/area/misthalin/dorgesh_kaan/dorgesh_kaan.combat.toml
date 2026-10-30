@@ -1,0 +1,8 @@
+[guard_dorgesh_kaan]
+clone = "guard"
+defend_anim = "guard_dorgesh_kaan_defend"
+death_anim = "guard_dorgesh_kaan_death"
+
+[guard_dorgesh_kaan.melee]
+clone = "guard.melee"
+anim = "guard_dorgesh_kaan_attack"

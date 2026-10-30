@@ -3,3 +3,6 @@ id = 836
 
 [ice_queen_attack]
 id = 422
+
+[ice_queen_defend]
+id = 424

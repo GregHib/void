@@ -1,4 +1,5 @@
 [rogue]
+defend_anim = "rogue_defend"
 death_anim = "rogue_death"
 
 [rogue.melee]

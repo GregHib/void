@@ -1,6 +1,20 @@
 [vyrewatch]
+defend_anim = "vyrewatch_defend"
+defend_sound = "vyrewatch_defend"
+death_anim = "vyrewatch_death"
+death_sound = "vyrewatch_death"
 
 [vyrewatch.melee]
 range = 1
 target_hit = { offense = "crush", max = 110 }
 anim = "vyrewatch_attack"
+target_sound = "vyrewatch_attack"
+
+[vyrewatch_darkmeyer]
+clone = "vyrewatch"
+defend_anim = "vyrewatch_darkmeyer_defend"
+death_anim = "vyrewatch_darkmeyer_death"
+
+[vyrewatch_darkmeyer.melee]
+clone = "vyrewatch.melee"
+anim = "vyrewatch_darkmeyer_attack"

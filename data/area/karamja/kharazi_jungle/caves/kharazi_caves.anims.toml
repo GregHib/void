@@ -11,3 +11,15 @@ id = 5491
 
 [ranalph_devere_attack]
 id = 5485
+
+[death_wing_defend]
+id = 4916
+
+[undead_one_kharazi_caves_attack]
+id = 5485
+
+[undead_one_kharazi_caves_defend]
+id = 5489
+
+[undead_one_kharazi_caves_death]
+id = 5491
