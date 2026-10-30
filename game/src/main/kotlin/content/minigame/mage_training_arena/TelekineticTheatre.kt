@@ -142,6 +142,10 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
             refreshSolved(this)
         }
 
+        moved {
+            resetCamera(this)
+        }
+
         exited("mage_training_arena_telekinetic_theatre") {
             leave(this)
         }
@@ -232,7 +236,6 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
         val maze = currentMaze(player) ?: return
         player.message("Click observe on the guardian to reset your camera.")
         player["mage_training_arena_camera"] = true
-        player.walkTrigger { resetCamera(player) }
         val camera = local(player, maze.tile("camera"))
         if (maze.rowId == "maze_4") {
             player.moveCamera(camera.add(11, 5), 799, 95, 95)
@@ -279,7 +282,6 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
             return
         }
         player["mage_training_arena_camera"] = false
-        player.walkTrigger = null
         player.clearCamera()
     }
 

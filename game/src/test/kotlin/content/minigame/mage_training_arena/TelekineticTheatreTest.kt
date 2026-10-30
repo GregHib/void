@@ -159,6 +159,23 @@ internal class TelekineticTheatreTest : WorldTest() {
     }
 
     @Test
+    fun `Observing a second time resets the camera`() {
+        val player = enter("mta-maze-observe-twice")
+        player.tele(local(player, Tile(15, 51)))
+        tick(2)
+
+        player.floorItemOption(theatre.statue(player)!!, "Observe")
+        tick(3)
+        assertTrue(player["mage_training_arena_camera", false])
+
+        player.floorItemOption(theatre.statue(player)!!, "Observe")
+        tick(3)
+
+        assertFalse(player["mage_training_arena_camera", false])
+        assertEquals(local(player, Tile(15, 51)), player.tile)
+    }
+
+    @Test
     fun `Walking away resets the observe camera`() {
         val player = enter("mta-maze-observe-walk")
         player.tele(local(player, Tile(15, 51)))
