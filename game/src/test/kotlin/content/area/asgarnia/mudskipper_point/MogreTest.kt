@@ -1,10 +1,12 @@
 package content.area.asgarnia.mudskipper_point
 
 import WorldTest
+import containsMessage
 import dialogueContinue
 import dialogueOption
 import itemOnObject
 import npcOption
+import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
@@ -63,6 +65,17 @@ class MogreTest : WorldTest() {
 
         assertEquals(1, NPCs.count { it.id == "mogre" && it["owner", ""] == player.accountName })
         assertEquals(1, player.inventory.count("fishing_explosive"))
+    }
+
+    @Test
+    fun `Fishing the ominous spot from the shore says the fish are scared`() {
+        val player = createPlayer(Tile(2982, 3117))
+        val spot = GameObjects.find(Tile(2982, 3113), "ominous_fishing_spot")
+
+        player.objectOption(spot, "Lure")
+        tick(6)
+
+        assertTrue(player.containsMessage("Something seems to have scared all the fishes away..."))
     }
 
     @Test
