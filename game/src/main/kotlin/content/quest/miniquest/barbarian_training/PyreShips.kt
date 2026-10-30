@@ -12,6 +12,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
@@ -65,9 +67,19 @@ class PyreShips(val drops: DropTables) : Script {
                 has(Skill.Firemaking, lowest, true) && has(Skill.Crafting, lowest, true)
                 return@objectOperate
             }
+            val station = station(target)
+            if (station == null) {
+                // TODO proper message
+                message("This pyre site is in use currently.")
+                return@objectOperate
+            }
             face(target)
-            anim("carve_pyre_${hatchet.id.removeSuffix("_hatchet")}")
-            delay(4)
+            build(station, CARVING)
+            val carve = "carve_pyre_${hatchet.id.removeSuffix("_hatchet")}"
+            anim(carve)
+            delay(6)
+            anim(carve)
+            delay(6)
             inventory.transaction {
                 remove(log.rowId)
                 remove(bones)
@@ -93,14 +105,36 @@ class PyreShips(val drops: DropTables) : Script {
                 val npc = NPCs.add("ferocious_barbarian_spirit", target.tile, ticks = TimeUnit.MINUTES.toTicks(5), owner = this)
                 npc.interactPlayer(this, "Attack")
             }
-            // Replacing the site ends this interaction so it must come last
-            // TODO confirm the pyre object stages (carved log, boat, bones, lit) and their timings
-            target.replace("pyre_boat_lit", ticks = 10)
+            // Object timers run before players so the carving stages have reverted by now
+            station(target)?.let { build(it, BURNING) }
+        }
+    }
+
+    fun station(site: GameObject): GameObject? {
+        for (x in -2..0) {
+            for (y in -2..0) {
+                return GameObjects.findOrNull(site.tile.add(x, y), "pyre_boat_station") ?: continue
+            }
+        }
+        return null
+    }
+
+    /**
+     * Shows each of the pyre ship [stages] in place of the boat [station] for their number of ticks
+     */
+    fun build(station: GameObject, stages: List<Pair<String, Int>>) {
+        val (id, ticks) = stages.firstOrNull() ?: return
+        station.replace(id, ticks = ticks) {
+            build(station, stages.drop(1))
         }
     }
 
     companion object {
         const val MAX_BLESSED_BONES = 200
+
+        // TODO confirm the stage timings, carving follows 2009scape and the last three their animation lengths
+        private val CARVING = listOf("pyre_carved_log" to 4, "pyre_carved_log_2" to 4, "pyre_boat" to 4)
+        private val BURNING = listOf("pyre_boat_bones" to 4, "pyre_boat_lit" to 4, "pyre_boat_launched" to 4, "pyre_boat_burning" to 2, "pyre_boat_sinking" to 2)
         val BOWS = listOf("shortbow", "longbow", "oak_shortbow", "oak_longbow", "willow_shortbow", "willow_longbow", "maple_shortbow", "maple_longbow", "yew_shortbow", "yew_longbow", "magic_shortbow", "magic_longbow", "training_bow", "seercull", "sacred_clay_bow")
     }
 }
