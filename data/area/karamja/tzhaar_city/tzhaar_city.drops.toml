@@ -3,22 +3,32 @@ type = "all"
 drops = [
     { table = "tzhaar_hur_secondary" },
     { table = "tzhaar_charms", members = true },
+    { table = "tzhaar_hur_tertiary" },
 ]
 
 [tzhaar_hur_secondary]
-roll = 512
+roll = 2048
 drops = [
-    { id = "uncut_sapphire", chance = 2 },
-    { id = "uncut_emerald", chance = 2 },
-    { id = "uncut_ruby", chance = 2 },
+    { id = "uncut_sapphire", chance = 16 },
+    { id = "uncut_emerald", chance = 8 },
+    { id = "uncut_ruby", chance = 4 },
     { id = "uncut_diamond" },
-    { id = "tokkul", min = 1, max = 16, chance = 32 },
-    { id = "chisel", chance = 8 },
-    { id = "hammer", chance = 8 },
-    { id = "jug", chance = 8 },
-    { id = "knife", chance = 8 },
-    { id = "empty_pot", chance = 8 },
-    { id = "nothing", chance = 32 },
+    { id = "tokkul", chance = 587 },
+    { id = "gold_ore", chance = 128 },
+    { id = "silver_ore_noted", chance = 128 },
+    { id = "soft_clay_noted", amount = 3, chance = 64 },
+    { id = "steel_bar", chance = 64 },
+    { id = "onyx_bolt_tips", chance = 16 },
+    { id = "molten_glass", amount = 2, chance = 191 },
+    { id = "battlestaff", chance = 16 },
+    { id = "hard_leather_noted", chance = 12 },
+    { id = "leather_noted", amount = 3, chance = 64 },
+    { id = "wool_noted", amount = 8, chance = 12 },
+    { id = "flax_noted", min = 5, max = 10, chance = 64 },
+    { id = "pure_essence_noted", amount = 4, chance = 12 },
+    { id = "lobster", chance = 12 },
+    { id = "super_attack_1", chance = 64 },
+    { id = "super_strength_1", chance = 64 },
 ]
 
 [tzhaar_mej_drop_table]
@@ -33,17 +43,27 @@ roll = 4096
 drops = [
     { id = "obsidian_cape" },
     { id = "toktz_mej_tal" },
-    { id = "earth_rune", amount = 25, chance = 256 },
-    { id = "fire_rune", amount = 25, chance = 256 },
-    { id = "air_rune", amount = 25, chance = 64 },
-    { id = "chaos_rune", amount = 5, chance = 64 },
-    { id = "nature_rune", amount = 2, chance = 64 },
-    { id = "death_rune", amount = 2, chance = 16 },
-    { id = "tokkul", min = 1, max = 21, chance = 256 },
-    { id = "uncut_sapphire", chance = 16 },
+    { id = "earth_rune", min = 11, max = 80, chance = 365 },
+    { id = "fire_rune", min = 11, max = 80, chance = 730 },
+    { id = "air_rune", min = 11, max = 80, chance = 365 },
+    { id = "chaos_rune", min = 5, max = 8, chance = 203 },
+    { id = "nature_rune", min = 2, max = 8, chance = 243 },
+    { id = "death_rune", min = 1, max = 6, chance = 243 },
+    { id = "tokkul", chance = 256 },
+    { id = "uncut_sapphire", chance = 32 },
     { id = "uncut_emerald", chance = 16 },
-    { id = "uncut_ruby", chance = 16 },
-    { id = "uncut_diamond", chance = 8 },
+    { id = "uncut_ruby", chance = 8 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "fire_battlestaff", chance = 27 },
+    { id = "staff_of_fire", chance = 27 },
+    { id = "water_rune", min = 11, max = 80, chance = 128 },
+    { id = "blood_rune", min = 1, max = 6, chance = 243 },
+    { id = "smoke_rune", min = 1, max = 9, chance = 162 },
+    { id = "lava_rune", min = 10, max = 40, chance = 24 },
+    { id = "law_rune", min = 2, max = 5, chance = 243 },
+    { id = "fire_talisman", chance = 27 },
+    { id = "onyx_bolt_tips", chance = 128 },
+    { id = "pure_essence", amount = 4, chance = 203 },
 ]
 
 [tzhaar_xil_drop_table]
@@ -51,21 +71,35 @@ type = "all"
 drops = [
     { table = "tzhaar_xil_secondary" },
     { table = "tzhaar_charms", members = true },
+    { table = "tzhaar_xil_tertiary" },
 ]
 
 [tzhaar_xil_secondary]
-roll = 2048
+roll = 1024
 drops = [
-    { id = "toktz_xil_ul", min = 10, max = 29, chance = 4 },
-    { id = "toktz_xil_ak", chance = 3 },
-    { id = "toktz_xil_ek", chance = 3 },
-    { id = "obsidian_cape", chance = 6 },
-    { id = "tokkul", min = 1, max = 32, chance = 128 },
+    { id = "toktz_xil_ul", amount = 9, chance = 6 },
+    { id = "toktz_xil_ul", amount = 14, chance = 6 },
+    { id = "toktz_xil_ul", amount = 16, chance = 6 },
+    { id = "toktz_xil_ul", amount = 18, chance = 6 },
+    { id = "toktz_xil_ul", amount = 19, chance = 6 },
+    { id = "toktz_xil_ak", chance = 2 },
+    { id = "toktz_xil_ek", chance = 2 },
+    { id = "obsidian_cape", chance = 3 },
+    { id = "tokkul", min = 100, max = 2, chance = 32 },
+    { id = "tokkul", amount = 0, chance = 32 },
     { id = "uncut_sapphire", chance = 32 },
-    { id = "uncut_emerald", chance = 32 },
-    { id = "uncut_ruby", chance = 32 },
-    { id = "uncut_diamond", chance = 8 },
-    { id = "nothing", chance = 778 },
+    { id = "uncut_emerald", chance = 16 },
+    { id = "uncut_ruby", chance = 8 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "toktz_ket_xil", chance = 6 },
+    { id = "super_strength_1", chance = 6 },
+    { id = "super_attack_1", chance = 6 },
+    { id = "super_defence_1", chance = 6 },
+    { id = "lobster", chance = 16 },
+    { id = "lobster", amount = 2, chance = 16 },
+    { id = "onyx_bolt_tips", chance = 32 },
+    { id = "chilli_potato" },
+    { id = "chilli_potato", amount = 2 },
 ]
 
 [tzhaar_ket_drop_table]
@@ -73,20 +107,28 @@ type = "all"
 drops = [
     { table = "tzhaar_ket_secondary" },
     { table = "tzhaar_charms", members = true },
+    { table = "tzhaar_ket_tertiary" },
 ]
 
 [tzhaar_ket_secondary]
-roll = 2048
+roll = 512
 drops = [
-    { id = "tzhaar_ket_om", chance = 4 },
-    { id = "toktz_ket_xil", chance = 4 },
-    { id = "obsidian_cape", chance = 4 },
-    { id = "uncut_sapphire", chance = 64 },
-    { id = "uncut_emerald", chance = 32 },
-    { id = "uncut_ruby", chance = 16 },
-    { id = "uncut_diamond", chance = 4 },
-    { id = "nothing", chance = 1280 },
-    { id = "tokkul", min = 1, max = 64, chance = 640 },
+    { id = "tzhaar_ket_om" },
+    { id = "toktz_ket_xil" },
+    { id = "obsidian_cape" },
+    { id = "uncut_sapphire", chance = 16 },
+    { id = "uncut_emerald", chance = 8 },
+    { id = "uncut_ruby", chance = 4 },
+    { id = "uncut_diamond" },
+    { id = "tokkul", min = 100, max = 1900, chance = 160 },
+    { id = "fire_battlestaff", chance = 3 },
+    { id = "super_defence_1", chance = 16 },
+    { id = "super_strength_1", chance = 16 },
+    { id = "super_attack_1", chance = 3 },
+    { id = "chilli_potato", chance = 8 },
+    { id = "chilli_potato", amount = 2, chance = 8 },
+    { id = "onyx_bolt_tips", chance = 3 },
+    { id = "pure_essence", amount = 5 },
 ]
 
 [tzhaar_ket_high_drop_table]
@@ -94,21 +136,28 @@ type = "all"
 drops = [
     { table = "tzhaar_ket_high_secondary" },
     { table = "tzhaar_charms", members = true },
+    { table = "tzhaar_ket_high_tertiary" },
 ]
 
 [tzhaar_ket_high_secondary]
-roll = 2048
+roll = 512
 drops = [
-    { id = "tzhaar_ket_om", chance = 4 },
-    { id = "toktz_ket_xil", chance = 4 },
-    { id = "obsidian_cape", chance = 4 },
-    { id = "uncut_sapphire", chance = 64 },
-    { id = "uncut_emerald", chance = 32 },
-    { id = "uncut_ruby", chance = 24 },
-    { id = "uncut_diamond", chance = 12 },
-    { id = "onyx_bolt_tips", min = 1, max = 4, chance = 40 },
-    { id = "tokkul", min = 20, max = 83, chance = 768 },
-    { id = "nothing", chance = 1096 },
+    { id = "tzhaar_ket_om" },
+    { id = "toktz_ket_xil" },
+    { id = "obsidian_cape" },
+    { id = "uncut_sapphire", chance = 16 },
+    { id = "uncut_emerald", chance = 8 },
+    { id = "uncut_ruby", chance = 4 },
+    { id = "uncut_diamond" },
+    { id = "onyx_bolt_tips", chance = 3 },
+    { id = "tokkul", min = 100, max = 1900, chance = 160 },
+    { id = "fire_battlestaff", chance = 3 },
+    { id = "super_defence_1", chance = 16 },
+    { id = "super_strength_1", chance = 16 },
+    { id = "super_attack_1", chance = 3 },
+    { id = "chilli_potato", chance = 8 },
+    { id = "chilli_potato", amount = 2, chance = 8 },
+    { id = "pure_essence", amount = 5 },
 ]
 
 [tzhaar_charms]
@@ -122,4 +171,28 @@ drops = [
 type = "all"
 drops = [
     { id = "ashes" },
+]
+
+[tzhaar_hur_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+]
+
+[tzhaar_ket_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+]
+
+[tzhaar_ket_high_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+]
+
+[tzhaar_xil_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

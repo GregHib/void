@@ -3,10 +3,17 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "vulture_tertiary" },
+    { table = "vulture_secondary" },
 ]
 
 [vulture_tertiary]
 roll = 4
 drops = [
     { id = "vulture_wing", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[vulture_secondary]
+roll = 128
+drops = [
+    { id = "vulture_egg", chance = 5 },
 ]

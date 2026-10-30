@@ -40,10 +40,17 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "seagull_tertiary" },
+    { table = "seagull_secondary" },
 ]
 
 [seagull_tertiary]
 roll = 4
 drops = [
     { id = "seagull_wing", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[seagull_secondary]
+roll = 256
+drops = [
+    { id = "cornucopia" },
 ]
