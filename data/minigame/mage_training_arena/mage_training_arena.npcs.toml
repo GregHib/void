@@ -7,10 +7,12 @@ id = 3095
 
 [entrance_guardian]
 id = 3097
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [rewards_guardian]
 id = 3103
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [charmed_warrior]
@@ -34,25 +36,31 @@ examine = "A tired old wizard."
 
 [pizazz_hat]
 id = 3096
+dialogue = "old"
 
 [telekinetic_guardian]
 id = 3098
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [alchemy_guardian]
 id = 3099
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [enchantment_guardian]
 id = 3100
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [graveyard_guardian]
 id = 3101
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [maze_guardian]
 id = 3102
+dialogue = "old"
 examine = "A guardian of the arena."
 
 [sweeper]
