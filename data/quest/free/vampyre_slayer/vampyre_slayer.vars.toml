@@ -1,0 +1,3 @@
+# Transient reference to the player-owned Count; cleared on death or logout.
+[vampire_slayer_count]
+persist = false

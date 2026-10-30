@@ -1,6 +1,7 @@
-[vampyre_slayer]
+# Revision 634: varbit 6914 occupies bits 0-1 of varp 178.
+[vampire_slayer]
 id = 6914
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, started = 1, armed = 2, completed = 3 }

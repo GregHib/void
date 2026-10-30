@@ -1,0 +1,6 @@
+# NPC 9356 uses BAS 1669 (idle 3330, walk 3333), not the generic vampyre skeleton.
+[count_draynor_attack]
+id = 3331
+
+[count_draynor_death]
+id = 3332

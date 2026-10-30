@@ -1,0 +1,9 @@
+[count_draynor_normal]
+death_anim = "count_draynor_death"
+death_sound = "vampyre_death"
+
+[count_draynor_normal.melee]
+range = 1
+anim = "count_draynor_attack"
+target_sound = "vampyre_attack"
+target_hit = { offense = "crush", max = 30 }
