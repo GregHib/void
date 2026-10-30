@@ -3,6 +3,7 @@ package content.quest
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -14,12 +15,10 @@ val quests = setOf(
     "cooks_assistant",
     "demon_slayer",
     "dorics_quest",
-    "goblin_diplomacy",
     "gunnars_ground",
     "the_restless_ghost",
     "rune_mysteries",
     "the_knights_sword",
-    "witches_potion_miniquest",
     "prince_ali_rescue",
     "imp_catcher",
     "pirates_treasure",
@@ -28,22 +27,21 @@ val quests = setOf(
     "creature_of_fenkenstrain",
     "druidic_ritual",
     "gertrudes_cat",
+    "ghosts_ahoy",
     "hand_in_the_sand",
     "in_search_of_the_myreque",
     "jungle_potion",
     "nature_spirit",
     "plague_city",
     "priest_in_peril",
-    "rat_catchers",
     "rum_deal",
-    "swan_song",
     "lost_city",
-    "one_small_favour",
     "tears_of_guthix",
     "the_golem",
     "zogre_flesh_eaters",
     // mini-quests
     "enter_the_abyss",
+    "sheep_shearer_miniquest",
 )
 
 fun Player.quest(name: String): String = this[name, "unstarted"]
@@ -59,11 +57,30 @@ fun questStage(name: String, stage: String): Int {
     return def.values.toInt(stage)
 }
 
+/**
+ * Quests which aren't implemented yet are treated as completed so they don't block content
+ */
+fun questSkipped(name: String): Boolean = !quests.contains(name) && Settings["quests.requirements.skipMissing", false]
+
 fun Player.questCompleted(name: String): Boolean {
-    if (!quests.contains(name) && Settings["quests.requirements.skipMissing", false]) {
+    if (questSkipped(name)) {
         return true
     }
     return quest(name).startsWith("completed")
+}
+
+fun Player.completedAllQuests(): Boolean = quests.all { questCompleted(it) }
+
+/**
+ * Quest points available from the quests which are implemented
+ */
+fun questPointsTotal(definitions: QuestDefinitions): Int = quests.sumOf { definitions.getOrNull(it)?.questPoints?.coerceAtLeast(0) ?: 0 }
+
+fun Player.questStarted(name: String): Boolean {
+    if (questSkipped(name)) {
+        return true
+    }
+    return quest(name) != "unstarted"
 }
 
 fun Player.refreshQuestJournal() {

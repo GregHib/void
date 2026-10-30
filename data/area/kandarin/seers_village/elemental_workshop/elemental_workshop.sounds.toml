@@ -36,3 +36,18 @@ id = 1545
 
 [water_elemental_defend]
 id = 1546
+
+[fill_stone_bowl]
+id = 1537
+
+[fill_furnace_with_lava]
+id = 1538
+
+[water_gates_reset]
+id = 1540
+
+[water_wheel_start]
+id = 1547
+
+[water_wheel_stop]
+id = 1548

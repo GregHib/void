@@ -1,5 +1,6 @@
 package content.area.kharidian_desert.nardah
 
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -14,7 +15,9 @@ class Rokuh : Script {
         npcOperate("Talk-to", "rokuh*") { (target) ->
             npc<Happy>("Come one, come all, buy my amazing choc ice invention here! Chocolate on the outside. Iced cream on the inside. Oh I also have some chocolate left over from making choc ices which I'm selling too.")
             choice {
-                option("Cool I'd like to buy some.")
+                option("Cool I'd like to buy some.") {
+                    openShop("roks_chocs_box")
+                }
                 option<Neutral>("No thanks, I'm not interested.")
                 option("How do you stop your icy snacks melting?") {
                     player<Quiz>("How do you stop your icy snacks melting? The middle of the desert is the last place I'd expect to see ice.")
@@ -27,6 +30,10 @@ class Rokuh : Script {
                     }
                 }
             }
+        }
+
+        npcOperate("Trade", "rokuh*") {
+            openShop("roks_chocs_box")
         }
     }
 }

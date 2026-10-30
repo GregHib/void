@@ -12,10 +12,14 @@ class Gerrant : Script {
             npc<Neutral>("Welcome! You can buy fishing equipment at my store. We'll also buy anything you catch off you.")
             choice {
                 option<Neutral>("Let's see what you've got then.") {
-                    openShop(target.def["shop"])
+                    openShop(target.def(this)["shop"])
                 }
                 option<Neutral>("Sorry, I'm not interested.")
             }
+        }
+
+        npcOperate("Trade", "gerrant*") { (target) ->
+            openShop(target.def(this)["shop"])
         }
     }
 }

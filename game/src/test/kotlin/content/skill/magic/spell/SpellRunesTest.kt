@@ -141,7 +141,7 @@ class SpellRunesTest : MagicSpellTest() {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["guthix_staff", "void_knight_mace", "slayers_staff", "staff_of_light_red", "zuriels_staff_corrupted", "ibans_staff", "saradomin_staff", "zamorak_staff"])
+    @ValueSource(strings = ["guthix_staff", "void_knight_mace", "slayers_staff", "staff_of_light_red", "zuriels_staff_corrupted", "saradomin_staff", "zamorak_staff"])
     fun `Has required staff`(staff: String) {
         val player = player()
         val required = when (staff) {

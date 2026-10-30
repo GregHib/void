@@ -5,10 +5,7 @@ default = 0
 
 [quest_points_total]
 id = 904
-persist = true
-format = "map"
-default = "total"
-values = { total = 24 }
+default = 0
 
 [bork_defeated_day]
 id = 1199

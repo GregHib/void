@@ -1,0 +1,3 @@
+[jarvald_expedition_asked]
+format = "boolean"
+persist = true

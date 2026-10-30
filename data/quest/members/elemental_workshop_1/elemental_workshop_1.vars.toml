@@ -1,0 +1,11 @@
+[elemental_workshop_bellows_fixed]
+format = "boolean"
+persist = true
+
+[elemental_workshop_needle]
+format = "boolean"
+persist = true
+
+[elemental_workshop_leather]
+format = "boolean"
+persist = true

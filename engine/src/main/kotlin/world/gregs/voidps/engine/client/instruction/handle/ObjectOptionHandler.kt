@@ -76,7 +76,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
 
         private fun getInt(key: String, player: Player): Int {
             val variable = VariableDefinitions.get(key) ?: return 0
-            val value = player.variables.get<Any>(key) ?: return 0
+            val value = player.variables.get<Any>(key) ?: variable.defaultValue ?: return 0
             return variable.values.toInt(value)
         }
 

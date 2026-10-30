@@ -9,6 +9,7 @@ import content.entity.player.effect.unskull
 import content.entity.player.modal.tab.Emotes
 import content.entity.world.music.MusicTracks
 import content.entity.world.music.unlockTrack
+import content.quest.questPointsTotal
 import content.quest.quests
 import content.quest.refreshQuestJournal
 import content.skill.prayer.PrayerConfigs.PRAYERS
@@ -24,6 +25,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -41,6 +43,7 @@ class PlayerCommands(
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
     val tracks: MusicTracks,
+    val questDefinitions: QuestDefinitions,
 ) : Script {
 
     init {
@@ -321,7 +324,7 @@ class PlayerCommands(
             for (component in Emotes.unlockableEmotes) {
                 target["unlocked_emote_$component"] = true
             }
-            target["the_lost_tribe"] = "goblin_emotes"
+            target["the_lost_tribe"] = "completed"
             target.message("All emotes unlocked.")
         }
         if (type == "all" || type == "quests") {
@@ -331,7 +334,7 @@ class PlayerCommands(
             target["recipe_for_disaster"] = "completed"
             target["lunar_diplomacy"] = "completed"
             target["fairy_tale_ii"] = "completed"
-            target["quest_points"] = target["quest_points_total", 1]
+            target["quest_points"] = questPointsTotal(questDefinitions)
             target.refreshQuestJournal()
             target.message("All quests unlocked.")
         }

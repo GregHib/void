@@ -1,5 +1,6 @@
 package content.quest.member.ghosts_ahoy
 
+import content.entity.npc.shop.openShop
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
@@ -23,6 +24,10 @@ class AkHaranu : Script {
                 stage >= 1 -> exchangePhase()
                 else -> introPhase()
             }
+        }
+
+        npcOperate("Trade", "ahoy_akharanu*") {
+            openShop("ak_haranus_exotic_shop")
         }
     }
 

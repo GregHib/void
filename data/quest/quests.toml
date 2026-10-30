@@ -281,6 +281,7 @@ reward = "Balmung<br>Access to Dagannoth guardians, Dagannoth Mother and her sen
 
 [buyers_and_cellars]
 id = 167
+variables = ["buyers_and_cellars_progress"]
 name = "Buyers and Cellars"
 difficulty = 0
 length = 2
@@ -767,6 +768,7 @@ xp = "5,000 Fletching XP<br>5,000 Runecrafting XP<br>6,500 Smithing XP"
 
 [dig_site]
 id = 32
+variables = ["the_dig_site"]
 name = "The Dig Site"
 difficulty = 1
 length = 5
@@ -951,6 +953,7 @@ xp = "2,500 Hunter XP"
 
 [elemental_workshop_i]
 id = 37
+variables = ["elemental_workshop_1"]
 name = "Elemental Workshop I"
 difficulty = 0
 length = 1
@@ -972,6 +975,7 @@ xp = "5,000 Crafting XP<br>5,000 Smithing XP"
 
 [elemental_workshop_ii]
 id = 38
+variables = ["elemental_workshop_2"]
 name = "Elemental Workshop II"
 difficulty = 1
 length = 3
@@ -993,6 +997,7 @@ xp = "7,500 Crafting XP<br>7,500 Smithing XP"
 
 [elemental_workshop_iii]
 id = 172
+variables = ["elemental_workshop_3"]
 name = "Elemental Workshop III"
 difficulty = 1
 length = 4
@@ -1880,6 +1885,7 @@ xp = "5,000 Slayer XP"
 
 [icthlarins_little_helper]
 id = 63
+variables = ["icthlarins_little_helper", "icthlarins_little_helper_progress"]
 name = "Icthlarin's Little Helper"
 difficulty = 1
 length = 5
@@ -1920,6 +1926,16 @@ variables = [
 
 [in_aid_of_the_myreque]
 id = 64
+variables = [
+  "burgh_de_rott_roof",
+  "burgh_de_rott_general_store_wall",
+  "burgh_de_rott_bank_booth",
+  "burgh_de_rott_bank_wall",
+  "burgh_de_rott_cornelius",
+  "burgh_de_rott_furnace",
+  "burgh_de_rott_ambush",
+  "burgh_de_rott_rebuilt",
+]
 name = "In Aid of the Myreque"
 difficulty = 1
 length = 5
@@ -2263,6 +2279,7 @@ xp = "5,000 Thieving XP (plus 4,800 Thieving XP for turning in the flame fragmen
 
 [lost_tribe]
 id = 69
+variables = ["the_lost_tribe"]
 name = "The Lost Tribe"
 difficulty = 1
 length = 3
@@ -2462,6 +2479,7 @@ xp = "1,000 Attack XP"
 
 [mournings_end_part_i]
 id = 76
+variables = ["mournings_end_part_1"]
 name = "Mourning's End Part I"
 difficulty = 3
 length = 6
@@ -2485,6 +2503,7 @@ xp = "25,000 Thieving XP lamp"
 
 [mournings_end_part_ii]
 id = 77
+variables = ["mournings_end_part_2"]
 name = "Mourning's End Part II"
 difficulty = 3
 length = 7
@@ -2880,6 +2899,7 @@ xp = "4,000 Attack XP<br>4,900 Strength XP"
 
 [rag_and_bone_man]
 id = 85
+variables = ["rag_and_bone_man_1"]
 name = "Rag and Bone Man"
 difficulty = 0
 length = 4
@@ -2895,6 +2915,7 @@ xp = "500 Cooking XP"
 
 [rat_catchers]
 id = 86
+variables = ["ratcatchers"]
 name = "Rat Catchers"
 difficulty = 1
 length = 5
@@ -3439,6 +3460,7 @@ items = [
 
 [shield_of_arrav]
 id = 15
+variables = ["shield_of_arrav_phoenix", "shield_of_arrav_black_arm"]
 name = "Shield of Arrav"
 difficulty = 0
 length = 3
@@ -3474,6 +3496,7 @@ xp = "3,875 Crafting XP"
 
 [slug_menace]
 id = 95
+variables = ["slug_menace_jeb_platform"]
 name = "The Slug Menace"
 difficulty = 1
 length = 4
@@ -3660,6 +3683,7 @@ xp = "1,500 Fishing XP"
 
 [tail_of_two_cats]
 id = 104
+variables = ["a_tail_of_two_cats"]
 name = "A Tail of Two Cats"
 difficulty = 1
 length = 5
@@ -3950,6 +3974,7 @@ xp = "3,000 Agility XP<br>3,000 Attack XP"
 
 [vampire_slayer]
 id = 16
+variables = ["vampyre_slayer"]
 name = "Vampire Slayer"
 difficulty = 0
 length = 1
@@ -4130,6 +4155,7 @@ reward = "5,000 coins<br>Lump of dragon metal<br>Talk to Idria to receive 4x 100
 
 [witchs_house]
 id = 109
+variables = ["witches_house"]
 name = "Witch's House"
 difficulty = 1
 length = 1

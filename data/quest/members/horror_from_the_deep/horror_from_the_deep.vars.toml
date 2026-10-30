@@ -1,0 +1,11 @@
+[saradomin_book_completed]
+format = "boolean"
+persist = true
+
+[zamorak_book_completed]
+format = "boolean"
+persist = true
+
+[guthix_book_completed]
+format = "boolean"
+persist = true

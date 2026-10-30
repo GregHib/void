@@ -88,7 +88,7 @@ spawns = [
   { id = "gull_draynor", x = 3085, y = 3219, members = true },
   { id = "gull_draynor_2", x = 3081, y = 3234, members = true },
   { id = "rat", x = 3101, y = 3355 },
-  { id = "ava", x = 3093, y = 3357, members = true },
+  { id = "ava_2", x = 3093, y = 3357, members = true },
   { id = "scout_draynor", x = 3072, y = 3336, members = true },
   { id = "town_crier_draynor", x = 3079, y = 3249, members = true },
   { id = "imp", x = 3073, y = 3250 },

@@ -65,13 +65,27 @@ object Damage {
     }
 
     /**
+     * An npc's max hit for [offense], melee styles fall back to its general "max_hit_melee"
+     */
+    fun npcMaximum(npc: NPC, offense: String, default: Int): Int {
+        val max: Int? = npc.def.getOrNull("max_hit_$offense")
+        if (max != null) {
+            return max
+        }
+        if (offense == "stab" || offense == "slash" || offense == "crush") {
+            return npc.def["max_hit_melee", default]
+        }
+        return default
+    }
+
+    /**
      * Calculates the base maximum damage before modifications are applied
      * @param target only applicable for "dragonfire" [type]
      * @param success only applicable for "dragonfire" type
      */
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", success: Boolean = false, range: IntRange? = null): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, success || source is NPC && spell != "")
-        source is NPC -> source.def["max_hit_$type", range?.last ?: 0]
+        source is NPC -> npcMaximum(source, type, range?.last ?: 0)
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {

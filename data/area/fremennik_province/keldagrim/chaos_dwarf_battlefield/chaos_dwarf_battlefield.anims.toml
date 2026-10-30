@@ -4,3 +4,15 @@ id = 12146
 id = 12147
 [chaos_dwogre_death]
 id = 12150
+ticks = 4
+[chaos_dwogre_magic_attack]
+id = 12151
+[chaos_dwarf_hand_cannoneer_attack]
+id = 12141
+[chaos_dwarf_hand_cannoneer_death]
+id = 12181
+ticks = 2
+[black_guard_crossbowdwarf_attack]
+id = 12173
+[black_guard_dwarf_defend]
+id = 12185
