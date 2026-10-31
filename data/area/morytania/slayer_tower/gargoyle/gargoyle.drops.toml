@@ -5,6 +5,7 @@ drops = [
   { table = "gargoyle_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
   { table = "gargoyle_charms", members = true },
+  { table = "gargoyle_tertiary" },
 ]
 
 [gargoyle_unique]
@@ -15,28 +16,32 @@ drops = [
 ]
 
 [gargoyle_secondary]
-roll = 512
+roll = 256
 drops = [
-  { id = "adamant_platelegs", chance = 16 },
-  { id = "rune_full_helm", chance = 12 },
-  { id = "rune_2h_sword", chance = 8 },
-  { id = "adamant_boots", chance = 4 },
-  { id = "rune_battleaxe", chance = 4 },
-  { id = "rune_platelegs", chance = 4 },
-  { id = "fire_rune", amount = 75, chance = 40 },
-  { id = "chaos_rune", amount = 30, chance = 32 },
-  { id = "fire_rune", amount = 150, chance = 24 },
-  { id = "death_rune", amount = 15, chance = 20 },
-  { id = "gold_ore_noted", min = 10, max = 20, chance = 40 },
-  { id = "pure_essence_noted", amount = 150, chance = 24 },
-  { id = "steel_bar_noted", amount = 15, chance = 24 },
-  { id = "gold_bar_noted", min = 10, max = 15, chance = 12 },
-  { id = "mithril_bar_noted", amount = 15, chance = 8 },
-  { id = "runite_ore", chance = 8 },
-  { id = "coins", min = 400, max = 800, chance = 112 },
-  { id = "coins", min = 500, max = 1000, chance = 80 },
-  { id = "coins", amount = 10000, chance = 20 },
-  { table = "gem_drop_table", chance = 20 },
+  { id = "adamant_platelegs", chance = 8 },
+  { id = "rune_full_helm", chance = 6 },
+  { id = "rune_2h_sword", chance = 4 },
+  { id = "adamant_boots", chance = 2 },
+  { id = "rune_battleaxe", chance = 2 },
+  { id = "rune_platelegs", chance = 2 },
+  { id = "fire_rune", amount = 37, chance = 6 },
+  { id = "fire_rune", amount = 75, chance = 20 },
+  { id = "chaos_rune", amount = 15, chance = 12 },
+  { id = "death_rune", amount = 5, chance = 7 },
+  { id = "pure_essence_noted", amount = 35, chance = 9 },
+  { id = "runite_ore", chance = 4 },
+  { id = "coins", min = 400, max = 800, chance = 53 },
+  { id = "coins", min = 500, max = 1000, chance = 40 },
+  { id = "coins", amount = 10000, chance = 10 },
+  { table = "gem_drop_table", chance = 10 },
+  { id = "steel_2h_sword", chance = 12 },
+  { id = "steel_battleaxe", chance = 12 },
+  { id = "steel_hatchet", chance = 12 },
+  { id = "steel_full_helm" },
+  { id = "mithril_bar", amount = 3, chance = 6 },
+  { id = "steel_bar", amount = 3, chance = 6 },
+  { id = "gold_bar", chance = 6 },
+  { id = "thread", amount = 10, chance = 6 },
 ]
 
 [gargoyle_charms]
@@ -46,4 +51,11 @@ drops = [
     { id = "green_charm", chance = 4798 },
     { id = "crimson_charm", chance = 4881 },
     { id = "blue_charm", chance = 6989 },
+]
+
+[gargoyle_tertiary]
+roll = 5000
+drops = [
+  { id = "ferocious_ring_5", chance = 28 },
+  { id = "starved_ancient_effigy", chance = 29 },
 ]

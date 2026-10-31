@@ -4,28 +4,43 @@ drops = [
     { id = "bones" },
     { table = "elf_warrior_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
+    { table = "elf_warrior_tertiary" },
 ]
 
 [elf_warrior_secondary]
-roll = 128
+roll = 1024
 drops = [
-    { id = "green_dragonhide_chaps", chance = 3 },
-    { id = "green_dragonhide_body", chance = 4 },
-    { id = "mithril_spear", chance = 2 },
-    { id = "mithril_kiteshield" },
-    { id = "adamant_full_helm" },
-    { id = "rune_dagger" },
-    { id = "water_rune", amount = 70, chance = 8 },
-    { id = "nature_rune", amount = 12, chance = 5 },
-    { id = "law_rune", amount = 2, chance = 3 },
-    { id = "fire_rune", amount = 37, chance = 3 },
-    { table = "herb_drop_table", chance = 15 },
-    { id = "coins", amount = 20, chance = 5 },
-    { id = "coins", amount = 44, chance = 29 },
-    { id = "coins", amount = 180, chance = 10 },
-    { id = "blank_teleport_crystal" },
-    { id = "bass", chance = 3 },
-    { id = "shark", chance = 3 },
-    { id = "adamantite_ore" },
-    { table = "gem_drop_table", chance = 5 },
+    { id = "green_dragonhide_chaps", chance = 24 },
+    { id = "green_dragonhide_body", chance = 32 },
+    { id = "mithril_spear", chance = 16 },
+    { id = "mithril_kiteshield", chance = 8 },
+    { id = "adamant_full_helm", chance = 8 },
+    { id = "rune_dagger", chance = 8 },
+    { id = "water_rune", min = 2, max = 70, chance = 42 },
+    { id = "nature_rune", amount = 12, chance = 40 },
+    { id = "law_rune", min = 1, max = 3, chance = 16 },
+    { id = "fire_rune", amount = 37, chance = 24 },
+    { table = "herb_drop_table", chance = 120 },
+    { id = "coins", amount = 20, chance = 40 },
+    { id = "coins", amount = 44, chance = 230 },
+    { id = "coins", amount = 180, chance = 80 },
+    { id = "bass", chance = 24 },
+    { id = "shark", chance = 24 },
+    { id = "adamantite_ore", chance = 8 },
+    { table = "gem_drop_table", chance = 40 },
+    { id = "green_dragonhide_vambraces", chance = 42 },
+    { id = "rune_med_helm", chance = 4 },
+    { id = "rune_kiteshield", chance = 4 },
+    { id = "lobster", chance = 42 },
+    { id = "sea_turtle", chance = 4 },
+    { id = "manta_ray" },
+    { id = "crystal_teleport_seed_uncharged", chance = 42 },
+    { id = "crystal_teleport_seed_1", chance = 8 },
+    { table = "rare_seed_drop_table", chance = 93 },
+]
+
+[elf_warrior_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]
