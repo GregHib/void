@@ -42,42 +42,42 @@ class ErnestTheChickenTest : WorldTest() {
     fun `Veronica acceptance and professor explanation advance the quest`() {
         val p = createPlayer(Tile(3110, 3330))
         p.talk("veronica")
-        assertEquals("unstarted", p.quest(ERNEST))
+        assertEquals("unstarted", p.quest("ernest_the_chicken"))
         p.dialogueOption(1)
         p.skipDialogues()
-        assertEquals("started", p.quest(ERNEST))
-        assertEquals(1, p.questStage(ERNEST))
+        assertEquals("started", p.quest("ernest_the_chicken"))
+        assertEquals(1, p.questStage("ernest_the_chicken"))
         p.tele(3110, 3366, 2)
         p.talk("professor_oddenstein")
         p.dialogueOption(1)
         p.skipDialogues()
         p.dialogueOption(1)
         p.skipDialogues()
-        assertEquals("parts", p.quest(ERNEST))
-        assertEquals(2, p.questStage(ERNEST))
+        assertEquals("parts", p.quest("ernest_the_chicken"))
+        assertEquals(2, p.questStage("ernest_the_chicken"))
     }
 
     @Test
     fun `Demanding Ernest be changed back also opens the parts stage`() {
         val p = createPlayer(Tile(3110, 3366, 2))
-        p[ERNEST] = "started"
+        p["ernest_the_chicken"] = "started"
         p.talk("professor_oddenstein")
         p.dialogueOption(1)
         p.skipDialogues()
         p.dialogueOption(2)
         p.skipDialogues()
-        assertEquals("parts", p.quest(ERNEST))
+        assertEquals("parts", p.quest("ernest_the_chicken"))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6])
     fun `Every incomplete parts conversation leaves the carried parts untouched`(mask: Int) {
         val p = createPlayer(Tile(3110, 3366, 2))
-        p[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
         val parts = listOf("pressure_gauge", "rubber_tube", "oil_can")
         for ((i, part) in parts.withIndex()) if (mask and (1 shl i) != 0) p.inventory.add(part)
         p.talk("professor_oddenstein")
-        assertEquals("parts", p.quest(ERNEST))
+        assertEquals("parts", p.quest("ernest_the_chicken"))
         for ((i, part) in parts.withIndex()) assertEquals(if (mask and (1 shl i) != 0) 1 else 0, p.inventory.count(part))
         assertEquals(0, p["quest_points", 0])
         assertFalse(p["ernest_parts_returned", false])
@@ -86,9 +86,9 @@ class ErnestTheChickenTest : WorldTest() {
     @Test
     fun `Veronica discusses the transformation without changing the parts stage`() {
         val p = createPlayer(Tile(3110, 3330))
-        p[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
         p.talk("veronica")
-        assertEquals("parts", p.quest(ERNEST))
+        assertEquals("parts", p.quest("ernest_the_chicken"))
         assertNull(p.dialogue)
     }
 
@@ -99,7 +99,7 @@ class ErnestTheChickenTest : WorldTest() {
             p.talk("professor_oddenstein")
             p.dialogueOption(option)
             p.skipDialogues()
-            assertEquals("unstarted", p.quest(ERNEST))
+            assertEquals("unstarted", p.quest("ernest_the_chicken"))
             assertNull(p.dialogue)
         }
     }
@@ -110,7 +110,7 @@ class ErnestTheChickenTest : WorldTest() {
         p.talk("veronica")
         p.dialogueOption(2)
         p.skipDialogues()
-        assertEquals("unstarted", p.quest(ERNEST))
+        assertEquals("unstarted", p.quest("ernest_the_chicken"))
     }
 
     @ParameterizedTest
@@ -217,14 +217,14 @@ class ErnestTheChickenTest : WorldTest() {
     @Test
     fun `Full inventory exchanges three parts for stacking rewards only once`() {
         val p = createPlayer(Tile(3110, 3366, 2))
-        p[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
         p.inventory.add("pressure_gauge")
         p.inventory.add("rubber_tube")
         p.inventory.add("oil_can")
         p.inventory.add("logs", 25)
         p.talk("professor_oddenstein")
-        assertEquals("completed", p.quest(ERNEST))
-        assertEquals(4, p.questStage(ERNEST))
+        assertEquals("completed", p.quest("ernest_the_chicken"))
+        assertEquals(4, p.questStage("ernest_the_chicken"))
         assertEquals(4, p["quest_points", 0])
         assertEquals(3000, p.inventory.count("coins"))
         assertEquals(10, p.inventory.count("egg_noted"))
@@ -242,11 +242,11 @@ class ErnestTheChickenTest : WorldTest() {
     @Test
     fun `Missing part cannot complete or consume supplied parts`() {
         val p = createPlayer(Tile(3110, 3366, 2))
-        p[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
         p.inventory.add("rubber_tube")
         p.inventory.add("pressure_gauge")
         p.talk("professor_oddenstein")
-        assertEquals("parts", p.quest(ERNEST))
+        assertEquals("parts", p.quest("ernest_the_chicken"))
         assertTrue(p.inventory.contains("rubber_tube"))
         assertEquals(0, p["quest_points", 0])
     }
@@ -510,18 +510,18 @@ class ErnestTheChickenTest : WorldTest() {
         assertEquals(32, NPCDefinitions.get("ernest").varp)
         assertEquals(32, NPCDefinitions.get("chicken_draynor").varp)
         for (stage in listOf("unstarted", "started", "parts")) {
-            p[ERNEST] = stage
+            p["ernest_the_chicken"] = stage
             assertEquals(288, chicken.def(p).id)
             assertEquals(-1, ernest.def(p).id)
         }
-        p[ERNEST] = "restored"
-        assertEquals(3, p.questStage(ERNEST))
+        p["ernest_the_chicken"] = "restored"
+        assertEquals(3, p.questStage("ernest_the_chicken"))
         assertEquals(-1, chicken.def(p).id)
         assertEquals(287, ernest.def(p).id)
         assertEquals(288, chicken.def(other).id)
         assertEquals(-1, ernest.def(other).id)
-        p[ERNEST] = "completed"
-        assertEquals(4, p.questStage(ERNEST))
+        p["ernest_the_chicken"] = "completed"
+        assertEquals(4, p.questStage("ernest_the_chicken"))
         assertEquals(-1, chicken.def(p).id)
         assertEquals(-1, ernest.def(p).id)
     }
@@ -530,8 +530,8 @@ class ErnestTheChickenTest : WorldTest() {
     fun `Restoration uses the cache NPC pair and only changes the quest player's forms`() {
         val p = createPlayer(Tile(3110, 3366, 2))
         val other = createPlayer(Tile(3109, 3366, 2))
-        p[ERNEST] = "parts"
-        other[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
+        other["ernest_the_chicken"] = "parts"
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
         val professor = NPCs.find(p.tile.regionLevel, "professor_oddenstein")
         professor.tele(3110, 3367, 2)
@@ -561,7 +561,7 @@ class ErnestTheChickenTest : WorldTest() {
             tick()
         }
         assertTrue(placed)
-        assertEquals("restored", p.quest(ERNEST))
+        assertEquals("restored", p.quest("ernest_the_chicken"))
         assertEquals(-1, chicken.def(p).id)
         assertEquals(287, ernest.def(p).id)
         val impact = graphics.indexOf(GraphicDefinitions.get("weaken_impact").id)
@@ -570,7 +570,7 @@ class ErnestTheChickenTest : WorldTest() {
         assertTrue(ernest.tile.distanceTo(p.tile) <= 1, "Ernest should approach the player")
         assertNotNull(p.dialogue)
         p.skipDialogues()
-        assertEquals("completed", p.quest(ERNEST))
+        assertEquals("completed", p.quest("ernest_the_chicken"))
         assertEquals(4, p["quest_points", 0])
         assertEquals(-1, ernest.def(p).id)
         assertEquals(count, NPCs.count())
@@ -579,7 +579,7 @@ class ErnestTheChickenTest : WorldTest() {
     @Test
     fun `Dismissing the professor after hand-in preserves the returned parts and resumes the repair`() {
         val p = createPlayer(Tile(3110, 3366, 2))
-        p[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
         val count = NPCs.count()
         p.npcOption(NPCs.find(p.tile.regionLevel, "professor_oddenstein"), "Talk-to")
@@ -589,11 +589,11 @@ class ErnestTheChickenTest : WorldTest() {
         p.walk(p.tile.addX(-1))
         tick(3)
         assertEquals(count, NPCs.count())
-        assertEquals("parts", p.quest(ERNEST))
+        assertEquals("parts", p.quest("ernest_the_chicken"))
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertEquals(0, p.inventory.count(part))
         assertEquals(0, p["quest_points", 0])
         p.talk("professor_oddenstein")
-        assertEquals("completed", p.quest(ERNEST))
+        assertEquals("completed", p.quest("ernest_the_chicken"))
         assertEquals(3000, p.inventory.count("coins"))
         assertEquals(count, NPCs.count())
     }
@@ -601,7 +601,7 @@ class ErnestTheChickenTest : WorldTest() {
     @Test
     fun `Repeatedly dismissing human Ernest preserves restoration without duplicating NPCs or rewards`() {
         val p = createPlayer(Tile(3110, 3366, 2))
-        p[ERNEST] = "parts"
+        p["ernest_the_chicken"] = "parts"
         for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) p.inventory.add(part)
         val professor = NPCs.find(p.tile.regionLevel, "professor_oddenstein")
         val chicken = NPCs.find(p.tile.regionLevel, "chicken_draynor")
@@ -610,7 +610,7 @@ class ErnestTheChickenTest : WorldTest() {
         repeat(3) {
             p.npcOption(professor, "Talk-to")
             tickIf(30) { p.dialogue == null }
-            if (p.quest(ERNEST) == "parts") {
+            if (p.quest("ernest_the_chicken") == "parts") {
                 p.skipDialogues()
                 tickIf(40) { p.dialogue == null }
             }
@@ -620,12 +620,12 @@ class ErnestTheChickenTest : WorldTest() {
             assertEquals(-1, chicken.def(p).id)
             assertEquals(287, ernest.def(p).id)
             assertEquals(count, NPCs.count())
-            assertEquals("restored", p.quest(ERNEST))
+            assertEquals("restored", p.quest("ernest_the_chicken"))
             for (part in listOf("pressure_gauge", "rubber_tube", "oil_can")) assertEquals(0, p.inventory.count(part))
             assertEquals(0, p["quest_points", 0])
         }
         p.talk("professor_oddenstein")
-        assertEquals("completed", p.quest(ERNEST))
+        assertEquals("completed", p.quest("ernest_the_chicken"))
         assertEquals(4, p["quest_points", 0])
         assertEquals(3000, p.inventory.count("coins"))
         assertEquals(-1, ernest.def(p).id)
