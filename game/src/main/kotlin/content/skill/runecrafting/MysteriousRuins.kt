@@ -44,7 +44,9 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
         }
 
         itemOnObjectOperate("*_talisman", "*_altar_ruins") { (target, item) ->
-            if (target.id != "${item.id.removeSuffix("_talisman")}_altar_ruins") {
+            val type = item.id.removeSuffix("_talisman")
+            if (target.id != "${type}_altar_ruins" && type != "omni") {
+                // TODO proper message
                 return@itemOnObjectOperate
             }
             message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
