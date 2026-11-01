@@ -7,6 +7,7 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Direction
 import java.nio.ByteBuffer
 
 class SnapshotReader(bytes: ByteArray) {
@@ -41,6 +42,7 @@ class SnapshotReader(bytes: ByteArray) {
         SnapshotWriter.DOUBLE -> double()
         SnapshotWriter.BOOLEAN -> boolean()
         SnapshotWriter.STRING -> string()
+        SnapshotWriter.DIRECTION -> Direction.entries[int()]
         SnapshotWriter.INT_RANGE -> int()..int()
         SnapshotWriter.EQUIP_SLOT -> EquipSlot.valueOf(string())
         SnapshotWriter.EQUIP_TYPE -> EquipType.valueOf(string())

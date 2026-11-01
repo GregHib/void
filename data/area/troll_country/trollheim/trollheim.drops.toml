@@ -3,6 +3,7 @@ type = "all"
 drops = [
     { id = "big_bones" },
     { table = "thrower_troll_tertiary" },
+    { table = "thrower_troll_secondary" },
 ]
 
 [thrower_troll_tertiary]
@@ -21,29 +22,31 @@ drops = [
 ]
 
 [thrower_troll_death_plateau_secondary]
-roll = 128
+roll = 256
 drops = [
-    { id = "steel_med_helm", chance = 4 },
-    { id = "black_warhammer", chance = 3 },
-    { id = "steel_warhammer", chance = 3 },
-    { id = "adamant_med_helm" },
-    { id = "adamant_warhammer" },
-    { id = "mithril_sq_shield" },
-    { id = "earth_rune", amount = 60, chance = 8 },
-    { id = "nature_rune", amount = 7, chance = 5 },
-    { id = "law_rune", amount = 2, chance = 3 },
-    { id = "earth_rune", amount = 45 },
-    { id = "earth_rune", amount = 25 },
-    { table = "herb_drop_table", chance = 15 },
-    { table = "uncommon_seed_drop_table", chance = 19 },
-    { id = "coins", amount = 35, chance = 29 },
-    { id = "coins", amount = 100, chance = 10 },
-    { id = "coins", amount = 8, chance = 7 },
-    { id = "coins", amount = 50, chance = 6 },
-    { id = "coins", amount = 250 },
-    { id = "coal_noted", amount = 3, chance = 3 },
-    { id = "raw_mackerel_noted", amount = 3, chance = 2 },
-    { table = "gem_drop_table", chance = 5 },
+    { id = "steel_med_helm", chance = 8 },
+    { id = "black_warhammer", chance = 6 },
+    { id = "steel_warhammer", chance = 6 },
+    { id = "adamant_med_helm", chance = 2 },
+    { id = "adamant_warhammer", chance = 2 },
+    { id = "mithril_sq_shield", chance = 2 },
+    { id = "earth_rune", amount = 60, chance = 16 },
+    { id = "nature_rune", amount = 7, chance = 10 },
+    { id = "law_rune", amount = 2, chance = 6 },
+    { id = "earth_rune", amount = 45, chance = 2 },
+    { id = "earth_rune", amount = 25, chance = 2 },
+    { table = "herb_drop_table", chance = 30 },
+    { table = "uncommon_seed_drop_table", chance = 38 },
+    { id = "coins", amount = 35, chance = 58 },
+    { id = "coins", amount = 100, chance = 20 },
+    { id = "coins", amount = 8, chance = 14 },
+    { id = "coins", amount = 50, chance = 12 },
+    { id = "coins", amount = 250, chance = 2 },
+    { id = "coal_noted", amount = 3, chance = 6 },
+    { id = "raw_mackerel_noted", amount = 3, chance = 4 },
+    { id = "guam_seed" },
+    { id = "spirit_weed_seed" },
+    { table = "gem_drop_table", chance = 8 },
 ]
 
 [thrower_troll_death_plateau_tertiary]
@@ -52,4 +55,29 @@ drops = [
     { id = "troll_bone", chance = 1253, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
+]
+
+[thrower_troll_secondary]
+roll = 256
+drops = [
+    { id = "guam_seed" },
+    { id = "spirit_weed_seed" },
+    { id = "adamant_warhammer", chance = 2 },
+    { id = "black_warhammer", chance = 6 },
+    { id = "steel_warhammer", chance = 6 },
+    { id = "mithril_sq_shield", chance = 2 },
+    { id = "coins", amount = 35, chance = 58 },
+    { id = "coins", amount = 100, chance = 20 },
+    { id = "coins", amount = 8, chance = 14 },
+    { id = "coins", amount = 50, chance = 12 },
+    { id = "coins", amount = 250, chance = 2 },
+    { id = "earth_rune", amount = 25, chance = 2 },
+    { id = "earth_rune", amount = 45, chance = 2 },
+    { id = "earth_rune", amount = 60, chance = 16 },
+    { id = "nature_rune", amount = 7, chance = 10 },
+    { id = "law_rune", amount = 2, chance = 6 },
+    { id = "coal_noted", amount = 3, chance = 6 },
+    { id = "raw_mackerel_noted", amount = 3, chance = 4 },
+    { table = "herb_drop_table", chance = 30 },
+    { table = "uncommon_seed_drop_table", chance = 38 },
 ]

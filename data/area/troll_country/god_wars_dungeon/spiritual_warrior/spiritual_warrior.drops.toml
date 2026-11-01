@@ -15,7 +15,7 @@ drops = [
     { id = "black_warhammer", chance = 5 },
     { id = "mithril_mace", chance = 7 },
     { id = "black_dagger", chance = 2 },
-    { id = "mithril_spear_p", chance = 9 },
+    { id = "mithril_spear_p", chance = 4 },
     { id = "adamant_battleaxe", chance = 2 },
     { id = "mithril_hatchet", chance = 8 },
     { id = "adamant_2h_sword" },

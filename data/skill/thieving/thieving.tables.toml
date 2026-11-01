@@ -19,7 +19,7 @@ multiple = true
 [.desert_bandit]
 level = 53
 xp = 794
-chance = [255, 255]
+chance = [50, 240]
 damage = [10, 10]
 table = "desert_bandit"
 multiple = true
@@ -27,7 +27,8 @@ multiple = true
 [.bearded_bandit]
 level = 45
 xp = 650
-chance = [255, 255]
+stun_ticks = 8
+chance = [90, 240]
 damage = [10, 10]
 table = "bearded_bandit"
 multiple = true
@@ -35,9 +36,11 @@ multiple = true
 [.bandit]
 level = 55
 xp = 843
-chance = [255, 255]
-damage = [10, 10]
+stun_ticks = 8
+chance = [50, 240]
+damage = [20, 20]
 table = "bandit"
+multiple = true
 
 [.cave_goblin]
 level = 36
@@ -74,6 +77,15 @@ damage = [10, 10]
 table = "gnome"
 multiple = true
 
+[.elf]
+level = 85
+xp = 3533
+stun_ticks = 8
+chance = [6, 100]
+damage = [50, 50]
+table = "elf"
+multiple = true
+
 [.guard]
 level = 40
 xp = 468
@@ -92,11 +104,30 @@ damage = [10, 30]
 table = "ham_member"
 multiple = true
 
+[.ham_member_male]
+level = 20
+xp = 222
+stun_ticks = 6
+chance = [135, 239]
+damage = [20, 20]
+table = "ham_member"
+multiple = true
+
+[.ham_member_female]
+level = 15
+xp = 185
+stun_ticks = 6
+chance = [135, 239]
+damage = [10, 10]
+table = "ham_member"
+multiple = true
+
 [.hero]
 level = 80
 xp = 1633
 stun_ticks = 10
 chance = [39, 160]
+damage = [30, 30]
 table = "hero"
 multiple = true
 
@@ -130,8 +161,9 @@ multiple = true
 [.thug]
 level = 65
 xp = 1375
-chance = [255, 255]
-damage = [50, 50]
+stun_ticks = 8
+chance = [50, 160]
+damage = [30, 30]
 table = "thug"
 multiple = true
 
@@ -156,7 +188,7 @@ multiple = true
 [.villager]
 level = 30
 xp = 80
-chance = [255, 255]
+chance = [255, 255] # Unknown
 damage = [10, 10]
 table = "villager"
 

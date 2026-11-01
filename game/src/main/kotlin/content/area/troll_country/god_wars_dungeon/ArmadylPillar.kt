@@ -36,7 +36,7 @@ class ArmadylPillar : Script {
             face(direction)
             message("You fire your grapple at the pillar...", type = ChatType.Filter)
             delay()
-            sound("crossbow_grappling")
+            sound("grapple_shoot")
             anim("godwars_crossbow_swing", delay = 6)
             gfx("godwars_grapple_shoot", delay = 6)
             GameObjects.findOrNull(Tile(2872, 5270, 2), "armadyl_pillar_grapple")?.anim(if (tile.y > target.tile.y) "godwars_grapple_swing_reverse" else "godwars_grapple_swing")

@@ -165,7 +165,7 @@ data class CombatDefinition(
     }
 
     @Serializable
-    data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0, val offset: Delta? = null)
+    data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0, val offset: Delta? = null, val area: Boolean = false)
 
     @Serializable
     data class CombatGfx(val id: String, val delay: Int? = null, val height: Int? = null, val area: Boolean = false, val offset: Delta? = null)

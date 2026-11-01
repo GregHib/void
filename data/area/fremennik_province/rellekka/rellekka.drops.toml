@@ -11,6 +11,11 @@ drops = [
     { id = "raw_lobster" },
 ]
 
+[fremmennik_pickpocket]
+drops = [
+    { id = "coins", amount = 40 },
+]
+
 [fremennik_pickpocket]
 drops = [
     { id = "coins", amount = 40 },
@@ -118,11 +123,17 @@ drops = [
     { id = "wolf_bones" },
     { id = "fenris_wolf_pelt" },
     { table = "fenris_wolf_secondary" },
+    { table = "fenris_wolf_tertiary" },
 ]
 
 [fenris_wolf_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "wolf_bone", chance = 32 },
-    { id = "starved_ancient_effigy", chance = 6 },
+    { id = "wolf_bone", chance = 4 },
+]
+
+[fenris_wolf_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
 ]

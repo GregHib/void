@@ -128,6 +128,7 @@ examine = "Swine."
 
 [master_farmer]
 id = 2234
+combat_def = "farmer"
 examine = "A master at farming."
 
 [market_guard_draynor]
@@ -153,6 +154,7 @@ examine = "A busy-body who loves a bit of gossip."
 
 [martin_the_master_gardener]
 id = 3299
+combat_def = "farmer"
 examine = "A master at gardening."
 
 [fortunato]

@@ -69,18 +69,22 @@ combat_def = "guard"
 [goreu]
 id = 2363
 examine = "An elf."
+combat_def = "elf_unarmed"
 
 [ysgawyn]
 id = 2364
 examine = "An elf."
+combat_def = "elf_unarmed"
 
 [arvel]
 id = 2365
 examine = "An elf."
+combat_def = "elf_unarmed"
 
 [mawrth]
 id = 2366
 examine = "An elf."
+combat_def = "elf_unarmed"
 
 [eoin]
 id = 2368
@@ -124,6 +128,7 @@ id = 8951
 [kelyn]
 id = 2367
 examine = "She seems to have a flair for vibrancy."
+combat_def = "elf_unarmed"
 
 [arianwyn_lletya_2]
 id = 8913

@@ -13,7 +13,7 @@ death_sound = "man_death"
 
 [man.melee]
 clone = "human.melee"
-target_sound = "man_attack"
+target_sound = "unarmed_punch"
 
 [woman]
 clone = "human"
@@ -22,4 +22,4 @@ death_sound = "woman_death"
 
 [woman.melee]
 clone = "human.melee"
-target_sound = "woman_attack"
+target_sound = "unarmed_punch"

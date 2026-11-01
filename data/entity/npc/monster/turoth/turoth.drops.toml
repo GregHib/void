@@ -4,25 +4,34 @@ drops = [
     { id = "bones" },
     { table = "turoth_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
+    { table = "turoth_tertiary" },
 ]
 
 [turoth_secondary]
-roll = 512
+roll = 516
 drops = [
     { id = "steel_platelegs", chance = 28 },
     { id = "mithril_hatchet", chance = 12 },
     { id = "mithril_kiteshield", chance = 4 },
     { id = "adamant_full_helm", chance = 4 },
     { id = "rune_dagger", chance = 4 },
-    { id = "leaf_bladed_sword" },
-    { id = "mystic_robe_bottom_light" },
     { id = "law_rune", amount = 3, chance = 24 },
-    { id = "nature_rune", amount = 15, chance = 20 },
-    { id = "nature_rune", amount = 37, chance = 4 },
-    { table = "rare_seed_drop_table", chance = 72 },
+    { id = "nature_rune", min = 11, max = 45, chance = 13 },
     { id = "limpwurt_root", chance = 28 },
     { id = "coins", amount = 44, chance = 116 },
     { id = "coins", amount = 132, chance = 48 },
     { id = "coins", amount = 440, chance = 4 },
     { table = "gem_drop_table", chance = 20 },
+    { id = "astral_rune", min = 2, max = 87 },
+    { id = "fibula_bone", chance = 26 },
+    { table = "herb_drop_table", chance = 124 },
+    { table = "uncommon_seed_drop_table", chance = 60 },
+]
+
+[turoth_tertiary]
+roll = 5000
+drops = [
+    { id = "leaf_bladed_sword", chance = 10 },
+    { id = "mystic_robe_bottom_light", chance = 10 },
+    { id = "starved_ancient_effigy", chance = 29 },
 ]

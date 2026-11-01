@@ -18,7 +18,7 @@ death_anim = "human_death"
 [spiritual_warrior_saradomin.melee]
 range = 1
 anim = "sword_slash"
-target_sound = "spiritual_warrior_saradomin_attack"
+target_sound = "stabsword_slash"
 target_hit = { offense = "slash", max = 130 }
 
 [spiritual_warrior_bandos]

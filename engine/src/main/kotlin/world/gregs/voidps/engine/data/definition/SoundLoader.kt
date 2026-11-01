@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
@@ -26,6 +27,7 @@ object SoundLoader : Loader<DefinitionsState<SoundDefinition>> {
     fun parse(paths: List<String>): DefinitionsState<SoundDefinition> {
         val definitions = Array(10_000) { SoundDefinition.EMPTY }
         val ids = Object2IntOpenHashMap<String>(250, Hash.VERY_FAST_LOAD_FACTOR)
+        val intIds = IntOpenHashSet()
         for (path in paths) {
             Config.fileReader(path) {
                 while (nextSection()) {
@@ -40,6 +42,7 @@ object SoundLoader : Loader<DefinitionsState<SoundDefinition>> {
                             else -> throw IllegalArgumentException("Unknown sound key: $key")
                         }
                     }
+                    require(intIds.add(id)) { "Duplicate sound id $id found '$stringId' at $path, already defined as '${definitions[id].stringId}'." }
                     ids[stringId] = id
                     if (area) {
                         definitions[id] = SoundDefinition(id = id, stringId = stringId, params = mapOf(Params.AREA to true))

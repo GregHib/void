@@ -7,5 +7,5 @@ death_sound = "monkey_death"
 [monkey.melee]
 range = 1
 anim = "monkey_attack"
-target_sound = "monkey_attack"
+target_sound = "monkey_archer_death"
 target_hit = { offense = "crush", max = 10 }

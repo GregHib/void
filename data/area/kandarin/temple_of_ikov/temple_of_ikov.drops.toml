@@ -14,4 +14,17 @@ drops = [
 type = "all"
 drops = [
     { id = "ice_arrows" },
+    { table = "ice_spider_secondary" },
+    { table = "ice_spider_tertiary" },
+]
+
+[ice_spider_secondary]
+roll = 128
+drops = [
+]
+
+[ice_spider_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

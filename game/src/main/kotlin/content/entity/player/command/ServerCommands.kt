@@ -155,8 +155,6 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
             alias("books", "book", "books")
             alias("object_teleports", "stairs", "tele", "teles", "teleports")
             alias("music_tracks", "tracks", "songs", "music_tracks")
-            alias("fairy_ring_codes", "fairy_ring", "fairy_rings", "fairy_codes")
-            alias("charter_ships", "ships")
             alias("objects", "objects", "objs")
             alias("items", "item_defs", "items", "floor_items")
             alias("enums", "enum", "enums")

@@ -68,3 +68,24 @@ id = 102
 [.confirm]
 id = 117
 
+[.name_message]
+id = 154
+
+[.name_rules]
+id = 155
+
+[.name_suggestions]
+id = 156
+
+[.suggestion_0]
+id = "158-163"
+
+[.previous_suggestions]
+id = 164
+
+[.more_suggestions]
+id = 165
+
+[.continue]
+id = 166
+

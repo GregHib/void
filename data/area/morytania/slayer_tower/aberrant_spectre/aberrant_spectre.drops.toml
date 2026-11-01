@@ -3,6 +3,7 @@ type = "all"
 drops = [
   { table = "aberrant_spectre_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+  { table = "aberrant_spectre_tertiary" },
   { table = "aberrant_spectre_charms", members = true },
 ]
 
@@ -15,10 +16,35 @@ drops = [
   { id = "adamant_platelegs", chance = 4 },
   { id = "rune_full_helm", chance = 4 },
   { id = "mystic_robe_bottom_dark" },
+  { table = "aberrant_spectre_herbs", chance = 312 },
   { table = "rare_seed_drop_table", chance = 76 },
   { id = "coins", amount = 460, chance = 4 },
-  { id = "nothing", amount = 0, chance = 72 },
+  { id = "nothing", amount = 0, chance = 71 },
   { table = "gem_drop_table", chance = 20 },
+]
+
+[aberrant_spectre_herbs]
+roll = 128
+drops = [
+    { id = "grimy_guam", min = 1, max = 3, chance = 32 },
+    { id = "grimy_marrentill", min = 1, max = 3, chance = 24 },
+    { id = "grimy_tarromin", min = 1, max = 3, chance = 18 },
+    { id = "grimy_harralander", min = 1, max = 3, chance = 14 },
+    { id = "grimy_ranarr", min = 1, max = 3, chance = 11 },
+    { id = "grimy_irit", min = 1, max = 3, chance = 8 },
+    { id = "grimy_avantoe", min = 1, max = 3, chance = 6 },
+    { id = "grimy_kwuarm", min = 1, max = 3, chance = 5 },
+    { id = "grimy_cadantine", min = 1, max = 3, chance = 4 },
+    { id = "grimy_lantadyme", min = 1, max = 3, chance = 3 },
+    { id = "grimy_dwarf_weed", min = 1, max = 3, chance = 3 },
+]
+
+[aberrant_spectre_tertiary]
+roll = 5000
+drops = [
+    { id = "court_summons", chance = 29 },
+    { id = "starved_ancient_effigy", chance = 10 },
+    { id = "aberrant_spectre_champions_scroll", lacks = "aberrant_spectre_champions_scroll" },
 ]
 
 [aberrant_spectre_charms]

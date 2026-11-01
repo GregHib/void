@@ -134,11 +134,13 @@ examine = "He's strong to the finish, because he eats cabbage."
 
 [agnar_rellekka]
 id = 1305
+combat_def = "agnar_rellekka"
 examine = "One of Rellekka's many citizens."
 
 [pontak_rellekka]
 id = 1309
 clone = "agnar_rellekka"
+combat_def = "pontak"
 hitpoints = 500
 att = 40
 str = 40
@@ -185,6 +187,7 @@ combat_def = "jennella"
 [sassilik_rellekka]
 id = 1313
 clone = "agnar_rellekka"
+combat_def = "man"
 hitpoints = 500
 att = 40
 str = 40
@@ -364,6 +367,7 @@ style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
 clone = "agnar_rellekka"
+combat_def = "freidir"
 drop_table = "rellekka_citizen"
 max_hit_crush = 60
 
@@ -392,10 +396,12 @@ respawn_delay = 30
 drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
 max_hit_crush = 60
+combat_def = "lanzig"
 
 [inga]
 id = 1314
 clone = "agnar_rellekka"
+combat_def = "man"
 hitpoints = 500
 att = 40
 str = 40

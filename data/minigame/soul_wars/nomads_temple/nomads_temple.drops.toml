@@ -6,9 +6,9 @@ drops = [
 ]
 
 [spectral_worshipper_secondary]
-roll = 1024
+roll = 160
 drops = [
-    { id = "fire_rune", amount = 5, chance = 32 },
-    { id = "air_rune", amount = 5, chance = 32 },
-    { id = "blood_rune", chance = 32 },
+    { id = "fire_rune", amount = 5, chance = 16 },
+    { id = "air_rune", amount = 5, chance = 16 },
+    { id = "blood_rune", chance = 16 },
 ]

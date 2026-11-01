@@ -1,6 +1,6 @@
 [hellhound]
 defend_anim = "hellhound_defend"
-defend_sound = "hellhound_defend"
+defend_sound = "dog_defend"
 death_anim = "hellhound_death"
 death_sound = "hellhound_death"
 

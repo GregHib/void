@@ -1,0 +1,29 @@
+[canoe_stations]
+destination = "tile"
+sink = "tile"
+message = "string"
+
+[.lumbridge]
+destination = { x = 3231, y = 3250 }
+sink = { x = 3235, y = 3248 }
+message = "You arrive at Lumbridge.<br>Your canoe sinks into the water after the hard journey."
+
+[.champions_guild]
+destination = { x = 3199, y = 3344 }
+sink = { x = 3197, y = 3341 }
+message = "You arrive at the Champions' Guild.<br>Your canoe sinks into the water after the hard journey."
+
+[.barbarian_village]
+destination = { x = 3109, y = 3415 }
+sink = { x = 3107, y = 3414 }
+message = "You arrive at the Barbarian's Village.<br>Your canoe sinks into the water after the hard journey."
+
+[.edgeville]
+destination = { x = 3129, y = 3501 }
+sink = { x = 3129, y = 3505 }
+message = "You arrive at Edgeville.<br>Your canoe sinks into the water after the hard journey."
+
+[.wilderness_pond]
+destination = { x = 3142, y = 3796 }
+sink = { x = 3142, y = 3795 }
+message = "You arrive in the Wilderness. There are no trees suitable to make a canoe.<br>Your canoe sinks into the water after the hard journey. Looks like you're walking back."

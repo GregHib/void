@@ -13,5 +13,6 @@ object Request {
     const val LOGIN = 16
     const val RECONNECT = 18
     const val LOBBY = 19
+    const val CREATE_ACCOUNT = 22
     const val SIGN_UP = 28
 }

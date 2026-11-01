@@ -2,16 +2,54 @@
 type = "all"
 drops = [
     { table = "icefiend_secondary" },
-    { table = "easy_clue_scroll", roll = 128 }
+    { table = "easy_clue_scroll", roll = 128 },
+    { table = "icefiend_tertiary" },
 ]
 
 [icefiend_secondary]
-roll = 128
+roll = 512
 drops = [
-    { id = "air_rune", min = 1, max = 5 },
-    { id = "water_rune", min = 1, max = 5, chance = 4 },
-    { id = "nothing", amount = 0, chance = 112 },
-    { id = "coins", min = 1, max = 30, chance = 4 },
-    { id = "coins", min = 1, max = 20, chance = 4 },
-    { table = "gem_drop_table", chance = 3 },
+    { id = "air_rune", min = 1, max = 10, chance = 4 },
+    { id = "water_rune", min = 1, max = 11, chance = 14 },
+    { id = "coins", min = 1, max = 30, chance = 16 },
+    { id = "coins", min = 1, max = 20, chance = 16 },
+    { id = "bronze_sword", chance = 27 },
+    { id = "bronze_hatchet", chance = 27 },
+    { id = "iron_hatchet", chance = 27 },
+    { id = "bronze_pickaxe", chance = 27 },
+    { id = "iron_pickaxe", chance = 28 },
+    { id = "steel_hatchet", chance = 3 },
+    { id = "steel_pickaxe", chance = 3 },
+    { id = "staff_of_water", chance = 3 },
+    { id = "staff_of_air", chance = 3 },
+    { id = "bronze_arrow", min = 2, max = 9, chance = 28 },
+    { id = "iron_arrow", min = 1, max = 5, chance = 28 },
+    { id = "bronze_bolts", min = 1, max = 10, chance = 28 },
+    { id = "chaos_rune", min = 1, max = 6, chance = 3 },
+    { id = "bronze_med_helm", chance = 28 },
+    { id = "bronze_full_helm", chance = 28 },
+    { id = "iron_chainbody", chance = 28 },
+    { id = "steel_med_helm", chance = 14 },
+    { id = "silver_ore", chance = 28 },
+    { id = "silver_bar", chance = 28 },
+    { id = "jug_of_wine", chance = 14 },
+    { id = "dwarven_stout", chance = 3 },
+    { id = "cake", chance = 3 },
+    { id = "beer", chance = 3 },
+    { id = "saradomin_brew_1", chance = 3 },
+    { id = "zamorak_brew_1", chance = 3 },
+    { id = "choc_ice" },
+    { id = "holy_symbol", chance = 14 },
+    { id = "water_talisman", chance = 14 },
+    { id = "unblessed_symbol" },
+    { id = "monks_robe_bottom", chance = 3 },
+    { id = "monks_robe_top", chance = 3 },
+    { id = "goblin_mail" },
+    { table = "rare_drop_table", chance = 7 },
+]
+
+[icefiend_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

@@ -6,9 +6,9 @@ drops = [
 ]
 
 [crab_secondary]
-roll = 1024
+roll = 160
 drops = [
-    { id = "fresh_crab_claw", chance = 32 },
-    { id = "fresh_crab_shell", chance = 32 },
-    { id = "oyster", chance = 32 },
+    { id = "fresh_crab_claw", chance = 10 },
+    { id = "fresh_crab_shell", chance = 10 },
+    { id = "oyster", chance = 16 },
 ]

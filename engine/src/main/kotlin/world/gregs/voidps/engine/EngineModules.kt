@@ -84,9 +84,6 @@ fun engineLoaders(): List<Loader<*>> = listOf(
     CombatLoader,
     AreaLoader,
     ItemOnItemLoader,
-    AmmoLoader,
-    WeaponStyleLoader,
-    WeaponAnimationLoader,
     RenderEmoteLoader,
     MidiLoader,
     JingleLoader,
@@ -94,9 +91,7 @@ fun engineLoaders(): List<Loader<*>> = listOf(
     ClientScriptLoader,
     QuestLoader,
     PrayerLoader,
-    DiangoCodeLoader,
     HuntModeLoader,
-    CanoeLoader,
     MapLoader,
 )
 
@@ -121,9 +116,6 @@ fun definitionsModule() = module {
     single { QuickChatPhraseLoader.instance }
     single { CombatLoader.instance }
     single { ItemOnItemLoader.instance }
-    single { AmmoLoader.instance }
-    single { WeaponStyleLoader.instance }
-    single { WeaponAnimationLoader.instance }
     single { RenderEmoteLoader.instance }
     single { MidiLoader.instance }
     single { JingleLoader.instance }
@@ -131,7 +123,5 @@ fun definitionsModule() = module {
     single { ClientScriptLoader.instance }
     single { QuestLoader.instance }
     single { PrayerLoader.instance }
-    single { DiangoCodeLoader.instance }
     single { HuntModeLoader.instance }
-    single { CanoeLoader.instance }
 }

@@ -7,5 +7,5 @@ death_sound = "giant_death"
 [hill_giant.melee]
 range = 1
 anim = "hill_giant_attack"
-target_sound = "hill_giant_attack"
+target_sound = "gorad_attack"
 target_hit = { offense = "crush", max = 40 }

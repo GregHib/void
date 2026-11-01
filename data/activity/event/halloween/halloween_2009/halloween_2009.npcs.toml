@@ -1,5 +1,6 @@
 [eek_the_spider_halloween_2009]
 id = 6506
+dialogue = "hw09_eek"
 
 [knight_of_the_eight_fold_seal_halloween_2009]
 id = 6507
@@ -57,3 +58,8 @@ id = 8983
 [eek_the_spider_2_halloween_2009]
 id = 8985
 examine = "Eek, a spider!"
+
+[zombie_head]
+id = 2868
+name = "Zombie head"
+examine = "Alas...I hardly knew him."

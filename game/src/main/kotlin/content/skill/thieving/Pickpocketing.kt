@@ -19,8 +19,9 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -67,7 +68,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
         if (equipped(EquipSlot.Hands).id == "gloves_of_silence" && equipment.discharge(this, EquipSlot.Hands.index)) {
             chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
         }
-        val success = success(levels.get(Skill.Thieving) + familiarBoost(Skill.Thieving), chances)
+        val success = pickpocketSuccess(levels.get(Skill.Thieving) + familiarBoost(Skill.Thieving), chances)
         val table = pickpocket.string("table")
         val multiplier = lootMultiplier(pickpocket, level)
         val drops = getLoot(target, table, multiplier) ?: emptyList()
@@ -108,13 +109,27 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
         } else {
             target.face(this)
             target.say("What do you think you're doing?")
-            target.anim(combatDefinitions.get(target["combat_def", target.id]).defendAnim)
+            val combat = combatDefinitions.get(target.transformDef["combat_def", target.id])
+            target.anim(combat.attacks.values.first().anim)
+            anim(combatDefinitions.get("human").defendAnim)
             message("You fail to pick the $name's pocket.", ChatType.Filter)
             val ticks = pickpocket.int("stun_ticks")
             val damage = pickpocket.intRange("damage")
             target.stun(this, ticks, damage.random(random))
             delay(2)
         }
+    }
+
+    private fun pickpocketSuccess(level: Int, chances: IntRange): Boolean {
+        val clampedLevel = level.coerceIn(Level.MIN_LEVEL, Level.MAX_LEVEL)
+        val chance = interpolate(
+            clampedLevel,
+            chances.first,
+            chances.last,
+            Level.MIN_LEVEL,
+            Level.MAX_LEVEL,
+        )
+        return chance > random.nextInt(255)
     }
 
     private fun Player.lootMultiplier(pickpocket: RowDefinition, level: Int): Int {

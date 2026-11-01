@@ -1,11 +1,19 @@
 [thug]
 defend_anim = "thug_defend"
-defend_sound = "thug_defend"
+defend_sound = "man_defend"
 death_anim = "thug_death"
-death_sound = "thug_death"
+death_sound = "man_death"
 
 [thug.melee]
 range = 1
 anim = "thug_attack"
 target_sound = "thug_attack"
 target_hit = { offense = "stab", max = 20 }
+
+[menaphite_thug]
+clone = "thug"
+
+[menaphite_thug.melee]
+clone = "thug.melee"
+anim = "axe_hack"
+target_hit = { offense = "crush", max = 70 }

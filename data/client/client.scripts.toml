@@ -336,3 +336,13 @@ params = [
   "interface",
   "colour"
 ]
+
+# Character creation name panel: show, submit (index, creation, send) and render suggestions
+[character_name_open]
+id = 3943
+
+[character_name_submit]
+id = 3945
+
+[character_name_suggestions]
+id = 3952

@@ -29,7 +29,7 @@ defend_anim = "druid_defend"
 [druid_unarmed.melee]
 clone = "druid_staff.melee"
 anim = "druid_unarmed_attack"
-target_sound = "man_attack"
+target_sound = "unarmed_punch"
 
 [druid_unarmed.magic]
 clone = "druid_staff.magic"
@@ -62,7 +62,7 @@ defend_anim = "druid_defend"
 [druidess_unarmed.melee]
 clone = "druid_staff.melee"
 anim = "druid_unarmed_attack"
-target_sound = "woman_attack"
+target_sound = "unarmed_punch"
 
 [druidess_unarmed.magic]
 clone = "druid_staff.magic"

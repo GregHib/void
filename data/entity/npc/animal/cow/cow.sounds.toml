@@ -7,14 +7,5 @@ id = 367
 [calf_defend]
 id = 368
 
-[cow_attack]
-id = 369
-
-[cow_death]
-id = 370
-
-[cow_defend]
-id = 371
-
 [milk_cow]
 id = 372

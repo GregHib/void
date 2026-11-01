@@ -49,7 +49,7 @@ clone = "zogre_jiggig.melee"
 
 [skogre_jiggig]
 defend_anim = "ogre_defend"
-defend_sound = "skelly_hit"
+defend_sound = "skeleton_defend"
 death_anim = "ogre_death"
 death_sound = "zogre_death"
 

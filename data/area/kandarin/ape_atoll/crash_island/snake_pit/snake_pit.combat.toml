@@ -1,11 +1,11 @@
 [big_snake]
 death_anim = "big_snake_death"
-defend_sound = "big_snake_defend"
-death_sound = "big_snake_death"
+defend_sound = "spider_death"
+death_sound = "sea_snake_hatchling_death"
 
 [big_snake.melee]
 range = 1
 target_hit = { offense = "stab", max = 140 }
 impact_poison = 10
 anim = "big_snake_attack"
-sound = "big_snake_attack"
+sound = "sea_snake_hatchling_attack"

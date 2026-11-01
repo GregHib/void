@@ -280,7 +280,13 @@ class Attack(
     @JvmName("playSounds")
     private fun Character.play(list: List<CombatDefinition.CombatSound>, delay: Int? = null) {
         for (sound in list) {
-            if (sound.radius == 0) {
+            if (sound.area) {
+                areaSound(
+                    id = sound.id,
+                    tile = if (sound.offset != null) tile.add(sound.offset!!) else tile,
+                    delay = delay ?: sound.delay,
+                )
+            } else if (sound.radius == 0) {
                 sound(id = sound.id, delay = delay ?: sound.delay)
             } else {
                 areaSound(

@@ -1,9 +1,6 @@
 [vampyre_attack]
 id = 879
 
-[vampyre_defend]
-id = 884
-
 [vampyre_suck]
 id = 886
 

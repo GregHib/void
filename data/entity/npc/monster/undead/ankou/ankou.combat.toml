@@ -1,11 +1,11 @@
 [ankou]
 defend_anim = "human_defend"
-defend_sound = "ankou_defend"
+defend_sound = "unarmed_punch"
 death_anim = "human_death"
-death_sound = "ankou_death"
+death_sound = "zombie_pirate_death"
 
 [ankou.melee]
 range = 1
 anim = "human_attack"
-target_sound = "ankou_attack"
+target_sound = "zombie_pirate_attack"
 target_hit = { offense = "crush", max = 80 }

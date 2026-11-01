@@ -16,3 +16,12 @@ death_anim = "hero_death"
 range = 1
 target_hit = { offense = "slash", max = 90 }
 anim = "hero_attack"
+
+[paladin]
+defend_anim = "sword_defend"
+death_anim = "human_death"
+
+[paladin.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+anim = "sword_slash"

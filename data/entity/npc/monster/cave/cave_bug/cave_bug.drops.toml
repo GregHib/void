@@ -3,28 +3,34 @@ type = "all"
 drops = [
     { table = "cave_bug_primary" },
     { table = "cave_bug_charms", members = true },
+    { table = "cave_bug_tertiary" },
 ]
 
 [cave_bug_primary]
-roll = 128
+roll = 256
 drops = [
-    { id = "earth_rune", amount = 6, chance = 2 },
-    { id = "water_rune", amount = 8, chance = 5 },
-    { id = "nature_rune", chance = 5 },
-    { id = "nature_rune", amount = 2 },
-    { table = "herb_drop_table", chance = 23 },
-    { id = "grimy_guam", chance = 16 },
-    { id = "unicorn_horn_dust", chance = 2 },
-    { id = "eye_of_newt", chance = 2 },
-    { id = "limpwurt_root" },
-    { id = "snape_grass" },
-    { id = "red_spiders_eggs", chance = 2 },
-    { id = "coins", amount = 3, chance = 8 },
-    { id = "coins", amount = 8, chance = 3 },
-    { id = "tinderbox", chance = 3 },
-    { id = "candle_lantern_empty" },
-    { id = "white_candle", chance = 5 },
-    { id = "nothing", amount = 0, chance = 48 },
+    { id = "earth_rune", chance = 4 },
+    { id = "earth_rune", min = 1, max = 147, chance = 4 },
+    { id = "water_rune", min = 1, max = 22, chance = 10 },
+    { id = "water_rune", min = 1, max = 167, chance = 10 },
+    { id = "nature_rune", min = 1, max = 2, chance = 8 },
+    { id = "nature_rune", min = 1, max = 8, chance = 8 },
+    { table = "herb_drop_table", chance = 46 },
+    { id = "unicorn_horn_dust", chance = 4 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "limpwurt_root", chance = 2 },
+    { id = "snape_grass", chance = 2 },
+    { id = "red_spiders_eggs", chance = 4 },
+    { id = "coins", amount = 3, chance = 16 },
+    { id = "coins", amount = 8, chance = 6 },
+    { id = "tinderbox", chance = 6 },
+    { id = "candle_lantern_empty", chance = 8 },
+    { id = "white_candle", chance = 10 },
+    { id = "swamp_weed", min = 1, max = 4, chance = 16 },
+    { id = "fire_rune", min = 1, max = 36, chance = 8 },
+    { id = "swamp_weed", min = 1, max = 8, chance = 16 },
+    { id = "water_battlestaff" },
+    { table = "gem_drop_table", chance = 5 },
 ]
 
 [cave_bug_green_drop_table]
@@ -39,17 +45,26 @@ drops = [
 roll = 128
 drops = [
     { id = "water_battlestaff" },
-    { id = "earth_rune", min = 1, max = 10, chance = 15 },
-    { id = "earth_rune", min = 1, max = 170, chance = 2 },
-    { id = "water_rune", min = 1, max = 15, chance = 14 },
-    { id = "water_rune", min = 1, max = 170, chance = 2 },
-    { id = "fire_rune", min = 1, max = 20, chance = 13 },
-    { id = "fire_rune", min = 1, max = 170, chance = 2 },
+    { id = "earth_rune", chance = 4 },
+    { id = "earth_rune", min = 1, max = 147, chance = 4 },
+    { id = "water_rune", min = 1, max = 22, chance = 4 },
+    { id = "water_rune", min = 1, max = 167, chance = 4 },
+    { id = "fire_rune", min = 1, max = 36, chance = 2 },
     { table = "herb_drop_table", chance = 19 },
     { id = "coins", min = 1, max = 40, chance = 14 },
     { id = "swamp_weed", min = 1, max = 4, chance = 31 },
-    { id = "swamp_weed", min = 5, max = 8, chance = 10 },
-    { table = "gem_drop_table", chance = 5 },
+    { id = "swamp_weed", min = 1, max = 8, chance = 4 },
+    { table = "gem_drop_table", chance = 3 },
+    { id = "nature_rune", min = 1, max = 2, chance = 2 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "limpwurt_root", chance = 4 },
+    { id = "snape_grass", chance = 4 },
+    { id = "red_spiders_eggs", chance = 4 },
+    { id = "unicorn_horn_dust", chance = 4 },
+    { id = "tinderbox", chance = 4 },
+    { id = "white_candle", chance = 2 },
+    { id = "candle_lantern_empty", chance = 2 },
+    { id = "nature_rune", min = 1, max = 8, chance = 2 },
 ]
 
 [cave_bug_charms]
@@ -59,4 +74,10 @@ drops = [
     { id = "green_charm", chance = 36614 },
     { id = "crimson_charm", chance = 3521 },
     { id = "blue_charm", chance = 806 },
+]
+
+[cave_bug_tertiary]
+roll = 5000
+drops = [
+    { table = "easy_clue_scroll", chance = 29 },
 ]

@@ -86,6 +86,7 @@ class MimeTest : WorldTest() {
             tickIf { !player.interfaces.contains(iface) && player.get<String>("random_event") == "mime" }
         }
         tickIf { player.tile != origin } // wait out the modern teleport home
+        tickIf { player.inventory.count("random_event_gift") == 0 }
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertEquals(1, player.get("mime_costume_points", 0))

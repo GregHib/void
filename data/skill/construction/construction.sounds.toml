@@ -46,11 +46,11 @@ id = 975
 [poh_sphere_powerdown]
 id = 974
 
-[stabsword_stab]
-id = 2549
-
 [stabsword_slash]
 id = 2548
+
+[stabsword_stab]
+id = 2549
 
 [unarmed_punch]
 id = 2566

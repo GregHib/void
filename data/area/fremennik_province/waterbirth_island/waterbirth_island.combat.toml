@@ -21,7 +21,7 @@ target_sound = "dagannoth_attack"
 projectile = "water_surge"
 target_hit = { offense = "magic", max = 500 }
 impact_gfx = "water_surge_impact"
-impact_sound = "water_surge_impact"
+impact_sound = "water_wave_impact"
 
 [dagannoth_rex]
 clone = "dagannoth_supreme"

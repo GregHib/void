@@ -7,28 +7,32 @@ drops = [
 ]
 
 [mountain_troll_secondary]
-roll = 128
+roll = 4096
 drops = [
-    { id = "steel_med_helm", chance = 4 },
-    { id = "black_warhammer", chance = 3 },
-    { id = "steel_warhammer", chance = 3 },
-    { id = "adamant_med_helm" },
-    { id = "adamant_warhammer" },
-    { id = "mithril_sq_shield" },
-    { id = "earth_rune", amount = 60, chance = 8 },
-    { id = "nature_rune", amount = 7, chance = 5 },
-    { id = "law_rune", amount = 2, chance = 3 },
-    { id = "earth_rune", amount = 45 },
-    { id = "earth_rune", amount = 25 },
-    { table = "herb_drop_table", chance = 15 },
-    { id = "coins", amount = 35, chance = 29 },
-    { id = "coins", amount = 100, chance = 10 },
-    { id = "coins", amount = 8, chance = 7 },
-    { id = "coins", amount = 50, chance = 6 },
-    { id = "coins", amount = 250 },
-    { id = "coal_noted", amount = 3, chance = 3 },
-    { id = "raw_mackerel_noted", amount = 3, chance = 2 },
-    { table = "gem_drop_table", chance = 5 },
+    { id = "steel_med_helm", chance = 128 },
+    { id = "black_warhammer", chance = 96 },
+    { id = "steel_warhammer", chance = 96 },
+    { id = "adamant_med_helm", chance = 32 },
+    { id = "adamant_warhammer", chance = 32 },
+    { id = "mithril_sq_shield", chance = 32 },
+    { id = "earth_rune", amount = 60, chance = 256 },
+    { id = "nature_rune", amount = 7, chance = 160 },
+    { id = "law_rune", amount = 2, chance = 96 },
+    { id = "earth_rune", amount = 45, chance = 32 },
+    { table = "herb_drop_table", chance = 480 },
+    { id = "coins", amount = 35, chance = 928 },
+    { id = "coins", amount = 100, chance = 320 },
+    { id = "coins", amount = 8, chance = 224 },
+    { id = "coins", amount = 50, chance = 192 },
+    { id = "coins", amount = 250, chance = 32 },
+    { id = "coal_noted", amount = 3, chance = 96 },
+    { id = "raw_mackerel_noted", amount = 3, chance = 64 },
+    { table = "gem_drop_table", chance = 160 },
+    { id = "guam_seed", chance = 15 },
+    { id = "spirit_weed_seed", chance = 8 },
+    { id = "black_hatchet", chance = 8 },
+    { id = "court_summons" },
+    { table = "uncommon_seed_drop_table", chance = 608 },
 ]
 
 [mountain_troll_tertiary]
@@ -44,6 +48,7 @@ type = "all"
 drops = [
     { id = "bones" },
     { id = "terrorbird_wing", roll = 4, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { table = "terrorbird_secondary" },
 ]
 
 [tortoise_riderless_drop_table]
@@ -116,17 +121,32 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "mounted_terrorbird_gnome_secondary" },
+    { table = "mounted_terrorbird_gnome_tertiary" },
 ]
 
 [mounted_terrorbird_gnome_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "equa_leaves", chance = 32 },
-    { id = "lemon", chance = 32 },
+    { id = "equa_leaves", chance = 31 },
+    { id = "lemon", chance = 15 },
+    { id = "gianne_dough", chance = 26 },
+    { id = "lime", chance = 15 },
+    { id = "crunchy_tray", chance = 6 },
+    { id = "gnomebowl_mould", chance = 6 },
+    { id = "gnome_spice", chance = 15 },
+]
+
+[mounted_terrorbird_gnome_tertiary]
+roll = 5000
+drops = [
+    { id = "terrorbird_wing", chance = 29, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[terrorbird_secondary]
+roll = 512
+drops = [
     { id = "gianne_dough", chance = 32 },
-    { id = "lime", chance = 32 },
-    { id = "crunchy_tray", chance = 32 },
-    { id = "gnomebowl_mould", chance = 32 },
-    { id = "gnome_spice", chance = 32 },
-    { id = "terrorbird_wing", chance = 6 },
+    { id = "law_talisman", chance = 16 },
+    { id = "lime" },
+    { id = "lemon", chance = 3 },
 ]

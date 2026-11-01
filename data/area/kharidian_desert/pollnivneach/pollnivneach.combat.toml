@@ -1,0 +1,15 @@
+[bearded_bandit]
+clone = "human"
+defend_anim = "archer_defend"
+
+[bearded_bandit.melee]
+clone = "human.melee"
+anim = "axe_hack"
+
+[pollnivneach_bandit]
+clone = "human"
+defend_anim = "sword_defend"
+
+[pollnivneach_bandit.melee]
+clone = "human.melee"
+anim = "sword_slash"

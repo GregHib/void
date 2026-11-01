@@ -25,11 +25,11 @@ clone = "dwarf.melee"
 
 [chaos_dwarf]
 clone = "dwarf"
-defend_sound = "chaos_dwarf_defend"
-death_sound = "chaos_dwarf_death"
+defend_sound = "dwarf_defend"
+death_sound = "dwarf_death"
 
 [chaos_dwarf.melee]
 clone = "dwarf.melee"
-target_sound = "chaos_dwarf_attack"
+target_sound = "warhammer_crush"
 target_hit = { offense = "crush", max = 60 }
 

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -22,7 +23,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
-class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script {
+class CharterShip(val teles: ObjectTeleports) : Script {
 
     val locations = listOf(
         "catherby",
@@ -35,15 +36,14 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
     init {
         interfaceRefresh("charter_ship_map") { id ->
             val currentLocation = get("charter_ship", "")
-            val prices = ships.get(currentLocation)
-            interfaces.sendVisibility(id, "mos_le_harmless", hasQuestRequirements("mos_le_harmless") && prices.containsKey("mos_le_harmless"))
-            interfaces.sendVisibility(id, "shipyard", hasQuestRequirements("shipyard") && prices.containsKey("shipyard"))
-            interfaces.sendVisibility(id, "port_tyras", hasQuestRequirements("port_tyras") && prices.containsKey("port_tyras"))
-            interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements("port_phasmatys") && prices.containsKey("port_phasmatys"))
-            interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements("oo_glog") && prices.containsKey("oo_glog"))
+            interfaces.sendVisibility(id, "mos_le_harmless", hasQuestRequirements("mos_le_harmless") && available(currentLocation, "mos_le_harmless"))
+            interfaces.sendVisibility(id, "shipyard", hasQuestRequirements("shipyard") && available(currentLocation, "shipyard"))
+            interfaces.sendVisibility(id, "port_tyras", hasQuestRequirements("port_tyras") && available(currentLocation, "port_tyras"))
+            interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements("port_phasmatys") && available(currentLocation, "port_phasmatys"))
+            interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements("oo_glog") && available(currentLocation, "oo_glog"))
             interfaces.sendVisibility(id, "crandor", false)
             for (location in locations) {
-                interfaces.sendVisibility(id, location, location != currentLocation && prices.containsKey(location))
+                interfaces.sendVisibility(id, location, location != currentLocation && available(currentLocation, location))
             }
         }
 
@@ -101,7 +101,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
                 return@interfaceOption
             }
             closeMenu()
-            val price = ships.get(currentLocation, component) ?: return@interfaceOption
+            val price = Tables.intOrNull("charter_ship_prices.$currentLocation.$component") ?: return@interfaceOption
             if (!hasQuestRequirements(component)) {
                 return@interfaceOption
             }
@@ -136,6 +136,8 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
             }
         }
     }
+
+    private fun available(from: String, to: String) = Tables.intOrNull("charter_ship_prices.$from.$to") != null
 
     private suspend fun Player.checkBans(target: NPC): Boolean {
         if (inventory.contains("karamjan_rum") && (target.tile in Areas["greater_brimhaven"] || target.tile in Areas["karamja"])) {

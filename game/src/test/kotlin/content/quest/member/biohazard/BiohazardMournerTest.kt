@@ -61,13 +61,13 @@ class BiohazardMournerTest : WorldTest() {
         assertNotNull(definition, "the mourners need a combat definition to fight with")
 
         assertEquals("mourner_defend", definition.defendAnim)
-        assertEquals("mourner_defend", definition.defendSound?.id)
+        assertEquals("man_defend", definition.defendSound?.id)
         assertEquals("mourner_death", definition.deathAnim)
-        assertEquals("mourner_death", definition.deathSound?.id)
+        assertEquals("man_death", definition.deathSound?.id)
         assertEquals(424, AnimationDefinitions.get("mourner_defend").id)
         assertEquals(836, AnimationDefinitions.get("mourner_death").id)
-        assertEquals(513, sounds.get("mourner_defend").id)
-        assertEquals(512, sounds.get("mourner_death").id)
+        assertEquals(513, sounds.get("man_defend").id)
+        assertEquals(512, sounds.get("man_death").id)
 
         val melee = definition.attacks["melee"]
         assertNotNull(melee, "the mourners need a melee attack")

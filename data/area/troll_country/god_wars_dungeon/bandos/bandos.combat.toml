@@ -38,7 +38,7 @@ target_hit = { offense = "crush", max = 150 }
 
 [sergeant_steelwill]
 defend_anim = "sergeant_steelwill_defend"
-defend_sound = "sergeant_steelwill_defend"
+defend_sound = "kree_arra_impact"
 death_anim = "sergeant_steelwill_death"
 death_sound = "sergeant_steelwill_death"
 
@@ -50,7 +50,7 @@ target_sound = "sergeant_steelwill_attack"
 projectile = "sergeant_steelwill_spell"
 target_hit = { offense = "magic", max = 150 }
 impact_gfx = { id = "sergeant_steelwill_impact", area = true }
-impact_sound = "sergeant_steelwill_impact"
+impact_sound = { id = "kree_arra_impact", area = true }
 
 [sergeant_grimspike]
 defend_anim = "sergeant_grimspike_defend"

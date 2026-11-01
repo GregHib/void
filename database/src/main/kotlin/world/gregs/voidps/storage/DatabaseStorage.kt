@@ -2,6 +2,7 @@ package world.gregs.voidps.storage
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -194,6 +195,10 @@ class DatabaseStorage : Storage {
             .select(AccountsTable.id, AccountsTable.name)
             .where { LowerCase(AccountsTable.name) inList names.map { it.lowercase() } }
             .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
+        saveSections(accounts, playerIds)
+    }
+
+    private fun saveSections(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
         saveExperience(accounts, playerIds)
         saveLevels(accounts, playerIds)
         saveVariables(accounts, playerIds)
@@ -215,6 +220,34 @@ class DatabaseStorage : Storage {
             it[suggestion] = report.suggestion
             it[time] = report.time
             it[evidence] = report.evidence
+        }
+    }
+
+    override fun create(account: PlayerSave): Boolean {
+        try {
+            return transaction {
+                val lower = account.name.lowercase()
+                val existing = AccountsTable
+                    .select(AccountsTable.id)
+                    .where { LowerCase(AccountsTable.name) eq lower }
+                    .count()
+                if (existing > 0) {
+                    return@transaction false
+                }
+                val list = listOf(account)
+                saveAccounts(list)
+                val playerIds = AccountsTable
+                    .select(AccountsTable.id, AccountsTable.name)
+                    .where { LowerCase(AccountsTable.name) eq lower }
+                    .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
+                saveSections(list, playerIds)
+                true
+            }
+        } catch (e: ExposedSQLException) {
+            if (e.sqlState == UNIQUE_VIOLATION || e.sqlState == SERIALIZATION_FAILURE) {
+                return false
+            }
+            throw e
         }
     }
 
@@ -692,8 +725,14 @@ class DatabaseStorage : Storage {
                 // RESTRICT constraint blocked the per-player offer delete/reinsert. IF EXISTS keeps
                 // this idempotent and a no-op on fresh databases.
                 exec("ALTER TABLE grand_exchange_claims DROP CONSTRAINT IF EXISTS fk_grand_exchange_claims_offer_id__id")
+                // Accounts registered from the client are named by email address, wider than the original 12 character usernames.
+                exec("ALTER TABLE accounts ALTER COLUMN name TYPE VARCHAR(254)")
+                exec("ALTER TABLE abuse_reports ALTER COLUMN reporter TYPE VARCHAR(254)")
             }
         }
+
+        private const val UNIQUE_VIOLATION = "23505"
+        private const val SERIALIZATION_FAILURE = "40001"
 
         internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable, KillsTable, RecordsTable, RecentEventsTable)
 

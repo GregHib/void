@@ -13,9 +13,6 @@ id = 2654
 [pitfall_collapse]
 id = 2638
 
-[panther_death]
-id = 667 # radius 5
-
 [hunting_jump]
 id = 2635
 

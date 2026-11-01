@@ -1,9 +1,10 @@
 package content.quest.member.fairy_tale_part_2.fairy_ring
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class TravelLog(val fairyRing: FairyRingCodes) : Script {
+class TravelLog : Script {
 
     init {
         interfaceOption("Re-sort list", "travel_log:re_sort_list") {
@@ -17,9 +18,9 @@ class TravelLog(val fairyRing: FairyRingCodes) : Script {
 
         interfaceOpened("travel_log") { id ->
             val list: List<String> = get("travel_log_locations") ?: return@interfaceOpened
-            for ((code, def) in fairyRing.codes) {
-                if (list.contains(code)) {
-                    interfaces.sendText(id, def.id.lowercase(), "<br>${def.name}")
+            for (row in Tables.get("fairy_ring_codes").rows()) {
+                if (list.contains(row.rowId)) {
+                    interfaces.sendText(id, row.rowId, "<br>${row.string("name")}")
                 }
             }
         }

@@ -18,7 +18,7 @@ target_sound = { id = "commander_zilyana_magic", delay = 1, radius = 5 }
 target_hit = { offense = "magic", min = 100, max = 200 }
 target_gfx = "commander_zilyana_magic_strike"
 impact_gfx = "commander_zilyana_magic_impact"
-impact_sound = { id = "commander_zilyana_magic_impact", radius = 5 }
+impact_sound = { id = "godwars_saradomin_magic_impact", radius = 5 }
 miss_sounds = [
     { id = "spell_splash", radius = 5 },
     { id = "spell_splash", delay = 20, radius = 5 },

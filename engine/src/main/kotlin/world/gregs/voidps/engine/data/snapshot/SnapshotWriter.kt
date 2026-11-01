@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.snapshot
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Direction
 
 class SnapshotWriter {
     private var buffer = ByteArray(1 shl 16)
@@ -81,6 +82,10 @@ class SnapshotWriter {
             is String -> {
                 byte(STRING)
                 string(value)
+            }
+            is Direction -> {
+                byte(DIRECTION)
+                int(value.ordinal)
             }
             is IntRange -> {
                 byte(INT_RANGE)
@@ -161,5 +166,6 @@ class SnapshotWriter {
         internal const val PAIR = 13
         internal const val TRIPLE = 14
         internal const val STRING_ARRAY = 15
+        internal const val DIRECTION = 16
     }
 }

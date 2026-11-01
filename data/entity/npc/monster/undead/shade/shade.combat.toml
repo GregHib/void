@@ -1,11 +1,11 @@
 [stronghold_shade]
 defend_anim = "stronghold_shade_defend"
-defend_sound = "stronghold_shade_defend"
+defend_sound = "ghost_defend"
 death_anim = "stronghold_shade_death"
-death_sound = "stronghold_shade_death"
+death_sound = "ghost_death"
 
 [stronghold_shade.melee]
 range = 1
 anim = "stronghold_shade_attack"
-target_sound = "stronghold_shade_attack"
+target_sound = "stabsword_slash"
 target_hit = { offense = "crush", max = 127 }

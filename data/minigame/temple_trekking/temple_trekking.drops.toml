@@ -36,16 +36,21 @@ drops = [
 ]
 
 [undead_lumberjack_secondary]
-roll = 4
+roll = 4096
 drops = [
-    { id = "lumberjack_top" },
-    { id = "lumberjack_legs" },
-    { id = "lumberjack_hat" },
-    { id = "lumberjack_boots" },
+    { id = "lumberjack_top", chance = 1023 },
+    { id = "lumberjack_legs", chance = 1023 },
+    { id = "lumberjack_hat", chance = 1023 },
+    { id = "lumberjack_boots", chance = 1024 },
+    { id = "thin_snail" },
+    { id = "lean_snail" },
+    { id = "fat_snail", amount = 3 },
 ]
 
 [undead_lumberjack_tertiary]
 roll = 5000
 drops = [
     { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+    { id = "zombie_bone", chance = 312, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "guthix_balance_1", chance = 156 },
 ]

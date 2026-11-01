@@ -4,6 +4,7 @@ drops = [
     { table = "bronze_dragon_primary" },
     { table = "bronze_dragon_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
+    { table = "bronze_dragon_tertiary" },
 ]
 
 [bronze_dragon_primary]
@@ -14,31 +15,39 @@ drops = [
 ]
 
 [bronze_dragon_secondary]
-roll = 2048
+roll = 256
 drops = [
-  { id = "dragon_plateskirt" },
-  { id = "dragon_platelegs" },
-  { id = "adamant_dart_p", amount = 16, chance = 112 },
-  { id = "mithril_2h_sword", chance = 64 },
-  { id = "mithril_hatchet", chance = 48 },
-  { id = "mithril_battleaxe", chance = 48 },
-  { id = "rune_knife", amount = 2, chance = 48 },
-  { id = "mithril_kiteshield", chance = 16 },
-  { id = "adamant_platebody", chance = 16 },
-  { id = "rune_longsword", chance = 16 },
-  { id = "adamant_javelin", amount = 30, chance = 320 },
-  { id = "fire_rune", amount = 50, chance = 128 },
-  { id = "mithril_bolts", min = 2, max = 12, chance = 96 },
-  { id = "law_rune", amount = 10, chance = 80 },
-  { id = "blood_rune", amount = 15, chance = 48 },
-  { id = "death_rune", amount = 25, chance = 16 },
-  { id = "coins", amount = 196, chance = 640 },
-  { id = "coins", amount = 330, chance = 160 },
-  { id = "coins", amount = 690, chance = 16 },
-  { id = "adamant_bar", chance = 48 },
-  { id = "swordfish", amount = 2, chance = 32 },
-  { id = "swordfish", chance = 16 },
-  { table = "rare_drop_table", chance = 16 },
+  { id = "adamant_dart_p", amount = 16, chance = 12 },
+  { id = "mithril_2h_sword", chance = 8 },
+  { id = "mithril_hatchet", chance = 6 },
+  { id = "mithril_battleaxe", chance = 6 },
+  { id = "rune_knife", amount = 2, chance = 6 },
+  { id = "rune_knife", amount = 5, chance = 3 },
+  { id = "mithril_kiteshield", chance = 2 },
+  { id = "adamant_platebody", chance = 2 },
+  { id = "rune_longsword", chance = 2 },
+  { id = "adamant_javelin", amount = 20, chance = 4 },
+  { id = "adamant_javelin", amount = 30, chance = 40 },
+  { id = "adamant_javelin", amount = 60, chance = 4 },
+  { id = "fire_rune", min = 50, max = 150, chance = 12 },
+  { id = "mithril_bolts", min = 2, max = 6 },
+  { id = "mithril_bolts", amount = 8 },
+  { id = "mithril_bolts", amount = 10 },
+  { id = "mithril_bolts", amount = 11 },
+  { id = "mithril_bolts", amount = 13 },
+  { id = "mithril_bolts", amount = 16 },
+  { id = "law_rune", amount = 10, chance = 10 },
+  { id = "law_rune", amount = 45, chance = 6 },
+  { id = "blood_rune", amount = 15, chance = 6 },
+  { id = "death_rune", amount = 25, chance = 2 },
+  { id = "death_rune", amount = 45, chance = 3 },
+  { id = "coins", amount = 196, chance = 80 },
+  { id = "coins", amount = 330, chance = 20 },
+  { id = "coins", amount = 690, chance = 2 },
+  { id = "adamant_bar" },
+  { id = "swordfish", min = 1, max = 2, chance = 6 },
+  { table = "rare_drop_table", chance = 2 },
+  { id = "adamant_dart", amount = 16, chance = 5 },
 ]
 
 [iron_dragon_drop_table]
@@ -57,30 +66,40 @@ drops = [
 ]
 
 [iron_dragon_secondary]
-roll = 1024
+roll = 512
 drops = [
-  { id = "dragon_plateskirt" },
-  { id = "dragon_platelegs" },
-  { id = "rune_dart_p", amount = 9, chance = 56 },
-  { id = "adamant_2h_sword", chance = 32 },
-  { id = "adamant_hatchet", chance = 24 },
-  { id = "adamant_battleaxe", chance = 24 },
-  { id = "rune_knife", amount = 5, chance = 24 },
-  { id = "adamant_sq_shield", chance = 8 },
-  { id = "rune_med_helm", chance = 8 },
-  { id = "rune_battleaxe", chance = 8 },
-  { id = "rune_javelin", amount = 4, chance = 160 },
-  { id = "blood_rune", amount = 15, chance = 152 },
-  { id = "adamant_bolts", min = 2, max = 12, chance = 48 },
-  { id = "soul_rune", amount = 3, chance = 40 },
-  { id = "coins", amount = 270, chance = 160 },
-  { id = "coins", amount = 550, chance = 80 },
-  { id = "coins", amount = 990, chance = 8 },
-  { id = "super_strength_1", chance = 64 },
-  { id = "rune_limbs", chance = 40 },
-  { id = "adamant_bar", amount = 2, chance = 24 },
-  { id = "curry", chance = 24 },
-  { table = "rare_drop_table", chance = 16 },
+  { id = "rune_dart_p", amount = 9, chance = 12 },
+  { id = "adamant_2h_sword", chance = 16 },
+  { id = "adamant_hatchet", chance = 12 },
+  { id = "adamant_battleaxe", chance = 12 },
+  { id = "rune_knife", min = 1, max = 7, chance = 12 },
+  { id = "adamant_sq_shield", chance = 4 },
+  { id = "rune_med_helm", chance = 4 },
+  { id = "rune_battleaxe", chance = 4 },
+  { id = "rune_javelin", amount = 4, chance = 80 },
+  { id = "blood_rune", min = 15, max = 30, chance = 58 },
+  { id = "adamant_bolts", min = 2, max = 12, chance = 24 },
+  { id = "soul_rune", amount = 3, chance = 20 },
+  { id = "coins", amount = 270, chance = 80 },
+  { id = "coins", amount = 550, chance = 40 },
+  { id = "coins", amount = 990, chance = 4 },
+  { id = "super_strength_1", chance = 25 },
+  { id = "rune_limbs", chance = 20 },
+  { id = "adamant_bar", amount = 2, chance = 25 },
+  { id = "curry", min = 1, max = 2, chance = 9 },
+  { table = "rare_drop_table", chance = 8 },
+  { id = "rune_hatchet", chance = 2 },
+  { id = "rune_mace", chance = 2 },
+  { id = "rune_longsword", chance = 2 },
+  { id = "rune_full_helm", chance = 2 },
+  { id = "runite_bolts", amount = 8, chance = 2 },
+  { id = "chaos_rune", amount = 25 },
+  { id = "chaos_rune", amount = 50 },
+  { id = "law_rune", amount = 45 },
+  { id = "law_rune", amount = 90 },
+  { id = "super_defence_4", chance = 12 },
+  { id = "super_attack_3", chance = 12 },
+  { id = "court_summons", chance = 2 },
 ]
 
 [iron_dragon_tertiary]
@@ -88,6 +107,12 @@ roll = 10000
 drops = [
   { table = "hard_clue_scroll", chance = 78 },
   { id = "draconic_visage" },
+  { id = "dragon_platelegs", chance = 10 },
+  { id = "dragon_plateskirt", chance = 10 },
+  { id = "iron_dragon_tail_bone", chance = 2500 },
+  { id = "ferocious_ring_5", chance = 83 },
+  { id = "starved_ancient_effigy", chance = 58 },
+  { table = "elite_clue_scroll", chance = 20 },
 ]
 
 [black_dragon_drop_table]
@@ -118,17 +143,22 @@ drops = [
   { id = "adamant_platebody" },
   { id = "rune_longsword" },
   { id = "adamant_javelin", amount = 30, chance = 20 },
-  { id = "adamant_dart_p", amount = 16, chance = 7 },
+  { id = "adamant_dart_p", amount = 16, chance = 5 },
   { id = "fire_rune", amount = 50, chance = 8 },
   { id = "blood_rune", amount = 15, chance = 3 },
   { id = "air_rune", amount = 75 },
-  { id = "law_rune", amount = 10, chance = 5 },
+  { id = "law_rune", min = 10, max = 12 },
+  { id = "law_rune", amount = 45 },
   { id = "coins", amount = 196, chance = 40 },
   { id = "coins", amount = 330, chance = 10 },
   { id = "coins", amount = 690 },
-  { id = "adamant_bar", chance = 3 },
+  { id = "adamant_bar", min = 1, max = 2, chance = 3 },
   { id = "chocolate_cake", chance = 3 },
   { table = "rare_drop_table", chance = 2 },
+  { id = "black_hatchet", chance = 3 },
+  { id = "rune_dart", amount = 10, chance = 3 },
+  { id = "chaos_rune", amount = 90, chance = 3 },
+  { id = "perfect_black_dragon_scale", chance = 5 },
 ]
 
 [black_dragon_tertiary]
@@ -136,6 +166,8 @@ roll = 10000
 drops = [
   { table = "hard_clue_scroll", chance = 78 },
   { id = "draconic_visage" },
+  { id = "black_dragon_tail_bone", chance = 2500 },
+  { id = "starved_ancient_effigy", chance = 58 },
 ]
 
 [black_dragon_charms]
@@ -160,6 +192,7 @@ drops = [
   { table = "blue_dragon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
   { table = "blue_dragon_pet_egg", members = true },
+  { table = "blue_dragon_tertiary" },
 ]
 
 [blue_dragon_primary]
@@ -170,31 +203,32 @@ drops = [
 ]
 
 [blue_dragon_secondary]
-roll = 128
+roll = 512
 drops = [
-  { id = "steel_platelegs", chance = 4 },
-  { id = "mithril_hatchet", chance = 3 },
-  { id = "steel_battleaxe", chance = 3 },
-  { id = "mithril_spear", chance = 2 },
-  { id = "adamant_full_helm" },
-  { id = "mithril_kiteshield" },
-  { id = "rune_dagger" },
-  { id = "water_rune", amount = 75, chance = 8 },
-  { id = "nature_rune", amount = 15, chance = 5 },
-  { id = "law_rune", amount = 3, chance = 3 },
-  { id = "fire_rune", amount = 37 },
-  { table = "herb_drop_table", chance = 15 },
-  { id = "coins", amount = 44, chance = 29 },
-  { id = "coins", amount = 132, chance = 25 },
-  { id = "coins", amount = 200, chance = 10 },
-  { id = "coins", amount = 11, chance = 5 },
-  { id = "coins", amount = 440 },
-  { id = "adamantite_ore", chance = 3 },
-  { id = "bass", chance = 3 },
-  { table = "gem_drop_table", chance = 5 },
+  { id = "steel_platelegs", chance = 16 },
+  { id = "mithril_hatchet", chance = 12 },
+  { id = "steel_battleaxe", chance = 12 },
+  { id = "mithril_spear", chance = 8 },
+  { id = "adamant_full_helm", chance = 4 },
+  { id = "mithril_kiteshield", chance = 4 },
+  { id = "rune_dagger", chance = 4 },
+  { id = "water_rune", amount = 75, chance = 32 },
+  { id = "nature_rune", amount = 15, chance = 20 },
+  { id = "law_rune", amount = 3, chance = 12 },
+  { id = "fire_rune", amount = 37, chance = 4 },
+  { table = "herb_drop_table", chance = 60 },
+  { id = "coins", amount = 44, chance = 116 },
+  { id = "coins", amount = 132, chance = 100 },
+  { id = "coins", amount = 200, chance = 40 },
+  { id = "coins", amount = 11, chance = 20 },
+  { id = "coins", amount = 440, chance = 4 },
+  { id = "adamantite_ore", chance = 12 },
+  { id = "bass", chance = 12 },
+  { id = "adamant_spear" },
+  { id = "adamant_javelin", amount = 30 },
+  { id = "perfect_blue_dragon_scale", chance = 14 },
+  { table = "rare_drop_table", chance = 3 },
 ]
-
-
 
 [green_dragon_drop_table]
 type = "all"
@@ -202,6 +236,7 @@ drops = [
   { table = "green_dragon_primary" },
   { table = "green_dragon_secondary" },
   { table = "green_dragon_pet_egg", members = true },
+  { table = "green_dragon_tertiary" },
 ]
 
 [green_dragon_primary]
@@ -212,28 +247,38 @@ drops = [
 ]
 
 [green_dragon_secondary]
-roll = 128
+roll = 4096
 drops = [
-  { id = "steel_platelegs", chance = 4 },
-  { id = "steel_battleaxe", chance = 3 },
-  { id = "mithril_hatchet", chance = 3 },
-  { id = "mithril_spear", chance = 2 },
-  { id = "mithril_kiteshield" },
-  { id = "adamant_full_helm" },
-  { id = "rune_dagger" },
-  { id = "water_rune", amount = 75, chance = 8 },
-  { id = "fire_rune", amount = 37 },
-  { id = "nature_rune", amount = 15, chance = 5 },
-  { id = "law_rune", amount = 3, chance = 3 },
-  { table = "herb_drop_table", chance = 15 },
-  { id = "coins", amount = 44, chance = 29 },
-  { id = "coins", amount = 132, chance = 25 },
-  { id = "coins", amount = 200, chance = 10 },
-  { id = "coins", amount = 11, chance = 5 },
-  { id = "coins", amount = 440 },
-  { id = "bass", chance = 3 },
-  { id = "adamantite_ore", chance = 3 },
-  { table = "gem_drop_table", chance = 5 },
+  { id = "steel_platelegs", chance = 128 },
+  { id = "steel_battleaxe", chance = 96 },
+  { id = "mithril_hatchet", chance = 96 },
+  { id = "mithril_spear", chance = 64 },
+  { id = "mithril_kiteshield", chance = 32 },
+  { id = "adamant_full_helm", chance = 32 },
+  { id = "rune_dagger", chance = 32 },
+  { id = "water_rune", amount = 75, chance = 256 },
+  { id = "fire_rune", amount = 37, chance = 32 },
+  { id = "nature_rune", amount = 15, chance = 160 },
+  { id = "nature_rune", amount = 30 },
+  { id = "nature_rune", amount = 75 },
+  { id = "law_rune", amount = 3, chance = 96 },
+  { table = "herb_drop_table", chance = 480 },
+  { id = "coins", amount = 44, chance = 918 },
+  { id = "coins", amount = 132, chance = 800 },
+  { id = "coins", amount = 200, chance = 320 },
+  { id = "coins", amount = 11, chance = 160 },
+  { id = "coins", amount = 440, chance = 32 },
+  { id = "bass", chance = 96 },
+  { id = "adamantite_ore", chance = 96 },
+  { table = "gem_drop_table", chance = 160 },
+  { id = "steel_full_helm" },
+  { id = "adamant_med_helm" },
+  { id = "rune_full_helm" },
+  { id = "rune_kiteshield" },
+  { id = "cosmic_talisman" },
+  { id = "diamond" },
+  { id = "perfect_green_dragon_scale" },
+  { id = "court_summons" },
 ]
 
 [steel_dragon_drop_table]
@@ -252,29 +297,30 @@ drops = [
 ]
 
 [steel_dragon_secondary]
-roll = 512
+roll = 256
 drops = [
-  { id = "dragon_plateskirt" },
-  { id = "dragon_platelegs" },
-  { id = "rune_dart_p", amount = 12, chance = 28 },
-  { id = "rune_mace", chance = 16 },
-  { id = "adamant_kiteshield", chance = 8 },
-  { id = "rune_knife", amount = 7, chance = 12 },
-  { id = "rune_hatchet", chance = 8 },
-  { id = "rune_full_helm", chance = 4 },
-  { id = "blood_rune", amount = 20, chance = 76 },
-  { id = "rune_javelin", amount = 7, chance = 80 },
-  { id = "runite_bolts", min = 2, max = 12, chance = 24 },
-  { id = "soul_rune", amount = 5, chance = 20 },
-  { id = "coins", amount = 470, chance = 68 },
-  { id = "coins", amount = 650, chance = 20 },
-  { id = "super_attack_3", chance = 52 },
-  { id = "rune_limbs", chance = 32 },
-  { id = "rune_bar", chance = 12 },
-  { id = "super_defence_2", chance = 12 },
-  { id = "curry", chance = 4 },
-  { id = "curry", amount = 2, chance = 4 },
-  { table = "rare_drop_table", chance = 16 },
+  { id = "rune_dart_p", amount = 12, chance = 7 },
+  { id = "rune_mace", chance = 8 },
+  { id = "adamant_kiteshield", chance = 4 },
+  { id = "rune_knife", amount = 7, chance = 6 },
+  { id = "rune_hatchet", chance = 4 },
+  { id = "rune_full_helm", chance = 2 },
+  { id = "blood_rune", amount = 20, chance = 38 },
+  { id = "rune_javelin", amount = 7, chance = 40 },
+  { id = "runite_bolts", min = 2, max = 14, chance = 11 },
+  { id = "soul_rune", amount = 3, chance = 4 },
+  { id = "soul_rune", amount = 5, chance = 10 },
+  { id = "coins", amount = 470, chance = 34 },
+  { id = "coins", amount = 650, chance = 10 },
+  { id = "super_attack_3", chance = 23 },
+  { id = "rune_limbs", chance = 16 },
+  { id = "super_defence_2", chance = 5 },
+  { id = "curry", min = 1, max = 2, chance = 4 },
+  { table = "rare_drop_table", chance = 8 },
+  { id = "adamant_2h_sword", chance = 7 },
+  { id = "adamant_sq_shield" },
+  { id = "super_strength_3", chance = 7 },
+  { id = "court_summons", chance = 7 },
 ]
 
 [steel_dragon_tertiary]
@@ -282,6 +328,12 @@ roll = 10000
 drops = [
   { table = "hard_clue_scroll", chance = 156 },
   { id = "draconic_visage" },
+  { id = "dragon_plateskirt", chance = 20 },
+  { id = "dragon_platelegs", chance = 20 },
+  { id = "steel_dragon_tail_bone", chance = 2500 },
+  { id = "ferocious_ring_5", chance = 100 },
+  { id = "starved_ancient_effigy", chance = 58 },
+  { table = "elite_clue_scroll", chance = 58 },
 ]
 
 [red_dragon_drop_table]
@@ -291,6 +343,7 @@ drops = [
   { table = "red_dragon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
   { table = "red_dragon_pet_egg", members = true },
+  { table = "red_dragon_tertiary" },
 ]
 
 [red_dragon_primary]
@@ -321,8 +374,9 @@ drops = [
   { id = "coins", amount = 330, chance = 10 },
   { id = "coins", amount = 690 },
   { id = "chocolate_cake", amount = 3, chance = 3 },
-  { id = "adamant_bar" },
-  { table = "gem_drop_table", chance = 5 },
+  { id = "adamant_bar", chance = 2 },
+  { id = "perfect_red_dragon_scale", chance = 3 },
+  { table = "rare_drop_table" },
 ]
 
 [baby_dragon_drop_table]
@@ -361,41 +415,35 @@ drops = [
   { table = "hard_clue_scroll", chance = 128 },
 ]
 [frost_dragon_secondary]
-roll = 512
+roll = 1040
 drops = [
-  { id = "adamant_kiteshield", chance = 8 },
-  { id = "adamant_platebody", chance = 8 },
-  { id = "rune_dagger", chance = 2 },
-  { id = "rune_longsword", chance = 8 },
-  { id = "rune_spear" },
-  { id = "rune_arrow", amount = 12, chance = 32 },
-  { id = "rune_javelin", amount = 5, chance = 2 },
-  { id = "water_rune", amount = 14, chance = 2 },
-  { id = "law_rune", amount = 10, chance = 8 },
-  { id = "blood_rune", amount = 10, chance = 8 },
-  { id = "death_rune", min = 10, max = 15, chance = 32 },
-  { id = "water_talisman_noted", amount = 2, chance = 32 },
-  { id = "air_talisman_noted", amount = 2, chance = 32 },
-  { id = "pure_essence_noted", amount = 50, chance = 8 },
-  { id = "nature_talisman", chance = 8 },
-  { id = "uncut_sapphire", chance = 8 },
-  { id = "uncut_emerald", chance = 8 },
-  { id = "uncut_ruby", chance = 8 },
-  { id = "uncut_diamond", chance = 2 },
-  { id = "uncut_dragonstone"},
-  { id = "silver_ore_noted", amount = 100 },
-  { id = "adamant_bar_noted", amount = 3, chance = 2 },
-  { id = "grimy_guam_noted", chance = 26 },
-  { id = "grimy_marrentill_noted", chance = 26 },
-  { id = "grimy_tarromin_noted", chance = 26 },
-  { id = "grimy_harralander_noted", chance = 26 },
-  { id = "grimy_ranarr_noted", chance = 26 },
-  { id = "grimy_irit_noted", chance = 26 },
-  { id = "grimy_avantoe_noted", chance = 26 },
-  { id = "grimy_kwuarm_noted", chance = 26 },
-  { id = "grimy_cadantine_noted", chance = 26 },
-  { id = "grimy_lantadyme_noted", chance = 26 },
-  { id = "grimy_dwarf_weed_noted", chance = 26 },
+  { id = "adamant_kiteshield", chance = 20 },
+  { id = "adamant_platebody", chance = 32 },
+  { id = "rune_longsword", chance = 16 },
+  { id = "rune_arrow", amount = 12, chance = 39 },
+  { id = "water_rune", amount = 14, chance = 4 },
+  { id = "law_rune", amount = 10, chance = 25 },
+  { id = "blood_rune", amount = 10, chance = 20 },
+  { id = "death_rune", amount = 10, chance = 20 },
+  { id = "death_rune", amount = 15, chance = 15 },
+  { id = "water_talisman_noted", amount = 2, chance = 39 },
+  { id = "air_talisman_noted", amount = 2, chance = 39 },
+  { id = "pure_essence_noted", amount = 50, chance = 20 },
+  { id = "uncut_dragonstone" },
+  { id = "adamant_bar_noted", amount = 3, chance = 20 },
+  { id = "grimy_guam_noted", chance = 39 },
+  { id = "grimy_marrentill_noted", chance = 39 },
+  { id = "grimy_tarromin_noted", chance = 39 },
+  { id = "grimy_harralander_noted", chance = 39 },
+  { id = "grimy_ranarr_noted", chance = 39 },
+  { id = "grimy_irit_noted", chance = 39 },
+  { id = "grimy_avantoe_noted", chance = 39 },
+  { id = "grimy_kwuarm_noted", chance = 39 },
+  { id = "grimy_cadantine_noted", chance = 39 },
+  { id = "grimy_lantadyme_noted", chance = 39 },
+  { id = "grimy_dwarf_weed_noted", chance = 39 },
+  { id = "court_summons", chance = 4 },
+  { table = "rare_drop_table", chance = 16 },
 ]
 
 [frost_dragon_tertiary]
@@ -411,4 +459,37 @@ drops = [
   { id = "tooth_half_of_a_key" },
   { id = "loop_half_of_a_key" },
   { id = "starved_ancient_effigy", chance = 2 },
+]
+
+[blue_dragon_tertiary]
+roll = 5000
+drops = [
+  { id = "blue_dragon_tail_bone", chance = 1250 },
+  { id = "ferocious_ring_5", chance = 25 },
+  { id = "starved_ancient_effigy", chance = 10 },
+]
+
+[bronze_dragon_tertiary]
+roll = 5000
+drops = [
+  { id = "dragon_plateskirt", chance = 2 },
+  { id = "dragon_platelegs", chance = 2 },
+  { id = "bronze_dragon_tail_bone", chance = 1250 },
+  { id = "starved_ancient_effigy", chance = 10 },
+  { table = "elite_clue_scroll", chance = 10 },
+]
+
+[green_dragon_tertiary]
+roll = 5000
+drops = [
+  { id = "green_dragon_tail_bone", chance = 1250 },
+  { id = "starved_ancient_effigy", chance = 29 },
+  { table = "hard_clue_scroll", chance = 29 },
+]
+
+[red_dragon_tertiary]
+roll = 5000
+drops = [
+  { id = "red_dragon_tail_bone", chance = 1250 },
+  { id = "starved_ancient_effigy", chance = 29 },
 ]

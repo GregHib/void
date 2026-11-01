@@ -99,6 +99,7 @@ internal object TablesStateSerializer : KSerializer<TablesState> {
                 encoder.encodeByte(7)
                 type(encoder, type.type)
             }
+            ColumnType.ColumnDirection -> encoder.encodeByte(8)
         }
     }
 
@@ -112,6 +113,7 @@ internal object TablesStateSerializer : KSerializer<TablesState> {
         5 -> ColumnType.ColumnPair(type(decoder) as ColumnType<Any>, type(decoder) as ColumnType<Any>)
         6 -> ColumnType.ColumnTriple(type(decoder) as ColumnType<Any>, type(decoder) as ColumnType<Any>, type(decoder) as ColumnType<Any>)
         7 -> ColumnType.ColumnList(type(decoder) as ColumnType<Any>)
+        8 -> ColumnType.ColumnDirection
         else -> throw IllegalStateException("Unknown column type tag $tag")
     }
 }

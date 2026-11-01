@@ -12,14 +12,14 @@ sound = "angry_unicorn_attack"
 [fear_reaper]
 defend_anim = "fear_reaper_defend"
 death_anim = "fear_reaper_death"
-defend_sound = "fear_reaper_defend"
-death_sound = "fear_reaper_death"
+defend_sound = "confusion_beast_defend"
+death_sound = "confusion_beast_death"
 
 [fear_reaper.melee]
 range = 1
 target_hit = { offense = "slash", max = 60 }
 anim = "fear_reaper_attack"
-sound = "fear_reaper_attack"
+sound = "confusion_beast_attack"
 
 [confusion_beast]
 defend_anim = "confusion_beast_defend"
@@ -36,11 +36,11 @@ sound = "confusion_beast_attack"
 
 [hopeless_creature]
 death_anim = "hopeless_creature_death"
-defend_sound = "hopeless_creature_defend"
-death_sound = "hopeless_creature_death"
+defend_sound = "confusion_beast_defend"
+death_sound = "confusion_beast_death"
 
 [hopeless_creature.melee]
 range = 1
 target_hit = { offense = "slash", max = 70 }
 anim = "hopeless_creature_attack"
-sound = "hopeless_creature_attack"
+sound = "confusion_beast_attack"

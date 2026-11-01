@@ -54,27 +54,25 @@ drops = [
     { id = "bandos_tassets" },
     { id = "bandos_boots" },
     { id = "coins", min = 1400, max = 1500, chance = 125 },
-    { id = "godsword_shard_1", chance = 10 },
-    { id = "godsword_shard_2", chance = 10 },
-    { id = "godsword_shard_3", chance = 10 },
-    { id = "coins", min = 1400, max = 1500, chance = 90 },
+    { id = "godsword_shard_1", chance = 11 },
+    { id = "godsword_shard_2", chance = 11 },
+    { id = "godsword_shard_3", chance = 11 },
     { id = "steel_arrow", min = 95, max = 100, chance = 896 },
     { id = "steel_dart", min = 95, max = 100, chance = 1024 },
-    { id = "nature_rune", min = 15, max = 20, chance = 1024 },
+    { id = "nature_rune", min = 20, max = 28, chance = 1024 },
     { id = "cosmic_rune", min = 25, max = 30, chance = 1024 },
     { id = "shark", amount = 2, chance = 1024 },
     { id = "chilli_potato", amount = 3, chance = 1024 },
-    { id = "coins", min = 1400, max = 1500, chance = 8448 },
     { id = "limpwurt_root_noted", amount = 5, chance = 1024 },
-    { id = "combat_potion_3", chance = 256 },
-    { id = "super_strength_3", chance = 256 },
+    { id = "combat_potion_3", chance = 1016 },
+    { id = "eye_patch", chance = 1016 },
 ]
 
 [bandos_bodyguard_tertiary]
 roll = 5000
 drops = [
     { id = "kebab", chance = 833 },
-#    { id = "frozen_key_piece_bandos", chance = 250 },
     { table = "hard_clue_scroll", chance = 39 },
     { id = "goblin_champions_scroll", lacks = "goblin_champions_scroll" },
+    { table = "elite_clue_scroll", chance = 29 },
 ]

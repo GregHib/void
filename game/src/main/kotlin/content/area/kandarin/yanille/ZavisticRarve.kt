@@ -405,7 +405,7 @@ class ZavisticRarve : Script {
         delay(2)
         gfx("pickaxe_summon_effect_spotanim", height = 92)
         anim("human_shrink", delay = 4)
-        sound("teleport_all")
+        sound("teleport")
         delay(3)
         clearAnim()
         tele(3014, 3259)

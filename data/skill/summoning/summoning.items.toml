@@ -3001,6 +3001,7 @@ kept = "Reclaim"
 id = 12660
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 0.907
 slot = "Hat"
 material = "leather"
@@ -3026,6 +3027,7 @@ kept = "Reclaim"
 id = 12662
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 0.907
 slot = "Hat"
 type = "Hair"
@@ -3051,6 +3053,7 @@ kept = "Reclaim"
 id = 12664
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 2.721
 slot = "Hat"
 material = "metal"
@@ -3076,6 +3079,7 @@ kept = "Reclaim"
 id = 12666
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 1.36
 slot = "Hat"
 material = "metal"
@@ -3100,6 +3104,7 @@ kept = "Reclaim"
 [lunar_helm_e]
 id = 12668
 tradeable = false
+bank_stacks = false
 weight = 0.907
 slot = "Hat"
 type = "FullFace"
@@ -3124,6 +3129,7 @@ kept = "Reclaim"
 id = 12670
 limit = 1
 tradeable = false
+bank_stacks = false
 weight = 0.5
 god = "armadyl"
 slot = "Hat"
@@ -3151,6 +3157,7 @@ kept = "Reclaim"
 id = 12672
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 2.721
 slot = "Hat"
 material = "metal"
@@ -3176,6 +3183,7 @@ kept = "Reclaim"
 id = 12674
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 2.721
 slot = "Hat"
 material = "metal"
@@ -3201,6 +3209,7 @@ kept = "Reclaim"
 id = 12676
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 2.721
 slot = "Hat"
 material = "metal"
@@ -3226,6 +3235,7 @@ kept = "Reclaim"
 id = 12678
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 2.721
 slot = "Hat"
 material = "metal"
@@ -3251,6 +3261,7 @@ kept = "Reclaim"
 id = 12680
 limit = 100
 tradeable = false
+bank_stacks = false
 weight = 2.267
 slot = "Hat"
 material = "metal"
@@ -4503,93 +4514,3 @@ summon_points = 1
 
 [meerkats_pouch_noted]
 id = 19623
-
-# Enchanted (empty) middle-state headgear - Pikkupstix enchants the plain helm into these, then
-# scrolls are stored to turn them into the _charged forms. Untradeable until disenchanted.
-[rune_full_helm_enchanted]
-id = 12664
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "A full-face helmet."
-
-[dragon_helm_enchanted]
-id = 12666
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "Makes the wearer pretty intimidating."
-
-[berserker_helm_enchanted]
-id = 12674
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "This helmet is worn by berserkers."
-
-[warrior_helm_enchanted]
-id = 12676
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "This helmet is worn by warriors."
-
-[helm_of_neitiznot_enchanted]
-id = 12680
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "A gift from Neitiznot's Burgher."
-
-[snakeskin_bandana_enchanted]
-id = 12660
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "Lightweight head protection."
-
-[archer_helm_enchanted]
-id = 12672
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "This helmet is worn by archers."
-
-[armadyl_helmet_enchanted]
-id = 12670
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "A helmet of great craftsmanship."
-
-[splitbark_helm_enchanted]
-id = 12662
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "A wooden helmet."
-
-[farseer_helm_enchanted]
-id = 12678
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "This helmet is worn by farseers."
-
-[lunar_helm_enchanted]
-id = 12668
-tradeable = false
-bank_stacks = false
-slot = "Hat"
-kept = "Reclaim"
-examine = "A mystical helmet."

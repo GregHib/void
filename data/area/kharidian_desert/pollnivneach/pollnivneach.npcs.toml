@@ -55,6 +55,7 @@ def = 20
 style = "crush"
 max_hit_melee = 70
 attack_bonus = 4
+combat_def = "menaphite_thug"
 respawn_delay = 5
 drop_table = "bones"
 examine = "Menaphite thug."
@@ -120,6 +121,7 @@ id = 1878
 
 [bandit_pollnivneach_3]
 id = 1880
+combat_def = "pollnivneach_bandit"
 hitpoints = 300
 att = 59
 str = 70
@@ -128,6 +130,7 @@ examine = "Tough-looking."
 
 [bandit_pollnivneach_4]
 id = 1881
+combat_def = "pollnivneach_bandit"
 hitpoints = 300
 att = 59
 str = 70
@@ -208,6 +211,7 @@ def = 20
 style = "crush"
 max_hit_melee = 70
 attack_bonus = 4
+combat_def = "menaphite_thug"
 respawn_delay = 5
 drop_table = "bones"
 examine = "Menaphite thug."
@@ -218,6 +222,7 @@ clone = "menaphite_thug_pollnivneach_before_quest"
 
 [bandit_pollnivneach_2_2]
 id = 6174
+combat_def = "bearded_bandit"
 hitpoints = 300
 att = 40
 str = 50
@@ -230,6 +235,7 @@ examine = "Tough-looking."
 
 [bandit_pollnivneach_2_3]
 id = 6388
+combat_def = "bearded_bandit"
 hitpoints = 300
 att = 40
 str = 50

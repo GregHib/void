@@ -7,27 +7,30 @@ drops = [
 ]
 
 [ice_troll_secondary]
-roll = 134
+roll = 256
 drops = [
-    { id = "adamant_kiteshield", chance = 8 },
-    { id = "black_platebody", chance = 4 },
-    { id = "adamant_hatchet", chance = 2 },
-    { id = "black_warhammer" },
-    { id = "mithril_platebody" },
-    { id = "rune_battleaxe" },
-    { id = "blood_rune", amount = 2, chance = 8 },
-    { id = "blood_rune", amount = 5, chance = 5 },
-    { id = "law_rune", amount = 4, chance = 3 },
-    { id = "death_rune", amount = 15 },
-    { id = "water_rune", amount = 65 },
-    { table = "herb_drop_table", chance = 18 },
-    { id = "coins", amount = 30, chance = 29 },
-    { id = "coins", amount = 136, chance = 25 },
-    { id = "coins", amount = 200, chance = 10 },
-    { id = "coins", amount = 20, chance = 4 },
-    { id = "lobster_noted", amount = 6, chance = 3 },
-    { id = "raw_tuna", amount = 4, chance = 2 },
-    { table = "gem_drop_table", chance = 8 },
+    { id = "adamant_kiteshield", chance = 2 },
+    { id = "black_platebody", chance = 8 },
+    { id = "adamant_hatchet", chance = 4 },
+    { id = "black_warhammer", chance = 2 },
+    { id = "mithril_platebody", chance = 2 },
+    { id = "rune_battleaxe", chance = 2 },
+    { id = "blood_rune", amount = 5, chance = 10 },
+    { id = "law_rune", min = 1, max = 3, chance = 6 },
+    { id = "death_rune", amount = 15, chance = 2 },
+    { id = "water_rune", amount = 65, chance = 2 },
+    { table = "herb_drop_table", chance = 36 },
+    { id = "coins", amount = 30, chance = 58 },
+    { id = "coins", amount = 136, chance = 50 },
+    { id = "coins", amount = 200, chance = 20 },
+    { id = "coins", amount = 20, chance = 8 },
+    { id = "lobster_noted", amount = 6, chance = 6 },
+    { id = "raw_tuna", min = 1, max = 3, chance = 4 },
+    { id = "granite_shield" },
+    { id = "rune_warhammer" },
+    { id = "coal", amount = 3 },
+    { table = "rare_drop_table", chance = 4 },
+    { table = "gem_drop_table", chance = 15 },
 ]
 
 [ice_troll_tertiary]

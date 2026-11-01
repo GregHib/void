@@ -113,21 +113,25 @@ mage = 30
 examine = "The hat's a dead give away."
 
 [man_4]
+clone = "man"
 id = 3224
 hitpoints = 70
 examine = "One of Ardougne's many citizens."
 
 [man_5]
+clone = "man"
 id = 3225
 hitpoints = 70
 examine = "One of Gielinor's many citizens. He looks worried about something."
 
 [man_6]
+clone = "man"
 id = 7909
 hitpoints = 70
 examine = "One of Ardougne's many citizens."
 
 [man_7]
+clone = "man"
 id = 7910
 hitpoints = 70
 examine = "One of Ardougne's many citizens."

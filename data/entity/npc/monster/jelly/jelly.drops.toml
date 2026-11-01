@@ -1,28 +1,38 @@
 [jelly_drop_table]
 type = "all"
 drops = [
+    { id = "soul_fragment" },
     { table = "jelly_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
+    { table = "jelly_tertiary" },
 ]
 
 [jelly_secondary]
-roll = 128
+roll = 512
 drops = [
-    { id = "steel_battleaxe", chance = 11 },
-    { id = "steel_2h_sword", chance = 7 },
-    { id = "steel_hatchet", chance = 3 },
-    { id = "mithril_kiteshield", chance = 2 },
-    { id = "mithril_boots" },
-    { id = "rune_full_helm" },
-    { id = "coins", amount = 102, chance = 39 },
-    { id = "coins", amount = 44, chance = 30 },
-    { id = "coins", amount = 220, chance = 10 },
-    { id = "coins", amount = 11, chance = 7 },
-    { id = "coins", amount = 460, chance = 2 },
-    { id = "chaos_rune", amount = 15, chance = 5 },
-    { id = "death_rune", amount = 5, chance = 3 },
-    { id = "gold_bar", chance = 2 },
-    { id = "thread", amount = 10 },
-    { table = "gem_drop_table", chance = 4 },
+    { id = "steel_battleaxe", chance = 44 },
+    { id = "steel_2h_sword", chance = 28 },
+    { id = "steel_hatchet", chance = 12 },
+    { id = "mithril_kiteshield", chance = 8 },
+    { id = "mithril_boots", chance = 4 },
+    { id = "rune_full_helm", chance = 4 },
+    { id = "coins", amount = 102, chance = 156 },
+    { id = "coins", amount = 44, chance = 120 },
+    { id = "coins", amount = 220, chance = 40 },
+    { id = "coins", amount = 11, chance = 28 },
+    { id = "coins", amount = 460, chance = 8 },
+    { id = "chaos_rune", amount = 15, chance = 20 },
+    { id = "death_rune", amount = 5, chance = 12 },
+    { id = "gold_bar", chance = 8 },
+    { id = "thread", amount = 10, chance = 4 },
+    { id = "water_rune", min = 5, max = 21, chance = 3 },
+    { id = "blood_rune", amount = 7, chance = 3 },
+    { id = "steel_platebody" },
+    { table = "rare_drop_table", chance = 8 },
 ]
 
+[jelly_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+]

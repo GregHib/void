@@ -18,9 +18,3 @@ id = 1592
 
 [handsand_take_hand]
 id = 1593
-
-[put_down]
-id = 2739
-
-[teleport_all]
-id = 200

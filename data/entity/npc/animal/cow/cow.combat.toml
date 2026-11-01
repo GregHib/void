@@ -1,11 +1,11 @@
 [cow]
 defend_anim = "cow_defend"
-defend_sound = "cow_defend"
+defend_sound = "black_unicorn_defend"
 death_anim = "cow_death"
-death_sound = "cow_death"
+death_sound = "black_unicorn_death"
 
 [cow.melee]
 range = 1
 anim = "cow_attack"
-target_sound = "cow_attack"
+target_sound = "black_unicorn_attack"
 target_hit = { offense = "crush", max = 10 }

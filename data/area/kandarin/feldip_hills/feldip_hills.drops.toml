@@ -7,66 +7,34 @@ drops = [
 ]
 
 [jungle_strykewyrm_secondary]
-roll = 512
+roll = 256
 drops = [
-    { id = "nature_rune", amount = 15, chance = 24 },
-    { id = "death_rune", min = 5, max = 10, chance = 24 },
-    { id = "law_rune", amount = 10, chance = 24 },
-    { id = "soul_rune", amount = 20, chance = 8 },
-    { id = "water_talisman", chance = 2 },
-    { id = "air_talisman", chance = 2 },
-    { id = "body_talisman", chance = 2 },
-    { id = "fire_talisman", chance = 2 },
-    { id = "mind_talisman", chance = 2 },
-    { id = "cosmic_talisman", chance = 2 },
-    { id = "earth_talisman", chance = 2 },
-    { id = "chaos_talisman", chance = 2 },
-    { id = "grimy_cadantine", min = 1, max = 4, chance = 24 },
-    { id = "grimy_guam_noted", min = 1, max = 4, chance = 8 },
-    { id = "grimy_marrentill_noted", min = 1, max = 4, chance = 8 },
-    { id = "grimy_tarromin_noted", min = 1, max = 4, chance = 8 },
-    { id = "grimy_irit_noted", min = 1, max = 4, chance = 8 },
-    { id = "grimy_harralander_noted", min = 1, max = 4, chance = 8 },
-    { id = "grimy_dwarf_weed_noted", min = 1, max = 4, chance = 8 },
-    { id = "grimy_avantoe_noted", min = 1, max = 4, chance = 2 },
-    { id = "grimy_lantadyme_noted", min = 1, max = 4, chance = 2 },
-    { id = "grimy_ranarr_noted", min = 1, max = 4, chance = 2 },
-    { id = "grimy_kwuarm_noted", min = 1, max = 4, chance = 2 },
-    { id = "toadflax_seed", chance = 24 },
-    { id = "limpwurt_seed", chance = 24 },
-    { id = "marrentill_seed", chance = 8 },
-    { id = "tarromin_seed", chance = 8 },
-    { id = "whiteberry_seed", chance = 8 },
-    { id = "watermelon_seed", chance = 8 },
-    { id = "harralander_seed", chance = 8 },
-    { id = "wildblood_seed", chance = 8 },
-    { id = "bittercap_mushroom_spore", chance = 8 },
-    { id = "cactus_seed", chance = 8 },
-    { id = "poison_ivy_seed", chance = 8 },
-    { id = "yew_seed", chance = 2 },
-    { id = "snapdragon_seed", chance = 2 },
-    { id = "jangerberry_seed", chance = 2 },
-    { id = "ranarr_seed", chance = 2 },
-    { id = "spirit_weed_seed", chance = 2 },
-    { id = "strawberry_seed", chance = 2 },
-    { id = "kwuarm_seed", chance = 2 },
-    { id = "dwarf_weed_seed", chance = 2 },
-    { id = "avantoe_seed", chance = 2 },
-    { id = "maple_seed", chance = 2 },
-    { id = "magic_seed" },
-    { id = "torstol_seed" },
-    { id = "lantadyme_seed" },
+    { id = "nature_rune", amount = 15, chance = 16 },
+    { id = "death_rune", amount = 10, chance = 16 },
+    { id = "law_rune", amount = 10, chance = 16 },
+    { id = "water_talisman" },
+    { id = "air_talisman" },
+    { id = "body_talisman" },
+    { id = "fire_talisman" },
+    { id = "mind_talisman" },
+    { id = "cosmic_talisman" },
+    { id = "earth_talisman" },
+    { id = "spirit_weed_seed" },
     { id = "adamant_hatchet", chance = 8 },
     { id = "mithril_battleaxe", chance = 8 },
-    { id = "hexcrest", chance = 2 },
-    { id = "coins", min = 200, max = 2465, chance = 24 },
-    { id = "papaya_fruit_noted", min = 3, max = 10, chance = 24 },
-    { id = "pure_essence_noted", amount = 40, chance = 24 },
-    { id = "teak_logs_noted", amount = 20, chance = 24 },
-    { id = "lobster", min = 1, max = 2, chance = 24 },
-    { id = "super_defence_1", chance = 24 },
+    { id = "hexcrest" },
+    { id = "coins", min = 200, max = 2465, chance = 16 },
+    { id = "papaya_fruit_noted", min = 3, max = 10, chance = 16 },
+    { id = "pure_essence_noted", amount = 40, chance = 16 },
+    { id = "teak_logs_noted", amount = 20, chance = 16 },
+    { id = "lobster", chance = 8 },
+    { id = "lobster", amount = 2, chance = 8 },
+    { id = "super_defence_1", chance = 16 },
     { id = "mithril_bar_noted", amount = 5, chance = 8 },
-    { table = "rare_drop_table", chance = 10 },
+    { table = "gem_drop_table", chance = 5 },
+    { table = "herb_drop_table", chance = 30 },
+    { table = "uncommon_seed_drop_table", chance = 37 },
+    { table = "tree_herb_seed_drop_table", chance = 5 },
 ]
 
 [jungle_strykewyrm_tertiary]
@@ -93,10 +61,10 @@ drops = [
 ]
 
 [ogress_warrior_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "iron_spear", chance = 64 },
-    { id = "ogre_club", chance = 64 },
+    { id = "iron_spear", chance = 8 },
+    { id = "ogre_club", chance = 43 },
 ]
 
 [ogress_drop_table]
@@ -104,14 +72,14 @@ type = "all"
 drops = [
     { id = "big_bones" },
     { table = "ogress_secondary" },
+    { table = "ogress_tertiary" },
 ]
 
 [ogress_secondary]
-roll = 1024
+roll = 192
 drops = [
-    { id = "ogre_club", chance = 32 },
-    { id = "iron_spear", chance = 32 },
-    { id = "long_bone", chance = 6 },
+    { id = "ogre_club", chance = 64 },
+    { id = "iron_spear", chance = 6 },
 ]
 
 [ogress_champion_drop_table]
@@ -119,12 +87,24 @@ type = "all"
 drops = [
     { id = "big_bones" },
     { table = "ogress_champion_secondary" },
+    { table = "ogress_champion_tertiary" },
 ]
 
 [ogress_champion_secondary]
-roll = 1024
+roll = 144
 drops = [
-    { id = "ogre_club", chance = 64 },
-    { id = "iron_spear", chance = 64 },
-    { id = "starved_ancient_effigy", chance = 6 },
+    { id = "ogre_club", chance = 80 },
+    { id = "iron_spear", chance = 9 },
+]
+
+[ogress_champion_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+]
+
+[ogress_tertiary]
+roll = 5000
+drops = [
+    { id = "long_bone", chance = 12 },
 ]

@@ -88,9 +88,9 @@ class EnchantedHeadgearTest : WorldTest() {
 
         player.itemOnNpc(pikkupstix, 0)
         tick(1)
-        assertEquals(1, player.inventory.count("helm_of_neitiznot_enchanted"), "the plain helm is enchanted")
+        assertEquals(1, player.inventory.count("helm_of_neitiznot_e"), "the plain helm is enchanted")
 
-        player.itemOnItem(1, player.inventory.indexOf("helm_of_neitiznot_enchanted"))
+        player.itemOnItem(1, player.inventory.indexOf("helm_of_neitiznot_e"))
         tick(1)
         assertTrue(player.inventory.indexOf("helm_of_neitiznot_charged") != -1, "scrolls charge it")
         assertEquals(0, player.inventory.count("iron_bull_rush_scroll"))

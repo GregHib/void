@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,9 +23,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class Farming(
-    val farmingDefinitions: FarmingDefinitions,
-) : Script {
+class Farming : Script {
 
     init {
         playerSpawn {
@@ -259,7 +258,7 @@ class Farming(
                 return false
             }
         }
-        var chance = farmingDefinitions.diseaseChances[produce] ?: return false
+        var chance = Tables.intOrNull("farming_produce.$produce.disease_chance") ?: return false
         if (player.containsVarbit("patch_super_compost", spot)) {
             chance /= 5
         } else if (player.containsVarbit("patch_compost", spot)) {

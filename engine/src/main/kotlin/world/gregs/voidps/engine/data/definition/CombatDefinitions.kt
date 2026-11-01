@@ -367,12 +367,14 @@ class CombatDefinitions {
         var id = ""
         var delay = 0
         var radius = 0
+        var area = false
         var offset: Delta? = null
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
                 "radius" -> radius = int()
+                "area" -> area = boolean()
                 "offset_x" -> {
                     val x = int()
                     offset = offset?.copy(x = x) ?: Delta(x = x, y = 0, level = 0)
@@ -384,7 +386,7 @@ class CombatDefinitions {
                 else -> throw IllegalArgumentException("Unknown key '$key' in sound definition. ${exception()}")
             }
         }
-        list.add(CombatDefinition.CombatSound(id, delay, radius, offset))
+        list.add(CombatDefinition.CombatSound(id, delay, radius, offset, area))
     }
 
     private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>) {

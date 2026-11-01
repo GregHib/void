@@ -1,13 +1,13 @@
 [chaos_druid]
 defend_anim = "chaos_druid_defend"
-defend_sound = "chaos_druid_defend"
+defend_sound = "man_defend"
 death_anim = "chaos_druid_death"
-death_sound = "chaos_druid_death"
+death_sound = "man_death"
 
 [chaos_druid.melee]
 range = 1
 anim = "chaos_druid_attack"
-target_sound = "chaos_druid_attack"
+target_sound = "unarmed_punch"
 target_hit = { offense = "crush", max = 20 }
 
 [chaos_druid.confuse]

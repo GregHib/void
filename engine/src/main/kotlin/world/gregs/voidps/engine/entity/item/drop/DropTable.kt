@@ -61,6 +61,12 @@ data class DropTable(
                     if (roll >= count) {
                         continue
                     }
+                    // Once selected, a sub-table's empty space is a "nothing" result, not a pass to the next drop
+                    val collected = drop.collect(list, player, drop.random(-1, multiplier))
+                    if (type == TableType.First) {
+                        return collected
+                    }
+                    continue
                 }
                 if (drop.collect(list, player, drop.random(-1, multiplier)) && type == TableType.First) {
                     return true

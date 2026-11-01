@@ -1,8 +1,15 @@
 [shadow_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "shadow_warrior_secondary" },
+    { table = "shadow_warrior_tertiary" },
+]
+
+[shadow_warrior_secondary]
 roll = 128
 drops = [
     { id = "adamant_spear" },
-    { id = "black_dagger_p" },
+    { id = "black_dagger_p", chance = 8 },
     { id = "black_knife" },
     { id = "black_longsword" },
     { id = "black_wizard_robe_top" },
@@ -12,8 +19,15 @@ drops = [
     { id = "death_rune", amount = 2, chance = 4 },
     { table = "herb_drop_table", chance = 18 },
     { id = "coins", amount = 8, chance = 47 },
-    { id = "nothing", amount = 0, chance = 22 },
     { id = "mithril_bar", chance = 4 },
     { id = "weapon_poison" },
     { table = "gem_drop_table", chance = 8 },
+    { id = "mithril_mace", chance = 8 },
+    { id = "black_full_helm", chance = 2 },
+]
+
+[shadow_warrior_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
 ]
