@@ -4,6 +4,11 @@ y = [5463, 5465]
 level = 2
 tags = ["teleport"]
 
+[runecrafting_guild]
+x = [1687, 5459]
+y = [1705, 5477]
+level = 2
+
 [wizards_tower_multi_area]
 x = [3094, 3125]
 y = [3144, 3176]

@@ -1,2 +1,49 @@
-[barrier]
+[gop_barrier_set_green]
+id = 1749
+
+[gop_barrier_set_yellow]
+id = 1750
+
+[gop_barrier_remove_green]
+id = 1751
+
+[gop_barrier_remove_yellow]
 id = 1752
+
+[gop_attract_green]
+id = 1753
+
+[gop_repell_green]
+id = 1754
+
+[gop_attract_yellow]
+id = 1755
+
+[gop_repell_yellow]
+id = 1756
+
+[gop_green_projectile]
+id = 1757
+
+[gop_yellow_projectile]
+id = 1758
+
+# These are for different strengths/rc levels?
+#1759: collection of green lines and spheres
+#1760: collection of yellow lines and spheres
+#1761: collection of green lines and spheres
+#1762: collection of yellow lines and spheres
+#1763: collection of green lines and spheres
+#1764: collection of yellow lines and spheres
+#1765: collection of green lines and spheres
+#1766: collection of yellow lines and spheres
+#1767: collection of green lines and spheres
+#1768: collection of yellow lines and spheres
+#1769: collection of green lines and spheres
+#1770: collection of yellow lines and spheres
+
+[teleport_rc_guild]
+id = 1771
+
+[teleport_land_rc_guild]
+id = 1772

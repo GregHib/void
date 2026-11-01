@@ -17,8 +17,6 @@ import content.entity.player.dialogue.type.statement
 import content.minigame.great_orb_project.GreatOrbProject
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class WizardAcantha : Script {
     init {

@@ -1,0 +1,29 @@
+[rcguild_portal_teleporter]
+id = 8019
+
+[rcguild_portal]
+id = 8020
+
+[yellow_orb]
+id = 8021
+
+[yellow_orb_noop]
+id = 8022
+
+[yellow_orb_attract]
+id = 8023
+
+[yellow_orb_repel]
+id = 8024
+
+[green_orb]
+id = 8025
+
+[green_orb_noop]
+id = 8026
+
+[green_orb_attract]
+id = 8027
+
+[green_orb_repel]
+id = 8028

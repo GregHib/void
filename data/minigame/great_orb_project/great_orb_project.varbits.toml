@@ -1,0 +1,9 @@
+[gop_wand]
+id = 5093
+format = "list"
+values = [
+    "none",
+    "attractor",
+    "repeller",
+    "hidden",
+]

@@ -1,0 +1,21 @@
+
+ # 10113 teleport land hist_player_teleport_rev
+ # 10114 portal land hist_player_exit_portal
+
+ [rcguild_player_attract_ready]
+ id = 10132
+
+ [rcguild_player_wand_attract]
+ id = 10173
+
+ [teleport_land_rc_guild] # Def not correct anims, should be hands up!
+ id = 10182
+
+ [set_barrier]
+ id = 10184
+
+ [remove_barrier]
+ id = 10186
+
+ [distract]
+ id = 10202

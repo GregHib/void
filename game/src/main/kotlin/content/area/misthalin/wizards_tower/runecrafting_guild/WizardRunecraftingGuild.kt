@@ -7,12 +7,10 @@ import content.entity.player.dialogue.type.npc
 import content.minigame.great_orb_project.GreatOrbProject
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class WizardRunecraftingGuild : Script {
     init {
-        npcOperate("Talk-to", "wizard_runecrafting_guild") {
+        npcOperate("Talk-to", "wizard_runecrafting_guild*") {
             npc<Happy>("Hello!")
             choice {
                 option<Happy>("I want to join the orb project!") {

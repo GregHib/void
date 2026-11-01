@@ -22,7 +22,7 @@ delta = { level = 1 }
 [portal_runecrafting_guild]
 option = "Enter"
 tile = { x = 1696, y = 5460, level = 2 }
-to = { x = 3107, y = 3160, level = 1 }
+to = { x = 3106, y = 3160, level = 1 }
 
 [portal_runecrafting_guild]
 option = "Enter"

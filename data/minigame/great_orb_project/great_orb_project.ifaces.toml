@@ -220,11 +220,14 @@ id = 114
 [.rune_essence]
 id = 115
 
-[.confirm]
+[.confirm_text]
 id = 132
 
-[.confirm_text]
+[.token_text]
 id = 135
 
-[.confirm_subtext]
+[.reward_text]
 id = 136
+
+[.confirm]
+id = 163
