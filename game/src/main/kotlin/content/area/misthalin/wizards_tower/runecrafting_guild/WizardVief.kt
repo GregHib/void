@@ -20,47 +20,21 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class WizardVief : Script {
     init {
         npcOperate("Talk-to", "wizard_vief") {
-            if (get("gop_team", "") == "yellow") {
-                npc<Quiz>("The portal will open any moment. Are you ready?")
-                choice("Select an Option") {
-                    option<Happy>("I'm ready!") {
-                        npc<Happy>("Excellent. I knew I could count on you.")
-                    }
-                    option<Neutral>("No. What am I supposed to do?") {
-                        npc<Neutral>("It's quite complicated, but a runecrafter of your calibre should have no trouble understanding. After all, most of the people they let in here are highly intelligent.")
-                        npc<Neutral>("The Runecrafting altars are sources of energy. Every time we craft runes, that energy comes out of the altars and into the essence.")
-                        npc<Neutral>("Sometimes, too much energy comes out, and it forms into yellow energy orbs that hang in the air. These attract another form of energy from the surrounding space, which manifests as green orbs.")
-                        npc<Neutral>("The yellow orbs need to be put back into the altar. The green orbs should be kept away. You can move the orbs around by attracting and repelling them using special wands. I'll give you a third wand to create barriers.")
-                        npc<Neutral>("Barriers will stop green orbs from getting to the altar.")
-                        npc<Quiz>("Yellow orbs are good, green ones are bad. Got that?")
-                        choice {
-                            greenGoodYellowBad()
-                            yellowGoodGreenBad()
-                            whatsInItForMe()
-                            howCanYouBeSure()
+            when (get("gop_team", "")) {
+                "green" -> npc<Quiz>("So, you've decided to help 'Wizard' Acantha? I had thought a runecrafter of your calibre would be smart enough to see through her errors. No matter.")
+                "yellow" -> {
+                    npc<Quiz>("The portal will open any moment. Are you ready?")
+                    choice("Select an Option") {
+                        option<Happy>("I'm ready!") {
+                            npc<Happy>("Excellent. I knew I could count on you.")
                         }
-                    }
-                    option("I want to quit the team.") {
-                        // TODO quit, no message
-                    }
-                }
-                return@npcOperate
-            }
-            npc<Happy>("Ah! You'll help me, won't you?")
-            choice {
-                option<Happy>("Yes, I'll help.") {
-                    join()
-                }
-                no()
-                option<Quiz>("Help with what?") {
-                    npc<Happy>("You must join The GREAT Orb Project! It's a wonderful name, isn't it? All my idea.")
-                    npc<Quiz>(" Oh, I'm sorry. Haven't I told you what to do yet?")
-                    choice("Choose an option:") {
-                        option<Neutral>("Yes, you told me what to do.") {
-                            npc<Neutral>("Excellent.")
-                        }
-                        option<Neutral>("Wizard Elriss told me what to do.") {
-                            npc<Neutral>("Well, that's something, but I should make sure you have the details right. Remember, you need to get the yellow orbs into the altar. Got that? The yellow ones. Keep the green ones away.")
+                        option<Neutral>("No. What am I supposed to do?") {
+                            npc<Neutral>("It's quite complicated, but a runecrafter of your calibre should have no trouble understanding. After all, most of the people they let in here are highly intelligent.")
+                            npc<Neutral>("The Runecrafting altars are sources of energy. Every time we craft runes, that energy comes out of the altars and into the essence.")
+                            npc<Neutral>("Sometimes, too much energy comes out, and it forms into yellow energy orbs that hang in the air. These attract another form of energy from the surrounding space, which manifests as green orbs.")
+                            npc<Neutral>("The yellow orbs need to be put back into the altar. The green orbs should be kept away. You can move the orbs around by attracting and repelling them using special wands. I'll give you a third wand to create barriers.")
+                            npc<Neutral>("Barriers will stop green orbs from getting to the altar.")
+                            npc<Quiz>("Yellow orbs are good, green ones are bad. Got that?")
                             choice {
                                 greenGoodYellowBad()
                                 yellowGoodGreenBad()
@@ -68,13 +42,43 @@ class WizardVief : Script {
                                 howCanYouBeSure()
                             }
                         }
-                        option<Neutral>("Wizard Acantha told me what to do.") {
-                            npc<Angry>("You listened to her? You idiot!")
+                        option("I want to quit the team.") {
+                            GreatOrbProject.leave(this)
                         }
-                        option<Neutral>("No. What am I supposed to do?") {
-                            npc<Neutral>("It's quite complicated, but a runecrafter of your calibre should have no trouble understanding. After all, most of the people they let in here are highly intelligent.")
-                            npc<Neutral>("The Runecrafting altars are sources of energy. Every time we craft runes, that energy comes out of the altars and into the essence.")
-                            npc<Neutral>("Sometimes, too much energy comes out, and it forms into yellow energy orbs that hang in the air. These attract another form of energy from the surrounding space, which manifests as green orbs.")
+                    }
+                }
+                else -> {
+                    npc<Happy>("Ah! You'll help me, won't you?")
+                    choice {
+                        option<Happy>("Yes, I'll help.") {
+                            join()
+                        }
+                        no()
+                        option<Quiz>("Help with what?") {
+                            npc<Happy>("You must join The GREAT Orb Project! It's a wonderful name, isn't it? All my idea.")
+                            npc<Quiz>(" Oh, I'm sorry. Haven't I told you what to do yet?")
+                            choice("Choose an option:") {
+                                option<Neutral>("Yes, you told me what to do.") {
+                                    npc<Neutral>("Excellent.")
+                                }
+                                option<Neutral>("Wizard Elriss told me what to do.") {
+                                    npc<Neutral>("Well, that's something, but I should make sure you have the details right. Remember, you need to get the yellow orbs into the altar. Got that? The yellow ones. Keep the green ones away.")
+                                    choice {
+                                        greenGoodYellowBad()
+                                        yellowGoodGreenBad()
+                                        whatsInItForMe()
+                                        howCanYouBeSure()
+                                    }
+                                }
+                                option<Neutral>("Wizard Acantha told me what to do.") {
+                                    npc<Angry>("You listened to her? You idiot!")
+                                }
+                                option<Neutral>("No. What am I supposed to do?") {
+                                    npc<Neutral>("It's quite complicated, but a runecrafter of your calibre should have no trouble understanding. After all, most of the people they let in here are highly intelligent.")
+                                    npc<Neutral>("The Runecrafting altars are sources of energy. Every time we craft runes, that energy comes out of the altars and into the essence.")
+                                    npc<Neutral>("Sometimes, too much energy comes out, and it forms into yellow energy orbs that hang in the air. These attract another form of energy from the surrounding space, which manifests as green orbs.")
+                                }
+                            }
                         }
                     }
                 }
@@ -128,7 +132,7 @@ class WizardVief : Script {
         }
         choice("Are you sure you want to join?") {
             option("Yes.") {
-                if (equipped(EquipSlot.Hat).isNotEmpty() || equipped(EquipSlot.Hands).isNotEmpty()) {
+                if (GreatOrbProject.cantJoin(this)) {
                     npc<Neutral>("All that junk you're carrying will interfere with the magic. I'll need to give you a hat, put something in your hand, and two things in your inventory.")
                     return@option
                 }

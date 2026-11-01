@@ -13,10 +13,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class WizardRunecraftingGuild : Script {
     init {
         npcOperate("Talk-to", "wizard_runecrafting_guild") {
-            if (get("gop_team", "") != "") {
-                npc<Neutral>("You're already on a team. Wait for the portal to open and then go through.")
-                return@npcOperate
-            }
             npc<Happy>("Hello!")
             choice {
                 option<Happy>("I want to join the orb project!") {
@@ -40,7 +36,11 @@ class WizardRunecraftingGuild : Script {
     }
 
     private suspend fun Player.join() {
-        if (equipped(EquipSlot.Hat).isNotEmpty() || equipped(EquipSlot.Hands).isNotEmpty()) {
+        if (get("gop_team", "") != "") {
+            npc<Neutral>("You're already on a team. Wait for the portal to open and then go through.")
+            return
+        }
+        if (GreatOrbProject.cantJoin(this)) {
             npc<Neutral>("You need your head, right hand and two free inventory slots, or you won't be able to hold the necessary equipment.")
             return
         }

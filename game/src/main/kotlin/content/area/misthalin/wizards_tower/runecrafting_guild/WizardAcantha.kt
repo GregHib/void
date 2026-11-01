@@ -23,45 +23,50 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class WizardAcantha : Script {
     init {
         npcOperate("Talk-to", "wizard_acantha") {
-            if (get("gop_team", "") == "green") {
-                npc<Quiz>("The portal will open any moment. Are you ready?")
-                choice("Select an Option") {
-                    option<Happy>("I'm ready!") {
-                        npc<Happy>("Good, preparation is the key to success. Keep those yellow orbs away.")
-                    }
-                    option("No. What am I supposed to do?") {
-                        player<Confused>("Sure. What am I supposed to do?")
-                        npc<Happy>("When we began formally studying the rune altars, we saw a spike in the energy fields surrounding altars when there is an increase in rune production.")
-                        npc<Neutral>("When an essence is used on the altar, energy is transferred and bound into the essence, creating a rune.")
-                        npc<Neutral>("As with all transfers of energy, some is lost in the process. This lost energy, manifested as green orbs, needs to be returned to the altar to keep them well maintained.")
-                        npc<Sad>("When the green energy escapes during the transfer, yellow energy particles in the air gather around the pure green energy. They form into opposing orbs and must be kept away as they are impure energy forms.")
-                        npc<Neutral>("I need you to put the green orbs back in the altar. I will give you two wands to move the orbs around and a third wand to create barriers to prevent those pesky yellow orbs from getting in.")
-                        npc<Neutral>("To further this cause, we've set up a project to repair the altars. I wanted to just call it The Orb Project, but the buffoon wanted it to sound grander, so now it's The Great Orb Project. As if it needed an adjective.")
-                        menu()
-                    }
-                    option("I want to quit the team.") {
-                        player<Scared>("I want to quit the team.")
-                        npc<Neutral>("The youth of today, they can't commit to anything.")
+            when (get("gop_team", "")) {
+                "green" -> {
+                    npc<Quiz>("The portal will open any moment. Are you ready?")
+                    choice("Select an Option") {
+                        option<Happy>("I'm ready!") {
+                            npc<Happy>("Good, preparation is the key to success. Keep those yellow orbs away.")
+                        }
+                        option("No. What am I supposed to do?") {
+                            player<Confused>("Sure. What am I supposed to do?")
+                            npc<Happy>("When we began formally studying the rune altars, we saw a spike in the energy fields surrounding altars when there is an increase in rune production.")
+                            npc<Neutral>("When an essence is used on the altar, energy is transferred and bound into the essence, creating a rune.")
+                            npc<Neutral>("As with all transfers of energy, some is lost in the process. This lost energy, manifested as green orbs, needs to be returned to the altar to keep them well maintained.")
+                            npc<Sad>("When the green energy escapes during the transfer, yellow energy particles in the air gather around the pure green energy. They form into opposing orbs and must be kept away as they are impure energy forms.")
+                            npc<Neutral>("I need you to put the green orbs back in the altar. I will give you two wands to move the orbs around and a third wand to create barriers to prevent those pesky yellow orbs from getting in.")
+                            npc<Neutral>("To further this cause, we've set up a project to repair the altars. I wanted to just call it The Orb Project, but the buffoon wanted it to sound grander, so now it's The Great Orb Project. As if it needed an adjective.")
+                            menu()
+                        }
+                        option("I want to quit the team.") {
+                            player<Scared>("I want to quit the team.")
+                            npc<Neutral>("The youth of today, they can't commit to anything.")
+                            GreatOrbProject.leave(this)
+                        }
                     }
                 }
-                return@npcOperate
-            }
-            npc<Happy>("You look slightly more intelligent than the rest of these goons. Will you help me?")
-            choice {
-                option<Happy>("Yes, I'll help.") {
-                    join()
-                }
-                no()
-                option<Confused>("Help with what?") {
-                    npc<Neutral>("Don't you keep up with the Runecrafting Theory Journal? We've been making major discoveries! The youth of today are so lazy. Shall I tell you about it?")
-                    player<Confused>("Sure. What am I supposed to do?")
-                    npc<Happy>("When we began formally studying the rune altars, we saw a spike in the energy fields surrounding altars when there is an increase in rune production.")
-                    npc<Neutral>("When an essence is used on the altar, energy is transferred and bound into the essence, creating a rune.")
-                    npc<Neutral>("As with all transfers of energy, some is lost in the process. This lost energy, manifested as green orbs, needs to be returned to the altar to keep them well maintained.")
-                    npc<Sad>("When the green energy escapes during the transfer, yellow energy particles in the air gather around the pure green energy. They form into opposing orbs and must be kept away as they are impure energy forms.")
-                    npc<Neutral>("I need you to put the green orbs back in the altar. I will give you two wands to move the orbs around and a third wand to create barriers to prevent those pesky yellow orbs from getting in.")
-                    npc<Neutral>("To further this cause, we've set up a project to repair the altars. I wanted to just call it The Orb Project, but the buffoon wanted it to sound grander, so now it's The Great Orb Project. As if it needed an adjective.")
-                    menu()
+                "yellow" -> npc<Quiz>("So, you've decided to help 'Wizard' Vief?")
+                else -> {
+                    npc<Happy>("You look slightly more intelligent than the rest of these goons. Will you help me?")
+                    choice {
+                        option<Happy>("Yes, I'll help.") {
+                            join()
+                        }
+                        no()
+                        option<Confused>("Help with what?") {
+                            npc<Neutral>("Don't you keep up with the Runecrafting Theory Journal? We've been making major discoveries! The youth of today are so lazy. Shall I tell you about it?")
+                            player<Confused>("Sure. What am I supposed to do?")
+                            npc<Happy>("When we began formally studying the rune altars, we saw a spike in the energy fields surrounding altars when there is an increase in rune production.")
+                            npc<Neutral>("When an essence is used on the altar, energy is transferred and bound into the essence, creating a rune.")
+                            npc<Neutral>("As with all transfers of energy, some is lost in the process. This lost energy, manifested as green orbs, needs to be returned to the altar to keep them well maintained.")
+                            npc<Sad>("When the green energy escapes during the transfer, yellow energy particles in the air gather around the pure green energy. They form into opposing orbs and must be kept away as they are impure energy forms.")
+                            npc<Neutral>("I need you to put the green orbs back in the altar. I will give you two wands to move the orbs around and a third wand to create barriers to prevent those pesky yellow orbs from getting in.")
+                            npc<Neutral>("To further this cause, we've set up a project to repair the altars. I wanted to just call it The Orb Project, but the buffoon wanted it to sound grander, so now it's The Great Orb Project. As if it needed an adjective.")
+                            menu()
+                        }
+                    }
                 }
             }
         }
@@ -69,10 +74,6 @@ class WizardAcantha : Script {
         npcOperate("Join", "wizard_acantha") {
             if (get("gop_team", "") != "") {
                 npc<Confused>("What do you think you're up to? You're already on a team.")
-                return@npcOperate
-            }
-            if (equipped(EquipSlot.Hat).isNotEmpty() || equipped(EquipSlot.Hands).isNotEmpty()) {
-                // TODO
                 return@npcOperate
             }
             choice("Are you sure you want to join?") {
@@ -91,7 +92,7 @@ class WizardAcantha : Script {
     }
 
     private suspend fun Player.join() {
-        if (equipped(EquipSlot.Hat).isNotEmpty() || equipped(EquipSlot.Hands).isNotEmpty()) {
+        if (GreatOrbProject.cantJoin(this)) {
             npc<Angry>("You need your head, right hand and two free inventory slots, or I can't give you the necessary equipment.")
             return
         }

@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -39,6 +40,18 @@ class Equipping : Script {
             }
             if (item.id.startsWith("falconers_glove")) {
                 message("You should return the falcon to Matthias instead of just dropping it.")
+                return@itemOption
+            }
+            if (item.id.startsWith("runecrafter_hat_the_great_orb_project_")) {
+                message("<red>You can't remove that hat during the game.")
+                return@itemOption
+            }
+            if (item.id.endsWith("_repeller")) {
+                message("<red>You cannot remove the repeller wand, expect by replacing it with the attractor wand.")
+                return@itemOption
+            }
+            if (item.id.endsWith("_attractor")) {
+                message("<red>You cannot remove the attractor wand, expect by replacing it with the repeller wand.")
                 return@itemOption
             }
             if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
@@ -89,6 +102,14 @@ class Equipping : Script {
         }
         if (item.id.startsWith("falconers_glove")) {
             player.message("You need Matthias to provide you with a bird before you can wear that.")
+            return
+        }
+        if (player.equipped(EquipSlot.Weapon).id.endsWith("_repeller") && !item.id.endsWith("_attractor")) {
+            player.message("<red>You cannot remove the repeller wand, expect by replacing it with the attractor wand.")
+            return
+        }
+        if (player.equipped(EquipSlot.Weapon).id.endsWith("_attractor") && !item.id.endsWith("_repeller")) {
+            player.message("<red>You cannot remove the attractor wand, expect by replacing it with the repeller wand.")
             return
         }
         if ((item.slot == EquipSlot.Weapon || item.slot == EquipSlot.Shield) && player.equipped(EquipSlot.Weapon).id.startsWith("falconers_glove")) {
