@@ -16,17 +16,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-/**
- * Levers can't be pulled while teleblocked unless a forinthry bracelet is worn.
- */
-fun Player.leverTeleportBlocked(): Boolean {
-    if (teleBlocked && !equipped(EquipSlot.Hands).id.startsWith("forinthry_bracelet")) {
-        message("A magical force has stopped you from teleporting.")
-        return true
-    }
-    return false
-}
-
 class WildernessLevers(val teleports: ObjectTeleports) : Script {
 
     init {
@@ -83,5 +72,15 @@ class WildernessLevers(val teleports: ObjectTeleports) : Script {
         gfx("teleport_modern")
         val definition = teleports.get("Pull")[target.tile.id]!!
         teleports.teleportContinue(this, definition, target, delay = 3)
+    }
+
+    companion object {
+        fun Player.leverTeleportBlocked(): Boolean {
+            if (teleBlocked && !equipped(EquipSlot.Hands).id.startsWith("forinthry_bracelet")) {
+                message("A magical force has stopped you from teleporting.")
+                return true
+            }
+            return false
+        }
     }
 }

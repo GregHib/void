@@ -1,6 +1,6 @@
 package content.minigame.mage_arena
 
-import content.area.wilderness.leverTeleportBlocked
+import content.area.wilderness.WildernessLevers.Companion.leverTeleportBlocked
 import content.entity.gfx.areaGfx
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
