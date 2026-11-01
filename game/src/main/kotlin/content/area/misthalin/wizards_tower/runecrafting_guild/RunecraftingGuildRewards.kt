@@ -27,7 +27,7 @@ class RunecraftingGuildRewards : Script {
         }
 
         interfaceOption("Buy X", "rc_guild_rewards:*") {
-            var amount = intEntry("Enter amount:") // TODO proper message
+            var amount = intEntry("Enter amount:")
             if (amount > 50) {
                 message("You may only buy a maximum of 50 items at a time.") // https://youtu.be/01EWnc60K6o?t=501
                 amount = 50

@@ -7,3 +7,12 @@ values = [
     "repeller",
     "hidden",
 ]
+
+[gop_activity]
+id = 6457
+format = "int" # max 1000
+
+[gop_team]
+id = 5095
+format = "list"
+values = ["", "yellow", "green"]

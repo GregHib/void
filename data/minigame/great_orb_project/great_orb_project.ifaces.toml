@@ -54,11 +54,59 @@ id = 33
 id = 781
 type = "overlay"
 
+[.text_layer]
+id = 2
+
 [.green_layer]
 id = 13
 
 [.yellow_layer]
 id = 14
+
+[.air]
+id = 15
+
+[.mind]
+id = 16
+
+[.water]
+id = 17
+
+[.earth]
+id = 18
+
+[.fire]
+id = 19
+
+[.body]
+id = 20
+
+[.chaos]
+id = 21
+
+[.nature]
+id = 22
+
+[.green_clock]
+id = 33
+
+[.yellow_clock]
+id = 42
+
+[.yellow_score]
+id = 47
+
+[.green_team_score]
+id = 48
+
+[.green_score]
+id = 38
+
+[.yellow_team_score]
+id = 39
+
+[.text]
+id = 56
 
 [rc_guild_rewards]
 id = 779
