@@ -2,6 +2,7 @@ package content.quest.free.ernest_the_chicken
 
 import WorldTest
 import content.entity.effect.stunned
+import content.quest.free.ernest_the_chicken.ErnestLeverPuzzle.Companion.ernestDoorMask
 import content.quest.quest
 import content.quest.questStage
 import dialogueContinue
@@ -377,6 +378,24 @@ class ErnestTheChickenTest : WorldTest() {
         }
         cross(Tile(3097, 3360), "ernest_candle_sconce", "Search", Tile(3096, 3359))
         cross(Tile(3096, 3357), "ernest_secret_exit_lever", "Pull", Tile(3097, 3359))
+    }
+
+    @Test
+    fun `A second player cannot start the secret passage while the wall is open`() {
+        val first = createPlayer(Tile(3098, 3360))
+        val second = createPlayer(Tile(3098, 3360))
+        first.objectOption(GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce"), "Search")
+        tickIf(12) { GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened") == null }
+        assertNotNull(GameObjects.findOrNull(Tile(3096, 3358), "ernest_secret_wall_south_opened"))
+        second.objectOption(GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce"), "Search")
+        tick(2)
+        assertTrue(second.messages.contains("The secret passage is already moving. Please wait a moment."), second.messages.joinToString())
+        tick(14)
+        assertEquals(Tile(3096, 3359), first.tile)
+        assertNotNull(GameObjects.findOrNull(Tile(3097, 3358), "ernest_secret_wall_south_closed"))
+        second.objectOption(GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce"), "Search")
+        tick(16)
+        assertEquals(Tile(3096, 3359), second.tile)
     }
 
     @Test
