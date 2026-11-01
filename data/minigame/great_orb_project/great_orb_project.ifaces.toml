@@ -1,6 +1,230 @@
 [rc_guild_side]
 id = 778
+type = "inventory_tab"
+
+[.inventory]
+id = 0
+inventory = "inventory"
+options = { Reveal = 0, Examine = 9 }
+
+[rc_guild_map]
+id = 780
+type = "main_screen"
+
+[.air]
+id = 35
+
+[.body]
+id = 36
+
+[.mind]
+id = 37
+
+[.earth]
+id = 38
+
+[.water]
+id = 39
+
+[.fire]
+id = 40
+
+[.chaos]
+id = 41
+
+[.law]
+id = 42
+
+[.blood]
+id = 43
+
+[.nature]
+id = 44
+
+[.death]
+id = 47
+
+[.cosmic]
+id = 48
+
+[.info_txt]
+id = 33
+
+[rc_guild_overlay]
+id = 781
+type = "overlay"
+
+[.green_layer]
+id = 13
+
+[.yellow_layer]
+id = 14
 
 [rc_guild_rewards]
 id = 779
+type = "main_screen"
 
+[.air_talisman]
+id = 6
+
+[.body_talisman]
+id = 7
+
+[.chaos_talisman]
+id = 8
+
+[.cosmic_talisman]
+id = 9
+
+[.earth_talisman]
+id = 10
+
+[.fire_talisman]
+id = 11
+
+[.law_talisman]
+id = 12
+
+[.mind_talisman]
+id = 13
+
+[.nature_talisman]
+id = 14
+
+[.water_talisman]
+id = 15
+
+[.hat_blue]
+id = 36
+
+[.hat_yellow]
+id = 37
+
+[.hat_green]
+id = 38
+
+[.robe_blue]
+id = 39
+
+[.robe_yellow]
+id = 40
+
+[.robe_green]
+id = 41
+
+[.bottoms_blue]
+id = 42
+
+[.bottoms_yellow]
+id = 43
+
+[.bottoms_green]
+id = 44
+
+[.gloves_blue]
+id = 45
+
+[.gloves_yellow]
+id = 46
+
+[.gloves_green]
+id = 47
+
+[.air_teleport]
+id = 72
+
+[.body_teleport]
+id = 73
+
+[.chaos_teleport]
+id = 74
+
+[.cosmic_teleport]
+id = 75
+
+[.death_teleport]
+id = 76
+
+[.earth_teleport]
+id = 77
+
+[.fire_teleport]
+id = 78
+
+[.law_teleport]
+id = 79
+
+[.mind_teleport]
+id = 80
+
+[.astral_teleport]
+id = 81
+
+[.nature_teleport]
+id = 82
+
+[.water_teleport]
+id = 83
+
+[.blood_teleport]
+id = 84
+
+[.guild_teleport]
+id = 85
+
+[.air_teleportation]
+id = 86
+
+[.body_teleportation]
+id = 88
+
+[.chaos_teleportation]
+id = 90
+
+[.cosmic_teleportation]
+id = 92
+
+[.death_teleportation]
+id = 94
+
+[.earth_teleportation]
+id = 96
+
+[.fire_teleportation]
+id = 98
+
+[.law_teleportation]
+id = 100
+
+[.mind_teleportation]
+id = 102
+
+[.nature_teleportation]
+id = 104
+
+[.astral_teleportation]
+id = 106
+
+[.water_teleportation]
+id = 108
+
+[.blood_teleportation]
+id = 110
+
+[.guild_teleportation]
+id = 112
+
+[.staff_blank]
+id = 114
+
+[.rune_essence]
+id = 115
+
+[.confirm]
+id = 132
+
+[.confirm_text]
+id = 135
+
+[.confirm_subtext]
+id = 136

@@ -1,0 +1,41 @@
+[rc_guild_map]
+text = "string"
+
+[.air]
+text = "South-west of Varrock"
+
+[.earth]
+text = "North-east of Varrock"
+
+[.mind]
+text = "Near Goblin Village."
+
+[.fire]
+text = "Near the entrance to the Duel Arena."
+
+[.cosmic]
+text = "Located in Zanaris. Zanaris can be reached through Lumbridge Swamp."
+
+[.nature]
+text = "North-east of Shilo Village."
+
+[.chaos]
+text = "South-east of the Dark Warriors' Fortress."
+
+[.laws]
+text = "Located on Entrana."
+
+[.death]
+text = "Located in the Light Temple. Reached via the Underground Pass."
+
+[.blood]
+text = "Morytania, beneath the Hollows/Meiyerditch."
+
+[.body]
+text = "Near Barbarian Village."
+
+[.water]
+text = "In Lumbridge Swamp."
+
+[.omni]
+text = "All the altars of Gielinor."
