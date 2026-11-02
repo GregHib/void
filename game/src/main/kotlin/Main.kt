@@ -63,14 +63,12 @@ object Main {
     fun main(args: Array<String>) {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
-        ContentLoader.preload()
         val settings = settings()
-        val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
-
-        // Cache files
         if (!CacheDownloader.ensure(settings)) {
             return
         }
+        ContentLoader.preload()
+        val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
