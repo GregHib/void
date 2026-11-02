@@ -13,6 +13,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDownloader
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
@@ -62,8 +63,11 @@ object Main {
     fun main(args: Array<String>) {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
-        ContentLoader.preload()
         val settings = settings()
+        if (!CacheDownloader.ensure(settings)) {
+            return
+        }
+        ContentLoader.preload()
         val files = CoroutineScope(Dispatchers.IO).async { configFiles() }
 
         // File server
