@@ -7,26 +7,31 @@ drops = [
 ]
 
 [mogre_secondary]
-roll = 128
+roll = 256
 drops = [
-    { id = "water_rune", amount = 5, chance = 4 },
-    { id = "water_rune", amount = 7, chance = 4 },
-    { id = "water_rune", amount = 14, chance = 4 },
-    { id = "raw_swordfish", chance = 20 },
-    { id = "raw_tuna", chance = 9 },
-    { id = "raw_pike", chance = 7 },
-    { id = "raw_salmon", chance = 4 },
-    { id = "raw_herring", chance = 3 },
-    { id = "raw_sardine", chance = 3 },
-    { id = "raw_shark", chance = 3 },
-    { id = "fishing_bait", amount = 5, chance = 30 },
-    { id = "fishing_bait", amount = 15, chance = 10 },
-    { id = "mudskipper_hat", chance = 5 },
-    { id = "oyster", chance = 3 },
-    { id = "flippers", chance = 2 },
-    { id = "seaweed", chance = 2 },
-    { id = "staff_of_water" },
-    { id = "fishbowl" },
+    { id = "water_rune", min = 5, max = 18, chance = 18 },
+    { id = "raw_swordfish", chance = 40 },
+    { id = "raw_tuna", chance = 18 },
+    { id = "raw_pike", chance = 14 },
+    { id = "raw_salmon", chance = 8 },
+    { id = "raw_herring", chance = 6 },
+    { id = "raw_sardine", chance = 6 },
+    { id = "raw_shark", chance = 6 },
+    { id = "fishing_bait", min = 5, max = 15, chance = 4 },
+    { id = "mudskipper_hat", chance = 10 },
+    { id = "oyster", chance = 6 },
+    { id = "flippers", chance = 4 },
+    { id = "seaweed", chance = 4 },
+    { id = "staff_of_water", chance = 2 },
+    { id = "fishbowl", chance = 2 },
+    { id = "spirit_weed_seed", chance = 7 },
+    { id = "guam_seed" },
+    { id = "raw_swordfish_noted", min = 2, max = 5, chance = 14 },
+    { id = "raw_tuna_noted", min = 1, max = 3, chance = 14 },
+    { id = "logs", chance = 12 },
+    { id = "seaweed_noted", min = 4, max = 8, chance = 7 },
+    { table = "allotment_seed_drop_table", chance = 27 },
+    { table = "uncommon_seed_drop_table", chance = 26 },
 ]
 
 [mogre_tertiary]
@@ -35,4 +40,5 @@ drops = [
     { id = "mogre_bone", chance = 1253 },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
+    { id = "crunchy_claw_token", chance = 200 },
 ]

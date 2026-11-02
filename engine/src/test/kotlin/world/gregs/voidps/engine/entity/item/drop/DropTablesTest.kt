@@ -11,10 +11,13 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.NoRestrictions
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
+import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -226,6 +229,108 @@ class DropTablesTest {
         Assertions.assertFalse(drop.predicate.invoke(variables))
         variables["test"] = 10
         Assertions.assertTrue(drop.predicate.invoke(variables))
+    }
+
+    @Test
+    fun `Item drop skill equals without default`() {
+        val drop = ItemDrop(
+            id = "item",
+            predicate = tables.dropPredicate(
+                skill = "summoning",
+                eq = 99,
+            ),
+        )
+        val player = Player()
+        var level = 98
+        player.levels.link(
+            player,
+            object : Levels.Level {
+                override fun getMaxLevel(skill: Skill) = level
+            },
+        )
+        Assertions.assertFalse(drop.predicate!!.invoke(player))
+        level = 99
+        Assertions.assertTrue(drop.predicate.invoke(player))
+    }
+
+    @Test
+    fun `Item drop underground`() {
+        val underground = tables.dropPredicate(underground = true)!!
+        val overground = tables.dropPredicate(underground = false)!!
+        val surface = Player(tile = Tile(3222, 3218))
+        val dungeon = Player(tile = Tile(3097, 9867))
+        Assertions.assertFalse(underground(surface))
+        Assertions.assertTrue(underground(dungeon))
+        Assertions.assertTrue(overground(surface))
+        Assertions.assertFalse(overground(dungeon))
+    }
+
+    @Test
+    fun `Item drop with more than three conditions checks all of them`() {
+        val predicate = tables.dropPredicate(
+            members = true,
+            underground = true,
+            variable = "test",
+            default = 0,
+            skill = "summoning",
+            withinMin = 1,
+            withinMax = 10,
+        )!!
+        val player = Player(tile = Tile(3097, 9867))
+        player.levels.link(
+            player,
+            object : Levels.Level {
+                override fun getMaxLevel(skill: Skill) = 99
+            },
+        )
+        Settings.load(mapOf("world.members" to "true"))
+        Assertions.assertFalse(predicate(player))
+        player["test"] = 5
+        Assertions.assertTrue(predicate(player))
+        player.tile = Tile(3222, 3218)
+        Assertions.assertFalse(predicate(player))
+    }
+
+    @Test
+    fun `Drops past the roll are unreachable per world type`() {
+        val table = DropTable(
+            roll = 4,
+            drops = listOf(
+                ItemDrop("coins", chance = 2),
+                ItemDrop("rune", chance = 2, predicate = tables.dropPredicate(members = true)),
+                ItemDrop("arrow", chance = 2, predicate = tables.dropPredicate(members = false)),
+                ItemDrop("bone"),
+            ),
+        )
+        val gates = listOf(DropTables.Gate("coins"), DropTables.Gate("rune", members = true), DropTables.Gate("arrow", members = false), DropTables.Gate("bone"))
+        assertEquals(listOf("bone"), tables.unreachable(table, gates, world = true))
+        assertEquals(listOf("bone"), tables.unreachable(table, gates, world = false))
+        val fits = table.copy(drops = table.drops.dropLast(1))
+        assertEquals(emptyList(), tables.unreachable(fits, gates.dropLast(1), world = true))
+    }
+
+    @Test
+    fun `Conditional drops count towards the roll`() {
+        val table = DropTable(
+            roll = 2,
+            drops = listOf(ItemDrop("clue", chance = 2), ItemDrop("bone")),
+        )
+        val gates = listOf(DropTables.Gate("clue", key = "lacks:clue", condition = "a"), DropTables.Gate("bone", key = "quest", condition = "started"))
+        assertEquals(listOf("bone"), tables.unreachable(table, gates, world = true))
+    }
+
+    @Test
+    fun `Drops gated on opposite conditions of the same variable are alternatives`() {
+        val table = DropTable(
+            roll = 11,
+            drops = listOf(ItemDrop("coins", chance = 8), ItemDrop("coins", chance = 3), ItemDrop("animal_skull", chance = 3)),
+        )
+        val gates = listOf(
+            DropTables.Gate("coins"),
+            DropTables.Gate("coins", key = "the_dig_site", condition = "false:completed"),
+            DropTables.Gate("animal_skull", key = "the_dig_site", condition = "true:completed"),
+        )
+        assertEquals(emptyList(), tables.unreachable(table, gates, world = true))
     }
 
     @Test

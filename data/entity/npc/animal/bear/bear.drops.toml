@@ -4,6 +4,7 @@ drops = [
     { table = "bear_cub_primary" },
     { table = "bear_cub_tertiary" },
     { table = "bear_charms", members = true },
+    { table = "bear_secondary" },
 ]
 
 [bear_cub_primary]
@@ -27,4 +28,10 @@ drops = [
     { id = "green_charm", chance = 5 },
     { id = "crimson_charm", chance = 10 },
     { id = "blue_charm", chance = 1 },
+]
+
+[bear_secondary]
+roll = 128
+drops = [
+    { id = "bear_pelt", chance = 4 },
 ]

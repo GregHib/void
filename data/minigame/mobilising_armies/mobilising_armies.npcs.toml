@@ -1,0 +1,79 @@
+[junior_cadet_mal]
+id = 8921
+examine = "He always seems to be rushed off his feet."
+
+[serjeant_cole]
+id = 8923
+examine = "He's ranked fourth-in-command."
+
+[junior_cadet_nirol]
+id = 8932
+examine = "A low-ranking Cadet but very hard working."
+
+[junior_cadet_boff]
+id = 8934
+examine = "A low-ranking Cadet but very hard working."
+
+[junior_cadet_grimeface]
+id = 8937
+examine = "He's got an invested interest in battle tactics."
+
+[banker_mobilising_armies]
+id = 8948
+# missing examine text
+
+[goblin_recruiter]
+id = 8947
+examine = "He has plenty of goblin squads awaiting battle."
+
+[elven_recruiter]
+id = 8945
+examine = "She's got elf squads available."
+
+[dwarven_recruiter]
+id = 8943
+examine = "He's offering dwarf squads."
+
+[junior_cadet_finda]
+id = 8939
+examine = "Probably the prettiest cadet at the centre."
+
+[junior_cadet_bertol]
+id = 8941
+examine = "A good posture, it has to be said."
+
+[commander_loman]
+id = 8925
+examine = "He's ranked third-in-command."
+
+[war_chief_reeves]
+id = 8927
+examine = "He's ranked second-in-command."
+
+[lord_marshal_brogan]
+id = 8929
+examine = "First in command: there's an unmistakeable air of authority about him."
+
+[operator_jen]
+id = 8949
+interacts = false
+examine = "There to ensure everyone gets to battle."
+
+[operator_lil]
+id = 8954
+interacts = false
+examine = "There to ensure everyone gets to battle."
+
+[operator_dor]
+id = 8959
+interacts = false
+examine = "There to ensure everyone gets to battle."
+
+[operator_gron]
+id = 8964
+interacts = false
+examine = "There to ensure everyone gets to battle."
+
+[junior_cadet_mina]
+id = 8969
+examine = "She knows what's going on."

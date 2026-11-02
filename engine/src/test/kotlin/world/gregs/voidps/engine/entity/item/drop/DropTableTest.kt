@@ -150,6 +150,23 @@ internal class DropTableTest {
     }
 
     @Test
+    fun `Selected sub-table rolling nothing doesn't fall through to the next drop`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val inSubTable = drop("a", 1)
+        val next = drop("b", 5)
+        val subTable = DropTable(TableType.First, 2, listOf(inSubTable), 5)
+        val root = DropTable(TableType.First, 10, listOf(subTable, next), 1)
+
+        val list = mutableListOf<ItemDrop>()
+        root.collect(list, null, 0)
+
+        assertTrue(list.isEmpty())
+    }
+
+    @Test
     fun `Roll a random item`() {
         setRandom(object : Random() {
             override fun nextBits(bitCount: Int): Int = 2

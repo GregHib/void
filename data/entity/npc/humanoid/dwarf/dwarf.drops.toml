@@ -2,9 +2,10 @@
 type = "all"
 drops = [
     { table = "bones" },
-    { table = "dwarf_secondary" },
+    { table = "dwarf_own_secondary" },
     { table = "easy_clue_scroll", roll = 100 },
     { table = "dwarf_charms", members = true },
+    { table = "dwarf_tertiary" },
 ]
 
 [dwarf_hammer_drop_table]
@@ -44,8 +45,9 @@ drops = [
 type = "all"
 drops = [
   { id = "bones" },
-  { table = "black_knight_secondary" },
-    { table = "chaos_dwarf_charms", members = true },
+  { table = "chaos_dwarf_own_secondary" },
+  { table = "chaos_dwarf_charms", members = true },
+  { table = "chaos_dwarf_tertiary" },
 ]
 
 [chaos_dwarf_secondary]
@@ -92,4 +94,80 @@ drops = [
     { id = "green_charm", chance = 4722 },
     { id = "crimson_charm", chance = 2388 },
     { id = "blue_charm", chance = 2396 },
+]
+
+[chaos_dwarf_own_secondary]
+roll = 4096
+drops = [
+    { id = "chaos_rune", amount = 10, chance = 96 },
+    { id = "chaos_rune", amount = 37 },
+    { id = "death_rune", amount = 3, chance = 32 },
+    { id = "death_rune", amount = 6 },
+    { id = "law_rune", amount = 3, chance = 128 },
+    { id = "law_rune", amount = 6 },
+    { id = "cosmic_rune", amount = 3, chance = 64 },
+    { id = "cosmic_rune", amount = 6 },
+    { id = "mind_rune", amount = 37, chance = 96 },
+    { id = "coins", amount = 92, chance = 1271 },
+    { id = "coins", amount = 47, chance = 576 },
+    { id = "coins", amount = 25, chance = 352 },
+    { id = "coins", amount = 150, chance = 320 },
+    { id = "coins", amount = 350, chance = 64 },
+    { id = "coins", amount = 15, chance = 64 },
+    { table = "gem_drop_table", chance = 160 },
+    { id = "water_rune", amount = 10, chance = 32 },
+    { id = "air_rune", amount = 12 },
+    { id = "air_rune", amount = 24, chance = 96 },
+    { id = "nature_rune", amount = 9, chance = 96 },
+    { id = "nature_rune", amount = 18 },
+    { id = "steel_full_helm", chance = 64 },
+    { id = "mithril_longsword", chance = 32 },
+    { id = "mithril_sq_shield", chance = 32 },
+    { id = "black_full_helm" },
+    { id = "coal", chance = 32 },
+    { id = "muddy_key", chance = 224 },
+    { id = "cheese", chance = 32 },
+    { id = "mithril_bar", chance = 192 },
+    { id = "tomato", chance = 32 },
+    { id = "grimy_ranarr", members = true },
+    { id = "dragon_pickaxe", members = true },
+]
+
+[chaos_dwarf_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
+    { table = "medium_clue_scroll", chance = 10 },
+]
+
+[dwarf_own_secondary]
+roll = 128
+drops = [
+    { id = "bronze_pickaxe", chance = 13 },
+    { id = "bronze_med_helm", chance = 4 },
+    { id = "bronze_battleaxe", chance = 2 },
+    { id = "iron_battleaxe" },
+    { id = "bronze_bolts", chance = 7 },
+    { id = "bronze_bolts", min = 3, max = 9, chance = 7 },
+    { id = "chaos_rune", amount = 2, chance = 4 },
+    { id = "nature_rune", amount = 2, chance = 4 },
+    { id = "coins", amount = 4, chance = 20 },
+    { id = "coins", amount = 10, chance = 15 },
+    { id = "coins", amount = 30, chance = 2 },
+    { id = "hammer", chance = 10 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "iron_ore", chance = 4 },
+    { id = "tin_ore", chance = 3 },
+    { id = "copper_ore", chance = 3 },
+    { id = "iron_bar", chance = 3 },
+    { id = "coal", chance = 2 },
+    { table = "gem_drop_table" },
+    { id = "iron_pickaxe", chance = 4 },
+    { id = "dwarven_stout", chance = 4 },
+]
+
+[dwarf_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

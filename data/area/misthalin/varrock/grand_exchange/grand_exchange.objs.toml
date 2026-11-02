@@ -1,0 +1,7 @@
+[ge_leaflets]
+id = 46034
+examine = "'Pay back all your debts by borrowing more money from us!' Clever."
+
+[ge_hidden_trapdoor]
+id = 28094
+examine = "A minecart tunnel runs from here to Keldagrim."

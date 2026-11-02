@@ -8,13 +8,22 @@ drops = [
 [crocodile_drop_table]
 type = "all"
 drops = [
+    { id = "big_bones" },
     { id = "bones" },
     { table = "herb_drop_table", roll = 20 },
     { table = "elite_clue_scroll" },
+    { table = "crocodile_secondary" },
 ]
 
 [desert_snake_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
+]
+
+[crocodile_secondary]
+roll = 512
+drops = [
+    { id = "long_bone", chance = 3 },
+    { id = "curved_bone" },
 ]

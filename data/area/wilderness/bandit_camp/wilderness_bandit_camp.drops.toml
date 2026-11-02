@@ -7,28 +7,32 @@ drops = [
 ]
 
 [wilderness_bandit_secondary]
-roll = 128
+roll = 512
 drops = [
-    { id = "steel_longsword" },
-    { id = "steel_full_helm" },
-    { id = "law_rune", amount = 2, chance = 4 },
-    { id = "nature_rune", amount = 4, chance = 4 },
-    { id = "body_rune", amount = 12, chance = 3 },
-    { id = "chaos_rune", amount = 3, chance = 3 },
-    { id = "water_rune", amount = 30, chance = 3 },
-    { id = "mind_rune", amount = 5 },
-    { table = "herb_drop_table", chance = 15 },
-    { id = "coins", amount = 48, chance = 15 },
-    { id = "coins", amount = 15, chance = 18 },
-    { id = "coins", amount = 10, chance = 15 },
-    { id = "coins", amount = 8, chance = 11 },
-    { id = "coins", amount = 70, chance = 10 },
-    { id = "coins", amount = 5, chance = 5 },
-    { id = "coins", amount = 150, chance = 2 },
-    { id = "silver_ore", chance = 11 },
-    { id = "nothing", amount = 0, chance = 2 },
-    { id = "swordfish_noted", amount = 5, chance = 2 },
-    { table = "gem_drop_table", chance = 2 },
+    { id = "steel_longsword", chance = 4 },
+    { id = "steel_full_helm", chance = 4 },
+    { id = "law_rune", amount = 3, chance = 7 },
+    { id = "nature_rune", amount = 3, chance = 7 },
+    { id = "body_rune", amount = 12, chance = 12 },
+    { id = "chaos_rune", amount = 3, chance = 12 },
+    { id = "water_rune", amount = 30, chance = 12 },
+    { id = "mind_rune", amount = 5, chance = 4 },
+    { id = "coins", amount = 48, chance = 120 },
+    { id = "coins", amount = 15, chance = 72 },
+    { id = "coins", amount = 10, chance = 60, members = false },
+    { id = "coins", amount = 8, chance = 44 },
+    { id = "coins", amount = 70, chance = 40 },
+    { id = "coins", amount = 5, chance = 20 },
+    { id = "coins", amount = 150, chance = 8 },
+    { id = "silver_ore", chance = 44 },
+    { id = "swordfish_noted", amount = 5, chance = 8 },
+    { table = "gem_drop_table", chance = 8 },
+    { id = "iron_sq_shield", chance = 7 },
+    { id = "steel_scimitar" },
+    { id = "steel_hatchet", chance = 7 },
+    { id = "steel_sq_shield", chance = 7 },
+    { id = "black_2h_sword", chance = 4 },
+    { id = "grimy_ranarr", members = true },
 ]
 
 [dark_warrior_drop_table]
@@ -39,36 +43,38 @@ drops = [
 ]
 
 [dark_warrior_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "bronze_med_helm", chance = 64 },
-    { id = "black_med_helm", min = 1, max = 2, chance = 64 },
-    { id = "iron_mace", chance = 64 },
-    { id = "black_mace", chance = 64 },
-    { id = "bronze_arrow", amount = 8, chance = 64 },
-    { id = "mind_rune", amount = 2, chance = 64 },
-    { id = "water_rune", chance = 64 },
-    { id = "earth_rune", chance = 64 },
-    { id = "grimy_guam", chance = 64 },
-    { id = "grimy_marrentill", chance = 64 },
-    { id = "coins", min = 1, max = 20, chance = 64 },
-    { id = "iron_ore", chance = 64 },
-    { id = "chaos_rune", amount = 2, chance = 32 },
-    { id = "grimy_tarromin", chance = 32 },
-    { id = "grimy_harralander", chance = 32 },
-    { id = "sardine", chance = 32 },
-    { id = "nature_rune", amount = 3, chance = 6 },
-    { id = "grimy_ranarr", chance = 6 },
-    { id = "grimy_irit", chance = 6 },
-    { id = "grimy_avantoe", chance = 6 },
-    { id = "grimy_kwuarm", chance = 6 },
-    { id = "grimy_cadantine", chance = 6 },
-    { id = "grimy_lantadyme", chance = 6 },
-    { id = "grimy_dwarf_weed", chance = 6 },
+    { id = "bronze_med_helm", chance = 3 },
+    { id = "black_med_helm", min = 1, max = 2 },
+    { id = "iron_mace" },
+    { id = "black_mace" },
+    { id = "bronze_arrow", amount = 8, chance = 4 },
+    { id = "mind_rune", amount = 2, chance = 3 },
+    { id = "water_rune", chance = 2 },
+    { id = "earth_rune" },
+    { id = "coins", chance = 31 },
+    { id = "coins", amount = 2, chance = 20 },
+    { id = "coins", amount = 6, chance = 20 },
+    { id = "coins", amount = 13, chance = 7 },
+    { id = "coins", amount = 20, chance = 6 },
+    { id = "coins", amount = 10, chance = 3, members = false },
+    { id = "coins", amount = 30, chance = 2 },
+    { id = "iron_ore" },
+    { id = "chaos_rune", amount = 2 },
+    { id = "sardine" },
+    { id = "nature_rune", amount = 3, chance = 2 },
+    { table = "herb_drop_table", chance = 3, members = true },
 ]
 
 [guard_bandit_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
+    { table = "guard_bandit_secondary" },
+]
+
+[guard_bandit_secondary]
+roll = 128
+drops = [
 ]

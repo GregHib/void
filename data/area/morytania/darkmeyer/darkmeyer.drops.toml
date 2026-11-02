@@ -2,4 +2,24 @@
 type = "all"
 drops = [
     { id = "vyre_corpse" },
+    { table = "vyrewatch_secondary" },
+    { table = "vyrewatch_tertiary" },
+]
+
+[vyrewatch_secondary]
+roll = 192
+drops = [
+    { id = "death_rune", min = 1, max = 25, chance = 20 },
+    { id = "blood_rune", min = 10, max = 15, chance = 20 },
+    { id = "fire_rune", amount = 80, chance = 12 },
+    { id = "coins", min = 100, max = 1000, chance = 30 },
+    { id = "splitbark_helm", chance = 6 },
+    { id = "splitbark_body" },
+    { table = "herb_drop_table", chance = 2 },
+]
+
+[vyrewatch_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

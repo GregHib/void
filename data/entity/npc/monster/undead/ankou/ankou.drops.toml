@@ -5,31 +5,41 @@ drops = [
     { table = "ankou_secondary" },
     { table = "hard_clue_scroll", roll = 512 },
     { table = "ankou_charms", members = true },
+    { table = "ankou_tertiary" },
 ]
 
 [ankou_secondary]
-roll = 100
+roll = 400
 drops = [
-    { id = "black_knife", members = true },
-    { id = "black_wizard_robe_top" },
-    { id = "adamant_arrow", min = 5, max = 14, chance = 4 },
-    { id = "death_rune", amount = 10, chance = 10, members = true },
-    { id = "blood_rune", amount = 11, chance = 6, members = true },
-    { id = "law_rune", amount = 2, chance = 4 },
-    { id = "blood_rune", amount = 5, chance = 3, members = true },
-    { table = "herb_drop_table", chance = 3, members = true },
-    { table = "uncommon_seed_drop_table", members = true },
-    { id = "pure_essence_noted", amount = 15, chance = 5 },
-    { id = "mithril_ore_noted", min = 3, max = 7, chance = 2 },
-    { id = "coins", amount = 8, chance = 33 },
-    { id = "coins", min = 5, max = 204, chance = 10 },
-    { id = "coins", amount = 10, chance = 3, members = false },
-    { id = "coins", amount = 5, members = false },
-    { id = "left_skull_half", chance = 3 },
-    { id = "bass", chance = 2, members = true },
-    { id = "weapon_poison", chance = 2, members = true },
-    { id = "fried_mushrooms", members = true },
-    { table = "gem_drop_table", chance = 2 },
+    { id = "black_knife", chance = 4, members = true },
+    { id = "black_wizard_robe_top", chance = 4 },
+    { id = "adamant_arrow", min = 5, max = 14, chance = 16 },
+    { id = "adamant_arrow", amount = 25, chance = 2 },
+    { id = "death_rune", amount = 10, chance = 40 },
+    { id = "blood_rune", amount = 6, chance = 2, members = true },
+    { id = "blood_rune", amount = 10, chance = 2, members = true },
+    { id = "blood_rune", amount = 11, chance = 24, members = true },
+    { id = "blood_rune", amount = 12, chance = 2, members = true },
+    { id = "blood_rune", amount = 16, chance = 2, members = true },
+    { id = "law_rune", amount = 2, chance = 28 },
+    { id = "blood_rune", amount = 5, chance = 12, members = true },
+    { table = "herb_drop_table", chance = 12, members = true },
+    { table = "uncommon_seed_drop_table", chance = 4, members = true },
+    { id = "pure_essence_noted", amount = 15, chance = 20 },
+    { id = "mithril_ore_noted", min = 3, max = 7, chance = 8 },
+    { id = "coins", amount = 8, chance = 130 },
+    { id = "coins", min = 5, max = 204, chance = 40 },
+    { id = "bass", chance = 8, members = true },
+    { id = "weapon_poison", chance = 8, members = true },
+    { id = "fried_mushrooms", chance = 4, members = true },
+    { table = "gem_drop_table", chance = 8 },
+    { id = "battlestaff", chance = 2, members = true },
+    { id = "black_wizard_hat" },
+    { id = "fire_rune", amount = 2, chance = 5 },
+    { id = "nasturtium_seed", chance = 5, members = true },
+    { id = "spirit_weed_seed", members = true },
+    { id = "rune_essence_noted", amount = 15, chance = 5 },
+    { id = "fire_talisman" },
 ]
 
 [ankou_charms]
@@ -39,4 +49,11 @@ drops = [
     { id = "green_charm", chance = 746 },
     { id = "crimson_charm", chance = 1493 },
     { id = "blue_charm", chance = 149 },
+]
+
+[ankou_tertiary]
+roll = 5000
+drops = [
+    { id = "left_skull_half", chance = 117 },
+    { id = "starved_ancient_effigy", chance = 29 },
 ]

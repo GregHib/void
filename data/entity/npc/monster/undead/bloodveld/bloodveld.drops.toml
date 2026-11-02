@@ -1,37 +1,44 @@
 [bloodveld_drop_table]
 type = "all"
 drops = [
+    { id = "bones" },
     { id = "ashes" },
     { table = "bloodveld_secondary" },
     { table = "hard_clue_scroll", roll = 256 },
     { table = "bloodveld_charms" },
+    { table = "bloodveld_tertiary" },
 ]
 
 [bloodveld_secondary]
-roll = 128
+roll = 1024
 drops = [
-    { id = "steel_hatchet", chance = 4 },
-    { id = "steel_full_helm", chance = 4 },
-    { id = "steel_scimitar", chance = 2 },
-    { id = "black_boots" },
-    { id = "mithril_sq_shield" },
-    { id = "mithril_chainbody" },
-    { id = "rune_med_helm" },
-    { id = "fire_rune", amount = 60, chance = 8 },
-    { id = "blood_rune", amount = 3, chance = 3 },
-    { id = "blood_rune", amount = 10, chance = 5 },
-    { id = "blood_rune", amount = 30 },
-    { table = "herb_drop_table" },
-    { id = "coins", amount = 10, chance = 7 },
-    { id = "coins", amount = 40, chance = 29 },
-    { id = "coins", amount = 120, chance = 30 },
-    { id = "coins", amount = 200, chance = 10 },
-    { table = "bloodveld_big_bones", chance = 7 },
-    { table = "bloodveld_big_bones_triple", chance = 3 },
-    { id = "coins", amount = 450 },
-    { id = "gold_ore", chance = 2 },
-    { id = "meat_pizza", chance = 3 },
-    { table = "gem_drop_table", chance = 4 },
+    { id = "steel_hatchet", chance = 32 },
+    { id = "steel_full_helm", chance = 32 },
+    { id = "steel_scimitar", chance = 16 },
+    { id = "black_boots", chance = 8 },
+    { id = "mithril_sq_shield", chance = 8 },
+    { id = "mithril_chainbody", chance = 8 },
+    { id = "rune_med_helm", chance = 8 },
+    { id = "fire_rune", amount = 60, chance = 64 },
+    { id = "blood_rune", amount = 3, chance = 24 },
+    { id = "blood_rune", amount = 10, chance = 40 },
+    { id = "blood_rune", amount = 30, chance = 8 },
+    { table = "herb_drop_table", chance = 8 },
+    { id = "coins", amount = 10, chance = 56 },
+    { id = "coins", amount = 40, chance = 232 },
+    { id = "coins", amount = 120, chance = 240 },
+    { id = "coins", amount = 200, chance = 80 },
+    { id = "coins", amount = 450, chance = 8 },
+    { id = "gold_ore", chance = 16 },
+    { id = "meat_pizza", chance = 24 },
+    { table = "gem_drop_table", chance = 32 },
+    { id = "rune_full_helm" },
+    { id = "jangerberry_seed", chance = 5 },
+    { id = "bones", min = 2, max = 3, chance = 13 },
+    { id = "big_bones", chance = 56 },
+    { id = "big_bones", amount = 4, chance = 2 },
+    { id = "big_bones", amount = 5, chance = 2 },
+    { id = "gold_ring" },
 ]
 
 [bloodveld_big_bones]
@@ -55,4 +62,10 @@ drops = [
     { id = "green_charm", chance = 31843 },
     { id = "crimson_charm", chance = 4549 },
     { id = "blue_charm", chance = 909 },
+]
+
+[bloodveld_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
 ]

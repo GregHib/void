@@ -7,28 +7,36 @@ drops = [
 ]
 
 [fire_giant_secondary]
-roll = 128
+roll = 1024
 drops = [
-  { id = "steel_hatchet", chance = 3 },
-  { id = "mithril_sq_shield", chance = 2 },
-  { id = "fire_battlestaff" },
-  { id = "rune_scimitar" },
-  { id = "fire_rune", amount = 150, chance = 10 },
-  { id = "chaos_rune", amount = 5, chance = 7 },
-  { id = "rune_arrow", amount = 12, chance = 5 },
-  { id = "blood_rune", amount = 5, chance = 4 },
-  { id = "fire_rune", amount = 37 },
-  { id = "law_rune", amount = 2 },
-  { table = "herb_drop_table", chance = 19 },
-  { id = "coins", amount = 60, chance = 40 },
-  { id = "coins", amount = 15, chance = 7 },
-  { id = "coins", amount = 25, chance = 6 },
-  { id = "coins", amount = 300, chance = 2 },
-  { id = "coins", amount = 50 },
-  { id = "lobster", chance = 3 },
-  { id = "steel_bar", chance = 2 },
-  { id = "strength_potion_2" },
-  { table = "rare_drop_table" },
+  { id = "steel_hatchet", chance = 24 },
+  { id = "mithril_sq_shield", chance = 16 },
+  { id = "fire_battlestaff", chance = 8 },
+  { id = "rune_scimitar", chance = 8 },
+  { id = "fire_rune", amount = 150, chance = 80 },
+  { id = "fire_rune", amount = 300, chance = 11 },
+  { id = "fire_rune", amount = 1500 },
+  { id = "chaos_rune", amount = 5, chance = 56 },
+  { id = "rune_arrow", amount = 12, chance = 40 },
+  { id = "rune_arrow", amount = 42, chance = 21 },
+  { id = "blood_rune", amount = 5, chance = 32 },
+  { id = "fire_rune", amount = 37, chance = 8 },
+  { id = "law_rune", amount = 2, chance = 8 },
+  { id = "law_rune", amount = 4, chance = 5 },
+  { id = "law_rune", amount = 45, chance = 5 },
+  { table = "herb_drop_table", chance = 152 },
+  { id = "coins", amount = 60, chance = 320 },
+  { id = "coins", amount = 15, chance = 56 },
+  { id = "coins", amount = 25, chance = 48 },
+  { id = "coins", amount = 300, chance = 16 },
+  { id = "coins", amount = 50, chance = 8 },
+  { id = "lobster", chance = 24 },
+  { id = "steel_bar", chance = 16 },
+  { id = "strength_potion_2", chance = 16 },
+  { table = "rare_drop_table", chance = 8 },
+  { id = "nature_rune", amount = 15, chance = 2 },
+  { id = "nature_rune", amount = 67, chance = 2 },
+  { id = "shoulder_bone", chance = 33 },
 ]
 
 [fire_giant_tertiary]
@@ -38,4 +46,5 @@ drops = [
   { id = "long_bone", chance = 12 },
   { id = "giant_champions_scroll" },
   { id = "curved_bone" },
+  { id = "starved_ancient_effigy", chance = 29 },
 ]

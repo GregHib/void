@@ -645,6 +645,7 @@ id = 7724
 
 [hazelmere_falador_2]
 id = 669
+examine = "An ancient-looking gnome."
 
 [harrallak_menarous_falador_2]
 id = 4286

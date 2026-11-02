@@ -3,30 +3,43 @@ type = "all"
 drops = [
     { table = "cave_crawler_secondary" },
     { table = "cave_crawler_charms", members = true },
+    { table = "cave_crawler_tertiary" },
 ]
 
 [cave_crawler_secondary]
-roll = 128
+roll = 512
 drops = [
-    { id = "bronze_boots" },
-    { id = "nature_rune", min = 3, max = 4, chance = 6 },
-    { id = "fire_rune", amount = 12, chance = 5 },
-    { id = "earth_rune", amount = 9, chance = 2 },
-    { table = "allotment_seed_drop_table", chance = 26 },
-    { table = "herb_drop_table", chance = 22 },
-    { id = "vial_of_water", chance = 13 },
-    { id = "white_berries", chance = 5 },
-    { id = "unicorn_horn_dust", chance = 2 },
-    { id = "eye_of_newt" },
-    { id = "red_spiders_eggs" },
-    { id = "limpwurt_root" },
-    { id = "snape_grass" },
-    { id = "coins", amount = 3, chance = 5 },
-    { id = "coins", amount = 8, chance = 3 },
-    { id = "coins", amount = 29, chance = 3 },
-    { id = "coins", amount = 10 },
-    { id = "nothing", amount = 0, chance = 29 },
-    { table = "gem_drop_table" },
+    { id = "bronze_boots", chance = 4 },
+    { id = "bronze_boots", chance = 4 },
+    { id = "nature_rune", amount = 3, chance = 24 },
+    { id = "nature_rune", chance = 8 },
+    { id = "nature_rune", amount = 3, chance = 24 },
+    { id = "fire_rune", amount = 12, chance = 20 },
+    { id = "fire_rune", amount = 12, chance = 20 },
+    { id = "earth_rune", min = 9, max = 10, chance = 8 },
+    { id = "earth_rune", amount = 9, chance = 8 },
+    { table = "allotment_seed_drop_table", chance = 104 },
+    { table = "herb_drop_table", chance = 92 },
+    { id = "vial_of_water", chance = 12 },
+    { id = "vial_of_water", chance = 12 },
+    { id = "white_berries", chance = 20 },
+    { id = "white_berries", min = 1, max = 2, chance = 20 },
+    { id = "unicorn_horn_dust", chance = 8 },
+    { id = "unicorn_horn_dust", chance = 8 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "red_spiders_eggs", chance = 4 },
+    { id = "red_spiders_eggs", min = 1, max = 3, chance = 4 },
+    { id = "limpwurt_root", chance = 4 },
+    { id = "limpwurt_root", min = 1, max = 2, chance = 4 },
+    { id = "snape_grass", chance = 4 },
+    { id = "snape_grass", min = 1, max = 2, chance = 4 },
+    { id = "coins", amount = 29, chance = 12 },
+    { id = "coins", amount = 10, chance = 4 },
+    { table = "gem_drop_table", chance = 4 },
+    { id = "weapon_poison", chance = 16 },
+    { id = "dragon_med_helm" },
+    { id = "adamant_spear", chance = 3 },
 ]
 
 [cave_crawler_pollnivneach_drop_table]
@@ -34,30 +47,43 @@ type = "all"
 drops = [
     { table = "cave_crawler_pollnivneach_secondary" },
     { table = "cave_crawler_charms", members = true },
+    { table = "cave_crawler_pollnivneach_tertiary" },
 ]
 
 [cave_crawler_pollnivneach_secondary]
-roll = 256
+roll = 512
 drops = [
-    # Estimated the chances
-    { id = "bronze_boots", chance = 2 },
-    { id = "earth_rune", amount = 9, chance = 4 },
-    { id = "fire_rune", amount = 12, chance = 10 },
-    { id = "nature_rune", min = 1, max = 3, chance = 12 },
-    { table = "allotment_seed_drop_table", chance = 52 },
-    { table = "herb_drop_table", chance = 44 },
-    { id = "vial_of_water", chance = 26 },
-    { id = "white_berries", min = 1, max = 2, chance = 10 },
-    { id = "unicorn_horn_dust", min = 1, max = 3, chance = 4 },
-    { id = "eye_of_newt", chance = 2 },
-    { id = "red_spiders_eggs", min = 1, max = 3, chance = 2 },
-    { id = "limpwurt_root", min = 1, max = 2, chance = 2 },
-    { id = "snape_grass", min = 1, max = 2, chance = 2 },
-    { id = "coins", min = 10, max = 89, chance = 16 },
-    { id = "adamant_spear", chance = 2 },
-    { id = "nothing", amount = 0, chance = 55 },
-    { table = "gem_drop_table", chance = 2 },
-    { table = "rare_drop_table" },
+    { id = "bronze_boots", chance = 4 },
+    { id = "bronze_boots", chance = 4 },
+    { id = "earth_rune", min = 9, max = 10, chance = 8 },
+    { id = "earth_rune", amount = 9, chance = 8 },
+    { id = "fire_rune", amount = 12, chance = 20 },
+    { id = "fire_rune", amount = 12, chance = 20 },
+    { id = "nature_rune", amount = 3, chance = 24 },
+    { id = "nature_rune", chance = 8 },
+    { id = "nature_rune", amount = 3, chance = 24 },
+    { table = "allotment_seed_drop_table", chance = 104 },
+    { table = "herb_drop_table", chance = 92 },
+    { id = "vial_of_water", chance = 12 },
+    { id = "vial_of_water", chance = 12 },
+    { id = "white_berries", chance = 20 },
+    { id = "white_berries", min = 1, max = 2, chance = 20 },
+    { id = "unicorn_horn_dust", chance = 8 },
+    { id = "unicorn_horn_dust", chance = 8 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "red_spiders_eggs", chance = 4 },
+    { id = "red_spiders_eggs", min = 1, max = 3, chance = 4 },
+    { id = "limpwurt_root", chance = 4 },
+    { id = "limpwurt_root", min = 1, max = 2, chance = 4 },
+    { id = "snape_grass", chance = 4 },
+    { id = "snape_grass", min = 1, max = 2, chance = 4 },
+    { id = "coins", amount = 29, chance = 12 },
+    { id = "coins", amount = 10, chance = 4 },
+    { id = "adamant_spear", chance = 3 },
+    { table = "gem_drop_table", chance = 4 },
+    { id = "weapon_poison", chance = 16 },
+    { id = "dragon_med_helm" },
 ]
 
 [cave_crawler_charms]
@@ -67,4 +93,18 @@ drops = [
     { id = "green_charm", chance = 2863 },
     { id = "crimson_charm", chance = 1071 },
     { id = "blue_charm", chance = 446 },
+]
+
+[cave_crawler_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+    { id = "starved_ancient_effigy", chance = 29 },
+]
+
+[cave_crawler_pollnivneach_tertiary]
+roll = 5000
+drops = [
+    { id = "starved_ancient_effigy", chance = 29 },
+    { id = "starved_ancient_effigy", chance = 29 },
 ]

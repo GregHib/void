@@ -1,13 +1,15 @@
 [goblin_drop_table]
 type = "all"
 drops = [
+    { id = "goblin_skull" },
     { table = "bones" },
     { table = "goblin_secondary" },
     { table = "goblin_charms", members = true },
+    { table = "goblin_tertiary" },
 ]
 
 [goblin_secondary]
-roll = 128
+roll = 256
 drops = [
     { id = "bronze_sq_shield", chance = 3 },
     { id = "bronze_spear", chance = 4, members = true },
@@ -15,24 +17,59 @@ drops = [
     { id = "water_rune", amount = 6, chance = 6 },
     { id = "earth_rune", amount = 4, chance = 3 },
     { id = "bronze_bolts", amount = 8, chance = 3 },
-    { id = "coins", amount = 5, chance = 28 },
-    { id = "coins", amount = 9, chance = 3 },
-    { id = "coins", amount = 15, chance = 3 },
+    { id = "coins" },
+    { id = "coins", amount = 8, chance = 37 },
+    { id = "coins", amount = 5, chance = 9 },
+    { id = "coins", amount = 16, chance = 8 },
+    { id = "coins", amount = 24, chance = 3 },
+    { id = "coins", amount = 10, chance = 2, members = false },
+    { id = "coins", amount = 15, chance = 30 },
     { id = "coins", amount = 20, chance = 2 },
-    { id = "coins", amount = 1, chance = 1 },
-    { id = "nothing", amount = 0, chance = 38 },
-    { id = "hammer", amount = 1, chance = 15 },
-    { id = "goblin_book", amount = 1, chance = 2, members = true },
-    { id = "goblin_mail", amount = 1, chance = 5 },
-    { id = "chefs_hat", amount = 1, chance = 3 },
-    { id = "beer", amount = 1, chance = 2 },
-    { id = "brass_necklace", amount = 1, chance = 1 },
-    { id = "air_talisman", amount = 1, chance = 1 }
+    { id = "goblin_book", chance = 2, members = true },
+    { id = "goblin_mail", chance = 5 },
+    { id = "chefs_hat", chance = 3 },
+    { id = "beer", chance = 2 },
+    { id = "brass_necklace" },
+    { id = "air_talisman" },
+    { id = "staff_of_air", chance = 4 },
+    { id = "sling", chance = 4 },
+    { id = "bronze_arrow", min = 4, max = 20, chance = 3 },
+    { id = "bronze_chainbody", chance = 4 },
+    { id = "bronze_hatchet", chance = 3 },
+    { id = "bronze_javelin", amount = 5, chance = 2, members = true },
+    { id = "bronze_kiteshield" },
+    { id = "bronze_med_helm", chance = 9 },
+    { id = "bronze_scimitar" },
+    { id = "bronze_sword", chance = 9 },
+    { id = "bronze_full_helm" },
+    { id = "cape_red" },
+    { id = "iron_arrow", min = 3, max = 6 },
+    { id = "iron_dagger", chance = 9 },
+    { id = "iron_full_helm" },
+    { id = "air_rune", min = 2, max = 6, chance = 3 },
+    { id = "blood_rune", members = true },
+    { id = "chaos_rune" },
+    { id = "mind_rune", amount = 4, chance = 3 },
+    { id = "nature_rune" },
+    { id = "tenth_anniversary_candles", min = 1, max = 3, chance = 9 },
+    { id = "tenth_anniversary_cake", min = 1, max = 2, chance = 9 },
+    { id = "bread_dough", chance = 11 },
+    { id = "cabbage", chance = 15 },
+    { id = "earth_talisman" },
+    { id = "grapes", min = 1, max = 3 },
+    { id = "knife" },
+    { id = "mind_talisman" },
+    { id = "tin_ore" },
+    { id = "green_goblin_mail", chance = 4 },
+    { id = "red_goblin_mail", chance = 4 },
+    { id = "raw_chicken", chance = 4 },
+    { table = "herb_drop_table", chance = 2, members = true },
 ]
 
 [stronghold_goblin_drop_table]
 type = "all"
 drops = [
+    { id = "goblin_skull" },
     { table = "bones" },
     { table = "stronghold_goblin_secondary" },
     { table = "stronghold_goblin_tertiary" },
@@ -40,38 +77,69 @@ drops = [
 ]
 
 [stronghold_goblin_secondary]
-roll = 128
+roll = 256
 drops = [
     { id = "bronze_hatchet", chance = 3 },
     { id = "bronze_scimitar" },
-    { id = "bronze_spear", chance = 9, members = true },
-    { id = "bronze_arrow", amount = 7, chance = 3 },
-    { id = "mind_rune", amount = 2, chance = 3 },
+    { id = "bronze_spear", chance = 4, members = true },
+    { id = "bronze_arrow", min = 4, max = 20, chance = 3 },
+    { id = "mind_rune", amount = 4, chance = 3 },
     { id = "earth_rune", amount = 4, chance = 3 },
-    { id = "body_rune", amount = 2, chance = 3 },
+    { id = "body_rune", amount = 7, chance = 5 },
     { id = "bronze_javelin", amount = 5, chance = 2, members = true },
     { id = "chaos_rune" },
     { id = "nature_rune" },
-    { table = "herb_drop_table", chance = 3, members = true },
-    { id = "coins", chance = 34 },
-    { id = "coins", amount = 3, chance = 13 },
-    { id = "coins", amount = 5, chance = 8 },
-    { id = "coins", amount = 16, chance = 7 },
+    { table = "herb_drop_table", chance = 2, members = true },
+    { id = "coins", amount = 15, chance = 30 },
+    { id = "coins", amount = 20, chance = 2 },
+    { id = "coins" },
+    { id = "coins", amount = 8, chance = 37 },
+    { id = "coins", amount = 5, chance = 9 },
+    { id = "coins", amount = 16, chance = 8 },
     { id = "coins", amount = 24, chance = 3 },
     { id = "coins", amount = 10, chance = 2, members = false },
-    { id = "hammer", chance = 9 },
     { id = "goblin_book", chance = 2, members = true },
-    { id = "goblin_mail", chance = 10 },
-    { id = "grapes" },
-    { id = "red_cape" },
+    { id = "goblin_mail", chance = 5 },
+    { id = "grapes", min = 1, max = 3 },
     { id = "tin_ore" },
+    { id = "staff_of_air", chance = 4 },
+    { id = "sling", chance = 4 },
+    { id = "bronze_bolts", amount = 8, chance = 3 },
+    { id = "bronze_chainbody", chance = 4 },
+    { id = "bronze_kiteshield" },
+    { id = "bronze_med_helm", chance = 9 },
+    { id = "bronze_sq_shield", chance = 3 },
+    { id = "bronze_sword", chance = 9 },
+    { id = "bronze_full_helm" },
+    { id = "cape_red" },
+    { id = "iron_arrow", min = 3, max = 6 },
+    { id = "iron_dagger", chance = 9 },
+    { id = "iron_full_helm" },
+    { id = "air_rune", min = 2, max = 6, chance = 3 },
+    { id = "blood_rune", members = true },
+    { id = "water_rune", amount = 6, chance = 6 },
+    { id = "air_talisman" },
+    { id = "beer", chance = 2 },
+    { id = "brass_necklace" },
+    { id = "tenth_anniversary_candles", min = 1, max = 3, chance = 9 },
+    { id = "tenth_anniversary_cake", min = 1, max = 2, chance = 9 },
+    { id = "bread_dough", chance = 11 },
+    { id = "cabbage", chance = 15 },
+    { id = "chefs_hat", chance = 3 },
+    { id = "earth_talisman" },
+    { id = "knife" },
+    { id = "mind_talisman" },
+    { id = "green_goblin_mail", chance = 4 },
+    { id = "red_goblin_mail", chance = 4 },
+    { id = "raw_chicken", chance = 4 },
 ]
 
 [stronghold_goblin_tertiary]
 roll = 5000
 drops = [
-    { id = "clue_scroll_easy", lacks = "clue_scroll_easy*", chance = 39 },
+    { id = "clue_scroll_easy", chance = 39, lacks = "clue_scroll_easy*" },
     { id = "goblin_champions_scroll", members = true, lacks = "goblin_champions_scroll" },
+    { table = "easy_clue_scroll", chance = 39 },
 ]
 
 [goblin_charms]
@@ -81,4 +149,11 @@ drops = [
     { id = "green_charm", chance = 378 },
     { id = "crimson_charm", chance = 930 },
     { id = "blue_charm", chance = 142 },
+]
+
+[goblin_tertiary]
+roll = 5000
+drops = [
+    { table = "easy_clue_scroll", chance = 156 },
+    { id = "goblin_champions_scroll", lacks = "goblin_champions_scroll" },
 ]

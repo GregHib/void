@@ -7,29 +7,28 @@ drops = [
 ]
 
 [gorak_secondary]
-roll = 170
+roll = 256
 drops = [
-    { id = "iron_halberd", chance = 3 },
-    { id = "bronze_dagger_p+", chance = 2 },
-    { id = "iron_2h_sword", chance = 3 },
-    { id = "steel_throwing_axe", chance = 3 },
-    { id = "steel_battleaxe" },
-    { id = "mithril_throwing_axe", chance = 3 },
-    { id = "adamant_kiteshield" },
-    { id = "steel_plateskirt" },
-    { id = "steel_platelegs", chance = 4 },
-    { id = "rune_chainbody" },
-    { table = "herb_drop_table", chance = 16 },
-    { id = "coins", amount = 27, chance = 5 },
-    { id = "coins", amount = 97, chance = 5 },
-    { id = "coins", amount = 104, chance = 29 },
-    { id = "coins", amount = 132, chance = 25 },
-    { id = "coins", amount = 286, chance = 10 },
-    { id = "coins", amount = 475, chance = 8 },
-    { id = "gorak_claws", chance = 42 },
-    { id = "mithril_arrow_p++", amount = 4, chance = 2 },
-    { id = "ring_of_life" },
-    { table = "gem_drop_table", chance = 5 },
+    { id = "iron_halberd", chance = 6 },
+    { id = "iron_2h_sword", chance = 6 },
+    { id = "steel_throwing_axe", chance = 6 },
+    { id = "steel_battleaxe", chance = 2 },
+    { id = "mithril_throwing_axe", chance = 6 },
+    { id = "adamant_kiteshield", chance = 2 },
+    { id = "steel_plateskirt", chance = 2 },
+    { id = "steel_platelegs", chance = 8 },
+    { id = "rune_chainbody", chance = 2 },
+    { table = "herb_drop_table", chance = 32 },
+    { id = "coins", amount = 27, chance = 10 },
+    { id = "coins", amount = 97, chance = 10 },
+    { id = "coins", amount = 104, chance = 58 },
+    { id = "coins", amount = 132, chance = 50 },
+    { id = "coins", amount = 286, chance = 20 },
+    { id = "coins", amount = 475, chance = 16 },
+    { id = "ring_of_life", chance = 2 },
+    { table = "gem_drop_table", chance = 10 },
+    { id = "rune_med_helm" },
+    { id = "court_summons" },
 ]
 
 [gorak_tertiary]
@@ -38,4 +37,6 @@ drops = [
     { table = "hard_clue_scroll", chance = 39 },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
+    { id = "gorak_claws", chance = 1671 },
+    { id = "long_sharp_claws", chance = 1253 },
 ]

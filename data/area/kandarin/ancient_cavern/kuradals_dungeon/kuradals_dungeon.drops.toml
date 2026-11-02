@@ -1,6 +1,7 @@
 [dark_beast_drop_table]
 type = "all"
 drops = [
+    { id = "bones" },
     { id = "big_bones" },
     { table = "dark_beast_secondary" },
     { table = "dark_beast_tertiary" },
@@ -8,31 +9,33 @@ drops = [
 ]
 
 [dark_beast_secondary]
-roll = 512
+roll = 256
 drops = [
-    { id = "black_battleaxe", chance = 12 },
-    { id = "adamant_sq_shield", chance = 4 },
-    { id = "rune_chainbody", chance = 4 },
-    { id = "rune_med_helm", chance = 4 },
-    { id = "rune_full_helm", chance = 4 },
-    { id = "rune_2h_sword", chance = 4 },
-    { id = "rune_battleaxe", chance = 4 },
-    { id = "dark_bow" },
-    { id = "death_rune", amount = 20, chance = 32 },
-    { id = "chaos_rune", amount = 30, chance = 28 },
-    { id = "blood_rune", amount = 15, chance = 16 },
-    { table = "rare_seed_drop_table", chance = 16 },
-    { id = "coins", amount = 152, chance = 160 },
-    { id = "coins", amount = 64, chance = 24 },
-    { id = "coins", amount = 95, chance = 24 },
-    { id = "coins", amount = 220, chance = 20 },
-    { id = "shark", chance = 12 },
-    { id = "adamant_bar_noted", amount = 3, chance = 8 },
-    { id = "adamantite_ore_noted", amount = 5, chance = 4 },
-    { id = "death_talisman", chance = 4 },
-    { id = "runite_ore_noted", chance = 4 },
-    { id = "shark", amount = 2, chance = 4 },
-    { table = "rare_drop_table", chance = 12 },
+    { id = "black_battleaxe", chance = 6 },
+    { id = "adamant_sq_shield", chance = 2 },
+    { id = "rune_chainbody", chance = 2 },
+    { id = "rune_med_helm", chance = 2 },
+    { id = "rune_full_helm", chance = 2 },
+    { id = "rune_2h_sword", chance = 2 },
+    { id = "rune_battleaxe", chance = 2 },
+    { id = "death_rune", min = 3, max = 5, chance = 3 },
+    { id = "death_rune", amount = 45, chance = 3 },
+    { id = "chaos_rune", amount = 10, chance = 10 },
+    { id = "blood_rune", amount = 7, chance = 6 },
+    { id = "coins", amount = 152, chance = 78 },
+    { id = "coins", amount = 64, chance = 12 },
+    { id = "coins", amount = 95, chance = 12 },
+    { id = "coins", amount = 220, chance = 10 },
+    { id = "shark", min = 1, max = 2, chance = 17 },
+    { id = "death_talisman", chance = 2 },
+    { table = "rare_drop_table", chance = 6 },
+    { id = "black_2h_sword", chance = 11 },
+    { id = "black_hatchet", chance = 6 },
+    { id = "air_rune", amount = 47, chance = 11 },
+    { id = "attack_potion_3", chance = 6 },
+    { id = "adamant_bar", chance = 6 },
+    { id = "court_summons" },
+    { table = "herb_drop_table", chance = 38 },
 ]
 
 [dark_beast_tertiary]
@@ -42,6 +45,9 @@ drops = [
     { id = "long_bone", chance = 12 },
     { table = "elite_clue_scroll", chance = 4 },
     { id = "curved_bone" },
+    { id = "dark_bow", chance = 5 },
+    { id = "ferocious_ring_5", chance = 36 },
+    { id = "starved_ancient_effigy", chance = 29 },
 ]
 
 [dark_beast_charms]

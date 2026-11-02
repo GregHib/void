@@ -3,40 +3,48 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "hobgoblin_secondary" },
-    { table = "hobgoblin_tertiary" },
+    { table = "hobgoblin_own_tertiary" },
     { table = "hobgoblin_charms", members = true },
 ]
 
 [hobgoblin_secondary]
-roll = 128
+roll = 512
 drops = [
-    { id = "bronze_spear", chance = 3, members = true },
-    { id = "iron_sword", chance = 3 },
-    { id = "steel_dagger", chance = 3 },
-    { id = "iron_spear", chance = 2, members = true },
-    { id = "steel_spear", chance = 2, members = true },
-    { id = "steel_longsword" },
-    { id = "law_rune", amount = 2, chance = 3 },
-    { id = "water_rune", amount = 2, chance = 2 },
-    { id = "fire_rune", amount = 7, chance = 2 },
-    { id = "body_rune", amount = 6, chance = 2 },
-    { id = "chaos_rune", amount = 3, chance = 2 },
-    { id = "nature_rune", amount = 4, chance = 2 },
-    { id = "cosmic_rune", amount = 2 },
-    { table = "herb_drop_table", chance = 7, members = true },
-    { table = "allotment_seed_drop_table", chance = 18, members = true },
-    { id = "coins", amount = 5, chance = 18, members = false },
-    { id = "coins", amount = 15, chance = 16 },
-    { id = "coins", amount = 28, chance = 16 },
-    { id = "coins", amount = 5, chance = 5 },
-    { id = "coins", amount = 10, chance = 7, members = false },
-    { id = "coins", amount = 62, chance = 4 },
-    { id = "coins", amount = 42, chance = 3 },
-    { id = "coins" },
-    { id = "limpwurt_root", chance = 22 },
-    { id = "goblin_mail", chance = 5 },
-    { id = "nothing", amount = 0 },
-    { table = "gem_drop_table", chance = 2 },
+    { id = "bronze_spear", chance = 12, members = true },
+    { id = "iron_sword", chance = 12 },
+    { id = "steel_dagger", chance = 12 },
+    { id = "steel_spear", chance = 8, members = true },
+    { id = "steel_longsword", chance = 4 },
+    { id = "law_rune", amount = 2, chance = 12 },
+    { id = "water_rune", amount = 2, chance = 8 },
+    { id = "fire_rune", amount = 7, chance = 8 },
+    { id = "body_rune", amount = 6, chance = 8 },
+    { id = "chaos_rune", amount = 3, chance = 8 },
+    { id = "nature_rune", amount = 4, chance = 8 },
+    { id = "cosmic_rune", amount = 2, chance = 4 },
+    { table = "herb_drop_table", chance = 28, members = true },
+    { table = "allotment_seed_drop_table", chance = 35, members = true },
+    { id = "coins", amount = 5, chance = 72, members = false },
+    { id = "coins", amount = 15, chance = 64 },
+    { id = "coins", amount = 28, chance = 48, members = true },
+    { id = "coins", amount = 28, chance = 64, members = false },
+    { id = "coins", amount = 10, chance = 28, members = false },
+    { id = "coins", amount = 62, chance = 16 },
+    { id = "coins", amount = 42, chance = 12 },
+    { id = "coins", chance = 4 },
+    { id = "limpwurt_root", chance = 87 },
+    { id = "goblin_mail", chance = 8, members = true },
+    { id = "goblin_mail", chance = 20, members = false },
+    { table = "gem_drop_table", chance = 8 },
+    { id = "grapes", min = 1, max = 3, chance = 2 },
+    { id = "trading_sticks", chance = 4, members = true },
+    { id = "casket", members = true },
+    { id = "iron_javelin", chance = 2, members = true },
+    { id = "iron_longsword", chance = 8 },
+    { id = "spirit_weed_seed", chance = 16, members = true },
+    { id = "jute_seed", chance = 16, members = true },
+    { table = "uncommon_seed_drop_table", chance = 48, members = true },
+    { id = "iron_spear", members = true },
 ]
 
 [hobgoblin_tertiary]
@@ -91,4 +99,11 @@ drops = [
     { id = "green_charm", chance = 493 },
     { id = "crimson_charm", chance = 966 },
     { id = "blue_charm", chance = 150 },
+]
+
+[hobgoblin_own_tertiary]
+roll = 5000
+drops = [
+    { id = "hobgoblin_champions_scroll", members = true, lacks = "hobgoblin_champions_scroll" },
+    { id = "starved_ancient_effigy", chance = 156 },
 ]

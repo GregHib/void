@@ -55,15 +55,16 @@ drops = [
 [monkey_zombie_drop_table]
 type = "all"
 drops = [
+    { id = "monkey_bones" },
     { table = "monkey_zombie_primary" },
     { table = "monkey_zombie_tertiary" },
 ]
 
 [monkey_zombie_primary]
-roll = 2
+roll = 128
 drops = [
-    { id = "small_zombie_monkey_bones" },
-    { id = "large_zombie_monkey_bones" },
+    { id = "small_zombie_monkey_bones", chance = 64 },
+    { id = "large_zombie_monkey_bones", chance = 64 },
 ]
 
 [monkey_zombie_tertiary]
@@ -80,14 +81,15 @@ drops = [
 [monkey_guard_drop_table]
 type = "all"
 drops = [
+    { id = "large_zombie_monkey_bones" },
     { id = "monkey_bones" },
     { table = "monkey_guard_secondary" },
 ]
 
 [monkey_guard_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "foot_bone", chance = 64 },
+    { id = "foot_bone", chance = 8 },
 ]
 
 [snake_drop_table]

@@ -15,12 +15,13 @@ drops = [
 ]
 
 [suqah_secondary]
-roll = 129
+roll = 258
 drops = [
-    { id = "suqah_tooth", chance = 69 },
-    { id = "grimy_guam", chance = 30 },
-    { id = "grimy_marrentill", chance = 25 },
-    { table = "gem_drop_table", chance = 5 },
+    { id = "suqah_tooth", chance = 138 },
+    { id = "grimy_guam", chance = 59 },
+    { id = "grimy_marrentill", chance = 50 },
+    { table = "gem_drop_table", chance = 10 },
+    { id = "nature_rune", amount = 67 },
 ]
 
 [suqah_tertiary]
@@ -29,4 +30,5 @@ drops = [
     { table = "hard_clue_scroll", chance = 38 },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
+    { id = "starved_ancient_effigy", chance = 10 },
 ]

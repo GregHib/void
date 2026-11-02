@@ -4,6 +4,7 @@ drops = [
     { table = "cow_primary" },
     { table = "easy_clue_scroll", roll = 128 },
     { table = "cow_charms", members = true },
+    { table = "cow_secondary" },
 ]
 
 [cow_primary]
@@ -21,4 +22,12 @@ drops = [
     { id = "green_charm", chance = 3892 },
     { id = "crimson_charm", chance = 226 },
     { id = "blue_charm", chance = 49 },
+]
+
+[cow_secondary]
+roll = 128
+drops = [
+    { id = "sling", chance = 4 },
+    { id = "staff_of_air", chance = 4 },
+    { id = "tenth_anniversary_candles", min = 1, max = 4, chance = 8 },
 ]

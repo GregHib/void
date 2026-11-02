@@ -99,6 +99,7 @@ death_sound = "waterfiend_death"
 
 [waterfiend.magic]
 range = 4
+anim = "waterfiend_attack"
 target_sound = "waterfiend_attack"
 projectile = "water_wave"
 target_hit = { offense = "magic", max = 120 }
@@ -107,6 +108,7 @@ miss_sound = "spell_splash"
 
 [waterfiend.range]
 range = 4
+anim = "waterfiend_attack"
 target_sound = "waterfiend_attack"
 projectile = "ice_arrow"
 target_hit = { offense = "range", defence = "magic", max = 120 }

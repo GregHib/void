@@ -8,35 +8,41 @@ drops = [
 ]
 
 [basilisk_secondary]
-roll = 513
+roll = 512
 drops = [
-    { id = "mithril_hatchet", chance = 12 },
-    { id = "mithril_spear", chance = 8 },
-    { id = "steel_battleaxe", chance = 12 },
+    { id = "mithril_hatchet", chance = 11 },
+    { id = "mithril_spear", chance = 7 },
+    { id = "steel_battleaxe", chance = 11 },
     { id = "adamant_full_helm", chance = 4 },
     { id = "mithril_kiteshield", chance = 4 },
     { id = "rune_dagger", chance = 4 },
     { id = "mystic_hat_light" },
-    { id = "water_rune", amount = 75, chance = 32 },
-    { id = "nature_rune", amount = 15, chance = 20 },
-    { id = "law_rune", amount = 3, chance = 12 },
+    { id = "water_rune", amount = 75, chance = 29 },
+    { id = "water_rune", amount = 150, chance = 15 },
+    { id = "nature_rune", amount = 15, chance = 18 },
+    { id = "nature_rune", amount = 30, chance = 10 },
+    { id = "law_rune", amount = 3, chance = 11 },
     { id = "nature_rune", amount = 37, chance = 4 },
-    { table = "herb_drop_table", chance = 140 },
-    { id = "adamantite_ore", chance = 12 },
-    { id = "coins", amount = 44, chance = 116 },
-    { id = "coins", amount = 200, chance = 68 },
-    { id = "coins", amount = 132, chance = 20 },
-    { id = "coins", amount = 11, chance = 20 },
+    { table = "herb_drop_table", chance = 127 },
+    { id = "adamantite_ore", chance = 11 },
+    { id = "coins", amount = 44, chance = 106 },
+    { id = "coins", amount = 200, chance = 62 },
+    { id = "coins", amount = 132, chance = 18 },
+    { id = "coins", amount = 11, chance = 18 },
     { id = "coins", amount = 440, chance = 4 },
-    { table = "gem_drop_table", chance = 20 },
+    { table = "gem_drop_table", chance = 18 },
+    { id = "chaos_rune", amount = 12, chance = 15 },
+    { id = "mystic_boots_light" },
+    { id = "lobster", chance = 3 },
 ]
 
 [basilisk_tertiary]
-roll = 2000
+roll = 10000
 drops = [
-    { table = "elite_clue_scroll", chance = 2000 },
-    { id = "basilisk_bone", chance = 500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
-    { id = "basilisk_head", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { table = "medium_clue_scroll", chance = 20 },
+    { id = "starved_ancient_effigy", chance = 20 },
+    { id = "basilisk_bone", chance = 2500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "basilisk_head", chance = 5 },
 ]
 
 [basilisk_charms]

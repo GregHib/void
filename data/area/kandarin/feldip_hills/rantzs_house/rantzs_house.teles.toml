@@ -1,0 +1,9 @@
+[tunneL_rantzs_house]
+option = "Pass-through"
+tile = { x = 2646, y = 9377 }
+to = { x = 2630, y = 2997 }
+
+[tunnel_rantzs_house]
+option = "Pass-through"
+tile = { x = 2647, y = 9377 }
+to = { x = 2630, y = 2997 }

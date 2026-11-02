@@ -7,29 +7,32 @@ drops = [
 ]
 
 [black_guard_secondary]
-roll = 1024
+roll = 256
 drops = [
-    { id = "bronze_med_helm", chance = 64 },
-    { id = "coins", min = 4, max = 42, chance = 64 },
-    { id = "chaos_rune", amount = 2, chance = 32 },
-    { id = "nature_rune", amount = 2, chance = 32 },
-    { id = "bronze_battleaxe", chance = 32 },
-    { id = "bronze_bolts", amount = 6, chance = 32 },
-    { id = "bronze_warhammer", chance = 32 },
-    { id = "bronze_pickaxe", chance = 32 },
-    { id = "iron_battleaxe", chance = 32 },
-    { id = "black_warhammer", chance = 32 },
-    { id = "uncut_sapphire", chance = 32 },
-    { id = "uncut_emerald", chance = 32 },
-    { id = "uncut_ruby", chance = 32 },
-    { id = "copper_ore", chance = 32 },
-    { id = "bronze_bar", chance = 32 },
-    { id = "iron_bar", chance = 32 },
-    { id = "hammer", chance = 32 },
-    { id = "coal", chance = 32 },
-    { id = "keg_of_beer", chance = 32 },
-    { id = "uncut_diamond", chance = 6 },
-    { id = "loop_half_of_a_key", chance = 6 },
+    { id = "bronze_med_helm", chance = 14 },
+    { id = "coins", amount = 15, chance = 90 },
+    { id = "coins", amount = 17, chance = 10 },
+    { id = "coins", amount = 22, chance = 18 },
+    { id = "coins", amount = 27, chance = 6 },
+    { id = "chaos_rune", amount = 2, chance = 7 },
+    { id = "nature_rune", amount = 2, chance = 7 },
+    { id = "bronze_battleaxe", chance = 7 },
+    { id = "bronze_bolts", amount = 6, chance = 7 },
+    { id = "bronze_warhammer", chance = 6 },
+    { id = "bronze_pickaxe", chance = 7 },
+    { id = "iron_battleaxe", chance = 7 },
+    { id = "black_warhammer", chance = 4 },
+    { id = "uncut_sapphire", chance = 7 },
+    { id = "uncut_emerald", chance = 7 },
+    { id = "uncut_ruby", chance = 7 },
+    { id = "copper_ore", chance = 4 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "iron_bar", chance = 7 },
+    { id = "hammer", chance = 7 },
+    { id = "coal", chance = 7 },
+    { id = "keg_of_beer", chance = 8 },
+    { id = "uncut_diamond" },
+    { id = "loop_half_of_a_key" },
 ]
 
 [chaos_dwarf_hand_cannoneer_drop_table]
@@ -37,40 +40,55 @@ type = "all"
 drops = [
     { id = "bones" },
     { table = "chaos_dwarf_hand_cannoneer_secondary" },
+    { table = "chaos_dwarf_hand_cannoneer_tertiary" },
+    { table = "chaos_dwarf_hand_cannoneer_charms", members = true },
 ]
 
 [chaos_dwarf_hand_cannoneer_secondary]
-roll = 1100
+roll = 132
 drops = [
-    { id = "air_rune", amount = 24, chance = 64 },
-    { id = "chaos_rune", amount = 10, chance = 64 },
-    { id = "cosmic_rune", amount = 3, chance = 64 },
-    { id = "mind_rune", amount = 37, chance = 64 },
-    { id = "water_rune", amount = 10, chance = 64 },
-    { id = "coins", chance = 64 },
-    { id = "muddy_key", chance = 64 },
-    { id = "steel_full_helm", chance = 64 },
-    { id = "hand_cannon", chance = 32 },
-    { id = "hand_cannon_shot", chance = 32 },
-    { id = "mithril_longsword", chance = 32 },
-    { id = "mithril_sq_shield", chance = 32 },
-    { id = "rune_javelin", chance = 32 },
-    { id = "rune_spear", chance = 32 },
-    { id = "death_rune", amount = 3, chance = 32 },
-    { id = "law_rune", amount = 3, chance = 32 },
-    { id = "nature_rune", amount = 9, chance = 32 },
-    { id = "uncut_sapphire", chance = 32 },
-    { id = "uncut_emerald", chance = 32 },
-    { id = "uncut_ruby", chance = 32 },
-    { id = "tomato", chance = 32 },
-    { id = "cheese", chance = 32 },
-    { id = "mithril_bar", chance = 32 },
-    { id = "coal", chance = 32 },
-    { id = "nature_talisman", chance = 6 },
-    { id = "dragon_spear", chance = 2 },
-    { id = "dragon_pickaxe", chance = 2 },
-    { id = "shield_left_half", chance = 2 },
-    { id = "starved_ancient_effigy", chance = 2 },
+    { id = "hand_cannon", chance = 1 },
+    { id = "hand_cannon_shot", amount = 100, chance = 3 },
+    { id = "law_rune", amount = 3, chance = 3 },
+    { id = "law_rune", amount = 30 },
+    { id = "air_rune", amount = 24, chance = 3 },
+    { id = "chaos_rune", amount = 10, chance = 2 },
+    { id = "chaos_rune", amount = 20 },
+    { id = "nature_rune", amount = 9, chance = 3 },
+    { id = "cosmic_rune", amount = 3, chance = 2 },
+    { id = "water_rune", amount = 10 },
+    { id = "death_rune", amount = 3 },
+    { id = "steel_full_helm", chance = 2 },
+    { id = "mithril_sq_shield" },
+    { id = "mithril_longsword" },
+    { id = "coins", amount = 92, chance = 40 },
+    { id = "coins", amount = 47, chance = 18 },
+    { id = "coins", amount = 150, chance = 13 },
+    { id = "coins", amount = 25, chance = 11 },
+    { id = "coins", amount = 350, chance = 2 },
+    { id = "coins", amount = 15, chance = 2 },
+    { id = "muddy_key", chance = 7 },
+    { id = "mithril_bar", chance = 6 },
+    { id = "coal" },
+    { id = "cheese" },
+    { id = "tomato" },
+    { table = "gem_drop_table", chance = 5 },
+]
+
+[chaos_dwarf_hand_cannoneer_tertiary]
+roll = 5000
+drops = [
+    { id = "dragon_pickaxe" },
+    { id = "starved_ancient_effigy", chance = 10 },
+]
+
+[chaos_dwarf_hand_cannoneer_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9526 },
+    { id = "green_charm", chance = 4763 },
+    { id = "crimson_charm", chance = 2381 },
+    { id = "blue_charm", chance = 2381 },
 ]
 
 [black_guard_crossbowdwarf_drop_table]
@@ -82,20 +100,22 @@ drops = [
 ]
 
 [black_guard_crossbowdwarf_secondary]
-roll = 1024
+roll = 128
 drops = [
-    { id = "coins", min = 25, max = 37, chance = 64 },
-    { id = "bronze_crossbow", chance = 32 },
-    { id = "iron_crossbow", chance = 32 },
-    { id = "steel_crossbow", chance = 32 },
-    { id = "grimy_guam", chance = 32 },
-    { id = "grimy_tarromin", chance = 32 },
-    { id = "grimy_ranarr", chance = 32 },
-    { id = "cake", chance = 32 },
-    { id = "keg_of_beer", chance = 32 },
-    { id = "ring_mould", chance = 32 },
-    { id = "copper_ore", amount = 5, chance = 32 },
-    { id = "tin_ore", chance = 32 },
+    { id = "coins", amount = 25, chance = 44 },
+    { id = "coins", amount = 32, chance = 9 },
+    { id = "coins", amount = 37, chance = 5 },
+    { id = "coins", amount = 47, chance = 3 },
+    { id = "bronze_crossbow", chance = 4 },
+    { id = "iron_crossbow", chance = 4 },
+    { id = "steel_crossbow", chance = 4 },
+    { id = "cake", chance = 4 },
+    { id = "keg_of_beer", chance = 4 },
+    { id = "ring_mould" },
+    { id = "copper_ore", amount = 5, chance = 4 },
+    { id = "tin_ore", chance = 4 },
+    { id = "mithril_crossbow", chance = 4 },
+    { table = "herb_drop_table", chance = 15 },
 ]
 
 [black_guard_berserker_drop_table]
@@ -107,27 +127,23 @@ drops = [
 ]
 
 [black_guard_berserker_secondary]
-roll = 1024
+roll = 256
 drops = [
-    { id = "coins", min = 35, max = 57, chance = 64 },
-    { id = "bronze_warhammer", chance = 32 },
-    { id = "iron_warhammer", chance = 32 },
-    { id = "steel_warhammer", chance = 32 },
-    { id = "black_warhammer", chance = 32 },
-    { id = "uncut_sapphire", chance = 32 },
-    { id = "uncut_emerald", chance = 32 },
-    { id = "uncut_ruby", chance = 32 },
-    { id = "iron_ore", chance = 32 },
-    { id = "tin_ore", chance = 32 },
-    { id = "beer", chance = 32 },
-    { id = "keg_of_beer", chance = 32 },
-    { id = "ring_mould", chance = 32 },
-    { id = "bucket_of_water", chance = 32 },
-    { id = "rune_javelin", amount = 5, chance = 6 },
-    { id = "uncut_diamond", chance = 6 },
-    { id = "tooth_half_of_a_key", chance = 6 },
-    { id = "loop_half_of_a_key", chance = 6 },
-    { id = "shield_left_half", chance = 2 },
+    { id = "coins", amount = 35, chance = 88 },
+    { id = "coins", amount = 46, chance = 10 },
+    { id = "coins", amount = 42, chance = 10 },
+    { id = "coins", amount = 57, chance = 6 },
+    { id = "bronze_warhammer", chance = 8 },
+    { id = "iron_warhammer", chance = 8 },
+    { id = "steel_warhammer", chance = 8 },
+    { id = "black_warhammer", chance = 3 },
+    { id = "iron_ore", chance = 8 },
+    { id = "tin_ore", chance = 8 },
+    { id = "beer", chance = 2 },
+    { id = "keg_of_beer", chance = 10 },
+    { id = "ring_mould", chance = 2 },
+    { id = "bucket_of_water", chance = 2 },
+    { table = "gem_drop_table", chance = 5 },
 ]
 
 [chaos_dwogre_drop_table]

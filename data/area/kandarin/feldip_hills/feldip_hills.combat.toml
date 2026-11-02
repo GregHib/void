@@ -40,6 +40,7 @@ range = 1
 target_hit = { offense = "crush", max = 10 }
 
 [ogress_champion]
+defend_anim = "ogress_defend"
 death_anim = "ogress_champion_death"
 
 [ogress_champion.melee]
@@ -48,9 +49,33 @@ target_hit = { offense = "crush", max = 100 }
 anim = "ogress_champion_attack"
 
 [ogress]
+defend_anim = "ogress_defend"
 death_anim = "ogress_death"
 
 [ogress.melee]
 range = 1
 target_hit = { offense = "crush", max = 80 }
 anim = "ogress_attack"
+
+[ogress_2]
+clone = "ogress"
+defend_anim = "ogress_defend_2"
+death_anim = "ogress_death_2"
+
+[ogress_2.melee]
+clone = "ogress.melee"
+anim = "ogress_attack_2"
+
+[ogress_warrior]
+clone = "ogress"
+
+[ogress_warrior.melee]
+clone = "ogress.melee"
+target_hit = { offense = "crush", max = 120 }
+
+[ogress_warrior_2]
+clone = "ogress_2"
+
+[ogress_warrior_2.melee]
+clone = "ogress_2.melee"
+target_hit = { offense = "crush", max = 120 }
