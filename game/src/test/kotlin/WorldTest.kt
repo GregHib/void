@@ -211,11 +211,12 @@ abstract class WorldTest : KoinTest {
     fun beforeEach() {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
+        setRandom(FakeRandom())
         if (loadNpcs) {
             NPCSpawnLoader.install(npcSpawns)
             loadNpcSpawns()
+            NPCs.run()
         }
-        setRandom(FakeRandom())
     }
 
     @AfterEach
