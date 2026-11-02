@@ -13,7 +13,7 @@ max_hit_melee = 20
 respawn_delay = 25
 drop_table = "ham_guard"
 examine = "A guard for the humans against monster group."
-combat_def = "guard"
+combat_def = "ham_guard_ham_cave"
 
 [ham_guard_ham_cave_2]
 id = 1711
@@ -26,7 +26,7 @@ max_hit_melee = 30
 respawn_delay = 25
 examine = "A guard for the humans against monster group."
 drop_table = "h_a_m_guard"
-combat_def = "guard"
+combat_def = "ham_guard_ham_cave_2"
 
 [ham_guard_ham_cave_3]
 id = 1712
@@ -39,7 +39,7 @@ max_hit_melee = 30
 respawn_delay = 25
 examine = "A guard for the humans against monster group."
 drop_table = "h_a_m_guard"
-combat_def = "guard"
+combat_def = "ham_guard_ham_cave_3"
 
 [ham_deacon_ham_cave]
 id = 1713
@@ -56,6 +56,11 @@ combat_def = "ham_member"
 examine = "A member of the 'Humans Against Monsters' group."
 
 [ham_member_ham_cave_3]
+id = 1716
+interacts = false
+examine = "A member of the 'Humans Against Monsters' group."
+
+[ham_member_ham_cave_4]
 id = 1717
 examine = "A member of the 'Humans Against Monsters' group."
 

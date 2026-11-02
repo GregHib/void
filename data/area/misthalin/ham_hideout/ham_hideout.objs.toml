@@ -1,0 +1,15 @@
+[ham_hideout_fire]
+id = 32099
+examine = "Hot!"
+
+[ham_hideout_bed]
+id = 32030
+examine = "I guess I could sleep in it if I was really tired."
+
+[ham_hideout_bed_2]
+id = 32029
+examine = "A well slept in bed."
+
+[ham_hideout_crates]
+id = 31138
+examine = "A pair of stacked storage crates."

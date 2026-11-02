@@ -2,3 +2,24 @@
 [ham_member.melee]
 range = 1
 anim = "unarmed_punch"
+
+[ham_guard_ham_cave]
+clone = "guard"
+
+[ham_guard_ham_cave.melee]
+clone = "guard.melee"
+anim = "sword_slash"
+
+[ham_guard_ham_cave_2]
+clone = "guard"
+
+[ham_guard_ham_cave_2.melee]
+clone = "guard.melee"
+anim = "sword_slash"
+
+[ham_guard_ham_cave_3]
+clone = "guard"
+
+[ham_guard_ham_cave_3.melee]
+clone = "guard.melee"
+anim = "sword_slash"
