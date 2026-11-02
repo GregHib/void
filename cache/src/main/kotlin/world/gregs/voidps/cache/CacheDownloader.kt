@@ -1,7 +1,6 @@
 package world.gregs.voidps.cache
 
 import com.github.michaelbull.logging.InlineLogger
-import java.awt.GraphicsEnvironment
 import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
@@ -16,7 +15,6 @@ import java.nio.file.StandardCopyOption
 import java.time.Duration
 import java.util.Properties
 import java.util.zip.ZipInputStream
-import javax.swing.JOptionPane
 import kotlin.io.path.exists
 import kotlin.io.path.name
 
@@ -198,27 +196,33 @@ class CacheDownloader(
          * @return false if the server should not start
          */
         fun ensure(properties: Properties): Boolean {
+            val start = System.currentTimeMillis()
             val path = Path.of(properties.getProperty("storage.cache.path", "./data/cache/"))
             if (filesPresent(path)) {
+                logger.info { "Cache checker took ${System.currentTimeMillis() - start}ms" }
                 return true
             }
             val url = properties.getProperty("storage.cache.download.url", "").trim()
-            if (url.isBlank()) {
-                return true
+            val exists = url.isBlank() || CacheDownloader(url, path).ensure()
+            if (exists) {
+                logger.info { "Cache checker took ${System.currentTimeMillis() - start}ms" }
             }
-            return CacheDownloader(url, path).ensure()
+            return exists
         }
 
         internal fun filesPresent(path: Path): Boolean = REQUIRED_FILES.all { path.resolve(it).exists() }
 
         internal fun prompt(message: String): Boolean {
-            if (GraphicsEnvironment.isHeadless()) {
-                logger.info { "No desktop environment detected; downloading cache automatically." }
+            logger.info { "$message\nContinue? [Y/n] (any key to continue, 'n' or 'exit' to quit)" }
+            val input = readlnOrNull()
+            if (input == null) {
+                logger.info { "No console input available; downloading cache automatically." }
                 return true
             }
-            val options = arrayOf("Yes", "No")
-            val response = JOptionPane.showOptionDialog(null, message, "Cache Download", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0])
-            return response == JOptionPane.YES_OPTION
+            return when (input.trim().lowercase()) {
+                "n", "no", "exit", "stop", "cancel" -> false
+                else -> true
+            }
         }
     }
 }
