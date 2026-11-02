@@ -1,0 +1,132 @@
+# Tasks a player can give their owned bots (content/bot/owned/OwnedTasks.kt). Each maps to a world-bot activity from
+# a *.bots.toml file; the bot loops it, banking at the nearest bank between trips, until told to stop. Every task ends
+# with items in the owner's bank: no "train a skill" tasks, no unsupervised combat. Level and members requirements come
+# from the activity itself (skill maximums are ignored for owned bots). Order here is the index the plugin sees.
+
+[chop_logs]
+label = "Chop logs (Draynor)"
+activity = "draynor_north_trees"
+
+[chop_oak_logs]
+label = "Chop oak logs (Draynor)"
+activity = "draynor_west_oak_trees"
+
+[chop_willow_logs]
+label = "Chop willow logs (Draynor)"
+activity = "draynor_willow_trees"
+
+[chop_maple_logs]
+label = "Chop maple logs (Seers' Village)"
+activity = "seers_village_maple_trees"
+
+[chop_yew_logs]
+label = "Chop yew logs (Varrock)"
+activity = "varrock_palace_yew_trees"
+
+[chop_magic_logs]
+label = "Chop magic logs (Sorcerer's Tower)"
+activity = "sorcerers_tower_magic_trees"
+
+[mine_copper]
+label = "Mine copper ore (Lumbridge)"
+activity = "lumbridge_copper_mining"
+
+[mine_tin]
+label = "Mine tin ore (Lumbridge)"
+activity = "lumbridge_tin_mining"
+
+[mine_clay]
+label = "Mine clay (Varrock)"
+activity = "varrock_clay_mining"
+
+[mine_iron]
+label = "Mine iron ore (Varrock)"
+activity = "varrock_east_iron_mining"
+
+[mine_silver]
+label = "Mine silver ore (Varrock)"
+activity = "varrock_silver_mining"
+
+[mine_coal]
+label = "Mine coal (Lumbridge Swamp)"
+activity = "lumbridge_coal_mining"
+
+[mine_mithril]
+label = "Mine mithril ore (Lumbridge Swamp)"
+activity = "lumbridge_mithril_mining"
+
+[fish_shrimp]
+label = "Net fish shrimp (Lumbridge)"
+activity = "lumbridge_net_fishing"
+
+[fish_crayfish]
+label = "Cage crayfish (Lumbridge)"
+activity = "lumbridge_crayfish"
+
+[fish_bait]
+label = "Bait fish (Lumbridge)"
+activity = "lumbridge_bait_fishing"
+
+[fish_fly]
+label = "Fly fish trout and salmon (Edgeville)"
+activity = "edgeville_fly_fishing"
+
+[fish_lobster]
+label = "Cage lobsters (Catherby)"
+activity = "catherby_lobster_fishing"
+
+[fish_tuna_swordfish]
+label = "Harpoon tuna and swordfish (Catherby)"
+activity = "catherby_tuna_swordfish_fishing"
+
+[fish_shark]
+label = "Harpoon sharks (Catherby)"
+activity = "catherby_shark_fishing"
+
+[pick_flax]
+label = "Pick flax (Seers' Village)"
+activity = "seers_village_flax_picking"
+
+[spin_flax]
+label = "Spin flax into bowstrings (Seers' Village)"
+activity = "seers_village_flax_spinning"
+
+[cook_chicken]
+label = "Cook raw chicken (Lumbridge)"
+activity = "lumbridge_cook_chicken"
+
+[cook_beef]
+label = "Cook raw beef (Lumbridge)"
+activity = "lumbridge_cook_beef"
+
+[cook_crayfish]
+label = "Cook raw crayfish (Lumbridge)"
+activity = "lumbridge_cook_crayfish"
+
+[smelt_bronze]
+label = "Smelt bronze bars (Lumbridge)"
+activity = "lumbridge_smelt_bronze_bars"
+
+[smelt_iron]
+label = "Smelt iron bars (Lumbridge)"
+activity = "lumbridge_smelt_iron_bars"
+
+[smelt_silver]
+label = "Smelt silver bars (Lumbridge)"
+activity = "lumbridge_smelt_silver_bars"
+
+[fletch_arrow_shafts]
+label = "Fletch arrow shafts (Lumbridge)"
+activity = "lumbridge_fletch_arrow_shafts"
+
+[fletch_shortbows]
+label = "Fletch shortbows (Lumbridge)"
+activity = "lumbridge_fletch_shortbows"
+
+[fletch_longbows]
+label = "Fletch longbows (Lumbridge)"
+activity = "lumbridge_fletch_longbows"
+
+[pickpocket_men]
+label = "Pickpocket men and women (Lumbridge)"
+activity = "lumbridge_pickpocketing"

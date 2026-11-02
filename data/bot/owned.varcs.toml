@@ -1,0 +1,1012 @@
+# The 634 client's Owned Bots plugin: what the server shows a player of their own bots (content/bot/owned/OwnedBots.kt).
+# Ids past the cache's varcs (1436), inside the range the Void client keeps (up to 2435). Ints only: the client does not
+# extend varcstrings. Sent only after the plugin's `::bot ui` handshake, so a vanilla client never receives them. Not saved.
+
+# version << 12 | alive mask << 4 | online mask (one bit per slot); 0 when the plugin is not active
+[owned_bots_meta]
+id = 2000
+format = "int"
+
+# ---- slot 0 ----
+# the bot's name, base-37, high half
+[owned_bot_0_name_hi]
+id = 2001
+format = "int"
+
+# the bot's name, base-37, low half
+[owned_bot_0_name_lo]
+id = 2002
+format = "int"
+
+# current << 16 | max (life points)
+[owned_bot_0_hp]
+id = 2003
+format = "int"
+
+# current << 16 | max
+[owned_bot_0_prayer]
+id = 2004
+format = "int"
+
+# OwnedBotStatus ordinal
+[owned_bot_0_status]
+id = 2005
+format = "int"
+
+# aggression << 12 | profile << 8 | task index (owned.tasks.toml order, 255 = none)
+[owned_bot_0_task]
+id = 2006
+format = "int"
+
+# level << 28 | x << 14 | y; -1 when not spawned
+[owned_bot_0_tile]
+id = 2007
+format = "int"
+
+# run energy 0-100
+[owned_bot_0_energy]
+id = 2008
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_0]
+id = 2009
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_1]
+id = 2010
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_2]
+id = 2011
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_3]
+id = 2012
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_4]
+id = 2013
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_5]
+id = 2014
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_6]
+id = 2015
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_7]
+id = 2016
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_8]
+id = 2017
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_9]
+id = 2018
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_10]
+id = 2019
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_11]
+id = 2020
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_12]
+id = 2021
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_0_equip_13]
+id = 2022
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_0]
+id = 2023
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_1]
+id = 2024
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_2]
+id = 2025
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_3]
+id = 2026
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_4]
+id = 2027
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_5]
+id = 2028
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_6]
+id = 2029
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_7]
+id = 2030
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_8]
+id = 2031
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_9]
+id = 2032
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_10]
+id = 2033
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_11]
+id = 2034
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_12]
+id = 2035
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_13]
+id = 2036
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_14]
+id = 2037
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_15]
+id = 2038
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_16]
+id = 2039
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_17]
+id = 2040
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_18]
+id = 2041
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_19]
+id = 2042
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_20]
+id = 2043
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_21]
+id = 2044
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_22]
+id = 2045
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_23]
+id = 2046
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_24]
+id = 2047
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_25]
+id = 2048
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_26]
+id = 2049
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_0_inv_27]
+id = 2050
+format = "int"
+
+# ---- slot 1 ----
+# the bot's name, base-37, high half
+[owned_bot_1_name_hi]
+id = 2051
+format = "int"
+
+# the bot's name, base-37, low half
+[owned_bot_1_name_lo]
+id = 2052
+format = "int"
+
+# current << 16 | max (life points)
+[owned_bot_1_hp]
+id = 2053
+format = "int"
+
+# current << 16 | max
+[owned_bot_1_prayer]
+id = 2054
+format = "int"
+
+# OwnedBotStatus ordinal
+[owned_bot_1_status]
+id = 2055
+format = "int"
+
+# aggression << 12 | profile << 8 | task index (owned.tasks.toml order, 255 = none)
+[owned_bot_1_task]
+id = 2056
+format = "int"
+
+# level << 28 | x << 14 | y; -1 when not spawned
+[owned_bot_1_tile]
+id = 2057
+format = "int"
+
+# run energy 0-100
+[owned_bot_1_energy]
+id = 2058
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_0]
+id = 2059
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_1]
+id = 2060
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_2]
+id = 2061
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_3]
+id = 2062
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_4]
+id = 2063
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_5]
+id = 2064
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_6]
+id = 2065
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_7]
+id = 2066
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_8]
+id = 2067
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_9]
+id = 2068
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_10]
+id = 2069
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_11]
+id = 2070
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_12]
+id = 2071
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_1_equip_13]
+id = 2072
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_0]
+id = 2073
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_1]
+id = 2074
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_2]
+id = 2075
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_3]
+id = 2076
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_4]
+id = 2077
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_5]
+id = 2078
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_6]
+id = 2079
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_7]
+id = 2080
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_8]
+id = 2081
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_9]
+id = 2082
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_10]
+id = 2083
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_11]
+id = 2084
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_12]
+id = 2085
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_13]
+id = 2086
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_14]
+id = 2087
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_15]
+id = 2088
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_16]
+id = 2089
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_17]
+id = 2090
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_18]
+id = 2091
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_19]
+id = 2092
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_20]
+id = 2093
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_21]
+id = 2094
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_22]
+id = 2095
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_23]
+id = 2096
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_24]
+id = 2097
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_25]
+id = 2098
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_26]
+id = 2099
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_1_inv_27]
+id = 2100
+format = "int"
+
+# ---- slot 2 ----
+# the bot's name, base-37, high half
+[owned_bot_2_name_hi]
+id = 2101
+format = "int"
+
+# the bot's name, base-37, low half
+[owned_bot_2_name_lo]
+id = 2102
+format = "int"
+
+# current << 16 | max (life points)
+[owned_bot_2_hp]
+id = 2103
+format = "int"
+
+# current << 16 | max
+[owned_bot_2_prayer]
+id = 2104
+format = "int"
+
+# OwnedBotStatus ordinal
+[owned_bot_2_status]
+id = 2105
+format = "int"
+
+# aggression << 12 | profile << 8 | task index (owned.tasks.toml order, 255 = none)
+[owned_bot_2_task]
+id = 2106
+format = "int"
+
+# level << 28 | x << 14 | y; -1 when not spawned
+[owned_bot_2_tile]
+id = 2107
+format = "int"
+
+# run energy 0-100
+[owned_bot_2_energy]
+id = 2108
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_0]
+id = 2109
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_1]
+id = 2110
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_2]
+id = 2111
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_3]
+id = 2112
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_4]
+id = 2113
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_5]
+id = 2114
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_6]
+id = 2115
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_7]
+id = 2116
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_8]
+id = 2117
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_9]
+id = 2118
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_10]
+id = 2119
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_11]
+id = 2120
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_12]
+id = 2121
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_2_equip_13]
+id = 2122
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_0]
+id = 2123
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_1]
+id = 2124
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_2]
+id = 2125
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_3]
+id = 2126
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_4]
+id = 2127
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_5]
+id = 2128
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_6]
+id = 2129
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_7]
+id = 2130
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_8]
+id = 2131
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_9]
+id = 2132
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_10]
+id = 2133
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_11]
+id = 2134
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_12]
+id = 2135
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_13]
+id = 2136
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_14]
+id = 2137
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_15]
+id = 2138
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_16]
+id = 2139
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_17]
+id = 2140
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_18]
+id = 2141
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_19]
+id = 2142
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_20]
+id = 2143
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_21]
+id = 2144
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_22]
+id = 2145
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_23]
+id = 2146
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_24]
+id = 2147
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_25]
+id = 2148
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_26]
+id = 2149
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_2_inv_27]
+id = 2150
+format = "int"
+
+# ---- slot 3 ----
+# the bot's name, base-37, high half
+[owned_bot_3_name_hi]
+id = 2151
+format = "int"
+
+# the bot's name, base-37, low half
+[owned_bot_3_name_lo]
+id = 2152
+format = "int"
+
+# current << 16 | max (life points)
+[owned_bot_3_hp]
+id = 2153
+format = "int"
+
+# current << 16 | max
+[owned_bot_3_prayer]
+id = 2154
+format = "int"
+
+# OwnedBotStatus ordinal
+[owned_bot_3_status]
+id = 2155
+format = "int"
+
+# aggression << 12 | profile << 8 | task index (owned.tasks.toml order, 255 = none)
+[owned_bot_3_task]
+id = 2156
+format = "int"
+
+# level << 28 | x << 14 | y; -1 when not spawned
+[owned_bot_3_tile]
+id = 2157
+format = "int"
+
+# run energy 0-100
+[owned_bot_3_energy]
+id = 2158
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_0]
+id = 2159
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_1]
+id = 2160
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_2]
+id = 2161
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_3]
+id = 2162
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_4]
+id = 2163
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_5]
+id = 2164
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_6]
+id = 2165
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_7]
+id = 2166
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_8]
+id = 2167
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_9]
+id = 2168
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_10]
+id = 2169
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_11]
+id = 2170
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_12]
+id = 2171
+format = "int"
+
+# worn item: id << 16 | min(amount, 65535), 0 empty (EquipSlot order)
+[owned_bot_3_equip_13]
+id = 2172
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_0]
+id = 2173
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_1]
+id = 2174
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_2]
+id = 2175
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_3]
+id = 2176
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_4]
+id = 2177
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_5]
+id = 2178
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_6]
+id = 2179
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_7]
+id = 2180
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_8]
+id = 2181
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_9]
+id = 2182
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_10]
+id = 2183
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_11]
+id = 2184
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_12]
+id = 2185
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_13]
+id = 2186
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_14]
+id = 2187
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_15]
+id = 2188
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_16]
+id = 2189
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_17]
+id = 2190
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_18]
+id = 2191
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_19]
+id = 2192
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_20]
+id = 2193
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_21]
+id = 2194
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_22]
+id = 2195
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_23]
+id = 2196
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_24]
+id = 2197
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_25]
+id = 2198
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_26]
+id = 2199
+format = "int"
+
+# carried item: id << 16 | min(amount, 65535), 0 empty
+[owned_bot_3_inv_27]
+id = 2200
+format = "int"

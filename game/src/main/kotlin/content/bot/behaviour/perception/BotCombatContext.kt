@@ -6,6 +6,7 @@ import content.entity.combat.Target
 import content.entity.combat.attacker
 import content.entity.combat.underAttack
 import content.skill.melee.weapon.Weapon
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 
@@ -39,7 +40,7 @@ class BotCombatContext(
          */
         operator fun invoke(bot: Bot, radius: Int = DEFAULT_RADIUS): BotCombatContext {
             val player = bot.player
-            val attacker = (player.attacker as? Player)?.takeIf { player.underAttack }
+            val attacker = player.attacker?.takeIf { player.underAttack }
             return BotCombatContext(
                 incomingAttackStyle = attacker?.let { categorize(it) },
                 spiralScanner = { scan(player, radius) },
@@ -60,7 +61,7 @@ class BotCombatContext(
             return byTile
         }
 
-        private fun categorize(attacker: Player): String? = when (Weapon.type(attacker)) {
+        private fun categorize(attacker: Character): String? = when (Weapon.type(attacker)) {
             "melee" -> "melee"
             "range" -> "ranged"
             "magic" -> "magic"

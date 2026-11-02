@@ -1,6 +1,7 @@
 package content.bot.behaviour.condition
 
 import content.entity.effect.frozen
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -10,7 +11,11 @@ data class BotTargetFrozen(val hpMin: Double? = null, val hpMax: Double? = null)
     override fun events() = emptySet<String>()
 
     override fun check(player: Player): Boolean {
-        val target = (player.mode as? PlayerOnPlayerInteract)?.target ?: return false
+        val target = when (val mode = player.mode) {
+            is PlayerOnPlayerInteract -> mode.target
+            is PlayerOnNPCInteract -> mode.target
+            else -> null
+        } ?: return false
         if (!target.frozen) return false
         if (hpMin == null && hpMax == null) return true
         val maxHp = target.levels.getMax(Skill.Constitution)

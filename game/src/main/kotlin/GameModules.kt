@@ -2,6 +2,7 @@ import content.bot.BotManager
 import content.bot.behaviour.NavigationEdgeLoader
 import content.bot.behaviour.NavigationGraphLoader
 import content.bot.chat.BotChatModel
+import content.bot.owned.OwnedTasks
 import content.entity.obj.ObjectTeleportLoader
 import content.entity.player.modal.book.BooksLoader
 import content.entity.world.music.MusicTrackLoader
@@ -22,6 +23,7 @@ import java.io.File
 fun gameModule(files: ConfigFiles) = module {
     single { Reports(get()) }
     single(createdAtStart = true) { BotManager().load(files) }
+    single(createdAtStart = true) { OwnedTasks().load(files) }
     single { BotChatModel().load(files, get()) }
     single { InstructionHandlers(InterfaceHandler(get())) }
     val loadExchange = Settings["grandExchange.enabled", true]
