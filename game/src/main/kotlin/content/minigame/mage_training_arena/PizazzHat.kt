@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -85,7 +86,7 @@ class PizazzHat : Script {
                 portals()
             }
             option<Neutral>("About the progress hat...") {
-                if (MageTrainingArena.hasProgressHat(this)) {
+                if (hasProgressHat(this)) {
                     npc<Neutral>("Which you have stored somewhere I'm sure.")
                     player<Neutral>("Yes. What's it for?")
                     npc<Neutral>("Collect Pizazz Points from the various areas and the hat will remember your totals. Talk to the hat at any time to find out what points you have. Go upstairs and talk to the Rewards Guardian to claim items for the points.")
@@ -167,7 +168,9 @@ class PizazzHat : Script {
     }
 
     companion object {
-        val hats = listOf("progress_hat", "progress_hat_2", "progress_hat_3")
+        private val hats = listOf("progress_hat", "progress_hat_2", "progress_hat_3")
+
+        fun hasProgressHat(player: Player): Boolean = hats.any { player.carriesItem(it) }
 
         private val greetings = listOf(
             Triple("Hello... Mr Progress Hat?", "That's me, why are you bothering me human?", "Sorry, but do you think you could tell me my Pizazz Points?"),

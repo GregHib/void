@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
@@ -112,7 +111,7 @@ class MageTrainingArena : Script {
             val room = args.getOrNull(1) ?: "all"
             val rooms = if (room == "all") Tables.get("mta_rooms").rows().map { it.rowId } else listOf(room)
             for (name in rooms) {
-                if (Rows.getOrNull("mta_rooms.${name}") != null) {
+                if (Rows.getOrNull("mta_rooms.$name") != null) {
                     message("Unknown room '$name'; use ${Tables.get("mta_rooms").rows().joinToString { it.rowId }} or all.")
                     return@adminCommand
                 }
@@ -173,13 +172,11 @@ class MageTrainingArena : Script {
 
         fun inRoom(player: Player, room: String): Boolean = player["mage_training_arena_room", ""] == room
 
-        fun hasProgressHat(player: Player): Boolean = PizazzHat.hats.any { player.inventory.contains(it) || player.equipment.contains(it) }
-
         /**
          * The rules every room's portal applies before letting a player in, telling them why if not.
          */
         suspend fun canEnter(player: Player, room: RowDefinition): Boolean {
-            if (!player["mage_training_arena_started", false] || !hasProgressHat(player)) {
+            if (!player["mage_training_arena_started", false] || !PizazzHat.hasProgressHat(player)) {
                 player.statement("You need a Pizazz Progress Hat in order to enter. Talk to the Entrance Guardian if you don't have one.")
                 return false
             }

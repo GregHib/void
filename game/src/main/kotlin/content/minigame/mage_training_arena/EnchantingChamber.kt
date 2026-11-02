@@ -184,7 +184,7 @@ class EnchantingChamber : Script {
 
     private fun bonus(player: Player): String? = guardian(player)?.get<String>("mta_bonus")
 
-    private fun shape(item: String): String? = Rows.getOrNull("mta_shapes.${item}")?.rowId
+    private fun shape(item: String): String? = Rows.getOrNull("mta_shapes.$item")?.rowId
 
     /**
      * Dragonstones score double immediately; shapes score every tenth conversion plus one for the bonus shape.
