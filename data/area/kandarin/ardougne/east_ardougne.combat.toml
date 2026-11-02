@@ -1,10 +1,10 @@
 [jogre_ardougne]
-defend_anim = "jogre_defend"
-death_anim = "jogre_death"
+defend_anim = "ogre_defend"
+death_anim = "ogre_death"
 
 [jogre_ardougne.melee]
 range = 1
-anim = "jogre_attack"
+anim = "ogre_attack"
 target_hit = { offense = "crush", max = 70 }
 
 

@@ -1,0 +1,115 @@
+[rockslide_5_feldip_hills]
+id = 517
+examine = "A deposit of rocks."
+
+[rockslide_6_feldip_hills]
+id = 518
+examine = "A deposit of rocks."
+
+[cave_entrance_rantzs_house]
+id = 3379
+examine = "The entrance to Rantz's cave"
+
+[tansymum_feldip_hills]
+id = 29115
+examine = "A cheerful, aromatic flower."
+
+[stinkbloom_feldip_hills]
+id = 29117
+examine = "A pretty but putrid flower."
+
+[pots_feldip_hills]
+id = 4795
+examine = "They are pots made out of bamboo."
+
+[cave_feldip_hills]
+id = 19753
+examine = "A dingy tunnel leads into the side of the hill."
+
+[cave_2_feldip_hills]
+id = 19754
+examine = "Deep scratches seem to have been made in the lip of the cave entrance."
+
+[jungle_flower_feldip_hills]
+id = 4823
+examine = "This flower is found only in jungle areas"
+
+[rockslide_feldip_hills]
+id = 8728
+examine = "A deposit of rocks."
+
+[rockslide_2_feldip_hills]
+id = 8729
+examine = "A deposit of rocks."
+
+[rockslide_3_feldip_hills]
+id = 8730
+examine = "A deposit of rocks."
+
+[rockslide_4_feldip_hills]
+id = 8731
+examine = "A deposit of rocks."
+
+[orchid_feldip_hills]
+id = 4824
+examine = "A very rare and exotic flower."
+
+[tropical_tree_feldip_hills]
+id = 1360
+examine = "This tree contains dangerous insects no doubt."
+
+[tropical_tree_2_feldip_hills]
+id = 4849
+examine = "This tree contains dangerous insects no doubt."
+
+[hollow_tree_feldip_hills]
+id = 1322
+examine = "The trunk of this tree is hollow."
+
+[old_tree_feldip_hills]
+id = 12550
+examine = "A large old tree."
+
+[standard_feldip_hills]
+id = 859
+examine = "The standard of the ogre race."
+
+[ogre_spit_roast_feldip_hills]
+id = 3375
+examine = "Useful for ogre dinners."
+
+[roots_feldip_hills]
+id = 1323
+examine = "A gnarly old tree root."
+
+[roots_2_feldip_hills]
+id = 1324
+examine = "The roots of a tree are exposed."
+
+[roots_3_feldip_hills]
+id = 1325
+examine = "I hope I don't trip over any of these."
+
+[ogre_spit_roast_2_feldip_hills]
+id = 3373
+examine = "Useful for ogre dinners."
+
+[pile_of_skulls_feldip_hills]
+id = 668
+examine = "Disturbing but tidy."
+
+[gnome_glider_feldip_hills]
+id = 5825
+examine = "Fly gnome air."
+
+[an_ogre_standard_feldip_hills]
+id = 6865
+examine = "Not very high."
+
+[cave_entrance_feldip_hills]
+id = 2811
+examine = "I think I can squeeze through here..."
+
+[chompybird_rack_feldip_hills]
+id = 1495
+examine = "A rack with dead chompy birds on."

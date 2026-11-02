@@ -209,6 +209,7 @@ examine = "A master at farming."
 
 [tanner_varrock]
 id = 2320
+collision = "indoors"
 examine = "He has a certain bovine aroma."
 
 [dreven]
@@ -255,6 +256,7 @@ examine = "He's drunk."
 
 [guidors_wife]
 id = 342
+collision = "indoors"
 examine = "She looks rather concerned."
 
 [guidor]
@@ -310,6 +312,7 @@ examine = "For sitting on."
 
 [cook_jolly_boar_inn]
 id = 5911
+interacts = false
 examine = "He's suspiciously talented with a meat-cleaver."
 
 [captain_varrock]
@@ -338,21 +341,27 @@ examine = "Seth Minas - an aged expert in Gielinorian history."
 
 [barnabus_hurma]
 id = 5932
+examine = "An archaeologist hard at work."
 
 [marius_giste]
 id = 5933
+examine = "An archaeologist hard at work."
 
 [caden_azro]
 id = 5934
+examine = "An archaeologist hard at work."
 
 [thias_leacke]
 id = 5935
+examine = "An archaeologist hard at work."
 
 [sinco_doar]
 id = 5936
+examine = "An archaeologist hard at work."
 
 [tinse_torpe]
 id = 5937
+examine = "An archaeologist hard at work."
 
 [tea_seller]
 id = 595
@@ -393,6 +402,8 @@ examine = "Curator of the museum."
 
 [dimintheis]
 id = 664
+collision = "indoors"
+examine = "A well-dressed nobleman."
 
 [dimintheis_shield]
 id = 8171
@@ -467,6 +478,7 @@ id = 12346
 drop_table = "man"
 hitpoints = 70
 max_hit_crush = 10
+examine = "One of Gielinor's many citizens."
 
 [orlando_smith]
 id = 5965
@@ -502,6 +514,7 @@ id = 12347
 drop_table = "man"
 hitpoints = 70
 max_hit_crush = 10
+examine = "One of Gielinor's many citizens."
 
 [tramp_varrock_2]
 id = 2792
@@ -526,6 +539,7 @@ examine = "The man with the armour."
 [lowe]
 id = 550
 shop = "lowes_archery_emporium"
+collision = "indoors"
 examine = "Sells arrows."
 
 [sword_shopkeeper_varrock]
@@ -538,10 +552,12 @@ examine = "Ironically, makes a living from swords."
 id = 552
 shop = "varrock_sword_shop"
 area = "varrock_sword_shop"
+collision = "indoors"
 examine = "Helps the shopkeeper sell swords."
 
 [cook_blue_moon_inn]
 id = 5910
+interacts = false
 examine = "A greasy, grimy gourmet."
 
 [guard_varrock]
@@ -593,6 +609,7 @@ drop_table = "thief"
 
 [apothecary]
 id = 638
+collision = "indoors"
 examine = "A dealer in potions."
 
 [charlie_the_tramp]

@@ -94,8 +94,8 @@ collision = "indoors"
 examine = "He looks like a professional explorer."
 
 [explorer_jack_lumbridge]
+clone = "explorer_jack"
 id = 7969
-examine = "He looks like a professional explorer."
 
 [duke_horacio]
 id = 741

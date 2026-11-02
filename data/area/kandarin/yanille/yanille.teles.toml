@@ -73,10 +73,13 @@ option = "Climb-down"
 tile = { x = 2594, y = 3085 }
 delta = { y = 6400 }
 
-[1757]
-option = "Climb-up"
-tile = { x = 2594, y = 9485 }
-delta = { y = -6400 }
+[gate_42_closed]
+option = "Open"
+tile = { x = 2593, y = 9488 }
+
+[gate_43_closed]
+option = "Open"
+tile = { x = 2594, y = 9488 }
 
 [di2_stairs_above_ground]
 option = "Climb-down"
@@ -108,10 +111,15 @@ option = "Climb-up"
 tile = { x = 2620, y = 9562 }
 delta = { y = -68 }
 
-[2317]
+[yanille_dungeon_rubble]
 option = "Climb-up"
 tile = { x = 2616, y = 9572 }
 to = { x = 2614, y = 9505 }
+
+[yanille_dungeon_stairs_up]
+option = "Climb-up"
+tile = { x = 2578, y = 9585}
+to = { x = 2567, y = 9524 }
 
 [2318]
 option = "Climb-down"
