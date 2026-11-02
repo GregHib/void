@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -33,6 +34,10 @@ class TradeRequest : Script {
             }
             val filter = target["trade_filter", "on"]
             if (filter == "off" || (filter == "friends" && !target.friend(this))) {
+                return@playerOperate
+            }
+            if (tradingBlocked(this) || tradingBlocked(target)) {
+                message("You can't do that right now.")
                 return@playerOperate
             }
             if (target.hasRequest(this, "trade")) {
@@ -61,6 +66,8 @@ class TradeRequest : Script {
      * Requesting to trade with another player, accepting the request and setting up the trade
      * When an offer is updated the change is persisted to the other player
      */
+
+    private fun tradingBlocked(player: Player): Boolean = Areas.get(player.tile.zone).any { it.tags.contains("no_trading") && player.tile in it.area }
 
     fun startTrade(player: Player, partner: Player) {
         reset(player, partner)

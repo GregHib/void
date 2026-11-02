@@ -1,0 +1,125 @@
+[doorway_mage_training_arena]
+id = 10721
+
+[telekinetic_portal]
+id = 10778
+
+[enchanters_portal]
+id = 10779
+
+[alchemists_portal]
+id = 10780
+
+[graveyard_portal]
+id = 10781
+
+[exit_portal_mage_training_arena]
+id = 10782
+
+[bones_mage_training_arena_1]
+id = 10725
+examine = "Various animals' bones."
+
+[bones_mage_training_arena_2]
+id = 10726
+examine = "Various animals' bones."
+
+[bones_mage_training_arena_3]
+id = 10727
+examine = "Various animals' bones."
+
+[bones_mage_training_arena_4]
+id = 10728
+examine = "Various animals' bones."
+
+[coin_collector]
+id = 10734
+examine = "Deposit your coins here."
+
+[food_chute]
+id = 10735
+examine = "Put bananas or peaches in here."
+
+[cupboard_mage_training_arena_1]
+id = 10797
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_1_open]
+id = 10798
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_2]
+id = 10795
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_2_open]
+id = 10796
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_3]
+id = 10793
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_3_open]
+id = 10794
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_4]
+id = 10791
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_4_open]
+id = 10792
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_5]
+id = 10789
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_5_open]
+id = 10790
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_6]
+id = 10787
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_6_open]
+id = 10788
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_7]
+id = 10785
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_7_open]
+id = 10786
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_8]
+id = 10783
+examine = "This may be worth opening."
+
+[cupboard_mage_training_arena_8_open]
+id = 10784
+examine = "This may be worth opening."
+
+[cube_pile]
+id = 10799
+examine = "Some simple cubes."
+
+[cylinder_pile]
+id = 10800
+examine = "A pile of cylindrical shapes."
+
+[icosahedron_pile]
+id = 10801
+examine = "A pile of Icosahedrons."
+
+[pentamid_pile]
+id = 10802
+examine = "A pile of pentamids."
+
+[orb_hole]
+id = 10803
+examine = "Put the enchanted orbs in here."
