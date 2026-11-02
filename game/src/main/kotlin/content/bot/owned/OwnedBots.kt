@@ -1034,37 +1034,33 @@ class OwnedBots(
         }
     }
 
-    private fun encode(player: Player): String = listOf(player.inventory, player.equipment).joinToString("|") { inventory ->
-        inventory.items.filter { it.isNotEmpty() }.joinToString(",") { "${it.id}:${it.amount}" }
+    /** `"id:amount"` for everything carried and worn; a list, as the save reader caps single strings at 150 characters. */
+    private fun encode(player: Player): List<String> = listOf(player.inventory, player.equipment).flatMap { inventory ->
+        inventory.items.filter { it.isNotEmpty() }.map { "${it.id}:${it.amount}" }
     }
 
     /** Items a bot carried when the server stopped without sweeping go to the bank at the owner's next login. */
     private fun restore(owner: Player) {
         for (slot in 0 until OwnedRoster.MAX_SLOTS) {
             val saved = OwnedRoster.snapshot(owner, slot)
-            if (saved.isBlank() || bot(owner, slot) != null) {
+            if (saved.isEmpty() || bot(owner, slot) != null) {
                 continue
             }
             var count = 0
-            for (part in saved.split('|')) {
-                for (entry in part.split(',')) {
-                    if (entry.isBlank()) {
-                        continue
-                    }
-                    val id = entry.substringBefore(':')
-                    val amount = entry.substringAfter(':', "").toIntOrNull() ?: continue
-                    if (amount <= 0 || !ItemDefinitions.contains(id)) {
-                        continue
-                    }
-                    val item = Item(id, amount)
-                    val unnoted = if (item.isNote) item.noted ?: item else item
-                    var added = 0
-                    owner.bank.transaction { added = addToLimit(unnoted.id, amount) }
-                    if (amount - added > 0) {
-                        owner.addOrDrop(unnoted.id, amount - added)
-                    }
-                    count++
+            for (entry in saved) {
+                val id = entry.substringBefore(':')
+                val amount = entry.substringAfter(':', "").toIntOrNull() ?: continue
+                if (amount <= 0 || !ItemDefinitions.contains(id)) {
+                    continue
                 }
+                val item = Item(id, amount)
+                val unnoted = if (item.isNote) item.noted ?: item else item
+                var added = 0
+                owner.bank.transaction { added = addToLimit(unnoted.id, amount) }
+                if (amount - added > 0) {
+                    owner.addOrDrop(unnoted.id, amount - added)
+                }
+                count++
             }
             owner.clear("owned_bot_${slot}_items")
             if (count > 0) {
@@ -1245,7 +1241,7 @@ class OwnedBots(
                     return admin.message("::owned_bots inspect <player>")
                 }
                 for (index in 0 until OwnedRoster.slots()) {
-                    admin.message("[${index + 1}] ${OwnedRoster.name(target, index) ?: "-"} alive=${OwnedRoster.alive(target, index)} online=${bot(target, index) != null} profile=${OwnedRoster.profile(target, index)} snapshot=${OwnedRoster.snapshot(target, index).length}")
+                    admin.message("[${index + 1}] ${OwnedRoster.name(target, index) ?: "-"} alive=${OwnedRoster.alive(target, index)} online=${bot(target, index) != null} profile=${OwnedRoster.profile(target, index)} snapshot=${OwnedRoster.snapshot(target, index).size}")
                 }
             }
             "dismiss" -> {

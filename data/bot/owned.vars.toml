@@ -1,6 +1,6 @@
 # Player-owned bots: the owner's roster, saved with the owner (content/bot/owned/OwnedBots.kt).
 # One block per slot 0-3. A bot is "alive" from purchase until it dies; its items live on the bot while it is
-# spawned and in the owner's bank otherwise. `items` is the crash-safety snapshot of what the bot is carrying,
+# spawned and in the owner's bank otherwise. `items` is the crash-safety snapshot (["item:amount", ...]) of what the bot is carrying,
 # cleared by every sweep; a non-empty value at login means the server stopped without sweeping.
 
 [owned_bot_0_name]
@@ -24,7 +24,6 @@ format = "string"
 persist = true
 
 [owned_bot_0_items]
-format = "string"
 persist = true
 
 [owned_bot_1_name]
@@ -48,7 +47,6 @@ format = "string"
 persist = true
 
 [owned_bot_1_items]
-format = "string"
 persist = true
 
 [owned_bot_2_name]
@@ -72,7 +70,6 @@ format = "string"
 persist = true
 
 [owned_bot_2_items]
-format = "string"
 persist = true
 
 [owned_bot_3_name]
@@ -96,27 +93,22 @@ format = "string"
 persist = true
 
 [owned_bot_3_items]
-format = "string"
 persist = true
 
-# Loadout presets shared by all of the owner's bots: name=slot:item,slot:item;name=...
+# Loadout presets shared by all of the owner's bots: { name = ["slot=item", "item:amount", ...] }.
+# Lists of short entries, never one long string: the save reader caps a string at 150 characters.
 [owned_loadouts]
-format = "string"
 persist = true
 
-# What each bot was wearing when it last left the world (slot:item,...), put back on at the next summon
+# What each bot was wearing when it last left the world (["slot=item", ...]), put back on at the next summon
 [owned_bot_0_worn]
-format = "string"
 persist = true
 
 [owned_bot_1_worn]
-format = "string"
 persist = true
 
 [owned_bot_2_worn]
-format = "string"
 persist = true
 
 [owned_bot_3_worn]
-format = "string"
 persist = true

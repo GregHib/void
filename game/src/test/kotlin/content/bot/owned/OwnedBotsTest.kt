@@ -119,8 +119,8 @@ internal class OwnedBotsTest : WorldTest() {
         assertEquals(1, owner.bank.count("bronze_sword"))
         assertTrue(bot.inventory.isEmpty())
         assertTrue(owner["owned_bot_0_alive", false], "dismissing keeps the bot alive")
-        assertEquals("", owner["owned_bot_0_items", ""], "sweep clears the crash snapshot")
-        assertEquals("weapon:bronze_sword|", owner["owned_bot_0_worn", ""], "what it wore is remembered")
+        assertNull(owner.get<Any>("owned_bot_0_items"), "sweep clears the crash snapshot")
+        assertEquals(listOf("weapon=bronze_sword"), owner.get<List<String>>("owned_bot_0_worn"), "what it wore is remembered")
     }
 
     @Test
@@ -137,7 +137,7 @@ internal class OwnedBotsTest : WorldTest() {
         val again = summon(owner)
         tickIf(limit = 40) { again.equipment[3].id != "bronze_sword" }
         assertEquals(0, owner.bank.count("bronze_sword"))
-        assertEquals("", owner["owned_bot_0_worn", ""])
+        assertNull(owner.get<Any>("owned_bot_0_worn"))
         tickIf(limit = 10) { !again.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX) }
     }
 
@@ -157,7 +157,7 @@ internal class OwnedBotsTest : WorldTest() {
         bot.inventory.add("logs", 2)
 
         owner.command("bot loadout save melee")
-        assertEquals(mapOf("melee" to "hat:iron_full_helm,weapon:bronze_sword|shark:3"), OwnedLoadouts.all(owner).mapValues { it.value.encode() })
+        assertEquals(mapOf("melee" to listOf("hat=iron_full_helm", "weapon=bronze_sword", "shark:3")), OwnedLoadouts.all(owner).mapValues { it.value.encode() })
 
         owner.command("bot loadout load 1 melee")
         tickIf(limit = 40) { bot.equipment[3].id != "bronze_sword" || bot.equipment[0].id != "iron_full_helm" || bot.inventory.count("shark") != 3 }
@@ -177,7 +177,7 @@ internal class OwnedBotsTest : WorldTest() {
         assertNotNull(owner.suspension, "asked for a name")
         owner.instructions.send(EnterName("botset"))
         tick()
-        assertEquals(mapOf("botset" to "hat:iron_full_helm,weapon:bronze_sword|shark:3"), OwnedLoadouts.all(owner).mapValues { it.value.encode() })
+        assertEquals(mapOf("botset" to listOf("hat=iron_full_helm", "weapon=bronze_sword", "shark:3")), OwnedLoadouts.all(owner).mapValues { it.value.encode() })
     }
 
     @Test
@@ -219,15 +219,15 @@ internal class OwnedBotsTest : WorldTest() {
         val bot = summon(owner)
         bot.inventory.add("logs", 6)
         bot.equipment.set(3, "bronze_sword")
-        tickIf(limit = 60) { owner["owned_bot_0_items", ""].isEmpty() }
-        val snapshot = owner["owned_bot_0_items", ""]
-        assertEquals(6, snapshot.substringBefore('|').split(',').count { it == "logs:1" }, snapshot)
-        assertEquals("bronze_sword:1", snapshot.substringAfter('|'), snapshot)
+        tickIf(limit = 60) { owner.get<List<String>>("owned_bot_0_items").isNullOrEmpty() }
+        val snapshot = owner.get<List<String>>("owned_bot_0_items")!!
+        assertEquals(6, snapshot.count { it == "logs:1" }, snapshot.toString())
+        assertEquals("bronze_sword:1", snapshot.last(), snapshot.toString())
 
         // The server stopped without a sweep: the snapshot is all that is left of the bot
         bot.inventory.clear()
         bot.equipment.clear()
-        val saved = owner["owned_bot_0_items", ""]
+        val saved = owner.get<List<String>>("owned_bot_0_items")!!
         Players.remove(owner)
         world.gregs.voidps.engine.entity.Despawn.player(owner)
         tickIf(limit = 20) { Players.findByAccount(bot.accountName) != null }
@@ -239,7 +239,7 @@ internal class OwnedBotsTest : WorldTest() {
 
         assertEquals(6, again.bank.count("logs"))
         assertEquals(1, again.bank.count("bronze_sword"))
-        assertEquals("", again["owned_bot_0_items", ""])
+        assertNull(again.get<Any>("owned_bot_0_items"))
     }
 
     @Test

@@ -7,36 +7,42 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 /**
  * A set of worn gear and carried items: a preset the owner keeps for all their bots, or what a bot had when it
  * last left the world.
+ *
+ * Saved as a list of short entries, never one long string: the save file reader caps a string at 150 characters
+ * and skips the whole account when one is longer.
  */
 data class Loadout(val worn: Map<EquipSlot, String>, val carried: Map<String, Int>) {
     fun isEmpty(): Boolean = worn.isEmpty() && carried.isEmpty()
 
-    /** "weapon:bronze_sword,hat:iron_full_helm|shark:5,coins:1000" */
-    fun encode(): String = worn.entries.joinToString(",") { "${it.key.name.lowercase()}:${it.value}" } + "|" + carried.entries.joinToString(",") { "${it.key}:${it.value}" }
+    /** `["weapon=bronze_sword", "hat=iron_full_helm", "shark:5", "coins:1000"]` */
+    fun encode(): List<String> = worn.entries.map { "${it.key.name.lowercase()}=${it.value}" } + carried.entries.map { "${it.key}:${it.value}" }
 
     fun describe(): String = (worn.values + carried.map { (id, amount) -> if (amount > 1) "$amount x $id" else id }).joinToString { it.replace('_', ' ') }
 
     companion object {
         val EMPTY = Loadout(emptyMap(), emptyMap())
 
-        fun decode(text: String): Loadout {
+        fun decode(entries: List<*>?): Loadout {
+            if (entries.isNullOrEmpty()) {
+                return EMPTY
+            }
             val worn = linkedMapOf<EquipSlot, String>()
             val carried = linkedMapOf<String, Int>()
-            val wornText = text.substringBefore('|')
-            val carriedText = text.substringAfter('|', "")
-            for (entry in wornText.split(',')) {
-                val slotName = entry.substringBefore(':', "")
-                val item = entry.substringAfter(':', "")
-                val slot = EquipSlot.entries.firstOrNull { it.name.equals(slotName, ignoreCase = true) } ?: continue
-                if (item.isNotBlank()) {
-                    worn[slot] = item
-                }
-            }
-            for (entry in carriedText.split(',')) {
-                val item = entry.substringBefore(':', "")
-                val amount = entry.substringAfter(':', "").toIntOrNull() ?: continue
-                if (item.isNotBlank() && amount > 0) {
-                    carried[item] = (carried[item] ?: 0) + amount
+            for (entry in entries) {
+                val text = entry as? String ?: continue
+                if (text.contains('=')) {
+                    val slotName = text.substringBefore('=')
+                    val item = text.substringAfter('=')
+                    val slot = EquipSlot.entries.firstOrNull { it.name.equals(slotName, ignoreCase = true) } ?: continue
+                    if (item.isNotBlank()) {
+                        worn[slot] = item
+                    }
+                } else {
+                    val item = text.substringBefore(':', "")
+                    val amount = text.substringAfter(':', "").toIntOrNull() ?: continue
+                    if (item.isNotBlank() && amount > 0) {
+                        carried[item] = (carried[item] ?: 0) + amount
+                    }
                 }
             }
             return Loadout(worn, carried)
@@ -69,18 +75,19 @@ data class Loadout(val worn: Map<EquipSlot, String>, val carried: Map<String, In
 
 /**
  * Named loadouts an owner keeps for all their bots, in the persistent owner variable `owned_loadouts`
- * ("name=<loadout>;name2=<loadout>", see [Loadout.encode]).
+ * (a map of preset name to the entries of [Loadout.encode]).
  */
 object OwnedLoadouts {
     const val MAX_PRESETS = 10
     private val NAME = Regex("^(?=.*[a-z])[a-z0-9_]{1,12}$")
 
     fun all(owner: Player): Map<String, Loadout> {
-        val text: String = owner["owned_loadouts", ""]
-        if (text.isBlank()) {
-            return emptyMap()
+        val saved = owner.get<Map<String, Any>>("owned_loadouts") ?: return emptyMap()
+        val presets = linkedMapOf<String, Loadout>()
+        for ((name, entries) in saved) {
+            presets[name] = Loadout.decode(entries as? List<*>)
         }
-        return text.split(';').filter { it.contains('=') }.associate { it.substringBefore('=') to Loadout.decode(it.substringAfter('=')) }
+        return presets
     }
 
     fun get(owner: Player, name: String): Loadout? = all(owner)[name.lowercase()]
@@ -108,11 +115,10 @@ object OwnedLoadouts {
     }
 
     private fun write(owner: Player, presets: Map<String, Loadout>) {
-        val text = presets.entries.joinToString(";") { "${it.key}=${it.value.encode()}" }
-        if (text.isEmpty()) {
+        if (presets.isEmpty()) {
             owner.clear("owned_loadouts")
         } else {
-            owner["owned_loadouts"] = text
+            owner["owned_loadouts"] = presets.mapValues { it.value.encode() }
         }
     }
 }
