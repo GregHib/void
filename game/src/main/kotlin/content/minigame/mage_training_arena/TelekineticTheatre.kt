@@ -284,7 +284,7 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
 
     private fun currentMaze(player: Player): RowDefinition? {
         val index = player["mage_training_arena_telekinetic_maze", 0] - 1
-        return Rows.getOrNull("mta_mazes.${index + 1}")
+        return Rows.getOrNull("mta_mazes.maze_${index + 1}")
     }
 
     fun statue(player: Player): FloorItem? = statues[player.index]

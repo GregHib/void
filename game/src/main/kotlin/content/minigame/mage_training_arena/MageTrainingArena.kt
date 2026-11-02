@@ -62,7 +62,7 @@ class MageTrainingArena : Script {
         }
 
         objectOperate("Enter", "alchemists_portal,enchanters_portal,graveyard_portal") { (target) ->
-            val room = Rows.getOrNull("mta_rooms.${target.id.removeSuffix("_portal")}") ?: return@objectOperate
+            val room = Tables.get("mta_rooms").rows().firstOrNull { it.obj("portal") == target.id } ?: return@objectOperate
             if (!canEnter(this, room)) {
                 return@objectOperate
             }
@@ -111,7 +111,7 @@ class MageTrainingArena : Script {
             val room = args.getOrNull(1) ?: "all"
             val rooms = if (room == "all") Tables.get("mta_rooms").rows().map { it.rowId } else listOf(room)
             for (name in rooms) {
-                if (Rows.getOrNull("mta_rooms.$name") != null) {
+                if (Rows.getOrNull("mta_rooms.$name") == null) {
                     message("Unknown room '$name'; use ${Tables.get("mta_rooms").rows().joinToString { it.rowId }} or all.")
                     return@adminCommand
                 }
