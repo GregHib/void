@@ -30,10 +30,11 @@ class Music(val tracks: MusicTracks) : Script {
             if (isBot) {
                 return@moved
             }
-            for (track in tracks[tile.region]) {
-                if (!track.area.contains(from) && track.area.contains(tile)) {
-                    autoPlay(this, tracks.get(track.id) ?: continue)
+            if (tracks[tile.region].any { track ->
+                    track.area.contains(from) != track.area.contains(tile)
                 }
+            ) {
+                playAreaTrack(this)
             }
         }
 
