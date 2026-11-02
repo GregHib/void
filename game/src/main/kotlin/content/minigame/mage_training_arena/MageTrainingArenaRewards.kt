@@ -114,7 +114,7 @@ class MageTrainingArenaRewards(private val inventoryDefinitions: InventoryDefini
         }
         open("mage_training_arena_rewards")
         sendInventory(id)
-        interfaceOptions.unlockAll("mage_training_arena_rewards", "stock", 0 until inventory.size)
+        interfaceOptions.unlockAll("mage_training_arena_rewards", "stock", inventory.indices)
     }
 
     private suspend fun buy(player: Player, row: RowDefinition) {
@@ -133,8 +133,8 @@ class MageTrainingArenaRewards(private val inventoryDefinitions: InventoryDefini
             player.message("You already unlocked that spell.")
             return
         }
-        for (room in PizazzPoints.rooms) {
-            if (PizazzPoints.get(player, room) < row.int(room)) {
+        for (room in Tables.get("mta_rooms").rows()) {
+            if (PizazzPoints.get(player, room.rowId) < row.int(room.rowId)) {
                 player.message("You cannot afford that item.")
                 return
             }
@@ -170,8 +170,8 @@ class MageTrainingArenaRewards(private val inventoryDefinitions: InventoryDefini
                 else -> return
             }
         }
-        for (room in PizazzPoints.rooms) {
-            PizazzPoints.remove(player, room, row.int(room))
+        for (room in Tables.get("mta_rooms").rows()) {
+            PizazzPoints.remove(player, room.rowId, row.int(room.rowId))
         }
         AuditLog.event(player, "mta_reward", item, row.int("telekinetic"), row.int("alchemist"), row.int("enchanting"), row.int("graveyard"))
         if (item == "bones_to_peaches_spell") {

@@ -49,12 +49,6 @@ import world.gregs.voidps.type.random
  */
 class AlchemistsPlayground : Script {
 
-    private val rows: List<RowDefinition>
-        get() = Tables.get("mta_alchemist_items").rows()
-
-    private val items: List<String>
-        get() = rows.map { it.item("item") }
-
     init {
         objectOperate("Search", "cupboard_mage_training_arena_*") { (target) ->
             val slot = target.id.removePrefix("cupboard_mage_training_arena_").removeSuffix("_open").toInt() - 1
@@ -74,7 +68,7 @@ class AlchemistsPlayground : Script {
             message("You found: ${ItemDefinitions.get(item).name}")
         }
 
-        onItem("modern_spellbook:*_level_alchemy", items.joinToString(",")) { item, id ->
+        onItem("modern_spellbook:*_level_alchemy", "leather_boots_mage_training_arena,adamant_kiteshield_mage_training_arena,adamant_helm_mage_training_arena,emerald_mage_training_arena,rune_longsword_mage_training_arena") { item, id ->
             if (!MageTrainingArena.inRoom(this, "alchemist")) {
                 message("This item isn't yours to alch, it belongs to the arena!")
                 return@onItem
@@ -226,13 +220,13 @@ class AlchemistsPlayground : Script {
      */
     private fun itemAt(guardian: NPC, slot: Int): String? {
         val index = (slot - guardian["mta_rotation", 0]).mod(8)
-        return rows.firstOrNull { it.int("slot") == index }?.item("item")
+        return Tables.get("mta_alchemist_items").rows().getOrNull(index)?.item("item")
     }
 
     private fun shuffle(guardian: NPC) {
         val list = Tables.intList("mta_alchemist.settings.values").shuffled(random)
-        for ((index, item) in items.withIndex()) {
-            guardian["mta_value_$item"] = list[index % list.size]
+        for ((index, row) in Tables.get("mta_alchemist_items").rows().withIndex()) {
+            guardian["mta_value_${row.item("item")}"] = list[index % list.size]
         }
     }
 
@@ -243,7 +237,7 @@ class AlchemistsPlayground : Script {
             guardian.clear("mta_free_item")
             guardian.say("The costs are changing!")
         } else {
-            val row = rows.random(random)
+            val row = Tables.get("mta_alchemist_items").rows().random(random)
             guardian["mta_free_item"] = row.item("item")
             val name = row.string("name")
             guardian.say("The $name ${if (name.endsWith("s")) "are" else "is"} free to convert!")
@@ -258,7 +252,8 @@ class AlchemistsPlayground : Script {
     private fun refresh(player: Player, guardian: NPC) {
         val overlay = "mage_training_arena_alchemist"
         val free: String = guardian["mta_free_item", ""]
-        for (item in items) {
+        for (row in Tables.get("mta_alchemist_items").rows()) {
+            val item = row.item("item")
             player.interfaces.sendText(overlay, "value_$item", guardian["mta_value_$item", 0].toString())
             player.interfaces.sendVisibility(overlay, "free_$item", item == free)
         }

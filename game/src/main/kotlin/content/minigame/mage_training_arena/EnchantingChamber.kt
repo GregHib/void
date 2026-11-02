@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -45,12 +45,9 @@ class EnchantingChamber : Script {
 
     private val dragonstones = HashMap<Int, MutableList<FloorItem>>()
 
-    private val shapes: List<RowDefinition>
-        get() = Tables.get("mta_shapes").rows()
-
     init {
         objectOperate("Take-from", "cube_pile,cylinder_pile,icosahedron_pile,pentamid_pile") { (target) ->
-            val row = shapes.firstOrNull { it.obj("pile") == target.id } ?: return@objectOperate
+            val row = Rows.getOrNull("mta_shapes.${target.id.removeSuffix("_pile")}") ?: return@objectOperate
             if (!inventory.add(row.item("item"))) {
                 message("You have no space left in your inventory.")
                 return@objectOperate
@@ -111,7 +108,7 @@ class EnchantingChamber : Script {
             while (total >= perReward) {
                 total -= perReward
                 set("mage_training_arena_orbs_deposited", total)
-                addOrDrop(Tables.itemList("mta_enchanting.settings.rune_rewards").random(), Tables.int("mta_enchanting.settings.rune_amount"))
+                addOrDrop(Tables.itemList("mta_enchanting.settings.rune_rewards").random(random), Tables.int("mta_enchanting.settings.rune_amount"))
                 statement("Congratulations! You've been rewarded with an item for your efforts.")
             }
             set("mage_training_arena_orbs_deposited", total)
@@ -144,7 +141,7 @@ class EnchantingChamber : Script {
         }
 
         npcSpawn("enchantment_guardian") {
-            this["mta_bonus"] = shapes.random(random).rowId
+            this["mta_bonus"] = Tables.get("mta_shapes").rows().random(random).rowId
             softTimers.start("mta_enchanting")
         }
 
@@ -187,7 +184,7 @@ class EnchantingChamber : Script {
 
     private fun bonus(player: Player): String? = guardian(player)?.get<String>("mta_bonus")
 
-    private fun shape(item: String): String? = shapes.firstOrNull { it.item("item") == item }?.rowId
+    private fun shape(item: String): String? = Rows.getOrNull("mta_shapes.${item}")?.rowId
 
     /**
      * Dragonstones score double immediately; shapes score every tenth conversion plus one for the bonus shape.
@@ -212,7 +209,7 @@ class EnchantingChamber : Script {
 
     private fun changeBonus(guardian: NPC) {
         val current: String = guardian["mta_bonus", ""]
-        val next = shapes.map { it.rowId }.filter { it != current }.random(random)
+        val next = Tables.get("mta_shapes").rows().map { it.rowId }.filter { it != current }.random(random)
         guardian["mta_bonus"] = next
         guardian.say("The bonus shape has changed to the $next.")
         for (player in Players) {
@@ -224,7 +221,7 @@ class EnchantingChamber : Script {
 
     private fun refresh(player: Player) {
         val bonus = bonus(player)
-        for (shape in shapes) {
+        for (shape in Tables.get("mta_shapes").rows()) {
             player.interfaces.sendVisibility("mage_training_arena_enchanting", "bonus_${shape.rowId}", shape.rowId == bonus)
         }
     }

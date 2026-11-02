@@ -32,9 +32,6 @@ import world.gregs.voidps.type.Tile
  */
 class MageTrainingArena : Script {
 
-    private val rooms: List<RowDefinition>
-        get() = Tables.get("mta_rooms").rows()
-
     /**
      * Items that belong to the arena and are removed when a player leaves a room by any means.
      */
@@ -66,7 +63,7 @@ class MageTrainingArena : Script {
         }
 
         objectOperate("Enter", "alchemists_portal,enchanters_portal,graveyard_portal") { (target) ->
-            val room = rooms.firstOrNull { it.obj("portal") == target.id } ?: return@objectOperate
+            val room = Rows.getOrNull("mta_rooms.${target.id.removeSuffix("_portal")}") ?: return@objectOperate
             if (!canEnter(this, room)) {
                 return@objectOperate
             }
@@ -78,7 +75,7 @@ class MageTrainingArena : Script {
             tele(room.tile("exit"))
         }
 
-        for (room in rooms) {
+        for (room in Tables.get("mta_rooms").rows()) {
             entered(room.string("area")) {
                 set("mage_training_arena_room", room.rowId)
                 open(room.string("overlay"))
@@ -110,13 +107,13 @@ class MageTrainingArena : Script {
             }
         }
 
-        adminCommand("pizazz", intArg("amount", desc = "Points to add, negative to remove"), stringArg("room", optional = true, autofill = PizazzPoints.rooms.toSet() + "all"), desc = "Add Pizazz Points to one room or all four") { args ->
+        adminCommand("pizazz", intArg("amount", desc = "Points to add, negative to remove"), stringArg("room", optional = true, autofill = Tables.get("mta_rooms").rows().map { it.rowId }.toSet() + "all"), desc = "Add Pizazz Points to one room or all four") { args ->
             val amount = args[0].toInt()
             val room = args.getOrNull(1) ?: "all"
-            val rooms = if (room == "all") PizazzPoints.rooms else listOf(room)
+            val rooms = if (room == "all") Tables.get("mta_rooms").rows().map { it.rowId } else listOf(room)
             for (name in rooms) {
-                if (name !in PizazzPoints.rooms) {
-                    message("Unknown room '$name'; use ${PizazzPoints.rooms.joinToString()} or all.")
+                if (Rows.getOrNull("mta_rooms.${name}") != null) {
+                    message("Unknown room '$name'; use ${Tables.get("mta_rooms").rows().joinToString { it.rowId }} or all.")
                     return@adminCommand
                 }
                 if (amount >= 0) {
@@ -182,7 +179,7 @@ class MageTrainingArena : Script {
          * The rules every room's portal applies before letting a player in, telling them why if not.
          */
         suspend fun canEnter(player: Player, room: RowDefinition): Boolean {
-            if (!player.get("mage_training_arena_started", false) || !hasProgressHat(player)) {
+            if (!player["mage_training_arena_started", false] || !hasProgressHat(player)) {
                 player.statement("You need a Pizazz Progress Hat in order to enter. Talk to the Entrance Guardian if you don't have one.")
                 return false
             }
@@ -206,57 +203,5 @@ class MageTrainingArena : Script {
             }
             return true
         }
-    }
-}
-
-/**
- * Pizazz points are stored in four varbits read by the rewards interface and shown on each room's overlay.
- */
-object PizazzPoints {
-    val rooms = listOf("telekinetic", "alchemist", "enchanting", "graveyard")
-
-    private val limits = mapOf(
-        "telekinetic" to 8191,
-        "alchemist" to 8191,
-        "enchanting" to 32767,
-        "graveyard" to 16383,
-    )
-
-    private fun key(room: String) = "mage_training_arena_${room}_points"
-
-    fun get(player: Player, room: String): Int = player[key(room), 0]
-
-    fun total(player: Player): Int = rooms.sumOf { get(player, it) }
-
-    fun add(player: Player, room: String, amount: Int) {
-        if (amount <= 0) {
-            return
-        }
-        player.inc(key(room), amount, max = limits.getValue(room))
-        refresh(player, room)
-        PizazzHat.refresh(player)
-    }
-
-    fun remove(player: Player, room: String, amount: Int) {
-        if (amount <= 0) {
-            return
-        }
-        player.dec(key(room), amount, min = 0)
-        refresh(player, room)
-    }
-
-    fun reset(player: Player) {
-        for (room in rooms) {
-            player.set(key(room), 0)
-            refresh(player, room)
-        }
-    }
-
-    fun refresh(player: Player, room: String) {
-        val overlay = Rows.getOrNull("mta_rooms.$room")?.string("overlay") ?: return
-        if (!player.hasOpen(overlay)) {
-            return
-        }
-        player.interfaces.sendText(overlay, "points", get(player, room).toString())
     }
 }

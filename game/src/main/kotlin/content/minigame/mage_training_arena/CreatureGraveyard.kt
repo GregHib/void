@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -40,12 +40,9 @@ class CreatureGraveyard : Script {
 
     private val lives = HashMap<Tile, Int>()
 
-    private val bones: List<RowDefinition>
-        get() = Tables.get("mta_bones").rows()
-
     init {
         objectOperate("Grab", "bones_mage_training_arena_*") { (target) ->
-            val row = bones.firstOrNull { it.obj("pile") == target.id } ?: return@objectOperate
+            val row = Rows.getOrNull("mta_bones.bones_${target.id.removePrefix("bones_mage_training_arena_")}") ?: return@objectOperate
             if (!inventory.add(row.item("item"))) {
                 message("You have no free space!")
                 return@objectOperate

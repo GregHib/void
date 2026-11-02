@@ -53,9 +53,6 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
     private val statues = HashMap<Int, FloorItem>()
     private val guardians = HashMap<Int, NPC>()
 
-    private val mazes: List<RowDefinition>
-        get() = Tables.get("mta_mazes").rows()
-
     init {
         objectOperate("Enter", "telekinetic_portal") {
             if (!MageTrainingArena.canEnter(this, Rows.get("mta_rooms.telekinetic"))) {
@@ -260,7 +257,7 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
      * Picks an unsolved maze other than the current one, refilling the set once all ten are solved.
      */
     private fun nextMaze(player: Player) {
-        val all = mazes
+        val all = Tables.get("mta_mazes").rows()
         var solved = player["mage_training_arena_mazes_solved", 0]
         if (all.indices.all { solved and (1 shl it) != 0 }) {
             solved = 0
@@ -287,7 +284,7 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
 
     private fun currentMaze(player: Player): RowDefinition? {
         val index = player["mage_training_arena_telekinetic_maze", 0] - 1
-        return mazes.firstOrNull { it.int("index") == index }
+        return Rows.getOrNull("mta_mazes.${index + 1}")
     }
 
     fun statue(player: Player): FloorItem? = statues[player.index]
