@@ -1,3 +1,47 @@
 [bank_chest_castle_wars]
 id = 4483
 examine = "The bank teller will serve you from here."
+
+[shelves_castle_wars]
+id = 36336
+examine = "Storage for all needs."
+
+[shelves_castle_wars_2]
+id = 36337
+examine = "Storage for all needs."
+
+[boxes_castle_wars]
+id = 36322
+examine = "A pile of boxes for storage."
+
+[barrel_castle_wars]
+id = 36325
+examine = "A barrel full of swords..."
+
+[barrel_castle_wars_2]
+id = 36326
+examine = "A barrel full of staves..."
+
+[scoreboard_castle_wars]
+id = 4484
+examine = "Keep track of which team has the most victories."
+
+[viewing_orb_castle_wars]
+id = 18497
+examine = "To have a nosey on a battle."
+
+[saradomin_portal_castle_wars]
+id = 4387
+examine = "A portal to join the Saradomin team."
+
+[guthix_portal_castle_wars]
+id = 4408
+examine = "A portal to join a random team."
+
+[zamorak_portal_castle_wars]
+id = 4388
+examine = "A portal to join the Zamorak team."
+
+[rock_castle_wars]
+id = 19131
+examine = "A big rock."

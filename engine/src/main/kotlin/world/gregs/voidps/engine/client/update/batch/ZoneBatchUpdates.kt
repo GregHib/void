@@ -104,17 +104,15 @@ object ZoneBatchUpdates : Runnable {
             if (!inViewport(viewport, zone)) {
                 continue
             }
-            val entered = !previous.contains(zone)
-            if (entered) { // Clear and resend raw data for newly entered areas
+            if (!previous.contains(zone)) { // Clear and resend raw data for newly entered areas, which already includes this tick's updates
                 player.clearZone(zone)
                 for (sender in senders) {
                     sender.send(player, zone)
                 }
+                continue
             }
             val updates = batches[zone.id]?.filter { it.private && it.visible(player.name) } ?: continue
-            if (!entered) { // Send batched updates for current regions
-                player.sendBatch(zone)
-            }
+            player.sendBatch(zone) // Send batched updates for current regions
             if (updates.isNotEmpty()) { // Individual updates are relative to the client's active zone
                 player.updateZone(zone)
             }

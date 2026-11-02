@@ -1,0 +1,39 @@
+[ogre_coffin_jiggig]
+id = 6848
+examine = "An old crude tomb."
+
+[ogre_coffin_jiggig_2]
+id = 36714
+examine = "An old crude tomb."
+
+[ogre_fire_jiggig]
+id = 6866
+examine = "Hot stuff."
+
+[barricade_jiggig]
+id = 6857
+examine = "A barricade made from skulls and bones."
+
+[barricade_jiggig_2]
+id = 6858
+examine = "A barricade made from skulls and bones."
+
+[barricade_jiggig_3]
+id = 6856
+examine = "A barricade made from skulls and bones."
+
+[barricade_jiggig_4]
+id = 6880
+examine = "A barricade made of skulls and bones."
+
+[ogre_drums_jiggig]
+id = 6867
+examine = "Ogres bang these to make noise."
+
+[ogre_drums_jiggig_2]
+id = 6868
+examine = "Ogres bang these to make noise."
+
+[standing_torch_jiggig]
+id = 6896
+examine = "A crude torch stuck in the ground."

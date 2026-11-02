@@ -13,12 +13,6 @@ import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
 
 fun Player.friend(other: Player) = this != other && friends.contains(other.accountName)
 
-val Settings.world: Int
-    get() = this["world.id", 16]
-
-val Settings.worldName: String
-    get() = this["world.name", "World 16"]
-
 fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit
 
 fun Player.updateFriend(friend: AccountDefinition) {

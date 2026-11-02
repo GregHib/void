@@ -1,3 +1,39 @@
 [ikov_trapdoor]
 id = 100
 examine = "Don't you open that trapdoor!"
+
+[workbench_clock_tower]
+id = 609
+examine = "A handy workbench for a handy person."
+
+[blue_clock_spindle_clock_tower]
+id = 28
+examine = "Seems to be some kind of clock part."
+
+[black_clock_spindle_clock_tower]
+id = 26
+examine = "Seems to be some kind of clock part."
+
+[white_clock_spindle_clock_tower]
+id = 27
+examine = "Seems to be some kind of clock part."
+
+[red_clock_spindle_clock_tower]
+id = 29
+examine = "Seems to be some kind of clock part."
+
+[table_clock_tower]
+id = 594
+examine = "A nice sturdy looking table."
+
+[cave_entrance_clock_tower]
+id = 2852
+examine = "I can probably squeeze my way inside there."
+
+[door_clock_tower]
+id = 37738
+examine = "The door is boarded shut."
+
+[bush_clock_tower]
+id = 1120
+examine = "An unusual bush."

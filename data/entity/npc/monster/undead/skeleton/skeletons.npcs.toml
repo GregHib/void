@@ -123,6 +123,7 @@ drop_table = "skeleton"
 
 [skeleton_sword_shield_45]
 clone = "skeleton_axe_shield_85"
+hunt_mode = "cowardly"
 id = 93
 hitpoints = 590
 att = 32

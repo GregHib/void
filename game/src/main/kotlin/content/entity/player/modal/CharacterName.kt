@@ -1,7 +1,5 @@
 package content.entity.player.modal
 
-import content.social.friend.nameTaken
-import content.social.friend.rename
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
@@ -9,6 +7,8 @@ import world.gregs.voidps.engine.data.definition.DisplayNames
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.nameTaken
+import world.gregs.voidps.engine.entity.character.player.rename
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pauseString
 

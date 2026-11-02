@@ -106,10 +106,16 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         saveQueue = SaveQueue(storage, scope = TestScope())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")), mutableMapOf("accountname" to "name"))
         accounts = mockk(relaxed = true)
-        every { accounts.create(any(), any()) } answers {
+        // Mirrors AccountManager.create: an explicit display name, otherwise a placeholder for email accounts
+        every { accounts.create(any(), any(), any()) } answers {
             Player(tile = Tile.EMPTY, accountName = firstArg(), passwordHash = secondArg()).apply {
-                this["display_name"] = "Bob"
-                this["choose_name"] = true
+                val displayName = thirdArg<String?>()
+                if (displayName != null) {
+                    this["display_name"] = displayName
+                } else if ('@' in accountName) {
+                    this["display_name"] = "Bob"
+                    this["choose_name"] = true
+                }
             }
         }
         loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
@@ -177,6 +183,51 @@ internal class PlayerAccountLoaderTest : KoinMock() {
 
         assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.create(Registration("bob@example.com", "other", "localhost")))
         assertEquals("hash", saved["bob@example.com"]?.password)
+    }
+
+    @Test
+    fun `Username create uses the name as display name`() = runTest {
+        val response = loader.create("Bob", "hash", displayName = null, hostname = "localhost")
+
+        assertEquals(RegistrationResponse.SUCCESS, response)
+        val save = saved["bob"]
+        assertNotNull(save)
+        assertEquals("Bob", save.name)
+        assertNull(save.variables["display_name"])
+        assertNull(save.variables["choose_name"])
+        assertEquals("Bob", definitions.get("bob")?.accountName)
+        assertEquals("Bob", definitions.getByAccount("bob")?.displayName)
+    }
+
+    @Test
+    fun `Email create with explicit display name skips choosing`() = runTest {
+        val response = loader.create("Bob@Example.com", "hash", displayName = "Bobcat", hostname = "localhost")
+
+        assertEquals(RegistrationResponse.SUCCESS, response)
+        val save = saved["bob@example.com"]
+        assertNotNull(save)
+        assertEquals("bob@example.com", save.name)
+        assertEquals("Bobcat", save.variables["display_name"])
+        assertNull(save.variables["choose_name"])
+        assertEquals("bob@example.com", definitions.get("Bobcat")?.accountName)
+    }
+
+    @Test
+    fun `Direct create ignores the client registration setting`() = runTest {
+        Settings.load(mapOf("accounts.registration" to "false"))
+
+        assertEquals(RegistrationResponse.SUCCESS, loader.create("Bob", "hash", displayName = null, hostname = "localhost"))
+    }
+
+    @Test
+    fun `Create rejected when display name is taken`() = runTest {
+        definitions.merge(mapOf("other" to AccountDefinition("other", "Bobcat", "", "hash")), emptyMap()) { false }
+
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.create("bob@example.com", "hash", displayName = "bobcat", hostname = "localhost"))
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.create("Bobcat", "hash", displayName = null, hostname = "localhost"))
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.create("bob@example.com", "hash", displayName = "Other", hostname = "localhost"))
+        assertTrue(saved.isEmpty())
+        assertNull(definitions.getByAccount("bob@example.com"))
     }
 
     @Test
