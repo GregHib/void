@@ -3,12 +3,14 @@
 package content.bot.owned
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inPvp
 import content.area.wilderness.inWilderness
 import content.area.wilderness.wildernessLevel
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.behaviour.Behaviour
+import content.bot.behaviour.BotGameWorld
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotEscape
@@ -30,8 +32,10 @@ import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.bot
 import content.bot.isBot
+import content.entity.combat.attacker
 import content.entity.combat.attacking
 import content.entity.combat.target
+import content.entity.combat.underAttack
 import content.entity.player.bank.BankDeposit
 import content.entity.player.bank.bank
 import content.entity.player.bank.isNote
@@ -46,6 +50,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.equip.Equipping
 import content.entity.player.inv.item.addOrDrop
+import content.skill.melee.weapon.fightStyle
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -667,6 +672,10 @@ class OwnedBots(
             owner.message("::bot attack <slot|all> <npc index>  (the client plugin's Attack with entry)")
             return
         }
+        if (npc.dead) {
+            owner.message("${npc.def(bot.player).name} is already dead.")
+            return
+        }
         if (npc.def(bot.player).options.indexOf("Attack") == -1) {
             owner.message("${npc.def(bot.player).name} can't be attacked.")
             return
@@ -675,11 +684,22 @@ class OwnedBots(
             owner.message("${bot.player.name} won't fight in a player-versus-player area.")
             return
         }
-        if (npc.tile.distanceTo(bot.player.tile) > ATTACK_RANGE) {
-            owner.message("${bot.player.name} is too far from that target.")
+        val player = bot.player
+        if (npc.tile.distanceTo(player.tile) > ATTACK_RANGE) {
+            owner.message("${player.name} is too far from that target.")
             return
         }
-        bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
+        // the same checks BotFightNpc makes before picking a target, so an order that can't be carried out is refused now
+        val attacker = npc.attacker
+        if (npc.underAttack && attacker != null && attacker !== player && !(player.inMultiCombat && npc.inMultiCombat)) {
+            owner.message("${npc.def(player).name} is already fighting someone else.")
+            return
+        }
+        if (!world.canReach(player, npc) && (player.fightStyle == "melee" || !world.canSee(player, npc))) {
+            owner.message("${player.name} can't get at that target from here.")
+            return
+        }
+        player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
         val resume = resumeAfter(bot)
         val activity = OwnedProfiles.build(owner, bot, slot, ATTACK_PREFIX, listOf(BotOwnedAttack(npc.index), BotOwnedResume()), assist = false, timeout = ATTACK_TIMEOUT)
         order(owner, bot, activity, null, OwnedBotStatus.Fighting, "Attacking ${npc.def(bot.player).name}!")
@@ -1553,10 +1573,15 @@ class OwnedBots(
         const val GOTO_RANGE = 30
         const val ATTACK_RANGE = 30
 
-        /** Ticks a walk, a pick-up or a fight gets before the order is given up as failed (a target it can't reach). */
+        /** Ticks a walk or a pick-up gets before the order is given up as failed. */
         const val GOTO_TIMEOUT = 100
         const val PICKUP_TIMEOUT = 50
+
+        /** A backstop for a fight (reachability is checked when the order is given): five minutes on one target. */
         const val ATTACK_TIMEOUT = 500
+
+        /** Reachability and line of sight, as the world bots see them. */
+        private val world = BotGameWorld()
 
         /** No teleport out of a lost fight: run to the nearest bank and stand down. */
         val FLEE = BotActivity("owned_flee", timeout = 500, actions = listOf(BotGoToNearest("bank"), BotWait(5)))

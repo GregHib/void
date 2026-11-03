@@ -133,6 +133,23 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `An attack order on a dead npc is refused at once`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(103, 100))
+        cow.levels.set(Skill.Constitution, 0)
+        tickIf(limit = 20) { !cow.dead }
+
+        owner.command("bot follow 1")
+        tick(2)
+        owner.command("bot attack 1 ${cow.index}")
+        tick()
+
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "still following: nothing to attack, got ${bot.bot.pinned}")
+    }
+
+    @Test
     fun `A bot picks up the item its owner points at`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
