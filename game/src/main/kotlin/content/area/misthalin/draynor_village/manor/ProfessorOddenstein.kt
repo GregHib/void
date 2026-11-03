@@ -112,7 +112,10 @@ class ProfessorOddenstein : Script {
                 }
                 return true
             }
-            "parts" -> return restoreErnest(professor)
+            "parts" -> {
+                restoreErnest(professor)
+                return true
+            }
             "restored" -> {
                 finishErnest()
                 return true
@@ -163,17 +166,17 @@ class ProfessorOddenstein : Script {
     }
 
     /** Cache varp 32 selects the chicken at 0-2, human Ernest at 3, and neither at 4. */
-    private suspend fun Player.restoreErnest(professor: NPC): Boolean {
+    private suspend fun Player.restoreErnest(professor: NPC) {
         if (professor.hasClock("ernest_machine")) {
             message("The professor is busy with the machine. Please wait a moment.")
-            return true
+            return
         }
         if (!get("ernest_parts_returned", false)) {
             npc<Neutral>("Have you found anything yet?")
             val missing = listOf("pressure_gauge", "rubber_tube", "oil_can").filterNot { inventory.contains(it) }
             if (missing.isNotEmpty()) {
                 reportErnestParts(missing)
-                return true
+                return
             }
             player<Neutral>("I have everything!")
             npc<Neutral>("Give 'em here then.")
@@ -183,7 +186,7 @@ class ProfessorOddenstein : Script {
                     }
                 }
             ) {
-                return true
+                return
             }
             // Remember the hand-in before any further dialogue can be dismissed or the player logs out.
             set("ernest_parts_returned", true)
@@ -192,10 +195,10 @@ class ProfessorOddenstein : Script {
         npc<Neutral>("Let's get this fixed then.")
         if (professor.hasClock("ernest_machine")) {
             message("The professor is busy with the machine. Please wait a moment.")
-            return true
+            return
         }
-        val chicken = NPCs.findOrNull(professor.tile.regionLevel, "chicken_draynor") ?: return true
-        val ernest = NPCs.findOrNull(professor.tile.regionLevel, "ernest") ?: return true
+        val chicken = NPCs.findOrNull(professor.tile.regionLevel, "chicken_draynor") ?: return
+        val ernest = NPCs.findOrNull(professor.tile.regionLevel, "ernest") ?: return
         // A standard expiring clock also releases the machine if the player logs out mid-sequence.
         professor.start("ernest_machine", 40)
         val machine = Tile(3112, 3367, 2)
@@ -208,7 +211,7 @@ class ProfessorOddenstein : Script {
         if (professor.tile != machineSide) {
             professor.stop("ernest_machine")
             message("The professor can't reach the machine. Please try again.")
-            return true
+            return
         }
         professor.face(machine)
         professor.anim("take")
@@ -236,7 +239,6 @@ class ProfessorOddenstein : Script {
         ernest.face(this)
         professor.stop("ernest_machine")
         finishErnest()
-        return true
     }
 
     private suspend fun Player.finishErnest() {
