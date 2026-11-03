@@ -33,7 +33,11 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  */
 object OwnedProfiles {
 
-    fun build(owner: Player, bot: Bot, slot: Int): BotActivity {
+    /**
+     * The bot's combat behaviour around [actions] (following the owner by default; waiting in place for a hold; one
+     * attack for an attack order, without [assist], so it keeps to its target), as the profile and knobs say.
+     */
+    fun build(owner: Player, bot: Bot, slot: Int, id: String = OwnedBots.FOLLOW_PREFIX, actions: List<BotAction> = listOf(BotFollowOwner()), assist: Boolean = true, timeout: Int = Int.MAX_VALUE): BotActivity {
         val player = bot.player
         val profile = OwnedRoster.profile(owner, slot)
         val knobs = OwnedRoster.knobs(owner, slot)
@@ -77,11 +81,13 @@ object OwnedProfiles {
             val worn = player.equipped(EquipSlot.Weapon).id
             reactive.add(BotSpecAttack(weapon = spec, fallback = if (worn.isBlank() || worn == spec) spec else worn, condition = fighting))
         }
-        reactive.add(BotAssistOwner())
+        if (assist) {
+            reactive.add(BotAssistOwner())
+        }
         return BotActivity(
-            id = "owned_follow:${player.accountName}",
-            timeout = Int.MAX_VALUE,
-            actions = listOf(BotFollowOwner()),
+            id = id + player.accountName,
+            timeout = timeout,
+            actions = actions,
             reactive = reactive,
         )
     }

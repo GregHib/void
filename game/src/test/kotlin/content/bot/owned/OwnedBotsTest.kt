@@ -92,6 +92,59 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot sent to a tile walks there and holds`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+
+        owner.command("bot goto 1 106 100")
+        tickIf(limit = 40) { bot.tile != Tile(106, 100) }
+
+        assertEquals(Tile(106, 100), bot.tile)
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Holding.ordinal }
+        assertEquals(OwnedBotStatus.Holding.ordinal, bot["owned_status", -1], "holds where it was sent")
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX))
+
+        // The owner walks off: a holding bot stays put
+        owner.tele(Tile(112, 100))
+        tick(10)
+        assertEquals(Tile(106, 100), bot.tile)
+    }
+
+    @Test
+    fun `A bot attacks the npc its owner points at then goes back to following`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(103, 100))
+        owner.command("bot follow 1")
+        tick(2)
+
+        owner.command("bot attack 1 ${cow.index}")
+        tickIf(limit = 20) { !bot.attacking }
+        assertSame(cow, bot.target)
+        assertEquals(OwnedBotStatus.Fighting.ordinal, bot["owned_status", -1])
+
+        cow.levels.set(Skill.Constitution, 0)
+        tickIf(limit = 30) { !cow.dead }
+        tickIf(limit = 30) { !bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX) }
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "back to following once the target is dead")
+    }
+
+    @Test
+    fun `A bot picks up the item its owner points at`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        createFloorItem("logs", Tile(104, 100))
+
+        owner.command("bot pickup 1 104 100 logs")
+        tickIf(limit = 30) { !bot.inventory.contains("logs") }
+
+        assertTrue(bot.inventory.contains("logs"))
+    }
+
+    @Test
     fun `An amount of all gives or takes the whole stack`() = runTest {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody")

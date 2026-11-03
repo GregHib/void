@@ -13,13 +13,18 @@ import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotFollowOwner
 import content.bot.behaviour.action.BotGoToNearest
+import content.bot.behaviour.action.BotInteractFloorItem
 import content.bot.behaviour.action.BotOpenBank
+import content.bot.behaviour.action.BotOwnedAttack
 import content.bot.behaviour.action.BotOwnedBankTrip
 import content.bot.behaviour.action.BotOwnedErrand
+import content.bot.behaviour.action.BotOwnedGoTo
+import content.bot.behaviour.action.BotOwnedResume
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotCombatLevel
 import content.bot.behaviour.condition.BotMembers
+import content.bot.behaviour.condition.BotOwnedCarrying
 import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.bot
@@ -65,6 +70,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
@@ -72,6 +78,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -85,6 +92,7 @@ import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 import kotlin.coroutines.resume
 
 /**
@@ -296,6 +304,10 @@ class OwnedBots(
             "task" -> withSlot(owner, rest) { assignTask(owner, it, rest.getOrNull(1)) }
             "follow" -> forSlots(owner, rest) { follow(owner, it) }
             "stop" -> forSlots(owner, rest) { stop(owner, it) }
+            "hold" -> forSlots(owner, rest) { hold(owner, it) }
+            "goto" -> forSlots(owner, rest) { goTo(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
+            "attack" -> forSlots(owner, rest) { attack(owner, it, rest.getOrNull(1)) }
+            "pickup" -> withSlot(owner, rest) { pickUp(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "combat" -> withSlot(owner, rest) { combat(owner, it, rest.drop(1)) }
             "aggression" -> withSlot(owner, rest) { aggression(owner, it, rest.getOrNull(1)) }
             "equip" -> withSlot(owner, rest) { equip(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
@@ -314,7 +326,8 @@ class OwnedBots(
     }
 
     private fun help(owner: Player) {
-        owner.message("::bot summon|dismiss|call|follow|stop <slot|all>  ::bot task <slot> <task>  ::bot tasks")
+        owner.message("::bot summon|dismiss|call|follow|stop|hold <slot|all>  ::bot task <slot> <task>  ::bot tasks")
+        owner.message("::bot goto <slot|all> <x> <y>  ::bot attack <slot|all> <npc index>  ::bot pickup <slot> <x> <y> <item>")
         owner.message("::bot equip <slot> <item> [bank]  ::bot unequip <slot> <weapon|shield|...>  ::bot bank <slot>")
         owner.message("::bot give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
         owner.message("::bot item <slot> <inventory slot> <option>  ::bot use <slot> <inventory slot> <inventory slot>  (slots from 0)")
@@ -599,6 +612,109 @@ class OwnedBots(
     private fun stop(owner: Player, slot: Int) {
         val bot = requireBot(owner, slot) ?: return
         order(owner, bot, IDLE, null, OwnedBotStatus.Idle, "Standing by.")
+    }
+
+    /** The bot keeps its place but fights as a follower would: defends itself and, by its aggression, the owner. */
+    private fun hold(owner: Player, slot: Int) {
+        val bot = requireBot(owner, slot) ?: return
+        bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
+        order(owner, bot, holdActivity(owner, bot, slot), null, OwnedBotStatus.Holding, "Holding here.")
+    }
+
+    private fun holdActivity(owner: Player, bot: Bot, slot: Int): BotActivity = OwnedProfiles.build(owner, bot, slot, HOLD_PREFIX, listOf(BotWait(10)))
+
+    /**
+     * What a one-off order (go somewhere, attack, pick up) goes back to when done: the follow or hold the bot had,
+     * else standing by.
+     */
+    private fun resumeAfter(bot: Bot): BotActivity {
+        val current = bot.pinnedActivity
+        return if (current != null && (current.id.startsWith(FOLLOW_PREFIX) || current.id.startsWith(HOLD_PREFIX))) current else IDLE
+    }
+
+    /** The bot walks to the tile the owner pointed at and holds there. */
+    private fun goTo(owner: Player, slot: Int, x: String?, y: String?) {
+        val bot = requireBot(owner, slot) ?: return
+        val tileX = x?.toIntOrNull()
+        val tileY = y?.toIntOrNull()
+        if (tileX == null || tileY == null) {
+            owner.message("::bot goto <slot|all> <x> <y>")
+            return
+        }
+        val tile = Tile(tileX, tileY, owner.tile.level)
+        if (tile.distanceTo(owner.tile) > GOTO_RANGE) {
+            owner.message("${bot.player.name} can only be sent somewhere near you.")
+            return
+        }
+        if (owner.inPvp || owner.inWilderness) {
+            owner.message("${bot.player.name} won't go into a player-versus-player area.")
+            return
+        }
+        bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
+        val hold = holdActivity(owner, bot, slot)
+        val activity = OwnedProfiles.build(owner, bot, slot, GOTO_PREFIX, listOf(BotOwnedGoTo(tile.x, tile.y), BotOwnedResume()), timeout = GOTO_TIMEOUT)
+        order(owner, bot, activity, null, OwnedBotStatus.Working, "On my way.")
+        bot.player["owned_resume"] = hold
+    }
+
+    /** The bot attacks the npc the owner pointed at (by index), then goes back to what it was doing. */
+    private fun attack(owner: Player, slot: Int, index: String?) {
+        val bot = requireBot(owner, slot) ?: return
+        val npc = index?.toIntOrNull()?.let { NPCs.indexed(it) }
+        if (npc == null) {
+            owner.message("::bot attack <slot|all> <npc index>  (the client plugin's Attack with entry)")
+            return
+        }
+        if (npc.def(bot.player).options.indexOf("Attack") == -1) {
+            owner.message("${npc.def(bot.player).name} can't be attacked.")
+            return
+        }
+        if (npc.inPvp || npc.inWilderness || owner.inPvp || owner.inWilderness) {
+            owner.message("${bot.player.name} won't fight in a player-versus-player area.")
+            return
+        }
+        if (npc.tile.distanceTo(bot.player.tile) > ATTACK_RANGE) {
+            owner.message("${bot.player.name} is too far from that target.")
+            return
+        }
+        bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
+        val resume = resumeAfter(bot)
+        val activity = OwnedProfiles.build(owner, bot, slot, ATTACK_PREFIX, listOf(BotOwnedAttack(npc.index), BotOwnedResume()), assist = false)
+        order(owner, bot, activity, null, OwnedBotStatus.Fighting, "Attacking ${npc.def(bot.player).name}!")
+        bot.player["owned_resume"] = resume
+    }
+
+    /** The bot walks to a floor item the owner pointed at and takes it, then goes back to what it was doing. */
+    private fun pickUp(owner: Player, slot: Int, x: String?, y: String?, item: String?) {
+        val bot = requireBot(owner, slot) ?: return
+        val tileX = x?.toIntOrNull()
+        val tileY = y?.toIntOrNull()
+        val id = item?.let { itemId(it) }
+        if (tileX == null || tileY == null || id == null) {
+            owner.message("::bot pickup <slot> <x> <y> <item>")
+            return
+        }
+        val tile = Tile(tileX, tileY, owner.tile.level)
+        val floorItem = FloorItems.at(tile).firstOrNull { it.id == id && (it.owner == null || it.owner == bot.player.name) }
+        if (floorItem == null) {
+            owner.message("${bot.player.name} can't see ${id.toItemName()} there (an item you dropped stays yours alone for a minute).")
+            return
+        }
+        if (tile.distanceTo(bot.player.tile) > ATTACK_RANGE) {
+            owner.message("${bot.player.name} is too far from that item.")
+            return
+        }
+        if (bot.player.inventory.isFull() && !(floorItem.def.stackable == 1 && bot.player.inventory.contains(id))) {
+            owner.message("${bot.player.name} has no room for it.")
+            return
+        }
+        val resume = resumeAfter(bot)
+        // done once the count went up (the interaction takes a walk and a tick or two); given up after a while
+        val taken = BotOwnedCarrying(id, bot.player.inventory.count(id) + 1)
+        val pickup = BotInteractFloorItem("Take", id, delay = 2, success = taken, radius = 1, x = tile.x, y = tile.y)
+        val activity = OwnedProfiles.build(owner, bot, slot, PICKUP_PREFIX, listOf(pickup, BotOwnedResume()), timeout = PICKUP_TIMEOUT)
+        order(owner, bot, activity, null, OwnedBotStatus.Working, "Picking that up.")
+        bot.player["owned_resume"] = resume
     }
 
     private fun call(owner: Player, slot: Int) {
@@ -1184,6 +1300,8 @@ class OwnedBots(
             bot.pinned?.startsWith(ERRAND_PREFIX) == true -> OwnedBotStatus.Banking
             bot.frames.any { it.behaviour.id in OwnedResolvers.ids && it.behaviour.id != "go_to_area" } -> OwnedBotStatus.Banking
             following(bot) -> if (bot.player.attacking) OwnedBotStatus.Fighting else OwnedBotStatus.Following
+            bot.pinned?.startsWith(HOLD_PREFIX) == true -> if (bot.player.attacking) OwnedBotStatus.Fighting else OwnedBotStatus.Holding
+            bot.pinned?.startsWith(ATTACK_PREFIX) == true -> OwnedBotStatus.Fighting
             else -> OwnedBotStatus.Working
         }
         if (status != current) {
@@ -1382,7 +1500,7 @@ class OwnedBots(
         /** Sent by the plugin in `::bot ui`; not typeable in the chat box or console. */
         const val HANDSHAKE = '\u0001'
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "hold", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
         val KNOBS = setOf("spec", "eat", "flee", "warn", "escape")
 
@@ -1399,6 +1517,18 @@ class OwnedBots(
 
         /** Ids of the per-bot follow activities built by [OwnedProfiles]. */
         const val FOLLOW_PREFIX = "owned_follow:"
+        const val HOLD_PREFIX = "owned_hold:"
+        const val GOTO_PREFIX = "owned_goto:"
+        const val ATTACK_PREFIX = "owned_attack:"
+        const val PICKUP_PREFIX = "owned_pickup:"
+
+        /** How far from the owner a bot can be sent, and how far from the bot a target or an item can be. */
+        const val GOTO_RANGE = 30
+        const val ATTACK_RANGE = 30
+
+        /** Ticks a walk or a pick-up gets before the order is given up as failed. */
+        const val GOTO_TIMEOUT = 100
+        const val PICKUP_TIMEOUT = 50
 
         /** No teleport out of a lost fight: run to the nearest bank and stand down. */
         val FLEE = BotActivity("owned_flee", timeout = 500, actions = listOf(BotGoToNearest("bank"), BotWait(5)))
