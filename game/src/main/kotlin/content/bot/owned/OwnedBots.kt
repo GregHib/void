@@ -104,7 +104,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.coroutines.resume
 
 /**
- * Player-owned bots: up to four bots a player hires from the Adventurers in the general stores. Each is a world bot ([Bot] on a
+ * Player-owned bots: up to four bots a player hires from the Adventurers in the Servants' Guild. Each is a world bot ([Bot] on a
  * [DummyClient]) that mirrors its owner's stats and variables, shares the owner's bank, and only ever does
  * what the owner orders through `::bot` commands: a task from `owned.tasks.toml`, following (and, by
  * aggression, fighting beside) the owner, or standing by. The 634 client's plugin drives the same commands
@@ -229,17 +229,12 @@ class OwnedBots(
             hire(this, target)
         }
 
-        // Each stands for one slot, the slots of a store's four taken in spawn order: seen only by players with that
+        // Each stands for one slot, the slots of a hall's four taken in spawn order: seen only by players with that
         // slot free, and by no one when bots are off here
         npcSpawn("adventurer") {
-            val slot = NPCs.count { it !== this && it.id == id && it.tile.within(tile, STORE_RADIUS) }
+            val slot = NPCs.count { it !== this && it.id == id && it.tile.within(tile, HALL_RADIUS) }
             this["slot"] = slot
             visibleTo = { player -> enabled() && !player.isBot && slot < OwnedRoster.slots() && !OwnedRoster.alive(player, slot) }
-        }
-
-        // They wait where they stand; the cache has them wandering
-        npcDefaultMode("adventurer") {
-            EmptyMode
         }
     }
 
@@ -397,7 +392,7 @@ class OwnedBots(
         for (slot in 0 until OwnedRoster.slots()) {
             val name = OwnedRoster.name(owner, slot)
             val line = when {
-                name == null -> "empty (hire an Adventurer in a general store for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
+                name == null -> "empty (hire an Adventurer at the Servants' Guild for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
                 !OwnedRoster.alive(owner, slot) -> "$name - dead (hire another for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
                 else -> {
                     val bot = bot(owner, slot)
@@ -433,7 +428,7 @@ class OwnedBots(
     private fun summon(owner: Player, slot: Int) {
         val name = OwnedRoster.name(owner, slot)
         if (name == null || !OwnedRoster.alive(owner, slot)) {
-            owner.message("You don't have a bot in slot ${slot + 1}. Adventurers for hire wait in the general stores.")
+            owner.message("You don't have a bot in slot ${slot + 1}. Adventurers for hire wait at the Servants' Guild in East Ardougne.")
             return
         }
         if (bot(owner, slot) != null) {
@@ -1559,8 +1554,8 @@ class OwnedBots(
         /** Ticks an errand may take without progress before it is given up (a long walk to a bank). */
         const val ERRAND_TIMEOUT = 1500
 
-        /** How far apart two general stores' Adventurers are at least: the four of one store count as one store's. */
-        private const val STORE_RADIUS = 12
+        /** How far apart two halls' Adventurers are at least: the four of one hall count as one hall's. */
+        private const val HALL_RADIUS = 12
 
         /** The hidden player option the owner uses to reach a bot for give/take/equip. */
         const val TRANSFER = "Bot items"

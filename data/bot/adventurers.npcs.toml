@@ -1,10 +1,11 @@
 # Adventurers for hire: a player's owned bots are hired from them (content/bot/owned/OwnedBots.kt). The cache gives
-# the model and the name the client shows: 1512 is the cache's "Adventurer", an armoured human with a cape. The four in
-# a store each stand for one slot, in the order they are spawned (the spawn file lists them a store at a time): a
-# player sees one only while its slot is free, so the one they hire is gone for them and back once that bot dies,
-# while everyone else goes on seeing it.
+# the model and the name the client shows: 1512 is the cache's "Adventurer", an armoured human with a cape. The four
+# in the Servants' Guild each stand for one slot, in the order they are spawned: a player sees one only while its
+# slot is free, so the one they hire is gone for them and back once that bot dies, while everyone else goes on
+# seeing it. They wander a few tiles about the hall.
 [adventurer]
 id = 1512
 categories = ["human"]
 collision = "indoors"
 examine = "Looking for work."
+range = 4

@@ -1,7 +1,7 @@
 # Player-owned bots
 
-Players hire up to four bots from the Adventurers standing in the general stores (Lumbridge, Varrock, Falador,
-Al Kharid, Edgeville). Each of a store's four Adventurers stands for one slot (in spawn order) and is seen only by players with that slot free: the one
+Players hire up to four bots from the Adventurers in the Servants' Guild, East Ardougne, where the game's hired
+help is hired. Each of the four stands for one slot (in spawn order) and is seen only by players with that slot free: the one
 you hire is gone for you until that bot dies, while everyone else still sees it (`NPC.visibleTo`). A newly hired bot carries a
 new player's starter items. A bot is a world bot
 (`content/bot`) on a `DummyClient` that mirrors its owner's skills and variables and whose bank *is* the
