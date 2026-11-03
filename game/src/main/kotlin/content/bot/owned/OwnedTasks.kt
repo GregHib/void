@@ -142,9 +142,10 @@ class OwnedTasks {
         if (id in hidden || id.startsWith("owned")) {
             return null
         }
-        // the last skill listed is the end product's: chopping then fletching is a fletching task
-        val skill = activity.produces.lastOrNull { it.startsWith("skill:") }?.removePrefix("skill:") ?: return null
+        // the last skill listed is the end product's: chopping then fletching is a fletching task; an item with no
+        // skill at all (picking flax) is gathering
         val product = activity.product ?: return null
+        val skill = activity.produces.lastOrNull { it.startsWith("skill:") }?.removePrefix("skill:") ?: GATHERING
         if (skill in COMBAT) {
             return null
         }
@@ -177,7 +178,10 @@ class OwnedTasks {
 
     companion object {
         /** The order skills are listed in, those not here after, alphabetically. */
-        val SKILLS = listOf("woodcutting", "mining", "fishing", "cooking", "smithing", "fletching", "crafting", "thieving", "firemaking", "herblore", "runecrafting", "hunter", "farming", "agility")
+        val SKILLS = listOf("woodcutting", "mining", "fishing", "cooking", "smithing", "fletching", "crafting", "thieving", "firemaking", "herblore", "runecrafting", "hunter", "farming", "agility", GATHERING)
+
+        /** The "skill" of an activity that ends with an item but trains none: picking flax. */
+        const val GATHERING = "gathering"
         private val COMBAT = setOf("attack", "strength", "defence", "constitution", "ranged", "magic", "prayer", "summoning", "slayer")
     }
 }

@@ -72,7 +72,7 @@ switches to it for its special when it carries or wears one, and the tag is iner
   autocast the same way, and a melee bot with 94 Magic and the runes keeps Vengeance up (`BotOwnedVengeance`,
   which opens the lunar book for it). Nothing of the owner's spellbook is mirrored.
 - **Task catalogue** (`OwnedTasks`): found, not listed. Every world-bot activity whose `produces` has an item and a
-  non-combat skill is a task, grouped by that skill and by the folder of its area's file; `owned.tasks.toml` only
+  non-combat skill, or an item alone (picking flax: "gathering"), is a task, grouped by that skill and by the folder of its area's file; `owned.tasks.toml` only
   names folders (`[locations]`), picks the verb a skill's labels start with (`[verbs]`) and tunes single
   activities (`label`, `location`, `hidden`). The skill is the last one an activity lists (chop-and-fletch is
   fletching), same-thing-same-place patches collapse to one task that remembers them all, the order sending the bot to

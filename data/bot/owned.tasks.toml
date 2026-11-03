@@ -1,7 +1,7 @@
 # Tunes the task catalogue owned bots can be given (content/bot/owned/OwnedTasks.kt). The catalogue itself is found:
 # every world-bot activity from a *.bots.toml file that ends with an item (a product and a non-combat skill in its
-# `produces`) is a task, grouped by that skill and by the area folder it is in, so an activity added anywhere is a
-# task at once. The bot loops it, banking at the nearest bank between trips, until told to stop.
+# `produces`, or a product alone, which is "gathering") is a task, grouped by that skill and by the area folder it is
+# in, so an activity added anywhere is a task at once. The bot loops it, banking at the nearest bank between trips, until told to stop.
 #
 # [locations] names an area folder as the plugin shows it (else the folder's words, capitalised).
 # [verbs] is the word a skill's labels start with (else the skill's name), before the product's name.
@@ -28,6 +28,7 @@ herblore = "Make"
 runecrafting = "Craft"
 hunter = "Catch"
 farming = "Grow"
+gathering = "Pick"
 
 [lumbridge_smelt_bronze_bars]
 label = "Smelt bronze bars"

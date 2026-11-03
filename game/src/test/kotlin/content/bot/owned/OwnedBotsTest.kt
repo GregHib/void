@@ -1210,6 +1210,10 @@ internal class OwnedBotsTest : WorldTest() {
         assertEquals("Fish lobster", tasks.get("fishing_guild_north_lobster_fishing")!!.label, "no 'raw'")
         assertEquals("Smith bronze dagger", tasks.get("lumbridge_smith_bronze_dagger")!!.label)
         assertEquals("Smelt bronze bars", tasks.get("lumbridge_smelt_bronze_bars")!!.label)
+        val flax = tasks.get("seers_village_flax_picking")!!
+        assertEquals(OwnedTasks.GATHERING, flax.skill, "an item with no skill is gathering")
+        assertEquals("Pick flax", flax.label)
+        assertEquals("gathering", tasks.all.last().skill, "gathering after the skills")
     }
 
     @Test
