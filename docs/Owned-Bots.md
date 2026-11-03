@@ -66,7 +66,8 @@ switches to it for its special when it carries or wears one, and the tag is iner
 - **Recovery** after a flight (`OwnedBots.recover`, status Recovering): eat what it carries, nearest bank
   (`BotOwnedRecover`: the preset last loaded with `::companion loadout load` goes back on, then food from the
   owner's bank, the preset's or the bank's best), eat to full, prayer at the nearest `altar`-tagged area
-  (`BotOwnedPrayAltar`, the Lumbridge church), then back to its orders: a task carries on, following and
+  (`BotOwnedPrayAltar`: the Lumbridge, Varrock, Seers' Village, Port Sarim and Ardougne churches, the Ardougne
+  and Edgeville monasteries; the trip needs a navigation-graph node inside the area, which only Lumbridge has yet), then back to its orders: a task carries on, following and
   guarding both come back as following (`BotFollowOwner` recalls it to the owner). A recovery that fails
   (no bank reachable) goes straight back to the orders with a message.
 - **Leaving the world**: `sweep` deposits everything worn and carried into the owner's bank (overflow to the
