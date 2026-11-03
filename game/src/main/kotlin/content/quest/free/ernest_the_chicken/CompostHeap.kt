@@ -1,6 +1,6 @@
 package content.quest.free.ernest_the_chicken
 
-import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,12 +13,10 @@ class CompostHeap : Script {
 
         itemOnObjectOperate("spade", "ernest_compost") { searchCompost() }
 
-        itemOption("Dig", "spade") { dig() }
-    }
-
-    private suspend fun Player.dig() {
-        if (tile.level == 0 && tile.x in 3083..3086 && tile.y in 3359..3362) {
-            searchCompost()
+        itemOption("Dig", "spade") {
+            if (tile.level == 0 && tile.x in 3083..3086 && tile.y in 3359..3362) {
+                searchCompost()
+            }
         }
     }
 
@@ -27,7 +25,7 @@ class CompostHeap : Script {
             message("You need a spade to search the compost heap properly.")
             return
         }
-        if (inventory.contains("grimy_key") || bank.contains("grimy_key")) {
+        if (ownsItem("grimy_key")) {
             message("You have already found the key.")
             return
         }

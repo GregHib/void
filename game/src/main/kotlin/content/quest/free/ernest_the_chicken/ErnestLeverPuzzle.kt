@@ -19,7 +19,10 @@ class ErnestLeverPuzzle : Script {
 
         objectOperate("Pull", "ernest_lever_*") { (target) -> pullLever(target) }
 
-        objectOperate("Inspect", "ernest_lever_*") { (target) -> inspectLever(target) }
+        objectOperate("Inspect", "ernest_lever_*") { (target) ->
+            val index = target.id.removePrefix("ernest_lever_").first() - 'a'
+            message("The lever is ${if (get("ernest_levers", 0) and (1 shl (index + 1)) != 0) "up" else "down"}.")
+        }
 
         objectOperate("Open", "ernest_puzzle_door_*") { (target) -> passErnestDoor(target) }
 
@@ -32,7 +35,11 @@ class ErnestLeverPuzzle : Script {
 
         objTeleportLand("Climb-down", "ernest_cellar_ladder_down") { _, _ -> setErnestPuzzle(0) }
 
-        objTeleportLand("Climb-up", "basic_ladder_up") { target, _ -> leaveCellar(target) }
+        objTeleportLand("Climb-up", "basic_ladder_up") { target, _ ->
+            if (target.tile == Tile(3117, 9754)) {
+                setErnestPuzzle(0)
+            }
+        }
 
         takeable("oil_can") { item, telegrab -> takeOilCan(item, telegrab) }
     }
@@ -46,17 +53,6 @@ class ErnestLeverPuzzle : Script {
         setErnestPuzzle(mask)
         message("You pull lever ${'A' + index} ${if (raised) "up" else "down"}.")
         message("You hear a clunk.")
-    }
-
-    private fun Player.inspectLever(target: GameObject) {
-        val index = target.id.removePrefix("ernest_lever_").first() - 'a'
-        message("The lever is ${if (get("ernest_levers", 0) and (1 shl (index + 1)) != 0) "up" else "down"}.")
-    }
-
-    private fun Player.leaveCellar(target: GameObject) {
-        if (target.tile == Tile(3117, 9754)) {
-            setErnestPuzzle(0)
-        }
     }
 
     private fun Player.takeOilCan(item: FloorItem, telegrab: Boolean): String? {
