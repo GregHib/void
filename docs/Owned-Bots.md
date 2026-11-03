@@ -10,7 +10,7 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ## Commands
 
 ```
-::bot summon|dismiss|call|follow|stop|hold <slot|all>   ::bot task <slot> <task>   ::bot tasks
+::bot summon|dismiss|call|follow|stop|guard <slot|all>   ::bot task <slot> <task>   ::bot tasks
 ::bot goto <slot|all> <x> <y>   ::bot attack <slot|all> <npc index>   ::bot pickup <slot> <x> <y> <item>
 ::bot equip <slot> <item> [bank]   ::bot unequip <slot> <weapon|shield|...>   ::bot bank <slot>
 ::bot give|take <slot> <item> [amount|all] [bank]   ::bot item <slot> <inventory slot> <option>   ::bot use <slot> <from> <to>
@@ -29,7 +29,7 @@ shared by all the owner's bots, `owned_loadouts`) are worn by the same errand; w
 the world (`owned_bot_<slot>_worn`) is put back on at the next summon. A summoned or called bot appears on a free
 tile beside the owner and follows. A held bot keeps its place but fights as a follower would. `goto`, `attack`
 and `pickup` are one-off orders (the plugin's "Send here", "Attack with" and "Pick up with" entries): the bot
-goes back to following or holding when done (`BotOwnedResume`). A bot only picks up what it can see: an item
+goes back to following or guarding when done (`BotOwnedResume`). A bot only picks up what it can see: an item
 the owner dropped stays the owner's alone for its first minute. `spec` tags a bot's special attack weapon: it
 switches to it for its special when it carries or wears one, and the tag is inert until it does.
 

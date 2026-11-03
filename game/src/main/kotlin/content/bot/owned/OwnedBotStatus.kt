@@ -14,5 +14,5 @@ enum class OwnedBotStatus {
     Fled,
     Failed,
     Dead,
-    Holding,
+    Guarding,
 }

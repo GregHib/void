@@ -310,7 +310,7 @@ class OwnedBots(
             "task" -> withSlot(owner, rest) { assignTask(owner, it, rest.getOrNull(1)) }
             "follow" -> forSlots(owner, rest) { follow(owner, it) }
             "stop" -> forSlots(owner, rest) { stop(owner, it) }
-            "hold" -> forSlots(owner, rest) { hold(owner, it) }
+            "guard", "hold" -> forSlots(owner, rest) { hold(owner, it) }
             "goto" -> forSlots(owner, rest) { goTo(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "attack" -> forSlots(owner, rest) { attack(owner, it, rest.getOrNull(1)) }
             "pickup" -> withSlot(owner, rest) { pickUp(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
@@ -333,7 +333,7 @@ class OwnedBots(
     }
 
     private fun help(owner: Player) {
-        owner.message("::bot summon|dismiss|call|follow|stop|hold <slot|all>  ::bot task <slot> <task>  ::bot tasks")
+        owner.message("::bot summon|dismiss|call|follow|stop|guard <slot|all>  ::bot task <slot> <task>  ::bot tasks")
         owner.message("::bot goto <slot|all> <x> <y>  ::bot attack <slot|all> <npc index>  ::bot pickup <slot> <x> <y> <item>")
         owner.message("::bot equip <slot> <item> [bank]  ::bot unequip <slot> <weapon|shield|...>  ::bot bank <slot>")
         owner.message("::bot give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
@@ -621,11 +621,11 @@ class OwnedBots(
         order(owner, bot, IDLE, null, OwnedBotStatus.Idle, "Standing by.")
     }
 
-    /** The bot keeps its place but fights as a follower would: defends itself and, by its aggression, the owner. */
+    /** Guard (`hold` is the old name): the bot keeps its place but fights as a follower would: defends itself and, by its aggression, the owner. */
     private fun hold(owner: Player, slot: Int) {
         val bot = requireBot(owner, slot) ?: return
         bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
-        order(owner, bot, holdActivity(owner, bot, slot), null, OwnedBotStatus.Holding, "Holding here.")
+        order(owner, bot, holdActivity(owner, bot, slot), null, OwnedBotStatus.Guarding, "Guarding here.")
     }
 
     private fun holdActivity(owner: Player, bot: Bot, slot: Int): BotActivity = OwnedProfiles.build(owner, bot, slot, HOLD_PREFIX, listOf(BotWait(10)))
@@ -1347,7 +1347,7 @@ class OwnedBots(
             bot.pinned?.startsWith(ERRAND_PREFIX) == true -> OwnedBotStatus.Banking
             bot.frames.any { it.behaviour.id in OwnedResolvers.ids && it.behaviour.id != "go_to_area" } -> OwnedBotStatus.Banking
             following(bot) -> if (bot.player.attacking) OwnedBotStatus.Fighting else OwnedBotStatus.Following
-            bot.pinned?.startsWith(HOLD_PREFIX) == true -> if (bot.player.attacking) OwnedBotStatus.Fighting else OwnedBotStatus.Holding
+            bot.pinned?.startsWith(HOLD_PREFIX) == true -> if (bot.player.attacking) OwnedBotStatus.Fighting else OwnedBotStatus.Guarding
             bot.pinned?.startsWith(ATTACK_PREFIX) == true -> OwnedBotStatus.Fighting
             else -> OwnedBotStatus.Working
         }
@@ -1547,7 +1547,7 @@ class OwnedBots(
         /** Sent by the plugin in `::bot ui`; not typeable in the chat box or console. */
         const val HANDSHAKE = '\u0001'
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "hold", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
         val KNOBS = setOf("spec", "eat", "flee", "warn", "escape")
 
