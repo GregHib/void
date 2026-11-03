@@ -1,11 +1,15 @@
 # Player-owned bots
 
+Players know them as **companions**: the command is `::companion` (`::bot` and `::recruit` do the same), the
+client plugin is "Companions", and chat lines about one begin `[Companion n]`. The code keeps the "owned bot"
+names.
+
 Players hire up to four bots from the Adventurers in the Servants' Guild, East Ardougne, where the game's hired
 help is hired. Each of the four stands for one slot (in spawn order) and is seen only by players with that slot free: the one
 you hire is gone for you until that bot dies, while everyone else still sees it (`NPC.visibleTo`). A newly hired bot carries a
 new player's starter items. A bot is a world bot
 (`content/bot`) on a `DummyClient` that mirrors its owner's skills and variables and whose bank *is* the
-owner's bank. It only ever does what the owner orders through `::bot` commands; the 634 client's Owned Bots
+owner's bank. It only ever does what the owner orders through `::companion` commands; the 634 client's Owned Bots
 plugin drives the same commands and reads the state the server shows it in client variables.
 
 Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` block in `game.properties`.
@@ -13,14 +17,14 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ## Commands
 
 ```
-::bot summon|dismiss|call|follow|stop|guard <slot|all>   ::bot task <slot> <task>   ::bot tasks
-::bot goto <slot|all> <x> <y>   ::bot attack <slot|all> <npc index>   ::bot pickup <slot> <x> <y> <item>
-::bot equip <slot> <item> [bank]   ::bot unequip <slot> <weapon|shield|...>   ::bot bank <slot>
-::bot give|take <slot> <item> [amount|all] [bank]   ::bot item <slot> <inventory slot> <option>   ::bot use <slot> <from> <to>
-::bot combat <slot> passive|melee|ranged|mage [spec=item eat=40 flee=25 warn=40 escape=item]   ::bot spec <slot|all> <item>|none
-::bot aggression <slot> passive|aggressive   ::bot loot <slot> on|off   ::bot rename <slot> <name>
-::bot loadout save <name> [slot]|wear <slot> <name>|list|delete <name>
-::bot status   ::bot show <slot>   ::bot help
+::companion summon|dismiss|call|follow|stop|guard <slot|all>   ::companion task <slot> <task>   ::companion tasks
+::companion goto <slot|all> <x> <y>   ::companion attack <slot|all> <npc index>   ::companion pickup <slot> <x> <y> <item>
+::companion equip <slot> <item> [bank]   ::companion unequip <slot> <weapon|shield|...>   ::companion bank <slot>
+::companion give|take <slot> <item> [amount|all] [bank]   ::companion item <slot> <inventory slot> <option>   ::companion use <slot> <from> <to>
+::companion combat <slot> passive|melee|ranged|mage [spec=item eat=40 flee=25 warn=40 escape=item]   ::companion spec <slot|all> <item>|none
+::companion aggression <slot> passive|aggressive   ::companion loot <slot> on|off   ::companion rename <slot> <name>
+::companion loadout save <name> [slot]|wear <slot> <name>|list|delete <name>
+::companion status   ::companion show <slot>   ::companion help
 ::owned_bots list|inspect <player>|dismiss <player> <slot>|refund <player> <slot>   (admin)
 ```
 
@@ -68,9 +72,9 @@ switches to it for its special when it carries or wears one, and the tag is iner
 ## Client variables
 
 `data/bot/owned.varcs.toml`: `owned_bots_meta` (2000) then 50 ints a slot from 2001. Ints only (the Void
-client does not extend varcstrings). Sent only after the plugin's handshake `::bot ui <\u0001><api version>`,
+client does not extend varcstrings). Sent only after the plugin's handshake `::companion ui <\u0001><api version>`,
 a control character no chat box can type, so a vanilla client never receives ids past its tables. The
-plugin also reads `::bot tasks` lines (`[BotTasks] index|id|label`) and `[Bot n]` chat lines.
+plugin also reads `::companion tasks` lines (`[BotTasks] index|id|label`) and `[Bot n]` chat lines.
 
 ## Tests
 

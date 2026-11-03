@@ -106,7 +106,7 @@ import kotlin.coroutines.resume
 /**
  * Player-owned bots: up to four bots a player hires from the Adventurers in the Servants' Guild. Each is a world bot ([Bot] on a
  * [DummyClient]) that mirrors its owner's stats and variables, shares the owner's bank, and only ever does
- * what the owner orders through `::bot` commands: a task from `owned.tasks.toml`, following (and, by
+ * what the owner orders through `::companion` commands: a task from `owned.tasks.toml`, following (and, by
  * aggression, fighting beside) the owner, or standing by. The 634 client's plugin drives the same commands
  * and reads the bot state the server shows it through client variables ([OwnedBotVarcs]).
  *
@@ -127,8 +127,11 @@ class OwnedBots(
     init {
         manager.failListener = ::failed
 
-        playerCommand("bot", stringArg("action", autofill = ACTIONS), *varArgs("args"), desc = "Manage your owned bots; ::bot help lists the actions") { args ->
-            command(this, args)
+        // ::companion is the name players see; ::companion (the plugin's) and ::recruit do the same
+        for (name in COMMANDS) {
+            playerCommand(name, stringArg("action", autofill = ACTIONS), *varArgs("args"), desc = "Manage your companions; ::companion help lists the actions") { args ->
+                command(this, args)
+            }
         }
 
         adminCommand("owned_bots", stringArg("action", optional = true, autofill = setOf("list", "inspect", "dismiss", "refund", "grant")), stringArg("player", optional = true), intArg("slot", optional = true), stringArg("name", optional = true), desc = "List, inspect, dismiss, refund or grant player-owned bots") { args ->
@@ -240,7 +243,7 @@ class OwnedBots(
 
     // ---- hiring ------------------------------------------------------------------------------------------
 
-    /** An Adventurer in a general store, one for each slot: hired for that slot's price, they go off with the player. */
+    /** An Adventurer in the Servants' Guild, one for each slot: recruited for that slot's price, they go off with the player. */
     private suspend fun hire(player: Player, adventurer: NPC) {
         if (!enabled() || player.isBot) {
             player.npc<Neutral>("Just passing through.")
@@ -257,12 +260,12 @@ class OwnedBots(
             if (again) "Lost one of your crew? I'll take their place for ${price.toDigitGroupString()} coins." else "Looking for work, I am. ${price.toDigitGroupString()} coins and I'm yours: I'll fight at your side, gather whatever you point me at, and bank the lot.",
         )
         player.choice {
-            option("Hire (${price.toDigitGroupString()} coins)") {
+            option("Recruit (${price.toDigitGroupString()} coins)") {
                 purchase(player, slot, price)
             }
             option<Neutral>("What would you do for me?") {
-                player.npc<Neutral>("Whatever you tell me: I fight and work as well as you do, keep what I gather in your bank, and answer to ::bot commands. Hire me once and I'm yours for life; if I die, that's that.")
-                player.npc<Neutral>("${OwnedRoster.slots()} of us at most, ${OwnedRoster.price(0).toDigitGroupString()} coins each. Say ::bot help once you've hired one of us.")
+                player.npc<Neutral>("Whatever you tell me: I fight and work as well as you do, keep what I gather in your bank, and answer to ::companion commands. Recruit me once and I'm yours for life; if I die, that's that.")
+                player.npc<Neutral>("${OwnedRoster.slots()} of us at most, ${OwnedRoster.price(0).toDigitGroupString()} coins each. Say ::companion help once you've recruited one of us.")
             }
             option<Neutral>("Not today.")
         }
@@ -285,7 +288,7 @@ class OwnedBots(
             return
         }
         OwnedRoster.purchase(player, slot, name)
-        player.npc<Happy>("$name it is. Lead on! Say ::bot summon ${slot + 1} whenever you want me beside you.")
+        player.npc<Happy>("$name it is. Lead on! Say ::companion summon ${slot + 1} whenever you want me beside you.")
         // Off with the player: the slot is taken now, so they see this one no more (its visibility, set at spawn)
         summon(player, slot)
     }
@@ -294,7 +297,7 @@ class OwnedBots(
 
     private suspend fun command(owner: Player, args: List<String>) {
         if (!enabled()) {
-            owner.message("Player-owned bots aren't available on this world.")
+            owner.message("Companions aren't available on this world.")
             return
         }
         if (owner.isBot) {
@@ -335,20 +338,20 @@ class OwnedBots(
     }
 
     private fun help(owner: Player) {
-        owner.message("::bot summon|dismiss|call|follow|stop|guard <slot|all>  ::bot task <slot> <task>  ::bot tasks")
-        owner.message("::bot goto <slot|all> <x> <y>  ::bot attack <slot|all> <npc index>  ::bot pickup <slot> <x> <y> <item>")
-        owner.message("::bot equip <slot> <item> [bank]  ::bot unequip <slot> <weapon|shield|...>  ::bot bank <slot>")
-        owner.message("::bot give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
-        owner.message("::bot item <slot> <inventory slot> <option>  ::bot use <slot> <inventory slot> <inventory slot>  (slots from 0)")
-        owner.message("::bot combat <slot> <profile> [spec=item eat=40 flee=25]  ::bot spec <slot|all> <item>|none")
-        owner.message("::bot aggression <slot> passive|aggressive  ::bot loot <slot> on|off  ::bot rename <slot> <name>  ::bot status|show <slot>")
-        owner.message("::bot loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
+        owner.message("::companion summon|dismiss|call|follow|stop|guard <slot|all>  ::companion task <slot> <task>  ::companion tasks")
+        owner.message("::companion goto <slot|all> <x> <y>  ::companion attack <slot|all> <npc index>  ::companion pickup <slot> <x> <y> <item>")
+        owner.message("::companion equip <slot> <item> [bank]  ::companion unequip <slot> <weapon|shield|...>  ::companion bank <slot>")
+        owner.message("::companion give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the companion goes to a booth)")
+        owner.message("::companion item <slot> <inventory slot> <option>  ::companion use <slot> <inventory slot> <inventory slot>  (slots from 0)")
+        owner.message("::companion combat <slot> <profile> [spec=item eat=40 flee=25]  ::companion spec <slot|all> <item>|none")
+        owner.message("::companion aggression <slot> passive|aggressive  ::companion loot <slot> on|off  ::companion rename <slot> <name>  ::companion status|show <slot>")
+        owner.message("::companion loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
     }
 
     private inline fun withSlot(owner: Player, rest: List<String>, block: (Int) -> Unit) {
         val slot = OwnedRoster.parseSlot(rest.getOrNull(0))
         if (slot == null) {
-            owner.message("Which bot? Use a slot number from 1 to ${OwnedRoster.slots()}.")
+            owner.message("Which companion? Use a slot number from 1 to ${OwnedRoster.slots()}.")
             return
         }
         block(slot)
@@ -374,7 +377,7 @@ class OwnedBots(
         // The plugin sends a control character no chat box can type, so a vanilla client never opts itself
         // into client variables its tables don't have.
         if (token == null || token.firstOrNull() != HANDSHAKE) {
-            owner.message("The bot panel needs the 634 client's Owned Bots plugin.")
+            owner.message("The companion panel needs the 634 client's Companions plugin.")
             return
         }
         owner["bot_ui"] = true
@@ -382,7 +385,7 @@ class OwnedBots(
     }
 
     private fun listTasks(owner: Player) {
-        owner.message("[BotTasks] ${tasks.all.size} tasks: ::bot task <slot> <task>")
+        owner.message("[BotTasks] ${tasks.all.size} tasks: ::companion task <slot> <task>")
         for (task in tasks.all) {
             owner.message("[BotTasks] ${task.index}|${task.id}|${task.label}")
         }
@@ -392,12 +395,12 @@ class OwnedBots(
         for (slot in 0 until OwnedRoster.slots()) {
             val name = OwnedRoster.name(owner, slot)
             val line = when {
-                name == null -> "empty (hire an Adventurer at the Servants' Guild for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
-                !OwnedRoster.alive(owner, slot) -> "$name - dead (hire another for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
+                name == null -> "empty (recruit an Adventurer at the Servants' Guild for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
+                !OwnedRoster.alive(owner, slot) -> "$name - dead (recruit another for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
                 else -> {
                     val bot = bot(owner, slot)
                     if (bot == null) {
-                        "$name - away (::bot summon ${slot + 1})"
+                        "$name - away (::companion summon ${slot + 1})"
                     } else {
                         val status = OwnedBotStatus.entries[bot.player["owned_status", OwnedBotStatus.Idle.ordinal]]
                         val task = bot.player.get<String>("owned_task")?.let { tasks.get(it)?.label }
@@ -405,7 +408,7 @@ class OwnedBots(
                     }
                 }
             }
-            owner.message("[Bot ${slot + 1}] $line")
+            owner.message("[Companion ${slot + 1}] $line")
         }
     }
 
@@ -416,11 +419,11 @@ class OwnedBots(
             val item = player.equipment.getOrNull(equip.index) ?: return@mapNotNull null
             if (item.isEmpty()) null else "${equip.name.lowercase()}: ${item.id.toItemName()}${if (item.amount > 1) " x${item.amount}" else ""}"
         }
-        owner.message("[Bot ${slot + 1}] Wearing: ${worn.ifEmpty { listOf("nothing") }.joinToString(", ")}")
+        owner.message("[Companion ${slot + 1}] Wearing: ${worn.ifEmpty { listOf("nothing") }.joinToString(", ")}")
         val carried = player.inventory.items.filter { it.isNotEmpty() }
             .groupBy { it.id }
             .map { (id, items) -> "${id.toItemName()}${items.sumOf { it.amount }.let { if (it > 1) " x$it" else "" }}" }
-        owner.message("[Bot ${slot + 1}] Carrying: ${carried.ifEmpty { listOf("nothing") }.joinToString(", ")}")
+        owner.message("[Companion ${slot + 1}] Carrying: ${carried.ifEmpty { listOf("nothing") }.joinToString(", ")}")
     }
 
     // ---- lifecycle ---------------------------------------------------------------------------------------
@@ -428,7 +431,7 @@ class OwnedBots(
     private fun summon(owner: Player, slot: Int) {
         val name = OwnedRoster.name(owner, slot)
         if (name == null || !OwnedRoster.alive(owner, slot)) {
-            owner.message("You don't have a bot in slot ${slot + 1}. Adventurers for hire wait at the Servants' Guild in East Ardougne.")
+            owner.message("You don't have a companion in slot ${slot + 1}. Adventurers for hire wait at the Servants' Guild in East Ardougne.")
             return
         }
         if (bot(owner, slot) != null) {
@@ -441,11 +444,11 @@ class OwnedBots(
         }
         val total = Settings["bots.owned.total", 0]
         if (total > 0 && liveCount() >= total) {
-            owner.message("Too many bots are out in the world right now. Try again later.")
+            owner.message("Too many companions are out in the world right now. Try again later.")
             return
         }
         if (owner.inPvp || owner.inWilderness) {
-            owner.message("You can't summon a bot here.")
+            owner.message("You can't summon a companion here.")
             return
         }
         owner["owned_bot_${slot}_summoning"] = true
@@ -593,7 +596,7 @@ class OwnedBots(
         val bot = requireBot(owner, slot) ?: return
         val task = id?.let { tasks.get(it.lowercase()) }
         if (task == null) {
-            owner.message("Which task? ::bot tasks lists them.")
+            owner.message("Which task? ::companion tasks lists them.")
             return
         }
         val base = manager.activity(task.activity)
@@ -609,7 +612,7 @@ class OwnedBots(
         // The picker would silently idle a bot that doesn't qualify; say why instead
         val unmet = activity.requires.firstOrNull { !it.check(bot.player) }
         if (unmet != null) {
-            owner.message("[Bot ${slot + 1}] ${bot.player.name} can't do that: ${requirementText(bot.player, unmet)}")
+            owner.message("[Companion ${slot + 1}] ${bot.player.name} can't do that: ${requirementText(bot.player, unmet)}")
             return
         }
         order(owner, bot, activity, task.id, OwnedBotStatus.Working, task.label)
@@ -652,7 +655,7 @@ class OwnedBots(
         val tileX = x?.toIntOrNull()
         val tileY = y?.toIntOrNull()
         if (tileX == null || tileY == null) {
-            owner.message("::bot goto <slot|all> <x> <y>")
+            owner.message("::companion goto <slot|all> <x> <y>")
             return
         }
         val tile = Tile(tileX, tileY, owner.tile.level)
@@ -676,7 +679,7 @@ class OwnedBots(
         val bot = requireBot(owner, slot) ?: return
         val npc = index?.toIntOrNull()?.let { NPCs.indexed(it) }
         if (npc == null) {
-            owner.message("::bot attack <slot|all> <npc index>  (the client plugin's Attack with entry)")
+            owner.message("::companion attack <slot|all> <npc index>  (the client plugin's Attack with entry)")
             return
         }
         if (npc.dead) {
@@ -720,7 +723,7 @@ class OwnedBots(
         val tileY = y?.toIntOrNull()
         val id = item?.let { itemId(it) }
         if (tileX == null || tileY == null || id == null) {
-            owner.message("::bot pickup <slot> <x> <y> <item>")
+            owner.message("::companion pickup <slot> <x> <y> <item>")
             return
         }
         val tile = Tile(tileX, tileY, owner.tile.level)
@@ -796,7 +799,7 @@ class OwnedBots(
             knobs[key] = value.lowercase()
         }
         OwnedRoster.setKnobs(owner, slot, knobs)
-        owner.message("[Bot ${slot + 1}] Combat profile: $profile${if (knobs.isEmpty()) "" else " (${knobs.entries.joinToString { "${it.key}=${it.value}" }})"}")
+        owner.message("[Companion ${slot + 1}] Combat profile: $profile${if (knobs.isEmpty()) "" else " (${knobs.entries.joinToString { "${it.key}=${it.value}" }})"}")
         val bot = bot(owner, slot) ?: return
         if (following(bot)) {
             follow(owner, slot)
@@ -808,18 +811,18 @@ class OwnedBots(
     /** The weapon the bot switches to for its special attack when its energy allows, or none; the bot must carry it. */
     private fun spec(owner: Player, slot: Int, item: String?) {
         val knobs = OwnedRoster.knobs(owner, slot).toMutableMap()
-        val name = OwnedRoster.name(owner, slot) ?: "Bot ${slot + 1}"
+        val name = OwnedRoster.name(owner, slot) ?: "Companion ${slot + 1}"
         if (item.equals("none", ignoreCase = true)) {
             knobs.remove("spec")
-            owner.message("[Bot ${slot + 1}] $name has no special attack weapon.")
+            owner.message("[Companion ${slot + 1}] $name has no special attack weapon.")
         } else {
-            val id = itemId(item) ?: return owner.message("::bot spec <slot|all> <item>|none")
+            val id = itemId(item) ?: return owner.message("::companion spec <slot|all> <item>|none")
             if (ItemDefinitions.get(id)["special", ""].isEmpty()) {
                 owner.message("${id.toItemName().replaceFirstChar { it.uppercase() }} has no special attack.")
                 return
             }
             knobs["spec"] = id
-            owner.message("[Bot ${slot + 1}] $name's special attack weapon: ${id.toItemName()}.")
+            owner.message("[Companion ${slot + 1}] $name's special attack weapon: ${id.toItemName()}.")
         }
         OwnedRoster.setKnobs(owner, slot, knobs)
         val bot = bot(owner, slot) ?: return
@@ -838,7 +841,7 @@ class OwnedBots(
         }
         owner["owned_bot_${slot}_aggression"] = value
         bot(owner, slot)?.player?.set("owned_aggression", value)
-        owner.message("[Bot ${slot + 1}] Aggression: $value")
+        owner.message("[Companion ${slot + 1}] Aggression: $value")
         refresh(owner)
     }
 
@@ -848,20 +851,20 @@ class OwnedBots(
             "on" -> true
             "off" -> false
             else -> {
-                owner.message("::bot loot <slot> on|off")
+                owner.message("::companion loot <slot> on|off")
                 return
             }
         }
         bot.player["owned_loot"] = on
-        owner.message("[Bot ${slot + 1}] Looting ${if (on) "on" else "off"}.")
+        owner.message("[Companion ${slot + 1}] Looting ${if (on) "on" else "off"}.")
     }
 
     private fun rename(owner: Player, slot: Int, name: String?) {
         if (OwnedRoster.name(owner, slot) == null || !OwnedRoster.alive(owner, slot)) {
-            owner.message("You don't have a bot in slot ${slot + 1}.")
+            owner.message("You don't have a companion in slot ${slot + 1}.")
             return
         }
-        val wanted = name?.replace('_', ' ')?.trim() ?: return owner.message("::bot rename <slot> <name>")
+        val wanted = name?.replace('_', ' ')?.trim() ?: return owner.message("::companion rename <slot> <name>")
         val error = OwnedRoster.validateName(wanted, accountDefinitions)
         if (error != null) {
             owner.message(error)
@@ -869,12 +872,12 @@ class OwnedBots(
         }
         val price = OwnedRoster.renamePrice()
         if (!owner.inventory.remove("coins", price)) {
-            owner.message("Renaming a bot costs ${price.toDigitGroupString()} coins, carried.")
+            owner.message("Renaming a companion costs ${price.toDigitGroupString()} coins, carried.")
             return
         }
         owner["owned_bot_${slot}_name"] = wanted
         bot(owner, slot)?.player?.name = wanted
-        owner.message("[Bot ${slot + 1}] Renamed to $wanted.")
+        owner.message("[Companion ${slot + 1}] Renamed to $wanted.")
         refresh(owner)
     }
 
@@ -928,7 +931,7 @@ class OwnedBots(
             owner.message("${player.name} can't wear ${id.toItemName()}.")
             return
         }
-        owner.message("[Bot ${slot + 1}] ${player.name} wears ${id.toItemName()}.")
+        owner.message("[Companion ${slot + 1}] ${player.name} wears ${id.toItemName()}.")
     }
 
     private fun unequip(owner: Player, slot: Int, name: String?) {
@@ -949,7 +952,7 @@ class OwnedBots(
             owner.message("${player.name} has no room to take that off.")
             return
         }
-        owner.message("[Bot ${slot + 1}] ${player.name} takes off ${item.id.toItemName()}.")
+        owner.message("[Companion ${slot + 1}] ${player.name} takes off ${item.id.toItemName()}.")
     }
 
     /**
@@ -1018,7 +1021,7 @@ class OwnedBots(
                     owner.message("No ${id.toItemName()} to give, or ${player.name} has no room.")
                     return@approach
                 }
-                owner.message("[Bot ${slot + 1}] You give ${player.name} ${if (moved > 1) "$moved x " else ""}${id.toItemName()}.")
+                owner.message("[Companion ${slot + 1}] You give ${player.name} ${if (moved > 1) "$moved x " else ""}${id.toItemName()}.")
             }
         }
     }
@@ -1043,7 +1046,7 @@ class OwnedBots(
                     owner.message("You have no room to take ${id.toItemName()} from ${player.name}.")
                     return@approach
                 }
-                owner.message("[Bot ${slot + 1}] You take ${if (moved > 1) "$moved x " else ""}${id.toItemName()} from ${player.name}.")
+                owner.message("[Companion ${slot + 1}] You take ${if (moved > 1) "$moved x " else ""}${id.toItemName()} from ${player.name}.")
             }
         }
     }
@@ -1104,7 +1107,7 @@ class OwnedBots(
                 val source = if (slot == null) owner else (requireBot(owner, slot) ?: return).player
                 val worn = Loadout.capture(source.equipment, source.inventory)
                 if (worn.isEmpty()) {
-                    owner.message(if (slot == null) "You have nothing worn or carried to save." else "That bot has nothing worn or carried to save.")
+                    owner.message(if (slot == null) "You have nothing worn or carried to save." else "That companion has nothing worn or carried to save.")
                     return
                 }
                 if (bareSlot || first == null) {
@@ -1118,8 +1121,8 @@ class OwnedBots(
             }
             "wear", "load" -> withSlot(owner, rest.drop(1)) { slot ->
                 val bot = requireBot(owner, slot) ?: return@withSlot
-                val name = rest.getOrNull(2)?.lowercase() ?: return@withSlot owner.message("::bot loadout wear <slot> <name>")
-                val preset = OwnedLoadouts.get(owner, name) ?: return@withSlot owner.message("No preset called '$name'. ::bot loadout list")
+                val name = rest.getOrNull(2)?.lowercase() ?: return@withSlot owner.message("::companion loadout wear <slot> <name>")
+                val preset = OwnedLoadouts.get(owner, name) ?: return@withSlot owner.message("No preset called '$name'. ::companion loadout list")
                 val orders = load(bot.player, preset)
                 if (orders.isEmpty()) {
                     return@withSlot owner.message("${bot.player.name} already has '$name'.")
@@ -1127,7 +1130,7 @@ class OwnedBots(
                 enqueue(owner, bot, slot, *orders.toTypedArray())
             }
             "delete" -> {
-                val name = rest.getOrNull(1)?.lowercase() ?: return owner.message("::bot loadout delete <name>")
+                val name = rest.getOrNull(1)?.lowercase() ?: return owner.message("::companion loadout delete <name>")
                 owner.message(if (OwnedLoadouts.delete(owner, name)) "Preset '$name' deleted." else "No preset called '$name'.")
                 listLoadouts(owner)
             }
@@ -1151,7 +1154,7 @@ class OwnedBots(
     /** The presets, one line each for the plugin and the owner. */
     private fun listLoadouts(owner: Player) {
         val presets = OwnedLoadouts.all(owner)
-        owner.message("[BotLoadouts] ${presets.size} presets" + if (presets.isEmpty()) ": ::bot loadout save <name>" else "")
+        owner.message("[BotLoadouts] ${presets.size} presets" + if (presets.isEmpty()) ": ::companion loadout save <name>" else "")
         for ((name, loadout) in presets) {
             owner.message("[BotLoadouts] $name|${loadout.describe()}")
         }
@@ -1230,7 +1233,7 @@ class OwnedBots(
         val pending = player.getOrPut("owned_errand") { mutableListOf<BankOrder>() }
         pending.addAll(orders)
         if (bot.pinned?.startsWith(ERRAND_PREFIX) == true) {
-            owner.message("[Bot ${slot + 1}] ${player.name} will also ${orders.joinToString { it.describe() }}.")
+            owner.message("[Companion ${slot + 1}] ${player.name} will also ${orders.joinToString { it.describe() }}.")
             return
         }
         player["owned_resume"] = bot.pinnedActivity ?: IDLE
@@ -1248,7 +1251,7 @@ class OwnedBots(
         bot.pin(activity)
         setStatus(bot, OwnedBotStatus.Banking)
         player.say("Off to the bank.")
-        owner.message("[Bot ${slot + 1}] ${player.name} heads to the bank to ${orders.joinToString { it.describe() }}.")
+        owner.message("[Companion ${slot + 1}] ${player.name} heads to the bank to ${orders.joinToString { it.describe() }}.")
         refresh(owner)
     }
 
@@ -1291,7 +1294,7 @@ class OwnedBots(
             }
             owner.clear("owned_bot_${slot}_items")
             if (count > 0) {
-                notify(owner, slot, "Recovered the items ${OwnedRoster.name(owner, slot) ?: "your bot"} was carrying.")
+                notify(owner, slot, "Recovered the items ${OwnedRoster.name(owner, slot) ?: "your companion"} was carrying.")
             }
         }
     }
@@ -1446,7 +1449,7 @@ class OwnedBots(
     }
 
     private fun notify(owner: Player, slot: Int, text: String) {
-        owner.message("[Bot ${slot + 1}] $text")
+        owner.message("[Companion ${slot + 1}] $text")
     }
 
     // ---- admin -------------------------------------------------------------------------------------------
@@ -1478,18 +1481,18 @@ class OwnedBots(
                     return admin.message("::owned_bots dismiss <player> <slot>")
                 }
                 dismiss(target, slot)
-                admin.message("Dismissed ${target.name}'s bot ${slot + 1}.")
+                admin.message("Dismissed ${target.name}'s companion ${slot + 1}.")
             }
             "refund" -> {
                 if (target == null || slot == null) {
                     return admin.message("::owned_bots refund <player> <slot>")
                 }
                 if (OwnedRoster.name(target, slot) == null) {
-                    return admin.message("${target.name} never had a bot in slot ${slot + 1}.")
+                    return admin.message("${target.name} never had a companion in slot ${slot + 1}.")
                 }
                 target["owned_bot_${slot}_alive"] = true
                 refresh(target)
-                admin.message("${target.name}'s bot ${slot + 1} is alive again.")
+                admin.message("${target.name}'s companion ${slot + 1} is alive again.")
             }
             "grant" -> {
                 val name = args.getOrNull(3)?.replace('_', ' ')
@@ -1497,7 +1500,7 @@ class OwnedBots(
                     return admin.message("::owned_bots grant <player> <slot> <name>")
                 }
                 if (OwnedRoster.alive(target, slot)) {
-                    return admin.message("${target.name} already has a living bot in slot ${slot + 1}.")
+                    return admin.message("${target.name} already has a living companion in slot ${slot + 1}.")
                 }
                 val error = OwnedRoster.validateName(name, accountDefinitions)
                 if (error != null) {
@@ -1529,7 +1532,7 @@ class OwnedBots(
         val bot = bot(owner, slot)
         if (bot == null) {
             val name = OwnedRoster.name(owner, slot)
-            owner.message(if (name == null || !OwnedRoster.alive(owner, slot)) "You don't have a bot in slot ${slot + 1}." else "$name isn't with you. ::bot summon ${slot + 1}")
+            owner.message(if (name == null || !OwnedRoster.alive(owner, slot)) "You don't have a companion in slot ${slot + 1}." else "$name isn't with you. ::companion summon ${slot + 1}")
         }
         return bot
     }
@@ -1558,10 +1561,13 @@ class OwnedBots(
         private const val HALL_RADIUS = 12
 
         /** The hidden player option the owner uses to reach a bot for give/take/equip. */
-        const val TRANSFER = "Bot items"
+        const val TRANSFER = "Companion items"
 
-        /** Sent by the plugin in `::bot ui`; not typeable in the chat box or console. */
+        /** Sent by the plugin in `::companion ui`; not typeable in the chat box or console. */
         const val HANDSHAKE = '\u0001'
+
+        /** The command's names: the one players see first, then the plugin's and a synonym. */
+        val COMMANDS = listOf("companion", "bot", "recruit")
 
         val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
