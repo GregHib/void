@@ -17,6 +17,9 @@ import content.entity.player.bank.bank
 import content.skill.prayer.getActivePrayerVarKey
 import dialogueContinue
 import dialogueOption
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import npcOption
 import org.junit.jupiter.api.BeforeEach
@@ -25,6 +28,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
@@ -44,7 +48,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.EnterName
 import world.gregs.voidps.network.client.instruction.ExecuteCommand
+import world.gregs.voidps.network.login.protocol.encode.zone.GraphicAddition
+import world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import java.util.Properties
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -344,19 +351,20 @@ internal class OwnedBotsTest : WorldTest() {
     fun `A summoned bot appears in a puff of smoke`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
-        owner.command("bot summon 1")
-        val account = OwnedBots.accountName(owner, 0)
-        // the login lands between ticks, so the puff's tick is checked for rather than counted to
-        var seen = false
-        tickIf(limit = 60) {
-            val bot = Players.findByAccount(account)
-            if (bot != null && puffed(bot)) {
-                assertEquals("Reporting for duty, alice.", bot.visuals.say.text)
-                seen = true
-            }
-            !seen
+        mockkObject(ZoneBatchUpdates)
+        try {
+            val bot = summon(owner)
+            val updates = mutableListOf<ZoneUpdate>()
+            verify { ZoneBatchUpdates.add(any<Zone>(), capture(updates)) }
+            val puff = GraphicDefinitions.get("random_event_puff").id
+            // on the tile it lands on, the tick it lands: a player add carries no graphic of its own
+            assertTrue(updates.filterIsInstance<GraphicAddition>().any { it.id == puff && it.tile == bot.tile.id }, "a puff where it appeared: $updates")
+            assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
+            // the greeting the tick after, when the client knows it
+            tickIf(limit = 3) { bot.visuals.say.text != "Reporting for duty, alice." }
+        } finally {
+            unmockkObject(ZoneBatchUpdates)
         }
-        assertTrue(seen)
     }
 
     /** The random events' puff of smoke is on [player], in whichever graphic slot it took. */

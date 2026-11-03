@@ -38,6 +38,7 @@ import content.entity.combat.attacker
 import content.entity.combat.attacking
 import content.entity.combat.target
 import content.entity.combat.underAttack
+import content.entity.gfx.areaGfx
 import content.entity.player.bank.BankDeposit
 import content.entity.player.bank.bank
 import content.entity.player.bank.isNote
@@ -505,6 +506,9 @@ class OwnedBots(
                     }
                     val tile = BotFollowOwner.beside(owner.tile)
                     player.tele(tile.x, tile.y, tile.level)
+                    // The puff on the tile, not on the bot: the client first learns of the bot from this tick's
+                    // update, an add that carries its look but no graphic, while a zone's graphic shows at once
+                    areaGfx("random_event_puff", tile)
                     notify(owner, slot, "$name is ready.")
                     // Falls in behind the owner, and first puts back on whatever it wore last time
                     follow(owner, slot)
@@ -514,10 +518,8 @@ class OwnedBots(
                         enqueue(owner, bot, slot, *dress(player, worn.worn).toTypedArray())
                     }
                     refresh(owner)
-                    // The tick after: the client first learns of the bot from this tick's update, with its look
-                    // but no graphic, and over the orders' own words
-                    World.queue("owned_bot_puff_$account") {
-                        player.gfx("random_event_puff")
+                    // The greeting the tick after, for the same reason, and over the orders' own words
+                    World.queue("owned_bot_greet_$account") {
                         player.say("Reporting for duty, ${owner.name}.")
                     }
                 }
