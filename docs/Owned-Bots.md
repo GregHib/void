@@ -30,7 +30,8 @@ the world (`owned_bot_<slot>_worn`) is put back on at the next summon. A summone
 tile beside the owner and follows. A held bot keeps its place but fights as a follower would. `goto`, `attack`
 and `pickup` are one-off orders (the plugin's "Send here", "Attack with" and "Pick up with" entries): the bot
 goes back to following or holding when done (`BotOwnedResume`). A bot only picks up what it can see: an item
-the owner dropped stays the owner's alone for its first minute.
+the owner dropped stays the owner's alone for its first minute. `spec` tags a bot's special attack weapon: it
+switches to it for its special when it carries or wears one, and the tag is inert until it does.
 
 ## How it works
 
