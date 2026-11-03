@@ -15,13 +15,15 @@ import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotFollowOwner
-import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.action.BotInteractFloorItem
 import content.bot.behaviour.action.BotOpenBank
 import content.bot.behaviour.action.BotOwnedAttack
 import content.bot.behaviour.action.BotOwnedBankTrip
 import content.bot.behaviour.action.BotOwnedErrand
 import content.bot.behaviour.action.BotOwnedGoTo
+import content.bot.behaviour.action.BotOwnedHeal
+import content.bot.behaviour.action.BotOwnedPrayAltar
+import content.bot.behaviour.action.BotOwnedRecover
 import content.bot.behaviour.action.BotOwnedResume
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
@@ -47,10 +49,10 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.nameEntry
 import content.entity.player.dialogue.type.npc
-import content.entity.player.starterItems
 import content.entity.player.dialogue.type.player
 import content.entity.player.equip.Equipping
 import content.entity.player.inv.item.addOrDrop
+import content.entity.player.starterItems
 import content.skill.melee.weapon.fightStyle
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -606,7 +608,7 @@ class OwnedBots(
         }
         // World bots spread by level bands; an owned bot does whatever its owner's levels allow.
         val activity = base.copy(
-            id = "owned:${task.id}",
+            id = TASK_PREFIX + task.id,
             requires = base.requires.map { if (it is BotSkillLevel) it.copy(max = null) else it },
         )
         // The picker would silently idle a bot that doesn't qualify; say why instead
@@ -1123,7 +1125,8 @@ class OwnedBots(
                 val bot = requireBot(owner, slot) ?: return@withSlot
                 val name = rest.getOrNull(2)?.lowercase() ?: return@withSlot owner.message("::companion loadout wear <slot> <name>")
                 val preset = OwnedLoadouts.get(owner, name) ?: return@withSlot owner.message("No preset called '$name'. ::companion loadout list")
-                val orders = load(bot.player, preset)
+                OwnedRoster.setPreset(owner, slot, name)
+                val orders = OwnedLoadouts.orders(bot.player, preset)
                 if (orders.isEmpty()) {
                     return@withSlot owner.message("${bot.player.name} already has '$name'.")
                 }
@@ -1184,40 +1187,6 @@ class OwnedBots(
                 orders.add(BankOrder(BankOrder.Kind.Withdraw, item, 1))
             }
             orders.add(BankOrder(BankOrder.Kind.Equip, item))
-        }
-        return orders
-    }
-
-    /**
-     * The bank orders that give [player] exactly [loadout]: when the carried items differ, bank everything carried
-     * and fetch the set's; take off and bank what the set doesn't wear; withdraw and wear the rest. Empty when
-     * nothing differs.
-     */
-    private fun load(player: Player, loadout: Loadout): List<BankOrder> {
-        val orders = mutableListOf<BankOrder>()
-        val current = Loadout.capture(player.equipment, player.inventory)
-        val rebag = current.carried != loadout.carried
-        if (rebag) {
-            orders.add(BankOrder(BankOrder.Kind.DepositAll))
-        }
-        for ((slot, item) in current.worn) {
-            if (loadout.worn[slot] != item) {
-                orders.add(BankOrder(BankOrder.Kind.TakeOff, slot.name.lowercase()))
-            }
-        }
-        for ((slot, item) in loadout.worn) {
-            if (current.worn[slot] == item) {
-                continue
-            }
-            if (rebag || player.inventory.indexOf(item) == -1) {
-                orders.add(BankOrder(BankOrder.Kind.Withdraw, item, 1))
-            }
-            orders.add(BankOrder(BankOrder.Kind.Equip, item))
-        }
-        if (rebag) {
-            for ((item, amount) in loadout.carried) {
-                orders.add(BankOrder(BankOrder.Kind.Withdraw, item, amount))
-            }
         }
         return orders
     }
@@ -1343,17 +1312,12 @@ class OwnedBots(
     /** Working/banking/following/fighting from what the bot is doing; sticky statuses stay until the next order. */
     private fun derive(bot: Bot) {
         val current = OwnedBotStatus.entries[bot.player["owned_status", OwnedBotStatus.Idle.ordinal]]
-        if (bot.pinned == FLEE.id && bot.lastSuccessful?.id == FLEE.id) {
-            // Reached the bank after fleeing: stand down
-            bot.pin(IDLE)
-            setStatus(bot, OwnedBotStatus.Idle)
-            return
-        }
         if (current in STICKY) {
             return
         }
         val status = when {
             bot.pinned == IDLE.id -> OwnedBotStatus.Idle
+            bot.pinned?.startsWith(RECOVER_PREFIX) == true -> OwnedBotStatus.Recovering
             bot.pinned?.startsWith(ERRAND_PREFIX) == true -> OwnedBotStatus.Banking
             bot.frames.any { it.behaviour.id in OwnedResolvers.ids && it.behaviour.id != "go_to_area" } -> OwnedBotStatus.Banking
             following(bot) -> if (bot.player.attacking) OwnedBotStatus.Fighting else OwnedBotStatus.Following
@@ -1364,6 +1328,44 @@ class OwnedBots(
         if (status != current) {
             setStatus(bot, status)
         }
+    }
+
+    /**
+     * After a flight: the bot eats what it carries, goes to the nearest bank for the preset it last had loaded and
+     * for food, eats to full, recharges its prayer at the nearest altar, then goes back to what it was doing: a
+     * task carries on; following, guarding and one-off orders all become following, so a bot is never left
+     * standing where it fled from.
+     */
+    private fun recover(owner: Player, bot: Bot, slot: Int) {
+        val player = bot.player
+        val current = bot.pinnedActivity
+        val resume = when {
+            current == null || current.id == IDLE.id -> IDLE
+            current.id.startsWith(TASK_PREFIX) -> current
+            else -> OwnedProfiles.build(owner, bot, slot)
+        }
+        if (!resume.id.startsWith(TASK_PREFIX)) {
+            player.clear("owned_task")
+        }
+        player["owned_resume"] = resume
+        val food = BotOwnedHeal.foodIndex(player)
+        if (food == -1) player.clear("owned_flee_food") else player["owned_flee_food"] = player.inventory[food].id
+        bot.pin(
+            BotActivity(
+                id = RECOVER_PREFIX + player.accountName,
+                timeout = RECOVER_TIMEOUT,
+                actions = listOf(BotOwnedHeal(), BotOwnedBankTrip(), BotOpenBank(), BotOwnedRecover(), BotOwnedHeal(), BotOwnedPrayAltar(), BotOwnedResume()),
+            ),
+        )
+        setStatus(bot, OwnedBotStatus.Recovering)
+        notify(owner, slot, "${player.name} is off to the bank to recover, then will ${resumeText(resume)}.")
+        refresh(owner)
+    }
+
+    private fun resumeText(resume: BotActivity): String = when {
+        resume.id.startsWith(TASK_PREFIX) -> "get back to work"
+        resume.id.startsWith(FOLLOW_PREFIX) -> "come back to you"
+        else -> "stand by"
     }
 
     private fun failed(bot: Bot, behaviour: Behaviour, reason: Reason) {
@@ -1394,17 +1396,27 @@ class OwnedBots(
             refresh(owner)
             return
         }
-        if (reason is Reason.Escaped) {
-            // BotEscape has told the owner; with no teleport the bot runs for the nearest bank
-            bot.player.clear("owned_task")
-            setStatus(bot, OwnedBotStatus.Fled)
-            if (bot.player[BotEscape.RUN, false]) {
-                bot.player.clear(BotEscape.RUN)
-                bot.pin(FLEE)
-            } else {
-                bot.pin(IDLE)
-            }
+        if (behaviour.id.startsWith(RECOVER_PREFIX) || bot.pinned?.startsWith(RECOVER_PREFIX) == true) {
+            // Couldn't recover (no bank reachable, timed out): back to its orders as it is
+            val resume = bot.player.get<BotActivity>("owned_resume") ?: IDLE
+            bot.player.clear("owned_resume")
+            bot.pin(resume)
+            notify(
+                owner,
+                slot,
+                "${bot.player.name} couldn't recover: ${when (reason) {
+                    Reason.NoRoute -> "it can't find a way to a bank."
+                    is Reason.Invalid -> reason.message
+                    else -> "it made no progress."
+                }} It will ${resumeText(resume)}.",
+            )
             refresh(owner)
+            return
+        }
+        if (reason is Reason.Escaped) {
+            // BotEscape has told the owner; the bot sorts itself out, then goes back to its orders
+            bot.player.clear(BotEscape.RUN)
+            recover(owner, bot, slot)
             return
         }
         val detail = when (reason) {
@@ -1605,8 +1617,12 @@ class OwnedBots(
         /** Reachability and line of sight, as the world bots see them. */
         private val world = BotGameWorld()
 
-        /** No teleport out of a lost fight: run to the nearest bank and stand down. */
-        val FLEE = BotActivity("owned_flee", timeout = 500, actions = listOf(BotGoToNearest("bank"), BotWait(5)))
+        /** Ids of the per-bot recovery activities after a flight, and the ticks one gets (ten minutes). */
+        const val RECOVER_PREFIX = "owned_recover:"
+        const val RECOVER_TIMEOUT = 1000
+
+        /** Ids of the task activities built from the catalogue. */
+        const val TASK_PREFIX = "owned:"
 
         fun accountName(owner: Player, slot: Int): String = "${owner.accountName}#bot${slot + 1}"
     }

@@ -11,7 +11,6 @@ import content.bot.owned.owner
 import content.entity.combat.inCombat
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow

@@ -7,6 +7,7 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.owned.OwnedBotStatus
 import content.bot.owned.owner
+import content.entity.combat.inCombat
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -23,7 +24,8 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
 /**
- * Reactive: a player-owned bot that is losing a fight warns its owner, then gets out.
+ * Reactive: a player-owned bot that is losing a fight warns its owner, then gets out. Only while fighting
+ * (attacking or under attack): a bot that is merely low walks, eats or recovers instead of fleeing again.
  * - At [warn] percent hitpoints, or out of food below three quarters: one message to the owner.
  * - At [flee] percent, or out of food under half health: teleport home with [item] (an escape item the
  *   owner gave it: jewellery is discharged, a tab is used up), else any carried escape item, else a free
@@ -44,7 +46,8 @@ data class BotEscape(
             return BehaviourState.Success
         }
         val max = player.levels.getMax(Skill.Constitution)
-        if (max <= 0) {
+        if (max <= 0 || !player.inCombat) {
+            // Low out of a fight is for eating and recovering, not fleeing: fleeing again on every recall would loop
             return BehaviourState.Success
         }
         val percent = player.levels.get(Skill.Constitution) * 100 / max

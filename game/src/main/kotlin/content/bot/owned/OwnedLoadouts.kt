@@ -2,6 +2,8 @@ package content.bot.owned
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 /**
@@ -92,6 +94,40 @@ object OwnedLoadouts {
     }
 
     fun get(owner: Player, name: String): Loadout? = all(owner)[name.lowercase()]
+
+    /**
+     * The bank orders that give [player] exactly [loadout]: when the carried items differ, bank everything carried
+     * and fetch the set's; take off and bank what the set doesn't wear; withdraw and wear the rest. Empty when
+     * nothing differs.
+     */
+    fun orders(player: Player, loadout: Loadout): List<BankOrder> {
+        val orders = mutableListOf<BankOrder>()
+        val current = Loadout.capture(player.equipment, player.inventory)
+        val rebag = current.carried != loadout.carried
+        if (rebag) {
+            orders.add(BankOrder(BankOrder.Kind.DepositAll))
+        }
+        for ((slot, item) in current.worn) {
+            if (loadout.worn[slot] != item) {
+                orders.add(BankOrder(BankOrder.Kind.TakeOff, slot.name.lowercase()))
+            }
+        }
+        for ((slot, item) in loadout.worn) {
+            if (current.worn[slot] == item) {
+                continue
+            }
+            if (rebag || player.inventory.indexOf(item) == -1) {
+                orders.add(BankOrder(BankOrder.Kind.Withdraw, item, 1))
+            }
+            orders.add(BankOrder(BankOrder.Kind.Equip, item))
+        }
+        if (rebag) {
+            for ((item, amount) in loadout.carried) {
+                orders.add(BankOrder(BankOrder.Kind.Withdraw, item, amount))
+            }
+        }
+        return orders
+    }
 
     /** Why [name] can't be a preset name, or null. */
     fun validateName(name: String): String? = if (NAME.matches(name)) null else "A preset name is 1 to 12 letters, numbers or underscores, with at least one letter."

@@ -64,6 +64,14 @@ object OwnedRoster {
         owner["owned_bot_${slot}_alive"] = false
         owner.clear("owned_bot_${slot}_items")
         owner.clear("owned_bot_${slot}_worn")
+        owner.clear("owned_bot_${slot}_preset")
+    }
+
+    /** The preset last loaded onto the bot, put back on after a flight; none until one is loaded. */
+    fun preset(owner: Player, slot: Int): String? = owner.get<String>("owned_bot_${slot}_preset")?.takeIf { it.isNotBlank() }
+
+    fun setPreset(owner: Player, slot: Int, name: String?) {
+        if (name == null) owner.clear("owned_bot_${slot}_preset") else owner["owned_bot_${slot}_preset"] = name
     }
 
     /** What the bot wore when it last left the world, to put back on at the next summon. */

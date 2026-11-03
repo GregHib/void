@@ -59,37 +59,40 @@ class BotOwnedErrand : BotAction {
         return BehaviourState.Success
     }
 
-    private fun carryOut(owner: Player, player: Player, order: BankOrder): Boolean = when (order.kind) {
-        BankOrder.Kind.Withdraw -> OwnedBank.withdraw(owner, player.inventory, order.item, order.amount) > 0
-        BankOrder.Kind.Deposit -> {
-            val index = player.inventory.indexOf(order.item)
-            if (index == -1) {
-                false
-            } else {
-                val before = player.inventory.count(order.item)
-                BankDeposit.deposit(owner, player.inventory, player.inventory[index], order.amount, index, check = false)
-                player.inventory.count(order.item) < before
-            }
-        }
-        BankOrder.Kind.DepositAll -> {
-            OwnedBank.depositAll(owner, player.inventory)
-            player.inventory.isEmpty()
-        }
-        BankOrder.Kind.Equip -> {
-            val index = player.inventory.indexOf(order.item)
-            index != -1 && player.hasRequirements(player.inventory[index]) && Equipping.equip(player, player.inventory[index], index)
-        }
-        BankOrder.Kind.TakeOff -> {
-            val slot = EquipSlot.entries.firstOrNull { it.name.equals(order.item, ignoreCase = true) }
-            val worn = slot?.let { player.equipment[it.index] }
-            if (slot == null || worn == null || worn.isEmpty() || !player.equipment.move(slot.index, player.inventory)) {
-                false
-            } else {
-                val index = player.inventory.indexOf(worn.id)
-                if (index != -1) {
-                    BankDeposit.deposit(owner, player.inventory, player.inventory[index], worn.amount, index, check = false)
+    companion object {
+        /** Does one [order] at an open bank; whether it was done. */
+        fun carryOut(owner: Player, player: Player, order: BankOrder): Boolean = when (order.kind) {
+            BankOrder.Kind.Withdraw -> OwnedBank.withdraw(owner, player.inventory, order.item, order.amount) > 0
+            BankOrder.Kind.Deposit -> {
+                val index = player.inventory.indexOf(order.item)
+                if (index == -1) {
+                    false
+                } else {
+                    val before = player.inventory.count(order.item)
+                    BankDeposit.deposit(owner, player.inventory, player.inventory[index], order.amount, index, check = false)
+                    player.inventory.count(order.item) < before
                 }
-                true
+            }
+            BankOrder.Kind.DepositAll -> {
+                OwnedBank.depositAll(owner, player.inventory)
+                player.inventory.isEmpty()
+            }
+            BankOrder.Kind.Equip -> {
+                val index = player.inventory.indexOf(order.item)
+                index != -1 && player.hasRequirements(player.inventory[index]) && Equipping.equip(player, player.inventory[index], index)
+            }
+            BankOrder.Kind.TakeOff -> {
+                val slot = EquipSlot.entries.firstOrNull { it.name.equals(order.item, ignoreCase = true) }
+                val worn = slot?.let { player.equipment[it.index] }
+                if (slot == null || worn == null || worn.isEmpty() || !player.equipment.move(slot.index, player.inventory)) {
+                    false
+                } else {
+                    val index = player.inventory.indexOf(worn.id)
+                    if (index != -1) {
+                        BankDeposit.deposit(owner, player.inventory, player.inventory[index], worn.amount, index, check = false)
+                    }
+                    true
+                }
             }
         }
     }

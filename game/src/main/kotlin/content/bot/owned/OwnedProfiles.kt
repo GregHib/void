@@ -10,9 +10,14 @@ import content.bot.behaviour.action.BotFollowOwner
 import content.bot.behaviour.action.BotPray
 import content.bot.behaviour.action.BotSpecAttack
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.condition.BotAllCondition
+import content.bot.behaviour.condition.BotAnyCondition
 import content.bot.behaviour.condition.BotAttackerStyle
+import content.bot.behaviour.condition.BotCarrying
 import content.bot.behaviour.condition.BotFighting
 import content.bot.behaviour.condition.BotHasClock
+import content.bot.behaviour.condition.BotSkillPercent
+import content.bot.behaviour.condition.BotVariableIn
 import content.skill.prayer.isCurses
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,7 +32,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * told to follow, so prayers and the spec fallback weapon match what the bot has right then.
  *
  * Profiles: `passive` eats and protects only; `melee`, `ranged` and `mage` add the offensive prayers and
- * boosts of that style the bot's prayer level allows.
+ * boosts of that style the bot's prayer level allows. Every profile drinks Saradomin brews for hitpoints, but
+ * only while it carries a super restore to undo the stat drain, and restores after three brews.
  * Knobs: `eat` (heal at this percent, 40), `flee` (escape at this percent, 25), `warn` (warn at this percent,
  * 40), `escape` (item id or prefix* to teleport with), `spec` (special attack weapon carried or worn).
  */
@@ -42,7 +48,12 @@ object OwnedProfiles {
         val profile = OwnedRoster.profile(owner, slot)
         val knobs = OwnedRoster.knobs(owner, slot)
         val reactive = mutableListOf<BotAction>()
-        reactive.add(BotEatFood(knobs.int("eat", 40)))
+        val eat = knobs.int("eat", 40)
+        reactive.add(BotEatFood(eat))
+        // A brew heals but drains the combat stats, so only with a super restore left to undo it: at the eat
+        // threshold, or straight after food for the extra hitpoints
+        val restore = BotCarrying("super_restore_*")
+        reactive.add(BotDrinkPotion("saradomin_brew_*", Skill.Constitution, BotAllCondition(listOf(restore, BotAnyCondition(listOf(BotSkillPercent(Skill.Constitution, maxPercent = eat), BotHasClock("just_ate_food")))))))
         reactive.add(BotEscape(warn = knobs.int("warn", 40), flee = knobs.int("flee", 25), item = knobs["escape"]))
         val curses = player.isCurses()
         val fighting = BotFighting()
@@ -76,6 +87,14 @@ object OwnedProfiles {
             reactive.add(BotDrinkPotion("prayer_potion_*", Skill.Prayer))
             reactive.add(BotDrinkPotion("super_restore_*", Skill.Prayer))
         }
+        // Three brews down, or the profile's stat below a third: a restore puts the stats back
+        val stat = when (profile) {
+            "ranged" -> Skill.Ranged
+            "mage" -> Skill.Magic
+            "melee" -> Skill.Strength
+            else -> Skill.Defence
+        }
+        reactive.add(BotDrinkPotion("super_restore_*", stat, BotAnyCondition(listOf(BotVariableIn("brew_doses_since_restore", 0, min = 3), BotSkillPercent(stat, maxPercent = 30)))))
         val spec = knobs["spec"]
         if (profile != "passive" && spec != null) {
             val worn = player.equipped(EquipSlot.Weapon).id

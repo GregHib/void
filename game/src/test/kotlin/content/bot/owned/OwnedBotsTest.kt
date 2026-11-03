@@ -2,6 +2,7 @@ package content.bot.owned
 
 import WorldTest
 import content.bot.behaviour.action.BotAssistOwner
+import content.bot.behaviour.action.BotDrinkPotion
 import content.bot.behaviour.action.BotEatFood
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotSpecAttack
@@ -18,15 +19,14 @@ import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
-import walk
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -36,6 +36,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.EnterName
 import world.gregs.voidps.network.client.instruction.ExecuteCommand
 import world.gregs.voidps.type.Tile
@@ -739,16 +740,17 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
-    fun `A bot that is nearly dead with no way out runs for a bank`() = runTest {
+    fun `A bot that is nearly dead with no way out runs for a bank to recover`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
         val bot = summon(owner)
         owner.command("bot follow 1")
         tick(2)
 
+        bot.start("under_attack", 50)
         bot.levels.set(Skill.Constitution, 2)
-        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Fled.ordinal }
-        assertEquals(OwnedBots.FLEE.id, bot.bot.pinned)
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.RECOVER_PREFIX), "recovering, not ${bot.bot.pinned}")
         assertNull(bot.get<String>("owned_task"))
     }
 
@@ -761,10 +763,122 @@ internal class OwnedBotsTest : WorldTest() {
         owner.command("bot follow 1")
         tick(2)
 
+        bot.start("under_attack", 50)
         bot.levels.set(Skill.Constitution, 2)
-        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Fled.ordinal }
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
         tickIf(limit = 20) { bot.tile != BotEscape.home() }
-        assertEquals(OwnedBots.IDLE.id, bot.bot.pinned)
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.RECOVER_PREFIX))
+    }
+
+    @Test
+    fun `A bot that is low outside a fight stays with its owner`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tick(2)
+
+        bot.levels.set(Skill.Constitution, 2)
+        tick(10)
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "no fight, no flight: ${bot.bot.pinned}")
+        assertNotEquals(OwnedBotStatus.Recovering.ordinal, bot["owned_status", -1])
+        assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
+    }
+
+    @Test
+    fun `A fled bot eats back to full at the bank and comes back following`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        createObject("bank_booth_classic", Tile(100, 110))
+        owner.bank.add("shark", 10)
+        val bot = summon(owner)
+        owner.command("bot guard 1")
+        tick(2)
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX))
+
+        bot.start("under_attack", 50)
+        bot.levels.set(Skill.Constitution, 2)
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
+        tickIf(limit = 300) { !bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX) }
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "a guard comes back following: ${bot.bot.pinned}")
+        assertEquals(bot.levels.getMax(Skill.Constitution), bot.levels.get(Skill.Constitution), "ate back to full")
+        assertTrue(owner.bank.count("shark") < 10, "the food came from the owner's bank")
+        tickIf(limit = 10) { bot.tile.distanceTo(owner.tile) > 2 }
+        assertTrue(bot.tile.distanceTo(owner.tile) <= 2, "recalled to its owner")
+        assertEquals(OwnedBotStatus.Following.ordinal, bot["owned_status", -1])
+    }
+
+    @Test
+    fun `A fled bot puts its last preset back on and carries on with its task`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        createObject("bank_booth_classic", Tile(100, 104))
+        owner.equipment.set(3, "bronze_sword")
+        owner.bank.add("bronze_sword", 1)
+        owner.bank.add("shark", 8)
+        val bot = summon(owner)
+        owner.command("bot loadout save melee")
+        owner.command("bot loadout load 1 melee")
+        tickIf(limit = 40) { bot.equipment[3].id != "bronze_sword" }
+        assertEquals("melee", OwnedRoster.preset(owner, 0))
+        owner.command("bot follow 1")
+        tick(2)
+        // lost the sword in the fight
+        bot.equipment.clear()
+        owner.bank.add("bronze_sword", 1)
+        bot.bot.pin(bot.bot.pinnedActivity!!.copy(id = OwnedBots.TASK_PREFIX + "test"))
+        bot["owned_task"] = "test"
+
+        bot.start("under_attack", 50)
+        bot.levels.set(Skill.Constitution, 2)
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
+        tickIf(limit = 300) { bot.bot.pinned != OwnedBots.TASK_PREFIX + "test" }
+        assertEquals(OwnedBots.TASK_PREFIX + "test", bot.bot.pinned, "a task carries on")
+        assertEquals("test", bot["owned_task", ""])
+        assertEquals("bronze_sword", bot.equipment[3].id, "the preset is back on")
+        assertEquals(bot.levels.getMax(Skill.Constitution), bot.levels.get(Skill.Constitution))
+    }
+
+    @Test
+    fun `A fled bot recharges its prayer at the church altar`() = runTest {
+        val owner = createPlayer(Tile(3244, 3208), "alice")
+        owner.owns(0, "Woody")
+        createObject("bank_booth_classic", Tile(3246, 3210))
+        createObject("prayer_altar_lumbridge", Tile(3243, 3206))
+        owner.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 43))
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tick(2)
+        bot.levels.set(Skill.Prayer, 0)
+
+        bot.start("under_attack", 50)
+        bot.levels.set(Skill.Constitution, 2)
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
+        tickIf(limit = 300) { !bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX) }
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), bot.bot.pinned)
+        assertEquals(43, bot.levels.get(Skill.Prayer), "prayer recharged at the altar")
+    }
+
+    @Test
+    fun `A bot drinks a brew only while it still has a super restore`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot combat 1 melee")
+        owner.command("bot follow 1")
+        tick()
+        val brew = bot.bot.activity!!.reactive.filterIsInstance<BotDrinkPotion>().first { it.item == "saradomin_brew_*" }
+        bot.levels.set(Skill.Constitution, 3)
+        bot.inventory.add("saradomin_brew_4")
+        assertFalse(brew.condition!!.check(bot), "no restore, no brew")
+        bot.inventory.add("super_restore_4")
+        assertTrue(brew.condition!!.check(bot), "a restore in hand, a brew is fine")
+        bot.levels.set(Skill.Constitution, bot.levels.getMax(Skill.Constitution))
+        assertFalse(brew.condition!!.check(bot), "not when healthy")
+        val restore = bot.bot.activity!!.reactive.filterIsInstance<BotDrinkPotion>().first { it.item == "super_restore_*" && it.skill == Skill.Strength }
+        assertFalse(restore.condition!!.check(bot))
+        bot["brew_doses_since_restore"] = 3
+        assertTrue(restore.condition!!.check(bot), "three brews down, a restore")
     }
 
     @Test

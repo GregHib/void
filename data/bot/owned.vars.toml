@@ -112,3 +112,16 @@ persist = true
 
 [owned_bot_3_worn]
 persist = true
+
+# The preset last loaded onto each bot, put back on when it recovers from a flight
+[owned_bot_0_preset]
+persist = true
+
+[owned_bot_1_preset]
+persist = true
+
+[owned_bot_2_preset]
+persist = true
+
+[owned_bot_3_preset]
+persist = true

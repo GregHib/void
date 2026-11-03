@@ -15,4 +15,5 @@ enum class OwnedBotStatus {
     Failed,
     Dead,
     Guarding,
+    Recovering,
 }

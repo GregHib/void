@@ -58,10 +58,17 @@ switches to it for its special when it carries or wears one, and the tag is iner
   message to the owner.
 - **Combat**: `BotFollowOwner` (Follow option, recall when far or stuck), reactive `BotAssistOwner`
   (aggressive: the owner's target or, in single-way combat, the nearest NPC of the same id; passive: only what
-  attacks the owner in multi-way), the PvP bots' eat/pray/potion/spec reactives, and `BotEscape` (warn, then
-  teleport home with an escape item, a free teleport when `bots.owned.freeEscape` allows one, else run to the
-  nearest bank). Escaping fails the frame with `Reason.Escaped`; `BotManager.failListener` reports every hard
-  failure to the owner and drops the order.
+  attacks the owner in multi-way), the PvP bots' eat/pray/potion/spec reactives (Saradomin brews only while a
+  super restore is carried to undo the stat drain, a restore after three brews), and `BotEscape` (while
+  fighting only: warn, then teleport home with an escape item, a free teleport when `bots.owned.freeEscape`
+  allows one, else run). Escaping fails the frame with `Reason.Escaped`; `BotManager.failListener` reports
+  every hard failure to the owner and drops the order.
+- **Recovery** after a flight (`OwnedBots.recover`, status Recovering): eat what it carries, nearest bank
+  (`BotOwnedRecover`: the preset last loaded with `::companion loadout load` goes back on, then food from the
+  owner's bank, the preset's or the bank's best), eat to full, prayer at the nearest `altar`-tagged area
+  (`BotOwnedPrayAltar`, the Lumbridge church), then back to its orders: a task carries on, following and
+  guarding both come back as following (`BotFollowOwner` recalls it to the owner). A recovery that fails
+  (no bank reachable) goes straight back to the orders with a message.
 - **Leaving the world**: `sweep` deposits everything worn and carried into the owner's bank (overflow to the
   owner's inventory, then the floor), then the bot is removed next tick. Death does the same and kills the slot.
   Every `bots.owned.snapshotTicks` the bot's items are written into the owner's save; an unswept snapshot is
