@@ -345,7 +345,7 @@ class OwnedBots(
         owner.message("::companion equip <slot> <item> [bank]  ::companion unequip <slot> <weapon|shield|...>  ::companion bank <slot>")
         owner.message("::companion give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the companion goes to a booth)")
         owner.message("::companion item <slot> <inventory slot> <option>  ::companion use <slot> <inventory slot> <inventory slot>  (slots from 0)")
-        owner.message("::companion combat <slot> <profile> [spec=item eat=40 flee=25]  ::companion spec <slot|all> <item>|none")
+        owner.message("::companion combat <slot> <profile> [spec=item eat=75 flee=25]  ::companion spec <slot|all> <item>|none")
         owner.message("::companion aggression <slot> passive|aggressive  ::companion loot <slot> on|off  ::companion rename <slot> <name>  ::companion status|show <slot>")
         owner.message("::companion loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
     }

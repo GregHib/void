@@ -34,7 +34,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * Profiles: `passive` eats and protects only; `melee`, `ranged` and `mage` add the offensive prayers and
  * boosts of that style the bot's prayer level allows. Every profile drinks Saradomin brews for hitpoints, but
  * only while it carries a super restore to undo the stat drain, and restores after three brews.
- * Knobs: `eat` (heal at this percent, 40), `flee` (escape at this percent, 25), `warn` (warn at this percent,
+ * Knobs: `eat` (heal at this percent, 75), `flee` (escape at this percent, 25), `warn` (warn at this percent,
  * 40), `escape` (item id or prefix* to teleport with), `spec` (special attack weapon carried or worn).
  */
 object OwnedProfiles {
@@ -48,7 +48,7 @@ object OwnedProfiles {
         val profile = OwnedRoster.profile(owner, slot)
         val knobs = OwnedRoster.knobs(owner, slot)
         val reactive = mutableListOf<BotAction>()
-        val eat = knobs.int("eat", 40)
+        val eat = knobs.int("eat", 75)
         reactive.add(BotEatFood(eat))
         // A brew heals but drains the combat stats, so only with a super restore left to undo it: at the eat
         // threshold, or straight after food for the extra hitpoints

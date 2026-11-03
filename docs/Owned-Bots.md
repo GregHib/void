@@ -21,7 +21,7 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ::companion goto <slot|all> <x> <y>   ::companion attack <slot|all> <npc index>   ::companion pickup <slot> <x> <y> <item>
 ::companion equip <slot> <item> [bank]   ::companion unequip <slot> <weapon|shield|...>   ::companion bank <slot>
 ::companion give|take <slot> <item> [amount|all] [bank]   ::companion item <slot> <inventory slot> <option>   ::companion use <slot> <from> <to>
-::companion combat <slot> passive|melee|ranged|mage [spec=item eat=40 flee=25 warn=40 escape=item]   ::companion spec <slot|all> <item>|none
+::companion combat <slot> passive|melee|ranged|mage [spec=item eat=75 flee=25 warn=40 escape=item]   ::companion spec <slot|all> <item>|none
 ::companion aggression <slot> passive|aggressive   ::companion loot <slot> on|off   ::companion rename <slot> <name>
 ::companion loadout save <name> [slot]|wear <slot> <name>|list|delete <name>
 ::companion status   ::companion show <slot>   ::companion help
