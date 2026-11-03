@@ -34,6 +34,7 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -1097,6 +1098,48 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(owner.bank.count("shark") < 10)
         tickIf(limit = 10) { bot.tile.distanceTo(owner.tile) > 2 }
         assertTrue(bot.tile.distanceTo(owner.tile) <= 2, "recalled to its owner")
+    }
+
+    @Test
+    fun `A bot autocasts the spell its owner picks, or as a mage its owner's own`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.experience.set(Skill.Magic, Level.experience(Skill.Magic, 13))
+        val bot = summon(owner)
+        owner.command("bot ui \u000140")
+        owner.command("bot follow 1")
+        tick(2)
+        val fireStrike = InterfaceDefinitions.getComponent("modern_spellbook", "fire_strike")!!
+
+        owner.command("bot spell 1 fire_bolt")
+        assertEquals(0, bot["autocast", 0], "level 35 needed")
+        owner.command("bot spell 1 fire_strike")
+        assertEquals("fire_strike", OwnedRoster.knobs(owner, 0)["spell"])
+        assertEquals(fireStrike.getOrNull<Int>("cast_id"), bot["autocast", 0])
+        tick(2)
+        assertEquals(fireStrike.getOrNull<Int>("cast_id"), bot["autocast", 0], "kept on")
+        assertEquals(InterfaceDefinitions.getComponentId("modern_spellbook", "fire_strike"), owner["owned_bot_0_status", 0] ushr 8, "shown to the plugin")
+
+        bot.clear("autocast")
+        tick(2)
+        assertEquals(fireStrike.getOrNull<Int>("cast_id"), bot["autocast", 0], "put back when the engine drops it")
+
+        // by the component id, as the plugin sends it; the same spell again clears it
+        owner.command("bot spell 1 ${InterfaceDefinitions.getComponentId("modern_spellbook", "fire_strike")}")
+        assertNull(OwnedRoster.knobs(owner, 0)["spell"])
+        assertEquals(0, bot["autocast", 0])
+
+        // a mage with no pick follows its owner
+        owner.command("bot combat 1 mage")
+        owner.command("bot follow 1")
+        val windStrike = InterfaceDefinitions.getComponent("modern_spellbook", "wind_strike")!!
+        owner["autocast_spell"] = "wind_strike"
+        owner["autocast"] = windStrike.getOrNull<Int>("cast_id")!!
+        tick(2)
+        assertEquals(windStrike.getOrNull<Int>("cast_id"), bot["autocast", 0], "mirrors the owner's autocast")
+        owner.clear("autocast")
+        tick(2)
+        assertEquals(0, bot["autocast", 0], "and lets go with the owner")
     }
 
     @Test

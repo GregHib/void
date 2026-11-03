@@ -26,6 +26,7 @@ import content.bot.behaviour.action.BotOwnedHomeTeleport
 import content.bot.behaviour.action.BotOwnedPrayAltar
 import content.bot.behaviour.action.BotOwnedRecover
 import content.bot.behaviour.action.BotOwnedResume
+import content.bot.behaviour.action.BotOwnedSpell
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotCombatLevel
@@ -55,6 +56,8 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.equip.Equipping
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.starterItems
+import content.skill.magic.spell.SpellRunes
+import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.fightStyle
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -89,6 +92,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -327,6 +331,7 @@ class OwnedBots(
             "pickup" -> withSlot(owner, rest) { pickUp(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "combat" -> withSlot(owner, rest) { combat(owner, it, rest.drop(1)) }
             "spec" -> forSlots(owner, rest) { spec(owner, it, rest.getOrNull(1)) }
+            "spell" -> forSlots(owner, rest) { spell(owner, it, rest.getOrNull(1)) }
             "aggression" -> withSlot(owner, rest) { aggression(owner, it, rest.getOrNull(1)) }
             "equip" -> withSlot(owner, rest) { equip(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "unequip" -> withSlot(owner, rest) { unequip(owner, it, rest.getOrNull(1)) }
@@ -350,6 +355,7 @@ class OwnedBots(
         owner.message("::companion give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the companion goes to a booth)")
         owner.message("::companion item <slot> <inventory slot> <option>  ::companion use <slot> <inventory slot> <inventory slot>  (slots from 0)")
         owner.message("::companion combat <slot> <profile> [spec=item eat=75 flee=25]  ::companion spec <slot|all> <item>|none")
+        owner.message("::companion spell <slot|all> <spell>|none  (a combat spell of its book; the same spell again clears it)")
         owner.message("::companion aggression <slot> passive|aggressive  ::companion loot <slot> on|off  ::companion rename <slot> <name>  ::companion status|show <slot>")
         owner.message("::companion loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
     }
@@ -833,6 +839,51 @@ class OwnedBots(
     }
 
     /** The weapon the bot switches to for its special attack when its energy allows, or none; the bot must carry it. */
+    /**
+     * The spell a bot autocasts, by its spellbook component's name or id in the bot's current book; the same spell
+     * again, or "none", clears it. Needs the bot's magic level.
+     */
+    private fun spell(owner: Player, slot: Int, arg: String?) {
+        val bot = requireBot(owner, slot) ?: return
+        val player = bot.player
+        val knobs = OwnedRoster.knobs(owner, slot).toMutableMap()
+        val name = player.name
+        val book = player.spellBook
+        val spell = when {
+            arg == null -> return owner.message("::companion spell <slot|all> <spell>|none")
+            arg.equals("none", ignoreCase = true) -> null
+            arg.toIntOrNull() != null -> InterfaceDefinitions.get(book).components?.get(arg.toInt())?.stringId?.takeIf { it.isNotBlank() }
+                ?: return owner.message("That isn't a spell of $name's book.")
+            else -> arg.lowercase()
+        }
+        if (spell != null && spell != knobs["spell"]) {
+            val label = spell.replace('_', ' ').replaceFirstChar { it.uppercase() }
+            val component = InterfaceDefinitions.getComponent(book, spell) ?: return owner.message("$label isn't in $name's book.")
+            if (component.getOrNull<Int>("cast_id") == null) {
+                return owner.message("$label can't be autocast.")
+            }
+            val level = SpellRunes.magicLevel(book, spell) ?: 1
+            if (!player.hasMax(Skill.Magic, level)) {
+                return owner.message("$name needs level $level Magic for ${spell.replace('_', ' ')}.")
+            }
+        }
+        if (spell == null || spell == knobs["spell"]) {
+            knobs.remove("spell")
+            BotOwnedSpell.clear(player)
+            owner.message("[Companion ${slot + 1}] $name casts nothing.")
+        } else {
+            knobs["spell"] = spell
+            BotOwnedSpell.castId(player, spell)?.let { BotOwnedSpell.set(player, spell, it) }
+            owner.message("[Companion ${slot + 1}] $name will cast ${spell.replace('_', ' ')}.")
+        }
+        OwnedRoster.setKnobs(owner, slot, knobs)
+        when {
+            following(bot) -> follow(owner, slot)
+            bot.pinned?.startsWith(HOLD_PREFIX) == true -> hold(owner, slot)
+            else -> refresh(owner)
+        }
+    }
+
     private fun spec(owner: Player, slot: Int, item: String?) {
         val knobs = OwnedRoster.knobs(owner, slot).toMutableMap()
         val name = OwnedRoster.name(owner, slot) ?: "Companion ${slot + 1}"
@@ -1646,9 +1697,9 @@ class OwnedBots(
         /** The command's names: the one players see first, then the plugin's and a synonym. */
         val COMMANDS = listOf("companion", "bot", "recruit")
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "recover", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
-        val KNOBS = setOf("spec", "eat", "flee", "warn", "escape")
+        val KNOBS = setOf("spec", "spell", "eat", "flee", "warn", "escape")
 
         /** The instruction's option for each of an item's five inventory options: what clicking op 1-5 in the inventory (149:0) sends. */
         val INVENTORY_OPTIONS = intArrayOf(0, 1, 2, 6, 7)

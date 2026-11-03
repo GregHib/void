@@ -5,6 +5,8 @@ import content.area.wilderness.inWilderness
 import content.bot.Bot
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
+import content.skill.magic.spell.spellBook
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -76,8 +78,11 @@ object OwnedBotVarcs {
         val profile = OwnedRoster.PROFILES.indexOf(OwnedRoster.profile(owner, slot)).coerceAtLeast(0)
         val aggression = OwnedRoster.AGGRESSION.indexOf(OwnedRoster.aggression(owner, slot)).coerceAtLeast(0)
         owner["owned_bot_${slot}_task"] = (aggression shl 12) or (profile shl 8) or task
-        owner["owned_bot_${slot}_status"] = bot?.player?.get("owned_status", OwnedBotStatus.Idle.ordinal)
+        // the status in the low byte, the component id of the spell it autocasts (in its current book) above it
+        val status = bot?.player?.get("owned_status", OwnedBotStatus.Idle.ordinal)
             ?: if (OwnedRoster.alive(owner, slot)) OwnedBotStatus.None.ordinal else OwnedBotStatus.Dead.ordinal
+        val spell = bot?.player?.let { player -> player.get<String>("autocast_spell")?.let { InterfaceDefinitions.getComponentId(player.spellBook, it) } } ?: 0
+        owner["owned_bot_${slot}_status"] = (spell shl 8) or status
     }
 
     /** Hitpoints, prayer, tile and run energy: the per-tick part. */
