@@ -924,6 +924,45 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A preset's charged item is replaced by the best other charge the bank has`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        createObject("bank_booth_classic", Tile(100, 104))
+        owner.equipment.set(2, "amulet_of_glory_4")
+        owner.bank.add("amulet_of_glory_1", 1)
+        owner.bank.add("amulet_of_glory_3", 1)
+        val bot = summon(owner)
+        owner.command("bot loadout save tele")
+        owner.command("bot loadout load 1 tele")
+        tickIf(limit = 40) { bot.equipment[2].isEmpty() }
+        assertEquals("amulet_of_glory_3", bot.equipment[2].id, "the highest charge left in the bank")
+        assertEquals(1, owner.bank.count("amulet_of_glory_1"))
+        assertEquals(0, owner.bank.count("amulet_of_glory_3"))
+    }
+
+    @Test
+    fun `A preset's potions are made up from other doses when the bank is short`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        createObject("bank_booth_classic", Tile(100, 104))
+        owner.inventory.add("super_restore_4", 3)
+        owner.bank.add("super_restore_4", 1)
+        owner.bank.add("super_restore_2", 1)
+        owner.bank.add("super_restore_3", 1)
+        owner.bank.add("super_restore_1", 1)
+        val bot = summon(owner)
+        owner.command("bot loadout save pots")
+        owner.command("bot loadout load 1 pots")
+        tickIf(limit = 40) { bot.inventory.count("super_restore_4") == 0 }
+        tick(2)
+        assertEquals(1, bot.inventory.count("super_restore_4"))
+        assertEquals(1, bot.inventory.count("super_restore_3"), "the next best dose fills in")
+        assertEquals(1, bot.inventory.count("super_restore_2"))
+        assertEquals(0, bot.inventory.count("super_restore_1"), "no more than the preset asked for")
+        assertEquals(1, owner.bank.count("super_restore_1"))
+    }
+
+    @Test
     fun `A bot drinks a brew only while it still has a super restore`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")

@@ -14,9 +14,11 @@ import content.entity.player.equip.Equipping
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -39,7 +41,8 @@ class BotOwnedErrand : BotAction {
         val done = mutableListOf<String>()
         val missed = mutableListOf<String>()
         for (order in orders.toList()) {
-            if (carryOut(owner, player, order)) done.add(order.describe()) else missed.add(order.describe())
+            val result = carryOut(owner, player, order)
+            if (result == null) missed.add(order.describe()) else done.add(result.ifEmpty { order.describe() })
         }
         orders.clear()
         player.clear("owned_errand")
@@ -60,40 +63,98 @@ class BotOwnedErrand : BotAction {
     }
 
     companion object {
-        /** Does one [order] at an open bank; whether it was done. */
-        fun carryOut(owner: Player, player: Player, order: BankOrder): Boolean = when (order.kind) {
-            BankOrder.Kind.Withdraw -> OwnedBank.withdraw(owner, player.inventory, order.item, order.amount) > 0
+        /**
+         * Does one [order] at an open bank: null when it couldn't be, "" when done as described, else what was done
+         * instead (a charged item the bank was out of, replaced by the best other charge of it).
+         */
+        fun carryOut(owner: Player, player: Player, order: BankOrder): String? = when (order.kind) {
+            BankOrder.Kind.Withdraw -> {
+                // The bank out of the item, or short of it: the rest from its other charges or doses, best first
+                var left = order.amount - OwnedBank.withdraw(owner, player.inventory, order.item, order.amount)
+                val instead = mutableListOf<String>()
+                for (variant in variants(order.item)) {
+                    if (left <= 0) {
+                        break
+                    }
+                    val got = OwnedBank.withdraw(owner, player.inventory, variant, left)
+                    if (got > 0) {
+                        left -= got
+                        instead.add("${if (got > 1) "$got x " else ""}${variant.replace('_', ' ')}")
+                    }
+                }
+                when {
+                    instead.isNotEmpty() -> "withdraw ${instead.joinToString()} in place of ${order.describe().removePrefix("withdraw ")}"
+                    left < order.amount -> ""
+                    else -> null
+                }
+            }
+            BankOrder.Kind.Equip -> {
+                var index = player.inventory.indexOf(order.item)
+                var instead = ""
+                if (index == -1) {
+                    for (variant in variants(order.item)) {
+                        index = player.inventory.indexOf(variant)
+                        if (index != -1) {
+                            instead = " ${variant.replace('_', ' ')} in place of ${order.item.replace('_', ' ')}"
+                            break
+                        }
+                    }
+                }
+                if (index != -1 && player.hasRequirements(player.inventory[index]) && Equipping.equip(player, player.inventory[index], index)) {
+                    if (instead.isEmpty()) "" else "wear$instead"
+                } else {
+                    null
+                }
+            }
             BankOrder.Kind.Deposit -> {
                 val index = player.inventory.indexOf(order.item)
                 if (index == -1) {
-                    false
+                    null
                 } else {
                     val before = player.inventory.count(order.item)
                     BankDeposit.deposit(owner, player.inventory, player.inventory[index], order.amount, index, check = false)
-                    player.inventory.count(order.item) < before
+                    if (player.inventory.count(order.item) < before) "" else null
                 }
             }
             BankOrder.Kind.DepositAll -> {
                 OwnedBank.depositAll(owner, player.inventory)
-                player.inventory.isEmpty()
-            }
-            BankOrder.Kind.Equip -> {
-                val index = player.inventory.indexOf(order.item)
-                index != -1 && player.hasRequirements(player.inventory[index]) && Equipping.equip(player, player.inventory[index], index)
+                if (player.inventory.isEmpty()) "" else null
             }
             BankOrder.Kind.TakeOff -> {
                 val slot = EquipSlot.entries.firstOrNull { it.name.equals(order.item, ignoreCase = true) }
                 val worn = slot?.let { player.equipment[it.index] }
                 if (slot == null || worn == null || worn.isEmpty() || !player.equipment.move(slot.index, player.inventory)) {
-                    false
+                    null
                 } else {
                     val index = player.inventory.indexOf(worn.id)
                     if (index != -1) {
                         BankDeposit.deposit(owner, player.inventory, player.inventory[index], worn.amount, index, check = false)
                     }
-                    true
+                    ""
                 }
             }
         }
+
+        /**
+         * The other charges of a charged item ([id] like `amulet_of_glory_4`): the same name with every other
+         * number that is an item, highest first, then the uncharged one; nothing for an item without a charge.
+         */
+        fun variants(id: String): List<String> {
+            val charge = id.substringAfterLast('_').toIntOrNull() ?: return emptyList()
+            val base = id.substringBeforeLast('_')
+            val definitions: ItemDefinitions = get()
+            val list = mutableListOf<String>()
+            for (other in MAX_CHARGE downTo 1) {
+                if (other != charge && definitions.contains("${base}_$other")) {
+                    list.add("${base}_$other")
+                }
+            }
+            if (definitions.contains(base)) {
+                list.add(base)
+            }
+            return list
+        }
+
+        private const val MAX_CHARGE = 10
     }
 }

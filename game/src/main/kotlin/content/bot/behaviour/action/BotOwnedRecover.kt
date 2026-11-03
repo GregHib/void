@@ -43,7 +43,7 @@ class BotOwnedRecover : BotAction {
             missed.add("find the preset '$name'")
         }
         if (name != null && preset != null) {
-            val failed = OwnedLoadouts.orders(player, preset).filterNot { BotOwnedErrand.carryOut(owner, player, it) }
+            val failed = OwnedLoadouts.orders(player, preset).filter { BotOwnedErrand.carryOut(owner, player, it) == null }
             if (failed.isEmpty()) {
                 done.add("put '$name' back on")
             } else {

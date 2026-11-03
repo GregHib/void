@@ -66,6 +66,9 @@ switches to it for its special when it carries or wears one, and the tag is iner
   fighting only: warn, then teleport home with an escape item, a free teleport when `bots.owned.freeEscape`
   allows one, else run). Escaping fails the frame with `Reason.Escaped`; `BotManager.failListener` reports
   every hard failure to the owner and drops the order.
+- **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
+  (`amulet_of_glory_4`, `super_restore_4`) is made up from its other charges or doses, best first, then the
+  uncharged one; the equip order accepts the stand-in and the owner is told what went in place of what.
 - **Recovery** after a flight (`OwnedBots.recover`, status Recovering): eat what it carries, nearest bank
   (`BotOwnedRecover`: the preset last loaded with `::companion loadout load` goes back on, then food from the
   owner's bank, the preset's or the bank's best), eat to full, prayer at the nearest `altar`-tagged area
