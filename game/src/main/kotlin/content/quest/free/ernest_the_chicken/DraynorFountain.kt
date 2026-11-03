@@ -1,15 +1,16 @@
 package content.quest.free.ernest_the_chicken
 
 import content.entity.combat.hit.damage
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.player
-import content.quest.free.ernest_the_chicken.ErnestTheChicken.Companion.ownsErnestPart
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -35,7 +36,7 @@ class DraynorFountain : Script {
             damage(10)
             player<Neutral>("Ow!")
             player<Neutral>("... and a lot of piranhas! I can't get the gauge out.")
-        } else if (ownsErnestPart("pressure_gauge")) {
+        } else if (ownsItem("pressure_gauge")) {
             player<Neutral>("It's full of dead fish!")
         } else {
             player<Neutral>("There seems to be a pressure gauge in here...")
