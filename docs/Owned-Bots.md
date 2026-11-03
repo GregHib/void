@@ -14,7 +14,7 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ::bot goto <slot|all> <x> <y>   ::bot attack <slot|all> <npc index>   ::bot pickup <slot> <x> <y> <item>
 ::bot equip <slot> <item> [bank]   ::bot unequip <slot> <weapon|shield|...>   ::bot bank <slot>
 ::bot give|take <slot> <item> [amount|all] [bank]   ::bot item <slot> <inventory slot> <option>   ::bot use <slot> <from> <to>
-::bot combat <slot> passive|melee|ranged|mage [spec=item eat=40 flee=25 warn=40 escape=item]
+::bot combat <slot> passive|melee|ranged|mage [spec=item eat=40 flee=25 warn=40 escape=item]   ::bot spec <slot|all> <item>|none
 ::bot aggression <slot> passive|aggressive   ::bot loot <slot> on|off   ::bot rename <slot> <name>
 ::bot loadout save <name> [slot]|wear <slot> <name>|list|delete <name>
 ::bot status   ::bot show <slot>   ::bot help

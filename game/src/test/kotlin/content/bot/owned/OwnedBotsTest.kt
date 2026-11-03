@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -142,6 +143,27 @@ internal class OwnedBotsTest : WorldTest() {
         tickIf(limit = 30) { !bot.inventory.contains("logs") }
 
         assertTrue(bot.inventory.contains("logs"))
+    }
+
+    @Test
+    fun `A special attack weapon is a knob, only for a weapon with a special`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        // the plugin's handshake: only then are the variables written
+        owner.command("bot ui \u000140")
+
+        owner.command("bot spec 1 bronze_sword")
+        assertNull(OwnedRoster.knobs(owner, 0)["spec"], "a bronze sword has no special attack")
+
+        owner.command("bot spec 1 dragon_dagger")
+        assertEquals("dragon_dagger", OwnedRoster.knobs(owner, 0)["spec"])
+        tick()
+        assertEquals(ItemDefinitions.get("dragon_dagger").id, owner["owned_bot_0_energy", 0] ushr 8, "shown to the plugin above the run energy")
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "still following, with the rebuilt behaviour")
+
+        owner.command("bot spec 1 none")
+        assertNull(OwnedRoster.knobs(owner, 0)["spec"])
     }
 
     @Test

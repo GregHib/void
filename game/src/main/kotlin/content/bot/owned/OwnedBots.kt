@@ -309,6 +309,7 @@ class OwnedBots(
             "attack" -> forSlots(owner, rest) { attack(owner, it, rest.getOrNull(1)) }
             "pickup" -> withSlot(owner, rest) { pickUp(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "combat" -> withSlot(owner, rest) { combat(owner, it, rest.drop(1)) }
+            "spec" -> forSlots(owner, rest) { spec(owner, it, rest.getOrNull(1)) }
             "aggression" -> withSlot(owner, rest) { aggression(owner, it, rest.getOrNull(1)) }
             "equip" -> withSlot(owner, rest) { equip(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "unequip" -> withSlot(owner, rest) { unequip(owner, it, rest.getOrNull(1)) }
@@ -331,7 +332,7 @@ class OwnedBots(
         owner.message("::bot equip <slot> <item> [bank]  ::bot unequip <slot> <weapon|shield|...>  ::bot bank <slot>")
         owner.message("::bot give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
         owner.message("::bot item <slot> <inventory slot> <option>  ::bot use <slot> <inventory slot> <inventory slot>  (slots from 0)")
-        owner.message("::bot combat <slot> <profile> [spec=item eat=40 flee=25]")
+        owner.message("::bot combat <slot> <profile> [spec=item eat=40 flee=25]  ::bot spec <slot|all> <item>|none")
         owner.message("::bot aggression <slot> passive|aggressive  ::bot loot <slot> on|off  ::bot rename <slot> <name>  ::bot status|show <slot>")
         owner.message("::bot loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
     }
@@ -773,6 +774,31 @@ class OwnedBots(
             follow(owner, slot)
         } else {
             refresh(owner)
+        }
+    }
+
+    /** The weapon the bot switches to for its special attack when its energy allows, or none; the bot must carry it. */
+    private fun spec(owner: Player, slot: Int, item: String?) {
+        val knobs = OwnedRoster.knobs(owner, slot).toMutableMap()
+        val name = OwnedRoster.name(owner, slot) ?: "Bot ${slot + 1}"
+        if (item.equals("none", ignoreCase = true)) {
+            knobs.remove("spec")
+            owner.message("[Bot ${slot + 1}] $name has no special attack weapon.")
+        } else {
+            val id = itemId(item) ?: return owner.message("::bot spec <slot|all> <item>|none")
+            if (ItemDefinitions.get(id)["special", ""].isEmpty()) {
+                owner.message("${id.toItemName().replaceFirstChar { it.uppercase() }} has no special attack.")
+                return
+            }
+            knobs["spec"] = id
+            owner.message("[Bot ${slot + 1}] $name's special attack weapon: ${id.toItemName()}.")
+        }
+        OwnedRoster.setKnobs(owner, slot, knobs)
+        val bot = bot(owner, slot) ?: return
+        when {
+            following(bot) -> follow(owner, slot)
+            bot.pinned?.startsWith(HOLD_PREFIX) == true -> hold(owner, slot)
+            else -> refresh(owner)
         }
     }
 

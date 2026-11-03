@@ -5,6 +5,7 @@ import content.area.wilderness.inWilderness
 import content.bot.Bot
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -96,7 +97,9 @@ object OwnedBotVarcs {
         owner["owned_bot_${slot}_hp"] = (player.levels.get(Skill.Constitution) shl 16) or player.levels.getMax(Skill.Constitution)
         owner["owned_bot_${slot}_prayer"] = (player.levels.get(Skill.Prayer) shl 16) or player.levels.getMax(Skill.Prayer)
         owner["owned_bot_${slot}_tile"] = if (hidden) -1 else pack(player.tile.level, player.tile.x, player.tile.y)
-        owner["owned_bot_${slot}_energy"] = player.runEnergy * 100 / MAX_RUN_ENERGY
+        // run energy (0-100) in the low byte, the special attack weapon's item id above it
+        val spec = OwnedRoster.knobs(owner, slot)["spec"]?.let { ItemDefinitions.getOrNull(it)?.id } ?: 0
+        owner["owned_bot_${slot}_energy"] = (spec shl 8) or (player.runEnergy * 100 / MAX_RUN_ENERGY)
     }
 
     /** Worn and carried items, on change. */
