@@ -71,6 +71,10 @@ switches to it for its special when it carries or wears one, and the tag is iner
   whichever book has it (`BotOwnedSpell` opens that book on the bot), a mage with no pick mirrors the owner's
   autocast the same way, and a melee bot with 94 Magic and the runes keeps Vengeance up (`BotOwnedVengeance`,
   which opens the lunar book for it). Nothing of the owner's spellbook is mirrored.
+- **Task catalogue** (`OwnedTasks`): found, not listed. Every world-bot activity whose `produces` has an item and a
+  non-combat skill is a task, grouped by that skill and by the folder of its area's file; `owned.tasks.toml` only
+  names folders (`[locations]`), picks the verb a skill's labels start with (`[verbs]`) and tunes single
+  activities (`label`, `location`, `hidden`). `::companion tasks` prints `index|id|skill|level|location|members|label`.
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
   (`amulet_of_glory_4`, `super_restore_4`) is made up from its other charges or doses, best first, then the
   uncharged one; the equip order accepts the stand-in and the owner is told what went in place of what.

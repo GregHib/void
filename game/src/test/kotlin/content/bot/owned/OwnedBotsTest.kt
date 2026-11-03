@@ -45,6 +45,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
@@ -460,8 +461,8 @@ internal class OwnedBotsTest : WorldTest() {
         owner.owns(0, "Woody")
         val bot = summon(owner)
 
-        owner.command("bot task 1 chop_logs")
-        assertEquals("owned:chop_logs", bot.bot.pinned)
+        owner.command("bot task 1 draynor_north_trees")
+        assertEquals("owned:draynor_north_trees", bot.bot.pinned)
         tickIf(limit = 20) { bot["owned_status", -1] != OwnedBotStatus.Failed.ordinal }
 
         assertEquals(OwnedBots.IDLE.id, bot.bot.pinned)
@@ -1183,6 +1184,28 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `The task catalogue is found from the activities, grouped and named by skill and place`() = runTest {
+        val tasks: OwnedTasks = get()
+        tasks.reset()
+        val logs = tasks.get("draynor_north_trees")!!
+        assertEquals("woodcutting", logs.skill)
+        assertEquals(1, logs.level)
+        assertEquals("Draynor", logs.location, "the folder of the area's file")
+        assertEquals("Chop logs", logs.label, "the verb and the product")
+        assertFalse(logs.members)
+        val shark = tasks.get("catherby_shark_fishing")!!
+        assertEquals("Harpoon sharks", shark.label, "a label tuned in owned.tasks.toml")
+        assertEquals("Catherby", shark.location)
+        assertEquals(76, shark.level)
+        val maple = tasks.get("seers_village_maple_trees")!!
+        assertEquals("Seers' Village", maple.location, "a folder named in owned.tasks.toml")
+        assertTrue(tasks.all.first().skill == "woodcutting", "woodcutting first")
+        assertTrue(tasks.all.none { it.skill in setOf("attack", "strength", "defence") }, "no combat")
+        assertTrue(tasks.all.indexOf(logs) < tasks.all.indexOf(tasks.get("draynor_west_oak_trees")!!), "by level within a place")
+        assertEquals(tasks.all.indices.toList(), tasks.all.map { it.index })
+    }
+
+    @Test
     fun `A bot drinks a brew only while it still has a super restore`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
@@ -1294,10 +1317,10 @@ internal class OwnedBotsTest : WorldTest() {
         owner.command("bot follow 1")
         tickIf(limit = 20) { bot.mode !is Follow }
 
-        owner.command("bot task 1 chop_logs")
+        owner.command("bot task 1 draynor_north_trees")
         tick()
         assertFalse(bot.mode is Follow)
-        assertEquals("owned:chop_logs", bot.bot.pinned)
+        assertEquals("owned:draynor_north_trees", bot.bot.pinned)
     }
 
     @Test
@@ -1305,12 +1328,12 @@ internal class OwnedBotsTest : WorldTest() {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
         val bot = summon(owner)
-        owner.command("bot task 1 chop_logs")
+        owner.command("bot task 1 draynor_north_trees")
         val manager = scripts.filterIsInstance<OwnedBots>().isNotEmpty()
         assertTrue(manager)
         val names = world.gregs.voidps.engine.get<content.bot.BotManager>().activityNames
         assertFalse(names.any { it.startsWith("owned") }, "$names")
-        assertEquals("owned:chop_logs", bot.bot.pinnedActivity?.id)
+        assertEquals("owned:draynor_north_trees", bot.bot.pinnedActivity?.id)
     }
 
     @Test
@@ -1320,7 +1343,7 @@ internal class OwnedBotsTest : WorldTest() {
         val bot = summon(owner)
         owner.command("bot stop 1")
 
-        owner.command("bot task 1 fish_shark")
+        owner.command("bot task 1 catherby_shark_fishing")
         assertEquals(OwnedBots.IDLE.id, bot.bot.pinned, "not even tried")
         assertNull(bot.get<String>("owned_task"))
     }

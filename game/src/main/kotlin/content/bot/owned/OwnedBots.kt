@@ -398,7 +398,7 @@ class OwnedBots(
     private fun listTasks(owner: Player) {
         owner.message("[BotTasks] ${tasks.all.size} tasks: ::companion task <slot> <task>")
         for (task in tasks.all) {
-            owner.message("[BotTasks] ${task.index}|${task.id}|${task.label}")
+            owner.message("[BotTasks] ${task.index}|${task.id}|${task.skill}|${task.level}|${task.location}|${if (task.members) 1 else 0}|${task.label}")
         }
     }
 
