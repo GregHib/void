@@ -31,5 +31,19 @@ class MagicAxeHutTest : WorldTest() {
         tick(8)
 
         assertEquals(Tile(3189, 3956), player.tile)
+        assertTrue(player.containsMessage("You go through the door."))
+    }
+
+    @Test
+    fun `inside door is already unlocked`() {
+        val door = GameObjects.add("door_68_closed", Tile(3190, 3956))
+        val player = createPlayer(Tile(3190, 3957))
+
+        player.objectOption(door, "Pick-lock")
+        tick(8)
+
+        assertEquals(Tile(3189, 3956), player.tile)
+        assertTrue(player.containsMessage("You go through the door."))
+        assertTrue(player.containsMessage("The door is already unlocked."))
     }
 }

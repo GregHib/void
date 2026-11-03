@@ -17,6 +17,7 @@ class MagicAxeHut : Script {
     init {
         objectOperate("Open", "door_68_closed") { (target) ->
             if (insideHut(target)) {
+                message("You go through the door.")
                 enterDoor(target)
             } else {
                 message("The door is locked.")
@@ -25,6 +26,13 @@ class MagicAxeHut : Script {
         }
 
         objectOperate("Pick-lock", "door_68_closed") { (target) ->
+            if (insideHut(target)) {
+                message("The door is already unlocked.")
+                delay()
+                message("You go through the door.")
+                enterDoor(target)
+                return@objectOperate
+            }
             if (!inventory.contains("lockpick")) {
                 message("You need a lockpick for this lock.")
                 sound("locked")
