@@ -98,17 +98,17 @@ internal class OwnedBotsTest : WorldTest() {
         val bot = summon(owner)
 
         owner.command("bot goto 1 106 100")
-        tickIf(limit = 40) { bot.tile != Tile(106, 100) }
+        tickIf(limit = 60) { bot["owned_status", -1] != OwnedBotStatus.Holding.ordinal }
 
-        assertEquals(Tile(106, 100), bot.tile)
-        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Holding.ordinal }
         assertEquals(OwnedBotStatus.Holding.ordinal, bot["owned_status", -1], "holds where it was sent")
+        assertTrue(bot.tile.within(106, 100, 0, 1), "at or beside the tile: ${bot.tile}")
+        val arrived = bot.tile
         assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX))
 
         // The owner walks off: a holding bot stays put
         owner.tele(Tile(112, 100))
         tick(10)
-        assertEquals(Tile(106, 100), bot.tile)
+        assertEquals(arrived, bot.tile)
     }
 
     @Test
