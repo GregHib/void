@@ -1210,6 +1210,11 @@ internal class OwnedBotsTest : WorldTest() {
         assertEquals("Fish lobster", tasks.get("fishing_guild_north_lobster_fishing")!!.label, "no 'raw'")
         assertEquals("Smith bronze dagger", tasks.get("lumbridge_smith_bronze_dagger")!!.label)
         assertEquals("Smelt bronze bars", tasks.get("lumbridge_smelt_bronze_bars")!!.label)
+        val hatchets = logs.needs.single()
+        assertEquals(1, hatchets.amount)
+        assertTrue(hatchets.ids.contains(ItemDefinitions.get("bronze_hatchet").id) && hatchets.ids.contains(ItemDefinitions.get("steel_hatchet").id), "any hatchet: ${logs.needs}")
+        assertTrue(shark.needs.any { it.ids == listOf(ItemDefinitions.get("harpoon").id) }, "a harpoon: ${shark.needs}")
+        assertEquals("${hatchets.ids.joinToString("/")}:1", logs.encodeNeeds())
         val flax = tasks.get("seers_village_flax_picking")!!
         assertEquals(OwnedTasks.GATHERING, flax.skill, "an item with no skill is gathering")
         assertEquals("Pick flax", flax.label)

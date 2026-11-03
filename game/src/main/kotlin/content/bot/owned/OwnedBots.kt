@@ -400,6 +400,9 @@ class OwnedBots(
         for (task in tasks.all) {
             // by index, not id: a game chat line is wrapped at the chat box's width, and activity ids are long
             owner.message("[BotTasks] ${task.index}|${task.skill}|${task.level}|${task.location}|${if (task.members) 1 else 0}|${task.label}")
+            if (task.needs.isNotEmpty()) {
+                owner.message("[BotTaskItems] ${task.index}|${task.encodeNeeds()}")
+            }
         }
     }
 

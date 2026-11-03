@@ -2,6 +2,10 @@ package content.bot.owned
 
 import content.bot.BotManager
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.condition.BotBankSetup
+import content.bot.behaviour.condition.BotEquipmentSetup
+import content.bot.behaviour.condition.BotInventorySetup
+import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotMembers
 import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.product
@@ -28,7 +32,14 @@ data class OwnedTask(
     val location: String,
     val members: Boolean,
     val patches: List<String> = listOf(activity),
-)
+    /** What the bot fetches from the owner's bank for it: each a choice of item ids (any hatchet) and how many. */
+    val needs: List<Need> = emptyList(),
+) {
+    data class Need(val ids: List<Int>, val amount: Int)
+
+    /** [needs] as the plugin reads them: `id/id:amount,id:amount`. */
+    fun encodeNeeds(): String = needs.joinToString(",") { "${it.ids.joinToString("/")}:${it.amount}" }
+}
 
 /**
  * The catalogue of tasks owned bots can be given: every world-bot activity that ends with an item (a product and a
@@ -154,7 +165,32 @@ class OwnedTasks {
         val area = activity.area?.id
         val location = places[id] ?: area?.let { folders[it] }?.let { folder -> locations[folder] ?: folder.split('_').joinToString(" ") { it.replaceFirstChar(Char::uppercase) } } ?: ""
         val label = labels[id] ?: label(id, skill, product, area)
-        return OwnedTask(id, label, id, 0, skill, level, location, members)
+        return OwnedTask(id, label, id, 0, skill, level, location, members, needs = needs(activity))
+    }
+
+    /** The items an activity's setup asks for, carried, worn or banked: a choice of ids each, and how many. */
+    private fun needs(activity: BotActivity): List<OwnedTask.Need> {
+        val items = mutableListOf<BotItem>()
+        for (condition in activity.setup) {
+            when (condition) {
+                is BotInventorySetup -> items.addAll(condition.items)
+                is BotEquipmentSetup -> items.addAll(condition.items.values)
+                is BotBankSetup -> items.addAll(condition.items)
+                else -> {}
+            }
+        }
+        val needs = linkedMapOf<List<Int>, Int>()
+        for (item in items) {
+            if (item.ids.contains("empty")) {
+                continue
+            }
+            val ids = item.ids.mapNotNull { ItemDefinitions.getOrNull(it)?.id }
+            if (ids.isEmpty()) {
+                continue
+            }
+            needs[ids] = maxOf(needs[ids] ?: 0, item.min ?: 1)
+        }
+        return needs.map { (ids, amount) -> OwnedTask.Need(ids, amount) }
     }
 
     /**
