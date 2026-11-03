@@ -267,7 +267,7 @@ class OwnedBots(
             }
             option<Neutral>("What would you do for me?") {
                 player.npc<Neutral>("Whatever you tell me: I fight and work as well as you do, keep what I gather in your bank, and answer to ::bot commands. Hire me once and I'm yours for life; if I die, that's that.")
-                player.npc<Neutral>("Each of us costs more than the last, ${OwnedRoster.slots()} at most. Say ::bot help once you've hired one of us.")
+                player.npc<Neutral>("${OwnedRoster.slots()} of us at most, ${OwnedRoster.price(0).toDigitGroupString()} coins each. Say ::bot help once you've hired one of us.")
             }
             option<Neutral>("Not today.")
         }

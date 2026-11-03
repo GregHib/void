@@ -100,5 +100,5 @@ object OwnedRoster {
         return if (slot in 0 until slots()) slot else null
     }
 
-    private val DEFAULT_PRICES = listOf(50_000, 200_000, 500_000, 1_000_000)
+    private val DEFAULT_PRICES = listOf(500_000, 500_000, 500_000, 500_000)
 }

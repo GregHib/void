@@ -785,7 +785,7 @@ internal class OwnedBotsTest : WorldTest() {
     @Test
     fun `An Adventurer is hired for the slot's price and comes with a starter kit`() = runTest {
         val owner = createPlayer(Tile(3221, 3222), "alice")
-        owner.inventory.add("coins", 60_000)
+        owner.inventory.add("coins", 510_000)
         val broker = createNPC("adventurer", Tile(3221, 3223))
         assertTrue(broker.visible(owner), "for hire while the slot is free")
 
@@ -819,7 +819,7 @@ internal class OwnedBotsTest : WorldTest() {
     fun `An Adventurer refuses a taken name and keeps the coins`() = runTest {
         val owner = createPlayer(Tile(3221, 3222), "alice")
         createPlayer(Tile(3200, 3200), "woody")
-        owner.inventory.add("coins", 50_000)
+        owner.inventory.add("coins", 500_000)
         val broker = createNPC("adventurer", Tile(3221, 3223))
 
         owner.npcOption(broker, "Talk-to")
@@ -830,7 +830,7 @@ internal class OwnedBotsTest : WorldTest() {
         owner.instructions.send(EnterName("woody"))
         tick()
 
-        assertEquals(50_000, owner.inventory.count("coins"))
+        assertEquals(500_000, owner.inventory.count("coins"))
         assertNull(OwnedRoster.name(owner, 0))
     }
 
