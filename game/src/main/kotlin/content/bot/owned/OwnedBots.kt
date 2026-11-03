@@ -57,7 +57,6 @@ import content.entity.player.equip.Equipping
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.starterItems
 import content.skill.magic.spell.SpellRunes
-import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.fightStyle
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -848,20 +847,22 @@ class OwnedBots(
         val player = bot.player
         val knobs = OwnedRoster.knobs(owner, slot).toMutableMap()
         val name = player.name
-        val book = player.spellBook
+        // "<interface>:<component>" is how the plugin names the spell right-clicked in the owner's book
         val spell = when {
             arg == null -> return owner.message("::companion spell <slot|all> <spell>|none")
             arg.equals("none", ignoreCase = true) -> null
-            arg.toIntOrNull() != null -> InterfaceDefinitions.get(book).components?.get(arg.toInt())?.stringId?.takeIf { it.isNotBlank() }
-                ?: return owner.message("That isn't a spell of $name's book.")
+            arg.contains(':') -> {
+                val interfaceId = arg.substringBefore(':').toIntOrNull()
+                val component = arg.substringAfter(':').toIntOrNull()
+                val definition = interfaceId?.let { InterfaceDefinitions.getOrNull(it) }
+                (if (definition == null || component == null) null else definition.components?.get(component)?.stringId?.takeIf { it.isNotBlank() })
+                    ?: return owner.message("That isn't a spell.")
+            }
             else -> arg.lowercase()
         }
         if (spell != null && spell != knobs["spell"]) {
             val label = spell.replace('_', ' ').replaceFirstChar { it.uppercase() }
-            val component = InterfaceDefinitions.getComponent(book, spell) ?: return owner.message("$label isn't in $name's book.")
-            if (component.getOrNull<Int>("cast_id") == null) {
-                return owner.message("$label can't be autocast.")
-            }
+            val book = BotOwnedSpell.bookOf(spell) ?: return owner.message("$label can't be autocast.")
             val level = SpellRunes.magicLevel(book, spell) ?: 1
             if (!player.hasMax(Skill.Magic, level)) {
                 return owner.message("$name needs level $level Magic for ${spell.replace('_', ' ')}.")
@@ -1705,7 +1706,7 @@ class OwnedBots(
         val INVENTORY_OPTIONS = intArrayOf(0, 1, 2, 6, 7)
 
         /** Owner settings a bot keeps in step with. */
-        val MIRRORED = listOf("auto_retaliate", "spellbook", "prayers")
+        val MIRRORED = listOf("auto_retaliate", "prayers")
 
         private val STICKY = setOf(OwnedBotStatus.Low, OwnedBotStatus.Fled, OwnedBotStatus.Failed, OwnedBotStatus.Dead)
 

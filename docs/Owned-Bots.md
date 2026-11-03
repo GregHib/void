@@ -67,6 +67,10 @@ switches to it for its special when it carries or wears one, and the tag is iner
   fighting only: warn, then teleport home with an escape item, a free teleport when `bots.owned.freeEscape`
   allows one, else run). Escaping fails the frame with `Reason.Escaped`; `BotManager.failListener` reports
   every hard failure to the owner and drops the order.
+- **Spells** ask only the level and the runes, never the owner's book: `::companion spell` autocasts a spell from
+  whichever book has it (`BotOwnedSpell` opens that book on the bot), a mage with no pick mirrors the owner's
+  autocast the same way, and a melee bot with 94 Magic and the runes keeps Vengeance up (`BotOwnedVengeance`,
+  which opens the lunar book for it). Nothing of the owner's spellbook is mirrored.
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
   (`amulet_of_glory_4`, `super_restore_4`) is made up from its other charges or doses, best first, then the
   uncharged one; the equip order accepts the stand-in and the owner is told what went in place of what.

@@ -9,6 +9,7 @@ import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotFollowOwner
 import content.bot.behaviour.action.BotOwnedHeal
 import content.bot.behaviour.action.BotOwnedSpell
+import content.bot.behaviour.action.BotOwnedVengeance
 import content.bot.behaviour.action.BotPray
 import content.bot.behaviour.action.BotSpecAttack
 import content.bot.behaviour.activity.BotActivity
@@ -36,8 +37,9 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * Profiles: `passive` eats and protects only; `melee`, `ranged` and `mage` add the offensive prayers and
  * boosts of that style the bot's prayer level allows. Every profile drinks Saradomin brews for hitpoints, but
  * only while it carries a super restore to undo the stat drain, and restores after three brews.
- * Between fights every bot eats back to full. Knobs: `spell` (the spellbook component it autocasts, else a mage
- * mirrors its owner's), `eat` (heal at this percent in a fight, 75), `flee` (escape at this percent, 25), `warn` (warn at this percent,
+ * A melee bot with 94 Magic and the runes keeps Vengeance up. Spells ask only the level and the runes: the bot
+ * opens whichever book a spell is in, never following its owner's. Between fights every bot eats back to full.
+ * Knobs: `spell` (the spell it autocasts, from any book, else a mage mirrors its owner's), `eat` (heal at this percent in a fight, 75), `flee` (escape at this percent, 25), `warn` (warn at this percent,
  * 40), `escape` (item id or prefix* to teleport with), `spec` (special attack weapon carried or worn).
  */
 object OwnedProfiles {
@@ -101,6 +103,10 @@ object OwnedProfiles {
         reactive.add(BotDrinkPotion("super_restore_*", stat, BotAnyCondition(listOf(BotVariableIn("brew_doses_since_restore", 0, min = 3), BotSkillPercent(stat, maxPercent = 30)))))
         // The spell it autocasts: the owner's pick for it, else, as a mage, whatever the owner autocasts
         reactive.add(BotOwnedSpell(knobs["spell"], mirror = profile == "mage"))
+        if (profile == "melee" && knobs["spell"] == null) {
+            // With the level and the runes: Vengeance, kept up, from the lunar book it opens for it
+            reactive.add(BotOwnedVengeance)
+        }
         val spec = knobs["spec"]
         if (profile != "passive" && spec != null) {
             val worn = player.equipped(EquipSlot.Weapon).id

@@ -3,9 +3,9 @@ package content.bot.owned
 import content.area.wilderness.inPvp
 import content.area.wilderness.inWilderness
 import content.bot.Bot
+import content.bot.behaviour.action.BotOwnedSpell
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
-import content.skill.magic.spell.spellBook
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -78,11 +78,15 @@ object OwnedBotVarcs {
         val profile = OwnedRoster.PROFILES.indexOf(OwnedRoster.profile(owner, slot)).coerceAtLeast(0)
         val aggression = OwnedRoster.AGGRESSION.indexOf(OwnedRoster.aggression(owner, slot)).coerceAtLeast(0)
         owner["owned_bot_${slot}_task"] = (aggression shl 12) or (profile shl 8) or task
-        // the status in the low byte, the component id of the spell it autocasts (in its current book) above it
+        // the status in the low byte, the component id of the spell it autocasts above it, and which book that is
+        // (0 modern, 1 ancient, 2 lunar) in the top bits
         val status = bot?.player?.get("owned_status", OwnedBotStatus.Idle.ordinal)
             ?: if (OwnedRoster.alive(owner, slot)) OwnedBotStatus.None.ordinal else OwnedBotStatus.Dead.ordinal
-        val spell = bot?.player?.let { player -> player.get<String>("autocast_spell")?.let { InterfaceDefinitions.getComponentId(player.spellBook, it) } } ?: 0
-        owner["owned_bot_${slot}_status"] = (spell shl 8) or status
+        val spell = bot?.player?.get<String>("autocast_spell")
+        val book = spell?.let { BotOwnedSpell.bookOf(it) }
+        val component = if (spell == null || book == null) 0 else InterfaceDefinitions.getComponentId(book, spell) ?: 0
+        val bookIndex = BotOwnedSpell.BOOKS.indexOf(book).coerceAtLeast(0)
+        owner["owned_bot_${slot}_status"] = (bookIndex shl 24) or (component shl 8) or status
     }
 
     /** Hitpoints, prayer, tile and run energy: the per-tick part. */

@@ -14,6 +14,7 @@ import content.entity.combat.attackers
 import content.entity.combat.attacking
 import content.entity.combat.target
 import content.entity.player.bank.bank
+import content.skill.magic.spell.spellBook
 import content.skill.prayer.getActivePrayerVarKey
 import dialogueContinue
 import dialogueOption
@@ -28,6 +29,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
@@ -1124,8 +1126,8 @@ internal class OwnedBotsTest : WorldTest() {
         tick(2)
         assertEquals(fireStrike.getOrNull<Int>("cast_id"), bot["autocast", 0], "put back when the engine drops it")
 
-        // by the component id, as the plugin sends it; the same spell again clears it
-        owner.command("bot spell 1 ${InterfaceDefinitions.getComponentId("modern_spellbook", "fire_strike")}")
+        // by the book and component, as the plugin sends it; the same spell again clears it
+        owner.command("bot spell 1 192:${InterfaceDefinitions.getComponentId("modern_spellbook", "fire_strike")}")
         assertNull(OwnedRoster.knobs(owner, 0)["spell"])
         assertEquals(0, bot["autocast", 0])
 
@@ -1140,6 +1142,44 @@ internal class OwnedBotsTest : WorldTest() {
         owner.clear("autocast")
         tick(2)
         assertEquals(0, bot["autocast", 0], "and lets go with the owner")
+    }
+
+    @Test
+    fun `A bot casts from whichever book its spell is in, whatever its owner's, and a melee bot keeps vengeance up`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.experience.set(Skill.Magic, Level.experience(Skill.Magic, 94))
+        val bot = summon(owner)
+        owner.command("bot ui \u000140")
+        owner.command("bot follow 1")
+        tick(2)
+
+        owner.command("bot spell 1 ice_rush")
+        tick(2)
+        assertEquals("ancient_spellbook", bot.spellBook, "opened the book the spell is in")
+        assertEquals(InterfaceDefinitions.getComponent("ancient_spellbook", "ice_rush")!!.getOrNull<Int>("cast_id"), bot["autocast", 0])
+        assertEquals(1, owner["owned_bot_0_status", 0] ushr 24, "the plugin is told which book")
+        owner.open("lunar_spellbook")
+        tick(2)
+        assertEquals("ancient_spellbook", bot.spellBook, "the owner's own book is nothing to it")
+
+        // as the plugin sends it: the interface and component of the spell right-clicked in the owner's book
+        owner.open("modern_spellbook")
+        owner.command("bot spell 1 192:${InterfaceDefinitions.getComponentId("modern_spellbook", "fire_strike")}")
+        tick(2)
+        assertEquals("modern_spellbook", bot.spellBook)
+        assertEquals("fire_strike", OwnedRoster.knobs(owner, 0)["spell"])
+
+        owner.command("bot spell 1 none")
+        bot.inventory.add("astral_rune", 10)
+        bot.inventory.add("death_rune", 10)
+        bot.inventory.add("earth_rune", 50)
+        owner.command("bot combat 1 melee")
+        owner.command("bot follow 1")
+        tick(3)
+        assertTrue(bot["vengeance", false], "vengeance cast from the lunar book it opened for it")
+        assertEquals("lunar_spellbook", bot.spellBook)
+        assertEquals(8, bot.inventory.count("death_rune"))
     }
 
     @Test

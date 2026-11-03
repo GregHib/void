@@ -8,6 +8,8 @@ import content.bot.owned.owner
 import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.attackRange
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -16,9 +18,10 @@ import world.gregs.voidps.engine.entity.character.player.name
 
 /**
  * Reactive: keeps an owned bot's autocast on [spell], the owner's pick for it (a component of a spellbook, such
- * as `fire_strike`), or with none picked and [mirror] set, on whatever its owner is autocasting. The engine
- * drops an autocast when the runes run out or the weapon changes; it is put back, and when it keeps being
- * dropped (several times in a few ticks: no runes) the owner is told and it is left for a while.
+ * as `fire_strike` or `ice_barrage`), or with none picked and [mirror] set, on whatever its owner is autocasting.
+ * The bot opens whichever book the spell is in; the owner's own book is never asked of it, only the level and the
+ * runes. The engine drops an autocast when the runes run out or the weapon changes; it is put back, and when it
+ * keeps being dropped (several times in a few ticks: no runes) the owner is told and it is left for a while.
  */
 data class BotOwnedSpell(val spell: String?, val mirror: Boolean) : BotAction {
 
@@ -28,6 +31,10 @@ data class BotOwnedSpell(val spell: String?, val mirror: Boolean) : BotAction {
             if (mirror) {
                 mirror(player)
             }
+            return BehaviourState.Success
+        }
+        val book = bookOf(spell) ?: return BehaviourState.Success
+        if (player.spellBook != book && (player.menu != null || !player.open(book))) {
             return BehaviourState.Success
         }
         val cast = castId(player, spell) ?: return BehaviourState.Success
@@ -60,7 +67,14 @@ data class BotOwnedSpell(val spell: String?, val mirror: Boolean) : BotAction {
             return
         }
         val spell: String = owner["autocast_spell", ""]
-        if (player["autocast", 0] == cast || player.spellBook != owner.spellBook || castId(player, spell) != cast) {
+        if (player["autocast", 0] == cast) {
+            return
+        }
+        val book = bookOf(spell) ?: return
+        if (player.spellBook != book && (player.menu != null || !player.open(book))) {
+            return
+        }
+        if (castId(player, spell) != cast) {
             return
         }
         set(player, spell, cast)
@@ -75,6 +89,11 @@ data class BotOwnedSpell(val spell: String?, val mirror: Boolean) : BotAction {
         private const val WINDOW_TICKS = 20
         private const val BACKOFF_TICKS = 100
         private const val MAX_DROPS = 3
+
+        val BOOKS = listOf("modern_spellbook", "ancient_spellbook", "lunar_spellbook")
+
+        /** The book with a combat spell called [spell], or null. */
+        fun bookOf(spell: String): String? = BOOKS.firstOrNull { InterfaceDefinitions.getComponent(it, spell)?.getOrNull<Int>("cast_id") != null }
 
         /** The cast id of [spell] in [player]'s current book; null when it isn't there or isn't a combat spell. */
         fun castId(player: Player, spell: String): Int? = InterfaceDefinitions.getComponent(player.spellBook, spell)?.getOrNull("cast_id")
