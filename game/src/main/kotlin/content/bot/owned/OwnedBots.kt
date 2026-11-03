@@ -52,11 +52,13 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.command.varArgs
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
@@ -70,6 +72,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -80,6 +83,8 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.DummyClient
+import world.gregs.voidps.network.client.instruction.InteractInterface
+import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.coroutines.resume
 
@@ -298,6 +303,8 @@ class OwnedBots(
             "give" -> withSlot(owner, rest) { give(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "take" -> withSlot(owner, rest) { take(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "bank" -> withSlot(owner, rest) { bankAll(owner, it) }
+            "item" -> withSlot(owner, rest) { itemOption(owner, it, rest.getOrNull(1), rest.drop(2).joinToString(" ")) }
+            "use" -> withSlot(owner, rest) { useItem(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "loot" -> withSlot(owner, rest) { loot(owner, it, rest.getOrNull(1)) }
             "rename" -> withSlot(owner, rest) { rename(owner, it, rest.getOrNull(1)) }
             "loadout" -> loadout(owner, rest)
@@ -310,6 +317,7 @@ class OwnedBots(
         owner.message("::bot summon|dismiss|call|follow|stop <slot|all>  ::bot task <slot> <task>  ::bot tasks")
         owner.message("::bot equip <slot> <item> [bank]  ::bot unequip <slot> <weapon|shield|...>  ::bot bank <slot>")
         owner.message("::bot give|take <slot> <item> [amount] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
+        owner.message("::bot item <slot> <inventory slot> <option>  ::bot use <slot> <inventory slot> <inventory slot>  (slots from 0)")
         owner.message("::bot combat <slot> <profile> [spec=item eat=40 flee=25]")
         owner.message("::bot aggression <slot> passive|aggressive  ::bot loot <slot> on|off  ::bot rename <slot> <name>  ::bot status|show <slot>")
         owner.message("::bot loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
@@ -772,6 +780,51 @@ class OwnedBots(
             return
         }
         owner.message("[Bot ${slot + 1}] ${player.name} takes off ${item.id.toItemName()}.")
+    }
+
+    /**
+     * The bot clicks [option] ("Eat", "Drink", "Drop"...) on what it carries in inventory slot [index], as
+     * a player clicking it in their own inventory would: the same instruction, so every item's own handler runs.
+     */
+    private fun itemOption(owner: Player, slot: Int, index: String?, option: String) {
+        val bot = requireBot(owner, slot) ?: return
+        val player = bot.player
+        val invSlot = index?.toIntOrNull() ?: return owner.message("Which inventory slot? 0 to ${player.inventory.size - 1}.")
+        val item = player.inventory.getOrNull(invSlot)
+        if (item == null || item.isEmpty()) {
+            owner.message("${player.name} has nothing in that slot.")
+            return
+        }
+        val k = item.def.options.indexOfFirst { it.equals(option, ignoreCase = true) }
+        if (k !in INVENTORY_OPTIONS.indices) {
+            owner.message("${player.name} can't ${option.ifBlank { "do that with" }.lowercase()} ${item.id.toItemName()}.")
+            return
+        }
+        val interfaceId = InterfaceDefinitions.getOrNull("inventory")?.id ?: return
+        val componentId = InterfaceDefinitions.getComponentId("inventory", "inventory") ?: return
+        if (!get<InstructionHandlers>().handle(player, InteractInterface(interfaceId, componentId, item.def.id, invSlot, INVENTORY_OPTIONS[k]))) {
+            owner.message("${player.name} can't ${option.lowercase()} ${item.id.toItemName()} right now.")
+        }
+    }
+
+    /** The bot uses the item in inventory slot [from] on the one in slot [to] (tinderbox on logs, etc.). */
+    private fun useItem(owner: Player, slot: Int, from: String?, to: String?) {
+        val bot = requireBot(owner, slot) ?: return
+        val player = bot.player
+        val fromSlot = from?.toIntOrNull()
+        val toSlot = to?.toIntOrNull()
+        val fromItem = fromSlot?.let { player.inventory.getOrNull(it) }
+        val toItem = toSlot?.let { player.inventory.getOrNull(it) }
+        if (fromSlot == null || toSlot == null || fromItem == null || toItem == null || fromItem.isEmpty() || toItem.isEmpty() || fromSlot == toSlot) {
+            owner.message("Use which two of ${player.name}'s items?")
+            return
+        }
+        val interfaceId = InterfaceDefinitions.getOrNull("inventory")?.id ?: return
+        val componentId = InterfaceDefinitions.getComponentId("inventory", "inventory") ?: return
+        val instruction = InteractInterfaceItem(fromItem.def.id, toItem.def.id, fromSlot, toSlot, interfaceId, componentId, interfaceId, componentId)
+        if (!get<InstructionHandlers>().handle(player, instruction)) {
+            owner.message("Nothing interesting happens.")
+        }
     }
 
     private fun give(owner: Player, slot: Int, item: String?, amount: String?, source: String?) {
@@ -1325,9 +1378,12 @@ class OwnedBots(
         /** Sent by the plugin in `::bot ui`; not typeable in the chat box or console. */
         const val HANDSHAKE = '\u0001'
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
         val KNOBS = setOf("spec", "eat", "flee", "warn", "escape")
+
+        /** The instruction's option for each of an item's five inventory options: what clicking op 1-5 in the inventory (149:0) sends. */
+        val INVENTORY_OPTIONS = intArrayOf(0, 1, 2, 6, 7)
 
         /** Owner settings a bot keeps in step with. */
         val MIRRORED = listOf("auto_retaliate", "spellbook", "prayers")
