@@ -12,6 +12,7 @@ import content.entity.combat.attacker
 import content.entity.combat.attacking
 import content.entity.combat.target
 import content.entity.player.bank.bank
+import content.skill.prayer.getActivePrayerVarKey
 import dialogueContinue
 import dialogueOption
 import kotlinx.coroutines.test.runTest
@@ -886,6 +887,40 @@ internal class OwnedBotsTest : WorldTest() {
         bot.levels.set(Skill.Constitution, max - 15)
         tickIf(limit = 30) { bot.levels.get(Skill.Constitution) < max }
         assertEquals(max, bot.levels.get(Skill.Constitution), "standing by, it still tops up")
+    }
+
+    @Test
+    fun `A bot prays against the attack that would hurt it most, decided once an enemy`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 43))
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tick(2)
+        val dragon = createNPC("green_dragon", Tile(100, 102))
+        bot.attacker = dragon
+        bot.start("under_attack", 50)
+        tick(2)
+        assertEquals("magic", bot.bot.combatContext?.incomingAttackStyle, "dragonfire outdoes the bite")
+        assertEquals(dragon.index, bot["pray_enemy", -1])
+        assertTrue(bot.containsVarbit(bot.getActivePrayerVarKey(), "protect_from_magic"), "praying magic against the dragon")
+
+        // the shield changes the sum, but the choice is kept until the enemy changes
+        bot.equipment.set(5, "anti_dragon_shield")
+        tick(2)
+        assertEquals("magic", bot.bot.combatContext?.incomingAttackStyle)
+
+        val another = createNPC("green_dragon", Tile(102, 100))
+        bot.attacker = another
+        tick(2)
+        assertEquals("melee", bot.bot.combatContext?.incomingAttackStyle, "shielded, the bite is the worst of it")
+        assertTrue(bot.containsVarbit(bot.getActivePrayerVarKey(), "protect_from_melee"))
+        assertFalse(bot.containsVarbit(bot.getActivePrayerVarKey(), "protect_from_magic"))
+
+        bot.clear("under_attack")
+        bot.attacker = null
+        tick(2)
+        assertNull(bot.bot.combatContext?.incomingAttackStyle, "no enemy, nothing to protect against")
     }
 
     @Test
