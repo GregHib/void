@@ -513,10 +513,13 @@ class OwnedBots(
                     if (worn.worn.isNotEmpty()) {
                         enqueue(owner, bot, slot, *dress(player, worn.worn).toTypedArray())
                     }
-                    // last, over the orders' own words
-                    player.gfx("random_event_puff")
-                    player.say("Reporting for duty, ${owner.name}.")
                     refresh(owner)
+                    // The tick after: the client first learns of the bot from this tick's update, with its look
+                    // but no graphic, and over the orders' own words
+                    World.queue("owned_bot_puff_$account") {
+                        player.gfx("random_event_puff")
+                        player.say("Reporting for duty, ${owner.name}.")
+                    }
                 }
             } catch (e: Exception) {
                 logger.error(e) { "Failed to summon owned bot $account." }
