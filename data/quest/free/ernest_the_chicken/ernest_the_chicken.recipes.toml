@@ -1,0 +1,5 @@
+[poisoned_fish_food]
+maximum = 1
+remove = ["poison", "fish_food"]
+add = ["poisoned_fish_food"]
+message = "You poison the fish food."
