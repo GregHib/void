@@ -1,0 +1,29 @@
+# Four adventurers for hire in each city's general store, one for each bot a player may own, on the open floor
+# away from the counter (tiles checked against the shop fittings).
+spawns = [
+  # Lumbridge
+  { id = "adventurer", x = 3212, y = 3240, direction = "EAST" },
+  { id = "adventurer", x = 3212, y = 3242, direction = "EAST" },
+  { id = "adventurer", x = 3217, y = 3240, direction = "WEST" },
+  { id = "adventurer", x = 3217, y = 3242, direction = "WEST" },
+  # Varrock
+  { id = "adventurer", x = 3216, y = 3411, direction = "SOUTH" },
+  { id = "adventurer", x = 3219, y = 3413, direction = "WEST" },
+  { id = "adventurer", x = 3219, y = 3416, direction = "WEST" },
+  { id = "adventurer", x = 3215, y = 3417, direction = "SOUTH" },
+  # Falador
+  { id = "adventurer", x = 2957, y = 3386, direction = "EAST" },
+  { id = "adventurer", x = 2959, y = 3386, direction = "WEST" },
+  { id = "adventurer", x = 2956, y = 3388, direction = "EAST" },
+  { id = "adventurer", x = 2959, y = 3390, direction = "SOUTH" },
+  # Al Kharid
+  { id = "adventurer", x = 3313, y = 3179, direction = "NORTH" },
+  { id = "adventurer", x = 3316, y = 3179, direction = "NORTH" },
+  { id = "adventurer", x = 3313, y = 3182, direction = "SOUTH" },
+  { id = "adventurer", x = 3317, y = 3182, direction = "WEST" },
+  # Edgeville
+  { id = "adventurer", x = 3077, y = 3508, direction = "EAST" },
+  { id = "adventurer", x = 3083, y = 3508, direction = "WEST" },
+  { id = "adventurer", x = 3079, y = 3512, direction = "SOUTH" },
+  { id = "adventurer", x = 3081, y = 3512, direction = "SOUTH" },
+]

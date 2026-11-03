@@ -1,7 +1,0 @@
-# The Bot Broker sells player-owned bots (content/bot/owned/OwnedBots.kt). The cache gives the model and the name the
-# client shows: 8943 is the Mobilising Armies "Dwarven recruiter" (Talk-to, Recruit, Manage), unused elsewhere.
-[bot_broker]
-id = 8943
-categories = ["human"]
-collision = "outdoors"
-examine = "Hires out tireless helpers, for a price."

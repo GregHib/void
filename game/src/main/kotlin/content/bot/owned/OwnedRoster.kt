@@ -56,6 +56,8 @@ object OwnedRoster {
         owner["owned_bot_${slot}_name"] = name
         owner["owned_bot_${slot}_alive"] = true
         owner.clear("owned_bot_${slot}_items")
+        // a new player's kit, given at the first summon
+        owner["owned_bot_${slot}_kit"] = true
     }
 
     fun kill(owner: Player, slot: Int) {

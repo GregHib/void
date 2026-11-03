@@ -47,6 +47,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.nameEntry
 import content.entity.player.dialogue.type.npc
+import content.entity.player.starterItems
 import content.entity.player.dialogue.type.player
 import content.entity.player.equip.Equipping
 import content.entity.player.inv.item.addOrDrop
@@ -76,6 +77,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -102,7 +104,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.coroutines.resume
 
 /**
- * Player-owned bots: up to four bots a player buys from a Bot Broker. Each is a world bot ([Bot] on a
+ * Player-owned bots: up to four bots a player hires from the Adventurers in the general stores. Each is a world bot ([Bot] on a
  * [DummyClient]) that mirrors its owner's stats and variables, shares the owner's bank, and only ever does
  * what the owner orders through `::bot` commands: a task from `owned.tasks.toml`, following (and, by
  * aggression, fighting beside) the owner, or standing by. The 634 client's plugin drives the same commands
@@ -223,57 +225,53 @@ class OwnedBots(
             transfer.block(target)
         }
 
-        npcOperate("Talk-to", "bot_broker") {
-            broker(this)
+        npcOperate("Talk-to", "adventurer") { (target) ->
+            hire(this, target)
         }
 
-        npcOperate("Recruit", "bot_broker") {
-            broker(this)
-        }
-
-        npcOperate("Manage", "bot_broker") {
-            if (enabled()) {
-                status(this)
-            }
+        // They wait where they stand; the cache has them wandering
+        npcDefaultMode("adventurer") {
+            EmptyMode
         }
     }
 
-    // ---- broker ------------------------------------------------------------------------------------------
+    // ---- hiring ------------------------------------------------------------------------------------------
 
-    private suspend fun broker(player: Player) {
+    /** An Adventurer in a general store: hired for the next free slot's price, they go off with the player. */
+    private suspend fun hire(player: Player, adventurer: NPC) {
         if (!enabled() || player.isBot) {
-            player.npc<Neutral>("I've nothing to offer you today.")
+            player.npc<Neutral>("Just passing through.")
             return
         }
         val slot = OwnedRoster.nextSlot(player)
         if (slot == null) {
-            player.npc<Neutral>("You already have ${OwnedRoster.slots()} of my bots out there. I can't spare any more.")
+            player.npc<Neutral>("You look like you've all the help you can handle.")
             return
         }
         val price = OwnedRoster.price(slot)
         val again = OwnedRoster.name(player, slot) != null
         player.npc<Happy>(
-            if (again) "Lost one, did you? I can hire you another for ${price.toDigitGroupString()} coins." else "Need an extra pair of hands? I hire out bots: tireless helpers with your own skills, who keep whatever they gather in your bank.",
+            if (again) "Lost one of your crew? I'll take their place for ${price.toDigitGroupString()} coins." else "Looking for work, I am. ${price.toDigitGroupString()} coins and I'm yours: I'll fight at your side, gather whatever you point me at, and bank the lot.",
         )
         player.choice {
-            option("Hire a bot (${price.toDigitGroupString()} coins)") {
-                purchase(player, slot, price)
+            option("Hire (${price.toDigitGroupString()} coins)") {
+                purchase(player, slot, price, adventurer)
             }
-            option<Neutral>("How do bots work?") {
-                player.npc<Neutral>("A bot is yours for life: it fights and works with your skills, banks what it gathers, and answers to ::bot commands. If it dies, that's that; you'd have to hire another.")
-                player.npc<Neutral>("Each one costs more than the last, ${OwnedRoster.slots()} at most. Say ::bot help once you have one.")
+            option<Neutral>("What would you do for me?") {
+                player.npc<Neutral>("Whatever you tell me: I fight and work as well as you do, keep what I gather in your bank, and answer to ::bot commands. Hire me once and I'm yours for life; if I die, that's that.")
+                player.npc<Neutral>("Each of us costs more than the last, ${OwnedRoster.slots()} at most. Say ::bot help once you've hired one of us.")
             }
-            option<Neutral>("No thanks.")
+            option<Neutral>("Not today.")
         }
     }
 
-    private suspend fun purchase(player: Player, slot: Int, price: Int) {
+    private suspend fun purchase(player: Player, slot: Int, price: Int, adventurer: NPC) {
         if (!player.inventory.contains("coins", price)) {
             player.player<Sad>("I don't have ${price.toDigitGroupString()} coins on me.")
             player.npc<Neutral>("Come back when you do, then.")
             return
         }
-        val name = player.nameEntry("What will you call your bot?").replace('_', ' ').trim()
+        val name = player.nameEntry("What will you call them?").replace('_', ' ').trim()
         val error = OwnedRoster.validateName(name, accountDefinitions)
         if (error != null) {
             player.npc<Sad>(error)
@@ -284,7 +282,9 @@ class OwnedBots(
             return
         }
         OwnedRoster.purchase(player, slot, name)
-        player.npc<Happy>("$name is yours. Say ::bot summon ${slot + 1} whenever you want it beside you.")
+        player.npc<Happy>("$name it is. Lead on! Say ::bot summon ${slot + 1} whenever you want me beside you.")
+        // Off with the player; another turns up looking for work after a while
+        adventurer.respawn(adventurer.def["respawn_delay", 100])
         summon(player, slot)
     }
 
@@ -390,8 +390,8 @@ class OwnedBots(
         for (slot in 0 until OwnedRoster.slots()) {
             val name = OwnedRoster.name(owner, slot)
             val line = when {
-                name == null -> "empty (${OwnedRoster.price(slot).toDigitGroupString()} coins at a Bot Broker)"
-                !OwnedRoster.alive(owner, slot) -> "$name - dead (buy again for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
+                name == null -> "empty (hire an Adventurer in a general store for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
+                !OwnedRoster.alive(owner, slot) -> "$name - dead (hire another for ${OwnedRoster.price(slot).toDigitGroupString()} coins)"
                 else -> {
                     val bot = bot(owner, slot)
                     if (bot == null) {
@@ -426,7 +426,7 @@ class OwnedBots(
     private fun summon(owner: Player, slot: Int) {
         val name = OwnedRoster.name(owner, slot)
         if (name == null || !OwnedRoster.alive(owner, slot)) {
-            owner.message("You don't have a bot in slot ${slot + 1}. A Bot Broker sells them.")
+            owner.message("You don't have a bot in slot ${slot + 1}. Adventurers for hire wait in the general stores.")
             return
         }
         if (bot(owner, slot) != null) {
@@ -482,6 +482,11 @@ class OwnedBots(
                 World.timers.startIfAbsent("owned_bot_sync")
                 World.timers.startIfAbsent("owned_bot_snapshot")
                 setStatus(bot, OwnedBotStatus.Idle)
+                if (owner["owned_bot_${slot}_kit", false]) {
+                    // Freshly hired: the kit a new player starts with, theirs to use or bank
+                    owner.clear("owned_bot_${slot}_kit")
+                    starterItems(player)
+                }
                 player.say("Reporting for duty, ${owner.name}.")
                 notify(owner, slot, "$name is ready.")
                 // Falls in behind the owner, and first puts back on whatever it wore last time

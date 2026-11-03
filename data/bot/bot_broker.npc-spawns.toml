@@ -1,8 +1,0 @@
-spawns = [
-  # Lumbridge castle courtyard
-  { id = "bot_broker", x = 3221, y = 3223, direction = "SOUTH" },
-  # Varrock square
-  { id = "bot_broker", x = 3211, y = 3426, direction = "SOUTH" },
-  # Falador, by the west bank
-  { id = "bot_broker", x = 2949, y = 3372, direction = "SOUTH" },
-]

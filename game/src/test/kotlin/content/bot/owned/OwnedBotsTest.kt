@@ -783,10 +783,10 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
-    fun `The Bot Broker sells a named bot for the slot's price`() = runTest {
+    fun `An Adventurer is hired for the slot's price and comes with a starter kit`() = runTest {
         val owner = createPlayer(Tile(3221, 3222), "alice")
         owner.inventory.add("coins", 60_000)
-        val broker = createNPC("bot_broker", Tile(3221, 3223))
+        val broker = createNPC("adventurer", Tile(3221, 3223))
 
         owner.npcOption(broker, "Talk-to")
         tick()
@@ -803,15 +803,20 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(OwnedRoster.alive(owner, 0))
         val account = OwnedBots.accountName(owner, 0)
         tickIf(limit = 50) { Players.findByAccount(account)?.get<Boolean>("owned") != true }
-        assertEquals("Woodster", Players.findByAccount(account)!!.name)
+        val bot = Players.findByAccount(account)!!
+        assertEquals("Woodster", bot.name)
+        tick()
+        assertEquals(1, bot.inventory.count("bronze_sword"), "the new player's kit")
+        assertEquals(25, bot.inventory.count("bronze_arrow"))
+        assertTrue(broker.hide, "the hired adventurer went off with the player")
     }
 
     @Test
-    fun `The Bot Broker refuses a taken name and keeps the coins`() = runTest {
+    fun `An Adventurer refuses a taken name and keeps the coins`() = runTest {
         val owner = createPlayer(Tile(3221, 3222), "alice")
         createPlayer(Tile(3200, 3200), "woody")
         owner.inventory.add("coins", 50_000)
-        val broker = createNPC("bot_broker", Tile(3221, 3223))
+        val broker = createNPC("adventurer", Tile(3221, 3223))
 
         owner.npcOption(broker, "Talk-to")
         tick()

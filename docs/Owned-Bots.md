@@ -1,6 +1,8 @@
 # Player-owned bots
 
-Players buy up to four bots from a Bot Broker (Lumbridge, Varrock, Falador). A bot is a world bot
+Players hire up to four bots from the Adventurers standing in the general stores (Lumbridge, Varrock, Falador,
+Al Kharid, Edgeville; one for each slot, the hired one leaves and another arrives). A newly hired bot carries a
+new player's starter items. A bot is a world bot
 (`content/bot`) on a `DummyClient` that mirrors its owner's skills and variables and whose bank *is* the
 owner's bank. It only ever does what the owner orders through `::bot` commands; the 634 client's Owned Bots
 plugin drives the same commands and reads the state the server shows it in client variables.

@@ -1,0 +1,9 @@
+# Adventurers for hire: a player's owned bots are hired from them (content/bot/owned/OwnedBots.kt). The cache gives
+# the model and the name the client shows: 1512 is the cache's "Adventurer", an armoured human with a cape. The one
+# hired goes off with the player and another turns up in their place after respawn_delay ticks.
+[adventurer]
+id = 1512
+categories = ["human"]
+collision = "indoors"
+examine = "Looking for work."
+respawn_delay = 100
