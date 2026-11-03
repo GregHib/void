@@ -6,9 +6,11 @@ import content.bot.behaviour.action.BotDrinkPotion
 import content.bot.behaviour.action.BotEatFood
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotSpecAttack
+import content.bot.behaviour.perception.BotCombatContext
 import content.bot.bot
 import content.bot.isBot
 import content.entity.combat.attacker
+import content.entity.combat.attackers
 import content.entity.combat.attacking
 import content.entity.combat.target
 import content.entity.player.bank.bank
@@ -1025,6 +1027,36 @@ internal class OwnedBotsTest : WorldTest() {
         bot.levels.set(Skill.Constitution, max)
         tick(2)
         assertEquals(OwnedBotStatus.Following.ordinal, bot["owned_status", -1], "the warning lifts once it is well")
+    }
+
+    @Test
+    fun `In multi-way a bot prays against the worst of what is hitting it, not what it is hitting`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 43))
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tick(2)
+        val cow = createNPC("cow", Tile(100, 102))
+        val dragon = createNPC("green_dragon", Tile(102, 100))
+        // the state the engine keeps for a bot two npcs are on, read the way the manager reads it each tick
+        for (npc in listOf(cow, dragon)) {
+            npc.target = bot
+            bot.attackers.add(npc)
+        }
+        bot.target = cow
+        bot.attacker = cow
+        bot.start("under_attack", 50)
+        assertSame(dragon, BotCombatContext.strongestAttacker(bot))
+        assertEquals("magic", BotCombatContext(bot.bot).incomingAttackStyle, "the dragon's fire, not the cow it is fighting")
+
+        dragon.target = null
+        assertSame(cow, BotCombatContext.strongestAttacker(bot), "the dragon off it, the cow is the worst of it")
+        assertEquals("melee", BotCombatContext(bot.bot).incomingAttackStyle)
+
+        bot.attackers.clear()
+        assertNull(BotCombatContext.strongestAttacker(bot))
+        assertEquals("melee", BotCombatContext(bot.bot).incomingAttackStyle, "nothing on it: the last attacker as before")
     }
 
     @Test

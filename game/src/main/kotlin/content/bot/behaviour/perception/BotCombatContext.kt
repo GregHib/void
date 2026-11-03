@@ -4,6 +4,7 @@ import content.bot.Bot
 import content.bot.BotMetrics
 import content.entity.combat.Target
 import content.entity.combat.attacker
+import content.entity.combat.attackers
 import content.entity.combat.target
 import content.entity.combat.underAttack
 import content.entity.player.effect.Dragonfire
@@ -48,8 +49,9 @@ class BotCombatContext(
          */
         operator fun invoke(bot: Bot, radius: Int = DEFAULT_RADIUS): BotCombatContext {
             val player = bot.player
-            // Whatever is hitting the bot, else the npc it is going for: prayed against before its first hit lands
-            val enemy = player.attacker?.takeIf { player.underAttack } ?: player.target?.takeIf { it is NPC && !it.dead }
+            // The worst of what is hitting the bot (several npcs in multi-way), else whatever last hit it, else the
+            // npc it is going for: prayed against before its first hit lands
+            val enemy = strongestAttacker(player) ?: player.attacker?.takeIf { player.underAttack } ?: player.target?.takeIf { it is NPC && !it.dead }
             return BotCombatContext(
                 incomingAttackStyle = enemy?.let { threat(player, it) },
                 spiralScanner = { scan(player, radius) },
@@ -75,8 +77,34 @@ class BotCombatContext(
             return style
         }
 
+        /**
+         * Of the npcs hitting the bot right now, the one whose hardest attack would hurt it most; null when none
+         * is (a player hitting it is left to the last-attacker read, its gear being unknown).
+         */
+        fun strongestAttacker(player: Player): NPC? {
+            if (!player.underAttack) {
+                return null
+            }
+            var best: NPC? = null
+            var hardest = -1
+            for (attacker in player.attackers) {
+                if (attacker !is NPC || attacker.dead || attacker.target !== player) {
+                    continue
+                }
+                val max = hardest(player, attacker)?.second ?: continue
+                if (max > hardest) {
+                    hardest = max
+                    best = attacker
+                }
+            }
+            return best
+        }
+
         /** The style of [npc]'s hardest-hitting attack by its combat table, or null when it has none. */
-        fun table(player: Player, npc: NPC): String? {
+        fun table(player: Player, npc: NPC): String? = hardest(player, npc)?.first
+
+        /** [npc]'s hardest attack on [player] by its combat table: the style to protect against and what it could hit. */
+        fun hardest(player: Player, npc: NPC): Pair<String, Int>? {
             val definition = get<CombatDefinitions>().getOrNull(npc.transformDef["combat_def", npc.id]) ?: return null
             var best: String? = null
             var hardest = -1
@@ -90,7 +118,7 @@ class BotCombatContext(
                     }
                 }
             }
-            return best
+            return best?.let { it to hardest }
         }
 
         /** What [npc]'s fire would do to [player] as they are now, unprayed. */

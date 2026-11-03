@@ -59,7 +59,8 @@ switches to it for its special when it carries or wears one, and the tag is iner
 - **Combat**: `BotFollowOwner` (Follow option, recall when far or stuck), reactive `BotAssistOwner`
   (aggressive: the owner's target or, in single-way combat, the nearest NPC of the same id; passive: only what
   attacks the owner in multi-way), the PvP bots' eat/pray/potion/spec reactives (protection prayers pick the
-  style of the enemy npc's hardest attack from its combat table, dragonfire weighed against the bot's shield
+  style of the enemy npc's hardest attack from its combat table, the enemy being the worst of the npcs on
+  the bot in multi-way, else the last to hit it, else its own target, dragonfire weighed against the bot's shield
   and antifire, decided once per enemy in `BotCombatContext.threat`; a player enemy is read live) plus a top-up (`BotOwnedHeal`:
   out of a fight, in every state, eat back to full with the food that wastes least; Saradomin brews only while a
   super restore is carried to undo the stat drain, a restore after three brews), and `BotEscape` (while
