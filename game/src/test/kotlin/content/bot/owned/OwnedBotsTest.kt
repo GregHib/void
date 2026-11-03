@@ -341,11 +341,21 @@ internal class OwnedBotsTest : WorldTest() {
         owner.command("bot stop 1")
         bot.tele(120, 120)
 
-        owner.command("bot call 1")
-        assertNotEquals(owner.tile, bot.tile)
-        assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
-        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX))
-        assertTrue(puffed(bot), "arrives in a puff of smoke")
+        mockkObject(ZoneBatchUpdates)
+        try {
+            owner.command("bot call 1")
+            assertNotEquals(owner.tile, bot.tile)
+            assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
+            assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX))
+            val updates = mutableListOf<ZoneUpdate>()
+            verify { ZoneBatchUpdates.add(any<Zone>(), capture(updates)) }
+            val puff = GraphicDefinitions.get("random_event_puff").id
+            val puffs = updates.filterIsInstance<GraphicAddition>().filter { it.id == puff }.map { it.tile }
+            assertTrue(Tile(120, 120).id in puffs, "a puff where it left from")
+            assertTrue(bot.tile.id in puffs, "and where it arrived, on the tile so an add from out of view shows it too")
+        } finally {
+            unmockkObject(ZoneBatchUpdates)
+        }
     }
 
     @Test
@@ -366,12 +376,6 @@ internal class OwnedBotsTest : WorldTest() {
         } finally {
             unmockkObject(ZoneBatchUpdates)
         }
-    }
-
-    /** The random events' puff of smoke is on [player], in whichever graphic slot it took. */
-    private fun puffed(player: Player): Boolean {
-        val puff = GraphicDefinitions.get("random_event_puff").id
-        return player.visuals.primaryGraphic.id == puff || player.visuals.secondaryGraphic.id == puff
     }
 
     @Test

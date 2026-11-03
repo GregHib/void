@@ -89,10 +89,11 @@ class BotFollowOwner : BotAction {
             }
             player.mode = EmptyMode
             val tile = if (player.tile.level != owner.tile.level) owner.tile else beside(owner.tile)
-            // In and out in a puff of smoke, as a random event's npc comes and goes
+            // Out and in in a puff of smoke, as a random event's npc comes and goes: the zone's graphic on both
+            // tiles, since a bot arriving from out of the owner's view is a player add, which carries no graphic
             areaGfx("random_event_puff", player.tile)
             player.tele(tile.x, tile.y, tile.level)
-            player.gfx("random_event_puff")
+            areaGfx("random_event_puff", tile)
             return true
         }
 
