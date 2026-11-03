@@ -28,7 +28,7 @@ class Kayle : Script {
             dead = false
             mode = EmptyMode
             huntMode = ""
-            levels.restore(Skill.Constitution)
+            levels.clear(Skill.Constitution)
             val player = killer as? Player
             if (player != null) {
                 player["blood_pact_kayle"] = "defeated"

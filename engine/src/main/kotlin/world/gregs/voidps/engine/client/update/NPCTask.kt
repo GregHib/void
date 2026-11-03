@@ -85,6 +85,9 @@ class NPCTask(
     }
 
     private fun healthRegen(character: NPC) {
+        if (character.dead) {
+            return
+        }
         if (character.levels.get(Skill.Constitution) >= character.levels.getMax(Skill.Constitution)) {
             if (character.regenCounter < character.def.regenRate) {
                 character.regenCounter++
