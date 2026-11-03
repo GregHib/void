@@ -32,7 +32,7 @@ data class OwnedTask(
     val location: String,
     val members: Boolean,
     val patches: List<String> = listOf(activity),
-    /** What the bot fetches from the owner's bank for it: each a choice of item ids (any hatchet) and how many. */
+    /** What the bot fetches from the owner's bank for it: each a choice of item ids (any hatchet, cheapest first) and how many. */
     val needs: List<Need> = emptyList(),
 ) {
     data class Need(val ids: List<Int>, val amount: Int)
@@ -184,7 +184,8 @@ class OwnedTasks {
             if (item.ids.contains("empty")) {
                 continue
             }
-            val ids = item.ids.mapNotNull { ItemDefinitions.getOrNull(it)?.id }
+            // the choices cheapest first: the plugin names the first as the least that will do
+            val ids = item.ids.mapNotNull { ItemDefinitions.getOrNull(it) }.sortedBy { it.cost }.map { it.id }
             if (ids.isEmpty()) {
                 continue
             }

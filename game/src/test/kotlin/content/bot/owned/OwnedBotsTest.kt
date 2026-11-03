@@ -1213,6 +1213,7 @@ internal class OwnedBotsTest : WorldTest() {
         val hatchets = logs.needs.single()
         assertEquals(1, hatchets.amount)
         assertTrue(hatchets.ids.contains(ItemDefinitions.get("bronze_hatchet").id) && hatchets.ids.contains(ItemDefinitions.get("steel_hatchet").id), "any hatchet: ${logs.needs}")
+        assertEquals(ItemDefinitions.get("bronze_hatchet").id, hatchets.ids.first(), "the cheapest first, the least that will do")
         assertTrue(shark.needs.any { it.ids == listOf(ItemDefinitions.get("harpoon").id) }, "a harpoon: ${shark.needs}")
         assertEquals("${hatchets.ids.joinToString("/")}:1", logs.encodeNeeds())
         val flax = tasks.get("seers_village_flax_picking")!!
