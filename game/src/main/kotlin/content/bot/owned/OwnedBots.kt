@@ -22,6 +22,7 @@ import content.bot.behaviour.action.BotOwnedBankTrip
 import content.bot.behaviour.action.BotOwnedErrand
 import content.bot.behaviour.action.BotOwnedGoTo
 import content.bot.behaviour.action.BotOwnedHeal
+import content.bot.behaviour.action.BotOwnedHomeTeleport
 import content.bot.behaviour.action.BotOwnedPrayAltar
 import content.bot.behaviour.action.BotOwnedRecover
 import content.bot.behaviour.action.BotOwnedResume
@@ -1355,9 +1356,8 @@ class OwnedBots(
     }
 
     /**
-     * The owner's order to recover: the same trip as after a flight, from wherever the bot is, going back to the
-     * very order it had after (a guard keeps its place: nothing drove it off). Nothing to do when it is full,
-     * has its prayer and wears its preset.
+     * The owner's order to recover: a home teleport to Lumbridge, then the same trip as after a flight, going
+     * back to its orders after. Nothing to do when it is full, has its prayer and wears its preset.
      */
     private fun recoverOrder(owner: Player, slot: Int) {
         val bot = requireBot(owner, slot) ?: return
@@ -1383,11 +1383,11 @@ class OwnedBots(
     }
 
     /**
-     * After a flight, or on the owner's order: the bot eats what it carries, goes to the nearest bank for the
-     * preset it last had loaded and for food, eats to full, recharges its prayer at the nearest altar, then goes
-     * back to what it was doing: a task carries on; after a flight ([fled]) following, guarding and one-off
-     * orders all become following, so a bot is never left standing where it fled from, while on an order a
-     * guard goes back to guarding.
+     * After a flight, or on the owner's order (when it first casts its home teleport to Lumbridge): the bot eats
+     * what it carries, goes to the nearest bank for the preset it last had loaded and for food, eats to full,
+     * recharges its prayer at the nearest altar, then goes back to what it was doing: a task carries on;
+     * following, guarding and one-off orders all become following, so a bot is never left standing where it
+     * fled from or teleported to.
      */
     private fun recover(owner: Player, bot: Bot, slot: Int, fled: Boolean = true) {
         val player = bot.player
@@ -1395,7 +1395,6 @@ class OwnedBots(
         val resume = when {
             current == null || current.id == IDLE.id -> IDLE
             current.id.startsWith(TASK_PREFIX) -> current
-            !fled && current.id.startsWith(HOLD_PREFIX) -> current
             else -> OwnedProfiles.build(owner, bot, slot)
         }
         if (!resume.id.startsWith(TASK_PREFIX)) {
@@ -1408,12 +1407,12 @@ class OwnedBots(
             BotActivity(
                 id = RECOVER_PREFIX + player.accountName,
                 timeout = RECOVER_TIMEOUT,
-                actions = listOf(BotOwnedHeal(), BotOwnedBankTrip(), BotOpenBank(), BotOwnedRecover(), BotOwnedHeal(), BotOwnedPrayAltar(), BotOwnedResume()),
+                actions = listOfNotNull(if (fled) null else BotOwnedHomeTeleport(), BotOwnedHeal(), BotOwnedBankTrip(), BotOpenBank(), BotOwnedRecover(), BotOwnedHeal(), BotOwnedPrayAltar(), BotOwnedResume()),
             ),
         )
         setStatus(bot, OwnedBotStatus.Recovering)
         player.say("Off to recover.")
-        notify(owner, slot, "${player.name} is off to the bank to recover, then will ${resumeText(resume)}.")
+        notify(owner, slot, "${player.name} is off to ${if (fled) "the bank" else "Lumbridge"} to recover, then will ${resumeText(resume)}.")
         refresh(owner)
     }
 
@@ -1430,7 +1429,6 @@ class OwnedBots(
 
     private fun resumeText(resume: BotActivity): String = when {
         resume.id.startsWith(TASK_PREFIX) -> "get back to work"
-        resume.id.startsWith(HOLD_PREFIX) -> "go back to guarding"
         resume.id.startsWith(FOLLOW_PREFIX) -> "come back to you"
         else -> "stand by"
     }

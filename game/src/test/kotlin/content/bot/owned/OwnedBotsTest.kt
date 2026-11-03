@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -1068,10 +1069,10 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
-    fun `A guard told to recover eats up at the bank and goes back to guarding`() = runTest {
+    fun `A bot told to recover home teleports to Lumbridge, eats up at the bank and comes back`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
-        createObject("bank_booth_classic", Tile(100, 110))
+        createObject("bank_booth_classic", Tile(3222, 3223))
         owner.bank.add("shark", 10)
         val bot = summon(owner)
         owner.command("bot guard 1")
@@ -1081,12 +1082,17 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX), "in good shape: nothing to recover from")
 
         bot.levels.set(Skill.Constitution, bot.levels.getMax(Skill.Constitution) / 2)
+        bot.start("home_teleport_timeout", 1000, 0)
         owner.command("bot recover 1")
         assertEquals(OwnedBotStatus.Recovering.ordinal, bot["owned_status", -1])
+        tickIf(limit = 40) { bot.tile !in Areas["lumbridge_teleport"] }
+        assertTrue(bot.tile in Areas["lumbridge_teleport"], "cast its home teleport, the wait waived: ${bot.tile}")
         tickIf(limit = 300) { bot.bot.pinned?.startsWith(OwnedBots.RECOVER_PREFIX) == true }
-        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX), "back to guarding, not following: ${bot.bot.pinned}")
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "comes back to its owner rather than guarding Lumbridge: ${bot.bot.pinned}")
         assertEquals(bot.levels.getMax(Skill.Constitution), bot.levels.get(Skill.Constitution))
         assertTrue(owner.bank.count("shark") < 10)
+        tickIf(limit = 10) { bot.tile.distanceTo(owner.tile) > 2 }
+        assertTrue(bot.tile.distanceTo(owner.tile) <= 2, "recalled to its owner")
     }
 
     @Test
