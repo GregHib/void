@@ -92,6 +92,34 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `The bot clicks an inventory option on what it carries`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        bot.inventory.add("shark", 2)
+
+        owner.command("bot item 1 0 Eat")
+        tickIf(limit = 10) { bot.inventory.count("shark") == 2 }
+
+        assertEquals(1, bot.inventory.count("shark"), "the shark in slot 0 was eaten")
+    }
+
+    @Test
+    fun `The bot uses one carried item on another`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        bot.inventory.add("tinderbox")
+        bot.inventory.add("logs")
+
+        owner.command("bot use 1 0 1")
+        tickIf(limit = 30) { bot.inventory.contains("logs") }
+
+        assertFalse(bot.inventory.contains("logs"), "the logs were lit")
+        assertTrue(bot.inventory.contains("tinderbox"))
+    }
+
+    @Test
     fun `A level gained by the owner reaches the bot`() = runTest {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody")

@@ -72,7 +72,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -104,6 +103,7 @@ class OwnedBots(
     private val manager: BotManager,
     private val accountDefinitions: AccountDefinitions,
     private val tasks: OwnedTasks,
+    private val instructions: InstructionHandlers,
 ) : Script {
 
     private val logger = InlineLogger("OwnedBots")
@@ -802,7 +802,7 @@ class OwnedBots(
         }
         val interfaceId = InterfaceDefinitions.getOrNull("inventory")?.id ?: return
         val componentId = InterfaceDefinitions.getComponentId("inventory", "inventory") ?: return
-        if (!get<InstructionHandlers>().handle(player, InteractInterface(interfaceId, componentId, item.def.id, invSlot, INVENTORY_OPTIONS[k]))) {
+        if (!instructions.handle(player, InteractInterface(interfaceId, componentId, item.def.id, invSlot, INVENTORY_OPTIONS[k]))) {
             owner.message("${player.name} can't ${option.lowercase()} ${item.id.toItemName()} right now.")
         }
     }
@@ -822,7 +822,7 @@ class OwnedBots(
         val interfaceId = InterfaceDefinitions.getOrNull("inventory")?.id ?: return
         val componentId = InterfaceDefinitions.getComponentId("inventory", "inventory") ?: return
         val instruction = InteractInterfaceItem(fromItem.def.id, toItem.def.id, fromSlot, toSlot, interfaceId, componentId, interfaceId, componentId)
-        if (!get<InstructionHandlers>().handle(player, instruction)) {
+        if (!instructions.handle(player, instruction)) {
             owner.message("Nothing interesting happens.")
         }
     }
