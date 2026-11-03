@@ -426,6 +426,12 @@ internal class OwnedBotsTest : WorldTest() {
         tickIf(limit = 10) { bot.inventory.count("shark") != 3 }
         assertEquals(1, owner.inventory.count("shark"))
 
+        // the plugin sends the cache id, so a name the client would mangle ("Anti-dragon shield") still lands
+        owner.inventory.add("anti_dragon_shield", 1)
+        owner.command("bot give 1 1540 1")
+        tickIf(limit = 10) { bot.inventory.count("anti_dragon_shield") != 1 }
+        assertEquals(0, owner.inventory.count("anti_dragon_shield"))
+
         owner.command("bot take 1 shark 2")
         tickIf(limit = 10) { bot.inventory.count("shark") != 1 }
         assertEquals(3, owner.inventory.count("shark"))

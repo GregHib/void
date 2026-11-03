@@ -1527,8 +1527,14 @@ class OwnedBots(
         return bot
     }
 
+    /** An item by its cache id (what the plugin sends: no name to mangle) or its string id. */
     private fun itemId(text: String?): String? {
-        val id = text?.lowercase()?.replace(' ', '_')?.trim() ?: return null
+        val trimmed = text?.trim() ?: return null
+        val number = trimmed.toIntOrNull()
+        if (number != null) {
+            return ItemDefinitions.getOrNull(number)?.stringId
+        }
+        val id = trimmed.lowercase().replace(' ', '_')
         return if (ItemDefinitions.contains(id)) id else null
     }
 
