@@ -43,7 +43,7 @@ object OwnedRoster {
         }
     }
 
-    fun snapshot(owner: Player, slot: Int): List<String> = owner.get<List<String>>("owned_bot_${slot}_items") ?: emptyList()
+    fun snapshot(owner: Player, slot: Int): List<String> = strings(owner, "owned_bot_${slot}_items")
 
     /**
      * Lowest slot without a living bot, or null when every slot is taken. Slots are bought in order.
@@ -65,7 +65,10 @@ object OwnedRoster {
     }
 
     /** What the bot wore when it last left the world, to put back on at the next summon. */
-    fun worn(owner: Player, slot: Int): List<String> = owner.get<List<String>>("owned_bot_${slot}_worn") ?: emptyList()
+    fun worn(owner: Player, slot: Int): List<String> = strings(owner, "owned_bot_${slot}_worn")
+
+    /** The string entries of a list variable; anything else stored under [key] (an older save's string) counts as none. */
+    private fun strings(owner: Player, key: String): List<String> = (owner.get<Any>(key) as? List<*>)?.filterIsInstance<String>() ?: emptyList()
 
     /**
      * Why [name] can't be a bot's name, or null when it can: the rules real display names follow, and no clash

@@ -82,10 +82,11 @@ object OwnedLoadouts {
     private val NAME = Regex("^(?=.*[a-z])[a-z0-9_]{1,12}$")
 
     fun all(owner: Player): Map<String, Loadout> {
-        val saved = owner.get<Map<String, Any>>("owned_loadouts") ?: return emptyMap()
+        // anything but a map (an older save's string) counts as no presets
+        val saved = owner.get<Any>("owned_loadouts") as? Map<*, *> ?: return emptyMap()
         val presets = linkedMapOf<String, Loadout>()
         for ((name, entries) in saved) {
-            presets[name] = Loadout.decode(entries as? List<*>)
+            presets[name.toString()] = Loadout.decode(entries as? List<*>)
         }
         return presets
     }
