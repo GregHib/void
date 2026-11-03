@@ -610,6 +610,7 @@ class OwnedBots(
         val activity = base.copy(
             id = TASK_PREFIX + task.id,
             requires = base.requires.map { if (it is BotSkillLevel) it.copy(max = null) else it },
+            reactive = base.reactive + BotOwnedHeal(topUp = true),
         )
         // The picker would silently idle a bot that doesn't qualify; say why instead
         val unmet = activity.requires.firstOrNull { !it.check(bot.player) }
@@ -1594,7 +1595,7 @@ class OwnedBots(
         private val STICKY = setOf(OwnedBotStatus.Low, OwnedBotStatus.Fled, OwnedBotStatus.Failed, OwnedBotStatus.Dead)
 
         /** Standing by: a pinned activity that does nothing, so the manager never picks a world activity. */
-        val IDLE = BotActivity("owned_idle", timeout = Int.MAX_VALUE, actions = listOf(BotWait(10)))
+        val IDLE = BotActivity("owned_idle", timeout = Int.MAX_VALUE, actions = listOf(BotWait(10)), reactive = listOf(BotOwnedHeal(topUp = true)))
 
         /** Ids of the per-bot follow activities built by [OwnedProfiles]. */
         const val FOLLOW_PREFIX = "owned_follow:"

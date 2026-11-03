@@ -860,6 +860,35 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot eats back to full between fights but not for a scratch in one`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        bot.inventory.add("shark", 3)
+        bot.inventory.add("bread", 3)
+        owner.command("bot follow 1")
+        tick(2)
+        val max = bot.levels.getMax(Skill.Constitution)
+
+        bot.start("under_attack", 50)
+        bot.levels.set(Skill.Constitution, max - 6)
+        tick(6)
+        assertEquals(max - 6, bot.levels.get(Skill.Constitution), "above the eat threshold in a fight: no food")
+        assertEquals(3, bot.inventory.count("shark"))
+
+        bot.clear("under_attack")
+        tickIf(limit = 30) { bot.levels.get(Skill.Constitution) < max }
+        assertEquals(max, bot.levels.get(Skill.Constitution), "full again out of the fight")
+        assertEquals(3, bot.inventory.count("shark"), "the bread healed the scratch, not a shark")
+        assertTrue(bot.inventory.count("bread") < 3)
+
+        owner.command("bot stop 1")
+        bot.levels.set(Skill.Constitution, max - 15)
+        tickIf(limit = 30) { bot.levels.get(Skill.Constitution) < max }
+        assertEquals(max, bot.levels.get(Skill.Constitution), "standing by, it still tops up")
+    }
+
+    @Test
     fun `A bot drinks a brew only while it still has a super restore`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")

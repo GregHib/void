@@ -58,7 +58,8 @@ switches to it for its special when it carries or wears one, and the tag is iner
   message to the owner.
 - **Combat**: `BotFollowOwner` (Follow option, recall when far or stuck), reactive `BotAssistOwner`
   (aggressive: the owner's target or, in single-way combat, the nearest NPC of the same id; passive: only what
-  attacks the owner in multi-way), the PvP bots' eat/pray/potion/spec reactives (Saradomin brews only while a
+  attacks the owner in multi-way), the PvP bots' eat/pray/potion/spec reactives plus a top-up (`BotOwnedHeal`:
+  out of a fight, in every state, eat back to full with the food that wastes least; Saradomin brews only while a
   super restore is carried to undo the stat drain, a restore after three brews), and `BotEscape` (while
   fighting only: warn, then teleport home with an escape item, a free teleport when `bots.owned.freeEscape`
   allows one, else run). Escaping fails the frame with `Reason.Escaped`; `BotManager.failListener` reports
