@@ -92,6 +92,22 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `An amount of all gives or takes the whole stack`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.inventory.add("shark", 4)
+
+        owner.command("bot give 1 shark all")
+        tickIf(limit = 10) { bot.inventory.count("shark") != 4 }
+        assertEquals(0, owner.inventory.count("shark"))
+
+        owner.command("bot take 1 shark all")
+        tickIf(limit = 10) { bot.inventory.count("shark") != 0 }
+        assertEquals(4, owner.inventory.count("shark"))
+    }
+
+    @Test
     fun `The bot clicks an inventory option on what it carries`() = runTest {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody")

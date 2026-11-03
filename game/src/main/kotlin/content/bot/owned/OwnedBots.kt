@@ -316,7 +316,7 @@ class OwnedBots(
     private fun help(owner: Player) {
         owner.message("::bot summon|dismiss|call|follow|stop <slot|all>  ::bot task <slot> <task>  ::bot tasks")
         owner.message("::bot equip <slot> <item> [bank]  ::bot unequip <slot> <weapon|shield|...>  ::bot bank <slot>")
-        owner.message("::bot give|take <slot> <item> [amount] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
+        owner.message("::bot give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the bot goes to a booth)")
         owner.message("::bot item <slot> <inventory slot> <option>  ::bot use <slot> <inventory slot> <inventory slot>  (slots from 0)")
         owner.message("::bot combat <slot> <profile> [spec=item eat=40 flee=25]")
         owner.message("::bot aggression <slot> passive|aggressive  ::bot loot <slot> on|off  ::bot rename <slot> <name>  ::bot status|show <slot>")
@@ -892,6 +892,10 @@ class OwnedBots(
      * the owner picks in a dialogue (1, 5, 10, all, or typed).
      */
     private fun withAmount(owner: Player, id: String, amount: String?, available: Int, block: (Int) -> Unit) {
+        if (amount.equals("all", ignoreCase = true)) {
+            block(available)
+            return
+        }
         val given = amount?.toIntOrNull()
         if (given != null) {
             block(given.coerceIn(1, available))
