@@ -79,6 +79,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -454,11 +455,12 @@ class OwnedBots(
             return
         }
         owner["owned_bot_${slot}_summoning"] = true
-        val tile = BotFollowOwner.beside(owner.tile)
         GlobalScope.launch(Contexts.Game) {
             try {
+                // Logs in out of everyone's sight, so nobody sees the default look before the owner's is copied
+                // onto it; it appears beside the owner once it is set up
                 // "creation" marks an account that has had its introduction: no welcome, no starter kit
-                val player = Player(tile = tile, accountName = account, variables = mutableMapOf("display_name" to name, "creation" to System.currentTimeMillis(), "had_starter" to true))
+                val player = Player(tile = HOLDING, accountName = account, variables = mutableMapOf("display_name" to name, "creation" to System.currentTimeMillis(), "had_starter" to true))
                 val bot = Bot(player)
                 player["bot"] = bot
                 loader.connect(player, DummyClient(), viewport = false)
@@ -494,21 +496,28 @@ class OwnedBots(
                     owner.clear("owned_bot_${slot}_kit")
                     starterItems(player)
                 }
-                // Appears in a puff of smoke, as a random event's npc does. This coroutine resumes between
-                // ticks, where the next reset would wipe the visuals before they are sent: set them in a tick
+                // Appears beside the owner in a puff of smoke, as a random event's npc does. This coroutine
+                // resumes between ticks, where the next reset would wipe the visuals before they are sent, so
+                // the arrival is done from the world queue, within a tick
                 World.queue("owned_bot_arrive_$account") {
+                    if (Players.indexed(owner.index) !== owner || Players.indexed(player.index) !== player) {
+                        return@queue
+                    }
+                    val tile = BotFollowOwner.beside(owner.tile)
+                    player.tele(tile.x, tile.y, tile.level)
+                    notify(owner, slot, "$name is ready.")
+                    // Falls in behind the owner, and first puts back on whatever it wore last time
+                    follow(owner, slot)
+                    val worn = Loadout.decode(OwnedRoster.worn(owner, slot))
+                    owner.clear("owned_bot_${slot}_worn")
+                    if (worn.worn.isNotEmpty()) {
+                        enqueue(owner, bot, slot, *dress(player, worn.worn).toTypedArray())
+                    }
+                    // last, over the orders' own words
                     player.gfx("random_event_puff")
                     player.say("Reporting for duty, ${owner.name}.")
+                    refresh(owner)
                 }
-                notify(owner, slot, "$name is ready.")
-                // Falls in behind the owner, and first puts back on whatever it wore last time
-                follow(owner, slot)
-                val worn = Loadout.decode(OwnedRoster.worn(owner, slot))
-                owner.clear("owned_bot_${slot}_worn")
-                if (worn.worn.isNotEmpty()) {
-                    enqueue(owner, bot, slot, *dress(player, worn.worn).toTypedArray())
-                }
-                refresh(owner)
             } catch (e: Exception) {
                 logger.error(e) { "Failed to summon owned bot $account." }
                 owner.message("$name couldn't be summoned right now.")
@@ -1636,6 +1645,9 @@ class OwnedBots(
 
         /** Reachability and line of sight, as the world bots see them. */
         private val world = BotGameWorld()
+
+        /** Where a bot logs in before it is set up: the map's origin, where nobody is. */
+        val HOLDING = Tile(0, 0, 0)
 
         /** Ids of the per-bot recovery activities after a flight, and the ticks one gets (ten minutes). */
         const val RECOVER_PREFIX = "owned_recover:"
