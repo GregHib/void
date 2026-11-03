@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
+import walk
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -612,6 +613,60 @@ internal class OwnedBotsTest : WorldTest() {
             Collisions.remove(200, 200, 0, CollisionFlag.WALL_EAST)
             for (tile in blocked) {
                 Collisions.remove(tile.x, tile.y, 0, CollisionFlag.FLOOR)
+            }
+        }
+    }
+
+    @Test
+    fun `A called follower keeps following`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tickIf(limit = 20) { bot.mode !is Follow }
+        bot.tele(140, 140)
+        tick(2)
+
+        owner.command("bot call 1")
+        assertTrue(bot.tile.distanceTo(owner.tile) in 0..1, "called to ${bot.tile}")
+        tick(3)
+        owner.walk(Tile(108, 100))
+        tickIf(limit = 40) { owner.tile != Tile(108, 100) }
+        tickIf(limit = 30) { bot.tile.distanceTo(owner.tile) > 1 }
+        assertTrue(bot.tile.distanceTo(owner.tile) in 0..1, "bot ${bot.tile} owner ${owner.tile} mode ${bot.mode}")
+    }
+
+    @Test
+    fun `A follower set down on its owner after a climb walks after them`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tickIf(limit = 20) { bot.mode !is Follow }
+
+        // The top of a staircase: a teleport leaves its follow tile one west of where it lands, and there that tile and
+        // everything around it is the staircase, so the only tile the follower can reach is the owner's own, where it
+        // stands. A follow whose first path came back empty used to stand still for good.
+        val staircase = listOf(Tile(99, 100, 1), Tile(98, 99, 1), Tile(98, 100, 1), Tile(98, 101, 1), Tile(99, 99, 1), Tile(99, 101, 1), Tile(100, 99, 1), Tile(100, 101, 1))
+        for (tile in staircase) {
+            Collisions.add(tile.x, tile.y, 1, CollisionFlag.FLOOR)
+        }
+        Collisions.allocateIfAbsent(108, 100, 1)
+        try {
+            owner.tele(100, 100, 1)
+            tickIf(limit = 10) { bot.tile.level != 1 }
+            assertEquals(owner.tile, bot.tile, "set down on the owner")
+            tick(3)
+            owner.walk(Tile(108, 100, 1))
+            // it walks after its owner at once, well inside the recall wait that used to be its only way out
+            tick(8)
+            assertNotEquals(Tile(100, 100, 1), bot.tile, "the follower set off after its owner (mode ${bot.mode}, steps ${bot.steps.size})")
+            tickIf(limit = 40) { owner.tile != Tile(108, 100, 1) }
+            tickIf(limit = 10) { bot.tile.distanceTo(owner.tile) > 1 }
+            assertTrue(bot.tile.distanceTo(owner.tile) in 0..1, "bot ${bot.tile} owner ${owner.tile} mode ${bot.mode}")
+        } finally {
+            for (tile in staircase) {
+                Collisions.remove(tile.x, tile.y, 1, CollisionFlag.FLOOR)
             }
         }
     }
