@@ -229,6 +229,14 @@ class OwnedBots(
             hire(this, target)
         }
 
+        // Each stands for one slot, the slots of a store's four taken in spawn order: seen only by players with that
+        // slot free, and by no one when bots are off here
+        npcSpawn("adventurer") {
+            val slot = NPCs.count { it !== this && it.id == id && it.tile.within(tile, STORE_RADIUS) }
+            this["slot"] = slot
+            visibleTo = { player -> enabled() && !player.isBot && slot < OwnedRoster.slots() && !OwnedRoster.alive(player, slot) }
+        }
+
         // They wait where they stand; the cache has them wandering
         npcDefaultMode("adventurer") {
             EmptyMode
@@ -237,14 +245,14 @@ class OwnedBots(
 
     // ---- hiring ------------------------------------------------------------------------------------------
 
-    /** An Adventurer in a general store: hired for the next free slot's price, they go off with the player. */
+    /** An Adventurer in a general store, one for each slot: hired for that slot's price, they go off with the player. */
     private suspend fun hire(player: Player, adventurer: NPC) {
         if (!enabled() || player.isBot) {
             player.npc<Neutral>("Just passing through.")
             return
         }
-        val slot = OwnedRoster.nextSlot(player)
-        if (slot == null) {
+        val slot = adventurer["slot", 0]
+        if (slot >= OwnedRoster.slots() || OwnedRoster.alive(player, slot)) {
             player.npc<Neutral>("You look like you've all the help you can handle.")
             return
         }
@@ -255,7 +263,7 @@ class OwnedBots(
         )
         player.choice {
             option("Hire (${price.toDigitGroupString()} coins)") {
-                purchase(player, slot, price, adventurer)
+                purchase(player, slot, price)
             }
             option<Neutral>("What would you do for me?") {
                 player.npc<Neutral>("Whatever you tell me: I fight and work as well as you do, keep what I gather in your bank, and answer to ::bot commands. Hire me once and I'm yours for life; if I die, that's that.")
@@ -265,7 +273,7 @@ class OwnedBots(
         }
     }
 
-    private suspend fun purchase(player: Player, slot: Int, price: Int, adventurer: NPC) {
+    private suspend fun purchase(player: Player, slot: Int, price: Int) {
         if (!player.inventory.contains("coins", price)) {
             player.player<Sad>("I don't have ${price.toDigitGroupString()} coins on me.")
             player.npc<Neutral>("Come back when you do, then.")
@@ -283,8 +291,7 @@ class OwnedBots(
         }
         OwnedRoster.purchase(player, slot, name)
         player.npc<Happy>("$name it is. Lead on! Say ::bot summon ${slot + 1} whenever you want me beside you.")
-        // Off with the player; another turns up looking for work after a while
-        adventurer.respawn(adventurer.def["respawn_delay", 100])
+        // Off with the player: the slot is taken now, so they see this one no more (its visibility, set at spawn)
         summon(player, slot)
     }
 
@@ -1551,6 +1558,9 @@ class OwnedBots(
 
         /** Ticks an errand may take without progress before it is given up (a long walk to a bank). */
         const val ERRAND_TIMEOUT = 1500
+
+        /** How far apart two general stores' Adventurers are at least: the four of one store count as one store's. */
+        private const val STORE_RADIUS = 12
 
         /** The hidden player option the owner uses to reach a bot for give/take/equip. */
         const val TRANSFER = "Bot items"

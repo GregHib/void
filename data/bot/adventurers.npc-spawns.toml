@@ -1,4 +1,5 @@
-# Four adventurers for hire in each city's general store, one for each bot a player may own, on the open floor
+# Four adventurers for hire in each city's general store, listed a store at a time: the first stands for slot 1, the
+# next for slot 2 and so on (OwnedBots counts them as they spawn). On the open floor
 # away from the counter (tiles checked against the shop fittings).
 spawns = [
   # Lumbridge

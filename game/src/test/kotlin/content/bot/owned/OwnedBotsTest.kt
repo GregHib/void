@@ -787,6 +787,7 @@ internal class OwnedBotsTest : WorldTest() {
         val owner = createPlayer(Tile(3221, 3222), "alice")
         owner.inventory.add("coins", 60_000)
         val broker = createNPC("adventurer", Tile(3221, 3223))
+        assertTrue(broker.visible(owner), "for hire while the slot is free")
 
         owner.npcOption(broker, "Talk-to")
         tick()
@@ -808,7 +809,10 @@ internal class OwnedBotsTest : WorldTest() {
         tick()
         assertEquals(1, bot.inventory.count("bronze_sword"), "the new player's kit")
         assertEquals(25, bot.inventory.count("bronze_arrow"))
-        assertTrue(broker.hide, "the hired adventurer went off with the player")
+        assertFalse(broker.visible(owner), "the hired adventurer went off with the player")
+        assertTrue(broker.visible(createPlayer(Tile(3221, 3221), "bob")), "but still waits for everyone else")
+        OwnedRoster.kill(owner, 0)
+        assertTrue(broker.visible(owner), "and is back for hire once that bot dies")
     }
 
     @Test
