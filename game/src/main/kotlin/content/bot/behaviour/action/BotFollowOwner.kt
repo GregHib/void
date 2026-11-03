@@ -9,15 +9,17 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.owned.owner
 import content.entity.combat.inCombat
+import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractPlayer
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 /**
@@ -70,14 +72,14 @@ class BotFollowOwner : BotAction {
         private const val STUCK = "owned_follow_stuck"
         private const val LAST = "owned_follow_last_tile"
 
-        private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
-
         /** Further than this from the owner and the bot is teleported to them, as a called familiar. */
         const val RECALL_DISTANCE = 14
 
         /**
-         * Teleports [bot] beside its [owner] when neither is somewhere that forbids it. Returns false when
-         * the recall had to wait (bot in combat, owner dead or in a PvP area).
+         * Teleports [bot] to its [owner] when neither is somewhere that forbids it: beside them, or onto their
+         * very tile after a change of level (stairs, a ladder), where any other tile may be the far side of a
+         * wall or no floor at all. Returns false when the recall had to wait (bot in combat, owner dead or in
+         * a PvP area).
          */
         fun recall(bot: Bot, owner: Player): Boolean {
             val player = bot.player
@@ -86,27 +88,21 @@ class BotFollowOwner : BotAction {
                 return false
             }
             player.mode = EmptyMode
-            val tile = beside(owner.tile)
+            val tile = if (player.tile.level != owner.tile.level) owner.tile else beside(owner.tile)
             player.tele(tile.x, tile.y, tile.level)
             return true
         }
 
         /**
-         * A free tile next to [tile] (the eight neighbours, then two out), or [tile] itself when everything is
-         * blocked: where a summoned or called bot appears.
+         * A tile next to [tile] that can be stepped to from it (the eight neighbours, by a step the pathfinder
+         * allows, so never across a wall, into an object or onto a tile with no way back), or [tile] itself when
+         * there is none: where a summoned or called bot appears.
          */
         fun beside(tile: Tile): Tile {
-            for (radius in 1..2) {
-                for (dy in -radius..radius) {
-                    for (dx in -radius..radius) {
-                        if (maxOf(kotlin.math.abs(dx), kotlin.math.abs(dy)) != radius) {
-                            continue
-                        }
-                        val candidate = tile.add(dx, dy)
-                        if (!Collisions.check(candidate, BLOCKED)) {
-                            return candidate
-                        }
-                    }
+            val steps: StepValidator = get()
+            for (direction in Direction.all) {
+                if (steps.canTravel(level = tile.level, x = tile.x, z = tile.y, offsetX = direction.delta.x, offsetZ = direction.delta.y, size = 1, extraFlag = 0, collision = CollisionStrategies.Normal)) {
+                    return tile.add(direction)
                 }
             }
             return tile

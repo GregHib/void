@@ -17,6 +17,7 @@ import kotlinx.coroutines.test.runTest
 import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.start
@@ -24,6 +25,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -577,7 +579,41 @@ internal class OwnedBotsTest : WorldTest() {
 
         owner.tele(100, 100, 1)
         tickIf(limit = 10) { bot.tile.level != 1 }
-        assertTrue(bot.tile.distanceTo(owner.tile) in 1..2, "${bot.tile} beside ${owner.tile}")
+        // stairs and ladders: onto the owner's own tile, the one tile up there sure to have a floor and no wall between
+        assertEquals(owner.tile, bot.tile, "${bot.tile} on ${owner.tile}")
+    }
+
+    @Test
+    fun `A called bot never lands across a wall or in an object`() = runTest {
+        val owner = createPlayer(Tile(200, 200), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot stop 1")
+        bot.tele(220, 220)
+        // every neighbour blocked but the east one, which a wall cuts off: no tile a step away
+        val blocked = listOf(Tile(199, 199), Tile(200, 199), Tile(201, 199), Tile(199, 200), Tile(199, 201), Tile(200, 201), Tile(201, 201))
+        try {
+            for (tile in blocked) {
+                Collisions.add(tile.x, tile.y, 0, CollisionFlag.FLOOR)
+            }
+            Collisions.add(200, 200, 0, CollisionFlag.WALL_EAST)
+            Collisions.add(201, 200, 0, CollisionFlag.WALL_WEST)
+
+            owner.command("bot call 1")
+            assertEquals(owner.tile, bot.tile, "nowhere beside: on the owner, not across the wall at ${bot.tile}")
+
+            Collisions.remove(201, 200, 0, CollisionFlag.WALL_WEST)
+            Collisions.remove(200, 200, 0, CollisionFlag.WALL_EAST)
+            bot.tele(220, 220)
+            owner.command("bot call 1")
+            assertEquals(Tile(201, 200), bot.tile, "the one neighbour a step away")
+        } finally {
+            Collisions.remove(201, 200, 0, CollisionFlag.WALL_WEST)
+            Collisions.remove(200, 200, 0, CollisionFlag.WALL_EAST)
+            for (tile in blocked) {
+                Collisions.remove(tile.x, tile.y, 0, CollisionFlag.FLOOR)
+            }
+        }
     }
 
     @Test
