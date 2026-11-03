@@ -18,6 +18,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.items
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.completedAllQuests
 import content.quest.quest
 import content.quest.questCompleted
 import net.pearx.kasechange.toSentenceCase
@@ -36,7 +37,10 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.removeToLimit
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
 import world.gregs.voidps.type.random
 
@@ -47,14 +51,55 @@ class WiseOldMan : Script {
             if (get("wise_old_man_met", false)) {
                 checkTaskNpcs(target)
                 checkTaskItems()
-                choice("What would you like to say?") {
-                    anyHelp(this@choice)
-                    findJunk()
-                    ask()
+                if (completedAllQuests()) {
+                    choice {
+                        option("Quest Point Cape.") {
+                            questPointCape()
+                        }
+                        option("Something else.") {
+                            menu()
+                        }
+                    }
+                    return@npcOperate
                 }
+                menu()
                 return@npcOperate
             }
             intro()
+        }
+    }
+
+    private suspend fun Player.menu() {
+        choice("What would you like to say?") {
+            anyHelp(this@choice)
+            findJunk()
+            ask()
+        }
+    }
+
+    private suspend fun Player.questPointCape() {
+        player<Quiz>("I believe you are the person to talk to if I want to buy a Quest Point Cape?")
+        npc<Happy>("Indeed you believe rightly, $name, and if you know that then you'll also know that they cost 99000 coins.")
+        choice {
+            option<Shock>("No, I hadn't heard that!") {
+                npc<Neutral>("Well that's the cost, and it's not changing.")
+            }
+            option<Neutral>("Yes, so I was lead to believe.") {
+                if (inventory.spaces < 2) {
+                    player<Sad>("I don't seem to have enough inventory space.")
+                    return@option
+                }
+                inventory.transaction {
+                    remove("coins", 99_000)
+                    add("quest_point_cape")
+                    add("quest_point_hood")
+                }
+                if (inventory.transaction.error == TransactionError.None) {
+                    npc<Happy>("Have fun with it.")
+                } else {
+                    player<Sad>("I don't seem to have enough coins with me at this time.")
+                }
+            }
         }
     }
 

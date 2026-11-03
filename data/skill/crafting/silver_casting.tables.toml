@@ -43,7 +43,7 @@ product = "unstrung_symbol"
 [.key_mould]
 level = 1
 xp = 0
-quest = "elemental_workshop_iii"
+quest = "elemental_workshop_3"
 product = "ragged_silver_key"
 
 [.rod_clay_mould]

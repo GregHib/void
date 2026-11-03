@@ -4,6 +4,7 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
+import content.quest.questCompleted
 import content.quest.questStage
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.Params
@@ -85,7 +86,7 @@ class Emotes : Script {
 
     suspend fun Player.unlocked(id: String, emote: String): Boolean {
         if (emote.startsWith("Goblin")) {
-            if (questStage("the_lost_tribe") >= GOBLIN_EMOTES_STAGE) {
+            if (questCompleted("the_lost_tribe") || questStage("the_lost_tribe") >= GOBLIN_EMOTES_STAGE) {
                 return true
             }
             statement("This emote can be unlocked during the Lost Tribe quest.")

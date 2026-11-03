@@ -156,7 +156,7 @@ class PenguinHideAndSeek(
     }
 
     fun sendBear(player: Player) {
-        player["polar_bear_well"] = if (player.questCompleted("hunt_for_red_rektuber")) bear else "hidden"
+        player["polar_bear_well"] = if (player.questCompleted("hunt_for_red_raktuber")) bear else "hidden"
     }
 
     fun sendBear() {

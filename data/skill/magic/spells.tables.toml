@@ -350,7 +350,7 @@ animation = "cast_god_spell"
 
 [.iban_blast]
 max_hit = 250
-xp = 350
+xp = 300
 animation = "iban_blast"
 graphic = "iban_blast_cast"
 

@@ -1,0 +1,68 @@
+[elemental_workshop_bookcase]
+id = 26113
+
+[elemental_workshop_odd_wall]
+id = 26114
+
+[elemental_workshop_odd_wall_2]
+id = 26115
+
+[elemental_workshop_boxes]
+id = 3397
+
+[elemental_workshop_workbench]
+id = 3402
+
+[elemental_workshop_lava_trough]
+id = 18519
+
+[elemental_workshop_lava_trough_2]
+id = 18520
+
+[elemental_workshop_lava_trough_3]
+id = 18521
+
+[elemental_workshop_lava_trough_4]
+id = 18522
+
+[elemental_workshop_lava_trough_5]
+id = 18523
+
+[elemental_workshop_water_controls_left]
+id = 3404
+
+[elemental_workshop_water_controls_right]
+id = 3403
+
+[elemental_workshop_water_controls]
+id = 18509
+
+[elemental_workshop_water_controls_open]
+id = 18510
+
+[elemental_workshop_water_wheel_lever]
+id = 3406
+
+[elemental_workshop_bellows_lever]
+id = 3409
+
+[elemental_workshop_lever_pulled]
+id = 3417
+
+[elemental_workshop_bellows]
+id = 3407
+
+[elemental_workshop_bellows_broken]
+id = 18516
+
+[elemental_workshop_bellows_pumping]
+id = 18515
+
+[elemental_workshop_furnace]
+id = 3410
+
+[elemental_workshop_furnace_cold]
+id = 18525
+
+[elemental_workshop_furnace_hot]
+id = 18526

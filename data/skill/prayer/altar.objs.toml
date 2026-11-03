@@ -26,7 +26,7 @@ examine = "Shrine to the glory of Saradomin."
 id = 4859
 examine = "It's a huge statue of some kind of gorilla."
 
-[altar_dessert_treasure]
+[ancient_altar]
 id = 6552
 examine = "A mysterious ancient altar to some forgotten god..."
 

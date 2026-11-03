@@ -37,8 +37,11 @@ id = 33
 [.close]
 id = 34
 
-[waterbirth_island_map]
+[longship_journey]
 id = 224
+
+[.ship]
+id = 7
 
 [mithalin_asgarnia_map]
 id = 270

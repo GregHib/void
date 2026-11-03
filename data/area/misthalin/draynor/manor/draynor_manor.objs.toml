@@ -17,3 +17,9 @@ examine = "A large double door."
 [portal_home]
 id = 11356
 examine = "A gateway back to Gielinor."
+
+[draynor_manor_candle_sconce]
+id = 47404
+
+[draynor_manor_secret_lever]
+id = 160

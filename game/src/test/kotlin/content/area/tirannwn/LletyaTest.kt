@@ -51,6 +51,26 @@ class LletyaTest : WorldTest() {
     }
 
     @Test
+    fun `Eluned enchant option recharges teleport crystals`() {
+        val player = createPlayer(emptyTile)
+        player["mournings_end_part_1"] = "completed"
+        val eluned = createNPC("eluned", emptyTile.addX(1))
+        assertEquals("eluned_3", eluned.def(player).stringId)
+        player.inventory.add("crystal_teleport_seed_uncharged")
+        player.inventory.add("coins", 750)
+
+        player.npcOption(eluned, "Enchant")
+        tick(2)
+        player.dialogueContinue(3)
+        player.dialogueOption(1)
+        player.dialogueContinue()
+        tick(2)
+
+        assertEquals(1, player.inventory.count("crystal_teleport_seed_4"))
+        assertEquals(0, player.inventory.count("coins"))
+    }
+
+    @Test
     fun `Eluned recharge is cheaper after the first`() {
         val player = createPlayer(emptyTile)
         val eluned = createNPC("eluned", emptyTile.addX(1))
