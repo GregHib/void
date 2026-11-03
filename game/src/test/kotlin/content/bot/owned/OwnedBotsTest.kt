@@ -725,7 +725,8 @@ internal class OwnedBotsTest : WorldTest() {
         owner.owns(0, "Woody")
         val bot = summon(owner)
         val taken = createNPC("cow", Tile(103, 100))
-        val other = createNPC("cow", Tile(97, 100))
+        // a different id, the same name: the kind is what matters, not the variant
+        val other = createNPC("cow_brown", Tile(97, 100))
         owner.command("bot aggression 1 aggressive")
         owner.command("bot follow 1")
         tick(2)

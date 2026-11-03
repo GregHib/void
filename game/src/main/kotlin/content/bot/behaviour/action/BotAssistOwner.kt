@@ -27,7 +27,7 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 /**
  * Reactive: a following owned bot fights beside its owner by its `owned_aggression`.
  * - aggressive: attacks what the owner is attacking; in single-way combat, where that NPC is taken, the
- *   nearest NPC with the same id.
+ *   nearest NPC of the same name (so a cow's colour variants, a goblin's armours, all count).
  * - passive: never starts a fight, but in multi-way combat attacks whatever is attacking the owner.
  *   Defending itself is the engine's auto-retaliate, mirrored from the owner.
  * Either way it lets go when the owner stops fighting, and loots its own kills when `owned_loot` is on.
@@ -79,7 +79,7 @@ class BotAssistOwner : BotAction {
                 if (canHit(player, wanted)) {
                     return wanted
                 }
-                return nearest(player, wanted.id, wanted)
+                return nearest(player, wanted.def(player).name, wanted)
             }
         }
         val attacker = owner.attacker as? NPC
@@ -98,10 +98,11 @@ class BotAssistOwner : BotAction {
         return attacker == null || attacker === player || !npc.underAttack || (player.inMultiCombat && npc.inMultiCombat)
     }
 
-    private fun nearest(player: Player, id: String, exclude: NPC): NPC? {
+    /** The nearest attackable NPC called [name] (the same kind, whatever its variant's id) that is free to fight. */
+    private fun nearest(player: Player, name: String, exclude: NPC): NPC? {
         for (tile in Spiral.spiral(player.tile, RADIUS)) {
             for (npc in NPCs.at(tile)) {
-                if (npc === exclude || npc.id != id || !canHit(player, npc)) {
+                if (npc === exclude || npc.def(player).name != name || !canHit(player, npc)) {
                     continue
                 }
                 if (npc.def(player).options.indexOf("Attack") == -1) {
