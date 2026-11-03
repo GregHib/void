@@ -1313,7 +1313,10 @@ class OwnedBots(
     /** Working/banking/following/fighting from what the bot is doing; sticky statuses stay until the next order. */
     private fun derive(bot: Bot) {
         val current = OwnedBotStatus.entries[bot.player["owned_status", OwnedBotStatus.Idle.ordinal]]
-        if (current in STICKY) {
+        if (current == OwnedBotStatus.Low && !low(bot)) {
+            // Healed back above the warning line: carry on to what it is doing
+            bot.player["owned_status"] = OwnedBotStatus.Idle.ordinal
+        } else if (current in STICKY) {
             return
         }
         val status = when {
@@ -1361,6 +1364,17 @@ class OwnedBots(
         setStatus(bot, OwnedBotStatus.Recovering)
         notify(owner, slot, "${player.name} is off to the bank to recover, then will ${resumeText(resume)}.")
         refresh(owner)
+    }
+
+    /** Still at or under the warn knob's percent of hitpoints (40 unless set). */
+    private fun low(bot: Bot): Boolean {
+        val player = bot.player
+        val max = player.levels.getMax(Skill.Constitution)
+        if (max <= 0) {
+            return false
+        }
+        val warn = player.owner?.let { OwnedRoster.knobs(it, player["owned_slot", 0])["warn"]?.toIntOrNull() } ?: 40
+        return player.levels.get(Skill.Constitution) * 100 / max <= warn
     }
 
     private fun resumeText(resume: BotActivity): String = when {

@@ -24,6 +24,7 @@ import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -960,6 +961,40 @@ internal class OwnedBotsTest : WorldTest() {
         assertEquals(1, bot.inventory.count("super_restore_2"))
         assertEquals(0, bot.inventory.count("super_restore_1"), "no more than the preset asked for")
         assertEquals(1, owner.bank.count("super_restore_1"))
+    }
+
+    @Test
+    fun `A bot eats every time it drops under the threshold in a fight, and the low warning lifts once it is well`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        bot.inventory.add("shark", 5)
+        owner.command("bot follow 1")
+        tick(2)
+        val max = bot.levels.getMax(Skill.Constitution)
+        bot.start("under_attack", 200)
+
+        bot.levels.set(Skill.Constitution, max * 3 / 10)
+        tickIf(limit = 10) { bot.inventory.count("shark") == 5 }
+        assertEquals(4, bot.inventory.count("shark"), "ate when low")
+
+        bot.levels.set(Skill.Constitution, max * 3 / 10)
+        tickIf(limit = 10) { bot.inventory.count("shark") == 4 }
+        assertEquals(3, bot.inventory.count("shark"), "and again the next time it drops")
+
+        // warn at 60%: hurt but above the no-food flight line, with nothing left to eat
+        owner.command("bot combat 1 passive warn=60")
+        owner.command("bot follow 1")
+        tick(2)
+        bot.inventory.clear()
+        bot.stop(BotEscape.WARNED)
+        bot.levels.set(Skill.Constitution, max * 55 / 100)
+        tick(2)
+        assertEquals(OwnedBotStatus.Low.ordinal, bot["owned_status", -1], "warned at 55% with nothing to eat")
+
+        bot.levels.set(Skill.Constitution, max)
+        tick(2)
+        assertEquals(OwnedBotStatus.Following.ordinal, bot["owned_status", -1], "the warning lifts once it is well")
     }
 
     @Test
