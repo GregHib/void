@@ -494,7 +494,12 @@ class OwnedBots(
                     owner.clear("owned_bot_${slot}_kit")
                     starterItems(player)
                 }
-                player.say("Reporting for duty, ${owner.name}.")
+                // Appears in a puff of smoke, as a random event's npc does. This coroutine resumes between
+                // ticks, where the next reset would wipe the visuals before they are sent: set them in a tick
+                World.queue("owned_bot_arrive_$account") {
+                    player.gfx("random_event_puff")
+                    player.say("Reporting for duty, ${owner.name}.")
+                }
                 notify(owner, slot, "$name is ready.")
                 // Falls in behind the owner, and first puts back on whatever it wore last time
                 follow(owner, slot)

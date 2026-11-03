@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -334,6 +335,32 @@ internal class OwnedBotsTest : WorldTest() {
         assertNotEquals(owner.tile, bot.tile)
         assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
         assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX))
+        assertTrue(puffed(bot), "arrives in a puff of smoke")
+    }
+
+    @Test
+    fun `A summoned bot appears in a puff of smoke`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.command("bot summon 1")
+        val account = OwnedBots.accountName(owner, 0)
+        // the login lands between ticks, so the puff's tick is checked for rather than counted to
+        var seen = false
+        tickIf(limit = 60) {
+            val bot = Players.findByAccount(account)
+            if (bot != null && puffed(bot)) {
+                assertEquals("Reporting for duty, alice.", bot.visuals.say.text)
+                seen = true
+            }
+            !seen
+        }
+        assertTrue(seen)
+    }
+
+    /** The random events' puff of smoke is on [player], in whichever graphic slot it took. */
+    private fun puffed(player: Player): Boolean {
+        val puff = GraphicDefinitions.get("random_event_puff").id
+        return player.visuals.primaryGraphic.id == puff || player.visuals.secondaryGraphic.id == puff
     }
 
     @Test
@@ -389,6 +416,9 @@ internal class OwnedBotsTest : WorldTest() {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody")
         val bot = summon(owner)
+        // standing still, so the tile sent is the tile it is on
+        owner.command("bot stop 1")
+        tick(2)
 
         owner.command("bot ui 40")
         assertFalse(owner["bot_ui", false])

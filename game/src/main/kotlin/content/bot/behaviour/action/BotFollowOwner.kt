@@ -9,6 +9,7 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.owned.owner
 import content.entity.combat.inCombat
+import content.entity.gfx.areaGfx
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.data.Settings
@@ -88,7 +89,10 @@ class BotFollowOwner : BotAction {
             }
             player.mode = EmptyMode
             val tile = if (player.tile.level != owner.tile.level) owner.tile else beside(owner.tile)
+            // In and out in a puff of smoke, as a random event's npc comes and goes
+            areaGfx("random_event_puff", player.tile)
             player.tele(tile.x, tile.y, tile.level)
+            player.gfx("random_event_puff")
             return true
         }
 
