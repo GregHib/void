@@ -71,6 +71,10 @@ switches to it for its special when it carries or wears one, and the tag is iner
   whichever book has it (`BotOwnedSpell` opens that book on the bot), a mage with no pick mirrors the owner's
   autocast the same way, and a melee bot with 94 Magic and the runes keeps Vengeance up (`BotOwnedVengeance`,
   which opens the lunar book for it). Nothing of the owner's spellbook is mirrored.
+- **Getting there**: the navigation graph's teleport shortcuts (`data/bot/teleport.shortcuts.toml`: Varrock and
+  Camelot with the runes carried or fetched from the bank first, the Lumbridge home teleport) are virtual edges any
+  bot takes when cheaper than walking, so a companion with Magic 45 and air and law runes in its owner's bank
+  teleports to Camelot for Seers' Village. Falador and Ardougne wait on navigation graphs for their towns.
 - **Task catalogue** (`OwnedTasks`): found, not listed. Every world-bot activity whose `produces` has an item and a
   non-combat skill, or an item alone (picking flax: "gathering"), is a task, grouped by that skill and by the folder of its area's file; `owned.tasks.toml` only
   names folders (`[locations]`), picks the verb a skill's labels start with (`[verbs]`) and tunes single

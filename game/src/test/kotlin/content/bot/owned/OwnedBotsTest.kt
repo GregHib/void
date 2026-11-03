@@ -1242,6 +1242,28 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot sent far teleports with runes from the bank and walks the rest`() = runTest {
+        val owner = createPlayer(Tile(3222, 3218), "alice")
+        owner.owns(0, "Woody")
+        owner.experience.set(Skill.Magic, Level.experience(Skill.Magic, 45))
+        owner.experience.set(Skill.Woodcutting, Level.experience(Skill.Woodcutting, 45))
+        val tasks: OwnedTasks = get()
+        tasks.reset()
+        val maples = tasks.get("seers_village_maple_trees")!!
+        val bot = summon(owner)
+        bot.inventory.add("rune_hatchet")
+        bot.inventory.add("air_rune", 5)
+        bot.inventory.add("law_rune", 1)
+
+        owner.command("bot task 1 ${maples.index}")
+        // to the castle bank for the hatchet, where the runes it banked come back out for the spell, then the cast
+        tickIf(limit = 400) { bot.tile !in Areas["camelot_teleport"] && !Areas["seers_village_maple_trees"].contains(bot.tile) }
+        assertTrue(bot.tile in Areas["camelot_teleport"] || bot.tile in Areas["seers_village_maple_trees"], "cast Camelot teleport rather than walk: ${bot.tile}")
+        assertEquals(0, bot.inventory.count("law_rune"), "the runes went on the spell")
+        assertEquals(OwnedBots.TASK_PREFIX + maples.id, bot.bot.pinned)
+    }
+
+    @Test
     fun `A bot drinks a brew only while it still has a super restore`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
