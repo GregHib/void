@@ -17,7 +17,7 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ## Commands
 
 ```
-::companion summon|dismiss|call|follow|stop|guard <slot|all>   ::companion task <slot> <task>   ::companion tasks
+::companion summon|dismiss|call|follow|stop|guard|recover <slot|all>   ::companion task <slot> <task>   ::companion tasks
 ::companion goto <slot|all> <x> <y>   ::companion attack <slot|all> <npc index>   ::companion pickup <slot> <x> <y> <item>
 ::companion equip <slot> <item> [bank]   ::companion unequip <slot> <weapon|shield|...>   ::companion bank <slot>
 ::companion give|take <slot> <item> [amount|all] [bank]   ::companion item <slot> <inventory slot> <option>   ::companion use <slot> <from> <to>
@@ -70,7 +70,8 @@ switches to it for its special when it carries or wears one, and the tag is iner
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
   (`amulet_of_glory_4`, `super_restore_4`) is made up from its other charges or doses, best first, then the
   uncharged one; the equip order accepts the stand-in and the owner is told what went in place of what.
-- **Recovery** after a flight (`OwnedBots.recover`, status Recovering): eat what it carries, nearest bank
+- **Recovery** after a flight or on `::companion recover` (`OwnedBots.recover`, status Recovering; the order is
+  refused when the bot is full, has its prayer and wears its preset, and a guard goes back to guarding): eat what it carries, nearest bank
   (`BotOwnedRecover`: the preset last loaded with `::companion loadout load` goes back on, then food from the
   owner's bank, the preset's or the bank's best), eat to full, prayer at the nearest `altar`-tagged area
   (`BotOwnedPrayAltar`: the Lumbridge, Varrock, Seers' Village, Port Sarim and Ardougne churches, the Ardougne

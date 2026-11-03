@@ -320,6 +320,7 @@ class OwnedBots(
             "follow" -> forSlots(owner, rest) { follow(owner, it) }
             "stop" -> forSlots(owner, rest) { stop(owner, it) }
             "guard", "hold" -> forSlots(owner, rest) { hold(owner, it) }
+            "recover" -> forSlots(owner, rest) { recoverOrder(owner, it) }
             "goto" -> forSlots(owner, rest) { goTo(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "attack" -> forSlots(owner, rest) { attack(owner, it, rest.getOrNull(1)) }
             "pickup" -> withSlot(owner, rest) { pickUp(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
@@ -342,7 +343,7 @@ class OwnedBots(
     }
 
     private fun help(owner: Player) {
-        owner.message("::companion summon|dismiss|call|follow|stop|guard <slot|all>  ::companion task <slot> <task>  ::companion tasks")
+        owner.message("::companion summon|dismiss|call|follow|stop|guard|recover <slot|all>  ::companion task <slot> <task>  ::companion tasks")
         owner.message("::companion goto <slot|all> <x> <y>  ::companion attack <slot|all> <npc index>  ::companion pickup <slot> <x> <y> <item>")
         owner.message("::companion equip <slot> <item> [bank]  ::companion unequip <slot> <weapon|shield|...>  ::companion bank <slot>")
         owner.message("::companion give|take <slot> <item> [amount|all] [bank]  (no amount: you're asked; bank: the companion goes to a booth)")
@@ -1354,17 +1355,47 @@ class OwnedBots(
     }
 
     /**
-     * After a flight: the bot eats what it carries, goes to the nearest bank for the preset it last had loaded and
-     * for food, eats to full, recharges its prayer at the nearest altar, then goes back to what it was doing: a
-     * task carries on; following, guarding and one-off orders all become following, so a bot is never left
-     * standing where it fled from.
+     * The owner's order to recover: the same trip as after a flight, from wherever the bot is, going back to the
+     * very order it had after (a guard keeps its place: nothing drove it off). Nothing to do when it is full,
+     * has its prayer and wears its preset.
      */
-    private fun recover(owner: Player, bot: Bot, slot: Int) {
+    private fun recoverOrder(owner: Player, slot: Int) {
+        val bot = requireBot(owner, slot) ?: return
+        val player = bot.player
+        if (bot.pinned?.startsWith(RECOVER_PREFIX) == true) {
+            owner.message("${player.name} is already recovering.")
+            return
+        }
+        val preset = OwnedRoster.preset(owner, slot)?.let { OwnedLoadouts.get(owner, it) }
+        val full = player.levels.get(Skill.Constitution) >= player.levels.getMax(Skill.Constitution) &&
+            player.levels.get(Skill.Prayer) >= player.levels.getMax(Skill.Prayer)
+        if (full && (preset == null || OwnedLoadouts.orders(player, preset).isEmpty())) {
+            owner.message("${player.name} is already in good shape.")
+            return
+        }
+        manager.stop(bot)
+        player.target = null
+        player.mode = EmptyMode
+        bot.blocked.clear()
+        bot.evaluate.clear()
+        bot.previous = null
+        recover(owner, bot, slot, fled = false)
+    }
+
+    /**
+     * After a flight, or on the owner's order: the bot eats what it carries, goes to the nearest bank for the
+     * preset it last had loaded and for food, eats to full, recharges its prayer at the nearest altar, then goes
+     * back to what it was doing: a task carries on; after a flight ([fled]) following, guarding and one-off
+     * orders all become following, so a bot is never left standing where it fled from, while on an order a
+     * guard goes back to guarding.
+     */
+    private fun recover(owner: Player, bot: Bot, slot: Int, fled: Boolean = true) {
         val player = bot.player
         val current = bot.pinnedActivity
         val resume = when {
             current == null || current.id == IDLE.id -> IDLE
             current.id.startsWith(TASK_PREFIX) -> current
+            !fled && current.id.startsWith(HOLD_PREFIX) -> current
             else -> OwnedProfiles.build(owner, bot, slot)
         }
         if (!resume.id.startsWith(TASK_PREFIX)) {
@@ -1381,6 +1412,7 @@ class OwnedBots(
             ),
         )
         setStatus(bot, OwnedBotStatus.Recovering)
+        player.say("Off to recover.")
         notify(owner, slot, "${player.name} is off to the bank to recover, then will ${resumeText(resume)}.")
         refresh(owner)
     }
@@ -1398,6 +1430,7 @@ class OwnedBots(
 
     private fun resumeText(resume: BotActivity): String = when {
         resume.id.startsWith(TASK_PREFIX) -> "get back to work"
+        resume.id.startsWith(HOLD_PREFIX) -> "go back to guarding"
         resume.id.startsWith(FOLLOW_PREFIX) -> "come back to you"
         else -> "stand by"
     }
@@ -1615,7 +1648,7 @@ class OwnedBots(
         /** The command's names: the one players see first, then the plugin's and a synonym. */
         val COMMANDS = listOf("companion", "bot", "recruit")
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "recover", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
         val KNOBS = setOf("spec", "eat", "flee", "warn", "escape")
 
