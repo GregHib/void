@@ -5,6 +5,7 @@ package content.bot.owned
 import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inPvp
 import content.area.wilderness.inWilderness
+import content.area.wilderness.wildernessLevel
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.behaviour.Behaviour
@@ -647,7 +648,7 @@ class OwnedBots(
             owner.message("${bot.player.name} can only be sent somewhere near you.")
             return
         }
-        if (owner.inPvp || owner.inWilderness) {
+        if (owner.inPvp || owner.inWilderness || wildernessLevel(tile) > 0) {
             owner.message("${bot.player.name} won't go into a player-versus-player area.")
             return
         }
@@ -680,7 +681,7 @@ class OwnedBots(
         }
         bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
         val resume = resumeAfter(bot)
-        val activity = OwnedProfiles.build(owner, bot, slot, ATTACK_PREFIX, listOf(BotOwnedAttack(npc.index), BotOwnedResume()), assist = false)
+        val activity = OwnedProfiles.build(owner, bot, slot, ATTACK_PREFIX, listOf(BotOwnedAttack(npc.index), BotOwnedResume()), assist = false, timeout = ATTACK_TIMEOUT)
         order(owner, bot, activity, null, OwnedBotStatus.Fighting, "Attacking ${npc.def(bot.player).name}!")
         bot.player["owned_resume"] = resume
     }
@@ -1552,9 +1553,10 @@ class OwnedBots(
         const val GOTO_RANGE = 30
         const val ATTACK_RANGE = 30
 
-        /** Ticks a walk or a pick-up gets before the order is given up as failed. */
+        /** Ticks a walk, a pick-up or a fight gets before the order is given up as failed (a target it can't reach). */
         const val GOTO_TIMEOUT = 100
         const val PICKUP_TIMEOUT = 50
+        const val ATTACK_TIMEOUT = 500
 
         /** No teleport out of a lost fight: run to the nearest bank and stand down. */
         val FLEE = BotActivity("owned_flee", timeout = 500, actions = listOf(BotGoToNearest("bank"), BotWait(5)))
