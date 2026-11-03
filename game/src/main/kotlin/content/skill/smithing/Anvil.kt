@@ -1,6 +1,7 @@
 package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
@@ -87,6 +88,7 @@ class Anvil : Script {
                 return@itemOnObjectOperate
             }
             open("smithing")
+            set("smithing_anvil_tile", it.target.tile)
             val bars = inventory.count(it.item.id)
             val metal = it.item.id.removeSuffix("_bar")
             set("smithing_metal", metal)
@@ -181,6 +183,7 @@ class Anvil : Script {
 
         val bar = "${metal}_bar"
         anim("smith_item")
+        areaGfx("anvil_sparks", get("smithing_anvil_tile") ?: tile)
         weakQueue("smithing", if (first) 0 else 5) {
             inventory.transaction {
                 remove(bar, bars)

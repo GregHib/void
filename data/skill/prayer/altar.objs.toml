@@ -166,7 +166,7 @@ examine = "An altar to the Big High War God."
 id = 27661
 examine = "Shrine to the glory of Saradomin."
 
-[altar_of_guthix_druidic_ritual]
+[prayer_altar_guthix_druidic_ritual]
 id = 28698
 examine = "An ancient altar to the glory of Guthix."
 
