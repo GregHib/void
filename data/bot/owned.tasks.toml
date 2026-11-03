@@ -19,7 +19,7 @@ woodcutting = "Chop"
 mining = "Mine"
 fishing = "Fish"
 cooking = "Cook"
-smithing = "Smelt"
+smithing = "Smith"
 fletching = "Fletch"
 crafting = "Make"
 thieving = "Pickpocket"
@@ -28,6 +28,18 @@ herblore = "Make"
 runecrafting = "Craft"
 hunter = "Catch"
 farming = "Grow"
+
+[lumbridge_smelt_bronze_bars]
+label = "Smelt bronze bars"
+
+[lumbridge_smelt_iron_bars]
+label = "Smelt iron bars"
+
+[lumbridge_smelt_silver_bars]
+label = "Smelt silver bars"
+
+[lumbridge_flax_spinning]
+label = "Spin flax into bowstrings"
 
 [lumbridge_net_fishing]
 label = "Net fish shrimp"

@@ -1203,6 +1203,12 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(tasks.all.none { it.skill in setOf("attack", "strength", "defence") }, "no combat")
         assertTrue(tasks.all.indexOf(logs) < tasks.all.indexOf(tasks.get("draynor_west_oak_trees")!!), "by level within a place")
         assertEquals(tasks.all.indices.toList(), tasks.all.map { it.index })
+        assertEquals(1, tasks.all.count { it.skill == "woodcutting" && it.location == "Lumbridge" && it.label == "Chop logs" }, "four patches of trees, one task")
+        assertEquals("fletching", tasks.get("draynor_north_trees_fletch_arrow_shaft")?.skill, "chop-and-fletch is a fletching task")
+        assertEquals("Cook chicken", tasks.get("lumbridge_cook_chicken")!!.label, "a product that isn't an item: named from the id")
+        assertEquals("Fish lobster", tasks.get("fishing_guild_north_lobster_fishing")!!.label, "no 'raw'")
+        assertEquals("Smith bronze dagger", tasks.get("lumbridge_smith_bronze_dagger")!!.label)
+        assertEquals("Smelt bronze bars", tasks.get("lumbridge_smelt_bronze_bars")!!.label)
     }
 
     @Test

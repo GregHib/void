@@ -398,7 +398,8 @@ class OwnedBots(
     private fun listTasks(owner: Player) {
         owner.message("[BotTasks] ${tasks.all.size} tasks: ::companion task <slot> <task>")
         for (task in tasks.all) {
-            owner.message("[BotTasks] ${task.index}|${task.id}|${task.skill}|${task.level}|${task.location}|${if (task.members) 1 else 0}|${task.label}")
+            // by index, not id: a game chat line is wrapped at the chat box's width, and activity ids are long
+            owner.message("[BotTasks] ${task.index}|${task.skill}|${task.level}|${task.location}|${if (task.members) 1 else 0}|${task.label}")
         }
     }
 
@@ -622,7 +623,8 @@ class OwnedBots(
 
     private fun assignTask(owner: Player, slot: Int, id: String?) {
         val bot = requireBot(owner, slot) ?: return
-        val task = id?.let { tasks.get(it.lowercase()) }
+        // a task by its activity's id, or by its index in the catalogue as the plugin gives it
+        val task = id?.let { tasks.get(it.lowercase()) ?: it.toIntOrNull()?.let { index -> tasks.all.getOrNull(index) } }
         if (task == null) {
             owner.message("Which task? ::companion tasks lists them.")
             return

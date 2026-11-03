@@ -117,9 +117,14 @@ class OwnedTasks {
             found.add(task)
         }
         found.sortWith(compareBy({ SKILLS.indexOf(it.skill).let { i -> if (i == -1) SKILLS.size else i } }, { it.skill }, { it.location }, { it.level }, { it.label }))
+        // several patches of the same thing in one place (four lots of trees round Lumbridge) are one task
+        val seen = mutableSetOf<List<Any>>()
         val map = linkedMapOf<String, OwnedTask>()
-        for ((index, task) in found.withIndex()) {
-            map[task.id] = task.copy(index = index)
+        for (task in found) {
+            if (!seen.add(listOf(task.skill, task.location, task.level, task.label))) {
+                continue
+            }
+            map[task.id] = task.copy(index = map.size)
         }
         built = map
         return map
@@ -130,7 +135,8 @@ class OwnedTasks {
         if (id in hidden || id.startsWith("owned")) {
             return null
         }
-        val skill = activity.skill ?: return null
+        // the last skill listed is the end product's: chopping then fletching is a fletching task
+        val skill = activity.produces.lastOrNull { it.startsWith("skill:") }?.removePrefix("skill:") ?: return null
         val product = activity.product ?: return null
         if (skill in COMBAT) {
             return null
@@ -139,9 +145,27 @@ class OwnedTasks {
         val members = activity.requires.any { it is BotMembers && it.members }
         val area = activity.area?.id
         val location = places[id] ?: area?.let { folders[it] }?.let { folder -> locations[folder] ?: folder.split('_').joinToString(" ") { it.replaceFirstChar(Char::uppercase) } } ?: ""
-        val item = ItemDefinitions.get(product).name.ifBlank { product.replace('_', ' ') }
-        val label = labels[id] ?: "${verbs[skill] ?: skill.replaceFirstChar(Char::uppercase)} ${item.lowercase()}"
+        val label = labels[id] ?: label(id, skill, product, area)
         return OwnedTask(id, label, id, 0, skill, level, location, members)
+    }
+
+    /**
+     * "<verb> <product>", the product by its item's name ("Chop oak logs", fishing without the "raw"); for a product
+     * that isn't an item, the activity's own name without its area folder ("lumbridge_cook_chicken": "Cook chicken").
+     */
+    private fun label(id: String, skill: String, product: String, area: String?): String {
+        val verb = verbs[skill] ?: skill.replaceFirstChar(Char::uppercase)
+        val name = ItemDefinitions.getOrNull(product)?.name?.takeIf { it.isNotBlank() && it != "null" }
+        if (name == null) {
+            val folder = area?.let { folders[it] }
+            val words = (if (folder != null && id.startsWith("${folder}_")) id.removePrefix("${folder}_") else id).split('_').filter { it.isNotBlank() }
+            return words.joinToString(" ").replaceFirstChar(Char::uppercase)
+        }
+        var item = name.lowercase()
+        if (skill == "fishing") {
+            item = item.removePrefix("raw ")
+        }
+        return "$verb $item"
     }
 
     companion object {
