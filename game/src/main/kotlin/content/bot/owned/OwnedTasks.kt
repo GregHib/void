@@ -15,6 +15,8 @@ import world.gregs.voidps.engine.timedLoad
 /**
  * A task an owner can give a bot: the world-bot activity it maps to (its [id]), the skill, level and place the
  * plugin groups it by, and a label. [index] is the position in the catalogue, which the client variables carry.
+ * [patches] are the activities that do the same thing at the same level in the same place (the four lots of
+ * trees round Lumbridge), [activity] among them: the order picks the least used.
  */
 data class OwnedTask(
     val id: String,
@@ -25,6 +27,7 @@ data class OwnedTask(
     val level: Int,
     val location: String,
     val members: Boolean,
+    val patches: List<String> = listOf(activity),
 )
 
 /**
@@ -117,14 +120,18 @@ class OwnedTasks {
             found.add(task)
         }
         found.sortWith(compareBy({ SKILLS.indexOf(it.skill).let { i -> if (i == -1) SKILLS.size else i } }, { it.skill }, { it.location }, { it.level }, { it.label }))
-        // several patches of the same thing in one place (four lots of trees round Lumbridge) are one task
-        val seen = mutableSetOf<List<Any>>()
-        val map = linkedMapOf<String, OwnedTask>()
+        // several patches of the same thing in one place (four lots of trees round Lumbridge) are one task, which
+        // remembers them all so the order can spread the bots over them
+        val patches = linkedMapOf<List<Any>, MutableList<String>>()
+        val first = linkedMapOf<List<Any>, OwnedTask>()
         for (task in found) {
-            if (!seen.add(listOf(task.skill, task.location, task.level, task.label))) {
-                continue
-            }
-            map[task.id] = task.copy(index = map.size)
+            val key = listOf(task.skill, task.location, task.level, task.label)
+            patches.getOrPut(key) { mutableListOf() }.add(task.id)
+            first.putIfAbsent(key, task)
+        }
+        val map = linkedMapOf<String, OwnedTask>()
+        for ((key, task) in first) {
+            map[task.id] = task.copy(index = map.size, patches = patches[key]!!.toList())
         }
         built = map
         return map

@@ -629,11 +629,14 @@ class OwnedBots(
             owner.message("Which task? ::companion tasks lists them.")
             return
         }
-        val base = manager.activity(task.activity)
+        // of the patches that are this task, the one with the fewest bots on it, world or owned, at random among equals
+        val patch = task.patches.shuffled().minByOrNull { crowd(it) } ?: task.activity
+        val base = manager.activity(patch)
         if (base == null) {
             owner.message("${task.label} isn't available right now.")
             return
         }
+        bot.player["owned_patch"] = patch
         // World bots spread by level bands; an owned bot does whatever its owner's levels allow.
         val activity = base.copy(
             id = TASK_PREFIX + task.id,
@@ -1551,6 +1554,13 @@ class OwnedBots(
         bot.player.say("I can't carry on with that.")
         notify(owner, slot, "${bot.player.name} stopped: $detail")
         refresh(owner)
+    }
+
+    /** The bots on [activity] right now: world bots in its area's slots, and owned bots sent to it. */
+    private fun crowd(activity: String): Int {
+        val area = manager.activity(activity)?.boundArea
+        val world = if (area == null) 0 else manager.slots.occupied(area)
+        return world + manager.bots.count { it.player.contains("owner") && it.player.get<String>("owned_patch") == activity }
     }
 
     private fun requirementText(player: Player, condition: Condition): String = when (condition) {

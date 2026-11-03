@@ -75,7 +75,8 @@ switches to it for its special when it carries or wears one, and the tag is iner
   non-combat skill is a task, grouped by that skill and by the folder of its area's file; `owned.tasks.toml` only
   names folders (`[locations]`), picks the verb a skill's labels start with (`[verbs]`) and tunes single
   activities (`label`, `location`, `hidden`). The skill is the last one an activity lists (chop-and-fletch is
-  fletching), same-thing-same-place patches collapse to one task, and a product that isn't an item is named from
+  fletching), same-thing-same-place patches collapse to one task that remembers them all, the order sending the bot to
+  the least used of them (world bots in its slots plus owned bots sent there, random among equals), and a product that isn't an item is named from
   the activity's id. `::companion tasks` prints `index|skill|level|location|members|label` (a game chat line
   wraps at the chat box's width, so no ids) and `::companion task <slot>` takes the index or the activity id.
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of

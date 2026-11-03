@@ -1203,12 +1203,32 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(tasks.all.none { it.skill in setOf("attack", "strength", "defence") }, "no combat")
         assertTrue(tasks.all.indexOf(logs) < tasks.all.indexOf(tasks.get("draynor_west_oak_trees")!!), "by level within a place")
         assertEquals(tasks.all.indices.toList(), tasks.all.map { it.index })
-        assertEquals(1, tasks.all.count { it.skill == "woodcutting" && it.location == "Lumbridge" && it.label == "Chop logs" }, "four patches of trees, one task")
+        val lumbridgeLogs = tasks.all.single { it.skill == "woodcutting" && it.location == "Lumbridge" && it.label == "Chop logs" }
+        assertEquals(4, lumbridgeLogs.patches.size, "four patches of trees, one task that knows them all")
         assertEquals("fletching", tasks.get("draynor_north_trees_fletch_arrow_shaft")?.skill, "chop-and-fletch is a fletching task")
         assertEquals("Cook chicken", tasks.get("lumbridge_cook_chicken")!!.label, "a product that isn't an item: named from the id")
         assertEquals("Fish lobster", tasks.get("fishing_guild_north_lobster_fishing")!!.label, "no 'raw'")
         assertEquals("Smith bronze dagger", tasks.get("lumbridge_smith_bronze_dagger")!!.label)
         assertEquals("Smelt bronze bars", tasks.get("lumbridge_smelt_bronze_bars")!!.label)
+    }
+
+    @Test
+    fun `Bots sent to the same task spread over its patches`() = runTest {
+        val owner = createPlayer(Tile(3222, 3218), "alice")
+        for (slot in 0 until 3) {
+            owner.owns(slot, "Bot${slot + 1}")
+        }
+        val tasks: OwnedTasks = get()
+        tasks.reset()
+        val task = tasks.all.single { it.skill == "woodcutting" && it.location == "Lumbridge" && it.label == "Chop logs" }
+        val bots = (0 until 3).map { summon(owner, it) }
+        for (slot in 0 until 3) {
+            owner.command("bot task ${slot + 1} ${task.index}")
+        }
+        val patches = bots.map { it.get<String>("owned_patch") }
+        assertEquals(3, patches.toSet().size, "each to a different patch: $patches")
+        assertTrue(task.patches.containsAll(patches))
+        assertTrue(bots.all { it.bot.pinned == OwnedBots.TASK_PREFIX + task.id }, "all on the one task")
     }
 
     @Test
