@@ -23,12 +23,14 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 import world.gregs.voidps.network.client.instruction.InteractNPC
+import world.gregs.voidps.type.Tile
 
 /**
  * Reactive: a following owned bot fights beside its owner by its `owned_aggression`.
  * - aggressive: attacks what the owner is attacking; in single-way combat, where that NPC is taken, the
  *   nearest NPC of the same name (so a cow's colour variants, a goblin's armours, all count).
  * - passive: never starts a fight, but in multi-way combat attacks whatever is attacking the owner.
+ * A bot holding a post (`owned_post`) only takes a fight, or a drop, within [RADIUS] of the post.
  *   Defending itself is the engine's auto-retaliate, mirrored from the owner.
  * Either way it lets go when the owner stops fighting, and loots its own kills when `owned_loot` is on.
  */
@@ -57,10 +59,15 @@ class BotAssistOwner : BotAction {
         if (mode !is EmptyMode && mode !is Follow) {
             return BehaviourState.Success
         }
-        if (player["owned_loot", true] && loot(bot, world)) {
+        val post = player["owned_post", -1]
+        if (player["owned_loot", true] && loot(bot, world, post)) {
             return BehaviourState.Success
         }
         val target = pick(player, owner, aggressive) ?: return BehaviourState.Success
+        if (post != -1 && !target.tile.within(Tile(post), RADIUS)) {
+            // beyond the post's reach: a holding bot lets it be
+            return BehaviourState.Success
+        }
         val option = target.def(player).options.indexOf("Attack")
         if (option == -1 || !Target.attackable(player, target, message = false)) {
             return BehaviourState.Success
@@ -114,10 +121,13 @@ class BotAssistOwner : BotAction {
         return null
     }
 
-    /** Picks up the bot's own drops (floor items it owns), as BotFightNpc does. */
-    private fun loot(bot: Bot, world: BotWorld): Boolean {
+    /** Picks up the bot's own drops (floor items it owns), as BotFightNpc does; from a [post], only those within its reach. */
+    private fun loot(bot: Bot, world: BotWorld, post: Int): Boolean {
         val player = bot.player
         for (tile in Spiral.spiral(player.tile, LOOT_RADIUS)) {
+            if (post != -1 && !tile.within(Tile(post), RADIUS)) {
+                continue
+            }
             for (item in FloorItems.at(tile)) {
                 if (item.owner != player.accountName) {
                     continue

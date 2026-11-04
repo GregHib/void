@@ -27,6 +27,7 @@ import content.bot.behaviour.action.BotOwnedPrayAltar
 import content.bot.behaviour.action.BotOwnedRecover
 import content.bot.behaviour.action.BotOwnedResume
 import content.bot.behaviour.action.BotOwnedSpell
+import content.bot.behaviour.action.BotReturnToPost
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotCombatLevel
@@ -668,14 +669,20 @@ class OwnedBots(
         order(owner, bot, IDLE, null, OwnedBotStatus.Idle, "Standing by.")
     }
 
-    /** Guard (`hold` is the old name): the bot keeps its place but fights as a follower would: defends itself and, by its aggression, the owner. */
+    /**
+     * Hold position (`guard` and `hold` both): the bot keeps its post (the tile it holds on, kept across a knob
+     * change that re-orders it) and fights as a follower would, within [BotAssistOwner.RADIUS] of the post,
+     * walking back to it after.
+     */
     private fun hold(owner: Player, slot: Int) {
         val bot = requireBot(owner, slot) ?: return
         bot.player["owned_aggression"] = OwnedRoster.aggression(owner, slot)
-        order(owner, bot, holdActivity(owner, bot, slot), null, OwnedBotStatus.Guarding, "Guarding here.")
+        val post = bot.player["owned_post", -1]
+        order(owner, bot, holdActivity(owner, bot, slot), null, OwnedBotStatus.Guarding, "Holding position.")
+        bot.player["owned_post"] = if (post == -1) bot.player.tile.id else post
     }
 
-    private fun holdActivity(owner: Player, bot: Bot, slot: Int): BotActivity = OwnedProfiles.build(owner, bot, slot, HOLD_PREFIX, listOf(BotWait(10)))
+    private fun holdActivity(owner: Player, bot: Bot, slot: Int): BotActivity = OwnedProfiles.build(owner, bot, slot, HOLD_PREFIX, listOf(BotReturnToPost(), BotWait(10)))
 
     /**
      * What a one-off order (go somewhere, attack, pick up) goes back to when done: the follow or hold the bot had,
@@ -786,9 +793,14 @@ class OwnedBots(
         bot.player["owned_resume"] = resume
     }
 
+    /**
+     * Call: the bot follows the owner. One near enough to walk over (on the owner's level, within [CALL_WALK_RANGE])
+     * just does, with no teleport; a farther one is recalled to the owner's side first.
+     */
     private fun call(owner: Player, slot: Int) {
         val bot = requireBot(owner, slot) ?: return
-        if (!BotFollowOwner.recall(bot, owner)) {
+        val near = bot.player.tile.level == owner.tile.level && bot.player.tile.within(owner.tile, CALL_WALK_RANGE)
+        if (!near && !BotFollowOwner.recall(bot, owner)) {
             owner.message("${bot.player.name} can't come to you right now.")
             return
         }
@@ -804,6 +816,7 @@ class OwnedBots(
         bot.player.mode = EmptyMode
         bot.player.clear("owned_errand")
         bot.player.clear("owned_resume")
+        bot.player.clear("owned_post")
         bot.blocked.clear()
         bot.evaluate.clear()
         bot.previous = null
@@ -1731,6 +1744,9 @@ class OwnedBots(
         /** Ids of the per-bot follow activities built by [OwnedProfiles]. */
         const val FOLLOW_PREFIX = "owned_follow:"
         const val HOLD_PREFIX = "owned_hold:"
+
+        /** How far (tiles) a called bot walks over from rather than being teleported to its owner's side. */
+        const val CALL_WALK_RANGE = 10
         const val GOTO_PREFIX = "owned_goto:"
         const val ATTACK_PREFIX = "owned_attack:"
         const val PICKUP_PREFIX = "owned_pickup:"

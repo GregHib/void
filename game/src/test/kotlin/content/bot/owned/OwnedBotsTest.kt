@@ -134,6 +134,58 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A holding bot fights only within reach of its post and walks back to it`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot aggression 1 aggressive")
+        owner.command("bot guard 1")
+        tick(2)
+        val post = bot.tile
+        assertEquals(post.id, bot["owned_post", -1], "the post is where it was told to hold")
+
+        // A fight beyond the post's reach is not its concern
+        val far = createNPC("cow", Tile(post.x + 12, post.y))
+        owner.target = far
+        tick(10)
+        assertFalse(bot.attacking, "a cow ${BotAssistOwner.RADIUS + 4} tiles from the post is left alone")
+        assertEquals(post, bot.tile)
+        owner.target = null
+        tick(2)
+
+        // One within reach it takes, then it walks back
+        val near = createNPC("cow", Tile(post.x + 3, post.y))
+        owner.target = near
+        tickIf(limit = 20) { !bot.attacking }
+        assertSame(near, bot.target)
+        near.levels.set(Skill.Constitution, 0)
+        tickIf(limit = 30) { !near.dead }
+        owner.target = null
+        tickIf(limit = 20) { bot.attacking }
+        tickIf(limit = 40) { bot.tile != post }
+        assertEquals(post, bot.tile, "back on its post")
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX), "still holding: ${bot.bot.pinned}")
+    }
+
+    @Test
+    fun `A called bot near its owner walks over rather than teleporting`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot stop 1")
+        tick(2)
+        bot.tele(106, 100)
+        tick(2)
+
+        owner.command("bot call 1")
+        tick()
+        assertTrue(bot.tile.distanceTo(owner.tile) > 1, "no teleport from ${OwnedBots.CALL_WALK_RANGE} tiles or less: ${bot.tile}")
+        tickIf(limit = 30) { bot.tile.distanceTo(owner.tile) > 1 }
+        assertTrue(bot.tile.distanceTo(owner.tile) in 0..1, "walked over: ${bot.tile}")
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "and follows: ${bot.bot.pinned}")
+    }
+
+    @Test
     fun `A bot attacks the npc its owner points at then goes back to following`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
