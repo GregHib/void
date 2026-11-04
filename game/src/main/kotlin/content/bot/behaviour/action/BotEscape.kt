@@ -25,7 +25,9 @@ import world.gregs.voidps.type.Tile
 
 /**
  * Reactive: a player-owned bot that is losing a fight warns its owner, then gets out. Only while fighting
- * (attacking or under attack): a bot that is merely low walks, eats or recovers instead of fleeing again.
+ * (attacking or under attack), or, for the flee threshold alone, hurt within the last [HURT_TICKS] ticks (its
+ * hitpoints seen to drop: a boss's area attack lands with no swing at the bot, so neither of the first two
+ * holds while it is killed). A bot that is merely low walks, eats or recovers instead of fleeing again.
  * - At [warn] percent hitpoints, or out of food below three quarters: one message to the owner.
  * - At [flee] percent, or out of food under half health: teleport home with [item] (an escape item the
  *   owner gave it: jewellery is discharged, a tab is used up), else any carried escape item, else a free
@@ -46,17 +48,25 @@ data class BotEscape(
             return BehaviourState.Success
         }
         val max = player.levels.getMax(Skill.Constitution)
-        if (max <= 0 || !player.inCombat) {
+        val hitpoints = player.levels.get(Skill.Constitution)
+        val last = player[LAST_HITPOINTS, hitpoints]
+        player[LAST_HITPOINTS] = hitpoints
+        if (hitpoints < last) {
+            player.start(HURT, HURT_TICKS)
+        }
+        val fighting = player.inCombat
+        if (max <= 0 || (!fighting && !player.hasClock(HURT))) {
             // Low out of a fight is for eating and recovering, not fleeing: fleeing again on every recall would loop
             return BehaviourState.Success
         }
-        val percent = player.levels.get(Skill.Constitution) * 100 / max
+        val percent = hitpoints * 100 / max
         val food = hasFood(player)
-        if (percent <= flee || (!food && percent <= 50)) {
+        // the out-of-food rules are for a fight proper: a bot hurt out of one with nothing to eat recovers instead
+        if (percent <= flee || (fighting && !food && percent <= 50)) {
             escape(player, frame)
             return BehaviourState.Success
         }
-        if ((percent <= warn || (!food && percent <= NO_FOOD_WARN)) && !player.hasClock(WARNED)) {
+        if ((percent <= warn || (fighting && !food && percent <= NO_FOOD_WARN)) && !player.hasClock(WARNED)) {
             player.start(WARNED, WARN_INTERVAL)
             player["owned_status"] = OwnedBotStatus.Low.ordinal
             owner(player)?.message("[Bot ${player["owned_slot", 0] + 1}] ${player.name} is at $percent% health${if (food) "." else " with no food."}")
@@ -127,6 +137,11 @@ data class BotEscape(
     companion object {
         const val WARNED = "owned_escape_warned"
         const val ESCAPED = "owned_escaped"
+
+        /** The hitpoints seen last tick, and the clock running while they were seen to fall. */
+        const val LAST_HITPOINTS = "owned_escape_hitpoints"
+        const val HURT = "owned_escape_hurt"
+        const val HURT_TICKS = 8
 
         /** Set when no teleport was possible; the owner script walks the bot to safety. */
         const val RUN = "owned_escape_run"

@@ -875,17 +875,33 @@ internal class OwnedBotsTest : WorldTest() {
 
     @Test
     fun `A bot that is low outside a fight stays with its owner`() = runTest {
+        // already low before its orders, as after a recall: its hitpoints never seen to fall, so no fight is read into it
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
         val bot = summon(owner)
+        bot.levels.set(Skill.Constitution, 2)
+        owner.command("bot follow 1")
+        tick(12)
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "no fight, no flight: ${bot.bot.pinned}")
+        assertNotEquals(OwnedBotStatus.Recovering.ordinal, bot["owned_status", -1])
+        assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
+    }
+
+    @Test
+    fun `A bot flees when its hitpoints fall under the threshold with no attacker on it`() = runTest {
+        // a boss's area attack lands with no swing at the bot: it is neither attacking nor marked under attack
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        bot.equipment.set(2, "amulet_of_glory_4")
         owner.command("bot follow 1")
         tick(2)
 
         bot.levels.set(Skill.Constitution, 2)
-        tick(10)
-        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), "no fight, no flight: ${bot.bot.pinned}")
-        assertNotEquals(OwnedBotStatus.Recovering.ordinal, bot["owned_status", -1])
-        assertTrue(bot.tile.distanceTo(owner.tile) <= 2)
+        tickIf(limit = 5) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
+        assertEquals(OwnedBotStatus.Recovering.ordinal, bot["owned_status", -1], "fled on the drop")
+        tickIf(limit = 20) { bot.tile != BotEscape.home() }
+        assertEquals(BotEscape.home(), bot.tile, "teleported home by the glory")
     }
 
     @Test
