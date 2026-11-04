@@ -81,6 +81,7 @@ spawns = [
   { id = "professor_oddenstein", x = 3110, y = 3367, level = 2 },
   { id = "tool_leprechaun", x = 3087, y = 3352 },
   { id = "chicken_draynor", x = 3110, y = 3366, level = 2, members = true },
+  { id = "ernest", x = 3110, y = 3366, level = 2 },
   { id = "maris", x = 3098, y = 3269, level = 1 },
   { id = "martin_the_master_gardener", x = 3077, y = 3255, members = true },
   { id = "fortunato", x = 3085, y = 3250 },
