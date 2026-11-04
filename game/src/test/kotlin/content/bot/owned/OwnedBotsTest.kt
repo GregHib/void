@@ -849,6 +849,29 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot keeps its fight through a dose of potion`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(103, 100))
+        cow.levels.set(Skill.Constitution, 500)
+        owner.command("bot combat 1 melee")
+        owner.command("bot follow 1")
+        tick(2)
+        owner.command("bot attack 1 ${cow.index}")
+        tickIf(limit = 20) { !bot.attacking }
+        val fight = bot.mode
+        bot.inventory.add("super_restore_4", 2)
+        bot.levels.set(Skill.Prayer, 10)
+        repeat(12) {
+            tick()
+            assertSame(fight, bot.mode, "the same fight, dose after dose")
+        }
+        assertTrue(bot.inventory.count("super_restore_4") < 2, "a dose was drunk")
+    }
+
+    @Test
     fun `A passive follower never starts a fight`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
