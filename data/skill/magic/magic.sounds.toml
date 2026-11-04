@@ -22,6 +22,12 @@ id = 222
 [wind_wave_impact]
 id = 223
 
+[wind_surge_cast]
+id = 7890
+
+[wind_surge_impact]
+id = 7874
+
 [water_strike_cast]
 id = 211
 
@@ -45,6 +51,12 @@ id = 213
 
 [water_wave_impact]
 id = 214
+
+[water_surge_cast]
+id = 7828
+
+[water_surge_impact]
+id = 7831
 
 [earth_strike_cast]
 id = 132
@@ -70,6 +82,12 @@ id = 134
 [earth_wave_impact]
 id = 135
 
+[earth_surge_cast]
+id = 7988
+
+[earth_surge_impact]
+id = 7989
+
 [fire_strike_cast]
 id = 160
 
@@ -93,6 +111,12 @@ id = 162
 
 [fire_wave_impact]
 id = 163
+
+[fire_surge_cast]
+id = 7944
+
+[fire_surge_impact]
+id = 7942
 
 [crumble_undead_cast]
 id = 122
