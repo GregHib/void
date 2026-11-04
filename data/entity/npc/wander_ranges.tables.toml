@@ -52162,3 +52162,8 @@ wander_range = 0
 
 [.leprechaun_panic]
 wander_range = 0
+
+# The Servants' Guild adventurers keep to their corner of the small hall rather than wandering out of it
+[.adventurer]
+wander_range = 1
+max_range = 2
