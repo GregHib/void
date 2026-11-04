@@ -957,7 +957,7 @@ wander_range = 0
 max_range = 0
 
 [.kaqemeex]
-wander_range = 0
+wander_range = 3
 
 [.restless_ghost]
 wander_range = 0
