@@ -590,6 +590,25 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot with no way to its task teleports home once and carries on from there`() = runTest {
+        // (100, 100) is off the navigation graph; Lumbridge is on it
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        bot.start("home_teleport_timeout", 1000, 0)
+
+        owner.command("bot task 1 draynor_north_trees")
+        tickIf(limit = 20) { bot.bot.pinned?.startsWith(OwnedBots.HOME_PREFIX) != true }
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOME_PREFIX), "off to Lumbridge: ${bot.bot.pinned}")
+        tickIf(limit = 60) { bot.tile !in Areas["lumbridge_teleport"] }
+        assertTrue(bot.tile in Areas["lumbridge_teleport"], "cast its home teleport: ${bot.tile}")
+        tickIf(limit = 20) { bot.bot.pinned?.startsWith(OwnedBots.TASK_PREFIX) != true }
+        assertEquals("owned:draynor_north_trees", bot.bot.pinned, "the same task, taken up from Lumbridge")
+        assertTrue(bot["owned_routed_home", false], "and only once")
+    }
+
+    @Test
     fun `A task the bank can't supply stops with a message to the owner`() = runTest {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody")

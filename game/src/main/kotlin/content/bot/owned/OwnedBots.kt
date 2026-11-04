@@ -832,6 +832,7 @@ class OwnedBots(
         bot.player.clear("owned_errand")
         bot.player.clear("owned_resume")
         bot.player.clear("owned_post")
+        bot.player.clear(ROUTED_HOME)
         bot.player.clear(BotAssistOwner.LAST_TARGET)
         bot.player.clear(BotAssistOwner.FAILED_STARTS)
         bot.blocked.clear()
@@ -1532,6 +1533,23 @@ class OwnedBots(
         if (bot.pinned == IDLE.id) {
             return
         }
+        val current = bot.pinnedActivity
+        if (reason == Reason.NoRoute && current != null && !bot.player[ROUTED_HOME, false]) {
+            // No way there from where it stands (a corner of the map the graph does not reach): once, it casts its
+            // home teleport and takes up the same orders from Lumbridge, which the graph covers. A second dead end
+            // after that is a failure like any other; a new order lets it try again.
+            bot.player[ROUTED_HOME] = true
+            bot.player["owned_resume"] = current
+            bot.pin(
+                BotActivity(
+                    id = HOME_PREFIX + bot.player.accountName,
+                    timeout = RECOVER_TIMEOUT,
+                    actions = listOf(BotOwnedHomeTeleport(), BotOwnedResume()),
+                ),
+            )
+            notify(owner, slot, "${bot.player.name} can't find a way there from here: it's teleporting home to try again.")
+            return
+        }
         if (behaviour.id.startsWith(ERRAND_PREFIX) || bot.pinned?.startsWith(ERRAND_PREFIX) == true) {
             // Couldn't get to a bank: drop the orders and go back to what it was doing
             bot.player.clear("owned_errand")
@@ -1761,6 +1779,10 @@ class OwnedBots(
         /** Ids of the per-bot follow activities built by [OwnedProfiles]. */
         const val FOLLOW_PREFIX = "owned_follow:"
         const val HOLD_PREFIX = "owned_hold:"
+
+        /** The home teleport taken, once, when there is no way to an order's place from where the bot stands. */
+        const val HOME_PREFIX = "owned_home:"
+        const val ROUTED_HOME = "owned_routed_home"
 
         /** How far (tiles) a called bot walks over from rather than being teleported to its owner's side. */
         const val CALL_WALK_RANGE = 10
