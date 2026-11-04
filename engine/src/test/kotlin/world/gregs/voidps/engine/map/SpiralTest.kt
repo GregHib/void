@@ -1,6 +1,9 @@
 package world.gregs.voidps.engine.map
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import world.gregs.voidps.type.Tile
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.type.Delta
@@ -56,5 +59,13 @@ internal class SpiralTest {
             }
             println()
         }
+    }
+
+    @Test
+    fun `A radius past the view's is built on demand`() {
+        val tiles = Spiral.spiral(Tile(100, 100), 20).asSequence().toList()
+        assertEquals(41 * 41, tiles.size)
+        assertEquals(Tile(100, 100), tiles.first())
+        assertTrue(tiles.all { it.x in 80..120 && it.y in 80..120 })
     }
 }
