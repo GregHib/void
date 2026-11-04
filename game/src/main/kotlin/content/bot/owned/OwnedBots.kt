@@ -38,6 +38,7 @@ import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.bot
 import content.bot.isBot
+import content.entity.combat.inCombat
 import content.entity.combat.attacker
 import content.entity.combat.attacking
 import content.entity.combat.target
@@ -806,8 +807,10 @@ class OwnedBots(
             owner.message("${bot.player.name} can't come to you right now.")
             return
         }
-        // the follow order is given afresh either way: it ends the fight a near bot was in
-        follow(owner, slot)
+        // a bot already following and not fighting is left to it; any other is ordered afresh, which ends its fight
+        if (!following(bot) || bot.player.inCombat) {
+            follow(owner, slot)
+        }
     }
 
     private fun order(owner: Player, bot: Bot, activity: BotActivity, task: String?, status: OwnedBotStatus, say: String) {

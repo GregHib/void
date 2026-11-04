@@ -191,6 +191,20 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A call to a bot already following beside its owner changes nothing`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tickIf(limit = 20) { bot.mode !is Follow }
+        val activity = bot.bot.pinnedActivity
+        owner.command("bot call 1")
+        tick()
+        assertSame(activity, bot.bot.pinnedActivity, "not ordered afresh")
+        assertTrue(bot.mode is Follow, "still following")
+    }
+
+    @Test
     fun `A called bot near its owner walks over rather than teleporting`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
@@ -1542,6 +1556,13 @@ internal class OwnedBotsTest : WorldTest() {
         bot.specialAttackEnergy = 500
         tick()
         assertTrue(bot.specialAttack, "queued once the bar covers it")
+
+        // a ring of vigour takes a tenth off the cost
+        bot.specialAttack = false
+        bot.equipment.set(12, "ring_of_vigour")
+        bot.specialAttackEnergy = 450
+        tick()
+        assertTrue(bot.specialAttack, "450 covers claws with the ring on")
     }
 
     @Test

@@ -36,7 +36,12 @@ data class BotSpecAttack(
         // the weapon's own cost (claws take half the bar), else the floor given: a special queued short of its
         // cost is refused at the swing, and the refusal ends the bot's combat, so it would swing at nothing
         // until the bar caught up
-        val cost = ItemDefinitions.get(weapon).getOrNull<Int>("special_energy") ?: minEnergy
+        // the weapon's own cost (claws take half the bar), a tenth off with a ring of vigour on as the drain takes it,
+        // else the floor given
+        var cost = ItemDefinitions.get(weapon).getOrNull<Int>("special_energy") ?: minEnergy
+        if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
+            cost = cost * 9 / 10
+        }
         if (player.specialAttackEnergy < maxOf(minEnergy, cost)) return BehaviourState.Success
 
         if (worn == weapon) {
