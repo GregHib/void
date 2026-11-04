@@ -71,3 +71,6 @@ label = "Spin flax into bowstrings"
 
 [lumbridge_pickpocketing]
 label = "Pickpocket men and women"
+
+[shear_lumbridge_sheep]
+label = "Shear sheep"
