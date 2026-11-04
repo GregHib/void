@@ -9,6 +9,7 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.owned.owner
 import content.entity.combat.inCombat
+import content.entity.combat.target
 import content.entity.gfx.areaGfx
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
@@ -78,15 +79,16 @@ class BotFollowOwner : BotAction {
         /**
          * Teleports [bot] to its [owner] when neither is somewhere that forbids it: beside them, or onto their
          * very tile after a change of level (stairs, a ladder), where any other tile may be the far side of a
-         * wall or no floor at all. Returns false when the recall had to wait (bot in combat, owner dead or in
-         * a PvP area).
+         * wall or no floor at all. Returns false when the recall had to wait (owner dead or in a PvP area, or the
+         * bot in combat unless [force], an owner's own call, which ends the fight).
          */
-        fun recall(bot: Bot, owner: Player): Boolean {
+        fun recall(bot: Bot, owner: Player, force: Boolean = false): Boolean {
             val player = bot.player
             // Never into PvP: the wilderness sets in_wilderness, the arenas in_pvp
-            if (player.inCombat || owner.inPvp || owner.inWilderness || owner.dead) {
+            if (owner.inPvp || owner.inWilderness || owner.dead || (!force && player.inCombat)) {
                 return false
             }
+            player.target = null
             player.mode = EmptyMode
             val tile = if (player.tile.level != owner.tile.level) owner.tile else beside(owner.tile)
             // Out and in in a puff of smoke, as a random event's npc comes and goes: the zone's graphic on both

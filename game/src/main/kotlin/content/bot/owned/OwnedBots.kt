@@ -794,19 +794,19 @@ class OwnedBots(
     }
 
     /**
-     * Call: the bot follows the owner. One near enough to walk over (on the owner's level, within [CALL_WALK_RANGE])
-     * just does, with no teleport; a farther one is recalled to the owner's side first.
+     * Call: the bot follows the owner, whatever fight it is in (the owner's call ends it). One near enough to
+     * walk over (on the owner's level, within [CALL_WALK_RANGE]) just does, with no teleport; a farther one is
+     * recalled to the owner's side first.
      */
     private fun call(owner: Player, slot: Int) {
         val bot = requireBot(owner, slot) ?: return
         val near = bot.player.tile.level == owner.tile.level && bot.player.tile.within(owner.tile, CALL_WALK_RANGE)
-        if (!near && !BotFollowOwner.recall(bot, owner)) {
+        if (!near && !BotFollowOwner.recall(bot, owner, force = true)) {
             owner.message("${bot.player.name} can't come to you right now.")
             return
         }
-        if (!following(bot)) {
-            follow(owner, slot)
-        }
+        // the follow order is given afresh either way: it ends the fight a near bot was in
+        follow(owner, slot)
     }
 
     private fun order(owner: Player, bot: Bot, activity: BotActivity, task: String?, status: OwnedBotStatus, say: String) {

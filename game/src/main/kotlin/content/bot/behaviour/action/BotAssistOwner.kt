@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 import world.gregs.voidps.network.client.instruction.InteractNPC
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.type.Tile
 
 /**
@@ -45,6 +46,8 @@ class BotAssistOwner : BotAction {
         val aggressive = player["owned_aggression", "passive"] == "aggressive"
         val mode = player.mode
         if (player.attacking || mode is PlayerOnNPCInteract) {
+            // the attack took: its starts are forgiven
+            player.clear(FAILED_STARTS)
             // Let go when the owner is done, unless the NPC is still on the bot
             if (!owner.fighting() && !player.underAttack) {
                 player.target = null
@@ -59,6 +62,12 @@ class BotAssistOwner : BotAction {
         if (mode !is EmptyMode && mode !is Follow) {
             return BehaviourState.Success
         }
+        // an attack just issued is given its ticks to take; one that did not (the target out of reach: across a
+        // wall, on another floor) counts against it, and after a few the bot leaves that target be for a while
+        // rather than lunging at it every tick
+        if (player.hasClock("fight_starting") || player.hasClock(GIVE_UP)) {
+            return BehaviourState.Success
+        }
         val post = player["owned_post", -1]
         if (player["owned_loot", true] && loot(bot, world, post)) {
             return BehaviourState.Success
@@ -70,6 +79,14 @@ class BotAssistOwner : BotAction {
         }
         val option = target.def(player).options.indexOf("Attack")
         if (option == -1 || !Target.attackable(player, target, message = false)) {
+            return BehaviourState.Success
+        }
+        val tries = if (player[LAST_TARGET, -1] == target.index) player[FAILED_STARTS, 0] + 1 else 1
+        player[LAST_TARGET] = target.index
+        player[FAILED_STARTS] = tries
+        if (tries > MAX_STARTS) {
+            player.clear(FAILED_STARTS)
+            player.start(GIVE_UP, GIVE_UP_TICKS)
             return BehaviourState.Success
         }
         world.execute(player, InteractNPC(target.index, option + 1))
@@ -143,6 +160,12 @@ class BotAssistOwner : BotAction {
     }
 
     companion object {
+        /** The target last lunged at, how many starts at it came to nothing, and the clock that then leaves it be. */
+        const val LAST_TARGET = "owned_assist_target"
+        const val FAILED_STARTS = "owned_assist_starts"
+        const val GIVE_UP = "owned_assist_give_up"
+        const val MAX_STARTS = 3
+        const val GIVE_UP_TICKS = 25
         const val RADIUS = 8
         const val LOOT_RADIUS = 3
     }

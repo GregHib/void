@@ -168,6 +168,27 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A call pulls a bot out of its fight`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(103, 100))
+        owner.command("bot follow 1")
+        tick(2)
+        owner.command("bot attack 1 ${cow.index}")
+        tickIf(limit = 20) { !bot.attacking }
+        assertSame(cow, bot.target)
+
+        owner.tele(Tile(140, 140))
+        tick()
+        owner.command("bot call 1")
+        tick()
+        assertNull(bot.target, "the call ended the fight")
+        assertTrue(bot.tile.distanceTo(owner.tile) in 0..1, "called to its owner's side: ${bot.tile}")
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), bot.bot.pinned)
+    }
+
+    @Test
     fun `A called bot near its owner walks over rather than teleporting`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
