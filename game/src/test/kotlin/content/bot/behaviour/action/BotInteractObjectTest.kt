@@ -7,6 +7,7 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.BotHasClock
+import content.bot.behaviour.condition.BotObjectExists
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -83,6 +84,37 @@ class BotInteractObjectTest {
         val state = action.update(bot, world, BehaviourFrame(FakeBehaviour()))
 
         assertTrue(state is BehaviourState.Failed)
+    }
+
+    @Test
+    fun `A gate already open, its opened half a tile from where the edge looks, is the way being clear`() {
+        ObjectDefinitions.set(
+            arrayOf(
+                ObjectDefinition(id = 0, options = arrayOf("Open"), stringId = "gate_closed"),
+                ObjectDefinition(id = 1, options = arrayOf("Close"), stringId = "gate_opened"),
+            ),
+            mapOf("gate_closed" to 0, "gate_opened" to 1),
+        )
+        player.mode = EmptyMode
+        player.tile = Tile(3212, 3262)
+        // the edge looks for the opened gate at (3211, 3262); it stands at (3212, 3261)
+        GameObjects.add("gate_opened", Tile(3212, 3261))
+        val action = BotInteractObject("Open", "gate_closed", x = 3213, y = 3261, success = BotObjectExists("gate_opened", 3211, 3262))
+
+        val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Success, state)
+    }
+
+    @Test
+    fun `A gate neither closed nor open where the edge looks is waited for`() {
+        player.mode = EmptyMode
+        player.tile = Tile(3212, 3262)
+        val action = BotInteractObject("Open", "gate_closed", x = 3213, y = 3261, success = BotObjectExists("gate_opened", 3211, 3262))
+
+        val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Running, state)
     }
 
     @Test
