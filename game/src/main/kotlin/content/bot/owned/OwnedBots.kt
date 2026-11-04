@@ -635,6 +635,17 @@ class OwnedBots(
             owner.message("Which task? ::companion tasks lists them.")
             return
         }
+        // only so many of a player's companions on tasks at once, a world setting against crowded patches
+        val limit = Settings["bots.owned.tasksPerPlayer", OwnedRoster.MAX_SLOTS].coerceIn(0, OwnedRoster.MAX_SLOTS)
+        val working = bots(owner).count { it !== bot && it.pinned?.startsWith(TASK_PREFIX) == true }
+        if (limit == 0) {
+            owner.message("Companions can't be sent on tasks on this world.")
+            return
+        }
+        if (working >= limit) {
+            owner.message("Only $limit of your companions can be on tasks at once${if (limit == 1) "" else ": call one back first"}.")
+            return
+        }
         // of the patches that are this task, the one with the fewest bots on it, world or owned, at random among equals
         val patch = task.patches.shuffled().minByOrNull { crowd(it) } ?: task.activity
         val base = manager.activity(patch)

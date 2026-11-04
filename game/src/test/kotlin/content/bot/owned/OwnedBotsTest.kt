@@ -116,6 +116,35 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `Only so many companions go on tasks at once, as the world allows`() = runTest {
+        Settings.load(Properties().apply { this["bots.owned.tasksPerPlayer"] = "1" })
+        val owner = createPlayer(Tile(3222, 3222), "alice")
+        owner.owns(0, "Woody")
+        owner.owns(1, "Minnie")
+        owner.bank.add("bronze_hatchet", 2)
+        val first = summon(owner)
+        val second = summon(owner, slot = 1)
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+        assertTrue(first.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX), "the first goes: ${first.bot.pinned}")
+
+        owner.command("bot task 2 draynor_north_trees")
+        tick()
+        assertFalse(second.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX), "the second is held to the limit: ${second.bot.pinned}")
+        // the same bot can be re-sent: it is not counted against itself
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+        assertTrue(first.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX))
+
+        Settings.load(Properties().apply { this["bots.owned.tasksPerPlayer"] = "0" })
+        owner.command("bot stop 1")
+        tick()
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+        assertFalse(first.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX), "tasks off on this world")
+    }
+
+    @Test
     fun `A bot sent to a tile walks there and holds`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
