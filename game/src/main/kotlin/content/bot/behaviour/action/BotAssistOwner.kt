@@ -32,7 +32,9 @@ import world.gregs.voidps.type.Tile
  *   nearest NPC of the same name (so a cow's colour variants, a goblin's armours, all count).
  * - passive: never starts a fight, but in multi-way combat attacks whatever is attacking the owner.
  * Either way, with the owner's auto-retaliate on (mirrored to it), it fights back at an npc attacking it: the
- * engine's own retaliate is for a player standing still, and a follower never is.
+ * engine's own retaliate is for a player standing still, and a follower never is. Any fight is on a leash of
+ * [ENGAGE_RANGE] tiles to the owner: a bot left that far behind lets go and follows, whatever is on it, so it is
+ * never stranded in a fight its owner walked away from.
  * A bot holding a post (`owned_post`) only takes a fight, or a drop, within [RADIUS] of the post.
  *   Defending itself is the engine's auto-retaliate, mirrored from the owner.
  * Either way it lets go when the owner stops fighting, and loots its own kills when `owned_loot` is on.
@@ -50,8 +52,9 @@ class BotAssistOwner : BotAction {
         if (player.attacking || mode is PlayerOnNPCInteract) {
             // the attack took: its starts are forgiven
             player.clear(FAILED_STARTS)
-            // Let go when the owner is done, unless the NPC is still on the bot
-            if (!owner.fighting() && !player.underAttack) {
+            // Let go when the owner is done, unless the NPC is still on the bot; or when the owner has gone too far
+            val left = !owner.tile.within(player.tile, ENGAGE_RANGE)
+            if (left || (!owner.fighting() && !player.underAttack)) {
                 player.target = null
                 player.mode = EmptyMode
             }
@@ -104,7 +107,7 @@ class BotAssistOwner : BotAction {
 
     private fun pick(player: Player, owner: Player, aggressive: Boolean): NPC? {
         val onIt = player.attacker as? NPC
-        if (onIt != null && player.underAttack && !onIt.dead && player["auto_retaliate", false]) {
+        if (onIt != null && player.underAttack && !onIt.dead && player["auto_retaliate", false] && owner.tile.within(player.tile, ENGAGE_RANGE)) {
             return onIt
         }
         if (aggressive) {

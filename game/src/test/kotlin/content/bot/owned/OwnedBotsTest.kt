@@ -984,6 +984,30 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot defending itself lets go and follows once its owner is far off`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner["auto_retaliate"] = true
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(102, 100))
+        cow.levels.set(Skill.Constitution, 500)
+        owner.command("bot follow 1")
+        tick(2)
+        bot.attacker = cow
+        bot.start("under_attack", 8)
+        tick(3)
+        assertSame(cow, bot.target, "fought back with its owner beside it")
+
+        // the owner walks on, the cow still on the bot: the leash wins
+        owner.tele(Tile(120, 100))
+        bot.start("under_attack", 50)
+        tick(3)
+        assertNull(bot.target, "let go of the fight")
+        assertFalse(bot.attacking)
+        assertTrue(bot.mode is Follow, "and follows: ${bot.mode}")
+    }
+
+    @Test
     fun `A passive follower never starts a fight`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
