@@ -31,6 +31,8 @@ import world.gregs.voidps.type.Tile
  * - aggressive: attacks what the owner is attacking; in single-way combat, where that NPC is taken, the
  *   nearest NPC of the same name (so a cow's colour variants, a goblin's armours, all count).
  * - passive: never starts a fight, but in multi-way combat attacks whatever is attacking the owner.
+ * Either way, with the owner's auto-retaliate on (mirrored to it), it fights back at an npc attacking it: the
+ * engine's own retaliate is for a player standing still, and a follower never is.
  * A bot holding a post (`owned_post`) only takes a fight, or a drop, within [RADIUS] of the post.
  *   Defending itself is the engine's auto-retaliate, mirrored from the owner.
  * Either way it lets go when the owner stops fighting, and loots its own kills when `owned_loot` is on.
@@ -101,6 +103,10 @@ class BotAssistOwner : BotAction {
     private fun Player.fighting(): Boolean = target != null || underAttack
 
     private fun pick(player: Player, owner: Player, aggressive: Boolean): NPC? {
+        val onIt = player.attacker as? NPC
+        if (onIt != null && player.underAttack && !onIt.dead && player["auto_retaliate", false]) {
+            return onIt
+        }
         if (aggressive) {
             val wanted = owner.target as? NPC
             if (wanted != null && !wanted.dead) {

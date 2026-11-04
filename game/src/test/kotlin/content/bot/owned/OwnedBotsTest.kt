@@ -955,6 +955,35 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A follower fights back at an npc on it when its owner's auto-retaliate is on, and not when off`() = runTest {
+        for (retaliate in listOf(true, false)) {
+            val owner = createPlayer(Tile(100, 100), "alice_$retaliate")
+            owner["auto_retaliate"] = retaliate
+            owner.owns(0, "Woody")
+            val bot = summon(owner)
+            val cow = createNPC("cow", Tile(102, 100))
+            cow.levels.set(Skill.Constitution, 500)
+            owner.command("bot follow 1")
+            tick(2)
+            assertEquals(retaliate, bot["auto_retaliate", false], "mirrored from the owner")
+
+            // the cow is on the bot, its owner standing by
+            bot.attacker = cow
+            bot.start("under_attack", 8)
+            tick(3)
+            if (retaliate) {
+                assertSame(cow, bot.target, "fought back")
+                assertTrue(bot.attacking)
+            } else {
+                assertNull(bot.target, "took it, as the setting says")
+                assertFalse(bot.attacking)
+            }
+            owner.command("bot dismiss 1")
+            tick(2)
+        }
+    }
+
+    @Test
     fun `A passive follower never starts a fight`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
