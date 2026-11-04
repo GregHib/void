@@ -3,4 +3,5 @@ id = 111
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, completed = 9 }
+# Intermediate names are implementation milestones pending transcript verification.
+values = { unstarted = 0, started = 1, logs_delivered = 2, coordinates_obtained = 3, stronghold_open = 4, orb_recovered = 5, hunt_warlord = 6, warlord_defeated = 7, orbs_recovered = 8, completed = 9 }

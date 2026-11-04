@@ -107,14 +107,17 @@ examine = "A battle mage of the gnomish variety."
 
 [lieutenant_schepbur_battlefield]
 id = 3817
+dialogue = "child"
 examine = "The battle tortoise commander. Sir!"
 
 [commander_montai_battlefield]
 id = 470
+dialogue = "child"
 examine = "It's a tree gnome."
 
 [khazard_commander_battlefield]
 id = 478
+respawn_delay = 50
 drop_table = "khazard_commander"
 examine = "It's one of General Khazard's commanders."
 hitpoints = 220
@@ -126,14 +129,17 @@ combat_def = "khazard_commander"
 
 [tracker_gnome_1_battlefield]
 id = 481
+dialogue = "child"
 examine = "It's a gnome who specialises in covert operations."
 
 [tracker_gnome_2_battlefield]
 id = 482
+dialogue = "child"
 examine = "It's a gnome who specialises in covert operations."
 
 [tracker_gnome_3_battlefield]
 id = 483
+dialogue = "child"
 examine = "It's a gnome who specialises in covert operations."
 
 [mounted_terrorbird_gnome_battlefield]
