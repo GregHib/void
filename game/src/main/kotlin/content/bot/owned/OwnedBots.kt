@@ -325,7 +325,7 @@ class OwnedBots(
             "follow" -> forSlots(owner, rest) { follow(owner, it) }
             "stop" -> forSlots(owner, rest) { stop(owner, it) }
             "guard", "hold" -> forSlots(owner, rest) { hold(owner, it) }
-            "recover" -> forSlots(owner, rest) { recoverOrder(owner, it) }
+            "restore", "recover" -> forSlots(owner, rest) { recoverOrder(owner, it) }
             "goto" -> forSlots(owner, rest) { goTo(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "attack" -> forSlots(owner, rest) { attack(owner, it, rest.getOrNull(1)) }
             "pickup" -> withSlot(owner, rest) { pickUp(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
@@ -1436,7 +1436,7 @@ class OwnedBots(
         val bot = requireBot(owner, slot) ?: return
         val player = bot.player
         if (bot.pinned?.startsWith(RECOVER_PREFIX) == true) {
-            owner.message("${player.name} is already recovering.")
+            owner.message("${player.name} is already restoring.")
             return
         }
         val preset = OwnedRoster.preset(owner, slot)?.let { OwnedLoadouts.get(owner, it) }
@@ -1726,7 +1726,7 @@ class OwnedBots(
         /** The command's names: the one players see first, then the plugin's and a synonym. */
         val COMMANDS = listOf("companion", "bot", "recruit")
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "restore", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
 
         val KNOBS = setOf("spec", "spell", "eat", "flee", "warn", "escape")
 
