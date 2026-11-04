@@ -20,7 +20,6 @@ import content.bot.behaviour.condition.BotCarrying
 import content.bot.behaviour.condition.BotFighting
 import content.bot.behaviour.condition.BotHasClock
 import content.bot.behaviour.condition.BotSkillPercent
-import content.bot.behaviour.condition.BotVariableIn
 import content.skill.prayer.isCurses
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -48,6 +47,9 @@ object OwnedProfiles {
      * The bot's combat behaviour around [actions] (following the owner by default; waiting in place for a hold; one
      * attack for an attack order, without [assist], so it keeps to its target), as the profile and knobs say.
      */
+    /** A combat stat at or under this percent of its base calls for a restore. */
+    private const val RESTORE_BELOW = 89
+
     fun build(owner: Player, bot: Bot, slot: Int, id: String = OwnedBots.FOLLOW_PREFIX, actions: List<BotAction> = listOf(BotFollowOwner()), assist: Boolean = true, timeout: Int = Int.MAX_VALUE): BotActivity {
         val player = bot.player
         val profile = OwnedRoster.profile(owner, slot)
@@ -93,14 +95,15 @@ object OwnedProfiles {
             reactive.add(BotDrinkPotion("prayer_potion_*", Skill.Prayer))
             reactive.add(BotDrinkPotion("super_restore_*", Skill.Prayer))
         }
-        // Three brews down, or the profile's stat below a third: a restore puts the stats back
-        val stat = when (profile) {
-            "ranged" -> Skill.Ranged
-            "mage" -> Skill.Magic
-            "melee" -> Skill.Strength
-            else -> Skill.Defence
+        // Any of the profile's combat stats drained under nine tenths of its base (brews take a little off all of
+        // them with every dose): a restore puts them back
+        val stats = when (profile) {
+            "ranged" -> listOf(Skill.Ranged, Skill.Defence)
+            "mage" -> listOf(Skill.Magic, Skill.Defence)
+            "melee" -> listOf(Skill.Attack, Skill.Strength, Skill.Defence)
+            else -> listOf(Skill.Defence)
         }
-        reactive.add(BotDrinkPotion("super_restore_*", stat, BotAnyCondition(listOf(BotVariableIn("brew_doses_since_restore", 0, min = 3), BotSkillPercent(stat, maxPercent = 30)))))
+        reactive.add(BotDrinkPotion("super_restore_*", stats.first(), BotAnyCondition(stats.map { BotSkillPercent(it, maxPercent = RESTORE_BELOW) })))
         // The spell it autocasts: the owner's pick for it, else, as a mage, whatever the owner autocasts
         reactive.add(BotOwnedSpell(knobs["spell"], mirror = profile == "mage"))
         if (profile == "melee" && knobs["spell"] == null) {

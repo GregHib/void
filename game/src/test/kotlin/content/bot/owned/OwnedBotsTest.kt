@@ -1356,6 +1356,9 @@ internal class OwnedBotsTest : WorldTest() {
     fun `A bot drinks a brew only while it still has a super restore`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
+        for (skill in listOf(Skill.Attack, Skill.Strength, Skill.Defence)) {
+            owner.experience.set(skill, Level.experience(skill, 80))
+        }
         val bot = summon(owner)
         owner.command("bot combat 1 melee")
         owner.command("bot follow 1")
@@ -1368,10 +1371,17 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(brew.condition!!.check(bot), "a restore in hand, a brew is fine")
         bot.levels.set(Skill.Constitution, bot.levels.getMax(Skill.Constitution))
         assertFalse(brew.condition!!.check(bot), "not when healthy")
-        val restore = bot.bot.activity!!.reactive.filterIsInstance<BotDrinkPotion>().first { it.item == "super_restore_*" && it.skill == Skill.Strength }
-        assertFalse(restore.condition!!.check(bot))
-        bot["brew_doses_since_restore"] = 3
-        assertTrue(restore.condition!!.check(bot), "three brews down, a restore")
+        val restore = bot.bot.activity!!.reactive.filterIsInstance<BotDrinkPotion>().first { it.item == "super_restore_*" && it.condition != null }
+        assertFalse(restore.condition!!.check(bot), "stats at base: no restore")
+        val defence = bot.levels.getMax(Skill.Defence)
+        bot.levels.set(Skill.Defence, defence * 95 / 100)
+        assertFalse(restore.condition!!.check(bot), "a touch under base is not worth a dose")
+        bot.levels.set(Skill.Defence, defence * 85 / 100)
+        assertTrue(restore.condition!!.check(bot), "any of the melee stats under nine tenths: a restore")
+        bot.levels.set(Skill.Defence, defence)
+        val attack = bot.levels.getMax(Skill.Attack)
+        bot.levels.set(Skill.Attack, attack * 85 / 100)
+        assertTrue(restore.condition!!.check(bot), "attack counts for a melee bot too")
     }
 
     @Test
