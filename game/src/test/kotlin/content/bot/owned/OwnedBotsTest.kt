@@ -898,6 +898,49 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot keeps its stat boosts up through a fight, a dose whenever one wears off`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        for (skill in listOf(Skill.Attack, Skill.Strength, Skill.Defence)) {
+            owner.experience.set(skill, Level.experience(skill, 80))
+        }
+        val bot = summon(owner)
+        bot.inventory.add("super_strength_4")
+        val cow = createNPC("cow", Tile(103, 100))
+        cow.levels.set(Skill.Constitution, 500)
+        owner.command("bot combat 1 melee")
+        owner.command("bot follow 1")
+        tick(2)
+        owner.command("bot attack 1 ${cow.index}")
+        tickIf(limit = 20) { !bot.attacking }
+        tickIf(limit = 10) { bot.inventory.count("super_strength_4") == 1 }
+        assertEquals(1, bot.inventory.count("super_strength_3"), "a dose as the fight starts")
+        assertTrue(bot.levels.get(Skill.Strength) > 80, "boosted")
+
+        // the boost wears off well into the fight: another dose, with no new fight started
+        tick(10)
+        bot.levels.set(Skill.Strength, 80)
+        tickIf(limit = 10) { bot.inventory.count("super_strength_3") == 1 }
+        assertEquals(1, bot.inventory.count("super_strength_2"), "a dose again once it wore off")
+        assertTrue(bot.attacking, "still in the same fight")
+    }
+
+    @Test
+    fun `A restore is drunk for a drained stat though another is boosted`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        for (skill in listOf(Skill.Attack, Skill.Strength, Skill.Defence)) {
+            owner.experience.set(skill, Level.experience(skill, 80))
+        }
+        val bot = summon(owner)
+        owner.command("bot combat 1 melee")
+        owner.command("bot follow 1")
+        tick()
+        val restore = bot.bot.activity!!.reactive.filterIsInstance<BotDrinkPotion>().first { it.item == "super_restore_*" && it.condition != null }
+        assertTrue(restore.ignoreFull, "the first stat's boost must not hide the others' drain")
+    }
+
+    @Test
     fun `A passive follower never starts a fight`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")

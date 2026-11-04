@@ -43,13 +43,13 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  */
 object OwnedProfiles {
 
+    /** A combat stat at or under this percent of its base calls for a restore. */
+    private const val RESTORE_BELOW = 89
+
     /**
      * The bot's combat behaviour around [actions] (following the owner by default; waiting in place for a hold; one
      * attack for an attack order, without [assist], so it keeps to its target), as the profile and knobs say.
      */
-    /** A combat stat at or under this percent of its base calls for a restore. */
-    private const val RESTORE_BELOW = 89
-
     fun build(owner: Player, bot: Bot, slot: Int, id: String = OwnedBots.FOLLOW_PREFIX, actions: List<BotAction> = listOf(BotFollowOwner()), assist: Boolean = true, timeout: Int = Int.MAX_VALUE): BotActivity {
         val player = bot.player
         val profile = OwnedRoster.profile(owner, slot)
@@ -79,17 +79,33 @@ object OwnedProfiles {
             else -> emptyList()
         }
         offensive.firstOrNull { available(player, it) }?.let { reactive.add(BotPray(it, fighting)) }
-        val starting = BotHasClock("fight_starting")
+        // The stat boosts it carries, kept up through the fight: a dose whenever the boost has worn off (the action
+        // drinks only when the stat is back at or under its base), the strongest it has first
+        val boosting = BotAnyCondition(listOf(BotHasClock("fight_starting"), fighting))
+        if (profile != "passive") {
+            reactive.add(BotDrinkPotion("overload_*", Skill.Strength, boosting))
+        }
         when (profile) {
             "melee" -> {
-                reactive.add(BotDrinkPotion("super_attack_*", Skill.Attack, starting))
-                reactive.add(BotDrinkPotion("super_strength_*", Skill.Strength, starting))
-                reactive.add(BotDrinkPotion("super_defence_*", Skill.Defence, starting))
-                reactive.add(BotDrinkPotion("attack_potion_*", Skill.Attack, starting))
-                reactive.add(BotDrinkPotion("strength_potion_*", Skill.Strength, starting))
+                reactive.add(BotDrinkPotion("extreme_attack_*", Skill.Attack, boosting))
+                reactive.add(BotDrinkPotion("extreme_strength_*", Skill.Strength, boosting))
+                reactive.add(BotDrinkPotion("extreme_defence_*", Skill.Defence, boosting))
+                reactive.add(BotDrinkPotion("super_attack_*", Skill.Attack, boosting))
+                reactive.add(BotDrinkPotion("super_strength_*", Skill.Strength, boosting))
+                reactive.add(BotDrinkPotion("super_defence_*", Skill.Defence, boosting))
+                reactive.add(BotDrinkPotion("combat_potion_*", Skill.Strength, boosting))
+                reactive.add(BotDrinkPotion("attack_potion_*", Skill.Attack, boosting))
+                reactive.add(BotDrinkPotion("strength_potion_*", Skill.Strength, boosting))
+                reactive.add(BotDrinkPotion("defence_potion_*", Skill.Defence, boosting))
             }
-            "ranged" -> reactive.add(BotDrinkPotion("ranging_potion_*", Skill.Ranged, starting))
-            "mage" -> reactive.add(BotDrinkPotion("magic_potion_*", Skill.Magic, starting))
+            "ranged" -> {
+                reactive.add(BotDrinkPotion("extreme_ranging_*", Skill.Ranged, boosting))
+                reactive.add(BotDrinkPotion("ranging_potion_*", Skill.Ranged, boosting))
+            }
+            "mage" -> {
+                reactive.add(BotDrinkPotion("extreme_magic_*", Skill.Magic, boosting))
+                reactive.add(BotDrinkPotion("magic_potion_*", Skill.Magic, boosting))
+            }
         }
         if (profile != "passive") {
             reactive.add(BotDrinkPotion("prayer_potion_*", Skill.Prayer))
@@ -103,7 +119,7 @@ object OwnedProfiles {
             "melee" -> listOf(Skill.Attack, Skill.Strength, Skill.Defence)
             else -> listOf(Skill.Defence)
         }
-        reactive.add(BotDrinkPotion("super_restore_*", stats.first(), BotAnyCondition(stats.map { BotSkillPercent(it, maxPercent = RESTORE_BELOW) })))
+        reactive.add(BotDrinkPotion("super_restore_*", stats.first(), BotAnyCondition(stats.map { BotSkillPercent(it, maxPercent = RESTORE_BELOW) }), ignoreFull = true))
         // The spell it autocasts: the owner's pick for it, else, as a mage, whatever the owner autocasts
         reactive.add(BotOwnedSpell(knobs["spell"], mirror = profile == "mage"))
         if (profile == "melee" && knobs["spell"] == null) {
