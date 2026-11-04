@@ -8,6 +8,7 @@ import content.bot.behaviour.condition.Condition
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractInterface
@@ -32,7 +33,11 @@ data class BotSpecAttack(
 
         if (queued) return BehaviourState.Success
         if (condition != null && !condition.check(player)) return BehaviourState.Success
-        if (player.specialAttackEnergy < minEnergy) return BehaviourState.Success
+        // the weapon's own cost (claws take half the bar), else the floor given: a special queued short of its
+        // cost is refused at the swing, and the refusal ends the bot's combat, so it would swing at nothing
+        // until the bar caught up
+        val cost = ItemDefinitions.get(weapon).getOrNull<Int>("special_energy") ?: minEnergy
+        if (player.specialAttackEnergy < maxOf(minEnergy, cost)) return BehaviourState.Success
 
         if (worn == weapon) {
             player.specialAttack = true

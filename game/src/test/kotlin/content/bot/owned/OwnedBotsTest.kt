@@ -1,5 +1,7 @@
 package content.bot.owned
 
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttackEnergy
 import WorldTest
 import content.bot.behaviour.action.BotAssistOwner
 import content.bot.behaviour.action.BotDrinkPotion
@@ -1419,6 +1421,28 @@ internal class OwnedBotsTest : WorldTest() {
         val attack = bot.levels.getMax(Skill.Attack)
         bot.levels.set(Skill.Attack, attack * 85 / 100)
         assertTrue(restore.condition!!.check(bot), "attack counts for a melee bot too")
+    }
+
+    @Test
+    fun `A special attack is queued only once the bar covers the weapon's cost`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        bot.equipment.set(3, "dragon_claws")
+        val cow = createNPC("cow", Tile(103, 100))
+        owner.command("bot combat 1 melee spec=dragon_claws")
+        owner.command("bot follow 1")
+        tick(2)
+        owner.command("bot attack 1 ${cow.index}")
+        tickIf(limit = 20) { !bot.attacking }
+
+        bot.specialAttackEnergy = 300
+        bot.specialAttack = false
+        tick()
+        assertFalse(bot.specialAttack, "claws take 500: not queued at 300, where the swing would refuse it")
+        bot.specialAttackEnergy = 500
+        tick()
+        assertTrue(bot.specialAttack, "queued once the bar covers it")
     }
 
     @Test
