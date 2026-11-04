@@ -73,6 +73,10 @@ class BotAssistOwner : BotAction {
             return BehaviourState.Success
         }
         val target = pick(player, owner, aggressive) ?: return BehaviourState.Success
+        if (!target.tile.within(player.tile, ENGAGE_RANGE)) {
+            // too far to be a fight the bot is in: it follows its owner there first rather than lunging across the map
+            return BehaviourState.Success
+        }
         if (post != -1 && !target.tile.within(Tile(post), RADIUS)) {
             // beyond the post's reach: a holding bot lets it be
             return BehaviourState.Success
@@ -166,6 +170,9 @@ class BotAssistOwner : BotAction {
         const val GIVE_UP = "owned_assist_give_up"
         const val MAX_STARTS = 3
         const val GIVE_UP_TICKS = 25
+
+        /** How far (tiles) from the bot a target may be for it to join the fight. */
+        const val ENGAGE_RANGE = 12
         const val RADIUS = 8
         const val LOOT_RADIUS = 3
     }

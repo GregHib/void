@@ -831,6 +831,22 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `An aggressive follower leaves a far-off target to follow its owner first`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(130, 100))
+        owner.command("bot aggression 1 aggressive")
+        owner.command("bot follow 1")
+        tick(2)
+
+        owner.target = cow
+        tick(10)
+        assertFalse(bot.attacking, "a cow thirty tiles off is no fight of the bot's yet")
+        assertNull(bot.target)
+    }
+
+    @Test
     fun `A passive follower never starts a fight`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
