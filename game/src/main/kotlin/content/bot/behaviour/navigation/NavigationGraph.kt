@@ -1,5 +1,6 @@
 package content.bot.behaviour.navigation
 
+import content.bot.behaviour.condition.BotBankSetup
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWalkTo
@@ -54,8 +55,11 @@ class NavigationGraph(
      * Find a path to the nearest area with a [tag].
      */
     fun findNearest(player: Player, output: MutableList<Int>, tag: String): Boolean {
-        val start = startingPoints(player)
-        return find(player, output, start, target = {
+        // a route to a bank cannot go by a shortcut that needs one first (a teleport whose runes are in the bank):
+        // its own first step would be this very search, over and over
+        val skip: (NavigationShortcut) -> Boolean = if (tag == "bank") { { shortcut -> shortcut.requires.any { it is BotBankSetup } } } else { { false } }
+        val start = startingPoints(player, skip)
+        return find(player, output, start, skip = skip, target = {
             tags[it]?.contains(tag) ?: false
         })
     }
@@ -68,7 +72,7 @@ class NavigationGraph(
         return find(player, output, start, target = { Tile(tiles[it]) in Areas[area] })
     }
 
-    internal fun startingPoints(player: Player): Set<Node> = buildSet {
+    internal fun startingPoints(player: Player, skip: (NavigationShortcut) -> Boolean = { false }): Set<Node> = buildSet {
         // Append all nodes within 10 tiles
         for (index in 1 until tiles.size) {
             val tile = Tile(tiles[index])
@@ -84,7 +88,7 @@ class NavigationGraph(
         // Check for shortcuts (i.e. item teleports)
         val blocked = if (player.isBot) player.bot.blocked else emptySet()
         for (shortcut in shortcuts.values) {
-            if (blocked.contains(shortcut.id)) {
+            if (blocked.contains(shortcut.id) || skip(shortcut)) {
                 continue
             }
             if (shortcut.requires.any { !it.check(player) }) {
@@ -95,11 +99,11 @@ class NavigationGraph(
         }
     }
 
-    internal fun find(player: Player, output: MutableList<Int>, start: Node, target: Int) = find(player, output, setOf(start)) { it == target }
+    internal fun find(player: Player, output: MutableList<Int>, start: Node, target: Int) = find(player, output, setOf(start), target = { it == target })
 
-    internal fun find(player: Player, output: MutableList<Int>, start: Set<Node>, target: Int) = find(player, output, start) { it == target }
+    internal fun find(player: Player, output: MutableList<Int>, start: Set<Node>, target: Int) = find(player, output, start, target = { it == target })
 
-    internal fun find(player: Player, output: MutableList<Int>, start: Node, target: (Int) -> Boolean) = find(player, output, setOf(start), target)
+    internal fun find(player: Player, output: MutableList<Int>, start: Node, target: (Int) -> Boolean) = find(player, output, setOf(start), target = target)
 
     /**
      * Dijkstra algorithm
@@ -107,7 +111,7 @@ class NavigationGraph(
      * Appends the completed route of edge indices to [output].
      * @return successful route found.
      */
-    internal fun find(player: Player, output: MutableList<Int>, startingPoints: Set<Node>, target: (Int) -> Boolean): Boolean {
+    internal fun find(player: Player, output: MutableList<Int>, startingPoints: Set<Node>, skip: (NavigationShortcut) -> Boolean = { false }, target: (Int) -> Boolean): Boolean {
         output.clear()
         val queue = PriorityQueue<Node>()
         val visited = BooleanArray(nodeCount)
@@ -146,6 +150,10 @@ class NavigationGraph(
                 }
                 val weight = edgeWeights[edge]
                 if (cost + weight >= distance[to]) {
+                    continue
+                }
+                val shortcut = shortcuts[edge]
+                if (shortcut != null && skip(shortcut)) {
                     continue
                 }
                 val conditions = edgeConditions[edge]

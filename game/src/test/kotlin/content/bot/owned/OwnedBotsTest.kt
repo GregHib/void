@@ -3,6 +3,7 @@ package content.bot.owned
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.combat.special.specialAttackEnergy
 import WorldTest
+import content.bot.behaviour.NavigationGraphLoader
 import content.bot.behaviour.action.BotAssistOwner
 import content.bot.behaviour.action.BotDrinkPotion
 import content.bot.behaviour.action.BotEatFood
@@ -142,6 +143,21 @@ internal class OwnedBotsTest : WorldTest() {
         owner.command("bot task 1 draynor_north_trees")
         tick()
         assertFalse(first.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX), "tasks off on this world")
+    }
+
+    @Test
+    fun `A route to the nearest bank never goes by a teleport whose runes are in the bank`() = runTest {
+        val player = createPlayer(Tile(3253, 3270), "alice")
+        player.experience.set(Skill.Magic, Level.experience(Skill.Magic, 25))
+        player.bank.add("fire_rune", 10)
+        player.bank.add("air_rune", 30)
+        player.bank.add("law_rune", 10)
+        player.open("modern_spellbook")
+        val graph = NavigationGraphLoader.graph
+        val route = mutableListOf<Int>()
+        assertTrue(graph.findNearest(player, route, "bank"), "a way to a bank from the cow field")
+        val shortcuts = route.mapNotNull { graph.shortcut(it)?.id }
+        assertTrue(shortcuts.none { it.endsWith("_via_bank") }, "no bank-first teleport on the way to a bank: $shortcuts")
     }
 
     @Test
