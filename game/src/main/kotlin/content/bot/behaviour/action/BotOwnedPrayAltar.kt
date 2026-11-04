@@ -4,7 +4,6 @@ import content.bot.Bot
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
-import content.bot.behaviour.condition.BotCarrying
 import content.bot.behaviour.condition.BotSkillPercent
 import content.bot.owned.owner
 import world.gregs.voidps.engine.client.message
@@ -19,9 +18,10 @@ import world.gregs.voidps.engine.map.Spiral
 
 /**
  * A step of an owned bot's recovery: prayer points back to full at the nearest altar (an area tagged `altar`,
- * walked to by the navigation graph). Skipped when prayer is already full, when the bot carries a prayer or
- * restore potion (its reactives drink those), and, with a word to the owner, when no altar can be reached.
- * One instance per recovery, as the trip keeps route state.
+ * walked to by the navigation graph). Skipped when prayer is already full and, with a word to the owner, when
+ * no altar can be reached. The prayer and restore potions it carries are for the fight, not for here: a restore
+ * that skipped the altar for them (as this once did) sent the bot back with its prayer low and its doses spent
+ * on it. One instance per recovery, as the trip keeps route state.
  */
 class BotOwnedPrayAltar : BotAction {
     private val trip = BotGoToNearest(TAG)
@@ -30,7 +30,7 @@ class BotOwnedPrayAltar : BotAction {
 
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
         val player = bot.player
-        if (full.check(player) || POTIONS.any { it.check(player) }) {
+        if (full.check(player)) {
             return BehaviourState.Success
         }
         val altars = Areas.tagged(TAG)
@@ -60,7 +60,6 @@ class BotOwnedPrayAltar : BotAction {
 
     companion object {
         const val TAG = "altar"
-        private val POTIONS = listOf(BotCarrying("prayer_potion_*"), BotCarrying("super_restore_*"))
 
         fun nearby(player: Player): GameObject? {
             for (tile in Spiral.spiral(player.tile, 12)) {

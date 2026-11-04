@@ -963,6 +963,27 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A restoring bot uses the altar even with restore potions in its pack, and keeps them`() = runTest {
+        val owner = createPlayer(Tile(3244, 3208), "alice")
+        owner.owns(0, "Woody")
+        createObject("bank_booth_classic", Tile(3246, 3210))
+        createObject("prayer_altar_lumbridge", Tile(3243, 3206))
+        owner.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 43))
+        val bot = summon(owner)
+        owner.command("bot follow 1")
+        tick(2)
+        bot.inventory.add("super_restore_4", 2)
+        bot.levels.set(Skill.Prayer, 0)
+
+        owner.command("bot restore 1")
+        tickIf(limit = 10) { bot["owned_status", -1] != OwnedBotStatus.Recovering.ordinal }
+        tickIf(limit = 300) { !bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX) }
+        assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.FOLLOW_PREFIX), bot.bot.pinned)
+        assertEquals(43, bot.levels.get(Skill.Prayer), "prayer recharged at the altar, not from the potions")
+        assertEquals(2, bot.inventory.count("super_restore_4"), "the restores are kept for the fight")
+    }
+
+    @Test
     fun `A bot eats back to full between fights but not for a scratch in one`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
