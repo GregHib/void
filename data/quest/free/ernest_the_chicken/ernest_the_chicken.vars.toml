@@ -1,0 +1,11 @@
+[ernest_fountain_poisoned]
+format = "boolean"
+persist = true
+
+[ernest_tube_unlocked]
+format = "boolean"
+persist = true
+
+[ernest_parts_returned]
+format = "boolean"
+persist = true
