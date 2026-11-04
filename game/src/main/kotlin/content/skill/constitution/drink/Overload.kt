@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
@@ -71,12 +71,15 @@ class Overload : Script {
             return TimeUnit.SECONDS.toTicks(15)
         }
         applyBoost(player)
-        player.queue(name = "overload_hits") {
-            repeat(5) {
-                player.directHit(100)
-                player.anim("overload")
-                player.gfx("overload")
-                pause(2)
+        // the five hits off the world's queue, not the player's: a pause on the player's own queue suspends it, and a
+        // suspended player can neither eat nor drink, which the shock should not stop
+        repeat(5) { hit ->
+            World.queue("overload_hit_${player.accountName}_$hit", hit * 2) {
+                if (!player.dead && player.timers.contains("overload")) {
+                    player.directHit(100)
+                    player.anim("overload")
+                    player.gfx("overload")
+                }
             }
         }
         return TimeUnit.SECONDS.toTicks(15)
