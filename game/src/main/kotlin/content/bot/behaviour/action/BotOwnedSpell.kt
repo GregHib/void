@@ -80,6 +80,13 @@ data class BotOwnedSpell(val spell: String?, val mirror: Boolean) : BotAction {
             return
         }
         val spell: String = owner["autocast_spell", ""]
+        if (!player.hasSpellItems(spell, message = false)) {
+            // the owner's spell without the runes for it: fights with its weapon, as with a chosen spell
+            if (player["autocast", 0] == cast) {
+                clear(player)
+            }
+            return
+        }
         if (player["autocast", 0] == cast) {
             return
         }

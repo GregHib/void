@@ -13,6 +13,7 @@ import content.bot.behaviour.Behaviour
 import content.bot.behaviour.BotGameWorld
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
+import content.bot.behaviour.action.BotAssistOwner
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotFollowOwner
 import content.bot.behaviour.action.BotInteractFloorItem
@@ -817,6 +818,8 @@ class OwnedBots(
         bot.player.clear("owned_errand")
         bot.player.clear("owned_resume")
         bot.player.clear("owned_post")
+        bot.player.clear(BotAssistOwner.LAST_TARGET)
+        bot.player.clear(BotAssistOwner.FAILED_STARTS)
         bot.blocked.clear()
         bot.evaluate.clear()
         bot.previous = null

@@ -69,7 +69,7 @@ data class BotEscape(
         if ((percent <= warn || (fighting && !food && percent <= NO_FOOD_WARN)) && !player.hasClock(WARNED)) {
             player.start(WARNED, WARN_INTERVAL)
             player["owned_status"] = OwnedBotStatus.Low.ordinal
-            owner(player)?.message("[Bot ${player["owned_slot", 0] + 1}] ${player.name} is at $percent% health${if (food) "." else " with no food."}")
+            owner(player)?.message("[Companion ${player["owned_slot", 0] + 1}] ${player.name} is at $percent% health${if (food) "." else " with no food."}")
         }
         return BehaviourState.Success
     }
@@ -89,7 +89,7 @@ data class BotEscape(
                 "is running for it"
             }
         }
-        owner(player)?.message("[Bot ${player["owned_slot", 0] + 1}] ${player.name} is nearly dead and $how!")
+        owner(player)?.message("[Companion ${player["owned_slot", 0] + 1}] ${player.name} is nearly dead and $how!")
         frame.fail(Reason.Escaped)
     }
 

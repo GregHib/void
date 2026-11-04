@@ -49,10 +49,10 @@ class BotOwnedErrand : BotAction {
         player.closeInterfaces()
         val slot = player["owned_slot", 0] + 1
         if (done.isNotEmpty()) {
-            owner.message("[Bot $slot] ${player.name}: ${done.joinToString()}.")
+            owner.message("[Companion $slot] ${player.name}: ${done.joinToString()}.")
         }
         if (missed.isNotEmpty()) {
-            owner.message("[Bot $slot] ${player.name} couldn't ${missed.joinToString()}.")
+            owner.message("[Companion $slot] ${player.name} couldn't ${missed.joinToString()}.")
         }
         val resume = player.get<BotActivity>("owned_resume")
         if (resume != null) {
