@@ -206,3 +206,311 @@ examine = "A sturdy wooden ladder."
 [bank_deposit_box_east_ardougne]
 id = 34755
 examine = "Lets you put items into your bank."
+
+[hill_east_ardougne]
+id = 19852
+examine = "Cute."
+
+[hollow_log_east_ardougne]
+id = 1337
+examine = "The old tree is rotting away."
+
+[food_trough_east_ardougne]
+id = 301
+examine = "Animals have no table manners."
+
+[table_east_ardougne]
+id = 11743
+examine = "A nice sturdy-looking table."
+
+[gravestone_east_ardougne]
+id = 34626
+examine = "A gravestone."
+
+[gravestone_east_ardougne_2]
+id = 34623
+examine = "A gravestone."
+
+[gravestone_east_ardougne_3]
+id = 34629
+examine = "A gravestone."
+
+[gravestone_east_ardougne_4]
+id = 34620
+examine = "A gravestone."
+
+[shelves_east_ardougne]
+id = 34370
+examine = "A shelf for storing stuff."
+
+[shelves_east_ardougne_2]
+id = 34367
+examine = "Storage for all needs."
+
+[shelves_east_ardougne_3]
+id = 34366
+examine = "Farming stock is kept here."
+
+[shelves_east_ardougne_4]
+id = 34368
+examine = "Storage for cookery items."
+
+[table_east_ardougne_2]
+id = 34473
+examine = "A table."
+
+[table_east_ardougne_3]
+id = 34521
+examine = "A nice table."
+
+[table_east_ardougne_4]
+id = 36731
+examine = "A table."
+
+[table_east_ardougne_5]
+id = 34469
+examine = "It's a small table."
+
+[table_east_ardougne_6]
+id = 34474
+examine = "A dirty table covered with used pots and plates."
+
+[table_east_ardougne_7]
+id = 34520
+examine = "A waiting room table."
+
+[table_east_ardougne_8]
+id = 36255
+examine = "A table draped with an elegant cloth."
+
+[bookcase_east_ardougne]
+id = 34526
+examine = "A good source of books!"
+
+[box_east_ardougne]
+id = 34539
+examine = "Stores items."
+
+[box_east_ardougne_2]
+id = 34488
+examine = "Stores items."
+
+[storage_crate_east_ardougne]
+id = 34587
+examine = "Filled with all sorts of old stuff."
+
+[barrel_east_ardougne]
+id = 34591
+examine = "A wooden barrel."
+
+[dresser_east_ardougne]
+id = 34562
+examine = "Bedroom furniture."
+
+[dresser_east_ardougne_2]
+id = 34543
+examine = "A dresser."
+
+[dresser_east_ardougne_3]
+id = 34892
+examine = "To help you do your hair."
+
+[drawers_closed_east_ardougne]
+id = 34559
+examine = "These open and close!"
+
+[bunk_bed_east_ardougne]
+id = 34558
+examine = "Looks snug."
+
+[workbench_east_ardougne]
+id = 26816
+examine = "A bench where work is done."
+
+[grandfather_clock_east_ardougne]
+id = 34493
+examine = "Tick-tock, it's a clock."
+
+[grandfather_clock_east_ardougne_2]
+id = 34544
+examine = "Tick-tock, it's a clock."
+
+[books_east_ardougne]
+id = 34481
+examine = "These books have been strewn all over the place."
+
+[books_east_ardougne_2]
+id = 34480
+examine = "These books are stacked very neatly."
+
+[bookcase_east_ardougne_2]
+id = 34479
+examine = "A mountain of knowledge."
+
+[bookcase_east_ardougne_3]
+id = 34478
+examine = "A mountain of knowledge."
+
+[bookcase_east_ardougne_4]
+id = 34477
+examine = "A mountain of knowledge."
+
+[bookcase_east_ardougne_5]
+id = 34527
+examine = "The Carnillean family seems to be interested primarily in their own history."
+
+[bookcase_east_ardougne_6]
+id = 34525
+examine = "Sir Ceril's books."
+
+[wardrobe_east_ardougne]
+id = 34486
+examine = "A wardrobe."
+
+[bed_east_ardougne]
+id = 34476
+examine = "Great for sleeping in."
+
+[bed_east_ardougne_2]
+id = 34556
+examine = "Looks snug."
+
+[bed_east_ardougne_3]
+id = 34475
+examine = "Great for sleeping in."
+
+[bed_east_ardougne_4]
+id = 36256
+examine = "Great for sleeping in."
+
+[bed_east_ardougne_5]
+id = 36257
+examine = "Great for sleeping in."
+
+[drawers_closed_east_ardougne_2]
+id = 34482
+examine = "For clothes and handy stuff."
+
+[drawers_closed_east_ardougne_3]
+id = 34528
+examine = "A chest of drawers."
+
+[drawers_closed_east_ardougne_4]
+id = 34530
+examine = "A chest of drawers."
+
+[painting_east_ardougne]
+id = 34509
+examine = "A watermill, how charming."
+
+[painting_east_ardougne_2]
+id = 34510
+examine = "A sunset."
+
+[painting_east_ardougne_3]
+id = 34511
+examine = "A view of mountains."
+
+[wardrobe_east_ardougne_2]
+id = 34561
+examine = "A place to store clothes."
+
+[wardrobe_east_ardougne_3]
+id = 34484
+examine = "A wardrobe."
+
+[wardrobe_east_ardougne_4]
+id = 34533
+examine = "A wardrobe."
+
+[wardrobe_east_ardougne_5]
+id = 34552
+examine = "A wardrobe."
+
+[wardrobe_east_ardougne_6]
+id = 2850
+examine = "The wardrobe of Sir Ceril and Lady Henryeta."
+
+[wardrobe_east_ardougne_7]
+id = 34535
+examine = "A wardrobe."
+
+[wardrobe_east_ardougne_8]
+id = 34890
+examine = "A fancy place to store clothes."
+
+[wardrobe_east_ardougne_9]
+id = 34532
+examine = "A wardrobe."
+
+[safe_east_ardougne]
+id = 34756
+examine = "For storing valuables."
+
+[small_table_east_ardougne]
+id = 34751
+examine = "A small wooden table."
+
+[barrel_east_ardougne_2]
+id = 34590
+examine = "A wooden barrel for storage."
+
+[bar_east_ardougne]
+id = 34748
+examine = "Eat, drink and be merry, for tommorrow we die."
+
+[bar_east_ardougne_2]
+id = 34746
+examine = "Always drink responsibly."
+
+[bar_east_ardougne_3]
+id = 34744
+examine = "Where everybody knows your username."
+
+[bar_east_ardougne_4]
+id = 34747
+examine = "Wine and whisky don't mix."
+
+[bar_east_ardougne_5]
+id = 34743
+examine = "Drinks for sale here."
+
+[bar_east_ardougne_6]
+id = 34740
+examine = "Drinks for sale here."
+
+[bar_east_ardougne_7]
+id = 34741
+examine = "Drinks for sale here."
+
+[bar_east_ardougne_8]
+id = 34742
+examine = "Drinks for sale here."
+
+[wheelbarrow_east_ardougne]
+id = 34580
+examine = "A wheelbarrow."
+
+[suite_of_armour_east_ardougne]
+id = 36287
+examine = "A suit of armour."
+
+[throne_east_ardougne]
+id = 34891
+examine = "The seat of power."
+
+[closed_chest_east_ardougne]
+id = 376
+examine = "I wonder what's inside."
+
+[wooden_defence_east_ardougne]
+id = 36732
+examine = "A wooden defensive structure."
+
+[rack_east_ardougne]
+id = 34840
+examine = "It can make you taller."
+
+[sacks_east_ardougne]
+id = 34583
+examine = "They may have something in them."

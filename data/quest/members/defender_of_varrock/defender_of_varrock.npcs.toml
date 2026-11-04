@@ -15,10 +15,13 @@ combat_def = "barbarian"
 
 [stray_dog_defender_of_varrock]
 id = 5917
+collision = "outdoors"
 examine = "A mangy mutt."
 
 [stray_dog_defender_of_varrock_2]
 id = 5918
+collision = "outdoors"
+examine = "Are those fleas all over it?"
 
 [armoured_zombie_defender_of_varrock]
 id = 8159

@@ -1,0 +1,39 @@
+[yanille_dungeon_obstacle_pipe]
+id = 2290
+examine = "A narrow pipe just wide enough to squeeze through."
+
+[yanille_dungeon_monkey_bars]
+id = 2321
+examine = "I can swing across these."
+
+[yanille_dungeon_monkey_bars_middle]
+id = 2319
+examine = "I can swing across these."
+
+[yanille_dungeon_rubble]
+id = 2317
+examine = "A pile of rubble."
+
+[yanille_dungeon_rubble_2]
+id = 2318
+examine = "A pile of rubble."
+
+[yanille_dungeon_balancing_ledge]
+id = 2303
+examine = "I can just about edge across here."
+
+[yanille_dungeon_stairs_up]
+id = 2316
+examine = "I can climb up these stairs."
+
+[yanille_dungeon_balancing_ledge_2]
+id = 35969
+examine = "I can just about edge across here."
+
+[yanille_large_grave]
+id = 32272
+examine = "Whoever bought this must have really cared for the inhabitant."
+
+[sinister_chest_closed]
+id = 377
+examine = "I wonder what's inside."

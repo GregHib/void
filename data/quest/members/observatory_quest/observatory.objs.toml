@@ -1,0 +1,51 @@
+[orrery_observatory]
+id = 25401
+examine = "An impressive display of the planets."
+
+[professors_table_observatory]
+id = 25411
+examine = "A cluttered work area."
+
+[bookcase_observatory]
+id = 25402
+examine = "A bookcase with various books."
+
+[bookcase_observatory_2]
+id = 25403
+examine = "A bookcase with various books."
+
+[bookcase_observatory_3]
+id = 25404
+examine = "A bookcase somewhat lacking in reading material."
+
+[bookcase_observatory_4]
+id = 25405
+examine = "A bookcase with various books."
+
+[bookcase_observatory_5]
+id = 25406
+examine = "A bookcase with various books."
+
+[table_observatory]
+id = 24927
+examine = "A table."
+
+[telescope_observatory]
+id = 25393
+examine = "Used for observing heavenly bodies."
+
+[shooting_star_noticeboard_observatory]
+id = 38669
+examine = "A good place to keep track of shooting stars."
+
+[sunflower_observatory]
+id = 25420
+examine = "A great, big, sunny flower."
+
+[sunflowers_observatory]
+id = 25421
+examine = "Great, big, sunny flowers."
+
+[bluebells_observatory]
+id = 25419
+examine = "The bluebells are coming!"
