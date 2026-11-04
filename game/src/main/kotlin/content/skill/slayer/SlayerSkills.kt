@@ -87,6 +87,4 @@ class SlayerSkills : Script {
             player.message(message)
         }
     }
-
-    // player.message("You need a nosepeg, face mask, earmuffs, spiny helmet and an uncharged black\nmask in your inventory in order to construct a fully-enhanced Slayer helmet.")
 }

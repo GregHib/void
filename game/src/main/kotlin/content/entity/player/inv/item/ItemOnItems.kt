@@ -34,9 +34,14 @@ class ItemOnItems(val itemOnItemDefs: ItemOnItemDefinitions) : Script {
 
     init {
         itemOnItem(bidirectional = false) { fromItem, toItem ->
-            val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem)?.filter { !it.members || World.members }
-            if (overlaps.isNullOrEmpty()) {
+            val available = itemOnItemDefs.getOrNull(fromItem, toItem)?.filter { !it.members || World.members }
+            if (available.isNullOrEmpty()) {
                 noInterest()
+                return@itemOnItem
+            }
+            val overlaps = available.filter { it.variable.isEmpty() || contains(it.variable) }
+            if (overlaps.isEmpty()) {
+                message(available.first().variableMessage)
                 return@itemOnItem
             }
             closeInterfaces()

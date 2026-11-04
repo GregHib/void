@@ -135,6 +135,7 @@ att = 2
 str = 3
 def = 2
 examine = "Overgrown vermin."
+categories = ["giant_rats", "rats"]
 
 [giant_rat_4]
 id = 4943
@@ -143,6 +144,7 @@ att = 2
 str = 3
 def = 2
 examine = "Overgrown vermin."
+categories = ["giant_rats", "rats"]
 
 [giant_rat_6]
 id = 12350
@@ -151,3 +153,4 @@ att = 2
 str = 3
 def = 2
 examine = "Overgrown vermin."
+categories = ["giant_rats", "rats"]

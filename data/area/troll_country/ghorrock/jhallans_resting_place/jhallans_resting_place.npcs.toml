@@ -8,6 +8,8 @@ str = 45
 def = 120
 mage = 45
 max_hit_magic = 50
+categories = ["jellies"]
+slayer_level = 52
 
 [jelly_jhallans_resting_place_2]
 id = 7460
@@ -19,4 +21,6 @@ str = 45
 def = 120
 mage = 45
 max_hit_magic = 50
+categories = ["jellies"]
+slayer_level = 52
 

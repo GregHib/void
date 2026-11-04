@@ -35,7 +35,7 @@ class JungleStrykewyrm : Script {
         }
 
         canAttack("mound_feldip_hills") {
-            if (slayerTask != "jungle_strykewyrm") {
+            if (Settings["slayer.strykewyrmReqTask", false] && slayerTask != "jungle_strykewyrm") {
                 message("You need to have strykewyrm assigned as a task in order to fight them.")
                 false
             } else {

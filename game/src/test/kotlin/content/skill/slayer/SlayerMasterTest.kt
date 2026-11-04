@@ -75,6 +75,8 @@ class SlayerMasterTest : WorldTest() {
         player.setLevel(Skill.Constitution, 600)
         player.setLevel(Skill.Slayer, 55)
 
+        player["lost_city"] = "completed"
+
         // Meets Chaeldar's combat 70, but Smoking Kills is outstanding and Duradel wants combat 100
         assertEquals("chaeldar", player.strongerMaster("turael")?.id)
         assertNull(player.strongerMaster("chaeldar"))
@@ -83,11 +85,12 @@ class SlayerMasterTest : WorldTest() {
     @Test
     fun `Finishing Smoking Kills promotes Sumona over Chaeldar`() {
         val player = createPlayer(Tile(3200, 3200))
-        player.setLevel(Skill.Attack, 80)
-        player.setLevel(Skill.Strength, 80)
-        player.setLevel(Skill.Defence, 60)
-        player.setLevel(Skill.Constitution, 600)
+        player.setLevel(Skill.Attack, 85)
+        player.setLevel(Skill.Strength, 85)
+        player.setLevel(Skill.Defence, 70)
+        player.setLevel(Skill.Constitution, 700)
         player.setLevel(Skill.Slayer, 55)
+        player["lost_city"] = "completed"
         player["smoking_kills"] = "completed"
 
         assertEquals("sumona", player.strongerMaster("turael")?.id)
@@ -105,6 +108,8 @@ class SlayerMasterTest : WorldTest() {
         for (skill in Skill.entries) {
             player.setLevel(skill, skill.maximum())
         }
+        player["lost_city"] = "completed"
+        player["shilo_village"] = "completed"
         return player
     }
 

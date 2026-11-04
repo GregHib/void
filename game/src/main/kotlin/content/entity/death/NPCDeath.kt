@@ -206,39 +206,25 @@ class NPCDeath(
     }
 
     fun slay(player: Player, npc: NPC) {
-        if (player.slayerTask == "nothing" || !npc.categories.contains(player.slayerTask)) {
+        val onTask = player.slayerTask != "nothing" && npc.categories.contains(player.slayerTask)
+        if (!onTask && !player.isChallengeTarget(npc)) {
             return
         }
-        val slayerExp = npc.def["slayer_xp", 0.0]
-        if (slayerExp == 0.0) {
+        // Slayer experience equals the monster's life points unless configured otherwise
+        val slayerExp = npc.def["slayer_xp", npc.def.hitpoints / 10.0]
+        if (slayerExp <= 0.0) {
             logger.warn { "No slayer exp found for slain monster: $npc" }
             return
         }
         player.exp(Skill.Slayer, slayerExp)
+        if (!onTask) {
+            return
+        }
         player.slayerTaskRemaining--
         if (player.slayerTaskRemaining == 0) {
-            player.slayerStreak++
-            var points = when (player.slayerMaster) {
-                "mazchna" -> 15
-                "vannaka" -> 60
-                "chaeldar" -> 150
-                "sumona" -> 180
-                "duradel", "lapalok" -> 225
-                "kuradal" -> 270
-                else -> 0
-            }
-            when {
-                player.slayerStreak.rem(50) == 0 -> {}
-                player.slayerStreak.rem(10) == 0 -> points /= 3
-                else -> points /= 15
-            }
-            player.slayerPoints += points
-            player.inc("slayer_tasks_completed")
-            player.clear("slayer_target")
-            // TODO dif message for 0 points?
-            player.message("You've completed ${player.slayerStreak} tasks in a row and gain $points points. Return to a Slayer Master.")
+            completeAssignment(player)
         } else if (player.slayerTaskRemaining.rem(10) == 0) {
-            player.message("You still need to kill ${player.slayerTaskRemaining} monsters to completed your current Slayer assignment.", ChatType.Filter)
+            player.message("You still need to kill ${player.slayerTaskRemaining} monsters to complete your current Slayer assignment.", ChatType.Filter)
         }
     }
 }

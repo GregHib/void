@@ -8,26 +8,6 @@ id = 3746
 format = "boolean"
 persist = true
 
-[barbarian_training_fishing_unlocked]
-id = 3757
-format = "boolean"
-persist = true
-
-[barbarian_training_mix_unlocked]
-id = 3761
-format = "boolean"
-persist = true
-
-[barbarian_training_hasta_unlocked]
-id = 3763
-format = "boolean"
-persist = true
-
-[barbarian_training_pyre_unlocked]
-id = 3764
-format = "boolean"
-persist = true
-
 [knights_waves]
 id = 3909
 format = "int"

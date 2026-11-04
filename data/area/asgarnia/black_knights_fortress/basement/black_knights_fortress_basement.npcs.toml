@@ -41,6 +41,7 @@ combat_def = "rat"
 collision = "indoors"
 respawn_delay = 1
 hitpoints = 20
+categories = ["rats"]
 
 [arthur_black_knights_fortress_basement]
 id = 3778

@@ -3,6 +3,9 @@ row_id = "item"
 level = "int"
 level_default = 1
 xp = "int"
+product = "item"
+variable = "string"
+variable_message = "string"
 
 [.bronze_bolts_unf]
 level = 9
@@ -35,3 +38,10 @@ xp = 100
 [.silver_bolts_unf]
 level = 43
 xp = 25
+
+[.unfinished_broad_bolts]
+level = 55
+xp = 30
+product = "broad_tipped_bolts"
+variable = "broader_fletching"
+variable_message = "You need to unlock the ability to fletch these from a slayer master."

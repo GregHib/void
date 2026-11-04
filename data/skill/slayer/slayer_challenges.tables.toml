@@ -1,0 +1,39 @@
+[slayer_challenges]
+challenge = "string"
+xp = "int"
+points = "int"
+
+[.mazchna]
+challenge = "ravenous_creatures"
+xp = 2000
+points = 3
+
+[.vannaka]
+challenge = "dragon_scales"
+xp = 4000
+points = 6
+
+[.chaeldar]
+challenge = "zygomites"
+xp = 10000
+points = 25
+
+[.sumona]
+challenge = "kalphite_queen"
+xp = 15000
+points = 30
+
+[.duradel]
+challenge = "slayer_tower"
+xp = 20000
+points = 35
+
+[.kuradal]
+challenge = "fight_cave"
+xp = 25000
+points = 0
+
+[.turael]
+challenge = "turaels_dungeon"
+xp = 1000
+points = 0

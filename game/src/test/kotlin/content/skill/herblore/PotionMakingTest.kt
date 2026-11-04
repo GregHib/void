@@ -75,6 +75,7 @@ class PotionMakingTest : WorldTest() {
     fun `Create potion`() = potions.map { items ->
         dynamicTest("Create ${items.last().toSentenceCase()}") {
             val player = createPlayer()
+            player["barbarian_training_herblore"] = 1
             player.levels.set(Skill.Herblore, 99)
             for (item in items.dropLast(1)) {
                 player.inventory.add(item)
@@ -95,6 +96,7 @@ class PotionMakingTest : WorldTest() {
     fun `Potions give their listed experience`() = experience.map { (items, xp) ->
         dynamicTest("Create ${items.last().toSentenceCase()}") {
             val player = createPlayer()
+            player["barbarian_training_herblore"] = 1
             player.levels.set(Skill.Herblore, 99)
             for (item in items.dropLast(1)) {
                 player.inventory.add(item)
@@ -131,6 +133,7 @@ class PotionMakingTest : WorldTest() {
     ).map { (potion, mix, level) ->
         dynamicTest("Mix ${mix.toSentenceCase()}") {
             val player = createPlayer()
+            player["barbarian_training_herblore"] = 1
             player.levels.set(Skill.Herblore, level - 1)
             player.inventory.add(potion)
             player.inventory.add("caviar")

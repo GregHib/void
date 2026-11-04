@@ -26,6 +26,7 @@ categories = ["cave_horrors"]
 respawn_delay = 50
 drop_table = "cave_horror"
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+slayer_level = 58
 
 [cave_horror_2]
 id = 4353
@@ -35,6 +36,8 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
+slayer_level = 58
 
 [cave_horror_3]
 id = 4354
@@ -44,6 +47,8 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
+slayer_level = 58
 
 [cave_horror_4]
 id = 4356
@@ -53,6 +58,8 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
+slayer_level = 58
 
 [cave_horror_5]
 id = 4357
@@ -62,3 +69,5 @@ str = 77
 def = 62
 mage = 80
 examine = "A horrible, emaciated ape like creature with beady red eyes."
+categories = ["cave_horrors"]
+slayer_level = 58

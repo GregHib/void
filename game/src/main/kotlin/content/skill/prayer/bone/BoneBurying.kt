@@ -30,7 +30,15 @@ class BoneBurying : Script {
             }
             start("bone_delay", 1)
             anim("climb_down")
-            exp(Skill.Prayer, xp / 10.0)
+            val blessed = get("barbarian_pyre_bones", 0)
+            if (blessed > 0) {
+                // Pyre ships triple the experience of the next few bones buried
+                set("barbarian_pyre_bones", blessed - 1)
+                exp(Skill.Prayer, xp * 3 / 10.0)
+                message("You gain extra prayer experience as the ancestral barbarian spirits watch over you.", ChatType.Filter)
+            } else {
+                exp(Skill.Prayer, xp / 10.0)
+            }
             sound("bury_bones")
             set("i_wonder_if_itll_sprout_task", true)
             strongQueue("bury", 2) {

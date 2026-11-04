@@ -8,6 +8,7 @@ str = 47
 def = 47
 max_hit_slash = 60
 hunt_mode = "cowardly"
+categories = ["ice_warriors"]
 
 [ice_queen]
 id = 795

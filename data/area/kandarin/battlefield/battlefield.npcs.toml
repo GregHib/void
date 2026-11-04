@@ -185,3 +185,4 @@ att = 40
 str = 40
 def = 40
 examine = "These gnomes know how to get around!"
+categories = ["birds"]

@@ -82,6 +82,7 @@ str = 18
 def = 17
 max_hit_crush = 30
 hunt_mode = "cowardly"
+categories = ["skeletons", "undead"]
 
 [skeleton_rimmington_2]
 id = 6092
@@ -118,6 +119,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [ghost_rimmington_2]
 id = 6095
@@ -128,6 +130,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [ghost_rimmington_3]
 id = 6096
@@ -138,6 +141,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [ghost_rimmington_4]
 id = 6097
@@ -160,6 +164,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [tool_leprechaun_rimmington]
 id = 7559

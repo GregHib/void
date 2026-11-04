@@ -18,6 +18,38 @@ format = "int"
 persist = true
 format = "string"
 
+[slayer_challenge]
+persist = true
+format = "string"
+
+[slayer_challenge_progress]
+persist = true
+format = "int"
+
+[slayer_last_task]
+persist = true
+format = "string"
+
+[blocked_task_0]
+persist = true
+format = "string"
+
+[blocked_task_1]
+persist = true
+format = "string"
+
+[blocked_task_2]
+persist = true
+format = "string"
+
+[blocked_task_3]
+persist = true
+format = "string"
+
+[blocked_task_4]
+persist = true
+format = "string"
+
 [broader_fletching]
 persist = true
 format = "boolean"

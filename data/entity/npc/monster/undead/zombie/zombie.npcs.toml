@@ -641,6 +641,7 @@ att = 8
 str = 9
 def = 10
 examine = "Dead man walking."
+categories = ["undead", "zombies"]
 
 [zombie_level_13_2]
 id = 5301
@@ -649,6 +650,7 @@ att = 8
 str = 9
 def = 10
 examine = "Dead woman walking."
+categories = ["undead", "zombies"]
 
 [zombie_level_13_3]
 id = 5302
@@ -657,6 +659,7 @@ att = 8
 str = 9
 def = 10
 examine = "Dead woman walking."
+categories = ["undead", "zombies"]
 
 [zombie_level_24]
 id = 5317
@@ -665,6 +668,7 @@ att = 19
 str = 21
 def = 16
 examine = "The walking dead."
+categories = ["undead", "zombies"]
 
 [zombie_level_18]
 id = 7817
@@ -673,6 +677,7 @@ att = 13
 str = 13
 def = 18
 examine = "A walking, rotten corpse."
+categories = ["undead", "zombies"]
 
 [zombie_level_18_2]
 id = 7818
@@ -681,6 +686,7 @@ att = 13
 str = 13
 def = 18
 examine = "A walking, rotten corpse."
+categories = ["undead", "zombies"]
 
 [zombie_level_18_3]
 id = 7819
@@ -689,6 +695,7 @@ att = 13
 str = 13
 def = 18
 examine = "A walking, rotten corpse."
+categories = ["undead", "zombies"]
 
 [zombie_level_18_4]
 id = 7820
@@ -697,6 +704,7 @@ att = 13
 str = 13
 def = 18
 examine = "A walking, rotten corpse."
+categories = ["undead", "zombies"]
 
 [zombie_level_18_5]
 id = 8142

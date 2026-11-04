@@ -55,3 +55,4 @@ att = 10
 str = 10
 def = 12
 examine = "A small ice demon."
+categories = ["icefiends"]

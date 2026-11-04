@@ -8,6 +8,7 @@ str = 10
 def = 10
 max_hit_stab = 20
 hunt_mode = "cowardly"
+categories = ["rats"]
 
 [claus_the_chef_ardougne_sewers]
 id = 886

@@ -37,7 +37,7 @@ object Bonus {
             return value
         }
         val helm = source.equipped(EquipSlot.Hat).id
-        if (Hit.meleeType(type) && (helm.startsWith("black_mask") || helm.startsWith("slayer_helmet"))) {
+        if (Hit.meleeType(type) && (helm.startsWith("black_mask") || helm.startsWith("slayer_helmet") || helm.startsWith("full_slayer_helmet"))) {
             return (value * (7.0 / 6.0)).toInt()
         } else if (type == "range" && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
             return (value * 1.15).toInt()

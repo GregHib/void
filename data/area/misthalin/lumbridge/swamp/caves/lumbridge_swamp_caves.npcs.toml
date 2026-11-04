@@ -35,6 +35,7 @@ categories = ["wall_beasts"]
 immune_poison = true
 drop_table = "wall_beast"
 examine = "What could be hiding in that crack in the wall?"
+slayer_level = 35
 
 [wall_beast]
 id = 7823
@@ -44,6 +45,7 @@ str = 30
 def = 16
 combat_def = "wall_beast"
 examine = "A big, scary hand!"
+slayer_level = 35
 
 [fishing_spot_lumbridge_swamp_caves]
 id = 2067

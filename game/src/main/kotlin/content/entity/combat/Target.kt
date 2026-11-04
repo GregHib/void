@@ -228,7 +228,7 @@ object Target {
         is NPC if target.id == "salarin_the_twisted" -> SalarinTheTwisted.damage(damage, type, weapon, spell)
         is NPC if (target.id.startsWith("turoth") || target.id.startsWith("kurask")) -> when {
             type == "magic" && spell != "magic_dart" -> 0
-            type == "range" && source.ammo != "broad_tipped_bolts" && source.ammo != "broad_arrows" -> 0
+            type == "range" && source.ammo != "broad_tipped_bolts" && source.ammo != "broad_arrow" && source.ammo != "broad_arrows" -> 0
             Hit.meleeType(type) && !weapon.id.startsWith("leaf_bladed") -> 0
             else -> damage
         }

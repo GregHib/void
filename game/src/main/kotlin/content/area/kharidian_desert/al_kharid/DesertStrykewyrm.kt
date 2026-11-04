@@ -4,6 +4,7 @@ import content.area.kandarin.feldip_hills.JungleStrykewyrm
 import content.skill.slayer.slayerTask
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 
 class DesertStrykewyrm : Script {
     init {
@@ -16,7 +17,7 @@ class DesertStrykewyrm : Script {
         }
 
         canAttack("mound_desert_strykewyrm") {
-            if (slayerTask != "desert_strykewyrm") {
+            if (Settings["slayer.strykewyrmReqTask", false] && slayerTask != "desert_strykewyrm") {
                 message("You need to have strykewyrm assigned as a task in order to fight them.")
                 false
             } else {

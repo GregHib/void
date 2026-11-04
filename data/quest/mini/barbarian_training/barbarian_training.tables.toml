@@ -1,0 +1,84 @@
+[barehand_fishing]
+row_id = "item"
+level = "int"          # fishing level
+strength = "int"       # strength level
+
+[.raw_tuna]
+level = 55
+strength = 35
+
+[.raw_swordfish]
+level = 70
+strength = 50
+
+[.raw_shark]
+level = 96
+strength = 76
+
+# Best logs first, the first one held that the player has the levels for is used
+[pyre_logs]
+row_id = "item"
+level = "int"          # firemaking and crafting level
+crafting_xp = "int"    # xp * 0.1
+firemaking_xp = "int"  # xp * 0.1
+bones = "int"          # bones buried with blessed prayer xp
+
+[.magic_logs]
+level = 85
+crafting_xp = 759
+firemaking_xp = 3038
+bones = 5
+
+[.yew_logs]
+level = 70
+crafting_xp = 506
+firemaking_xp = 2025
+bones = 4
+
+[.mahogany_logs]
+level = 60
+crafting_xp = 393
+firemaking_xp = 1575
+bones = 4
+
+[.maple_logs]
+level = 55
+crafting_xp = 337
+firemaking_xp = 1350
+bones = 3
+
+[.arctic_pine_logs]
+level = 52
+crafting_xp = 312
+firemaking_xp = 1250
+bones = 3
+
+[.teak_logs]
+level = 45
+crafting_xp = 262
+firemaking_xp = 1050
+bones = 3
+
+[.willow_logs]
+level = 40
+crafting_xp = 225
+firemaking_xp = 900
+bones = 2
+
+[.oak_logs]
+level = 25
+crafting_xp = 150
+firemaking_xp = 600
+bones = 2
+
+[.achey_tree_logs]
+level = 11
+crafting_xp = 100
+firemaking_xp = 400
+bones = 1
+
+[.logs]
+level = 11
+crafting_xp = 100
+firemaking_xp = 400
+bones = 1

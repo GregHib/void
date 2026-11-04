@@ -1,0 +1,4 @@
+[mogre_miniquest]
+id = 1344
+persist = true
+format = "int"

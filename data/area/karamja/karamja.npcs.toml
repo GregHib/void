@@ -48,6 +48,7 @@ slayer_xp = 25.0
 categories = ["harpie_bug_swarms"]
 respawn_delay = 25
 examine = "A swarm of bugs."
+slayer_level = 33
 
 [frog_karamja]
 id = 3783
