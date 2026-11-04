@@ -872,6 +872,32 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A bot with no runes for its spell fights with its weapon instead`() = runTest {
+        val owner = createPlayer(Tile(100, 100), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        val cow = createNPC("cow", Tile(103, 100))
+        cow.levels.set(Skill.Constitution, 500)
+        owner.command("bot combat 1 ranged spell=wind_rush")
+        owner.command("bot follow 1")
+        tick(2)
+        owner.command("bot attack 1 ${cow.index}")
+        tickIf(limit = 20) { !bot.attacking }
+        val fight = bot.mode
+        repeat(10) {
+            tick()
+            assertSame(fight, bot.mode, "the fight goes on, with the weapon")
+        }
+        assertEquals(0, bot["autocast", 0], "no autocast without the runes")
+
+        bot.inventory.add("air_rune", 100)
+        bot.inventory.add("mind_rune", 100)
+        bot.clear("owned_spell_backoff")
+        tick(2)
+        assertTrue(bot["autocast", 0] != 0, "the runes in hand, the spell is autocast")
+    }
+
+    @Test
     fun `A passive follower never starts a fight`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
@@ -1260,6 +1286,9 @@ internal class OwnedBotsTest : WorldTest() {
         owner.owns(0, "Woody")
         owner.experience.set(Skill.Magic, Level.experience(Skill.Magic, 13))
         val bot = summon(owner)
+        for (rune in listOf("air_rune", "mind_rune", "fire_rune")) {
+            bot.inventory.add(rune, 100)
+        }
         owner.command("bot ui \u000140")
         owner.command("bot follow 1")
         tick(2)
@@ -1302,6 +1331,9 @@ internal class OwnedBotsTest : WorldTest() {
         owner.owns(0, "Woody")
         owner.experience.set(Skill.Magic, Level.experience(Skill.Magic, 94))
         val bot = summon(owner)
+        for (rune in listOf("chaos_rune", "death_rune", "water_rune", "air_rune", "mind_rune", "fire_rune")) {
+            bot.inventory.add(rune, 100)
+        }
         owner.command("bot ui \u000140")
         owner.command("bot follow 1")
         tick(2)
@@ -1325,13 +1357,14 @@ internal class OwnedBotsTest : WorldTest() {
         owner.command("bot spell 1 none")
         bot.inventory.add("astral_rune", 10)
         bot.inventory.add("death_rune", 10)
+        val deaths = bot.inventory.count("death_rune")
         bot.inventory.add("earth_rune", 50)
         owner.command("bot combat 1 melee")
         owner.command("bot follow 1")
         tick(3)
         assertTrue(bot["vengeance", false], "vengeance cast from the lunar book it opened for it")
         assertEquals("lunar_spellbook", bot.spellBook)
-        assertEquals(8, bot.inventory.count("death_rune"))
+        assertEquals(deaths - 2, bot.inventory.count("death_rune"), "two death runes to the cast")
     }
 
     @Test

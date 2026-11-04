@@ -5,6 +5,7 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.owned.owner
+import content.skill.magic.spell.hasSpellItems
 import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.attackRange
 import world.gregs.voidps.engine.client.message
@@ -38,6 +39,18 @@ data class BotOwnedSpell(val spell: String?, val mirror: Boolean) : BotAction {
             return BehaviourState.Success
         }
         val cast = castId(player, spell) ?: return BehaviourState.Success
+        if (!player.hasSpellItems(spell, message = false)) {
+            // no runes for it: an autocast left set would have every swing refused, and the refusal ends the
+            // fight, so the bot fights with its weapon instead and the owner hears once in a while
+            if (player["autocast", 0] == cast) {
+                clear(player)
+            }
+            if (!player.hasClock(BACKOFF)) {
+                player.owner?.message("[Companion ${player["owned_slot", 0] + 1}] ${player.name} is out of runes for ${spell.replace('_', ' ')}.")
+                player.start(BACKOFF, BACKOFF_TICKS)
+            }
+            return BehaviourState.Success
+        }
         if (player["autocast", 0] == cast || player.hasClock(BACKOFF)) {
             return BehaviourState.Success
         }
