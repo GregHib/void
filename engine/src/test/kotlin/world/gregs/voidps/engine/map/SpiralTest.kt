@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.map
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import world.gregs.voidps.type.Tile
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Tile
 
 internal class SpiralTest {
 

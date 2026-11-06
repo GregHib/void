@@ -11,6 +11,7 @@ import content.entity.combat.attacker
 import content.entity.combat.attacking
 import content.entity.combat.target
 import content.entity.combat.underAttack
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -23,7 +24,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 import world.gregs.voidps.network.client.instruction.InteractNPC
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.type.Tile
 
 /**

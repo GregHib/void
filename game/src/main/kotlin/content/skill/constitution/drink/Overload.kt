@@ -4,10 +4,10 @@ import content.area.wilderness.inWilderness
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 

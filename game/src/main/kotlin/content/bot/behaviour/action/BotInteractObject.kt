@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectIn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractObject
+import world.gregs.voidps.type.Tile
 import kotlin.collections.indexOf
 import kotlin.collections.iterator
 

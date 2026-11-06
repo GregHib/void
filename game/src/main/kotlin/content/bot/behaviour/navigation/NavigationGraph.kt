@@ -1,10 +1,10 @@
 package content.bot.behaviour.navigation
 
-import content.bot.behaviour.condition.BotBankSetup
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWalkTo
 import content.bot.behaviour.actions
+import content.bot.behaviour.condition.BotBankSetup
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.requirements
 import content.bot.bot
@@ -57,7 +57,11 @@ class NavigationGraph(
     fun findNearest(player: Player, output: MutableList<Int>, tag: String): Boolean {
         // a route to a bank cannot go by a shortcut that needs one first (a teleport whose runes are in the bank):
         // its own first step would be this very search, over and over
-        val skip: (NavigationShortcut) -> Boolean = if (tag == "bank") { { shortcut -> shortcut.requires.any { it is BotBankSetup } } } else { { false } }
+        val skip: (NavigationShortcut) -> Boolean = if (tag == "bank") {
+            { shortcut -> shortcut.requires.any { it is BotBankSetup } }
+        } else {
+            { false }
+        }
         val start = startingPoints(player, skip)
         return find(player, output, start, skip = skip, target = {
             tags[it]?.contains(tag) ?: false
