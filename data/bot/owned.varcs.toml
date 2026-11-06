@@ -1032,3 +1032,677 @@ format = "int"
 [owned_bot_3_wages]
 id = 2204
 format = "int"
+
+# ---- big stacks: a worn (0-13) or carried (14-41) item's whole amount when over 65,535, else unset ----
+
+[owned_bot_0_amount_0]
+id = 2205
+format = "int"
+
+[owned_bot_0_amount_1]
+id = 2206
+format = "int"
+
+[owned_bot_0_amount_2]
+id = 2207
+format = "int"
+
+[owned_bot_0_amount_3]
+id = 2208
+format = "int"
+
+[owned_bot_0_amount_4]
+id = 2209
+format = "int"
+
+[owned_bot_0_amount_5]
+id = 2210
+format = "int"
+
+[owned_bot_0_amount_6]
+id = 2211
+format = "int"
+
+[owned_bot_0_amount_7]
+id = 2212
+format = "int"
+
+[owned_bot_0_amount_8]
+id = 2213
+format = "int"
+
+[owned_bot_0_amount_9]
+id = 2214
+format = "int"
+
+[owned_bot_0_amount_10]
+id = 2215
+format = "int"
+
+[owned_bot_0_amount_11]
+id = 2216
+format = "int"
+
+[owned_bot_0_amount_12]
+id = 2217
+format = "int"
+
+[owned_bot_0_amount_13]
+id = 2218
+format = "int"
+
+[owned_bot_0_amount_14]
+id = 2219
+format = "int"
+
+[owned_bot_0_amount_15]
+id = 2220
+format = "int"
+
+[owned_bot_0_amount_16]
+id = 2221
+format = "int"
+
+[owned_bot_0_amount_17]
+id = 2222
+format = "int"
+
+[owned_bot_0_amount_18]
+id = 2223
+format = "int"
+
+[owned_bot_0_amount_19]
+id = 2224
+format = "int"
+
+[owned_bot_0_amount_20]
+id = 2225
+format = "int"
+
+[owned_bot_0_amount_21]
+id = 2226
+format = "int"
+
+[owned_bot_0_amount_22]
+id = 2227
+format = "int"
+
+[owned_bot_0_amount_23]
+id = 2228
+format = "int"
+
+[owned_bot_0_amount_24]
+id = 2229
+format = "int"
+
+[owned_bot_0_amount_25]
+id = 2230
+format = "int"
+
+[owned_bot_0_amount_26]
+id = 2231
+format = "int"
+
+[owned_bot_0_amount_27]
+id = 2232
+format = "int"
+
+[owned_bot_0_amount_28]
+id = 2233
+format = "int"
+
+[owned_bot_0_amount_29]
+id = 2234
+format = "int"
+
+[owned_bot_0_amount_30]
+id = 2235
+format = "int"
+
+[owned_bot_0_amount_31]
+id = 2236
+format = "int"
+
+[owned_bot_0_amount_32]
+id = 2237
+format = "int"
+
+[owned_bot_0_amount_33]
+id = 2238
+format = "int"
+
+[owned_bot_0_amount_34]
+id = 2239
+format = "int"
+
+[owned_bot_0_amount_35]
+id = 2240
+format = "int"
+
+[owned_bot_0_amount_36]
+id = 2241
+format = "int"
+
+[owned_bot_0_amount_37]
+id = 2242
+format = "int"
+
+[owned_bot_0_amount_38]
+id = 2243
+format = "int"
+
+[owned_bot_0_amount_39]
+id = 2244
+format = "int"
+
+[owned_bot_0_amount_40]
+id = 2245
+format = "int"
+
+[owned_bot_0_amount_41]
+id = 2246
+format = "int"
+
+[owned_bot_1_amount_0]
+id = 2247
+format = "int"
+
+[owned_bot_1_amount_1]
+id = 2248
+format = "int"
+
+[owned_bot_1_amount_2]
+id = 2249
+format = "int"
+
+[owned_bot_1_amount_3]
+id = 2250
+format = "int"
+
+[owned_bot_1_amount_4]
+id = 2251
+format = "int"
+
+[owned_bot_1_amount_5]
+id = 2252
+format = "int"
+
+[owned_bot_1_amount_6]
+id = 2253
+format = "int"
+
+[owned_bot_1_amount_7]
+id = 2254
+format = "int"
+
+[owned_bot_1_amount_8]
+id = 2255
+format = "int"
+
+[owned_bot_1_amount_9]
+id = 2256
+format = "int"
+
+[owned_bot_1_amount_10]
+id = 2257
+format = "int"
+
+[owned_bot_1_amount_11]
+id = 2258
+format = "int"
+
+[owned_bot_1_amount_12]
+id = 2259
+format = "int"
+
+[owned_bot_1_amount_13]
+id = 2260
+format = "int"
+
+[owned_bot_1_amount_14]
+id = 2261
+format = "int"
+
+[owned_bot_1_amount_15]
+id = 2262
+format = "int"
+
+[owned_bot_1_amount_16]
+id = 2263
+format = "int"
+
+[owned_bot_1_amount_17]
+id = 2264
+format = "int"
+
+[owned_bot_1_amount_18]
+id = 2265
+format = "int"
+
+[owned_bot_1_amount_19]
+id = 2266
+format = "int"
+
+[owned_bot_1_amount_20]
+id = 2267
+format = "int"
+
+[owned_bot_1_amount_21]
+id = 2268
+format = "int"
+
+[owned_bot_1_amount_22]
+id = 2269
+format = "int"
+
+[owned_bot_1_amount_23]
+id = 2270
+format = "int"
+
+[owned_bot_1_amount_24]
+id = 2271
+format = "int"
+
+[owned_bot_1_amount_25]
+id = 2272
+format = "int"
+
+[owned_bot_1_amount_26]
+id = 2273
+format = "int"
+
+[owned_bot_1_amount_27]
+id = 2274
+format = "int"
+
+[owned_bot_1_amount_28]
+id = 2275
+format = "int"
+
+[owned_bot_1_amount_29]
+id = 2276
+format = "int"
+
+[owned_bot_1_amount_30]
+id = 2277
+format = "int"
+
+[owned_bot_1_amount_31]
+id = 2278
+format = "int"
+
+[owned_bot_1_amount_32]
+id = 2279
+format = "int"
+
+[owned_bot_1_amount_33]
+id = 2280
+format = "int"
+
+[owned_bot_1_amount_34]
+id = 2281
+format = "int"
+
+[owned_bot_1_amount_35]
+id = 2282
+format = "int"
+
+[owned_bot_1_amount_36]
+id = 2283
+format = "int"
+
+[owned_bot_1_amount_37]
+id = 2284
+format = "int"
+
+[owned_bot_1_amount_38]
+id = 2285
+format = "int"
+
+[owned_bot_1_amount_39]
+id = 2286
+format = "int"
+
+[owned_bot_1_amount_40]
+id = 2287
+format = "int"
+
+[owned_bot_1_amount_41]
+id = 2288
+format = "int"
+
+[owned_bot_2_amount_0]
+id = 2289
+format = "int"
+
+[owned_bot_2_amount_1]
+id = 2290
+format = "int"
+
+[owned_bot_2_amount_2]
+id = 2291
+format = "int"
+
+[owned_bot_2_amount_3]
+id = 2292
+format = "int"
+
+[owned_bot_2_amount_4]
+id = 2293
+format = "int"
+
+[owned_bot_2_amount_5]
+id = 2294
+format = "int"
+
+[owned_bot_2_amount_6]
+id = 2295
+format = "int"
+
+[owned_bot_2_amount_7]
+id = 2296
+format = "int"
+
+[owned_bot_2_amount_8]
+id = 2297
+format = "int"
+
+[owned_bot_2_amount_9]
+id = 2298
+format = "int"
+
+[owned_bot_2_amount_10]
+id = 2299
+format = "int"
+
+[owned_bot_2_amount_11]
+id = 2300
+format = "int"
+
+[owned_bot_2_amount_12]
+id = 2301
+format = "int"
+
+[owned_bot_2_amount_13]
+id = 2302
+format = "int"
+
+[owned_bot_2_amount_14]
+id = 2303
+format = "int"
+
+[owned_bot_2_amount_15]
+id = 2304
+format = "int"
+
+[owned_bot_2_amount_16]
+id = 2305
+format = "int"
+
+[owned_bot_2_amount_17]
+id = 2306
+format = "int"
+
+[owned_bot_2_amount_18]
+id = 2307
+format = "int"
+
+[owned_bot_2_amount_19]
+id = 2308
+format = "int"
+
+[owned_bot_2_amount_20]
+id = 2309
+format = "int"
+
+[owned_bot_2_amount_21]
+id = 2310
+format = "int"
+
+[owned_bot_2_amount_22]
+id = 2311
+format = "int"
+
+[owned_bot_2_amount_23]
+id = 2312
+format = "int"
+
+[owned_bot_2_amount_24]
+id = 2313
+format = "int"
+
+[owned_bot_2_amount_25]
+id = 2314
+format = "int"
+
+[owned_bot_2_amount_26]
+id = 2315
+format = "int"
+
+[owned_bot_2_amount_27]
+id = 2316
+format = "int"
+
+[owned_bot_2_amount_28]
+id = 2317
+format = "int"
+
+[owned_bot_2_amount_29]
+id = 2318
+format = "int"
+
+[owned_bot_2_amount_30]
+id = 2319
+format = "int"
+
+[owned_bot_2_amount_31]
+id = 2320
+format = "int"
+
+[owned_bot_2_amount_32]
+id = 2321
+format = "int"
+
+[owned_bot_2_amount_33]
+id = 2322
+format = "int"
+
+[owned_bot_2_amount_34]
+id = 2323
+format = "int"
+
+[owned_bot_2_amount_35]
+id = 2324
+format = "int"
+
+[owned_bot_2_amount_36]
+id = 2325
+format = "int"
+
+[owned_bot_2_amount_37]
+id = 2326
+format = "int"
+
+[owned_bot_2_amount_38]
+id = 2327
+format = "int"
+
+[owned_bot_2_amount_39]
+id = 2328
+format = "int"
+
+[owned_bot_2_amount_40]
+id = 2329
+format = "int"
+
+[owned_bot_2_amount_41]
+id = 2330
+format = "int"
+
+[owned_bot_3_amount_0]
+id = 2331
+format = "int"
+
+[owned_bot_3_amount_1]
+id = 2332
+format = "int"
+
+[owned_bot_3_amount_2]
+id = 2333
+format = "int"
+
+[owned_bot_3_amount_3]
+id = 2334
+format = "int"
+
+[owned_bot_3_amount_4]
+id = 2335
+format = "int"
+
+[owned_bot_3_amount_5]
+id = 2336
+format = "int"
+
+[owned_bot_3_amount_6]
+id = 2337
+format = "int"
+
+[owned_bot_3_amount_7]
+id = 2338
+format = "int"
+
+[owned_bot_3_amount_8]
+id = 2339
+format = "int"
+
+[owned_bot_3_amount_9]
+id = 2340
+format = "int"
+
+[owned_bot_3_amount_10]
+id = 2341
+format = "int"
+
+[owned_bot_3_amount_11]
+id = 2342
+format = "int"
+
+[owned_bot_3_amount_12]
+id = 2343
+format = "int"
+
+[owned_bot_3_amount_13]
+id = 2344
+format = "int"
+
+[owned_bot_3_amount_14]
+id = 2345
+format = "int"
+
+[owned_bot_3_amount_15]
+id = 2346
+format = "int"
+
+[owned_bot_3_amount_16]
+id = 2347
+format = "int"
+
+[owned_bot_3_amount_17]
+id = 2348
+format = "int"
+
+[owned_bot_3_amount_18]
+id = 2349
+format = "int"
+
+[owned_bot_3_amount_19]
+id = 2350
+format = "int"
+
+[owned_bot_3_amount_20]
+id = 2351
+format = "int"
+
+[owned_bot_3_amount_21]
+id = 2352
+format = "int"
+
+[owned_bot_3_amount_22]
+id = 2353
+format = "int"
+
+[owned_bot_3_amount_23]
+id = 2354
+format = "int"
+
+[owned_bot_3_amount_24]
+id = 2355
+format = "int"
+
+[owned_bot_3_amount_25]
+id = 2356
+format = "int"
+
+[owned_bot_3_amount_26]
+id = 2357
+format = "int"
+
+[owned_bot_3_amount_27]
+id = 2358
+format = "int"
+
+[owned_bot_3_amount_28]
+id = 2359
+format = "int"
+
+[owned_bot_3_amount_29]
+id = 2360
+format = "int"
+
+[owned_bot_3_amount_30]
+id = 2361
+format = "int"
+
+[owned_bot_3_amount_31]
+id = 2362
+format = "int"
+
+[owned_bot_3_amount_32]
+id = 2363
+format = "int"
+
+[owned_bot_3_amount_33]
+id = 2364
+format = "int"
+
+[owned_bot_3_amount_34]
+id = 2365
+format = "int"
+
+[owned_bot_3_amount_35]
+id = 2366
+format = "int"
+
+[owned_bot_3_amount_36]
+id = 2367
+format = "int"
+
+[owned_bot_3_amount_37]
+id = 2368
+format = "int"
+
+[owned_bot_3_amount_38]
+id = 2369
+format = "int"
+
+[owned_bot_3_amount_39]
+id = 2370
+format = "int"
+
+[owned_bot_3_amount_40]
+id = 2371
+format = "int"
+
+[owned_bot_3_amount_41]
+id = 2372
+format = "int"

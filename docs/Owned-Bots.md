@@ -116,7 +116,8 @@ coffer that runs dry stops the task the next tick (status Failed). Combat, follo
 ## Client variables
 
 `data/bot/owned.varcs.toml`: `owned_bots_meta` (2000) then 50 ints a slot from 2001, then each slot's wage coffer
-(2201-2204). Ints only (the Void
+(2201-2204), then 42 a slot from 2205: a worn or carried item's whole amount when its packed variable (16 bits of
+amount) can't hold it. Ints only (the Void
 client does not extend varcstrings). Sent only after the plugin's handshake `::companion ui <\u0001><api version>`,
 a control character no chat box can type, so a vanilla client never receives ids past its tables. The
 plugin also reads `::companion tasks` lines (`[BotTasks] index|id|label`) and `[Bot n]` chat lines.

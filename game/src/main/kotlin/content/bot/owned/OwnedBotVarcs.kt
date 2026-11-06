@@ -127,12 +127,19 @@ object OwnedBotVarcs {
         }
         val player = bot?.player
         for (index in 0 until EQUIPMENT_SLOTS) {
-            owner["owned_bot_${slot}_equip_$index"] = item(player?.equipment?.getOrNull(index))
+            val item = player?.equipment?.getOrNull(index)
+            owner["owned_bot_${slot}_equip_$index"] = item(item)
+            owner["owned_bot_${slot}_amount_$index"] = overflow(item)
         }
         for (index in 0 until INVENTORY_SLOTS) {
-            owner["owned_bot_${slot}_inv_$index"] = item(player?.inventory?.getOrNull(index))
+            val item = player?.inventory?.getOrNull(index)
+            owner["owned_bot_${slot}_inv_$index"] = item(item)
+            owner["owned_bot_${slot}_amount_${EQUIPMENT_SLOTS + index}"] = overflow(item)
         }
     }
+
+    /** A stack's whole amount when the item's own variable can't hold it (over 65,535), else 0 and nothing sent. */
+    fun overflow(item: Item?): Int = if (item == null || item.amount <= 0xFFFF) 0 else item.amount
 
     fun clear(owner: Player) {
         owner["owned_bots_meta"] = 0
@@ -151,6 +158,9 @@ object OwnedBotVarcs {
             }
             for (index in 0 until INVENTORY_SLOTS) {
                 owner["owned_bot_${slot}_inv_$index"] = 0
+            }
+            for (index in 0 until EQUIPMENT_SLOTS + INVENTORY_SLOTS) {
+                owner["owned_bot_${slot}_amount_$index"] = 0
             }
         }
     }

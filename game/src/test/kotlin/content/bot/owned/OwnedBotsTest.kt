@@ -460,6 +460,24 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `A stack too big for its item variable sends its whole amount beside it`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        val bot = summon(owner)
+        owner.command("bot ui \u000140")
+        tick()
+        bot.inventory.add("coins", 1_000_000)
+        bot.inventory.add("feather", 500)
+        OwnedBotVarcs.items(owner, 0, bot.bot)
+
+        val coins = bot.inventory.indexOf("coins")
+        val feathers = bot.inventory.indexOf("feather")
+        assertEquals(0xFFFF, owner["owned_bot_0_inv_$coins", 0] and 0xFFFF)
+        assertEquals(1_000_000, owner["owned_bot_0_amount_${OwnedBotVarcs.EQUIPMENT_SLOTS + coins}", 0])
+        assertEquals(0, owner["owned_bot_0_amount_${OwnedBotVarcs.EQUIPMENT_SLOTS + feathers}", 0], "a small stack sends nothing extra")
+    }
+
+    @Test
     fun `An amount of all gives or takes the whole stack`() = runTest {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody")
