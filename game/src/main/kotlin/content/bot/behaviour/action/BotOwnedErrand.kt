@@ -70,13 +70,13 @@ class BotOwnedErrand : BotAction {
         fun carryOut(owner: Player, player: Player, order: BankOrder): String? = when (order.kind) {
             BankOrder.Kind.Withdraw -> {
                 // The bank out of the item, or short of it: the rest from its other charges or doses, best first
-                var left = order.amount - OwnedBank.withdraw(owner, player.inventory, order.item, order.amount)
+                var left = order.amount - OwnedBank.withdraw(owner, player, order.item, order.amount)
                 val instead = mutableListOf<String>()
                 for (variant in variants(order.item)) {
                     if (left <= 0) {
                         break
                     }
-                    val got = OwnedBank.withdraw(owner, player.inventory, variant, left)
+                    val got = OwnedBank.withdraw(owner, player, variant, left)
                     if (got > 0) {
                         left -= got
                         instead.add("${if (got > 1) "$got x " else ""}${variant.replace('_', ' ')}")

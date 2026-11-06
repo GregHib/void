@@ -23,7 +23,7 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ::companion give|take <slot> <item> [amount|all] [bank]   ::companion item <slot> <inventory slot> <option>   ::companion use <slot> <from> <to>
 ::companion combat <slot> passive|melee|ranged|mage [spec=item eat=75 flee=25 warn=40 escape=item]   ::companion spec <slot|all> <item>|none
 ::companion spell <slot|all> <spell>|none   ::companion aggression <slot> passive|aggressive   ::companion loot <slot> on|off   ::companion rename <slot> <name>
-::companion loadout save <name> [slot]|wear <slot> <name>|list|delete <name>
+::companion loadout save <name> [slot]|wear <slot> <name>|list|delete <name>   ::companion pay <slot> [coins|all]
 ::companion status   ::companion show <slot>   ::companion help
 ::owned_bots list|inspect <player>|dismiss <player> <slot>|refund <player> <slot>   (admin)
 ```
@@ -39,6 +39,16 @@ and `pickup` are one-off orders (the plugin's "Send here", "Attack with" and "Pi
 goes back to following or guarding when done (`BotOwnedResume`). A bot only picks up what it can see: an item
 the owner dropped stays the owner's alone for its first minute. `spec` tags a bot's special attack weapon: it
 switches to it for its special when it carries or wears one, and the tag is inert until it does.
+
+**Wages** (`OwnedWages`): tasks are paid for, nothing else is. The owner pays coins from their pack into a slot's
+coffer with `::companion pay` (`owned_bot_<slot>_coffer`, saved, kept through dismissal and death; no amount asks
+for one). Each item a task gathers or makes (any of its activity's `produces` items) costs
+`bots.owned.wage.percent` (default 20, 0 = free) of its price, `bots.owned.wage.price` = `trade` (the Grand
+Exchange market price, `ExchangeHistory.marketPrice`) or `alch` (high alchemy, 60% of the store value), rounded up,
+charged the moment it lands in the pack. Only an add counts: items moved in from the bank or handed over by the
+owner are wrapped in `OwnedWages.receiving`, and a move between the pack's own slots is no new item. A task won't
+start without five items' wages in hand (the dearest product), the bot warns once under ten items' worth, and a
+coffer that runs dry stops the task the next tick (status Failed). Combat, following and world orders are free.
 
 ## How it works
 
@@ -81,7 +91,7 @@ switches to it for its special when it carries or wears one, and the tag is iner
   activities (`label`, `location`, `hidden`). The skill is the last one an activity lists (chop-and-fletch is
   fletching), same-thing-same-place patches collapse to one task that remembers them all, the order sending the bot to
   the least used of them (world bots in its slots plus owned bots sent there, random among equals), and a product that isn't an item is named from
-  the activity's id. `::companion tasks` prints `index|skill|level|location|members|label` and, for a task whose setup asks for
+  the activity's id. `::companion tasks` prints `index|skill|level|location|members|label|wage` (wage: coins an item) and, for a task whose setup asks for
   items, `[BotTaskItems] index|id/id:amount,...` (the plugin's hover tip) (a game chat line
   wraps at the chat box's width, so no ids) and `::companion task <slot>` takes the index or the activity id.
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
@@ -105,7 +115,8 @@ switches to it for its special when it carries or wears one, and the tag is iner
 
 ## Client variables
 
-`data/bot/owned.varcs.toml`: `owned_bots_meta` (2000) then 50 ints a slot from 2001. Ints only (the Void
+`data/bot/owned.varcs.toml`: `owned_bots_meta` (2000) then 50 ints a slot from 2001, then each slot's wage coffer
+(2201-2204). Ints only (the Void
 client does not extend varcstrings). Sent only after the plugin's handshake `::companion ui <\u0001><api version>`,
 a control character no chat box can type, so a vanilla client never receives ids past its tables. The
 plugin also reads `::companion tasks` lines (`[BotTasks] index|id|label`) and `[Bot n]` chat lines.

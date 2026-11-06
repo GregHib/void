@@ -26,6 +26,11 @@ persist = true
 [owned_bot_0_items]
 persist = true
 
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_0_coffer]
+format = "int"
+persist = true
+
 [owned_bot_1_name]
 format = "string"
 persist = true
@@ -47,6 +52,11 @@ format = "string"
 persist = true
 
 [owned_bot_1_items]
+persist = true
+
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_1_coffer]
+format = "int"
 persist = true
 
 [owned_bot_2_name]
@@ -72,6 +82,11 @@ persist = true
 [owned_bot_2_items]
 persist = true
 
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_2_coffer]
+format = "int"
+persist = true
+
 [owned_bot_3_name]
 format = "string"
 persist = true
@@ -93,6 +108,11 @@ format = "string"
 persist = true
 
 [owned_bot_3_items]
+persist = true
+
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_3_coffer]
+format = "int"
 persist = true
 
 # Loadout presets shared by all of the owner's bots: { name = ["slot=item", "item:amount", ...] }.

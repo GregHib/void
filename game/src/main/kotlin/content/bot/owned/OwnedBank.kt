@@ -8,6 +8,7 @@ import content.entity.player.bank.bank
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
@@ -19,10 +20,14 @@ import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeInd
 object OwnedBank {
 
     /**
-     * Moves up to [amount] of [id] from [owner]'s bank into [target]; the emptied bank slot is compacted and its
-     * tab counter dropped as a player's withdrawal does. The number moved.
+     * Moves up to [amount] of [id] from [owner]'s bank into [player]'s pack; the emptied bank slot is compacted and
+     * its tab counter dropped as a player's withdrawal does. Handed over, so no wages are paid on it. The number moved.
      */
-    fun withdraw(owner: Player, target: Inventory, id: String, amount: Int): Int {
+    fun withdraw(owner: Player, player: Player, id: String, amount: Int): Int = OwnedWages.receiving(player) {
+        withdraw(owner, player.inventory, id, amount)
+    }
+
+    private fun withdraw(owner: Player, target: Inventory, id: String, amount: Int): Int {
         val bank = owner.bank
         val index = bank.indexOf(id)
         if (index == -1 || amount < 1) {

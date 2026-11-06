@@ -1,7 +1,5 @@
 package content.bot.owned
 
-import content.entity.player.combat.special.specialAttack
-import content.entity.player.combat.special.specialAttackEnergy
 import WorldTest
 import content.bot.behaviour.NavigationGraphLoader
 import content.bot.behaviour.action.BotAssistOwner
@@ -17,8 +15,11 @@ import content.entity.combat.attackers
 import content.entity.combat.attacking
 import content.entity.combat.target
 import content.entity.player.bank.bank
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttackEnergy
 import content.skill.magic.spell.spellBook
 import content.skill.prayer.getActivePrayerVarKey
+import content.social.trade.exchange.history.ExchangeHistory
 import dialogueContinue
 import dialogueOption
 import io.mockk.mockkObject
@@ -28,6 +29,7 @@ import kotlinx.coroutines.test.runTest
 import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.get
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
@@ -53,6 +55,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.EnterName
 import world.gregs.voidps.network.client.instruction.ExecuteCommand
@@ -81,10 +84,13 @@ internal class OwnedBotsTest : WorldTest() {
         tick()
     }
 
-    private fun Player.owns(slot: Int, name: String) {
+    private fun Player.owns(slot: Int, name: String, wages: Int = 1_000_000) {
         this["owned_bot_${slot}_name"] = name
         this["owned_bot_${slot}_alive"] = true
+        this["owned_bot_${slot}_coffer"] = wages
     }
+
+    private fun wage(item: String, amount: Int = 1) = OwnedWages.wage(item, amount, get<ExchangeHistory>()::marketPrice)
 
     private suspend fun summon(owner: Player, slot: Int = 0): Player {
         owner.command("bot summon ${slot + 1}")
@@ -336,6 +342,121 @@ internal class OwnedBotsTest : WorldTest() {
 
         owner.command("bot spec 1 none")
         assertNull(OwnedRoster.knobs(owner, 0)["spec"])
+    }
+
+    @Test
+    fun `Each item a task gathers is paid for out of the coffer`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 10_000)
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+        assertEquals("draynor_north_trees", bot.get<String>("owned_task"))
+        assertTrue(wage("logs") > 0, "logs are worth something")
+
+        bot.inventory.add("logs")
+        bot.inventory.add("logs")
+
+        assertEquals(10_000 - 2 * wage("logs"), owner["owned_bot_0_coffer", 0])
+    }
+
+    @Test
+    fun `Items handed to a companion or moved from the bank cost no wages`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 10_000)
+        owner.bank.add("bronze_hatchet")
+        owner.bank.add("logs", 3)
+        owner.inventory.add("logs", 2)
+        val bot = summon(owner)
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+
+        OwnedBank.withdraw(owner, bot, "logs", 3)
+        owner.command("bot give 1 logs all")
+        tickIf(limit = 10) { owner.inventory.count("logs") != 0 }
+        // and a reshuffle in its own pack is no new item either
+        val from = bot.inventory.indexOf("logs")
+        bot.inventory.transaction { swap(from, 27) }
+
+        assertTrue(bot.inventory.count("logs") >= 3)
+        assertEquals(10_000, owner["owned_bot_0_coffer", 0])
+    }
+
+    @Test
+    fun `A companion won't start a task without a few items' wages in hand`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 0)
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+
+        assertNull(bot.get<String>("owned_task"), "no task without wages")
+    }
+
+    @Test
+    fun `A companion that runs out of wages stops its task`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 0)
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        owner["owned_bot_0_coffer"] = wage("logs") * OwnedWages.START_ITEMS
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+        assertEquals("draynor_north_trees", bot.get<String>("owned_task"))
+
+        repeat(OwnedWages.START_ITEMS + 1) { bot.inventory.add("logs") }
+        tick(2)
+
+        assertEquals(0, OwnedWages.coffer(owner, 0))
+        assertNull(bot.get<String>("owned_task"))
+        assertEquals(OwnedBotStatus.Failed.ordinal, bot["owned_status", -1])
+    }
+
+    @Test
+    fun `Paying wages moves coins from the pack into the coffer`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 0)
+        owner.inventory.add("coins", 1_000)
+
+        owner.command("bot pay 1 600")
+        tick()
+
+        assertEquals(600, owner["owned_bot_0_coffer", 0])
+        assertEquals(400, owner.inventory.count("coins"))
+        owner.command("bot pay 1 all")
+        tick()
+        assertEquals(1_000, owner["owned_bot_0_coffer", 0])
+        assertEquals(0, owner.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Wages go by high alchemy value when the world says so, and stop at nought percent`() = runTest {
+        Settings.load(
+            Properties().apply {
+                this["bots.owned.enabled"] = "true"
+                this["bots.owned.wage.price"] = "alch"
+                this["bots.owned.wage.percent"] = "50"
+            },
+        )
+        val cost = ItemDefinitions.get("yew_logs").cost
+        assertEquals(((cost * 0.6).toInt() + 1) / 2, wage("yew_logs"))
+
+        Settings.load(
+            Properties().apply {
+                this["bots.owned.enabled"] = "true"
+                this["bots.owned.wage.percent"] = "0"
+            },
+        )
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 0)
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        owner.command("bot task 1 draynor_north_trees")
+        tick()
+        assertEquals("draynor_north_trees", bot.get<String>("owned_task"), "free when wages are off")
     }
 
     @Test

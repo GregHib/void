@@ -34,6 +34,8 @@ data class OwnedTask(
     val patches: List<String> = listOf(activity),
     /** What the bot fetches from the owner's bank for it: each a choice of item ids (any hatchet, cheapest first) and how many. */
     val needs: List<Need> = emptyList(),
+    /** The items the task gathers or makes, any of which its wages are paid on. */
+    val products: List<String> = emptyList(),
 ) {
     data class Need(val ids: List<Int>, val amount: Int)
 
@@ -165,7 +167,8 @@ class OwnedTasks {
         val area = activity.area?.id
         val location = places[id] ?: area?.let { folders[it] }?.let { folder -> locations[folder] ?: folder.split('_').joinToString(" ") { it.replaceFirstChar(Char::uppercase) } } ?: ""
         val label = labels[id] ?: label(id, skill, product, area)
-        return OwnedTask(id, label, id, 0, skill, level, location, members, needs = needs(activity))
+        val products = activity.produces.filter { it.startsWith("item:") }.map { it.removePrefix("item:") }
+        return OwnedTask(id, label, id, 0, skill, level, location, members, needs = needs(activity), products = products)
     }
 
     /** The items an activity's setup asks for, carried, worn or banked: a choice of ids each, and how many. */

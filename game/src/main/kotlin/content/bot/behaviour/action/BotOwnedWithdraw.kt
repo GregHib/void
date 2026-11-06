@@ -35,7 +35,7 @@ data class BotOwnedWithdraw(val items: List<BotItem>) : BotAction {
             if (wanted <= 0) {
                 continue
             }
-            val moved = OwnedBank.withdraw(owner, player.inventory, item.id, wanted)
+            val moved = OwnedBank.withdraw(owner, player, item.id, wanted)
             if (moved <= 0) {
                 return BehaviourState.Failed(Reason.Invalid("Couldn't take ${item.id.replace('_', ' ')} from the bank."))
             }

@@ -38,9 +38,9 @@ import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.bot
 import content.bot.isBot
-import content.entity.combat.inCombat
 import content.entity.combat.attacker
 import content.entity.combat.attacking
+import content.entity.combat.inCombat
 import content.entity.combat.target
 import content.entity.combat.underAttack
 import content.entity.gfx.areaGfx
@@ -61,6 +61,7 @@ import content.entity.player.inv.item.addOrDrop
 import content.entity.player.starterItems
 import content.skill.magic.spell.SpellRunes
 import content.skill.melee.weapon.fightStyle
+import content.social.trade.exchange.history.ExchangeHistory
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -98,6 +99,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMa
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.inv.InventorySlotChanged
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -131,6 +133,7 @@ class OwnedBots(
     private val accountDefinitions: AccountDefinitions,
     private val tasks: OwnedTasks,
     private val instructions: InstructionHandlers,
+    private val history: ExchangeHistory,
 ) : Script {
 
     private val logger = InlineLogger("OwnedBots")
@@ -180,6 +183,13 @@ class OwnedBots(
             } else {
                 dismissAll(this)
                 clear("bot_ui")
+            }
+        }
+
+        // wages: an item a task gathers or makes is paid for from the slot's coffer the moment it reaches the pack
+        slotChanged("inventory") { change ->
+            if (contains("owner")) {
+                collected(this, change)
             }
         }
 
@@ -340,6 +350,7 @@ class OwnedBots(
             "give" -> withSlot(owner, rest) { give(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "take" -> withSlot(owner, rest) { take(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "bank" -> withSlot(owner, rest) { bankAll(owner, it) }
+            "pay", "wages" -> withSlot(owner, rest) { pay(owner, it, rest.getOrNull(1)) }
             "item" -> withSlot(owner, rest) { itemOption(owner, it, rest.getOrNull(1), rest.drop(2).joinToString(" ")) }
             "use" -> withSlot(owner, rest) { useItem(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "loot" -> withSlot(owner, rest) { loot(owner, it, rest.getOrNull(1)) }
@@ -360,6 +371,7 @@ class OwnedBots(
         owner.message("::companion spell <slot|all> <spell>|none  (a combat spell of its book; the same spell again clears it)")
         owner.message("::companion aggression <slot> passive|aggressive  ::companion loot <slot> on|off  ::companion rename <slot> <name>  ::companion status|show <slot>")
         owner.message("::companion loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
+        owner.message("::companion pay <slot> [coins|all]  (wages for tasks, from the coins you carry; ${OwnedWages.percent()}% of what each item gathered is worth)")
     }
 
     private inline fun withSlot(owner: Player, rest: List<String>, block: (Int) -> Unit) {
@@ -402,7 +414,9 @@ class OwnedBots(
         owner.message("[BotTasks] ${tasks.all.size} tasks: ::companion task <slot> <task>")
         for (task in tasks.all) {
             // by index, not id: a game chat line is wrapped at the chat box's width, and activity ids are long
-            owner.message("[BotTasks] ${task.index}|${task.skill}|${task.level}|${task.location}|${if (task.members) 1 else 0}|${task.label}")
+            // the wage last, coins an item (the dearest of its products), for the plugin's hover tip
+            val wage = OwnedWages.perItem(task.products, history::marketPrice)
+            owner.message("[BotTasks] ${task.index}|${task.skill}|${task.level}|${task.location}|${if (task.members) 1 else 0}|${task.label}|$wage")
             if (task.needs.isNotEmpty()) {
                 owner.message("[BotTaskItems] ${task.index}|${task.encodeNeeds()}")
             }
@@ -422,7 +436,7 @@ class OwnedBots(
                     } else {
                         val status = OwnedBotStatus.entries[bot.player["owned_status", OwnedBotStatus.Idle.ordinal]]
                         val task = bot.player.get<String>("owned_task")?.let { tasks.get(it)?.label }
-                        "$name - ${status.name.lowercase()}${if (task != null) ": $task" else ""}, ${bot.player.levels.get(Skill.Constitution)} life points"
+                        "$name - ${status.name.lowercase()}${if (task != null) ": $task" else ""}, ${bot.player.levels.get(Skill.Constitution)} life points, ${OwnedWages.coffer(owner, slot).toDigitGroupString()} coins in wages"
                     }
                 }
             }
@@ -666,6 +680,13 @@ class OwnedBots(
             owner.message("[Companion ${slot + 1}] ${bot.player.name} can't do that: ${requirementText(bot.player, unmet)}")
             return
         }
+        // wages up front: enough in the coffer for a few of what it gathers
+        val perItem = OwnedWages.perItem(task.products, history::marketPrice)
+        if (perItem > 0 && OwnedWages.coffer(owner, slot) < perItem * OwnedWages.START_ITEMS) {
+            notify(owner, slot, "${bot.player.name} wants paying first: ${perItem.toDigitGroupString()} coins a ${task.products.first().toItemName().lowercase()}. Use ::companion pay ${slot + 1} <coins>.")
+            return
+        }
+        bot.player.clear(OwnedWages.UNPAID)
         order(owner, bot, activity, task.id, OwnedBotStatus.Working, task.label)
     }
 
@@ -1031,7 +1052,7 @@ class OwnedBots(
         }
         // From the owner's own inventory: handed over in person, then worn
         approach(owner, bot, slot) { target ->
-            if (owner.inventory.moveToLimit(id, 1, target.inventory) <= 0) {
+            if (OwnedWages.receiving(target) { owner.inventory.moveToLimit(id, 1, target.inventory) } <= 0) {
                 owner.message("No ${id.toItemName()} to equip.")
                 return@approach
             }
@@ -1131,7 +1152,8 @@ class OwnedBots(
                 return@withAmount
             }
             approach(owner, bot, slot) { player ->
-                val moved = owner.inventory.moveToLimit(id, count, player.inventory)
+                // a gift, not a gathered item: no wages on it
+                val moved = OwnedWages.receiving(player) { owner.inventory.moveToLimit(id, count, player.inventory) }
                 if (moved <= 0) {
                     owner.message("No ${id.toItemName()} to give, or ${player.name} has no room.")
                     return@approach
@@ -1164,6 +1186,91 @@ class OwnedBots(
                 owner.message("[Companion ${slot + 1}] You take ${if (moved > 1) "$moved x " else ""}${id.toItemName()} from ${player.name}.")
             }
         }
+    }
+
+    /** Coins from the owner's pack into the slot's coffer: [amount], all, or asked for. */
+    private fun pay(owner: Player, slot: Int, amount: String?) {
+        if (!OwnedRoster.alive(owner, slot)) {
+            owner.message("You have no companion in slot ${slot + 1}.")
+            return
+        }
+        val carried = owner.inventory.count("coins")
+        if (carried <= 0) {
+            owner.message("You have no coins on you to pay wages with.")
+            return
+        }
+        // coins are a stack too big for the 1/5/10 choice: no amount given is a typed one
+        if (amount == null) {
+            owner.strongQueue("owned_bot_amount") {
+                val typed = intEntry("How many coins? (${carried.toDigitGroupString()} carried)")
+                if (typed > 0) {
+                    pay(owner, slot, typed.toString())
+                }
+            }
+            return
+        }
+        withAmount(owner, "coins", amount, carried) { count ->
+            val room = Int.MAX_VALUE - OwnedWages.coffer(owner, slot)
+            val paid = minOf(count, room)
+            if (paid <= 0 || !owner.inventory.remove("coins", paid)) {
+                owner.message("You can't pay that.")
+                return@withAmount
+            }
+            OwnedWages.setCoffer(owner, slot, OwnedWages.coffer(owner, slot) + paid)
+            ownedBot(owner, slot)?.player?.clear(OwnedWages.WARNED)
+            notify(owner, slot, "You pay ${OwnedRoster.name(owner, slot)} ${paid.toDigitGroupString()} coins in wages; ${OwnedWages.coffer(owner, slot).toDigitGroupString()} in hand.")
+            refresh(owner)
+        }
+    }
+
+    /**
+     * An item a bot on a task gained in its pack: gathered or made when it was added there, not moved in from
+     * the bank, worn gear, another slot or its owner. Paid for out of the coffer; a dry coffer stops the task.
+     */
+    private fun collected(player: Player, change: InventorySlotChanged) {
+        if (change.from != "inventory" || change.fromIndex != change.index || player[OwnedWages.RECEIVING, false]) {
+            return
+        }
+        val item = change.item
+        if (item.isEmpty()) {
+            return
+        }
+        val gained = item.amount - if (change.fromItem.id == item.id) change.fromItem.amount else 0
+        if (gained <= 0) {
+            return
+        }
+        val task = player.get<String>("owned_task")?.let { tasks.get(it) } ?: return
+        if (item.id !in task.products) {
+            return
+        }
+        val owner = player.owner ?: return
+        val slot = player["owned_slot", -1]
+        if (slot < 0) {
+            return
+        }
+        val wage = OwnedWages.wage(item.id, gained, history::marketPrice)
+        if (wage <= 0) {
+            return
+        }
+        val coffer = OwnedWages.coffer(owner, slot)
+        OwnedWages.setCoffer(owner, slot, coffer - wage)
+        if (coffer < wage) {
+            player[OwnedWages.UNPAID] = true
+        } else if (!player[OwnedWages.WARNED, false] && coffer - wage < OwnedWages.perItem(task.products, history::marketPrice) * OwnedWages.WARN_ITEMS) {
+            player[OwnedWages.WARNED] = true
+            notify(owner, slot, "${player.name}'s wages are running low: ${(coffer - wage).toDigitGroupString()} coins left.")
+        }
+        OwnedBotVarcs.wages(owner, slot)
+    }
+
+    /** Out of wages: the task ends where the bot stands. */
+    private fun unpaid(owner: Player, bot: Bot, slot: Int) {
+        bot.player.clear(OwnedWages.UNPAID)
+        if (bot.pinned?.startsWith(TASK_PREFIX) != true) {
+            return
+        }
+        order(owner, bot, IDLE, null, OwnedBotStatus.Failed, "I'm not working for nothing.")
+        notify(owner, slot, "${bot.player.name} has run out of wages and stopped. Use ::companion pay ${slot + 1} <coins>.")
     }
 
     private fun bankAll(owner: Player, slot: Int) {
@@ -1391,6 +1498,9 @@ class OwnedBots(
                 continue
             }
             restrict(owner, bot, slot)
+            if (bot.player[OwnedWages.UNPAID, false]) {
+                unpaid(owner, bot, slot)
+            }
             derive(bot)
             if (OwnedBotVarcs.active(owner)) {
                 OwnedBotVarcs.stats(owner, slot, bot)
@@ -1761,7 +1871,7 @@ class OwnedBots(
         /** The command's names: the one players see first, then the plugin's and a synonym. */
         val COMMANDS = listOf("companion", "bot", "recruit")
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "restore", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "restore", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout", "pay")
 
         val KNOBS = setOf("spec", "spell", "eat", "flee", "warn", "escape")
 

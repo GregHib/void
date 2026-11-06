@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inv.inventory
 
 /**
  * At the booth after a flight (the bank screen is open on the bot): puts the preset the owner last loaded onto
@@ -57,7 +56,7 @@ class BotOwnedRecover : BotAction {
                 missed.add("find any food in your bank")
             } else {
                 val wanted = ((missing + heals(food) - 1) / heals(food)).coerceAtLeast(1)
-                val got = OwnedBank.withdraw(owner, player.inventory, food, wanted)
+                val got = OwnedBank.withdraw(owner, player, food, wanted)
                 val label = ItemDefinitions.get(food).name.lowercase()
                 if (got > 0) done.add("took $got $label to eat") else missed.add("take any $label")
             }

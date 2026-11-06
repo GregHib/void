@@ -39,7 +39,16 @@ object OwnedBotVarcs {
             order(owner, slot, bot, tasks)
             stats(owner, slot, bot)
             items(owner, slot, bot)
+            wages(owner, slot)
         }
+    }
+
+    /** The coins in the slot's wage coffer. */
+    fun wages(owner: Player, slot: Int) {
+        if (!active(owner)) {
+            return
+        }
+        owner["owned_bot_${slot}_wages"] = OwnedWages.coffer(owner, slot)
     }
 
     fun meta(owner: Player, live: Array<Bot?>) {
@@ -136,6 +145,7 @@ object OwnedBotVarcs {
             owner["owned_bot_${slot}_prayer"] = 0
             owner["owned_bot_${slot}_tile"] = 0
             owner["owned_bot_${slot}_energy"] = 0
+            owner["owned_bot_${slot}_wages"] = 0
             for (index in 0 until EQUIPMENT_SLOTS) {
                 owner["owned_bot_${slot}_equip_$index"] = 0
             }

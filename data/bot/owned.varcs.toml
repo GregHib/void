@@ -1010,3 +1010,25 @@ format = "int"
 [owned_bot_3_inv_27]
 id = 2200
 format = "int"
+
+# ---- wages (after the slot blocks) ----
+
+# coins in slot 0's wage coffer
+[owned_bot_0_wages]
+id = 2201
+format = "int"
+
+# coins in slot 1's wage coffer
+[owned_bot_1_wages]
+id = 2202
+format = "int"
+
+# coins in slot 2's wage coffer
+[owned_bot_2_wages]
+id = 2203
+format = "int"
+
+# coins in slot 3's wage coffer
+[owned_bot_3_wages]
+id = 2204
+format = "int"
