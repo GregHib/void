@@ -25,6 +25,18 @@ id = 8640
 [ogress_attack]
 id = 8636
 
+[ogress_attack_2]
+id = 8637
+
+[ogress_defend]
+id = 8638
+
+[ogress_defend_2]
+id = 8639
+
+[ogress_death_2]
+id = 8641
+
 [ogress_champion_death]
 id = 8640
 

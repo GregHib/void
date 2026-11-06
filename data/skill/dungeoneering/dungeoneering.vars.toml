@@ -369,3 +369,9 @@ persist = true
 [dungeon_floor_60_complete]
 format = "boolean"
 persist = true
+
+# This unused placeholder has no client selector. Cache varbit 1795 is an Ernest puzzle door.
+[dungeon_gatestone]
+format = "map"
+default = "false"
+values = { "true" = 0, "false" = -1 }

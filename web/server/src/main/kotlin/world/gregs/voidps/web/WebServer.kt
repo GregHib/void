@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
+import world.gregs.voidps.web.account.AccountService
 import world.gregs.voidps.web.api.route.api
 import world.gregs.voidps.web.api.route.apiPlugins
 import world.gregs.voidps.web.route.ProxyLimits
@@ -32,6 +33,11 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.time.Duration.Companion.seconds
 
+/**
+ * @param webclient webclient to serve at /play with its websocket proxy, null to disable
+ * @param apiKey shared key trusted backends use for the account api, null to disable
+ * @param accounts account api service, set together with [apiKey]
+ */
 class WebServer(
     webclient: Path?,
     port: Int,
@@ -40,6 +46,8 @@ class WebServer(
     storage: Storage,
     questDefinitions: QuestDefinitions,
     cache: Cache,
+    apiKey: String? = null,
+    accounts: AccountService? = null,
 ) {
     private val embeddedServer = embeddedServer(CIO, port = port) {
         install(WebSockets.Plugin) {
@@ -48,7 +56,7 @@ class WebServer(
             maxFrameSize = MAX_FRAME_SIZE
             masking = false
         }
-        apiPlugins()
+        apiPlugins(apiKey = apiKey)
         routing {
             val file = File(Settings["web.server.pages"])
             if (!file.exists() || file.isDirectory && file.list()?.size == 0) {
@@ -67,7 +75,7 @@ class WebServer(
                 proxy(serverAddress, serverPort, limits)
                 webclient(webclient)
             }
-            api(storage, questDefinitions, cache)
+            api(storage, questDefinitions, cache, accounts)
         }
     }
 

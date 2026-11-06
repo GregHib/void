@@ -1,0 +1,58 @@
+[registrar_1]
+id = 726
+categories = ["human"]
+interacts = false
+examine = "Registers players for tournaments: Rank Cap 1999."
+
+[registrar_2]
+id = 727
+categories = ["human"]
+interacts = false
+examine = "Registers players for tournaments: Rank Cap 2499."
+
+[registrar_3]
+id = 730
+categories = ["human"]
+interacts = false
+examine = "Registers players for tournaments: Rank Cap 2999."
+
+[registrar_4]
+id = 8967
+categories = ["human"]
+interacts = false
+examine = "Registers players for tournaments: Rank Cap 3499."
+
+[registrar_5]
+id = 8968
+categories = ["human"]
+interacts = false
+examine = "Registers players for tournaments: No Rank Cap."
+
+[head_registrar]
+id = 6520
+categories = ["human"]
+examine = "He runs the tournaments."
+
+[spectator_1]
+id = 6512
+# missing examine text for spectator_*
+[spectator_2]
+id = 6513
+
+[spectator_3]
+id = 6514
+
+[spectator_4]
+id = 6515
+
+[spectator_5]
+id = 6516
+
+[spectator_6]
+id = 6517
+
+[spectator_7]
+id = 6518
+
+[spectator_8]
+id = 6519
