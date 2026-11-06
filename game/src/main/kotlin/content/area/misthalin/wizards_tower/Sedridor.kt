@@ -7,6 +7,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.questComplete
+import content.quest.questCompleted
 import content.quest.refreshQuestJournal
 import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.Script
@@ -42,8 +43,10 @@ class Sedridor : Script {
         }
 
         npcOperate("Teleport", "sedridor") { (target) ->
-            set("what_is_this_place_task", true)
             EssenceMine.teleport(target, this)
+            if (questCompleted("rune_mysteries")) {
+                set("what_is_this_place_task", true)
+            }
         }
     }
 
@@ -220,8 +223,10 @@ class Sedridor : Script {
     }
 
     fun ChoiceOption.teleportEssenceMine(target: NPC): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
-        set("what_is_this_place_task", true)
         EssenceMine.teleport(target, this)
+        if (questCompleted("rune_mysteries")) {
+            set("what_is_this_place_task", true)
+        }
     }
 
     fun ChoiceOption.whoElseKnows(target: NPC): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {

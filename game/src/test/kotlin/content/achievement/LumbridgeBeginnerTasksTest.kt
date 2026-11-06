@@ -830,7 +830,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.npcOption(guard, "Teleport")
         tick(2)
 
-        assertTrue(player["what_is_this_place_task", false])
+        assertFalse(player["what_is_this_place_task", false])
     }
 
     @Test

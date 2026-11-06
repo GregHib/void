@@ -70,7 +70,7 @@ class ShopOpen(val inventoryDefinitions: InventoryDefinitions) : Script {
 
         slotChanged { (inventory, index, item) ->
             if (contains("shop") && get("shop", "") == inventory) {
-                set("amount_$index", item.amount)
+                set("amount_$index", if (item.isNotEmpty()) item.amount.coerceAtLeast(1) else 0)
             }
         }
     }
@@ -102,7 +102,7 @@ class ShopOpen(val inventoryDefinitions: InventoryDefinitions) : Script {
 
     fun sendAmounts(player: Player, inventory: Inventory) {
         for ((index, item) in inventory.items.withIndex()) {
-            player["amount_$index"] = item.amount
+            player["amount_$index"] = if (item.isNotEmpty()) item.amount.coerceAtLeast(1) else 0
         }
     }
 }

@@ -1046,6 +1046,18 @@ clone = "silver_rocks_old_1"
 id = 15581
 examine = "A rocky outcrop."
 
+[depleted_rocks_tzhaar_1]
+id = 15582
+examine = "A rocky outcrop."
+
+[depleted_rocks_tzhaar_2]
+id = 15583
+examine = "A rocky outcrop."
+
+[depleted_rocks_tzhaar_3]
+id = 15584
+examine = "A rocky outcrop."
+
 [silver_rocks_ingneous_1]
 clone = "silver_rocks_old_1"
 id = 16998
