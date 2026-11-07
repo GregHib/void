@@ -23,7 +23,7 @@ Off by default: `bots.owned.enabled=false`. Settings are the `bots.owned.*` bloc
 ::companion give|take <slot> <item> [amount|all] [bank]   ::companion item <slot> <inventory slot> <option>   ::companion use <slot> <from> <to>
 ::companion combat <slot> passive|melee|ranged|mage [spec=item eat=75 flee=25 warn=40 escape=item]   ::companion spec <slot|all> <item>|none
 ::companion spell <slot|all> <spell>|none   ::companion aggression <slot> passive|aggressive   ::companion loot <slot> on|off   ::companion rename <slot> <name>
-::companion loadout save <name> [slot]|wear <slot> <name>|list|delete <name>   ::companion pay <slot> [coins|all]
+::companion loadout save <name> [slot]|wear <slot> <name>|list|delete <name>   ::companion pay|withdraw <slot> [coins|all]
 ::companion status   ::companion show <slot>   ::companion help
 ::owned_bots list|inspect <player>|dismiss <player> <slot>|refund <player> <slot>   (admin)
 ```
@@ -42,7 +42,7 @@ switches to it for its special when it carries or wears one, and the tag is iner
 
 **Wages** (`OwnedWages`): tasks are paid for, nothing else is. The owner pays coins from their pack into a slot's
 coffer with `::companion pay` (`owned_bot_<slot>_coffer`, saved, kept through dismissal and death; no amount asks
-for one). Each item a task gathers or makes (any of its activity's `produces` items) costs
+for one); `::companion withdraw` takes unspent wages back into the pack, for any slot, alive or not. Each item a task gathers or makes (any of its activity's `produces` items) costs
 `bots.owned.wage.percent` (default 20, 0 = free) of its price, `bots.owned.wage.price` = `trade` (the Grand
 Exchange market price, `ExchangeHistory.marketPrice`) or `alch` (high alchemy, 60% of the store value), rounded up,
 charged the moment it lands in the pack. Only an add counts: items moved in from the bank or handed over by the

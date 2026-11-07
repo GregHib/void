@@ -433,6 +433,38 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `Withdrawing wages moves unspent coins from the coffer back to the pack`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 1_000)
+
+        owner.command("bot withdraw 1 300")
+        tick()
+
+        assertEquals(700, OwnedWages.coffer(owner, 0))
+        assertEquals(300, owner.inventory.count("coins"))
+        owner.command("bot withdraw 1 all")
+        tick()
+        assertEquals(0, OwnedWages.coffer(owner, 0))
+        assertEquals(1_000, owner.inventory.count("coins"))
+        owner.command("bot withdraw 1 all")
+        tick()
+        assertEquals(1_000, owner.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Withdrawing wages needs room in the pack`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 1_000)
+        owner.inventory.add("bronze_dagger", owner.inventory.spaces)
+
+        owner.command("bot withdraw 1 all")
+        tick()
+
+        assertEquals(1_000, OwnedWages.coffer(owner, 0))
+        assertEquals(0, owner.inventory.count("coins"))
+    }
+
+    @Test
     fun `Wages go by high alchemy value when the world says so, and stop at nought percent`() = runTest {
         Settings.load(
             Properties().apply {

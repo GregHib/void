@@ -100,6 +100,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.InventorySlotChanged
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -351,6 +352,7 @@ class OwnedBots(
             "take" -> withSlot(owner, rest) { take(owner, it, rest.getOrNull(1), rest.getOrNull(2), rest.getOrNull(3)) }
             "bank" -> withSlot(owner, rest) { bankAll(owner, it) }
             "pay", "wages" -> withSlot(owner, rest) { pay(owner, it, rest.getOrNull(1)) }
+            "withdraw" -> withSlot(owner, rest) { withdrawWages(owner, it, rest.getOrNull(1)) }
             "item" -> withSlot(owner, rest) { itemOption(owner, it, rest.getOrNull(1), rest.drop(2).joinToString(" ")) }
             "use" -> withSlot(owner, rest) { useItem(owner, it, rest.getOrNull(1), rest.getOrNull(2)) }
             "loot" -> withSlot(owner, rest) { loot(owner, it, rest.getOrNull(1)) }
@@ -372,6 +374,7 @@ class OwnedBots(
         owner.message("::companion aggression <slot> passive|aggressive  ::companion loot <slot> on|off  ::companion rename <slot> <name>  ::companion status|show <slot>")
         owner.message("::companion loadout save [name] [slot]|load <slot> <name>|list|delete <name>  (presets of worn gear; no slot = your own)")
         owner.message("::companion pay <slot> [coins|all]  (wages for tasks, from the coins you carry; ${OwnedWages.percent()}% of what each item gathered is worth)")
+        owner.message("::companion withdraw <slot> [coins|all]  (unspent wages back into your pack)")
     }
 
     private inline fun withSlot(owner: Player, rest: List<String>, block: (Int) -> Unit) {
@@ -1223,6 +1226,44 @@ class OwnedBots(
         }
     }
 
+    /** Unspent wages from the slot's coffer back into the owner's pack: [amount], all, or asked for. Kept through death, so any slot. */
+    private fun withdrawWages(owner: Player, slot: Int, amount: String?) {
+        val coffer = OwnedWages.coffer(owner, slot)
+        if (coffer <= 0) {
+            owner.message("There are no wages to take back from slot ${slot + 1}.")
+            return
+        }
+        val carried = owner.inventory.count("coins")
+        val room = when {
+            carried > 0 -> Int.MAX_VALUE - carried
+            owner.inventory.spaces > 0 -> Int.MAX_VALUE
+            else -> 0
+        }
+        if (room <= 0) {
+            owner.message("You don't have room for the coins.")
+            return
+        }
+        val available = minOf(coffer, room)
+        if (amount == null) {
+            owner.strongQueue("owned_bot_amount") {
+                val typed = intEntry("How many coins? (${coffer.toDigitGroupString()} in wages)")
+                if (typed > 0) {
+                    withdrawWages(owner, slot, typed.toString())
+                }
+            }
+            return
+        }
+        withAmount(owner, "coins", amount, available) { count ->
+            if (count <= 0 || !owner.inventory.add("coins", count)) {
+                owner.message("You don't have room for the coins.")
+                return@withAmount
+            }
+            OwnedWages.setCoffer(owner, slot, coffer - count)
+            notify(owner, slot, "You take back ${count.toDigitGroupString()} coins in wages; ${OwnedWages.coffer(owner, slot).toDigitGroupString()} left.")
+            refresh(owner)
+        }
+    }
+
     /**
      * An item a bot on a task gained in its pack: gathered or made when it was added there, not moved in from
      * the bank, worn gear, another slot or its owner. Paid for out of the coffer; a dry coffer stops the task.
@@ -1871,7 +1912,7 @@ class OwnedBots(
         /** The command's names: the one players see first, then the plugin's and a synonym. */
         val COMMANDS = listOf("companion", "bot", "recruit")
 
-        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "restore", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout", "pay")
+        val ACTIONS = setOf("help", "ui", "tasks", "status", "summon", "dismiss", "call", "task", "follow", "stop", "guard", "hold", "restore", "recover", "spell", "goto", "attack", "pickup", "combat", "aggression", "equip", "unequip", "give", "take", "bank", "item", "use", "loot", "rename", "show", "loadout", "pay", "withdraw")
 
         val KNOBS = setOf("spec", "spell", "eat", "flee", "warn", "escape")
 
