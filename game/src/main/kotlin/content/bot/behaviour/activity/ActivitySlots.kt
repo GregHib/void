@@ -27,6 +27,9 @@ class ActivitySlots {
         return occupied.getOrDefault(area, 0) < capacity
     }
 
+    /** The world bots occupying [area] right now. */
+    fun occupied(area: String): Int = occupied.getOrDefault(area, 0)
+
     fun occupy(activity: BotActivity) {
         val area = activity.boundArea ?: return
         occupied[area] = occupied.getOrDefault(area, 0) + 1

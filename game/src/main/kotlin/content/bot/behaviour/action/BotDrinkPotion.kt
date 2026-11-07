@@ -14,12 +14,15 @@ import world.gregs.voidps.network.client.instruction.InteractInterface
 
 /**
  * Drinks a potion dose to keep [skill] boosted. Re-doses whenever the boost has fully decayed
- * (`current <= max`). No-ops once the inventory runs out, so the activity loop continues.
+ * (`current <= max`), or, with [ignoreFull], whenever [condition] holds whatever [skill] stands at (a restore
+ * watching several drained stats, which a boost on the first must not hide). No-ops once the inventory runs
+ * out, so the activity loop continues.
  */
 data class BotDrinkPotion(
     val item: String,
     val skill: Skill,
     val condition: Condition? = null,
+    val ignoreFull: Boolean = false,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
         val player = bot.player
@@ -30,7 +33,7 @@ data class BotDrinkPotion(
         val current = player.levels.get(skill)
         val maxLevel = player.levels.getMax(skill)
         val full = if (skill == Skill.Prayer) current >= maxLevel else current > maxLevel
-        if (full) return BehaviourState.Success
+        if (full && !ignoreFull) return BehaviourState.Success
         if (condition != null && !condition.check(player)) return BehaviourState.Success
         val inv = player.inventory
         for (index in inv.indices) {

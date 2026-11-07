@@ -49,10 +49,20 @@ class BotManager(
     val bots = mutableListOf<Bot>()
     private val logger = InlineLogger("BotManager")
 
+    /**
+     * Told of every behaviour failure after it has been handled; player-owned bots report hard failures to their owner.
+     */
+    var failListener: ((Bot, Behaviour, Reason) -> Unit)? = null
+
     val activityNames: Set<String>
         get() = activities.keys
 
     fun activity(id: String): BotActivity? = activities[id]
+
+    /**
+     * Player-owned bots don't take up an area's `bot_capacity`; those slots spread world bots out.
+     */
+    private fun countsSlots(bot: Bot): Boolean = !bot.player.contains("owner")
 
     fun load(files: ConfigFiles): BotManager {
         loadBehaviours(files, activities, resolvers)
@@ -255,7 +265,7 @@ class BotManager(
 
     private val idle = BotActivity("idle", timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotWait(TimeUnit.SECONDS.toTicks(30))))
 
-    private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
+    private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && (slots.hasFree(activity) || !countsSlots(bot)) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
     private fun assign(bot: Bot, unbound: BotActivity) {
         val activity = bind(bot, unbound)
@@ -263,7 +273,9 @@ class BotManager(
         if (bot.player["debug", false]) {
             logger.info { "Assigned task '${activity.id}' area=${activity.boundArea} to bot '${bot.player.accountName}'." }
         }
-        slots.occupy(activity)
+        if (countsSlots(bot)) {
+            slots.occupy(activity)
+        }
         bot.previous = activity
         bot.queue(BehaviourFrame(activity))
     }
@@ -365,7 +377,7 @@ class BotManager(
             if (requirement.check(bot.player)) {
                 continue
             }
-            if (bot.pinned == behaviour.id && requirement !is BotInArea) {
+            if (bot.pinned == behaviour.id && !bot.pinnedSetup && requirement !is BotInArea) {
                 continue
             }
             frame.blocked.removeAll(DynamicResolvers.ids())
@@ -429,7 +441,9 @@ class BotManager(
         if (behaviour is BotActivity) {
             bot.blocked.remove(behaviour.id)
             bot.lastSuccessful = behaviour
-            slots.release(behaviour)
+            if (countsSlots(bot)) {
+                slots.release(behaviour)
+            }
         }
     }
 
@@ -455,19 +469,22 @@ class BotManager(
             } else {
                 bot.blocked.remove(behaviour.id)
             }
-            if (state.reason !is HardReason) {
+            if (state.reason !is HardReason && countsSlots(bot)) {
                 slots.release(behaviour)
             }
         }
+        failListener?.invoke(bot, behaviour, state.reason)
     }
 
     /**
      * Remove all behaviours and free up activity slots
      */
     fun stop(bot: Bot) {
-        for (frame in bot.frames) {
-            if (frame.behaviour is BotActivity) {
-                slots.release(frame.behaviour)
+        if (countsSlots(bot)) {
+            for (frame in bot.frames) {
+                if (frame.behaviour is BotActivity) {
+                    slots.release(frame.behaviour)
+                }
             }
         }
         bot.reset()

@@ -37,3 +37,9 @@ bot_capacity = 4
 x = [2753, 2767]
 y = [3427, 3436]
 level = 0
+
+# The church, with its altar: where a recovering companion recharges its prayer
+[seers_village_church]
+x = [2688, 2700]
+y = [3457, 3468]
+tags = ["altar"]

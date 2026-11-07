@@ -1,0 +1,10 @@
+# Four adventurers for hire in the Servants' Guild, East Ardougne, where the game's hired help is hired: listed in
+# order, the first stands for slot 1, the next for slot 2 and so on (OwnedBots counts them as they spawn). They stand
+# in the hall's four corners (the hall is x 2666 to 2669, y 3328 to 3332; its north and east walls are on 3333 and
+# 2670) and wander a tile about them (data/entity/npc/wander_ranges.tables.toml), among the guild's servants.
+spawns = [
+  { id = "adventurer", x = 2666, y = 3332, direction = "SOUTH", members = true },
+  { id = "adventurer", x = 2669, y = 3332, direction = "SOUTH", members = true },
+  { id = "adventurer", x = 2666, y = 3329, direction = "NORTH", members = true },
+  { id = "adventurer", x = 2669, y = 3329, direction = "NORTH", members = true },
+]
