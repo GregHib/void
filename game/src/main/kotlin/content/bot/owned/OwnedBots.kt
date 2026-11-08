@@ -628,6 +628,36 @@ class OwnedBots(
         }
     }
 
+    /**
+     * A dead companion's unspent wages back to its owner: the bank first, then the pack. What fits in neither stays in
+     * the coffer to take back with ::companion withdraw, never dropped where others could pick it up.
+     */
+    private fun sweepWages(owner: Player, slot: Int) {
+        val coffer = OwnedWages.coffer(owner, slot)
+        if (coffer <= 0) {
+            return
+        }
+        var banked = 0
+        owner.bank.transaction { banked = addToLimit("coins", coffer) }
+        var carried = 0
+        if (coffer - banked > 0) {
+            owner.inventory.transaction { carried = addToLimit("coins", coffer - banked) }
+        }
+        val left = coffer - banked - carried
+        OwnedWages.setCoffer(owner, slot, left)
+        OwnedBotVarcs.wages(owner, slot)
+        val parts = buildList {
+            if (banked > 0) add("${banked.toDigitGroupString()} to your bank")
+            if (carried > 0) add("${carried.toDigitGroupString()} to your pack")
+        }
+        if (parts.isNotEmpty()) {
+            notify(owner, slot, "Its unspent wages went back: ${parts.joinToString(" and ")}.")
+        }
+        if (left > 0) {
+            notify(owner, slot, "Your bank and pack are full: ${left.toDigitGroupString()} coins of wages are kept for you. Make room, then use ::companion withdraw ${slot + 1}.")
+        }
+    }
+
     private fun died(player: Player) {
         val owner = player.owner ?: return
         val slot = player["owned_slot", -1]
@@ -635,6 +665,7 @@ class OwnedBots(
         setStatus(bot, OwnedBotStatus.Dead)
         OwnedRoster.kill(owner, slot)
         notify(owner, slot, "${player.name} has died. Its items have been returned to your bank.")
+        sweepWages(owner, slot)
         val account = owner.accountName
         World.queue("owned_bot_death_${player.accountName}", 8) {
             val current = Players.findByAccount(account) ?: return@queue

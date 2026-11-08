@@ -13,6 +13,7 @@ import content.bot.isBot
 import content.entity.combat.attacker
 import content.entity.combat.attackers
 import content.entity.combat.attacking
+import content.entity.combat.hit.damage
 import content.entity.combat.target
 import content.entity.player.bank.bank
 import content.entity.player.combat.special.specialAttack
@@ -449,6 +450,44 @@ internal class OwnedBotsTest : WorldTest() {
         owner.command("bot withdraw 1 all")
         tick()
         assertEquals(1_000, owner.inventory.count("coins"))
+    }
+
+    @Test
+    fun `A companion's unspent wages go to the bank when it dies`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 5_000)
+        owner.bank.add("coins", 100)
+        val bot = summon(owner)
+
+        bot.damage(1_000)
+        tick(5)
+
+        assertEquals(0, OwnedWages.coffer(owner, 0))
+        assertEquals(5_100, owner.bank.count("coins"))
+    }
+
+    @Test
+    fun `A dead companion's wages go to the pack when the bank is full, and stay in the coffer when both are`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 5_000)
+        owner.owns(1, "Ash", wages = 3_000)
+        for (index in 0 until owner.bank.size) {
+            owner.bank.set(index, "logs", 1)
+        }
+        val woody = summon(owner)
+        val ash = summon(owner, slot = 1)
+
+        woody.damage(1_000)
+        tick(5)
+        assertEquals(0, OwnedWages.coffer(owner, 0))
+        assertEquals(5_000, owner.inventory.count("coins"))
+
+        owner.inventory.clear()
+        owner.inventory.add("bronze_dagger", owner.inventory.spaces)
+        ash.damage(1_000)
+        tick(5)
+        assertEquals(3_000, OwnedWages.coffer(owner, 1), "nowhere to put them, so they wait")
+        assertEquals(0, owner.inventory.count("coins"))
     }
 
     @Test
