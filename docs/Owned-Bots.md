@@ -42,7 +42,7 @@ switches to it for its special when it carries or wears one, and the tag is iner
 
 **Wages** (`OwnedWages`): tasks are paid for, nothing else is. The owner pays coins from their pack into a slot's
 coffer with `::companion pay` (`owned_bot_<slot>_coffer`, saved, kept through dismissal and death; no amount asks
-for one); `::companion withdraw` takes unspent wages back into the pack. When the bot dies its wages go back to the bank, then the pack; what fits in neither stays in the coffer for a later withdraw, never dropped. Each item a task gathers or makes (any of its activity's `produces` items) costs
+for one); `::companion withdraw` takes unspent wages back into the pack. Neither works in the wilderness, a PvP area or a fight. When the bot dies its wages go back to the bank, then the pack; what fits in neither stays in the coffer for a later withdraw, never dropped. Each item a task gathers or makes (any of its activity's `produces` items) costs
 `bots.owned.wage.percent` (default 20, 0 = free) of its price, `bots.owned.wage.price` = `trade` (the Grand
 Exchange market price, `ExchangeHistory.marketPrice`) or `alch` (high alchemy, 60% of the store value), rounded up,
 charged the moment it lands in the pack. Only an add counts: items moved in from the bank or handed over by the

@@ -491,6 +491,50 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `Wages spent while choosing how many to withdraw are not given back`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 1_000)
+
+        owner.command("bot withdraw 1 some")
+        assertNotNull(owner.dialogue, "asked for an amount")
+        OwnedWages.setCoffer(owner, 0, 400) // a task charged wages meanwhile
+        owner.dialogueOption(4) // "All (1000)"
+        tickIf(limit = 10) { owner.inventory.count("coins") == 0 }
+
+        assertEquals(400, owner.inventory.count("coins"), "only what was left")
+        assertEquals(0, OwnedWages.coffer(owner, 0))
+    }
+
+    @Test
+    fun `Wages can't be paid or withdrawn in the wilderness`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 1_000)
+        owner.inventory.add("coins", 500)
+        owner["in_wilderness"] = true
+
+        owner.command("bot withdraw 1 all")
+        owner.command("bot pay 1 all")
+        tick()
+
+        assertEquals(1_000, OwnedWages.coffer(owner, 0))
+        assertEquals(500, owner.inventory.count("coins"))
+    }
+
+    @Test
+    fun `A negative or zero amount of wages is refused`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody", wages = 1_000)
+        owner.inventory.add("coins", 500)
+
+        owner.command("bot withdraw 1 -5")
+        owner.command("bot pay 1 0")
+        tick()
+
+        assertEquals(1_000, OwnedWages.coffer(owner, 0))
+        assertEquals(500, owner.inventory.count("coins"))
+    }
+
+    @Test
     fun `Withdrawing wages needs room in the pack`() = runTest {
         val owner = createPlayer(Tile(3200, 3200), "alice")
         owner.owns(0, "Woody", wages = 1_000)

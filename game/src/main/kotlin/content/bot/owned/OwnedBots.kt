@@ -1222,10 +1222,24 @@ class OwnedBots(
         }
     }
 
+    /** Wages change hands only somewhere safe: out of the wilderness and PvP areas, and out of a fight. */
+    private fun wagesRefused(owner: Player): Boolean {
+        val reason = when {
+            owner.inWilderness || owner.inPvp -> "You can't handle wages here."
+            owner.inCombat -> "You can't handle wages while you're fighting."
+            else -> return false
+        }
+        owner.message(reason)
+        return true
+    }
+
     /** Coins from the owner's pack into the slot's coffer: [amount], all, or asked for. */
     private fun pay(owner: Player, slot: Int, amount: String?) {
         if (!OwnedRoster.alive(owner, slot)) {
             owner.message("You have no companion in slot ${slot + 1}.")
+            return
+        }
+        if (wagesRefused(owner)) {
             return
         }
         val carried = owner.inventory.count("coins")
@@ -1237,13 +1251,14 @@ class OwnedBots(
         if (amount == null) {
             owner.strongQueue("owned_bot_amount") {
                 val typed = intEntry("How many coins? (${carried.toDigitGroupString()} carried)")
-                if (typed > 0) {
-                    pay(owner, slot, typed.toString())
-                }
+                pay(owner, slot, typed.toString())
             }
             return
         }
         withAmount(owner, "coins", amount, carried) { count ->
+            if (wagesRefused(owner)) {
+                return@withAmount
+            }
             val room = Int.MAX_VALUE - OwnedWages.coffer(owner, slot)
             val paid = minOf(count, room)
             if (paid <= 0 || !owner.inventory.remove("coins", paid)) {
@@ -1259,6 +1274,9 @@ class OwnedBots(
 
     /** Unspent wages from the slot's coffer back into the owner's pack: [amount], all, or asked for. Kept through death, so any slot. */
     private fun withdrawWages(owner: Player, slot: Int, amount: String?) {
+        if (wagesRefused(owner)) {
+            return
+        }
         val coffer = OwnedWages.coffer(owner, slot)
         if (coffer <= 0) {
             owner.message("There are no wages to take back from slot ${slot + 1}.")
@@ -1278,18 +1296,26 @@ class OwnedBots(
         if (amount == null) {
             owner.strongQueue("owned_bot_amount") {
                 val typed = intEntry("How many coins? (${coffer.toDigitGroupString()} in wages)")
-                if (typed > 0) {
-                    withdrawWages(owner, slot, typed.toString())
-                }
+                withdrawWages(owner, slot, typed.toString())
             }
             return
         }
-        withAmount(owner, "coins", amount, available) { count ->
-            if (count <= 0 || !owner.inventory.add("coins", count)) {
+        withAmount(owner, "coins", amount, available) { asked ->
+            // read again: an amount chosen in a dialogue comes ticks later, with wages charged or paid since
+            if (wagesRefused(owner)) {
+                return@withAmount
+            }
+            val now = OwnedWages.coffer(owner, slot)
+            val count = minOf(asked, now)
+            if (count <= 0) {
+                owner.message("There are no wages to take back from slot ${slot + 1}.")
+                return@withAmount
+            }
+            if (!owner.inventory.add("coins", count)) {
                 owner.message("You don't have room for the coins.")
                 return@withAmount
             }
-            OwnedWages.setCoffer(owner, slot, coffer - count)
+            OwnedWages.setCoffer(owner, slot, now - count)
             notify(owner, slot, "You take back ${count.toDigitGroupString()} coins in wages; ${OwnedWages.coffer(owner, slot).toDigitGroupString()} left.")
             refresh(owner)
         }
@@ -1364,8 +1390,12 @@ class OwnedBots(
             return
         }
         val given = amount?.toIntOrNull()
+        if (given != null && given <= 0) {
+            owner.message("That isn't an amount you can use.")
+            return
+        }
         if (given != null) {
-            block(given.coerceIn(1, available))
+            block(given.coerceAtMost(available))
             return
         }
         if (available == 1) {
