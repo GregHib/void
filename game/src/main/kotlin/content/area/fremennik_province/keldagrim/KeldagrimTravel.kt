@@ -125,7 +125,7 @@ class KeldagrimTravel : Script {
             }
         }
 
-        objectOperate("Open", "hidden_trapdoor_grand_exchange") {
+        objectOperate("Open", "ge_hidden_trapdoor") {
             // TODO require keldagrim_visited once The Giant Dwarf is added
             statement("This trapdoor leads to a small dwarven mine cart station.<br>The mine cart will take you to Keldagrim.")
             choice {
