@@ -2,6 +2,7 @@ package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.makeAmount
+import content.skill.magic.jewellery.RingOfForging
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Rows
@@ -127,7 +128,8 @@ class Furnace : Script {
                 // https://runescape.wiki/w/Update:Improving_Success_when_Smelting_Iron_(Free_and_Members)
                 chance = Interpolation.lerp(player.levels.get(Skill.Smithing), 15..45, 128..204).coerceIn(128..204)
             }
-            val success = random.nextInt(255) < chance
+            val ringOfForging = RingOfForging.guaranteesIronBar(player, id)
+            val success = ringOfForging || random.nextInt(255) < chance
             val items = requiredOres(id)
             player.inventory.transaction {
                 remove(items)
@@ -142,7 +144,11 @@ class Furnace : Script {
                         val xp = row.int("xp") / 10.0
                         player.exp(Skill.Smithing, goldXp(player, id, xp))
                         player.message("You retrieve a bar of ${id.removeSuffix("_bar")}.")
-                        if (amount - 1 > 0 && varrockArmour(player, target, id, items, xp)) {
+                        val doubleBar = amount - 1 > 0 && varrockArmour(player, target, id, items, xp)
+                        if (ringOfForging) {
+                            RingOfForging.useCharge(player)
+                        }
+                        if (doubleBar) {
                             removed = 2
                         }
                     } else {
