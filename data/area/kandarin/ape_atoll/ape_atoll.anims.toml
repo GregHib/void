@@ -24,3 +24,12 @@ id = 1384
 
 [padulah_attack]
 id = 1383
+
+[monkey_guard_attack]
+id = 1402
+
+[monkey_guard_defend]
+id = 1403
+
+[monkey_guard_death]
+id = 1404

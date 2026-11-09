@@ -26,7 +26,7 @@ impact_poison = 60
 [kalphite_queen]
 defend_anim = "kalphite_queen_defend"
 defend_sound = "kalphite_queen_defend"
-death_anim = "kalphite_death"
+death_anim = "kalphite_queen_death"
 death_sound = "kalphite_queen_death"
 
 [kalphite_queen.melee]

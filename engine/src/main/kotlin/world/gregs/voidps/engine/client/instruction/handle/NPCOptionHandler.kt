@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
-import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.Companion.getDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -31,7 +30,7 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
         if (npc.transformed) {
             def = npc.transformDef
         }
-        val definition = getDefinition(player, NPCDefinitions, def, def)
+        val definition = NPCDefinitions.resolve(def, player)
         val options = definition.options
         val index = instruction.option - 1
         val selectedOption = options.getOrNull(index)

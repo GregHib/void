@@ -49,6 +49,7 @@ id = 4956
 
 [jiminua_tai_bwo_wannai]
 id = 560
+shop = "jiminuas_jungle_store"
 examine = "Goods for sale and trade."
 
 [baby_monkey_tai_bwo_wannai]

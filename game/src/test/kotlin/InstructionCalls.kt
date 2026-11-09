@@ -3,7 +3,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
-import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.dialogue
@@ -304,7 +303,7 @@ fun Player.npcOption(npc: NPC, option: String) {
     val def = if (npc.transform.isNotBlank()) {
         definitions.get(npc.transform)
     } else {
-        ObjectOptionHandler.getDefinition(this, definitions, npc.def, npc.def)
+        definitions.resolve(npc.def, this)
     }
     npcOption(npc, def.options.indexOf(option))
 }

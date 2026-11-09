@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
@@ -171,6 +172,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
                 }
                 size++
             }
+            refreshFloorItems(obj)
             // Emitted last so handlers which add an object in this ones place aren't undone by the
             // map bookkeeping above.
             Despawn.gameObject(obj)
@@ -182,6 +184,19 @@ object GameObjects : ZoneBatchUpdates.Sender {
                 collisionRemove.modify(obj)
             }
             size--
+            refreshFloorItems(obj)
+        }
+    }
+
+    /**
+     * Clients keep floor items at the height of the object they were dropped on, so after
+     * it's removed they'd still render on the ground but be unclickable until rebuilt.
+     */
+    private fun refreshFloorItems(obj: GameObject) {
+        for (x in obj.x until obj.x + obj.width) {
+            for (y in obj.y until obj.y + obj.height) {
+                FloorItems.refresh(Tile(x, y, obj.level))
+            }
         }
     }
 

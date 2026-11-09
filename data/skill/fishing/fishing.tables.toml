@@ -10,11 +10,6 @@ bait_default = "empty_box_fish"
 level = 16
 chance = [1, 2]
 
-[.cave_eel]
-level = 38
-xp = 80
-chance = [10, 80]
-
 [.frog_spawn]
 level = 33
 xp = 75
@@ -76,6 +71,9 @@ xp = 117
 chance = [1, 1]
 
 [.raw_cave_eel]
+level = 38
+xp = 80
+chance = [10, 80]
 bait = "fishing_bait"
 
 [.raw_cave_moray]
@@ -250,9 +248,6 @@ level = 28
 xp = 65
 chance = [10, 80]
 bait = "fishing_bait"
-
-[.sluglings]
-level = 50
 
 [.swamp_weed]
 level = 33
