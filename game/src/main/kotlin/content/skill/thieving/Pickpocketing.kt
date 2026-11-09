@@ -1,6 +1,7 @@
 package content.skill.thieving
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.misthalin.ham_hideout.HamHideout
 import content.entity.effect.stun
 import content.skill.slayer.categories
 import content.skill.summoning.familiarBoost
@@ -112,7 +113,13 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             val combat = combatDefinitions.get(target.transformDef["combat_def", target.id])
             target.anim(combat.attacks.values.first().anim)
             anim(combatDefinitions.get("human").defendAnim)
-            message("You fail to pick the $name's pocket.", ChatType.Filter)
+            if (HamHideout.isHamMember(target)) {
+                if (HamHideout.handleFailedPickpocket(this, target)) {
+                    return
+                }
+            } else {
+                message("You fail to pick the $name's pocket.", ChatType.Filter)
+            }
             val ticks = pickpocket.int("stun_ticks")
             val damage = pickpocket.intRange("damage")
             target.stun(this, ticks, damage.random(random))
@@ -165,7 +172,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
     fun getLoot(target: NPC, table: String?, multiplier: Int): List<ItemDrop>? {
         val table = getTable(target, table) ?: return null
         val list = mutableListOf<ItemDrop>()
-        for (i in 0 until multiplier) {
+        repeat(multiplier) {
             table.roll(list = list)
         }
         return list

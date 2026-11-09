@@ -12,7 +12,7 @@ class TrapDoors : Script {
     init {
         objectOperate("Open", "trapdoor_*_closed") { (target) ->
             anim("open_chest")
-            if (target.def.transforms != null) {
+            if (target.def.transforms != null || target.id == "trapdoor_24_closed") {
                 return@objectOperate
             }
             target.replace(target.def.opened, ticks = TimeUnit.MINUTES.toTicks(3))
