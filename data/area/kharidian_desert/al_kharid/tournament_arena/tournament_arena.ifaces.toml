@@ -1,0 +1,99 @@
+[tournament_arena_registrar]
+id = 629
+type = "main_screen"
+
+[.tournament_value_label]
+id = 11
+
+[.tournament_value]
+id = 12
+
+[.close]
+id = 13
+options = { Close = 0 }
+
+[.rank_required_label]
+id = 40
+
+[.entry_fee_label]
+id = 41
+
+[.potions_label]
+id = 42
+
+[.food_label]
+id = 43
+
+[.prayer_label]
+id = 44
+
+[.special_attacks_label]
+id = 45
+
+[.obstacles_label]
+id = 46
+
+[.ranged_label]
+id = 47
+
+[.melee_label]
+id = 48
+
+[.magic_label]
+id = 49
+
+[.heal_between_rounds_label]
+id = 50
+
+[.weapon_slots_only_label]
+id = 51
+
+[.summoning_label]
+id = 52
+
+[.rank_required]
+id = 53
+
+[.entry_fee]
+id = 54
+
+[.potions]
+id = 55
+
+[.food]
+id = 56
+
+[.prayer]
+id = 57
+
+[.special_attacks]
+id = 58
+
+[.obstacles]
+id = 59
+
+[.ranged]
+id = 60
+
+[.melee]
+id = 61
+
+[.magic]
+id = 62
+
+[.heal_between_rounds]
+id = 63
+
+[.weapon_slots_only]
+id = 64
+
+[.summoning]
+id = 65
+
+[.join]
+id = 67
+options = { Join = 0 }
+
+[.resign]
+id = 68
+options = { Resign = 0 }

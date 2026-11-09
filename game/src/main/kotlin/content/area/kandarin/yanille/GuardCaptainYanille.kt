@@ -18,9 +18,20 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 class GuardCaptainYanille : Script {
     init {
+        npcSpawn("guard_captain") {
+            softTimers.start("guard_captain_hic")
+        }
+        npcTimerStart("guard_captain_hic") { TimeUnit.SECONDS.toTicks(30) }
+        npcTimerTick("guard_captain_hic") {
+            say("*HIC*")
+            Timer.CONTINUE
+        }
         npcOperate("Talk-to", "guard_captain") {
             when (quest("hand_in_the_sand")) {
                 "investigate_hand" -> handDelivery()

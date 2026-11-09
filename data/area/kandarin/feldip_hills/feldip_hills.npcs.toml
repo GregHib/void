@@ -92,7 +92,7 @@ id = 7079
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
 drop_table = "ogress_warrior"
-combat_def = "guard"
+combat_def = "ogress_warrior"
 hitpoints = 800
 att = 106
 str = 106
@@ -105,7 +105,7 @@ id = 7080
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
 drop_table = "ogress_warrior"
-combat_def = "guard"
+combat_def = "ogress_warrior_2"
 hitpoints = 800
 att = 106
 str = 106
@@ -136,7 +136,7 @@ att = 66
 str = 66
 def = 33
 max_hit_crush = 80
-combat_def = "ogress"
+combat_def = "ogress_2"
 hunt_mode = "cowardly"
 
 [rantz_feldip_hills_2]
@@ -173,6 +173,7 @@ examine = "A green skinned croaker, loves the swamp."
 
 [ogre_chef_feldip_hills]
 id = 13174
+examine = "He's licking his lips in anticipation."
 
 [crimson_swift]
 id = 5073
@@ -188,6 +189,7 @@ id = 3467
 [rantz_feldip_hills_2_2]
 id = 1010
 dialogue = "ogre"
+examine = "A large dim looking humanoid."
 
 [fishing_spot_big_net_harpoon_feldip_hills]
 id = 7044

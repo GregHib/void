@@ -61,10 +61,10 @@ option = "Walk-down"
 tile = { x = 3115, y = 3356 }
 delta = { x = -35, y = 6421 }
 
-[133]
+[ernest_cellar_ladder_down]
 option = "Climb-down"
 tile = { x = 3092, y = 3362 }
-delta = { x = 25, y = 6392 }
+to = { x = 3117, y = 9753 }
 
 [portal_home]
 option = "Enter"

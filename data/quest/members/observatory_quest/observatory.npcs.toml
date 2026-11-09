@@ -9,20 +9,29 @@ examine = "He helps the professor."
 
 [observatory_professor_observatory]
 id = 6119
+collision = "indoors"
+examine = "A man, learned in the ways of the stars."
 
 [observatory_professor_observatory_2]
 id = 6120
+examine = "A man, learned in the ways of the stars."
 
 [greasycheeks_observatory]
 id = 6127
+interacts = false
+dialogue = "old"
 examine = "Big appetite for a small creature."
 
 [smellytoes_observatory]
 id = 6128
+interacts = false
+dialogue = "old"
 examine = "Likes drink a little too much."
 
 [creakyknees_observatory]
 id = 6129
+interacts = false
+dialogue = "old"
 examine = "Lean and green."
 
 [clothears_observatory]
@@ -34,3 +43,4 @@ id = 927
 
 [observatory_professor_observatory_3]
 id = 488
+examine = "A man, learned in the ways of the stars."

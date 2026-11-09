@@ -1,0 +1,67 @@
+[barrel_battlefield]
+id = 40493
+examine = "A wooden barrel for storage."
+
+[barrel_battlefield_2]
+id = 40494
+examine = "A wooden barrel for storage."
+
+[barricade_battlefield]
+id = 40321
+examine = "These obviously mean keep out!"
+
+[barricade_battlefield_2]
+id = 40316
+examine = "These obviously mean keep out!"
+
+[barricade_battlefield_3]
+id = 40322
+examine = "These obviously mean keep out!"
+
+[barricade_battlefield_4]
+id = 40319
+examine = "These obviously mean keep out!"
+
+[barricade_battlefield_5]
+id = 40317
+examine = "These obviously mean keep out!"
+
+[spear_wall_battlefield]
+id = 32051
+examine = "A row of sharp pointy spears."
+
+[spear_wall_battlefield_2]
+id = 39485
+examine = "A row of sharp pointy spears."
+
+[standard_battlefield]
+id = 41374
+examine = "A standard."
+
+[broken_table_battlefield]
+id = 40895
+examine = "It's on its last legs."
+
+[broken_chair_battlefield]
+id = 40497
+examine = "A broken chair."
+
+[wooden_defence_battlefield]
+id = 40498
+examine = "A wooden defensive structure."
+
+[standard_battlefield_2]
+id = 41372
+examine = "A standard of the gnome race."
+
+[standard_battlefield_3]
+id = 41373
+examine = "A standard of the gnome race."
+
+[spear_wall_battlefield_3]
+id = 32050
+examine = "A row of sharp pointy spears."
+
+[catapult_battlefield]
+id = 2180
+examine = "It's a war machine."
