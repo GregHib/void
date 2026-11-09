@@ -4,3 +4,10 @@ persist = true
 format = "map"
 default = "unstarted"
 values = { unstarted = 0, completed = 1 }
+
+[icthlarins_little_helper_progress]
+id = 418
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 26 }

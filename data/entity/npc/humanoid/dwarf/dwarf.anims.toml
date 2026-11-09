@@ -6,3 +6,4 @@ id = 100
 
 [dwarf_death]
 id = 102
+ticks = 1

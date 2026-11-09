@@ -52,6 +52,10 @@ class Furnace : Script {
         }
 
         itemOnObjectOperate("*_ore", "furnace*", arrive = false) { (target, item) ->
+            if (item.id == "elemental_ore") {
+                message("This furnace is not hot enough to smelt elemental ore.")
+                return@itemOnObjectOperate
+            }
             val list = mutableListOf<String>()
             list.add(oreToBar(item.id))
             if (item.id == "iron_ore" && inventory.contains("coal")) {

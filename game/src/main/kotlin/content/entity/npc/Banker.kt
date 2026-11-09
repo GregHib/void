@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class Banker : Script {
 
     init {
-        npcApproach("Talk-to", "banker*,fremennik_banker") { (target) ->
+        npcApproach("Talk-to", "banker*,fremennik_banker,sirsal_banker,cornelius_2_2") { (target) ->
             approachRange(2)
             if (target.id == "banker_tutorial_island") {
                 advanceTutorial(52)
@@ -44,17 +44,19 @@ class Banker : Script {
         }
 
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
-            val banker = NPCs.first { it.def.name == "Banker" }
+            val banker = NPCs.at(target.tile.regionLevel)
+                .filter { it.def.name.contains("banker", ignoreCase = true) }
+                .minByOrNull { it.tile.distanceTo(target.tile) } ?: NPCs.first { it.def.name == "Banker" }
             talkWith(banker)
             menu()
         }
 
-        npcApproach("Bank", "banker*,fremennik_banker") {
+        npcApproach("Bank", "banker*,fremennik_banker,sirsal_banker,birds_eye_jack_2_2") {
             approachRange(2)
             openBank()
         }
 
-        npcApproach("Collect", "banker*,fremennik_banker") {
+        npcApproach("Collect", "banker*,fremennik_banker,sirsal_banker,birds_eye_jack_2_2") {
             approachRange(2)
             openCollection()
         }
