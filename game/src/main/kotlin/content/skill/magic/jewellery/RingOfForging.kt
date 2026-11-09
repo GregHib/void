@@ -12,7 +12,8 @@ class RingOfForging : Script {
 
     init {
         itemOption("Check", "ring_of_forging", "worn_equipment") {
-            message("You can smelt ${remainingCharges(this)} more pieces of iron ore before a ring melts.")
+            val charges = remainingCharges(this)
+            message("You can smelt ${charges} more ${piece.plural(charges)} of iron ore before a ring melts.")
         }
     }
 
