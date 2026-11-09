@@ -2,6 +2,7 @@ package content.skill.magic.jewellery
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.equipment
@@ -13,7 +14,7 @@ class RingOfForging : Script {
     init {
         itemOption("Check", "ring_of_forging", "worn_equipment") {
             val charges = remainingCharges(this)
-            message("You can smelt ${charges} more ${piece.plural(charges)} of iron ore before a ring melts.")
+            message("You can smelt $charges more ${"piece".plural(charges)} of iron ore before a ring melts.")
         }
     }
 
