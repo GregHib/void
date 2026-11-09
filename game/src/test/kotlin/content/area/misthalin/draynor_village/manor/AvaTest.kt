@@ -72,15 +72,15 @@ class AvaTest : WorldTest() {
     @Test
     fun `Enter and leave the secret room`() {
         val player = createPlayer(Tile(3097, 3360))
-        val sconce = GameObjects.find(Tile(3097, 3360), "draynor_manor_candle_sconce")
+        val sconce = GameObjects.find(Tile(3097, 3360), "ernest_candle_sconce")
 
         player.objectOption(sconce, "Search")
         tick(6)
         assertEquals(Tile(3096, 3359), player.tile)
 
-        val lever = GameObjects.find(Tile(3096, 3357), "draynor_manor_secret_lever")
+        val lever = GameObjects.find(Tile(3096, 3357), "ernest_secret_exit_lever")
         player.objectOption(lever, "Pull")
         tick(8)
-        assertEquals(Tile(3097, 3358), player.tile)
+        assertEquals(Tile(3097, 3359), player.tile)
     }
 }
