@@ -74,6 +74,7 @@ object SpellRunes {
             removeCombo(required, "lava_rune", "earth_rune", "fire_rune")
         }
         dungeoneeringStaffCharges(required, player, message)
+        ibansStaffCharges(required, player)
         checkStaves(player, required)
         // Regular runes
         required.keys.removeIf { key ->
@@ -120,6 +121,17 @@ object SpellRunes {
             } else if (player.equipment.discharge(player, EquipSlot.Weapon.index, amount = amount)) {
                 state.onRevert { player.equipment.charge(player, EquipSlot.Weapon.index, amount = amount) }
             }
+        }
+    }
+
+    private fun Transaction.ibansStaffCharges(required: MutableMap<String, Int>, player: Player) {
+        if (!required.containsKey("ibans_staff") || player.equipped(EquipSlot.Weapon).id != "ibans_staff") {
+            return
+        }
+        if (player.equipment.discharge(player, EquipSlot.Weapon.index)) {
+            state.onRevert { player.equipment.charge(player, EquipSlot.Weapon.index) }
+        } else {
+            error = TransactionError.Deficient(1)
         }
     }
 

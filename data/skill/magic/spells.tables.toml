@@ -308,9 +308,9 @@ clone = "fire_strike"
 max_hit = 200
 xp = 435
 projectiles = [
-    "spell_projectiles.fire_strike_1",
-    "spell_projectiles.fire_strike_2",
-    "spell_projectiles.fire_strike_3",
+    "spell_projectiles.fire_wave_1",
+    "spell_projectiles.fire_wave_2",
+    "spell_projectiles.fire_wave_3",
 ]
 
 [.fire_surge]
@@ -319,9 +319,9 @@ max_hit = 280
 xp = 900
 graphic = "fire_spell_cast"
 projectiles = [
-    "spell_projectiles.fire_strike_1",
-    "spell_projectiles.fire_strike_2",
-    "spell_projectiles.fire_strike_3",
+    "spell_projectiles.fire_surge_1",
+    "spell_projectiles.fire_surge_2",
+    "spell_projectiles.fire_surge_3",
 ]
 
 [.enfeeble]
@@ -350,7 +350,7 @@ animation = "cast_god_spell"
 
 [.iban_blast]
 max_hit = 250
-xp = 350
+xp = 300
 animation = "iban_blast"
 graphic = "iban_blast_cast"
 

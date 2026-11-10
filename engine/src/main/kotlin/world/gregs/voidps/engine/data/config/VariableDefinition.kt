@@ -14,7 +14,7 @@ import world.gregs.voidps.network.login.protocol.encode.sendVarp
 open class VariableDefinition internal constructor(
     override var id: Int,
     val values: VariableValues,
-    val defaultValue: Any?,
+    var defaultValue: Any?,
     val persistent: Boolean,
     val transmit: Boolean,
 ) : Definition {

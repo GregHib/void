@@ -69,9 +69,9 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
 
     private fun index(player: Player, id: Int, varbit: Boolean): Int {
         val key = (if (varbit) VariableDefinitions.getVarbit(id) else VariableDefinitions.getVarp(id)) ?: return 0
-        val definition = VariableDefinitions.get(key)
-        val value = player.variables.get<Any>(key) ?: return 0
-        return definition?.values?.toInt(value) ?: 0
+        val definition = VariableDefinitions.get(key) ?: return 0
+        val value = player.variables.get<Any>(key) ?: definition.defaultValue ?: return 0
+        return definition.values.toInt(value)
     }
 
     companion object {

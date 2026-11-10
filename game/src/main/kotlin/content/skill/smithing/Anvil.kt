@@ -1,9 +1,10 @@
 package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.statement
-import content.quest.quest
+import content.quest.questCompleted
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -87,6 +88,7 @@ class Anvil : Script {
                 return@itemOnObjectOperate
             }
             open("smithing")
+            set("smithing_anvil_tile", it.target.tile)
             val bars = inventory.count(it.item.id)
             val metal = it.item.id.removeSuffix("_bar")
             set("smithing_metal", metal)
@@ -116,9 +118,9 @@ class Anvil : Script {
             interfaces.sendVisibility("smithing", "bullseye_lantern", metal == "steel")
             interfaces.sendItem("smithing", "lantern", ItemDefinitions.get("bullseye_lantern_frame").id, 1)
             interfaces.sendVisibility("smithing", "grapple", metal == "mithril")
-            interfaces.sendVisibility("smithing", "darts", quest("tourist_trap") == "completed")
-            interfaces.sendVisibility("smithing", "claw", quest("death_plateau") == "completed")
-            interfaces.sendVisibility("smithing", "pickaxes", quest("perils_of_ice_mountain") == "completed")
+            interfaces.sendVisibility("smithing", "darts", questCompleted("tourist_trap"))
+            interfaces.sendVisibility("smithing", "claw", questCompleted("death_plateau"))
+            interfaces.sendVisibility("smithing", "pickaxes", questCompleted("perils_of_ice_mountain"))
         }
 
         itemOnObjectOperate("hammer", "anvil*", arrive = false) {
@@ -181,6 +183,7 @@ class Anvil : Script {
 
         val bar = "${metal}_bar"
         anim("smith_item")
+        areaGfx("anvil_sparks", get("smithing_anvil_tile") ?: tile)
         weakQueue("smithing", if (first) 0 else 5) {
             inventory.transaction {
                 remove(bar, bars)

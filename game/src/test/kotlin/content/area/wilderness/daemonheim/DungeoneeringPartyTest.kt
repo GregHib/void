@@ -28,6 +28,7 @@ class DungeoneeringPartyTest : WorldTest() {
         player1.interfaceOption("dungeoneering_party", "form_party", "Form-party")
 
         player1.playerOption(player2, "Invite")
+        tick(1)
         player2.playerOption(player1, "Invite")
         tick(1)
 

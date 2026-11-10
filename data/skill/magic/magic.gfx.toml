@@ -228,7 +228,7 @@ id = 2732
 delay = 51
 height = -4
 time_offset = -5
-multiplier = 10
+multiplier = 6
 
 [fire_blast_2]
 id = 2733

@@ -33,3 +33,18 @@ id = 4869
 
 [earth_elemental_death]
 id = 4870
+
+[turn_water_controls]
+id = 4861
+
+[fill_stone_bowl]
+id = 4862
+
+[fix_bellows]
+id = 4863
+
+[elemental_furnace_smelt]
+id = 3243
+
+[elemental_rock_wake]
+id = 4865

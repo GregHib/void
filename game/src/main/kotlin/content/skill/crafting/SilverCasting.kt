@@ -1,7 +1,7 @@
 package content.skill.crafting
 
 import content.entity.player.dialogue.type.intEntry
-import content.quest.quest
+import content.quest.questStarted
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -26,7 +26,7 @@ class SilverCasting : Script {
             for (row in Tables.get("silver_casting").rows()) {
                 val item = row.item("product")
                 val quest = row.stringOrNull("quest")
-                interfaces.sendVisibility(id, row.stringId, quest == null || quest(quest) != "unstarted")
+                interfaces.sendVisibility(id, row.stringId, quest == null || questStarted(quest))
                 val has = carriesItem(row.rowId)
                 val mould = ItemDefinitions.get(row.rowId)
                 interfaces.sendText(

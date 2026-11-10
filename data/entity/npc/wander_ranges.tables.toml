@@ -5226,7 +5226,7 @@ wander_range = 0
 wander_range = 0
 
 [.olivia]
-wander_range = 0
+wander_range = 5
 max_range = 5
 
 [.master_farmer]

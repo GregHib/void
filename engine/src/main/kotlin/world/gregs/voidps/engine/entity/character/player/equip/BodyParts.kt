@@ -16,6 +16,7 @@ data class BodyParts(
     val colours: IntArray = if (male) DEFAULT_COLOURS_MALE.clone() else DEFAULT_COLOURS_FEMALE.clone(),
 ) : Body {
     private val parts = IntArray(12)
+    private val kits = IntArray(12) { -1 }
 
     private lateinit var equipment: Inventory
     private lateinit var overrides: AppearanceOverrides
@@ -66,10 +67,23 @@ data class BodyParts(
         return updated
     }
 
+    /**
+     * Show identity kit [look] for [part] regardless of equipment, -1 to show nothing or null to restore
+     */
+    fun kit(part: BodyPart, look: Int?) {
+        kits[part.ordinal] = when (look) {
+            null -> -1
+            -1 -> 0
+            else -> look + 0x100
+        }
+        update(part, false)
+    }
+
     fun update(part: BodyPart, skip: Boolean): Boolean {
         val item = if (skip) Item.EMPTY else equipment[part.slot.index]
         val before = parts[part.ordinal]
         parts[part.ordinal] = when {
+            kits[part.ordinal] != -1 -> kits[part.ordinal]
             showItem(part, item) -> if (item.def.equipIndex != -1) item.def.equipIndex or 0x8000 else 0
             part == BodyPart.Hair && item.type == EquipType.HairMid -> overrides.hairMid(looks[part.index], male)
             part == BodyPart.Hair && item.type == EquipType.HairLow -> overrides.hairLow(looks[part.index], male)

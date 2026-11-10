@@ -55,3 +55,9 @@ drops = [
     { id = "staff_of_water", chance = 2 },
     { table = "gem_drop_table", chance = 2 },
 ]
+[elemental_rock_drop_table]
+type = "all"
+drops = [
+    { id = "elemental_ore" },
+    { table = "earth_elemental_drop_table" },
+]
