@@ -30,6 +30,7 @@ import content.bot.behaviour.action.BotOwnedResume
 import content.bot.behaviour.action.BotOwnedSpell
 import content.bot.behaviour.action.BotReturnToPost
 import content.bot.behaviour.action.BotWait
+import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotCombatLevel
 import content.bot.behaviour.condition.BotMembers
@@ -80,6 +81,7 @@ import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Despawn
@@ -567,6 +569,7 @@ class OwnedBots(
         val bot = bot(owner, slot) ?: return
         owner.clear("owned_bot_${slot}_index")
         manager.remove(bot)
+        clearTask(bot.player)
         sweep(owner, bot)
         owner.clear("owned_bot_${slot}_items")
         val player = bot.player
@@ -591,6 +594,7 @@ class OwnedBots(
 
     /** The bot left the world some other way (e.g. ::clear_bots). */
     private fun forget(player: Player) {
+        clearTask(player)
         val owner = player.owner ?: return
         val slot = player["owned_slot", -1]
         if (owner["owned_bot_${slot}_index", -1] == player.index) {
@@ -663,6 +667,7 @@ class OwnedBots(
         val slot = player["owned_slot", -1]
         val bot = bot(owner, slot) ?: return
         setStatus(bot, OwnedBotStatus.Dead)
+        clearTask(player)
         OwnedRoster.kill(owner, slot)
         notify(owner, slot, "${player.name} has died. Its items have been returned to your bank.")
         sweepWages(owner, slot)
@@ -694,22 +699,19 @@ class OwnedBots(
             owner.message("Only $limit of your companions can be on tasks at once${if (limit == 1) "" else ": call one back first"}.")
             return
         }
-        // of the patches that are this task, the one with the fewest bots on it, world or owned, at random among equals
-        val patch = task.patches.shuffled().minByOrNull { crowd(it) } ?: task.activity
-        val base = manager.activity(patch)
+        val base = task.patches.firstNotNullOfOrNull { manager.activity(it) }
         if (base == null) {
             owner.message("${task.label} isn't available right now.")
             return
         }
-        bot.player["owned_patch"] = patch
         // World bots spread by level bands; an owned bot does whatever its owner's levels allow.
-        val activity = base.copy(
+        val unbound = base.copy(
             id = TASK_PREFIX + task.id,
-            requires = base.requires.map { if (it is BotSkillLevel) it.copy(max = null) else it },
+            requires = anyLevel(base.requires),
             reactive = base.reactive + BotOwnedHeal(topUp = true),
         )
         // The picker would silently idle a bot that doesn't qualify; say why instead
-        val unmet = activity.requires.firstOrNull { !it.check(bot.player) }
+        val unmet = unbound.requires.firstOrNull { !it.check(bot.player) }
         if (unmet != null) {
             owner.message("[Companion ${slot + 1}] ${bot.player.name} can't do that: ${requirementText(bot.player, unmet)}")
             return
@@ -720,8 +722,78 @@ class OwnedBots(
             notify(owner, slot, "${bot.player.name} wants paying first: ${perItem.toDigitGroupString()} coins a ${task.products.first().toItemName().lowercase()}. Use ::companion pay ${slot + 1} <coins>.")
             return
         }
+        // a place on one of the task's patches, in the same pool of slots as the world bots and ahead of them; the
+        // slot it holds now doesn't count against it, and is kept if there's no room
+        val held = bot.player.get<String>("owned_area")
+        manager.slots.unreserve(bot.player.accountName)
+        val placement = place(bot, task)
+        if (placement == null) {
+            held?.let { manager.slots.reserve(bot.player.accountName, it) }
+            val alternative = alternative(bot, task)
+            val suggestion = if (alternative == null) "" else " Try ${alternative.label.replaceFirstChar(Char::lowercase)}${if (alternative.location.isBlank()) "" else " at ${alternative.location}"}."
+            notify(owner, slot, "${task.label}${if (task.location.isBlank()) "" else " at ${task.location}"} is too crowded right now.$suggestion")
+            return
+        }
+        val patch = manager.activity(placement.patch) ?: base
+        val bound = if (placement.area == null) patch else patch.bind(placement.area)
+        val activity = bound.copy(id = unbound.id, requires = unbound.requires, reactive = unbound.reactive)
         bot.player.clear(OwnedWages.UNPAID)
-        order(owner, bot, activity, task.id, OwnedBotStatus.Working, task.label)
+        order(owner, bot, activity, task.id, OwnedBotStatus.Working, task.label, placement.area)
+    }
+
+    /** A patch activity of a task and the area in it a companion would hold a slot in, null if it has no area. */
+    private data class Placement(val patch: String, val area: String?)
+
+    /**
+     * Where [bot] can work [task]: of its patches' areas with a free slot, the least crowded then nearest; else,
+     * companions coming first, an area where world bots can be moved on; null if companions fill every one.
+     */
+    private fun place(bot: Bot, task: OwnedTask): Placement? {
+        val slots = manager.slots
+        val candidates = task.patches.flatMap { patch ->
+            val areas = manager.activity(patch)?.area?.areas()
+            if (areas.isNullOrEmpty()) listOf(Placement(patch, null)) else areas.map { Placement(patch, it) }
+        }
+        val free = candidates.filter { it.area == null || slots.hasFree(it.area) }
+        if (free.isNotEmpty()) {
+            return free.shuffled().minWith(compareBy({ it.area?.let(slots::occupied) ?: 0 }, { distance(bot, it.area) }))
+        }
+        if (!Settings["bots.owned.evictWorldBots", true]) {
+            return null
+        }
+        for (placement in candidates.sortedBy { distance(bot, it.area) }) {
+            val area = placement.area ?: continue
+            val capacity = ActivitySlots.capacity(area) ?: continue
+            if (slots.reserved(area) >= capacity) {
+                continue
+            }
+            while (!slots.hasFree(area) && manager.evict(area)) {
+                // move world bots on until a slot is free
+            }
+            if (slots.hasFree(area)) {
+                return placement
+            }
+        }
+        return null
+    }
+
+    /** Another task of the same skill [bot] can do with a free slot, for a refusal to suggest. */
+    private fun alternative(bot: Bot, task: OwnedTask): OwnedTask? = tasks.all.firstOrNull { other ->
+        if (other === task || other.skill != task.skill) {
+            return@firstOrNull false
+        }
+        val activity = manager.activity(other.activity) ?: return@firstOrNull false
+        anyLevel(activity.requires).all { it.check(bot.player) } &&
+            other.patches.any { patch -> manager.activity(patch)?.area?.areas()?.any(manager.slots::hasFree) ?: true }
+    }
+
+    /** [requires] without the level caps world bots spread by: a companion does whatever its owner's levels allow. */
+    private fun anyLevel(requires: List<Condition>): List<Condition> = requires.map { if (it is BotSkillLevel) it.copy(max = null) else it }
+
+    private fun distance(bot: Bot, area: String?): Int {
+        val tile = area?.let { Areas.getOrNull(it) }?.area?.firstOrNull() ?: return 0
+        val distance = bot.tile.distanceTo(tile)
+        return if (distance < 0) Int.MAX_VALUE else distance
     }
 
     private fun follow(owner: Player, slot: Int) {
@@ -879,7 +951,7 @@ class OwnedBots(
         }
     }
 
-    private fun order(owner: Player, bot: Bot, activity: BotActivity, task: String?, status: OwnedBotStatus, say: String) {
+    private fun order(owner: Player, bot: Bot, activity: BotActivity, task: String?, status: OwnedBotStatus, say: String, area: String? = null) {
         manager.stop(bot)
         // A new order ends whatever the bot was doing (following, fighting, a bank errand): actions wait for an empty mode
         bot.player.target = null
@@ -895,9 +967,9 @@ class OwnedBots(
         bot.previous = null
         bot.pin(activity)
         if (task == null) {
-            bot.player.clear("owned_task")
+            clearTask(bot.player)
         } else {
-            bot.player["owned_task"] = task
+            setTask(bot.player, task, area)
         }
         setStatus(bot, status)
         bot.player.say(say)
@@ -1622,7 +1694,7 @@ class OwnedBots(
         }
         if (bot.pinned != IDLE.id) {
             bot.pin(IDLE)
-            bot.player.clear("owned_task")
+            clearTask(bot.player)
             bot.player.clear("owned_errand")
             bot.player.clear("owned_resume")
             manager.stop(bot)
@@ -1701,7 +1773,7 @@ class OwnedBots(
             else -> OwnedProfiles.build(owner, bot, slot)
         }
         if (!resume.id.startsWith(TASK_PREFIX)) {
-            player.clear("owned_task")
+            clearTask(player)
         }
         player["owned_resume"] = resume
         val food = BotOwnedHeal.foodIndex(player)
@@ -1812,18 +1884,30 @@ class OwnedBots(
             else -> reason.toString()
         }
         bot.pin(IDLE)
-        bot.player.clear("owned_task")
+        clearTask(bot.player)
         setStatus(bot, OwnedBotStatus.Failed)
         bot.player.say("I can't carry on with that.")
         notify(owner, slot, "${bot.player.name} stopped: $detail")
         refresh(owner)
     }
 
-    /** The bots on [activity] right now: world bots in its area's slots, and owned bots sent to it. */
-    private fun crowd(activity: String): Int {
-        val area = manager.activity(activity)?.boundArea
-        val world = if (area == null) 0 else manager.slots.occupied(area)
-        return world + manager.bots.count { it.player.contains("owner") && it.player.get<String>("owned_patch") == activity }
+    /** Put [player] on [task], holding a slot in [area] for it (none for a task without one). */
+    private fun setTask(player: Player, task: String, area: String?) {
+        player["owned_task"] = task
+        if (area == null) {
+            player.clear("owned_area")
+            manager.slots.unreserve(player.accountName)
+        } else {
+            player["owned_area"] = area
+            manager.slots.reserve(player.accountName, area)
+        }
+    }
+
+    /** Take [player] off its task, giving up the slot it held: a slot is held exactly as long as a task. */
+    private fun clearTask(player: Player) {
+        player.clear("owned_task")
+        player.clear("owned_area")
+        manager.slots.unreserve(player.accountName)
     }
 
     private fun requirementText(player: Player, condition: Condition): String = when (condition) {

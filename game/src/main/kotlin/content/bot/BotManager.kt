@@ -60,7 +60,8 @@ class BotManager(
     fun activity(id: String): BotActivity? = activities[id]
 
     /**
-     * Player-owned bots don't take up an area's `bot_capacity`; those slots spread world bots out.
+     * Player-owned bots don't [ActivitySlots.occupy] slots as world bots do: they hold one with
+     * [ActivitySlots.reserve] for as long as they're on a task, see [evict].
      */
     private fun countsSlots(bot: Bot): Boolean = !bot.player.contains("owner")
 
@@ -488,6 +489,18 @@ class BotManager(
             }
         }
         bot.reset()
+    }
+
+    /**
+     * Stop one world bot working in [area] so a companion can have its slot: companions come first.
+     * The bot picks something else next tick and, the slot now reserved, not this area again.
+     * @return whether a bot was stopped
+     */
+    fun evict(area: String): Boolean {
+        val bot = bots.firstOrNull { bot -> countsSlots(bot) && bot.frames.any { (it.behaviour as? BotActivity)?.boundArea == area } } ?: return false
+        AuditLog.event(bot, "evicted", area)
+        stop(bot)
+        return true
     }
 
     private fun debugResolvers(behaviour: Behaviour, requirement: Condition, resolvers: List<Resolver>, frame: BehaviourFrame, bot: Bot) {

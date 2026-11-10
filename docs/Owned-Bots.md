@@ -90,10 +90,18 @@ coffer that runs dry stops the task the next tick (status Failed). Combat, follo
   names folders (`[locations]`), picks the verb a skill's labels start with (`[verbs]`) and tunes single
   activities (`label`, `location`, `hidden`). The skill is the last one an activity lists (chop-and-fletch is
   fletching), same-thing-same-place patches collapse to one task that remembers them all, the order sending the bot to
-  the least used of them (world bots in its slots plus owned bots sent there, random among equals), and a product that isn't an item is named from
+  one of their areas (see **Task capacity**), and a product that isn't an item is named from
   the activity's id. `::companion tasks` prints `index|skill|level|location|members|label|wage` (wage: coins an item) and, for a task whose setup asks for
   items, `[BotTaskItems] index|id/id:amount,...` (the plugin's hover tip) (a game chat line
   wraps at the chat box's width, so no ids) and `::companion task <slot>` takes the index or the activity id.
+- **Task capacity** (`OwnedBots.place`, `ActivitySlots.reserve`): companions share each area's `bot_capacity` with the
+  world bots, one pool. A task order takes the least crowded (then nearest) area of its patches with a free slot and
+  binds the bot to it; with none free, companions come first: world bots working there are stopped
+  (`BotManager.evict`) to make room (`bots.owned.evictWorldBots=false` turns that off), and only an area full of
+  companions refuses the order, suggesting another task of the same skill that has room. A companion holds its slot
+  exactly as long as it has `owned_task` (`setTask`/`clearTask`): bank trips, flights and recoveries that resume the
+  task keep it; stop, a new order, failure, PvP stand-down, unpaid wages, death and dismissal give it up. Every task
+  area must have a `bot_capacity` (a test checks).
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
   (`amulet_of_glory_4`, `super_restore_4`) is made up from its other charges or doses, best first, then the
   uncharged one; the equip order accepts the stand-in and the owner is told what went in place of what.
@@ -111,7 +119,7 @@ coffer that runs dry stops the task the next tick (status Failed). Combat, follo
   Every `bots.owned.snapshotTicks` the bot's items are written into the owner's save; an unswept snapshot is
   restored to the bank at the owner's next login.
 - **Guards**: PvP areas drop the order and recall the bot; random events, bot chat, trades, the web's online
-  count and map skip owned bots; owned bots don't take `bot_capacity` slots.
+  count and map skip owned bots.
 
 ## Client variables
 

@@ -1,12 +1,16 @@
 package content.bot.owned
 
 import WorldTest
+import content.bot.Bot
+import content.bot.BotManager
+import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.NavigationGraphLoader
 import content.bot.behaviour.action.BotAssistOwner
 import content.bot.behaviour.action.BotDrinkPotion
 import content.bot.behaviour.action.BotEatFood
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotSpecAttack
+import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.perception.BotCombatContext
 import content.bot.bot
 import content.bot.isBot
@@ -78,6 +82,8 @@ internal class OwnedBotsTest : WorldTest() {
     @BeforeEach
     fun enable() {
         Settings.load(Properties().apply { this["bots.owned.enabled"] = "true" })
+        // players are cleared between tests without leaving the world, so nothing gives up its slot
+        get<BotManager>().slots.clear()
     }
 
     private suspend fun Player.command(text: String) {
@@ -850,7 +856,7 @@ internal class OwnedBotsTest : WorldTest() {
         owner.owns(0, "Woody")
         owner.bank.add("bronze_hatchet")
         val bot = summon(owner)
-        bot.start("home_teleport_timeout", 1000, 0)
+        bot.start("home_teleport_timeout", 1000)
 
         owner.command("bot task 1 draynor_north_trees")
         tickIf(limit = 20) { bot.bot.pinned?.startsWith(OwnedBots.HOME_PREFIX) != true }
@@ -874,6 +880,7 @@ internal class OwnedBotsTest : WorldTest() {
 
         assertEquals(OwnedBots.IDLE.id, bot.bot.pinned)
         assertNull(bot.get<String>("owned_task"))
+        assertEquals(0, get<BotManager>().slots.reserved("draynor_north_trees"), "a failed task gives up its slot")
     }
 
     @Test
@@ -1695,7 +1702,7 @@ internal class OwnedBotsTest : WorldTest() {
         assertTrue(bot.bot.pinned!!.startsWith(OwnedBots.HOLD_PREFIX), "in good shape: nothing to recover from")
 
         bot.levels.set(Skill.Constitution, bot.levels.getMax(Skill.Constitution) / 2)
-        bot.start("home_teleport_timeout", 1000, 0)
+        bot.start("home_teleport_timeout", 1000)
         owner.command("bot recover 1")
         assertEquals(OwnedBotStatus.Recovering.ordinal, bot["owned_status", -1])
         tickIf(limit = 40) { bot.tile !in Areas["lumbridge_teleport"] }
@@ -1847,10 +1854,120 @@ internal class OwnedBotsTest : WorldTest() {
         for (slot in 0 until 3) {
             owner.command("bot task ${slot + 1} ${task.index}")
         }
-        val patches = bots.map { it.get<String>("owned_patch") }
-        assertEquals(3, patches.toSet().size, "each to a different patch: $patches")
-        assertTrue(task.patches.containsAll(patches))
+        val areas = bots.map { it.get<String>("owned_area") }
+        assertEquals(3, areas.toSet().size, "each to a different patch: $areas")
+        val manager: BotManager = get()
+        assertTrue(task.patches.flatMap { manager.activity(it)!!.area!!.areas() }.containsAll(areas))
         assertTrue(bots.all { it.bot.pinned == OwnedBots.TASK_PREFIX + task.id }, "all on the one task")
+    }
+
+    @Test
+    fun `A companion on a task holds a slot in its area until it stops`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val slots = get<BotManager>().slots
+
+        owner.command("bot task 1 draynor_north_trees")
+        assertEquals("draynor_north_trees", bot.get<String>("owned_area"))
+        assertEquals(1, slots.reserved("draynor_north_trees"))
+
+        val capacity = ActivitySlots.capacity("draynor_north_trees")!!
+        repeat(capacity - 1) { slots.reserve("other_companion_$it", "draynor_north_trees") }
+        owner.command("bot task 1 draynor_north_trees")
+        assertEquals("owned:draynor_north_trees", bot.bot.pinned, "its own slot doesn't count against it")
+        assertEquals(capacity, slots.reserved("draynor_north_trees"), "sent again, still the one slot")
+        repeat(capacity - 1) { slots.unreserve("other_companion_$it") }
+
+        owner.command("bot stop 1")
+        assertEquals(0, slots.reserved("draynor_north_trees"))
+        assertNull(bot.get<String>("owned_area"))
+
+        owner.command("bot task 1 draynor_north_trees")
+        owner.command("bot dismiss 1")
+        tick()
+        assertEquals(0, slots.reserved("draynor_north_trees"), "dismissed, the slot is free")
+    }
+
+    @Test
+    fun `A companion is refused an area full of companions`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val slots = get<BotManager>().slots
+        val capacity = ActivitySlots.capacity("draynor_north_trees")!!
+        repeat(capacity) { slots.reserve("other_companion_$it", "draynor_north_trees") }
+        try {
+            owner.command("bot task 1 draynor_north_trees")
+
+            assertFalse(bot.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX), "refused: ${bot.bot.pinned}")
+            assertNull(bot.get<String>("owned_task"))
+            assertEquals(capacity, slots.reserved("draynor_north_trees"))
+        } finally {
+            repeat(capacity) { slots.unreserve("other_companion_$it") }
+        }
+    }
+
+    @Test
+    fun `A companion moves a world bot on from a full area`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val manager: BotManager = get()
+        val capacity = ActivitySlots.capacity("draynor_north_trees")!!
+        val activity = manager.activity("draynor_north_trees")!!.bind("draynor_north_trees")
+        repeat(capacity - 1) { manager.slots.reserve("other_companion_$it", "draynor_north_trees") }
+        val world = Bot(Player(accountName = "world_bot"))
+        world.queue(BehaviourFrame(activity))
+        manager.bots.add(world)
+        manager.slots.occupy(activity)
+        try {
+            assertFalse(manager.slots.hasFree("draynor_north_trees"))
+
+            owner.command("bot task 1 draynor_north_trees")
+
+            assertEquals("owned:draynor_north_trees", bot.bot.pinned, "companions come first")
+            assertTrue(world.noTask(), "the world bot was stopped")
+            assertEquals(0, manager.slots.worldOccupied("draynor_north_trees"))
+            assertFalse(manager.slots.hasFree("draynor_north_trees"), "the companion holds the freed slot")
+        } finally {
+            manager.remove(world)
+            repeat(capacity - 1) { manager.slots.unreserve("other_companion_$it") }
+        }
+    }
+
+    @Test
+    fun `World bots aren't moved on when the world says not to`() = runTest {
+        Settings.load(Properties().apply { this["bots.owned.evictWorldBots"] = "false" })
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val manager: BotManager = get()
+        val activity = manager.activity("draynor_north_trees")!!.bind("draynor_north_trees")
+        val capacity = ActivitySlots.capacity("draynor_north_trees")!!
+        repeat(capacity) { manager.slots.occupy(activity) }
+        try {
+            owner.command("bot task 1 draynor_north_trees")
+
+            assertFalse(bot.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX))
+        } finally {
+            repeat(capacity) { manager.slots.release(activity) }
+        }
+    }
+
+    @Test
+    fun `Every task's areas have a bot capacity`() {
+        val tasks: OwnedTasks = get()
+        tasks.reset()
+        val manager: BotManager = get()
+        val missing = tasks.all.flatMap { task -> task.patches.flatMap { manager.activity(it)?.area?.areas().orEmpty() } }
+            .distinct()
+            .filter { ActivitySlots.capacity(it) == null }
+        assertTrue(missing.isEmpty(), "areas without bot_capacity: $missing")
     }
 
     @Test

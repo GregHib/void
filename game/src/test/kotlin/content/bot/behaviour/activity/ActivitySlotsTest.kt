@@ -1,6 +1,7 @@
 package content.bot.behaviour.activity
 
 import content.bot.behaviour.condition.BotInArea
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -75,5 +76,44 @@ class ActivitySlotsTest {
         slots.occupy(activity.bind("limited"))
 
         assertTrue(slots.hasFree(activity))
+    }
+
+    @Test
+    fun `Reserved slots aren't free`() {
+        slots.reserve("companion", "limited")
+
+        assertFalse(slots.hasFree(activity("limited")))
+        assertEquals(1, slots.occupied("limited"))
+        assertEquals(0, slots.worldOccupied("limited"))
+    }
+
+    @Test
+    fun `Reserving again moves the slot instead of taking another`() {
+        slots.reserve("companion", "limited")
+        slots.reserve("companion", "limited")
+        slots.reserve("companion", "unlimited")
+
+        assertEquals(0, slots.reserved("limited"))
+        assertEquals(1, slots.reserved("unlimited"))
+    }
+
+    @Test
+    fun `Unreserved slots are free`() {
+        slots.reserve("companion", "limited")
+        slots.unreserve("companion")
+        slots.unreserve("companion")
+        slots.unreserve("nobody")
+
+        assertTrue(slots.hasFree(activity("limited")))
+    }
+
+    @Test
+    fun `World bots and companions share one pool`() {
+        Areas.set(mapOf("pair" to AreaDefinition("pair", Rectangle(0, 0, 1, 1), params = mapOf(Params.BOT_CAPACITY to 2))))
+        val activity = activity("pair")
+        slots.occupy(activity)
+        slots.reserve("companion", "pair")
+
+        assertFalse(slots.hasFree(activity))
     }
 }
