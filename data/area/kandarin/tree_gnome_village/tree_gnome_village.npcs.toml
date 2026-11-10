@@ -1,27 +1,34 @@
 [king_bolren_tree_gnome_village]
 id = 469
+dialogue = "child"
 examine = "It's a gnome. He looks important."
 
 [bolkoy_tree_gnome_village]
 id = 471
+dialogue = "child"
 examine = "It's a tree gnome."
 
 [remsai_tree_gnome_village]
 id = 472
+dialogue = "child"
 examine = "It's a tree gnome."
 
 [elkoy_tree_gnome_village]
 id = 473
+dialogue = "child"
 
 [elkoy_tree_gnome_village_2]
 id = 474
+dialogue = "child"
 
 [local_gnome_tree_gnome_village]
 id = 485
+dialogue = "child"
 examine = "It's a young tree gnome."
 
 [kalron_tree_gnome_village]
 id = 486
+dialogue = "child"
 examine = "He looks lost."
 
 [evil_creature_tree_gnome_village]
@@ -29,9 +36,11 @@ id = 6333
 
 [elkoy_tree_gnome_village_3]
 id = 5179
+dialogue = "child"
 
 [elkoy_tree_gnome_village_4]
 id = 5182
+dialogue = "child"
 
 [evil_creature]
 id = 4615
