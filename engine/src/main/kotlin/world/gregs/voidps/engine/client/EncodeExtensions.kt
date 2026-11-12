@@ -39,6 +39,7 @@ fun Character.message(
     for (line in font.splitLines(Colours.replaceCustomTags(text), if (type == ChatType.Console) 600 else 484)) {
         client?.message(line, type.id, tile, name, name?.lowercase(Locale.getDefault()))
     }
+    GameMessageFeedback.emit(this, text, type)
 }
 
 private class FixedSizeQueue<E>(private val capacity: Int) : LinkedList<E>() {
