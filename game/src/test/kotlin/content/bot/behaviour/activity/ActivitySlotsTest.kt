@@ -3,6 +3,7 @@ package content.bot.behaviour.activity
 import content.bot.behaviour.condition.BotInArea
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -95,6 +96,17 @@ class ActivitySlotsTest {
 
         assertEquals(0, slots.reserved("limited"))
         assertEquals(1, slots.reserved("unlimited"))
+    }
+
+    @Test
+    fun `A companion's slot is found by its account`() {
+        slots.reserve("companion", "limited")
+        slots.reserve("other", "limited")
+        slots.unreserve("other")
+
+        assertEquals("limited", slots.reservedBy("companion"))
+        assertNull(slots.reservedBy("other"))
+        assertEquals(1, slots.reserved("limited"))
     }
 
     @Test

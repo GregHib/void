@@ -95,12 +95,14 @@ coffer that runs dry stops the task the next tick (status Failed). Combat, follo
   items, `[BotTaskItems] index|id/id:amount,...` (the plugin's hover tip) (a game chat line
   wraps at the chat box's width, so no ids) and `::companion task <slot>` takes the index or the activity id.
 - **Task capacity** (`OwnedBots.place`, `ActivitySlots.reserve`): companions share each area's `bot_capacity` with the
-  world bots, one pool. A task order takes the least crowded (then nearest) area of its patches with a free slot and
-  binds the bot to it; with none free, companions come first: world bots working there are stopped
+  world bots, one pool. A task order takes, of the patches the bot qualifies for, the least full area for its size
+  (share of `bot_capacity` taken, then nearest) and binds the bot to it, with that patch's own requirements; with none free, companions come first: world bots working there are stopped
   (`BotManager.evict`) to make room (`bots.owned.evictWorldBots=false` turns that off), and only an area full of
   companions refuses the order, suggesting another task of the same skill that has room. A companion holds its slot
-  exactly as long as it has `owned_task` (`setTask`/`clearTask`): bank trips, flights and recoveries that resume the
-  task keep it; stop, a new order, failure, PvP stand-down, unpaid wages, death and dismissal give it up. Every task
+  while it has `owned_task` (`setTask`/`clearTask`): the task's own bank trips keep it; stop, a new order, failure,
+  PvP stand-down, unpaid wages, death and dismissal give it up. Away from the task (a flight and recovery, a home
+  route, an errand) it keeps the slot for `bots.owned.awayHoldTicks` (500) and then gives it up (`OwnedBots.holdSlot`);
+  back at work it takes a slot there again, ahead of world bots, or is placed on another patch, or stops. Every task
   area must have a `bot_capacity` (a test checks).
 - **Bank orders** (`BotOwnedErrand.carryOut`): a charged or dosed item the bank is out of or short of
   (`amulet_of_glory_4`, `super_restore_4`) is made up from its other charges or doses, best first, then the

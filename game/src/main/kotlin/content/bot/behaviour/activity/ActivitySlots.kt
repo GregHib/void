@@ -16,6 +16,9 @@ class ActivitySlots {
     /** Companion bot account to the area it holds a slot in. */
     private val reserved = mutableMapOf<String, String>()
 
+    /** How many companions hold a slot in each area, kept beside [reserved] so [hasFree] is a map read. */
+    private val reservedCount = mutableMapOf<String, Int>()
+
     /**
      * Whether [activity] has an area with a free slot (or the area it is bound to does).
      */
@@ -40,16 +43,23 @@ class ActivitySlots {
     fun worldOccupied(area: String): Int = occupied.getOrDefault(area, 0)
 
     /** The companions holding a slot in [area] right now. */
-    fun reserved(area: String): Int = reserved.values.count { it == area }
+    fun reserved(area: String): Int = reservedCount.getOrDefault(area, 0)
+
+    /** The area the companion [account] holds a slot in, if any. */
+    fun reservedBy(account: String): String? = reserved[account]
 
     /** Hold a slot in [area] for the companion [account], giving up any it held before. */
     fun reserve(account: String, area: String) {
+        unreserve(account)
         reserved[account] = area
+        reservedCount[area] = reserved(area) + 1
     }
 
     /** Give up the slot the companion [account] holds, if any. */
     fun unreserve(account: String) {
-        reserved.remove(account)
+        val area = reserved.remove(account) ?: return
+        val count = reserved(area) - 1
+        if (count <= 0) reservedCount.remove(area) else reservedCount[area] = count
     }
 
     fun occupy(activity: BotActivity) {
@@ -66,6 +76,7 @@ class ActivitySlots {
     fun clear() {
         occupied.clear()
         reserved.clear()
+        reservedCount.clear()
     }
 
     companion object {

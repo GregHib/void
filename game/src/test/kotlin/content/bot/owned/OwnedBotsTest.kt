@@ -1,6 +1,7 @@
 package content.bot.owned
 
 import WorldTest
+import containsMessage
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.behaviour.BehaviourFrame
@@ -10,7 +11,9 @@ import content.bot.behaviour.action.BotDrinkPotion
 import content.bot.behaviour.action.BotEatFood
 import content.bot.behaviour.action.BotEscape
 import content.bot.behaviour.action.BotSpecAttack
+import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivitySlots
+import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.perception.BotCombatContext
 import content.bot.bot
 import content.bot.isBot
@@ -31,6 +34,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
+import messages
 import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -1957,6 +1961,123 @@ internal class OwnedBotsTest : WorldTest() {
         } finally {
             repeat(capacity) { manager.slots.release(activity) }
         }
+    }
+
+    @Test
+    fun `A full area with no world bot to move on refuses the order`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val manager: BotManager = get()
+        val activity = manager.activity("draynor_north_trees")!!.bind("draynor_north_trees")
+        // counted as full, but no world bot is there to be moved on
+        repeat(ActivitySlots.capacity("draynor_north_trees")!!) { manager.slots.occupy(activity) }
+
+        owner.command("bot task 1 draynor_north_trees")
+
+        assertFalse(bot.bot.pinned!!.startsWith(OwnedBots.TASK_PREFIX), "refused: ${bot.bot.pinned}")
+        assertNull(bot.get<String>("owned_task"))
+        assertTrue(owner.containsMessage("is too crowded right now."))
+    }
+
+    @Test
+    fun `A refusal with no other task that has room suggests nothing`() = runTest {
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        summon(owner)
+        val tasks: OwnedTasks = get()
+        tasks.reset()
+        val manager: BotManager = get()
+        val skill = tasks.get("draynor_north_trees")!!.skill
+        val areas = tasks.all.filter { it.skill == skill }.flatMap { task -> task.patches.flatMap { manager.activity(it)?.area?.areas().orEmpty() } }.distinct()
+        for (area in areas) {
+            repeat(ActivitySlots.capacity(area)!!) { manager.slots.reserve("filler_${area}_$it", area) }
+        }
+
+        owner.command("bot task 1 draynor_north_trees")
+
+        assertTrue(owner.containsMessage("is too crowded right now."))
+        assertFalse(owner.messages.any { "Try " in it }, "nothing to suggest: ${owner.messages}")
+    }
+
+    @Test
+    fun `A task goes to the least full area for its size`() = runTest {
+        val owner = createPlayer(Tile(3222, 3218), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val tasks: OwnedTasks = get()
+        tasks.reset()
+        val manager: BotManager = get()
+        val task = tasks.all.single { it.skill == "woodcutting" && it.location == "Lumbridge" && it.label == "Chop logs" }
+        val areas = task.patches.flatMap { manager.activity(it)!!.area!!.areas() }.distinct()
+        assertTrue(areas.size >= 2, "needs two areas: $areas")
+        val nearest = areas.minBy { Areas.getOrNull(it)!!.area.firstOrNull()!!.distanceTo(bot.tile) }
+        // one companion in the nearest: the others are emptier, nearer or not
+        manager.slots.reserve("filler", nearest)
+        val emptiest = areas - nearest
+
+        owner.command("bot task 1 ${task.index}")
+
+        assertTrue(bot.get<String>("owned_area") in emptiest, "${bot.get<String>("owned_area")} not one of $emptiest")
+    }
+
+    @Test
+    fun `A companion away from its task gives its slot up after a while and takes it back at work`() = runTest {
+        Settings.load(
+            Properties().apply {
+                this["bots.owned.enabled"] = "true"
+                this["bots.owned.awayHoldTicks"] = "5"
+            },
+        )
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val slots = get<BotManager>().slots
+        owner.command("bot task 1 draynor_north_trees")
+        val work = bot.bot.pinnedActivity!!
+
+        bot.bot.pin(BotActivity(OwnedBots.RECOVER_PREFIX + bot.accountName, actions = listOf(BotWait(100))))
+        tick(2)
+        assertEquals(1, slots.reserved("draynor_north_trees"), "kept while briefly away")
+        tick(5)
+        assertEquals(0, slots.reserved("draynor_north_trees"), "given up after a while away")
+        assertEquals("draynor_north_trees", bot.get<String>("owned_task"), "still its task")
+
+        bot.bot.pin(work)
+        tick()
+        assertEquals("draynor_north_trees", slots.reservedBy(bot.accountName), "taken back at work")
+    }
+
+    @Test
+    fun `A companion back at work stops if companions filled its area meanwhile`() = runTest {
+        Settings.load(
+            Properties().apply {
+                this["bots.owned.enabled"] = "true"
+                this["bots.owned.awayHoldTicks"] = "1"
+            },
+        )
+        val owner = createPlayer(Tile(3200, 3200), "alice")
+        owner.owns(0, "Woody")
+        owner.bank.add("bronze_hatchet")
+        val bot = summon(owner)
+        val slots = get<BotManager>().slots
+        owner.command("bot task 1 draynor_north_trees")
+        val work = bot.bot.pinnedActivity!!
+        bot.bot.pin(BotActivity(OwnedBots.RECOVER_PREFIX + bot.accountName, actions = listOf(BotWait(100))))
+        tick(3)
+        assertNull(slots.reservedBy(bot.accountName))
+        repeat(ActivitySlots.capacity("draynor_north_trees")!!) { slots.reserve("other_companion_$it", "draynor_north_trees") }
+
+        bot.bot.pin(work)
+        tick()
+
+        assertEquals(OwnedBots.IDLE.id, bot.bot.pinned)
+        assertNull(bot.get<String>("owned_task"))
+        assertTrue(owner.containsMessage("is too crowded right now."))
     }
 
     @Test
