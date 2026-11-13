@@ -265,11 +265,13 @@ class Farming : Script {
                 return false
             }
         }
-        var chance = Tables.intOrNull("farming_produce.$produce.disease_chance") ?: return false
+        val chance = sequenceOf(produce, "${produce}_tree", "${produce}_plant")
+            .mapNotNull { Tables.intOrNull("farming_produce.$it.disease_chance") }
+            .firstOrNull() ?: return false
         if (player.containsVarbit("patch_super_compost", spot)) {
-            chance /= 5
+            return random.nextInt(128) <= chance / 5
         } else if (player.containsVarbit("patch_compost", spot)) {
-            chance /= 2
+            return random.nextInt(128) <= chance / 2
         }
         return random.nextInt(128) <= chance
     }
