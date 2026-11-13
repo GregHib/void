@@ -21,7 +21,7 @@ class Running : Script {
 
         interfaceOption(option = "Turn Run mode on", id = "energy_orb:*") {
             if (mode is Rest) {
-                val walking = get("movement", "walk") == "walk"
+                val walking = get("movement_temp", "walk") == "walk"
                 toggleRun(this, !walking)
                 set("movement_temp", if (walking) "run" else "walk")
                 mode = EmptyMode

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
@@ -65,6 +66,16 @@ internal class PlayerTest : WorldTest() {
         tick(5)
 
         assertTrue(player.runEnergy > energy)
+    }
+
+    @Test
+    fun `Run mode can be enabled while resting`() {
+        val player = createPlayer(emptyTile)
+
+        player.interfaceOption("energy_orb", "run_background", "Rest")
+        player.interfaceOption("energy_orb", "run_background", "Turn Run mode on")
+
+        assertTrue(player.running)
     }
 
     @Test
