@@ -169,6 +169,27 @@ class FarmingTest : KoinMock() {
     }
 
     @Test
+    fun `Tree crop uses tree disease table`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 4
+        })
+        player["farming_veg_patch_falador_nw"] = "magic_1"
+        player["farming_offset_mins"] = 0
+        Rows.set(
+            arrayOf(RowDefinition(0, arrayOf(127), "farming_produce.magic_tree")),
+            mapOf("farming_produce.magic_tree" to 0),
+        )
+        Tables.set(
+            mapOf("farming_produce" to TableDefinition(mapOf("disease_chance" to 0), arrayOf(ColumnType.ColumnInt), arrayOf(0), intArrayOf(0))),
+        )
+        setDefinition(listOf("magic_1", "magic_2", "magic_diseased_1"))
+
+        farming.grow(player, 10)
+
+        assertEquals("magic_diseased_1", player["farming_veg_patch_falador_nw", ""])
+    }
+
+    @Test
     fun `Crop stage without disease won't become diseased`() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0

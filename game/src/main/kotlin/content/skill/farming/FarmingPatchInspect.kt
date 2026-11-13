@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.MapValues
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -53,7 +55,7 @@ class FarmingPatchInspect : Script {
                     }
                     val amount = if (name == "allotment") 3 else 1
                     val stage = value.substringAfterLast("_").toIntOrNull()
-                    val stages = when (name) {
+                    val stages = growthStages(interact.target.id, type) ?: when (name) {
                         // TODO dynamic patches
                         "allotment", "herb patch", "belladonna patch", "flower patch" -> 5
                         "fruit tree patch", "cactus patch" -> 7
@@ -61,20 +63,43 @@ class FarmingPatchInspect : Script {
                         "evil turnip patch" -> 2
                         else -> 0
                     }
-                    if (type.endsWith("_stump")) {
-                        append("The patch has the remains of a tree stump in it.")
-                    } else if (value.substringAfterLast("_").startsWith("life")) {
+                    val fullyGrown = value.substringAfterLast("_").startsWith("life") ||
+                        value.substringAfterLast("_") == "claim" ||
+                        interact.target.def(player).stringId.contains("_fullygrown")
+                    if (value.substringAfterLast("_") == "stump" || type.endsWith("_stump")) {
+                        append("You can uproot this stump with a spade.")
+                    } else if (fullyGrown) {
                         append("The patch is fully grown.")
                     } else if (stage == null) {
                         append("The patch has ${type.toLowerSpaceCase().plural(amount)} growing in it and is at state $stages/$stages.")
                     } else {
-                        if (stage + 1 >= stages) {
-                            append("The patch is fully grown.")
-                        } else {
-                            append("The patch has ${type.toLowerSpaceCase().plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
-                        }
+                        append("The patch has ${type.toLowerSpaceCase().plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
                     }
                 }
+            },
+        )
+    }
+
+    private fun growthStages(variable: String, crop: String): Int? {
+        val values = (VariableDefinitions.get(variable)?.values as? MapValues)?.values ?: return null
+        val prefix = "${crop}_"
+        val maximum = values.keys
+            .asSequence()
+            .map { it.toString() }
+            .mapNotNull { key ->
+                if (!key.startsWith(prefix)) {
+                    null
+                } else {
+                    key.removePrefix(prefix).toIntOrNull()
+                }
+            }
+            .maxOrNull()
+        val hasFullyGrownState = values.keys.any { it.toString() == "${crop}_life1" }
+        return maximum?.plus(
+            when {
+                variable.contains("fruit_tree") || variable.contains("bush_patch") || variable.contains("cactus_patch") -> 1
+                hasFullyGrownState -> 2
+                else -> 1
             },
         )
     }
