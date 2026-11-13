@@ -6,6 +6,7 @@ import content.entity.obj.door.Door
 import itemOnItem
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
@@ -33,10 +35,53 @@ internal class FiremakingTest : WorldTest() {
         tick(5)
 
         assertTrue(player.inventory.count("logs") < 27)
-        assertTrue(player.inventory[1].isNotEmpty())
-        assertTrue(player.inventory[2].isEmpty())
         assertEquals(start.add(Direction.WEST), player.tile)
         assertTrue(player.experience.get(Skill.Firemaking) > 0)
+    }
+
+    @Test
+    fun `Fires last for at least one hundred ticks`() {
+        val start = emptyTile
+        val player = firemaker(start)
+
+        player.itemOnItem("tinderbox", "logs")
+        tick(5)
+
+        assertNotNull(GameObjects.getLayer(start, ObjectLayer.GROUND))
+        tick(98)
+        assertNotNull(GameObjects.getLayer(start, ObjectLayer.GROUND))
+        tick(2)
+        assertNull(GameObjects.getLayer(start, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Can light a fire on a walkable ground decoration`() {
+        val start = emptyTile
+        GameObjects.add("flowers", start, ObjectShape.GROUND_DECOR, collision = false)
+        val player = firemaker(start)
+
+        player.itemOnItem("tinderbox", "logs")
+        tick(5)
+
+        assertFalse(player.containsMessage("You can't light a fire here."))
+        assertNotNull(GameObjects.getLayer(start, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Lighting one fire consumes one log and moves the player`() {
+        val start = emptyTile
+        val player = createPlayer(start)
+        player.levels.set(Skill.Firemaking, 100)
+        player.inventory.add("tinderbox")
+        player.inventory.add("logs", 2)
+
+        player.itemOnItem("tinderbox", "logs")
+        tick(12)
+
+        assertEquals(1, player.inventory.count("logs"))
+        assertEquals(start.add(Direction.WEST), player.tile)
+        assertNotNull(GameObjects.getLayer(start, ObjectLayer.GROUND))
+        assertNull(GameObjects.getLayer(start.add(Direction.WEST), ObjectLayer.GROUND))
     }
 
     @Test
@@ -59,7 +104,7 @@ internal class FiremakingTest : WorldTest() {
         val player = firemaker(Tile(3226, 3214))
         assertNull(GameObjects.getLayer(player.tile, ObjectLayer.GROUND_DECORATION))
 
-        player.itemOnItem(0, 1)
+        player.itemOnItem("tinderbox", "logs")
         tick(5)
 
         assertTrue(player.containsMessage("You can't light a fire here."))
