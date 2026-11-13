@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
@@ -150,19 +151,25 @@ class Farming : Script {
                     }
                     continue
                 }
-                var next: String
-                if (disease(player, variable, produce, type)) {
+                val map = varbitMap(variable) ?: continue
+                val stage = type.toIntOrNull() ?: continue
+                var next = current.replace("_watered", "").replace("_$stage", "_${stage + 1}")
+                if (!map.containsKey(next)) {
+                    next = current.replace("_watered", "").replace("_$type", "_claim")
+                }
+                if (!map.containsKey(next)) {
+                    next = current.replace("_watered", "").replace("_$type", "_life1")
+                }
+                if (isFullyGrown(player, variable)) {
+                    if (!map.containsKey(next)) {
+                        continue
+                    }
+                    if (next.endsWith("_claim") || next.endsWith("_life1")) {
+                        player.clear("${variable}_protect")
+                    }
+                } else if (disease(player, variable, produce, type)) {
                     next = current.replace(produce, "${produce}_diseased")
                 } else {
-                    val map = varbitMap(variable) ?: continue
-                    val stage = type.toIntOrNull() ?: continue
-                    next = current.replace("_watered", "").replace("_$stage", "_${stage + 1}")
-                    if (!map.containsKey(next)) {
-                        next = current.replace("_watered", "").replace("_$type", "_claim")
-                    }
-                    if (!map.containsKey(next)) {
-                        next = current.replace("_watered", "").replace("_$type", "_life1")
-                    }
                     if (!map.containsKey(next)) {
                         continue
                     }
@@ -270,6 +277,14 @@ class Farming : Script {
     private fun varbitMap(varbit: String): Map<String, Int>? {
         val definition = VariableDefinitions.get(varbit) ?: return null
         return (definition.values as? MapValues)?.values as? Map<String, Int>
+    }
+
+    private fun isFullyGrown(player: Player, variable: String): Boolean {
+        if (!ObjectDefinitions.loaded) {
+            return false
+        }
+        val definition = ObjectDefinitions.getOrNull(variable) ?: return false
+        return ObjectDefinitions.resolve(definition, player).stringId.contains("_fullygrown")
     }
 
     private fun amuletOfFarming(player: Player, patch: String) {
