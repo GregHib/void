@@ -76,21 +76,34 @@ data class Loadout(val worn: Map<EquipSlot, String>, val carried: Map<String, In
 }
 
 /**
- * Named loadouts an owner keeps for all their bots, in the persistent owner variable `owned_loadouts`
- * (a map of preset name to the entries of [Loadout.encode]).
+ * Named loadouts an owner keeps for all their bots, in the persistent owner variable `owned_loadouts`: a list of
+ * `name/entry` strings, one per entry of [Loadout.encode] (a bare `name/` for an empty preset). A list of short
+ * strings because that is all every storage can hold: the database saves no maps, the file reader caps a string at
+ * 150 characters.
  */
 object OwnedLoadouts {
     const val MAX_PRESETS = 10
     private val NAME = Regex("^(?=.*[a-z])[a-z0-9_]{1,12}$")
+    private const val SEPARATOR = '/'
 
     fun all(owner: Player): Map<String, Loadout> {
-        // anything but a map (an older save's string) counts as no presets
-        val saved = owner.get<Any>("owned_loadouts") as? Map<*, *> ?: return emptyMap()
-        val presets = linkedMapOf<String, Loadout>()
-        for ((name, entries) in saved) {
-            presets[name.toString()] = Loadout.decode(entries as? List<*>)
+        val grouped = linkedMapOf<String, MutableList<String>>()
+        when (val saved = owner.get<Any>("owned_loadouts")) {
+            is List<*> -> for (line in saved) {
+                val text = line as? String ?: continue
+                val name = text.substringBefore(SEPARATOR, missingDelimiterValue = "")
+                if (name.isEmpty()) {
+                    continue
+                }
+                val entries = grouped.getOrPut(name) { mutableListOf() }
+                text.substringAfter(SEPARATOR).takeIf { it.isNotEmpty() }?.let(entries::add)
+            }
+            // the first format, a map of name to entries, kept readable for file saves made with it
+            is Map<*, *> -> for ((name, entries) in saved) {
+                grouped[name.toString()] = (entries as? List<*>).orEmpty().mapNotNull { it as? String }.toMutableList()
+            }
         }
-        return presets
+        return grouped.mapValues { (_, entries) -> Loadout.decode(entries) }
     }
 
     fun get(owner: Player, name: String): Loadout? = all(owner)[name.lowercase()]
@@ -155,7 +168,7 @@ object OwnedLoadouts {
         if (presets.isEmpty()) {
             owner.clear("owned_loadouts")
         } else {
-            owner["owned_loadouts"] = presets.mapValues { it.value.encode() }
+            owner["owned_loadouts"] = presets.flatMap { (name, loadout) -> loadout.encode().map { "$name$SEPARATOR$it" }.ifEmpty { listOf("$name$SEPARATOR") } }
         }
     }
 }

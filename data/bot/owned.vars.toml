@@ -115,8 +115,9 @@ persist = true
 format = "int"
 persist = true
 
-# Loadout presets shared by all of the owner's bots: { name = ["slot=item", "item:amount", ...] }.
-# Lists of short entries, never one long string: the save reader caps a string at 150 characters.
+# Loadout presets shared by all of the owner's bots: ["name/slot=item", "name/item:amount", ...].
+# A list of short strings, never a map (the database can't store one) or one long string (the save reader caps a
+# string at 150 characters).
 [owned_loadouts]
 persist = true
 

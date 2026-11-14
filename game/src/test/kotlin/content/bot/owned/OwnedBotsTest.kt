@@ -736,6 +736,28 @@ internal class OwnedBotsTest : WorldTest() {
     }
 
     @Test
+    fun `Presets are saved as a list of short strings every storage can hold`() {
+        val owner = Player(accountName = "alice")
+        OwnedLoadouts.save(owner, "melee", Loadout.decode(listOf("hat=iron_full_helm", "shark:3")))
+        OwnedLoadouts.save(owner, "empty", Loadout.EMPTY)
+
+        // the database storage saves strings, numbers and lists of them, never a map
+        assertEquals(listOf("melee/hat=iron_full_helm", "melee/shark:3", "empty/"), owner.get<Any>("owned_loadouts"))
+        assertEquals(mapOf("melee" to listOf("hat=iron_full_helm", "shark:3"), "empty" to emptyList()), OwnedLoadouts.all(owner).mapValues { it.value.encode() })
+    }
+
+    @Test
+    fun `Presets saved as a map by an older version are still read and rewritten as a list`() {
+        val owner = Player(accountName = "alice")
+        owner["owned_loadouts"] = mapOf("melee" to listOf("hat=iron_full_helm", "shark:3"))
+
+        assertEquals(mapOf("melee" to listOf("hat=iron_full_helm", "shark:3")), OwnedLoadouts.all(owner).mapValues { it.value.encode() })
+
+        OwnedLoadouts.save(owner, "range", Loadout.EMPTY)
+        assertEquals(listOf("melee/hat=iron_full_helm", "melee/shark:3", "range/"), owner.get<Any>("owned_loadouts"))
+    }
+
+    @Test
     fun `Calling a bot puts it beside the owner and following`() = runTest {
         val owner = createPlayer(Tile(100, 100), "alice")
         owner.owns(0, "Woody")
