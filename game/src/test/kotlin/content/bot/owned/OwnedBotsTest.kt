@@ -36,10 +36,12 @@ import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import messages
 import npcOption
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import unstorableVariables
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
@@ -88,6 +90,13 @@ internal class OwnedBotsTest : WorldTest() {
         Settings.load(Properties().apply { this["bots.owned.enabled"] = "true" })
         // players are cleared between tests without leaving the world, so nothing gives up its slot
         get<BotManager>().slots.clear()
+    }
+
+    /** Whatever a test left its owners and bots holding must save on a database-backed server too. */
+    @AfterEach
+    fun storable() {
+        val unstorable = Players.associate { it.accountName to unstorableVariables(it) }.filterValues { it.isNotEmpty() }
+        assertTrue(unstorable.isEmpty(), "saved variables a database can't store: $unstorable")
     }
 
     private suspend fun Player.command(text: String) {
