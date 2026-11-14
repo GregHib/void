@@ -54,21 +54,51 @@ class SaveQueue(
     private fun CoroutineScope.save(accounts: List<PlayerSave>, retry: Boolean = true) = launch(handler) {
         withContext(NonCancellable) {
             val start = System.currentTimeMillis()
-            try {
-                val (botAccounts, playerAccounts) = accounts.partition { it.name in bots }
-                if (playerAccounts.isNotEmpty() || botAccounts.isEmpty()) {
-                    storage.save(playerAccounts)
-                }
-                if (botAccounts.isNotEmpty()) {
-                    botStorage.save(botAccounts)
-                }
-            } catch (e: Exception) {
-                failed(accounts, e, retry)
-                return@withContext
+            val failures = mutableListOf<PlayerSave>()
+            var error: Exception? = null
+            val (botAccounts, playerAccounts) = accounts.partition { it.name in bots }
+            if (playerAccounts.isNotEmpty() || botAccounts.isEmpty()) {
+                error = write(storage, playerAccounts, failures)
             }
-            clearPending(accounts)
-            clearFailing(accounts)
-            logger.info { "Saved ${accounts.size} ${"account".plural(accounts.size)} in ${System.currentTimeMillis() - start}ms" }
+            if (botAccounts.isNotEmpty()) {
+                error = write(botStorage, botAccounts, failures) ?: error
+            }
+            val saved = accounts.filter { account -> failures.none { it === account } }
+            clearPending(saved)
+            clearFailing(saved)
+            if (saved.isNotEmpty()) {
+                logger.info { "Saved ${saved.size} ${"account".plural(saved.size)} in ${System.currentTimeMillis() - start}ms" }
+            }
+            if (error != null && failures.isNotEmpty()) {
+                failed(failures, error, retry)
+            }
+        }
+    }
+
+    /**
+     * Write [accounts] to [storage] together, and if that fails, one at a time: one account the storage can't take
+     * (a variable of a type it can't store) mustn't hold back every other account saved with it.
+     * @return the error, with the accounts that still failed added to [failures]; null if all were written
+     */
+    private fun write(storage: Storage, accounts: List<PlayerSave>, failures: MutableList<PlayerSave>): Exception? {
+        try {
+            storage.save(accounts)
+            return null
+        } catch (e: Exception) {
+            if (accounts.size <= 1) {
+                failures.addAll(accounts)
+                return e
+            }
+            var error: Exception? = null
+            for (account in accounts) {
+                try {
+                    storage.save(listOf(account))
+                } catch (single: Exception) {
+                    failures.add(account)
+                    error = error ?: single
+                }
+            }
+            return error
         }
     }
 
