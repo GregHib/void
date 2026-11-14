@@ -78,6 +78,9 @@ class SaveQueue(
     /**
      * Write [accounts] to [storage] together, and if that fails, one at a time: one account the storage can't take
      * (a variable of a type it can't store) mustn't hold back every other account saved with it.
+     * Failures in a row mean the storage itself is failing (e.g. the database is down), not one account: after
+     * [MAX_FAILURES_IN_A_ROW] the rest count as failed without being tried, so an outage costs a couple of extra
+     * attempts, not one per account, and the fallback isn't held up (a shutdown save most of all).
      * @return the error, with the accounts that still failed added to [failures]; null if all were written
      */
     private fun write(storage: Storage, accounts: List<PlayerSave>, failures: MutableList<PlayerSave>): Exception? {
@@ -90,12 +93,19 @@ class SaveQueue(
                 return e
             }
             var error: Exception? = null
-            for (account in accounts) {
+            var inARow = 0
+            for ((index, account) in accounts.withIndex()) {
+                if (inARow >= MAX_FAILURES_IN_A_ROW) {
+                    failures.addAll(accounts.subList(index, accounts.size))
+                    break
+                }
                 try {
                     storage.save(listOf(account))
+                    inARow = 0
                 } catch (single: Exception) {
                     failures.add(account)
                     error = error ?: single
+                    inARow++
                 }
             }
             return error
@@ -181,6 +191,7 @@ class SaveQueue(
     fun empty(): Boolean = pending.isEmpty()
 
     companion object {
+        private const val MAX_FAILURES_IN_A_ROW = 2
         private val saveBots: Boolean by Settings.bool("storage.bots.save", false)
     }
 }

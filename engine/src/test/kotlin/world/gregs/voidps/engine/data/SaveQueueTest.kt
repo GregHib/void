@@ -148,6 +148,33 @@ internal class SaveQueueTest : KoinMock() {
     }
 
     @Test
+    fun `Storage failing for every account isn't tried once per account`() {
+        val attempted = AtomicInteger()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                attempted.incrementAndGet()
+                throw IOException("Connection refused")
+            }
+        }
+        val dumped = CopyOnWriteArrayList<String>()
+        val fallback = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(dumped) { it.name }
+            }
+        }
+        val queue = SaveQueue(storage, fallback, retryMillis = 0)
+        val names = (0 until 10).map { "player_$it" }
+        for (name in names) {
+            queue.save(Player(accountName = name))
+        }
+        queue.run()
+
+        waitFor("every account to be dumped") { dumped.size == names.size }
+        assertEquals(names.toSet(), dumped.toSet())
+        assertEquals(3, attempted.get(), "the batch, then two accounts on their own before giving up on the rest")
+    }
+
+    @Test
     fun `Shutdown save writes to the fallback before the job completes`() {
         val dumped = CopyOnWriteArrayList<String>()
         val storage = object : TestStorage() {
