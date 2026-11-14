@@ -119,6 +119,35 @@ internal class SaveQueueTest : KoinMock() {
     }
 
     @Test
+    fun `One account storage can't take doesn't hold back the others saved with it`() {
+        val written = CopyOnWriteArrayList<String>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                if (accounts.any { it.name == "bad" }) {
+                    throw IllegalArgumentException("Unsupported variable type: LinkedHashMap")
+                }
+                accounts.mapTo(written) { it.name }
+            }
+        }
+        val dumped = CopyOnWriteArrayList<String>()
+        val fallback = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(dumped) { it.name }
+            }
+        }
+        val queue = SaveQueue(storage, fallback, retryMillis = 0)
+        queue.save(Player(accountName = "good"))
+        queue.save(Player(accountName = "bad"))
+        queue.save(Player(accountName = "also_good"))
+        queue.run()
+
+        waitFor("the bad account to be dumped") { dumped.contains("bad") }
+        assertEquals(setOf("good", "also_good"), written.toSet())
+        assertEquals(listOf("bad"), dumped.toList())
+        waitFor("pending to drain") { queue.empty() }
+    }
+
+    @Test
     fun `Shutdown save writes to the fallback before the job completes`() {
         val dumped = CopyOnWriteArrayList<String>()
         val storage = object : TestStorage() {
