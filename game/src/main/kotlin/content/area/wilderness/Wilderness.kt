@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.type.Tile
 
 object Wilderness {
     fun combatRange(player: Player): IntRange {
@@ -20,15 +21,18 @@ object Wilderness {
 }
 
 val Character.wildernessLevel: Int
-    get() {
-        var wildernessLevel = 0
-        if (tile.x in 3008..3135 && tile.y in 9920..10367) {
-            wildernessLevel = (tile.y - 9920) / 8 + 1
-        } else if (tile.x in 2944..3392 && tile.y in 3525..3967 && !get("decrease_combat_attack_range", false)) {
-            wildernessLevel = (tile.y - 3520) / 8 + 1
-        }
-        return wildernessLevel.coerceIn(0..60)
+    get() = wildernessLevel(tile, get("decrease_combat_attack_range", false))
+
+/** The wilderness level of [tile], 0 outside; [reduced] for a character whose surface range is cut. */
+fun wildernessLevel(tile: Tile, reduced: Boolean = false): Int {
+    var wildernessLevel = 0
+    if (tile.x in 3008..3135 && tile.y in 9920..10367) {
+        wildernessLevel = (tile.y - 9920) / 8 + 1
+    } else if (tile.x in 2944..3392 && tile.y in 3525..3967 && !reduced) {
+        wildernessLevel = (tile.y - 3520) / 8 + 1
     }
+    return wildernessLevel.coerceIn(0..60)
+}
 
 val Character.inPvp: Boolean
     get() = get("in_pvp", false)

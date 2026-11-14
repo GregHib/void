@@ -97,7 +97,10 @@ class Follow(
 
     override fun getTarget(): Tile? {
         val target = character.steps.peek()
-        if (!smart && target == null) {
+        if (target == null) {
+            // No step left, the first path included: a follow tile with no route to it (the one a teleport leaves
+            // west of its destination can be a wall or a staircase) must not end the follow; step after the
+            // target from here on, as after any reached waypoint.
             recalculate()
             return character.steps.peek()
         }

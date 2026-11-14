@@ -67,3 +67,9 @@ hint = "in the north of the kingdom of Misthalin."
 [varrock_sword_shop]
 x = [3202, 3209]
 y = [3395, 3403]
+
+# The church, with its altar: where a recovering companion recharges its prayer
+[varrock_church]
+x = [3248, 3260]
+y = [3480, 3491]
+tags = ["altar"]

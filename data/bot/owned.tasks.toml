@@ -1,0 +1,76 @@
+# Tunes the task catalogue owned bots can be given (content/bot/owned/OwnedTasks.kt). The catalogue itself is found:
+# every world-bot activity from a *.bots.toml file that ends with an item (a product and a non-combat skill in its
+# `produces`, or a product alone, which is "gathering") is a task, grouped by that skill and by the area folder it is
+# in, so an activity added anywhere is a task at once. The bot loops it, banking at the nearest bank between trips, until told to stop.
+#
+# [locations] names an area folder as the plugin shows it (else the folder's words, capitalised).
+# [verbs] is the word a skill's labels start with (else the skill's name), before the product's name.
+# A section named after an activity gives it a `label`, a `location`, or `hidden = true`.
+
+[locations]
+seers_village = "Seers' Village"
+sorcerers_tower = "Sorcerer's Tower"
+lumbridge_swamp = "Lumbridge Swamp"
+al_kharid = "Al Kharid"
+port_sarim = "Port Sarim"
+
+[verbs]
+woodcutting = "Chop"
+mining = "Mine"
+fishing = "Fish"
+cooking = "Cook"
+smithing = "Smith"
+fletching = "Fletch"
+crafting = "Make"
+thieving = "Pickpocket"
+firemaking = "Burn"
+herblore = "Make"
+runecrafting = "Craft"
+hunter = "Catch"
+farming = "Grow"
+gathering = "Pick"
+
+[lumbridge_smelt_bronze_bars]
+label = "Smelt bronze bars"
+
+[lumbridge_smelt_iron_bars]
+label = "Smelt iron bars"
+
+[lumbridge_smelt_silver_bars]
+label = "Smelt silver bars"
+
+[lumbridge_flax_spinning]
+label = "Spin flax into bowstrings"
+
+[lumbridge_net_fishing]
+label = "Net fish shrimp"
+
+[lumbridge_crayfish]
+label = "Cage crayfish"
+
+[lumbridge_bait_fishing]
+label = "Bait fish"
+
+[edgeville_fly_fishing]
+label = "Fly fish trout and salmon"
+
+[catherby_lobster_fishing]
+label = "Cage lobsters"
+
+[catherby_tuna_swordfish_fishing]
+label = "Harpoon tuna and swordfish"
+
+[catherby_shark_fishing]
+label = "Harpoon sharks"
+
+[seers_village_flax_picking]
+label = "Pick flax"
+
+[seers_village_flax_spinning]
+label = "Spin flax into bowstrings"
+
+[lumbridge_pickpocketing]
+label = "Pickpocket men and women"
+
+[shear_lumbridge_sheep]
+label = "Shear sheep"

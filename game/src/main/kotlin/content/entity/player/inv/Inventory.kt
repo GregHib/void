@@ -13,6 +13,11 @@ import world.gregs.voidps.engine.inv.swap
 
 class Inventory : Script {
 
+    companion object {
+        /** The item options that are eaten or drunk, kept to mid-fight. */
+        private val CONSUME = setOf("Eat", "Drink", "Heal")
+    }
+
     val logger = InlineLogger()
 
     init {
@@ -49,7 +54,9 @@ class Inventory : Script {
                 return@interfaceOption
             }
             closeInterfaces()
-            if (attacking) {
+            // a bite or a dose mid-fight delays the next swing (Eating sets the delay) but does not end the fight,
+            // as in the game; any other item option does
+            if (attacking && equipOption !in CONSUME) {
                 mode = EmptyMode
             }
             if (equipOption == "Dig") {

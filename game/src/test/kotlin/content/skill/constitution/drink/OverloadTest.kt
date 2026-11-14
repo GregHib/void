@@ -41,4 +41,22 @@ internal class OverloadTest : WorldTest() {
         assertEquals(5, graphics)
         assertTrue(player.levels.get(Skill.Constitution) in 490..495)
     }
+
+    @Test
+    fun `Food can be eaten while the overload's hits land`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("overload_4")
+        player.inventory.add("shark")
+        player.experience.set(Skill.Constitution, Level.experience(99))
+        player.levels.set(Skill.Constitution, 990)
+
+        player.itemOption("Drink", "overload_4")
+        tick(3)
+        val before = player.levels.get(Skill.Constitution)
+        player.itemOption("Eat", "shark")
+        tick()
+
+        assertEquals(0, player.inventory.count("shark"), "eaten between the hits")
+        assertTrue(player.levels.get(Skill.Constitution) > before, "and healed by it")
+    }
 }

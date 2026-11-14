@@ -74,7 +74,8 @@ class BotChat(
             val processor = chatProcessor ?: return
             val bots = mutableListOf<Player>()
             Players.forEachNear(speaker.tile, VIEW_RADIUS) {
-                if (it.isBot && !it.ignores(speaker)) {
+                // Player-owned bots are their owner's hands, not conversationalists
+                if (it.isBot && !it.contains("owner") && !it.ignores(speaker)) {
                     bots.add(it)
                 }
             }
