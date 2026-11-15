@@ -110,6 +110,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         val definitions = NPCDefinitions.init(arrayOf(base, NPCDefinition(1, stringId = "first"), NPCDefinition(2, stringId = "default")))
         val variable: VariableDefinition = mockk(relaxed = true)
         every { variable.values } returns IntValues
+        every { variable.defaultValue } returns 2
         VariableDefinitions.set(mapOf("var" to variable), varbits = mapOf(1 to "var"))
         val player: Player = mockk(relaxed = true)
         var value: Int? = null
