@@ -2,11 +2,13 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -78,6 +80,54 @@ class TreePatchTest : WorldTest() {
             }
 
             assertEquals("${id}_claim", player["farming_tree_patch_lumbridge", "empty"])
+        }
+    }
+
+    @Test
+    fun `Inspect every regular tree growth state`() {
+        val crops = mapOf(
+            "oak" to 3,
+            "willow" to 5,
+            "maple" to 7,
+            "yew" to 9,
+            "magic" to 11,
+        )
+        val variable = "farming_tree_patch_lumbridge"
+        val patch = GameObjects.find(Tile(3192, 3230), variable)
+
+        for ((crop, maximumStage) in crops) {
+            for (stage in 0..maximumStage) {
+                val player = createPlayer(Tile(3192, 3229))
+                player[variable] = "${crop}_$stage"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    player.containsMessage("at state ${stage + 1}/${maximumStage + 2}"),
+                    "$crop stage $stage reported the wrong growth state",
+                )
+                assertTrue(!patch.def(player).stringId.contains("_fullygrown"))
+            }
+
+            for (state in listOf("claim", "life1")) {
+                val player = createPlayer(Tile(3192, 3229))
+                player[variable] = "${crop}_$state"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    player.containsMessage("fully grown"),
+                    "$crop $state was not reported as fully grown",
+                )
+                assertTrue(patch.def(player).stringId.contains("_fullygrown"))
+            }
+
+            val stumpPlayer = createPlayer(Tile(3192, 3229))
+            stumpPlayer[variable] = "${crop}_stump"
+            stumpPlayer.objectOption(patch, "Inspect")
+            tick()
+
+            assertTrue(stumpPlayer.containsMessage("You can uproot this stump with a spade."))
         }
     }
 

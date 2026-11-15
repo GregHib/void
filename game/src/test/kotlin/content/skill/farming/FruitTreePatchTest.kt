@@ -2,6 +2,7 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -108,6 +109,89 @@ class FruitTreePatchTest : WorldTest() {
     }
 
     @Test
+    fun `Inspect every fruit tree growth state`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val crops = listOf(
+            "apple",
+            "banana",
+            "orange",
+            "curry",
+            "pineapple",
+            "papaya",
+            "palm",
+        )
+        val variable = "farming_fruit_tree_patch_gnome_stronghold"
+        val patch = GameObjects.find(Tile(2475, 3445), variable)
+
+        for (crop in crops) {
+            for (stage in 0..6) {
+                val player = createPlayer(Tile(2475, 3444))
+                player[variable] = "${crop}_$stage"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                if (stage == 6) {
+                    assertTrue(
+                        player.containsMessage("fully grown"),
+                        "$crop stage $stage was not reported as fully grown",
+                    )
+                    assertTrue(patch.def(player).stringId.contains("_fullygrown"))
+                } else {
+                    assertTrue(
+                        player.containsMessage("at state ${stage + 1}/7"),
+                        "$crop stage $stage reported the wrong growth state",
+                    )
+                    assertTrue(!patch.def(player).stringId.contains("_fullygrown"))
+                }
+            }
+
+            for (state in listOf("claim", "life1")) {
+                val player = createPlayer(Tile(2475, 3444))
+                player[variable] = "${crop}_$state"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    player.containsMessage("fully grown"),
+                    "$crop $state was not reported as fully grown",
+                )
+            }
+
+            for (stage in 1..6) {
+                val diseasedState = "${crop}_diseased_$stage"
+                val diseasedPlayer = createPlayer(Tile(2475, 3444))
+                diseasedPlayer[variable] = diseasedState
+                diseasedPlayer.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    diseasedPlayer.containsMessage("infected by disease"),
+                    "$diseasedState was not reported as diseased",
+                )
+
+                val deadPlayer = createPlayer(Tile(2475, 3444))
+                deadPlayer[variable] = "${crop}_dead_$stage"
+                deadPlayer.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    deadPlayer.containsMessage("infected by disease and has died"),
+                    "${crop}_dead_$stage was not reported as dead",
+                )
+            }
+
+            val stumpPlayer = createPlayer(Tile(2475, 3444))
+            stumpPlayer[variable] = "${crop}_stump"
+            stumpPlayer.objectOption(patch, "Inspect")
+            tick()
+
+            assertTrue(stumpPlayer.containsMessage("You can uproot this stump with a spade."))
+        }
+    }
+
+    @Test
     fun `Corrupted herb dead value is repaired on spawn`() {
         val player = createPlayer(Tile(2860, 3432))
         player["farming_fruit_tree_patch_catherby"] = "herb_dead_2"
@@ -118,16 +202,27 @@ class FruitTreePatchTest : WorldTest() {
         assertEquals("empty", player["farming_fruit_tree_patch_catherby", "empty"])
     }
 
-    @Test
-    fun `Diseased fruit tree at catherby dies`() {
-        val tile = Tile(2860, 3432)
-        val player = createPlayer(tile)
-        player["farming_fruit_tree_patch_catherby"] = "apple_diseased_2"
+    @TestFactory
+    fun `Diseased fruit trees die`() = listOf(
+        "apple",
+        "banana",
+        "orange",
+        "curry",
+        "pineapple",
+        "papaya",
+        "palm",
+    ).map { crop ->
+        dynamicTest("Kill diseased $crop tree") {
+            val tile = Tile(2860, 3432)
+            val player = createPlayer(tile)
+            val diseased = "${crop}_diseased_2"
+            player["farming_fruit_tree_patch_catherby"] = diseased
 
-        val farming = scripts.filterIsInstance<Farming>().first()
-        farming.grow(player, 32 * 5)
+            val farming = scripts.filterIsInstance<Farming>().first()
+            farming.grow(player, 32 * 5)
 
-        assertEquals("apple_dead_2", player["farming_fruit_tree_patch_catherby", "empty"])
+            assertEquals("${crop}_dead_2", player["farming_fruit_tree_patch_catherby", "empty"])
+        }
     }
 
     @TestFactory
