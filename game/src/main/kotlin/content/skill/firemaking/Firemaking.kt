@@ -116,9 +116,7 @@ class Firemaking : Script {
         player.clearAnim()
     }
 
-    fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean): Boolean {
-        return canLight(log, level, item.tile) && (skipFloorCheck || FloorItems.at(item.tile).contains(item))
-    }
+    fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean): Boolean = canLight(log, level, item.tile) && (skipFloorCheck || FloorItems.at(item.tile).contains(item))
 
     private fun Player.canLight(log: String, level: Int, tile: Tile): Boolean {
         if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
