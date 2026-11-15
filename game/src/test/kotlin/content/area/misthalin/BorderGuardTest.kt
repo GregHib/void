@@ -61,4 +61,52 @@ internal class BorderGuardTest : WorldTest() {
 
         assertEquals(Tile(3292, 3387), player.tile)
     }
+
+    @Test
+    fun `Crossing from the middle of a border exits towards the side clicked`() {
+        val player = createPlayer(Tile(3070, 3276))
+        tick(4)
+
+        handler.walk(Walk(3074, 3276), player)
+        tick(4)
+
+        assertEquals(Tile(3072, 3276), player.tile)
+    }
+
+    @Test
+    fun `Clicking a border from a distance walks up to it before crossing`() {
+        val player = createPlayer(Tile(3075, 3280))
+        tick()
+
+        handler.walk(Walk(3071, 3277), player)
+        // Reaches the near side of the border with normal collision first
+        tickIf(limit = 10) { player.tile != Tile(3072, 3277) }
+        tick(6)
+
+        assertEquals(Tile(3068, 3277), player.tile)
+    }
+
+    @Test
+    fun `Clicking further along a border from the middle exits on that side`() {
+        val player = createPlayer(Tile(3070, 3276))
+        tick(4)
+
+        handler.walk(Walk(3071, 3276), player)
+        tick(4)
+
+        assertEquals(Tile(3072, 3276), player.tile)
+    }
+
+    @Test
+    fun `Can change direction while walking up to a border`() {
+        val player = createPlayer(Tile(3079, 3280))
+        tick()
+
+        handler.walk(Walk(3071, 3277), player)
+        tick(2)
+        handler.walk(Walk(3079, 3280), player)
+        tick(6)
+
+        assertEquals(Tile(3079, 3280), player.tile)
+    }
 }

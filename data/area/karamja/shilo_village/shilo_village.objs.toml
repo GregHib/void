@@ -17,3 +17,7 @@ examine = "Handy for crossing rivers."
 [travel_cart_shilo_village]
 id = 2265
 examine = "A sturdy cart for travelling in."
+
+[broken_cart_shilo_village]
+id = 2216
+examine = "This looks like it's being used to block entrance to the village."

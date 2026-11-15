@@ -242,14 +242,14 @@ categories = ["monkeys"]
 respawn_delay = 50
 examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
 drop_table = "monkey_guard"
-combat_def = "guard"
+combat_def = "monkey_guard"
 hunt_mode = "cowardly"
 
 [monkey_guard_ape_atoll_4]
 id = 1460
 clone = "monkey_guard_ape_atoll_3"
 drop_table = "monkey_guard"
-combat_def = "guard"
+combat_def = "monkey_guard"
 hunt_mode = "cowardly"
 
 [elder_guard_ape_atoll]
