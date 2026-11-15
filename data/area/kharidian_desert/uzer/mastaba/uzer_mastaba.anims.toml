@@ -1,0 +1,17 @@
+[small_scarab_attack]
+id = 11632
+
+[small_scarab_defend]
+id = 11633
+
+[small_scarab_death]
+id = 11634
+
+[golem_guard_uzer_mastaba_attack]
+id = 11639
+
+[golem_guard_uzer_mastaba_defend]
+id = 11640
+
+[golem_guard_uzer_mastaba_death]
+id = 11642

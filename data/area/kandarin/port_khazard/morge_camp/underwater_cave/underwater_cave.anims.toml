@@ -2,3 +2,6 @@
 id = 3430
 [crab_attack]
 id = 3428
+
+[crab_defend]
+id = 3429

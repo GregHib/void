@@ -9,3 +9,9 @@ id = 836
 
 [rowdy_slave_attack]
 id = 422
+
+[mercenary_captain_defend]
+id = 388
+
+[rowdy_slave_defend]
+id = 424

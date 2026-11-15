@@ -1,4 +1,5 @@
 [barbarian]
+defend_anim = "barbarian_defend"
 death_anim = "barbarian_death"
 
 [barbarian.melee]

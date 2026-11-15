@@ -21,3 +21,6 @@ id = 836
 
 [watchman_attack]
 id = 422
+
+[watchman_defend]
+id = 424

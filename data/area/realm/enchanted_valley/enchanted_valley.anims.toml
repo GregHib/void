@@ -2,3 +2,6 @@
 id = 6377
 [stag_attack]
 id = 6376
+
+[stag_defend]
+id = 6375

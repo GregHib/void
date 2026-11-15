@@ -1,0 +1,7 @@
+[evil_creature_tree_gnome_village]
+death_anim = "evil_creature_death"
+
+[evil_creature_tree_gnome_village.melee]
+range = 1
+anim = "evil_creature_attack"
+target_hit = { offense = "crush", max = 10 }

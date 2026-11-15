@@ -1,4 +1,5 @@
 [foreman]
+defend_anim = "foreman_defend"
 death_anim = "foreman_death"
 
 [foreman.melee]

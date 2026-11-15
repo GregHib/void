@@ -1,0 +1,18 @@
+[me_male]
+defend_anim = "staff_defend"
+defend_sound = "man_defend"
+death_anim = "human_death"
+death_sound = "man_death"
+
+[me_male.melee]
+range = 1
+anim = "staff_bash"
+target_hit = { offense = "crush", max = 90 }
+
+[me_female]
+clone = "me_male"
+defend_sound = "woman_defend"
+death_sound = "woman_death"
+
+[me_female.melee]
+clone = "me_male.melee"

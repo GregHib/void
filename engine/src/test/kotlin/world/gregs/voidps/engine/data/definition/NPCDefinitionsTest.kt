@@ -126,4 +126,27 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         value = -2
         assertEquals("default", definitions.resolve(base, player).stringId)
     }
+
+    @Test
+    fun `Clone of a later npc inherits its params when it has none of its own`(@TempDir dir: File) {
+        val file = dir.resolve("custom.npcs.toml")
+        file.writeText(
+            """
+            [shell]
+            id = 0
+            clone = "shaman"
+
+            [shaman]
+            id = 1
+            combat_def = "shaman"
+            damage_cap = 0
+            """.trimIndent(),
+        )
+        val definitions = NPCDefinitions.init(Array(2) { NPCDefinition(it, stringId = it.toString()) })
+        definitions.load(listOf(file.path))
+
+        val shell = definitions.get("shell")
+        assertEquals("shaman", shell["combat_def", ""])
+        assertEquals(0, shell["damage_cap", -1])
+    }
 }

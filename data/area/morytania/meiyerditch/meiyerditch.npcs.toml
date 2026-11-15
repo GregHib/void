@@ -326,7 +326,7 @@ hitpoints = 1400
 att = 110
 str = 110
 def = 110
-combat_def = "vampyre"
+combat_def = "flying_female_vampire"
 
 [vyrewatch_meiyerditch_12]
 id = 7622
@@ -355,13 +355,13 @@ immune_poison = true
 respawn_delay = 51
 examine = "A juvenile vampyre. It looks really hungry!"
 drop_table = "empty"
-combat_def = "vampyre"
+combat_def = "vampyre_juvenile_male"
 max_hit_crush = 40
 
 [vampyre_juvenile_female]
 id = 4775
 drop_table = "empty"
-combat_def = "vampyre"
+combat_def = "vampyre_juvenile_female"
 hitpoints = 600
 att = 40
 str = 30

@@ -1,20 +1,20 @@
 [crocodile_defend]
-id = 2035
+id = 7590
 
 [crocodile_death]
-id = 2038
+id = 7591
 
 [crocodile_attack]
-id = 2039
+id = 7588
 
 [goat_death]
-id = 253
+id = 5343
 
 [goat_defend]
-id = 3841
+id = 5342
 
 [goat_attack]
-id = 4936
+id = 5341
 
 [knife_chop]
 id = 911
@@ -24,3 +24,6 @@ id = 6558
 
 [desert_wolf_attack]
 id = 6559
+
+[desert_wolf_defend]
+id = 6557

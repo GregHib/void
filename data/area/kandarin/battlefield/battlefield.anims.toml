@@ -9,3 +9,18 @@ id = 3962
 
 [tortoise_attack]
 id = 3960
+
+[khazard_commander_defend]
+id = 430
+
+[mounted_terrorbird_gnome_attack]
+id = 6790
+
+[mounted_terrorbird_gnome_defend]
+id = 6792
+
+[mounted_terrorbird_gnome_death]
+id = 6791
+
+[tortoise_defend]
+id = 3961

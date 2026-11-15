@@ -1,4 +1,5 @@
 [angry_unicorn]
+defend_anim = "angry_unicorn_defend"
 death_anim = "angry_unicorn_death"
 defend_sound = "angry_unicorn_defend"
 death_sound = "angry_unicorn_death"
@@ -35,6 +36,7 @@ anim = "confusion_beast_attack"
 sound = "confusion_beast_attack"
 
 [hopeless_creature]
+defend_anim = "hopeless_creature_defend"
 death_anim = "hopeless_creature_death"
 defend_sound = "confusion_beast_defend"
 death_sound = "confusion_beast_death"
@@ -44,3 +46,15 @@ range = 1
 target_hit = { offense = "slash", max = 70 }
 anim = "hopeless_creature_attack"
 sound = "confusion_beast_attack"
+
+[angry_giant_rat_tolnas_rift]
+clone = "giant_rat"
+defend_anim = "angry_giant_rat_tolnas_rift_defend"
+defend_sound = "zombie_rat_rimmington_defend"
+death_anim = "angry_giant_rat_tolnas_rift_death"
+death_sound = "zombie_rat_rimmington_death"
+
+[angry_giant_rat_tolnas_rift.melee]
+clone = "giant_rat.melee"
+anim = "angry_giant_rat_tolnas_rift_attack"
+target_sound = "zombie_rat_rimmington_attack"

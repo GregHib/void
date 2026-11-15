@@ -1,4 +1,5 @@
 [soulless]
+defend_anim = "soulless_defend"
 death_anim = "soulless_death"
 
 [soulless.melee]
@@ -34,6 +35,7 @@ target_hit = { offense = "slash", max = 90 }
 anim = "holthion_attack"
 
 [disciple_of_iban]
+defend_anim = "disciple_of_iban_defend"
 death_anim = "disciple_of_iban_death"
 
 [disciple_of_iban.melee]

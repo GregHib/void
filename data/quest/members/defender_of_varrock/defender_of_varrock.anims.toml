@@ -3,3 +3,6 @@ id = 836
 
 [barbarian_attack]
 id = 422
+
+[barbarian_defend]
+id = 424

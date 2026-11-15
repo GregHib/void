@@ -294,7 +294,7 @@ hitpoints = 470
 att = 40
 str = 40
 def = 40
-combat_def = "fire_elemental"
+combat_def = "lava_monster_tzhaar_caves"
 
 [fire_monster_tzhaar_caves]
 id = 7773

@@ -12,3 +12,9 @@ id = 433
 
 [food_rot]
 id = 1494
+
+[ghast_defend]
+id = 435
+
+[ghast_death]
+id = 434

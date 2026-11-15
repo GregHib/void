@@ -32,7 +32,7 @@ range = 8
 anim = "fire_spell"
 gfx = "fire_spell_cast"
 projectile = "fire_bolt"
-target_sound = "fire_bolt"
+target_sound = "fire_bolt_cast"
 target_hit = { offense = "magic", max = 90 }
 impact_gfx = "fire_bolt_impact"
 impact_sound = "fire_bolt_impact"
@@ -53,3 +53,12 @@ clone = "man"
 [zamorak_crafter.melee]
 clone = "man.melee"
 target_hit = { offense = "crush", max = 20 }
+
+[ghost_ourania]
+clone = "ghost"
+defend_anim = "ghost_ourania_defend"
+death_anim = "ghost_ourania_death"
+
+[ghost_ourania.melee]
+clone = "ghost.melee"
+anim = "ghost_ourania_attack"

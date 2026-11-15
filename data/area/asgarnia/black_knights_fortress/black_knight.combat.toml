@@ -1,7 +1,7 @@
 [fortress_guard_sword]
 defend_anim = "sword_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [fortress_guard_sword.melee]
 range = 1
@@ -11,7 +11,7 @@ target_hit = { offense = "stab", max = 30 }
 [fortress_guard_spear]
 defend_anim = "spear_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [fortress_guard_spear.melee]
 range = 1
@@ -21,7 +21,7 @@ target_hit = { offense = "stab", max = 30 }
 [fortress_guard_halberd]
 defend_anim = "halberd_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [fortress_guard_halberd.melee]
 range = 2

@@ -2,3 +2,6 @@
 id = 5628
 [terror_dog_attack]
 id = 5625
+
+[terror_dog_defend]
+id = 5626

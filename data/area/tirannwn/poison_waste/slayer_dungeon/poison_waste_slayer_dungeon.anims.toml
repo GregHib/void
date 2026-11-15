@@ -2,3 +2,15 @@
 id = 7091
 [warped_tortoise_attack]
 id = 7093
+
+[warped_tortoise_defend]
+id = 7092
+
+[warped_terrorbird_attack]
+id = 7108
+
+[warped_terrorbird_defend]
+id = 7110
+
+[warped_terrorbird_death]
+id = 7109

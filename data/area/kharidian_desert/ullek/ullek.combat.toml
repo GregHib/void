@@ -11,6 +11,7 @@ anim = "crocodile_attack"
 sound = "crocodile_attack"
 
 [scabaras_locust]
+defend_anim = "scabaras_locust_defend"
 death_anim = "scabaras_locust_death"
 
 [scabaras_locust.melee]
@@ -19,6 +20,7 @@ target_hit = { offense = "crush", max = 10 }
 anim = "scabaras_locust_attack"
 
 [locust_lancer]
+defend_anim = "locust_lancer_defend"
 death_anim = "locust_lancer_death"
 
 [locust_lancer.melee]
@@ -27,6 +29,7 @@ target_hit = { offense = "crush", max = 120 }
 anim = "locust_lancer_attack"
 
 [locust_ranger]
+defend_anim = "locust_ranger_defend"
 death_anim = "locust_ranger_death"
 
 [locust_ranger.range]

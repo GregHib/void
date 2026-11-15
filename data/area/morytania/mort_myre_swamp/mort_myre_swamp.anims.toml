@@ -15,3 +15,9 @@ id = 1492
 
 [boat_journey_the_hollows]
 id = 1491
+
+[ghast_defend]
+id = 1088
+
+[ghast_death]
+id = 1090

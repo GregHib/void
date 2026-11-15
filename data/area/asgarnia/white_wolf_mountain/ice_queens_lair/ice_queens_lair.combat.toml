@@ -1,4 +1,5 @@
 [ice_queen]
+defend_anim = "ice_queen_defend"
 death_anim = "ice_queen_death"
 
 [ice_queen.melee]

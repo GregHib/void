@@ -1,0 +1,8 @@
+[undead_troll_luciens_camp]
+clone = "ice_troll"
+defend_anim = "undead_troll_luciens_camp_defend"
+death_anim = "undead_troll_luciens_camp_death"
+
+[undead_troll_luciens_camp.melee]
+clone = "ice_troll.melee"
+anim = "undead_troll_luciens_camp_attack"

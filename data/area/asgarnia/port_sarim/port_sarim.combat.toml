@@ -4,4 +4,5 @@ death_anim = "seagull_death"
 
 [seagull.melee]
 range = 1
+anim = "seagull_attack"
 target_hit = { offense = "crush", max = 0 }

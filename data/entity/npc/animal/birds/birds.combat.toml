@@ -5,6 +5,7 @@ death_sound = "duck_death"
 
 [duck_swim.melee]
 range = 1
+anim = "duck_swim_attack"
 target_hit = { offense = "stab", max = 1 }
 
 [duck_walk]
