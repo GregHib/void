@@ -11,6 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.type.setRandom
+import kotlin.random.Random
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -72,6 +74,7 @@ internal class CharacterNameTest : WorldTest() {
 
     @Test
     fun `Suggestions page and can be picked`() {
+        setRandom(Random(1))
         createPlayer(name = "Bob")
         val player = registered("newbie@example.com")
         player.interfaceOption("character_creation", "confirm", optionIndex = 0)

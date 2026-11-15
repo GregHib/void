@@ -104,7 +104,8 @@ class CharacterName : Script {
             }
             if (page >= pages.size) {
                 val base: String = player["character_name_base", player.name]
-                pages.add(DisplayNames.suggestions(base, SUGGESTIONS, taken = { player.nameTaken(it) }))
+                val previous = pages.flatten().toSet()
+                pages.add(DisplayNames.suggestions(base, SUGGESTIONS, taken = { it in previous || player.nameTaken(it) }))
                 page = pages.lastIndex
             }
             player["character_name_page"] = page
