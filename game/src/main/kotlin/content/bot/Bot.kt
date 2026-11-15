@@ -40,6 +40,23 @@ data class Bot(val player: Player) : Character by player {
      */
     var pinned: String? = null
 
+    /**
+     * Whether a [pinned] activity still runs setup resolvers (banking, equipping). PvP bots are given their kit and
+     * never resolve; player-owned bots fetch what they need from their owner's bank.
+     */
+    var pinnedSetup: Boolean = false
+
+    /**
+     * The activity a [pinned] bot runs when it is not one of the world's (a player-owned bot's own task, follow
+     * or errand): kept here, not in the manager's pool, so no world bot can pick it.
+     */
+    var pinnedActivity: BotActivity? = null
+
+    fun pin(activity: BotActivity) {
+        pinnedActivity = activity
+        pinned = activity.id
+    }
+
     fun noTask() = frames.isEmpty()
 
     /**

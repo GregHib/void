@@ -8,7 +8,7 @@ import content.bot.Bot
 object PinnedPicker : ActivityPicker {
     override fun pick(bot: Bot, activities: Map<String, BotActivity>, idle: BotActivity, eligible: (BotActivity?) -> Boolean): BotActivity? {
         val pinned = bot.pinned ?: return null
-        val activity = activities[pinned]
+        val activity = bot.pinnedActivity?.takeIf { it.id == pinned } ?: activities[pinned]
         return if (eligible(activity)) activity else idle
     }
 }

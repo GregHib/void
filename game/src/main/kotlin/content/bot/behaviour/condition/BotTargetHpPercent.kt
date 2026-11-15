@@ -1,5 +1,6 @@
 package content.bot.behaviour.condition
 
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -9,7 +10,11 @@ data class BotTargetHpPercent(val min: Double? = null, val max: Double? = null) 
     override fun events() = emptySet<String>()
 
     override fun check(player: Player): Boolean {
-        val target = (player.mode as? PlayerOnPlayerInteract)?.target ?: return false
+        val target = when (val mode = player.mode) {
+            is PlayerOnPlayerInteract -> mode.target
+            is PlayerOnNPCInteract -> mode.target
+            else -> null
+        } ?: return false
         val maxHp = target.levels.getMax(Skill.Constitution)
         if (maxHp <= 0) return false
         val fraction = target.levels.get(Skill.Constitution).toDouble() / maxHp

@@ -52,3 +52,10 @@ level = 0
 x = [3130, 3132]
 y = [9862, 9862]
 level = 0
+
+# The monastery's altar is on its first floor: where a recovering companion recharges its prayer
+[edgeville_monastery]
+x = [3044, 3058]
+y = [3490, 3506]
+level = 1
+tags = ["altar"]

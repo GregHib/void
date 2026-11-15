@@ -77,6 +77,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(params = mapOf(Params.CRAWL to false))
@@ -108,6 +109,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.crawls } returns true
@@ -139,6 +141,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(params = mapOf(Params.CRAWL to false))
@@ -173,6 +176,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         val index = 1
         val direction = 12345
         val id = 20
@@ -217,6 +221,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         val index = 1
         val id = 20
         every { player.tile } returns value(Tile(0, 0))
@@ -244,6 +249,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         val index = 1
         every { player.tile } returns value(Tile(0, 0))
         every { npc.tile } returns value(Tile(15, 15, 0))
@@ -269,6 +275,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
+        every { npc.visible(any()) } returns true
         val index = 1
         every { player.tile } returns value(Tile(0, 0))
         every { npc.tile } returns value(Tile(5, 3, 0))

@@ -1,0 +1,148 @@
+# Player-owned bots: the owner's roster, saved with the owner (content/bot/owned/OwnedBots.kt).
+# One block per slot 0-3. A bot is "alive" from purchase until it dies; its items live on the bot while it is
+# spawned and in the owner's bank otherwise. `items` is the crash-safety snapshot (["item:amount", ...]) of what the bot is carrying,
+# cleared by every sweep; a non-empty value at login means the server stopped without sweeping.
+
+[owned_bot_0_name]
+format = "string"
+persist = true
+
+[owned_bot_0_alive]
+format = "boolean"
+persist = true
+
+[owned_bot_0_profile]
+format = "string"
+persist = true
+
+[owned_bot_0_aggression]
+format = "string"
+persist = true
+
+[owned_bot_0_knobs]
+format = "string"
+persist = true
+
+[owned_bot_0_items]
+persist = true
+
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_0_coffer]
+format = "int"
+persist = true
+
+[owned_bot_1_name]
+format = "string"
+persist = true
+
+[owned_bot_1_alive]
+format = "boolean"
+persist = true
+
+[owned_bot_1_profile]
+format = "string"
+persist = true
+
+[owned_bot_1_aggression]
+format = "string"
+persist = true
+
+[owned_bot_1_knobs]
+format = "string"
+persist = true
+
+[owned_bot_1_items]
+persist = true
+
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_1_coffer]
+format = "int"
+persist = true
+
+[owned_bot_2_name]
+format = "string"
+persist = true
+
+[owned_bot_2_alive]
+format = "boolean"
+persist = true
+
+[owned_bot_2_profile]
+format = "string"
+persist = true
+
+[owned_bot_2_aggression]
+format = "string"
+persist = true
+
+[owned_bot_2_knobs]
+format = "string"
+persist = true
+
+[owned_bot_2_items]
+persist = true
+
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_2_coffer]
+format = "int"
+persist = true
+
+[owned_bot_3_name]
+format = "string"
+persist = true
+
+[owned_bot_3_alive]
+format = "boolean"
+persist = true
+
+[owned_bot_3_profile]
+format = "string"
+persist = true
+
+[owned_bot_3_aggression]
+format = "string"
+persist = true
+
+[owned_bot_3_knobs]
+format = "string"
+persist = true
+
+[owned_bot_3_items]
+persist = true
+
+# coins paid in for task wages, drained as the bot gathers (OwnedWages)
+[owned_bot_3_coffer]
+format = "int"
+persist = true
+
+# Loadout presets shared by all of the owner's bots: ["name/slot=item", "name/item:amount", ...].
+# A list of short strings, never a map (the database can't store one) or one long string (the save reader caps a
+# string at 150 characters).
+[owned_loadouts]
+persist = true
+
+# What each bot was wearing when it last left the world (["slot=item", ...]), put back on at the next summon
+[owned_bot_0_worn]
+persist = true
+
+[owned_bot_1_worn]
+persist = true
+
+[owned_bot_2_worn]
+persist = true
+
+[owned_bot_3_worn]
+persist = true
+
+# The preset last loaded onto each bot, put back on when it recovers from a flight
+[owned_bot_0_preset]
+persist = true
+
+[owned_bot_1_preset]
+persist = true
+
+[owned_bot_2_preset]
+persist = true
+
+[owned_bot_3_preset]
+persist = true

@@ -34,7 +34,7 @@ requires = [
         { id = "air_rune", min = 3 },
         { id = "law_rune", min = 1 }
     ] },
-    { variable = { id = "spellbook_config", equals = 0, default = 0 } },
+    { interface_open = { id = "modern_spellbook" } },
 ]
 actions = [
     { interface = { option = "Cast", id = "modern_spellbook:varrock_teleport" } },
@@ -48,7 +48,7 @@ produces = [
 weight = 150
 requires = [
     { skill = { id = "magic", min = 25 } },
-    { variable = { id = "spellbook_config", equals = 0, default = 0 }},
+    { interface_open = { id = "modern_spellbook" } },
     { bank = [
         { id = "fire_rune", min = 1 },
         { id = "air_rune", min = 3 },
@@ -73,7 +73,7 @@ produces = [
 [teleport_lumbridge]
 weight = 200
 requires = [
-    { variable = { id = "spellbook_config", equals = 0, default = 0 } },
+    { interface_open = { id = "modern_spellbook" } },
     { clock = { id = "home_teleport_timeout", max = 0 } },
 ]
 actions = [
@@ -82,4 +82,45 @@ actions = [
 ]
 produces = [
     { area = "lumbridge_teleport" }
+]
+
+[teleport_camelot]
+weight = 125
+requires = [
+    { skill = { id = "magic", min = 45 } },
+    { inventory = [
+        { id = "air_rune", min = 5 },
+        { id = "law_rune", min = 1 }
+    ] },
+    { interface_open = { id = "modern_spellbook" } },
+]
+actions = [
+    { interface = { option = "Cast", id = "modern_spellbook:camelot_teleport" } },
+    { wait = { ticks = 5 } },
+]
+produces = [
+    { area = "camelot_teleport" }
+]
+
+[teleport_camelot_via_bank]
+weight = 150
+requires = [
+    { skill = { id = "magic", min = 45 } },
+    { interface_open = { id = "modern_spellbook" } },
+    { bank = [
+        { id = "air_rune", min = 5 },
+        { id = "law_rune", min = 1 },
+    ]},
+]
+actions = [
+    { go_to = { nearest = "bank" } },
+    { object = { option = "Use-quickly", id = "bank_booth*", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Withdraw-X", id = "bank:inventory:air_rune" } },
+    { enter = { int = 5 } },
+    { interface = { option = "Withdraw-1", id = "bank:inventory:law_rune" } },
+    { interface = { option = "Cast", id = "modern_spellbook:camelot_teleport" } },
+    { wait = { ticks = 5 } },
+]
+produces = [
+    { area = "camelot_teleport" }
 ]

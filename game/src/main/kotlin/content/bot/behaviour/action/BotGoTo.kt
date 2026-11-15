@@ -51,6 +51,10 @@ data class BotGoTo(val target: String) : BotAction {
                     actions.addAll(world.actions(edge) ?: continue)
                 }
             }
+            if (nav != null && bot.frames.any { it.behaviour is NavigationShortcut }) {
+                // a shortcut's own steps never take another shortcut: the search would run again from inside it
+                return BehaviourState.Failed(Reason.NoRoute)
+            }
             if (actions.isNotEmpty()) {
                 bot.queue(BehaviourFrame(Resolver("go_to_$target", 0, TimeUnit.SECONDS.toTicks(60), actions = actions)))
             }

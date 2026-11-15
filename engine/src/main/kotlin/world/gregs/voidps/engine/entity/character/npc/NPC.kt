@@ -33,6 +33,15 @@ data class NPC(
 
     var hide = false
 
+    /**
+     * Who sees this npc: null for everyone, otherwise only the players the predicate accepts. Checked every tick by the
+     * npc update (NPCUpdateTask), so a change takes effect at once: an npc that stops being visible to a player leaves
+     * their view as if it had despawned, and comes back when it is visible to them again.
+     */
+    var visibleTo: ((Player) -> Boolean)? = null
+
+    fun visible(player: Player): Boolean = visibleTo?.invoke(player) ?: true
+
     override val blockMove: Int
         get() {
             if (!transformDef.solid) {

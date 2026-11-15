@@ -112,7 +112,7 @@ object Dragonfire {
     /**
      * @return chromatic, metallic, king_black_dragon or elvarg
      */
-    private fun type(character: Character): String {
+    internal fun type(character: Character): String {
         if (character !is NPC || !Target.isDragon(character)) {
             return ""
         }

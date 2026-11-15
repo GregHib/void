@@ -5,6 +5,7 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.BotObjectExists
 import content.bot.behaviour.condition.Condition
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractObject
+import world.gregs.voidps.type.Tile
 import kotlin.collections.indexOf
 import kotlin.collections.iterator
 
@@ -56,6 +58,19 @@ data class BotInteractObject(
         return handleNoTarget()
     }
 
+    /** Whether [success]'s object stands within [OPENED_SLACK] tiles of where it is looked for. */
+    private fun opened(success: BotObjectExists): Boolean {
+        val expected = Tile(success.x, success.y, 0)
+        for (tile in Spiral.spiral(expected, OPENED_SLACK)) {
+            for (level in 0..3) {
+                if (GameObjects.at(tile.copy(level = level)).any { wildcardEquals(success.id, it.id) }) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     private fun interact(player: Player, obj: GameObject, world: BotWorld): BehaviourState? {
         if (!wildcardEquals(id, obj.id)) {
             return null
@@ -75,9 +90,19 @@ data class BotInteractObject(
         if (success == null) {
             return BehaviourState.Failed(Reason.NoTarget)
         }
+        if (success is BotObjectExists && opened(success)) {
+            // nothing to open and its opened form stands by the tile given: a gate someone left open, or one
+            // whose opened half lands a tile from where the edge says; either way the way is clear
+            return BehaviourState.Success
+        }
         if (delay > 0) {
             return BehaviourState.Wait(delay, BehaviourState.Running)
         }
         return BehaviourState.Running
+    }
+
+    companion object {
+        /** Tiles either way an opened door or gate may stand from where its edge expects it. */
+        const val OPENED_SLACK = 2
     }
 }
