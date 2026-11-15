@@ -13,7 +13,7 @@ class Witch : Script {
 
     init {
         // https://runescape.wiki/w/Transcript:Helda
-        npcOperate("Talk-to", "witch_normal") {
+        npcOperate("Talk-to", "witch,witch_normal") {
             if (questCompleted("animal_magnetism")) {
                 npc<Unamused>("Hello my ickle...oh, it's you. What do you want?")
                 player<Quiz>("I wondered whether you had anything interesting to say.")

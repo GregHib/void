@@ -227,10 +227,10 @@ id = 1916
 examine = "Luckily, I can't see much of his face."
 
 [witch]
-id = 5201
+id = 5200
 
 [witch_normal]
-id = 5200
+id = 5201
 examine = "The hat's a dead giveaway."
 
 [chicken_draynor_2]
