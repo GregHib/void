@@ -233,10 +233,14 @@ class DungeonComplete : Script {
 
             var bonusRooms = 0
             var bonusRoomsOpen = 0
+            var allRoomsOpen = true
             val dungeon = dungeonMap ?: return@strongQueue
             for (x in 0 until dungeon.width) {
                 for (y in 0 until dungeon.height) {
                     val room = dungeon.room(x, y) ?: continue
+                    if (!room.open) {
+                        allRoomsOpen = false
+                    }
                     if (!room.isCritical) {
                         bonusRooms++
                         if (room.open) {
@@ -310,7 +314,9 @@ class DungeonComplete : Script {
                 val start = get("dungeoneering_floor_timer", 0L)
                 if (start != 0L) {
                     clear("dungeoneering_floor_timer")
-                    KillTracker.record(this, start, KillTracker.dungeoneeringFloorKey(floor, size, complexity), dungeonMembers.size, "Floor duration")
+                    if (allRoomsOpen) {
+                        KillTracker.record(this, start, KillTracker.dungeoneeringFloorKey(floor, size, complexity), dungeonMembers.size, "Floor duration")
+                    }
                 }
                 set("dungeon_reward_given", true)
                 println("Reward: $totalXp Tokens: $tokens")
