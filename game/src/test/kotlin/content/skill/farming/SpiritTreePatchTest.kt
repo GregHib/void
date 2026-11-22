@@ -2,6 +2,7 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -97,6 +99,69 @@ class SpiritTreePatchTest : WorldTest() {
             assertTrue(player.experience.get(Skill.Farming) > 0)
             assertEquals("${id}_life1", player["farming_spirit_tree_patch_port_sarim", "empty"])
         }
+    }
+
+    @Test
+    fun `Inspect every spirit tree state`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val variable = "farming_spirit_tree_patch_port_sarim"
+        val patch = GameObjects.find(Tile(3059, 3257), variable)
+
+        for (stage in 0..11) {
+            val player = createPlayer(Tile(3059, 3256))
+            player[variable] = "spirit_$stage"
+            player.objectOption(patch, "Inspect")
+            tick()
+
+            assertTrue(player.containsMessage("at state ${stage + 1}/13"))
+        }
+
+        val mature = createPlayer(Tile(3059, 3256))
+        mature[variable] = "spirit_life1"
+        mature.objectOption(patch, "Inspect")
+        tick()
+        assertTrue(mature.containsMessage("fully grown"))
+
+        val claim = createPlayer(Tile(3059, 3256))
+        claim[variable] = "spirit_claim"
+        claim.objectOption(patch, "Inspect")
+        tick()
+        assertTrue(claim.containsMessage("fully grown"))
+
+        for (stage in 1..11) {
+            val diseased = createPlayer(Tile(3059, 3256))
+            diseased[variable] = "spirit_diseased_$stage"
+            diseased.objectOption(patch, "Inspect")
+            tick()
+            assertTrue(diseased.containsMessage("infected by disease"))
+        }
+
+        for (stage in 1..12) {
+            val dead = createPlayer(Tile(3059, 3256))
+            dead[variable] = "spirit_dead_$stage"
+            dead.objectOption(patch, "Inspect")
+            tick()
+            assertTrue(dead.containsMessage("infected by disease and has died"))
+        }
+    }
+
+    @Test
+    fun `Only one spirit tree can be planted at a time`() {
+        val player = createPlayer(Tile(2612, 3856))
+        player.levels.set(Skill.Farming, 99)
+        player.inventory.add("spirit_sapling")
+        player.inventory.add("spade")
+        player["farming_spirit_tree_patch_port_sarim"] = "spirit_0"
+        player["farming_spirit_tree_patch_etceteria"] = "weeds_0"
+        val patch = GameObjects.find(Tile(2612, 3857), "farming_spirit_tree_patch_etceteria")
+
+        player.itemOnObject(patch, 0)
+        tick(10)
+
+        assertEquals(1, player.inventory.count("spirit_sapling"))
+        assertEquals("weeds_0", player["farming_spirit_tree_patch_etceteria", "empty"])
     }
 
     @TestFactory

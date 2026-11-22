@@ -2,12 +2,15 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -90,6 +93,57 @@ class HerbPatchTest : WorldTest() {
         }
     }
 
+    @Test
+    fun `Inspect every herb crop growth state`() {
+        val crops = listOf(
+            "guam",
+            "marrentill",
+            "tarromin",
+            "harralander",
+            "ranarr",
+            "spirit_weed",
+            "toadflax",
+            "irit",
+            "wergali",
+            "avantoe",
+            "kwuarm",
+            "snapdragon",
+            "cadantine",
+            "lantadyme",
+            "dwarf_weed",
+            "goutweed",
+            "torstol",
+        )
+        val variable = "farming_herb_patch_falador"
+        val patch = GameObjects.find(Tile(3058, 3311), variable)
+
+        for (crop in crops) {
+            for (stage in 0..3) {
+                val player = createPlayer(Tile(3058, 3310))
+                player[variable] = "${crop}_$stage"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    player.containsMessage("at state ${stage + 1}/5"),
+                    "$crop stage $stage reported the wrong growth state",
+                )
+                assertTrue(!patch.def(player).stringId.endsWith("_fullygrown"))
+            }
+
+            val player = createPlayer(Tile(3058, 3310))
+            player[variable] = "${crop}_life1"
+            player.objectOption(patch, "Inspect")
+            tick()
+
+            assertTrue(
+                player.containsMessage("fully grown"),
+                "$crop life1 was not reported as fully grown",
+            )
+            assertTrue(patch.def(player).stringId.endsWith("_fullygrown"))
+        }
+    }
+
     @TestFactory
     fun `Disease farming patch and die`() = listOf(
         "guam",
@@ -150,6 +204,8 @@ class HerbPatchTest : WorldTest() {
             val patch = GameObjects.find(tile.addY(1), "farming_herb_patch_falador")
 
             player.objectOption(patch, "Pick")
+            tick()
+            assertEquals(AnimationDefinitions.get("picking_low").id, player.visuals.animation.force)
             tickIf { player["farming_herb_patch_falador", "empty"] != "weeds_0" }
 
             assertEquals(item.amount, player.inventory.count(item.id))

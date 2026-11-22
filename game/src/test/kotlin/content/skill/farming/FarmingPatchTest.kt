@@ -39,6 +39,18 @@ class FarmingPatchTest : WorldTest() {
     }
 
     @Test
+    fun `Inspect watermelon before fully grown`() {
+        val player = createPlayer(Tile(3057, 3308))
+        player["farming_veg_patch_falador_se"] = "watermelon_4"
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+
+        player.objectOption(patch, "Inspect")
+        tick()
+
+        assertTrue(player.containsMessage("at state 5/9."))
+    }
+
+    @Test
     fun `Rake farming patch`() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("rake")

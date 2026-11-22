@@ -2,6 +2,7 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -82,6 +83,77 @@ class FlowerPatchTest : WorldTest() {
 
             assertEquals("${id}_$count", player["farming_flower_patch_falador", "empty"])
         }
+    }
+
+    @Test
+    fun `Inspect every flower crop growth state`() {
+        val crops = mapOf(
+            "marigold" to 4,
+            "rosemary" to 4,
+            "nasturtium" to 4,
+            "woad" to 4,
+            "limpwurt" to 4,
+            "scarecrow" to 3,
+            "lilly" to 3,
+        )
+        val variable = "farming_flower_patch_falador"
+        val patch = GameObjects.find(Tile(3054, 3307), variable)
+
+        for ((crop, maximumStage) in crops) {
+            for (stage in 0..maximumStage) {
+                val player = createPlayer(Tile(3054, 3306))
+                player[variable] = "${crop}_$stage"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                if (stage == maximumStage && crop != "scarecrow") {
+                    assertTrue(
+                        player.containsMessage("fully grown"),
+                        "$crop stage $stage was not reported as fully grown",
+                    )
+                    assertTrue(patch.def(player).stringId.endsWith("_fullygrown"))
+                } else {
+                    assertTrue(
+                        player.containsMessage("at state ${stage + 1}/${maximumStage + 1}"),
+                        "$crop stage $stage reported the wrong growth state",
+                    )
+                    assertTrue(!patch.def(player).stringId.endsWith("_fullygrown"))
+                }
+            }
+
+            if (crop != "scarecrow" && crop != "lilly") {
+                for (stage in 0..3) {
+                    val player = createPlayer(Tile(3054, 3306))
+                    player[variable] = "${crop}_watered_$stage"
+                    player.objectOption(patch, "Inspect")
+                    tick()
+
+                    assertTrue(
+                        player.containsMessage("at state ${stage + 1}/5"),
+                        "$crop watered stage $stage reported the wrong growth state",
+                    )
+                    assertTrue(!patch.def(player).stringId.endsWith("_fullygrown"))
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `Fully grown flower does not become diseased`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val tile = Tile(3054, 3306)
+        val player = createPlayer(tile)
+        player.levels.set(Skill.Farming, 99)
+        player["farming_flower_patch_falador"] = "marigold_4"
+        val patch = GameObjects.find(tile.addY(1), "farming_flower_patch_falador")
+
+        assertEquals("marigold_fullygrown", patch.def(player).stringId)
+
+        scripts.filterIsInstance<Farming>().first().grow(player, 5)
+
+        assertEquals("marigold_4", player["farming_flower_patch_falador", "empty"])
     }
 
     @Test

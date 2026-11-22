@@ -2,10 +2,13 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -69,6 +72,41 @@ class BelladonnaPatchTest : WorldTest() {
             }
 
             assertEquals("${id}_life1", player["farming_belladonna_patch_draynor", "empty"])
+        }
+    }
+
+    @Test
+    fun `Inspect every belladonna state`() {
+        val variable = "farming_belladonna_patch_draynor"
+        val patch = GameObjects.find(Tile(3086, 3354), variable)
+
+        for (stage in 0..3) {
+            val player = createPlayer(Tile(3086, 3353))
+            player[variable] = "belladonna_$stage"
+            player.objectOption(patch, "Inspect")
+            tick()
+
+            assertTrue(player.containsMessage("at state ${stage + 1}/5"))
+        }
+
+        val mature = createPlayer(Tile(3086, 3353))
+        mature[variable] = "belladonna_life1"
+        mature.objectOption(patch, "Inspect")
+        tick()
+        assertTrue(mature.containsMessage("fully grown"))
+
+        for (stage in 1..3) {
+            val diseased = createPlayer(Tile(3086, 3353))
+            diseased[variable] = "belladonna_diseased_$stage"
+            diseased.objectOption(patch, "Inspect")
+            tick()
+            assertTrue(diseased.containsMessage("infected by disease"))
+
+            val dead = createPlayer(Tile(3086, 3353))
+            dead[variable] = "belladonna_dead_$stage"
+            dead.objectOption(patch, "Inspect")
+            tick()
+            assertTrue(dead.containsMessage("infected by disease and has died"))
         }
     }
 

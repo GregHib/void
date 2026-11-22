@@ -2,10 +2,13 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -69,6 +72,25 @@ class EvilTurnipPatchTest : WorldTest() {
             }
 
             assertEquals("${id}_life1", player["farming_evil_turnip_patch_draynor", "empty"])
+        }
+    }
+
+    @Test
+    fun `Inspect every evil turnip growth state`() {
+        val variable = "farming_evil_turnip_patch_draynor"
+        val patch = GameObjects.find(Tile(3086, 3367), variable)
+
+        for (state in listOf("evil_turnip_0", "evil_turnip_life1")) {
+            val player = createPlayer(Tile(3086, 3366))
+            player[variable] = state
+            player.objectOption(patch, "Inspect")
+            tick()
+
+            if (state.endsWith("life1")) {
+                assertTrue(player.containsMessage("fully grown"))
+            } else {
+                assertTrue(player.containsMessage("at state 1/2"))
+            }
         }
     }
 

@@ -2,11 +2,13 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -92,6 +94,57 @@ class CactusPatchTest : WorldTest() {
 
             assertTrue(player.experience.get(Skill.Farming) > 0)
             assertEquals("${id}_life1", player["farming_cactus_patch_al_kharid", "empty"])
+        }
+    }
+
+    @Test
+    fun `Inspect every cactus state`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val variable = "farming_cactus_patch_al_kharid"
+        val patch = GameObjects.find(Tile(3315, 3202), variable)
+
+        for (stage in 0..7) {
+            val player = createPlayer(Tile(3315, 3201))
+            player[variable] = "cactus_$stage"
+            player.objectOption(patch, "Inspect")
+            tick()
+
+            if (stage == 7) {
+                assertTrue(player.containsMessage("fully grown"))
+            } else {
+                assertTrue(player.containsMessage("at state ${stage + 1}/8"))
+            }
+        }
+
+        for (life in 1..3) {
+            val player = createPlayer(Tile(3315, 3201))
+            player[variable] = "cactus_life$life"
+            player.objectOption(patch, "Inspect")
+            tick()
+
+            assertTrue(player.containsMessage("fully grown"))
+        }
+
+        val claim = createPlayer(Tile(3315, 3201))
+        claim[variable] = "cactus_claim"
+        claim.objectOption(patch, "Inspect")
+        tick()
+        assertTrue(claim.containsMessage("fully grown"))
+
+        for (stage in 1..6) {
+            val diseased = createPlayer(Tile(3315, 3201))
+            diseased[variable] = "cactus_diseased_$stage"
+            diseased.objectOption(patch, "Inspect")
+            tick()
+            assertTrue(diseased.containsMessage("infected by disease"))
+
+            val dead = createPlayer(Tile(3315, 3201))
+            dead[variable] = "cactus_dead_$stage"
+            dead.objectOption(patch, "Inspect")
+            tick()
+            assertTrue(dead.containsMessage("infected by disease and has died"))
         }
     }
 
