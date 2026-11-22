@@ -124,11 +124,11 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
                         skillDoor
                     }
                 }
-                DungeonDoor.Guardian -> "guardian_door_$theme"
                 is DungeonDoor.Locked -> {
                     GameObjects.add(door.key.replace("_key", "_door"), tile.add(dir.inverse()), rotation = i)
                     "${door.key.replace("_key", "_door")}_$theme"
                 }
+                DungeonDoor.Guardian -> "guardian_door_$theme"
                 DungeonDoor.Normal -> "door_$theme"
             }
             GameObjects.add(id, tile, rotation = i)

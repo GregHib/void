@@ -31,7 +31,7 @@ class DungeonGenerator(
     // Estimated chances
     private val puzzleRoomChance: Double = 0.33,
     private val skillDoorChance: Double = 0.33,
-    private val guardianDoorChance: Double = 0.33,
+    private val guardianRoomChance: Double = 0.33,
     private val bossDoorLockChance: Double = 0.90,
 ) {
     val width: Int = when (size) {
@@ -278,6 +278,7 @@ class DungeonGenerator(
                 }
             }
 
+            val guardianRoom = room.type != DungeonRoomType.Boss && random.nextDouble() < guardianRoomChance
             for ((i, door) in room.doors.withIndex()) {
                 if (door == null) {
                     continue
@@ -299,7 +300,7 @@ class DungeonGenerator(
                         val req = random.nextInt((level - 9).coerceAtLeast(1)..(level + 9).coerceAtMost(if (room.isCritical) level else 110))
                         DungeonDoor.Blocked(skill, req)
                     }
-                    r < skillDoorChance + guardianDoorChance -> DungeonDoor.Guardian
+                    guardianRoom -> DungeonDoor.Guardian
                     else -> DungeonDoor.Normal
                 }
                 room.doors[i] = newDoor
