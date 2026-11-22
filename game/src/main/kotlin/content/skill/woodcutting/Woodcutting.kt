@@ -158,7 +158,7 @@ class Woodcutting(val drops: DropTables) : Script {
         }
         val stumpId = obj.def["stump", "${obj.id}_stump"]
         if (ObjectDefinitions.contains(stumpId)) {
-            val delay = getRegrowTickDelay(log)
+            val delay = regrowTickDelay(log)
             GameObjects.replace(obj, stumpId, ticks = delay)
             areaSound("fell_tree", obj.tile)
         }
@@ -188,7 +188,7 @@ class Woodcutting(val drops: DropTables) : Script {
     /**
      * Returns regrow delay based on the type of tree and number of players online
      */
-    fun getRegrowTickDelay(log: RowDefinition): Int {
+    fun regrowTickDelay(log: RowDefinition): Int {
         if (log.rowId == "logs") {
             return random.nextInt(50, 101) // Regular trees are always 50-100 ticks regardless of players
         }
