@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.inv
 
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.transact.charge
@@ -114,10 +115,15 @@ fun Item.charges(player: Player): Int {
     }
     val variable: String? = def.getOrNull("charge")
     if (variable != null) {
-        return player[variable, 0]
+        return player.charges(variable)
     }
     return value
 }
+
+/**
+ * Charges stored in [variable], falling back to the variable's default when it hasn't been set
+ */
+fun Player.charges(variable: String): Int = get(variable) ?: VariableDefinitions.get(variable)?.defaultValue as? Int ?: 0
 
 fun Item.charges(): Int {
     if (isEmpty() || !def.contains("charges")) {

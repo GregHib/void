@@ -1,0 +1,8 @@
+[ghost_ourania_attack]
+id = 5540
+
+[ghost_ourania_defend]
+id = 5541
+
+[ghost_ourania_death]
+id = 5542

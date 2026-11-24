@@ -1,4 +1,5 @@
 [salarin_the_twisted]
+defend_anim = "salarin_the_twisted_defend"
 death_anim = "salarin_the_twisted_death"
 
 [salarin_the_twisted.melee]

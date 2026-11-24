@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.client.variable
 
+import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -52,16 +54,37 @@ class PlayerVariables(
 
     override fun sendAll() {
         val client = client ?: return
-        for ((key, value) in data) {
-            val variable = VariableDefinitions.get(key) ?: continue
+        for ((key, variable) in VariableDefinitions.definitions) {
             if (!variable.transmit) {
                 continue
             }
-            if (value != variable.defaultValue) {
-                variable.send(client, value)
+            val value = data[key]
+            if (value != null) {
+                if (value != variable.defaultValue) {
+                    variable.send(client, value)
+                }
+                continue
+            }
+            // The client assumes zero for anything unsent
+            if (variable !is VariableDefinition.VarpDefinition && variable !is VariableDefinition.VarbitDefinition) {
+                continue
+            }
+            val default = variable.defaultValue ?: continue
+            val int = try {
+                variable.values.toInt(default)
+            } catch (e: ClassCastException) {
+                logger.warn(e) { "Invalid default '$default' for variable '$key'." }
+                continue
+            }
+            if (int > 0) {
+                variable.send(client, default)
             }
         }
     }
 
     override fun data(key: String): MutableMap<String, Any> = if (VariableDefinitions.get(key).persist) data else temp
+
+    companion object {
+        private val logger = InlineLogger()
+    }
 }

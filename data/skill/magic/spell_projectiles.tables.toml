@@ -14,18 +14,39 @@ end_height = 0
 
 [.fire_blast_1]
 gfx = "fire_blast_1"
+delay = 51
+curve = 0
 
 [.fire_blast_2]
 gfx = "fire_blast_2"
+delay = 51
+curve = 0
 
-[.fire_strike_1]
-gfx = "fire_blast_1"
-delay = 54
+[.fire_wave_1]
+gfx = "fire_wave_1"
+delay = 51
 curve = 16
 
-[.fire_strike_2]
-gfx = "fire_blast_1"
+[.fire_wave_2]
+gfx = "fire_wave_1"
+delay = 51
 curve = -10
 
-[.fire_strike_3]
-gfx = "fire_blast_2"
+[.fire_wave_3]
+gfx = "fire_wave_2"
+delay = 51
+curve = 0
+
+[.fire_surge_1]
+gfx = "fire_surge_1"
+delay = 51
+curve = 16
+
+[.fire_surge_2]
+gfx = "fire_surge_1"
+delay = 51
+curve = -10
+
+[.fire_surge_3]
+gfx = "fire_surge_2"
+delay = 51

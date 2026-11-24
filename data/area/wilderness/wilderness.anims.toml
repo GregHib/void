@@ -6,3 +6,6 @@ id = 836
 
 [rogue_attack]
 id = 386
+
+[rogue_defend]
+id = 388

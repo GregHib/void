@@ -1,0 +1,8 @@
+[gull_battle_of_the_archipelago]
+clone = "seagull"
+defend_anim = "gull_battle_of_the_archipelago_defend"
+death_anim = "gull_battle_of_the_archipelago_death"
+
+[gull_battle_of_the_archipelago.melee]
+clone = "seagull.melee"
+anim = "gull_battle_of_the_archipelago_attack"

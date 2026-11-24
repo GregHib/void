@@ -4,6 +4,7 @@ import FakeRandom
 import WorldTest
 import containsMessage
 import objectOption
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -55,5 +56,20 @@ internal class MiningTest : WorldTest() {
 
         assertTrue(player.containsMessage("You manage to mine four gold ore"))
         assertFalse(player.containsMessage("You don't have enough inventory space."))
+    }
+
+    @Test
+    fun `Tzhaar gold rock depletes to a visible rock`() {
+        setRandom(Random)
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Mining, 100)
+        val tile = emptyTile.addY(1)
+        val rock = createObject("gold_rocks_tzhaar_1", tile)
+        player.inventory.add("bronze_pickaxe")
+
+        player.objectOption(rock, "Mine")
+        tickIf { GameObjects.getLayer(tile, ObjectLayer.GROUND)?.id == rock.id }
+
+        assertEquals("depleted_rocks_tzhaar_1", GameObjects.getLayer(tile, ObjectLayer.GROUND)?.id)
     }
 }

@@ -1,0 +1,188 @@
+[ernest_compost]
+id = 152
+
+[ernest_candle_sconce]
+id = 47404
+
+[ernest_secret_exit_lever]
+id = 160
+
+[ernest_cellar_ladder_down]
+id = 133
+
+[ernest_lever_a]
+id = 146
+
+[ernest_lever_b]
+id = 147
+
+[ernest_lever_c]
+id = 148
+
+[ernest_lever_d]
+id = 149
+
+[ernest_lever_e]
+id = 150
+
+[ernest_lever_f]
+id = 151
+
+[ernest_puzzle_door_1]
+id = 137
+
+[ernest_puzzle_door_2]
+id = 138
+
+[ernest_puzzle_door_3]
+id = 139
+
+[ernest_puzzle_door_4]
+id = 140
+
+[ernest_puzzle_door_5]
+id = 141
+
+[ernest_puzzle_door_6]
+id = 142
+
+[ernest_puzzle_door_7]
+id = 143
+
+[ernest_puzzle_door_8]
+id = 144
+
+[ernest_puzzle_door_9]
+id = 145
+
+
+[ernest_lever_a_up]
+id = 47365
+
+[ernest_lever_a_down]
+id = 47366
+
+[ernest_lever_b_up]
+id = 47367
+
+[ernest_lever_b_down]
+id = 47368
+
+[ernest_lever_c_up]
+id = 47369
+
+[ernest_lever_c_down]
+id = 47370
+
+[ernest_lever_d_up]
+id = 47371
+
+[ernest_lever_d_down]
+id = 47372
+
+[ernest_lever_e_up]
+id = 47373
+
+[ernest_lever_e_down]
+id = 47374
+
+[ernest_lever_f_up]
+id = 47375
+
+[ernest_lever_f_down]
+id = 47376
+
+[ernest_puzzle_door_1_locked]
+id = 47377
+
+[ernest_puzzle_door_1_unlocked]
+id = 47378
+
+[ernest_puzzle_door_2_locked]
+id = 47380
+
+[ernest_puzzle_door_2_unlocked]
+id = 47381
+
+[ernest_puzzle_door_3_locked]
+id = 47383
+
+[ernest_puzzle_door_3_unlocked]
+id = 47384
+
+[ernest_puzzle_door_4_locked]
+id = 47386
+
+[ernest_puzzle_door_4_unlocked]
+id = 47387
+
+[ernest_puzzle_door_5_locked]
+id = 47389
+
+[ernest_puzzle_door_5_unlocked]
+id = 47390
+
+[ernest_puzzle_door_6_locked]
+id = 47392
+
+[ernest_puzzle_door_6_unlocked]
+id = 47393
+
+[ernest_puzzle_door_7_locked]
+id = 47395
+
+[ernest_puzzle_door_7_unlocked]
+id = 47396
+
+[ernest_puzzle_door_8_locked]
+id = 47398
+
+[ernest_puzzle_door_8_unlocked]
+id = 47399
+
+[ernest_puzzle_door_9_locked]
+id = 47401
+
+[ernest_puzzle_door_9_unlocked]
+id = 47402
+
+# Revision-634 stone leaves of the sconce-operated secret passage.
+[ernest_secret_wall_south_closed]
+id = 47529
+
+[ernest_secret_wall_south_opened]
+id = 47530
+
+[ernest_secret_wall_north_closed]
+id = 47531
+
+[ernest_secret_wall_north_opened]
+id = 47532
+
+# Wall-shaped leaves used while walking through the cellar gates.
+[ernest_puzzle_door_1_opened]
+id = 47379
+
+[ernest_puzzle_door_2_opened]
+id = 47382
+
+[ernest_puzzle_door_3_opened]
+id = 47385
+
+[ernest_puzzle_door_4_opened]
+id = 47388
+
+[ernest_puzzle_door_5_opened]
+id = 47391
+
+[ernest_puzzle_door_6_opened]
+id = 47394
+
+[ernest_puzzle_door_7_opened]
+id = 47397
+
+[ernest_puzzle_door_8_opened]
+id = 47400
+
+[ernest_puzzle_door_9_opened]
+id = 47403

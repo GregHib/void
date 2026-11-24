@@ -1,0 +1,9 @@
+[jaldraocht_pyramid_tunnel]
+option = "Enter"
+tile = { x = 3233, y = 2888 }
+to = { x = 3233, y = 9313 }
+
+[jaldraocht_pyramid_portal]
+option = "Enter"
+tile = { x = 3233, y = 9312 }
+to = { x = 3233, y = 2887 }

@@ -18,18 +18,26 @@ class Eluned : Script {
 
     init {
         npcOperate("Talk-to", "eluned,eluned_2,eluned_3,eluned_lletya") {
-            npc<Happy>("Hello there, it's a lovely day for a walk in the woods. So what can I help you with?")
-            if (!inventory.contains("crystal_teleport_seed_uncharged")) {
-                player<Neutral>("I'm just looking around.")
-                return@npcOperate
-            }
-            player<Neutral>("I am looking to recharge teleportation crystals.")
-            recharge()
+            talk()
+        }
+
+        npcOperate("Enchant", "eluned_3") {
+            talk()
         }
 
         itemOnNPCOperate("crystal_teleport_seed_uncharged", "eluned,eluned_2,eluned_3,eluned_lletya") {
             recharge()
         }
+    }
+
+    private suspend fun Player.talk() {
+        npc<Happy>("Hello there, it's a lovely day for a walk in the woods. So what can I help you with?")
+        if (!inventory.contains("crystal_teleport_seed_uncharged")) {
+            player<Neutral>("I'm just looking around.")
+            return
+        }
+        player<Neutral>("I am looking to recharge teleportation crystals.")
+        recharge()
     }
 
     suspend fun Player.recharge() {

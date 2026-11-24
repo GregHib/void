@@ -1,8 +1,8 @@
 [giant_crab]
-defend_anim = "rock_crab_defend"
-death_anim = "rock_crab_death"
+defend_anim = "underwater_crab_defend"
+death_anim = "underwater_crab_death"
 
 [giant_crab.melee]
 range = 1
 target_hit = { offense = "crush", max = 90 }
-anim = "rock_crab_attack"
+anim = "underwater_crab_attack"

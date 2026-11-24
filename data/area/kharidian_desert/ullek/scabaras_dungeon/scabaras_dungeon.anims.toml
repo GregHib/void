@@ -20,3 +20,15 @@ id = 7656
 
 [scarab_larva_attack]
 id = 7657
+
+[scabaras_ranger_defend]
+id = 7608
+
+[scabaras_lancer_defend]
+id = 7613
+
+[scabaras_mage_defend]
+id = 7617
+
+[scarab_larva_defend]
+id = 7655

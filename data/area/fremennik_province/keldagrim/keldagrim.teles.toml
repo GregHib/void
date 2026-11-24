@@ -1,0 +1,19 @@
+[keldagrim_tunnel_rellekka]
+option = "Enter"
+tile = { x = 2731, y = 3712 }
+to = { x = 2773, y = 10162 }
+
+[keldagrim_tunnel]
+option = "Enter"
+tile = { x = 2771, y = 10161 }
+to = { x = 2730, y = 3713 }
+
+[keldagrim_cave_entrance]
+option = "Go-through"
+tile = { x = 2781, y = 10161 }
+to = { x = 2838, y = 10125 }
+
+[keldagrim_entrance]
+option = "Go-through"
+tile = { x = 2838, y = 10123 }
+to = { x = 2780, y = 10161 }

@@ -17,6 +17,7 @@ class Tea : Script {
 
     init {
         consumed("cup_of_tea") { _, _ ->
+            say("Aaah, nothing like a nice cuppa tea!")
             levels.boost(Skill.Attack, 3)
         }
 

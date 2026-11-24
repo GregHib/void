@@ -3,3 +3,6 @@ id = 836
 
 [bedabin_nomad_fighter_attack]
 id = 390
+
+[bedabin_nomad_fighter_defend]
+id = 388

@@ -1,4 +1,5 @@
 [agnar_rellekka]
+clone = "human"
 
 [agnar_rellekka.melee]
 clone = "man.melee"
@@ -102,6 +103,7 @@ anim = "unicorn_foal_attack"
 sound = "black_unicorn_attack"
 
 [black_unicorn_foal]
+defend_anim = "black_unicorn_foal_defend"
 death_anim = "black_unicorn_foal_death"
 defend_sound = "black_unicorn_defend"
 death_sound = "black_unicorn_death"
@@ -113,6 +115,7 @@ anim = "black_unicorn_foal_attack"
 sound = "black_unicorn_attack"
 
 [fenris_wolf]
+defend_anim = "fenris_wolf_defend"
 death_anim = "fenris_wolf_death"
 defend_sound = "werewolf_defend"
 death_sound = "werewolf_death"

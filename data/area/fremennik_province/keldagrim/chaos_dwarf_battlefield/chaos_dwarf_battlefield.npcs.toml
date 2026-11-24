@@ -1,5 +1,7 @@
 [chaos_dwogre_chaos_dwarf_battlefield]
 id = 8771
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 examine = "A magical cross between an ogre and a dwarf."
 drop_table = "chaos_dwogre"
 hitpoints = 1000
@@ -8,16 +10,20 @@ str = 1
 def = 125
 mage = 125
 max_hit_magic = 121
+max_hit_crush = 121
+attack_speed = 6
 combat_def = "chaos_dwogre"
 
 [black_guard_chaos_dwarf_battlefield]
 id = 8772
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 hitpoints = 400
 att = 40
 str = 45
 def = 45
 style = "crush"
-max_hit_melee = 80
+max_hit_crush = 84
 attack_bonus = 30
 slayer_xp = 40.0
 categories = ["dwarves"]
@@ -28,44 +34,58 @@ combat_def = "dwarf"
 
 [black_guard_chaos_dwarf_battlefield_2]
 id = 8773
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 clone = "black_guard_chaos_dwarf_battlefield"
 drop_table = "black_guard"
 combat_def = "dwarf"
 
 [black_guard_chaos_dwarf_battlefield_3]
 id = 8774
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 clone = "black_guard_chaos_dwarf_battlefield"
 drop_table = "black_guard"
 combat_def = "dwarf"
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield]
 id = 8776
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
-combat_def = "dwarf"
+combat_def = "chaos_dwarf_hand_cannoneer"
+attack_speed = 5
 hitpoints = 1220
 att = 1
 str = 1
 def = 91
 range = 96
-max_hit_range = 110
+max_hit_range = 380
+max_hit_crush = 110
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
 id = 8777
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
-combat_def = "dwarf"
+combat_def = "chaos_dwarf_hand_cannoneer"
+attack_speed = 5
 hitpoints = 1220
 att = 1
 str = 1
 def = 91
 range = 96
-max_hit_range = 110
+max_hit_range = 380
+max_hit_crush = 110
 
 [chaos_dwarf_chaos_dwarf_battlefield]
 id = 8778
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 drop_table = "chaos_dwarf"
 combat_def = "chaos_dwarf"
 hitpoints = 610
@@ -74,11 +94,12 @@ str = 42
 def = 28
 attack_speed = 5
 attack_bonus = 13
-max_hit_crush = 60
-hunt_mode = "cowardly"
+max_hit_crush = 63
 
 [chaos_dwarf_chaos_dwarf_battlefield_2]
 id = 8779
+hunt_mode = "chaos_dwarf_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf"
@@ -89,15 +110,16 @@ str = 42
 def = 28
 attack_speed = 5
 attack_bonus = 13
-max_hit_crush = 60
-hunt_mode = "cowardly"
+max_hit_crush = 63
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield]
 id = 8781
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
-combat_def = "guard"
+combat_def = "black_guard_crossbowdwarf"
 hitpoints = 800
 att = 1
 str = 1
@@ -107,10 +129,12 @@ max_hit_range = 100
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield_2]
 id = 8782
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
-combat_def = "guard"
+combat_def = "black_guard_crossbowdwarf"
 hitpoints = 800
 att = 1
 str = 1
@@ -120,12 +144,15 @@ max_hit_range = 100
 
 [black_guard_berserker_chaos_dwarf_battlefield]
 id = 8783
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 hitpoints = 500
 att = 60
 str = 60
 def = 60
 style = "crush"
-max_hit_melee = 130
+max_hit_crush = 133
+attack_speed = 7
 attack_bonus = 55
 xp_bonus = 2.5
 slayer_xp = 50.0
@@ -133,13 +160,15 @@ categories = ["dwarves"]
 respawn_delay = 30
 examine = "An elite member of the Black Guard."
 drop_table = "black_guard_berserker"
-combat_def = "guard"
+combat_def = "black_guard_berserker"
 
 [black_guard_berserker_chaos_dwarf_battlefield_2]
 id = 8784
+hunt_mode = "black_guard_battlefield"
+hunt_range = 12
 clone = "black_guard_berserker_chaos_dwarf_battlefield"
 drop_table = "black_guard_berserker"
-combat_def = "guard"
+combat_def = "black_guard_berserker"
 
 [colonel_grenda_chaos_dwarf_battlefield]
 id = 8818

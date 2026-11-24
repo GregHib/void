@@ -3,3 +3,6 @@ id = 1014
 
 [seagull_death]
 id = 1015
+
+[seagull_attack]
+id = 3467

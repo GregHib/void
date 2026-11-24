@@ -63,7 +63,7 @@ object DisplayNames {
      * Suggests [count] valid, memorable names based on [base] which aren't [taken].
      * Mixes the base with numbers and words so players get a choice of styles.
      */
-    fun suggestions(base: String, count: Int, taken: (String) -> Boolean, random: Random = Random.Default): List<String> {
+    fun suggestions(base: String, count: Int, taken: (String) -> Boolean, random: Random = world.gregs.voidps.type.random): List<String> {
         val stem = stem(base)
         val names = LinkedHashSet<String>()
         var attempts = 0

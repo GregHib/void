@@ -42,7 +42,10 @@ class TutorialSkills : Script {
             equippedSwordAndShield()
         }
 
-        experience { skill, _, _ ->
+        experience { skill, from, to ->
+            if (from <= to) {
+                return@experience
+            }
             when (skill) {
                 Skill.Firemaking -> advanceTutorial(7)
                 Skill.Attack, Skill.Strength, Skill.Defence -> advanceTutorial(47)

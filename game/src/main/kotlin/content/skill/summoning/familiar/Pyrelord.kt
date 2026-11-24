@@ -25,13 +25,12 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 
-class Pyrelord : Script {
+class Pyrelord(val stepValidator: StepValidator) : Script {
     init {
         npcOperate("Interact", "pyrelord_familiar") { (target) ->
             if (target != follower) {
@@ -89,66 +88,56 @@ class Pyrelord : Script {
             castFamiliarSpecial { immenseHeat(item.id) }
         }
 
-        // The pyrelord and forge regent act as portable fire sources - the demon breathes fire over
-        // the logs, lighting them beneath itself, granting the log's xp plus a bonus for its help.
-        for (familiar in listOf("pyrelord_familiar", "forge_regent_familiar")) {
-            itemOnNPCOperate("*logs*", "$familiar*") { (target, item) ->
-                if (target != follower) {
-                    message("That's not your familiar.")
-                    return@itemOnNPCOperate
-                }
-                val row = Rows.getOrNull("firemaking.${item.id}")
-                if (row == null) {
-                    message("The ${target.def.name.lowercase()} only burns logs.")
-                    return@itemOnNPCOperate
-                }
-                val level = row.int("level")
-                if (!has(Skill.Firemaking, level, true)) {
-                    return@itemOnNPCOperate
-                }
-                if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND) != null) {
-                    message("You can't light a fire here.")
-                    return@itemOnNPCOperate
-                }
-                if (!inventory.remove(item.id)) {
-                    return@itemOnNPCOperate
-                }
-                // The logs land at the familiar's feet first, as with a tinderbox, then it breathes
-                // fire over them a moment later. Aborts, fireless, if they're gone by then.
-                val logs = FloorItems.add(target.tile, item.id, disappearTicks = 300, owner = this)
-                target.anim("${target.id.removeSuffix("_familiar")}_light_fire")
-                pause(2)
-                if (!FloorItems.remove(logs)) {
-                    return@itemOnNPCOperate
-                }
-                exp(Skill.Firemaking, row.int("xp") / 10.0 + 10)
-                val colour = row.string("colour")
-                val life = row.int("life")
-                GameObjects.add("fire_$colour", target.tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
-                FloorItems.add(target.tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
-                message("The ${target.def.name.lowercase()} breathes fire and the logs begin to burn.", ChatType.Filter)
-                // The familiar steps off its new fire westward, as players do, then waits beside it
-                // facing its owner - resuming the follow straight away would walk it right back onto
-                // the fire, so it stands by (PauseMode, like the beaver's chop) until the owner moves.
-                val steps: StepValidator = get()
-                if (steps.canTravel(target, -1, 0)) {
-                    val owner = this
-                    target.queue("familiar_step_west") {
-                        val dest = target.tile.addX(-1)
-                        target.walkTo(dest)
-                        var ticks = 0
-                        while (target.tile != dest && ticks++ < 5) {
-                            delay()
-                        }
-                        target.mode = PauseMode
-                        target.watch(owner)
-                        val stand = owner.tile
-                        while (owner.tile == stand && owner.follower == target && target.mode is PauseMode) {
-                            delay()
-                        }
-                        if (owner.follower == target && target.mode is PauseMode) {
-                            target.mode = Follow(target, owner)
-                        }
+        itemOnNPCOperate("*logs*", "pyrelord_familiar*,forge_regent_familiar*") { (target, item) ->
+            if (target != follower) {
+                message("That's not your familiar.")
+                return@itemOnNPCOperate
+            }
+            val row = Rows.getOrNull("firemaking.${item.id}")
+            if (row == null) {
+                message("The ${target.def.name.lowercase()} only burns logs.")
+                return@itemOnNPCOperate
+            }
+            val level = row.int("level")
+            if (!has(Skill.Firemaking, level, true)) {
+                return@itemOnNPCOperate
+            }
+            if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND) != null) {
+                message("You can't light a fire here.")
+                return@itemOnNPCOperate
+            }
+            if (!inventory.remove(item.id)) {
+                return@itemOnNPCOperate
+            }
+            val logs = FloorItems.add(target.tile, item.id, disappearTicks = 300, owner = this)
+            target.anim("${target.id.removeSuffix("_familiar")}_light_fire")
+            pause(2)
+            if (!FloorItems.remove(logs)) {
+                return@itemOnNPCOperate
+            }
+            exp(Skill.Firemaking, row.int("xp") / 10.0 + 10)
+            val colour = row.string("colour")
+            val life = 100 + random.nextInt(100)
+            GameObjects.add("fire_$colour", target.tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
+            FloorItems.add(target.tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
+            message("The ${target.def.name.lowercase()} breathes fire and the logs begin to burn.", ChatType.Filter)
+            if (stepValidator.canTravel(target, -1, 0)) {
+                val owner = this
+                target.queue("familiar_step_west") {
+                    val dest = target.tile.addX(-1)
+                    target.walkTo(dest)
+                    var ticks = 0
+                    while (target.tile != dest && ticks++ < 5) {
+                        delay()
+                    }
+                    target.mode = PauseMode
+                    target.watch(owner)
+                    val stand = owner.tile
+                    while (owner.tile == stand && owner.follower == target && target.mode is PauseMode) {
+                        delay()
+                    }
+                    if (owner.follower == target && target.mode is PauseMode) {
+                        target.mode = Follow(target, owner)
                     }
                 }
             }

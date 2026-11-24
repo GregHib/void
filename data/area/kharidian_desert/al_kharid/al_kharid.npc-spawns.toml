@@ -24,7 +24,6 @@ spawns = [
     { id = "fishing_spot_al_kharid", x = 3255, y = 3163, members = true },
     { id = "fishing_spot_al_kharid", x = 3256, y = 3177, members = true },
     # 13106
-    { id = "mubariz", x = 3314, y = 3240 },
     { id = "border_guard_al_kharid", x = 3266, y = 3229, direction = "SOUTH" },
     { id = "border_guard_al_kharid", x = 3267, y = 3226, direction = "NORTH" },
     { id = "border_guard_al_kharid_2", x = 3269, y = 3229, direction = "SOUTH" },

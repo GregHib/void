@@ -1,10 +1,16 @@
 package world.gregs.voidps.engine.data.definition
 
+import io.mockk.every
+import io.mockk.mockk
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.client.variable.IntValues
+import world.gregs.voidps.engine.data.config.VariableDefinition
+import world.gregs.voidps.engine.entity.character.player.Player
 import java.io.File
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -91,5 +97,56 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         assertFalse(plain.allowedUnder)
         assertTrue(plain.solid)
         assertFalse(plain.blocksPlayers)
+    }
+
+    @AfterEach
+    fun teardown() {
+        VariableDefinitions.clear()
+    }
+
+    @Test
+    fun `Transforms fall back to the default when unset, out of range or -1`() {
+        val base = NPCDefinition(0, stringId = "base", varbit = 1, transforms = intArrayOf(-1, 1, 2))
+        val definitions = NPCDefinitions.init(arrayOf(base, NPCDefinition(1, stringId = "first"), NPCDefinition(2, stringId = "default")))
+        val variable: VariableDefinition = mockk(relaxed = true)
+        every { variable.values } returns IntValues
+        every { variable.defaultValue } returns 2
+        VariableDefinitions.set(mapOf("var" to variable), varbits = mapOf(1 to "var"))
+        val player: Player = mockk(relaxed = true)
+        var value: Int? = null
+        every { player.variables.get<Any>("var") } answers { value }
+
+        assertEquals("default", definitions.resolve(base, player).stringId)
+        value = 0
+        assertEquals("default", definitions.resolve(base, player).stringId)
+        value = 1
+        assertEquals("first", definitions.resolve(base, player).stringId)
+        value = 5
+        assertEquals("default", definitions.resolve(base, player).stringId)
+        value = -2
+        assertEquals("default", definitions.resolve(base, player).stringId)
+    }
+
+    @Test
+    fun `Clone of a later npc inherits its params when it has none of its own`(@TempDir dir: File) {
+        val file = dir.resolve("custom.npcs.toml")
+        file.writeText(
+            """
+            [shell]
+            id = 0
+            clone = "shaman"
+
+            [shaman]
+            id = 1
+            combat_def = "shaman"
+            damage_cap = 0
+            """.trimIndent(),
+        )
+        val definitions = NPCDefinitions.init(Array(2) { NPCDefinition(it, stringId = it.toString()) })
+        definitions.load(listOf(file.path))
+
+        val shell = definitions.get("shell")
+        assertEquals("shaman", shell["combat_def", ""])
+        assertEquals(0, shell["damage_cap", -1])
     }
 }

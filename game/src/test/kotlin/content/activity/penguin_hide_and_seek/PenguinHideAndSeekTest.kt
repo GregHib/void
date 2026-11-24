@@ -212,7 +212,7 @@ class PenguinHideAndSeekTest : WorldTest() {
     @Test
     fun `Spawn npcs`() {
         val player = createPlayer()
-        player["hunt_for_red_rektuber"] = "completed"
+        player["hunt_for_red_raktuber"] = "completed"
         Settings.load(mapOf("events.penguinHideAndSeek.enabled" to "true"))
         val instance = instance()
         instance.load(configFiles)

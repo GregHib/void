@@ -1,4 +1,5 @@
 [khazard_commander]
+defend_anim = "khazard_commander_defend"
 death_anim = "khazard_commander_death"
 
 [khazard_commander.melee]
@@ -7,6 +8,7 @@ target_hit = { offense = "stab", max = 50 }
 anim = "khazard_commander_attack"
 
 [tortoise]
+defend_anim = "tortoise_defend"
 death_anim = "tortoise_death"
 defend_sound = "tortoise_defend"
 death_sound = "tortoise_death"
@@ -16,3 +18,15 @@ range = 1
 target_hit = { offense = "crush", max = 110 }
 anim = "tortoise_attack"
 sound = "tortoise_attack"
+
+[mounted_terrorbird_gnome]
+clone = "gnome"
+defend_anim = "mounted_terrorbird_gnome_defend"
+defend_sound = "warped_terrorbird_defend"
+death_anim = "mounted_terrorbird_gnome_death"
+death_sound = "warped_terrorbird_death"
+
+[mounted_terrorbird_gnome.ranged]
+clone = "gnome.ranged"
+anim = "mounted_terrorbird_gnome_attack"
+target_sound = "warped_terrorbird_attack"

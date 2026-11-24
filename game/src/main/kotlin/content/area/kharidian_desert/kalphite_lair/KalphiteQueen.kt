@@ -65,7 +65,7 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
         }
 
         npcLevelChanged(Skill.Constitution, "kalphite_queen") { _, _, to ->
-            if (to > 10) {
+            if (to > 10 || dead) {
                 return@npcLevelChanged
             }
             if (transform == "kalphite_queen_airborne") {

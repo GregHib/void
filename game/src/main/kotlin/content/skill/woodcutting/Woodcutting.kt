@@ -1,7 +1,9 @@
 package content.skill.woodcutting
 
 import content.activity.evil_tree.evilTreeMagic
+import content.area.misthalin.tutorial_island.inTutorial
 import content.entity.player.bank.bank
+import content.entity.player.dialogue.type.statement
 import content.skill.constitution.drink.jujuBank
 import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
@@ -53,6 +55,9 @@ class Woodcutting(val drops: DropTables) : Script {
         val log = Rows.getOrNull("logs.$id") ?: return
         val hatchet = Hatchet.best(player)
         if (hatchet == null) {
+            if (player.inTutorial) {
+                player.statement("You need a hatchet to chop down this tree.")
+            }
             player.message("You need a hatchet to chop down this tree.")
             player.message("You do not have a hatchet which you have the woodcutting level to use.")
             return

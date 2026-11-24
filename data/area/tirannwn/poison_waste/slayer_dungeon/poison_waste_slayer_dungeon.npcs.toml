@@ -3,7 +3,7 @@ id = 6285
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -11,13 +11,14 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_2]
 id = 6286
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -25,13 +26,14 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_3]
 id = 6287
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -39,13 +41,14 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_4]
 id = 6288
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -53,13 +56,14 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_5]
 id = 6289
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -67,11 +71,12 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_6]
 id = 6290
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -79,13 +84,15 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+categories = ["warped_creatures"]
+slayer_level = 56
 
 [warped_terrorbird_7]
 id = 6291
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -93,13 +100,14 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_8]
 id = 6292
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -107,11 +115,12 @@ def = 1
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_9]
 id = 6293
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -119,13 +128,15 @@ def = 171
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+categories = ["warped_creatures"]
+slayer_level = 56
 
 [warped_terrorbird_10]
 id = 6294
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -133,13 +144,14 @@ def = 171
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_terrorbird_11]
 id = 6295
 categories = ["warped_creatures"]
 examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
-combat_def = "terrorbird"
+combat_def = "warped_terrorbird"
 hitpoints = 1549
 att = 1
 str = 1
@@ -147,10 +159,11 @@ def = 171
 range = 126
 max_hit_range = 140
 hunt_mode = "cowardly"
+slayer_level = 56
 
 [warped_tortoise]
 id = 6296
-categories = ["warped_creatures"]
+categories = ["warped_tortoises"]
 examine = "You don't think you can harm this creature."
 drop_table = "warped_tortoise"
 hitpoints = 870
@@ -158,6 +171,7 @@ att = 106
 str = 106
 def = 21
 max_hit_crush = 120
+slayer_level = 56
 
 [guard_no_21]
 id = 6314

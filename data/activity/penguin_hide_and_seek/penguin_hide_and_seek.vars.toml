@@ -6,3 +6,7 @@ values = ["penguin_0", "penguin_1", "penguin_2", "penguin_3", "penguin_4", "peng
 [penguin_week]
 persist = true
 format = "int"
+
+[chuck_iceberg_agent_mentioned]
+persist = true
+format = "boolean"

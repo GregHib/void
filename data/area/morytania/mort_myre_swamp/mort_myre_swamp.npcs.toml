@@ -39,6 +39,7 @@ attack_speed = 8
 immune_poison = true
 drop_table = "ghast"
 examine = "Arrghhh... A ghast!"
+categories = ["ghosts"]
 
 [ghast_level_109]
 id = 3610
@@ -54,6 +55,7 @@ respawn_delay = 40
 attack_speed = 8
 drop_table = "ghast"
 examine = "Arrghhh... A ghast!"
+categories = ["ghosts"]
 
 [ghast_level_139]
 id = 3611
@@ -69,6 +71,7 @@ respawn_delay = 40
 attack_speed = 8
 drop_table = "ghast"
 examine = "Arrghhh... A ghast!"
+categories = ["ghosts"]
 
 [myre_blamish_snail]
 id = 1227

@@ -4,6 +4,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import content.quest.questStarted
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -44,6 +45,7 @@ class DukeHoracio : Script {
                 item("talisman_rune_mysteries", "The Duke hands you the talisman.")
             }
             findMoney()
+            antiDragonShield(this@started)
         }
     }
 
@@ -59,6 +61,7 @@ class DukeHoracio : Script {
                 startQuest()
             }
             findMoney()
+            antiDragonShield(this@unstarted)
         }
     }
 
@@ -68,6 +71,38 @@ class DukeHoracio : Script {
                 npc<Idle>("The only job I had was the delivery of that talisman, so I'm afraid not.")
             }
             findMoney()
+            antiDragonShield(this@completed)
+        }
+    }
+
+    fun ChoiceOption.antiDragonShield(player: Player) {
+        if (!player.questStarted("dragon_slayer") || player.ownsItem("anti_dragon_shield")) {
+            return
+        }
+        option<Quiz>("I seek a shield that will protect me from dragonbreath.") {
+            if (quest("dragon_slayer") == "completed") {
+                npc<Quiz>("A knight going on a dragon quest, hmm? What dragon do you intend to slay?")
+                player<Idle>("Oh, no dragon in particular. I just feel like killing a dragon.")
+                npc<Idle>("Of course. Now you've slain Elvarg, you've earned the right to call the shield your own!")
+            } else {
+                npc<Quiz>("A knight going on a dragon quest, hmm? What dragon do you intend to slay?")
+                player<Happy>("Elvarg, the dragon of Crandor island!")
+                npc<Shock>("Elvarg? Are you sure?")
+                player<Happy>("Yes!")
+                npc<Idle>("Well, you're a braver man than I!")
+                player<Quiz>("Why is everyone scared of this dragon?")
+                npc<Idle>("Back in my father's day, Crandor was an important city-state. Politically, it was important as Falador or Varrock and its ships traded with every port.")
+                npc<Idle>("But, one day when I was little, all contact was lost. The trading ships and diplomatic envoys just stopped coming.")
+                npc<Idle>("I remember my father being very scared. He posted lookouts on the roof to warn if the dragon was approaching. All the city rulers worried that Elvarg would devastate the whole continent.")
+                player<Quiz>("So, are you going to give me the shield or not?")
+                npc<Idle>("If you really think you're up to it then perhaps you are the one who can kill this dragon.")
+            }
+            if (inventory.isFull()) {
+                item("anti_dragon_shield", "The Duke tries to hand you the shield, but you don't have enough room to take it.")
+                return@option
+            }
+            inventory.add("anti_dragon_shield")
+            item("anti_dragon_shield", "The Duke hands you a heavy orange shield.")
         }
     }
 

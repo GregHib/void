@@ -1,6 +1,9 @@
 package content.skill.smithing
 
+import FakeRandom
 import WorldTest
+import itemOption
+import messages
 import net.pearx.kasechange.toSentenceCase
 import objectOption
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -16,7 +19,9 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class SmeltingTest : WorldTest() {
 
@@ -31,6 +36,12 @@ class SmeltingTest : WorldTest() {
         "adamant" to listOf(Item("adamantite_ore"), Item("coal", 6)),
         "rune" to listOf(Item("runite_ore"), Item("coal", 8)),
     )
+
+    private fun forceSmeltingFailureRoll() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+    }
 
     @TestFactory
     fun `Smelt bars`() = bars.map { (type, ores) ->
@@ -109,6 +120,113 @@ class SmeltingTest : WorldTest() {
         assertEquals(0, player.inventory.count("gold_ore"))
         assertEquals(1, player.inventory.count("gold_bar"))
         assertEquals(56.2, player.experience.get(Skill.Smithing))
+    }
+
+    @Test
+    fun `Ring of forging guarantees iron bars`() {
+        forceSmeltingFailureRoll()
+        val player = createPlayer(Tile(3227, 3255))
+        player.equipment.set(EquipSlot.Ring.index, "ring_of_forging")
+        player.levels.set(Skill.Smithing, 99)
+        player.inventory.add("iron_ore")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
+
+        player.objectOption(furnace, "Smelt")
+        tick()
+
+        player.skillCreation("Iron bar", 1)
+        tick(4)
+
+        assertEquals(0, player.inventory.count("iron_ore"))
+        assertEquals(1, player.inventory.count("iron_bar"))
+    }
+
+    @Test
+    fun `Ring of forging check shows remaining charges`() {
+        val player = createPlayer(Tile(3227, 3255))
+        player["ring_of_forging_charges"] = 12
+        player.equipment.set(EquipSlot.Ring.index, "ring_of_forging")
+
+        player.itemOption(
+            option = "Check",
+            item = "ring_of_forging",
+            id = "worn_equipment",
+            component = "ring_slot",
+            optionIndex = 1,
+            inventory = "worn_equipment",
+            slot = EquipSlot.Ring.index,
+        )
+        tick()
+
+        assertTrue(player.messages.contains("You can smelt 128 more pieces of iron ore before a ring melts."))
+    }
+
+    @Test
+    fun `Ring of forging does not guarantee iron bars when exhausted`() {
+        forceSmeltingFailureRoll()
+        val player = createPlayer(Tile(3227, 3255))
+        player["ring_of_forging_charges"] = 140
+        player.equipment.set(EquipSlot.Ring.index, "ring_of_forging")
+        player.levels.set(Skill.Smithing, 99)
+        player.inventory.add("iron_ore")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
+
+        player.objectOption(furnace, "Smelt")
+        tick()
+
+        player.skillCreation("Iron bar", 1)
+        tick(4)
+
+        assertEquals(0, player.inventory.count("iron_ore"))
+        assertEquals(0, player.inventory.count("iron_bar"))
+        assertEquals("ring_of_forging", player.equipment[EquipSlot.Ring.index].id)
+        assertEquals(140, player["ring_of_forging_charges", 0])
+    }
+
+    @Test
+    fun `Ring of forging uses one charge when Varrock armour produces two bars`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val player = createPlayer(Tile(3109, 3502))
+        player["ring_of_forging_charges"] = 138
+        player.equipment.set(EquipSlot.Ring.index, "ring_of_forging")
+        player.equipment.set(EquipSlot.Chest.index, "varrock_armour_4")
+        player.levels.set(Skill.Smithing, 99)
+        player.inventory.add("iron_ore", 2)
+        val furnace = GameObjects.find(Tile(3110, 3502), "furnace_edgeville")
+
+        player.objectOption(furnace, "Smelt")
+        tick()
+
+        player.skillCreation("Iron bar", 2)
+        tick(4)
+
+        assertEquals(2, player.inventory.count("iron_bar"))
+        assertEquals(139, player["ring_of_forging_charges", 0])
+        assertEquals("ring_of_forging", player.equipment[EquipSlot.Ring.index].id)
+    }
+
+    @Test
+    fun `Ring of forging melts only the worn ring after 140 bars`() {
+        val player = createPlayer(Tile(3227, 3255))
+        player["ring_of_forging_charges"] = 139
+        player.equipment.set(EquipSlot.Ring.index, "ring_of_forging")
+        player.inventory.add("ring_of_forging")
+        player.levels.set(Skill.Smithing, 99)
+        player.inventory.add("iron_ore")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
+
+        player.objectOption(furnace, "Smelt")
+        tick()
+
+        player.skillCreation("Iron bar", 1)
+        tick(4)
+
+        assertEquals("", player.equipment[EquipSlot.Ring.index].id)
+        assertEquals(1, player.inventory.count("ring_of_forging"))
+        assertEquals(0, player["ring_of_forging_charges", 0])
+        assertTrue(player.messages.contains("Your Ring of Forging has melted."))
     }
 
     @TestFactory

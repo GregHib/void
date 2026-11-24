@@ -50,7 +50,7 @@ class GnormadiumAvlafrim : Script {
     fun ChoiceOption.canIFly() {
         option<Neutral>("Can I take a flight in the glider?") {
             npc<Happy>("Sure, go ahead.")
-            set("glider_location", "gandius")
+            set("glider_location", "lemantolly_undri")
             open("glider_map")
         }
     }

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 
 class DragithMask : Script {
 
@@ -30,6 +31,7 @@ class DragithMask : Script {
             if (!success) {
                 return@itemOnItem
             }
+            client?.playSoundEffect(9498)
             item(item = "mask_of_dragith_nurn", text = "You combine the parts and assemble the Mask of Dragith Nurn.")
         }
     }

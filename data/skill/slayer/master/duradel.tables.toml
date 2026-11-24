@@ -18,16 +18,6 @@ amount = [130, 200]
 weight = 9
 tip = "Aquanites are amphibious creatures that attract prey using the glowing lures on their heads. They attack stronger opponents from a distance with water magic, and dislike those who pray against it. They dwell in the Fremennik Slayer Dungeon, in a chamber past the kurasks."
 
-[.aviansies]
-amount = [100, 125]
-weight = 8
-tip = "Aviansies can be found in the Godwars Dungeon north of Trollheim. As they are flying, you'll find melee attacks are not going to cut it."
-
-[.bloodvelds]
-amount = [130, 200]
-weight = 10
-tip = "Bloodveld are strange, demonic creatures. They use their long, rasping tongue to feed on just about anything they can find. Remember that their tongues are magical in nature but, moreso, they deserve to die."
-
 [.black_demons]
 amount = [130, 200]
 weight = 10
@@ -37,6 +27,16 @@ tip = "Black demons are weak to ranged attacks. They're still the strongest demo
 amount = [40, 80]
 weight = 9
 tip = "Black dragons are among the strongest dragons and are very fierce. Watch out for their fiery breath. I am sure you will have seen them in your travels and have honed your techniques on lesser dragons."
+
+[.bloodvelds]
+amount = [130, 200]
+weight = 20
+tip = "Bloodveld are strange, demonic creatures. They use their long, rasping tongue to feed on just about anything they can find. Remember that their tongues are magical in nature but, moreso, they deserve to die."
+
+[.dagannoth]
+amount = [130, 200]
+weight = 10
+tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You'll often find them in caves near sea water. There is no joy so great as to cleanse these from the face of Gielinor."
 
 [.dark_beasts]
 amount = [130, 200]
@@ -52,11 +52,6 @@ tip = "Head east of Al Kharid to find them on the hills above the Shantay Pass. 
 amount = [130, 200]
 weight = 10
 tip = "Dust devils use clouds of dust, sand, ash and whatever else they can inhale to blind and disorientate their victims. Good luck on obtaining a dragon chainmail from their dusty remains."
-
-[.dagannoth]
-amount = [130, 200]
-weight = 10
-tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You'll often find them in caves near sea water. There is no joy so great as to cleanse these from the face of Gielinor."
 
 [.fire_giants]
 amount = [130, 200]
@@ -75,7 +70,7 @@ tip = "Goraks are extremely aggressive creatures. They have been imprisoned on a
 
 [.greater_demons]
 amount = [130, 200]
-weight = 10
+weight = 11
 tip = "Greater demons are weak to ranged attacks. Though not the strongest of the demons, they are still dangerous. Slaughter them easily in Brimhaven's depths, and revel in your power."
 
 [.hellhounds]
@@ -86,7 +81,6 @@ tip = "Hellhounds are a cross between dogs and demons; they are also dangerous w
 [.ice_strykewyrm]
 amount = [100, 200]
 weight = 8
-# TODO req fire cape or unlock
 tip = "The strongest and coldest of their kind, they are found beneath the Fremennik mountains. Be careful of all their attacks; but, as they are beings of ice, I've found my fire spells inflict far more damage against them."
 
 [.iron_dragons]
@@ -100,12 +94,12 @@ weight = 10
 tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
 
 [.kalphites]
-amount = [130, 200]
+amount = [170, 250]
 weight = 10
 tip = "Kalphites are large insects that live in hives under the desert sands. I am sure that, by now, you have seen them to the south-west of Shantay Pass."
 
 [.mithril_dragons]
-amount = [4, 8]
+amount = [4, 11]
 weight = 7
 tip = "Mithril dragons are very dangerous opponents. They live beneath the Baxtorian Falls and devour most of those who seek to slay them. You are a battlemaster; test your skills."
 
@@ -114,18 +108,18 @@ amount = [130, 200]
 weight = 10
 tip = "Nechryael are demons of decay that summon small winged beings to help them fight their victims. They can be found in the Slayer Tower near Canifis."
 
-#[.scabarites]
-#amount = [40, 80]
-#weight = 10
-#tip = "Scabarites are the followers of Scabaras and consist of anything from the lowliest dung beetle to the mightiest scarab mage. They are most commonly found near Sophanem, and under it."
+[.scabarites]
+amount = [40, 80]
+weight = 10
+tip = "Scabarites are the followers of Scabaras and consist of anything from the lowliest dung beetle to the mightiest scarab mage. They are most commonly found near Sophanem, and under it."
 
 [.skeletal_wyverns]
 amount = [40, 80]
 weight = 5
 tip = "Skeletal wyverns are extremely dangerous and they are hard to hit with arrows, as they slip right through. To stand a good chance of surviving, you'll need some elemental shielding from their icy breath."
 
-[.spiritual_creatures]
-amount = [120, 185]
+[.spiritual_mages]
+amount = [130, 200]
 weight = 10
 tip = "Spiritual mages are the strongest of the spiritual guardians. They are devastating against warriors, but a smart ranger can sometimes defeat them. Of course, Prayer might serve you well, too. They can be found in the icy caverns near Trollheim, supporting the cause of their chosen god."
 
@@ -139,12 +133,12 @@ amount = [40, 80]
 weight = 5
 tip = "Suqahs can only be found on the mystical Lunar Isle. They use melee and magical attacks, and they often drop hide, teeth and herbs."
 
+[.warped_creatures]
+amount = [130, 200]
+weight = 9
+tip = "Warped terrorbirds are creatures tainted by magical waste and are vulnerable to an elven chime and may only be damaged when a chime has been used; look carefully to work out which. Their sonic attack is a Ranged attack but may be affected by ear defences."
+
 [.waterfiends]
 amount = [130, 200]
 weight = 10
 tip = "Waterfiends are creatures of water that live under the Baxtorian Lake. Those followed by familiars are keen to slay these elemental forces."
-
-#[.warped_creatures]
-#amount = [130, 200]
-#weight = 9
-#tip = "Warped terrorbirds are creatures tainted by magical waste and are vulnerable to an elven chime and may only be damaged when a chime has been used; look carefully to work out which. Their sonic attack is a Ranged attack but may be affected by ear defences."

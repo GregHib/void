@@ -159,3 +159,8 @@ categories = ["mithril_dragons"]
 respawn_delay = 30
 drop_table = "mithril_dragon"
 examine = "Experimenting with mithril gone bad!"
+
+
+[peaceful_barbarian_spirit]
+id = 754
+examine = "Ascending to rest."

@@ -88,7 +88,12 @@ class FarmingPatchPick : Script {
             return
         }
         face(obj)
-        anim(if (tree) "picking_high" else "human_dig")
+        val animation = when {
+            tree -> "picking_high"
+            obj.id.startsWith("farming_herb_patch") -> "picking_low"
+            else -> "human_dig"
+        }
+        anim(animation)
         sound(if (tree) "farming_pick" else "dig_spade")
         weakQueue("farming_harvest", 2) {
             if (!inventory.add(item.id)) {

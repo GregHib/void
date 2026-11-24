@@ -1,7 +1,20 @@
 [head_thief]
+defend_anim = "head_thief_defend"
 death_anim = "head_thief_death"
 
 [head_thief.melee]
 range = 1
 target_hit = { offense = "slash", max = 30 }
 anim = "head_thief_attack"
+
+[dungeon_rat_clocktower_dungeon]
+clone = "giant_rat"
+defend_anim = "dungeon_rat_clocktower_dungeon_defend"
+defend_sound = "zombie_rat_rimmington_defend"
+death_anim = "dungeon_rat_clocktower_dungeon_death"
+death_sound = "zombie_rat_rimmington_death"
+
+[dungeon_rat_clocktower_dungeon.melee]
+clone = "giant_rat.melee"
+anim = "dungeon_rat_clocktower_dungeon_attack"
+target_sound = "zombie_rat_rimmington_attack"

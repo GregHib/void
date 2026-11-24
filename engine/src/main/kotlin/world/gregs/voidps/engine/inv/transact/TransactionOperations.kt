@@ -56,7 +56,7 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
     }
     val variable: String? = item.def.getOrNull("charge")
     if (variable != null) {
-        val current = player[variable, 0]
+        val current = player.charges(variable)
         if (current < amount) {
             error = TransactionError.Deficient(current, item.id)
             return

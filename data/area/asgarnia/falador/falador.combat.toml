@@ -10,7 +10,7 @@ target_hit = { offense = "stab", max = 30 }
 [guard_xbow]
 defend_anim = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [guard_xbow.range]
 range = 5
@@ -22,7 +22,7 @@ target_hit = { offense = "range", max = 40 }
 [white_knight]
 defend_anim = "2h_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [white_knight.melee]
 range = 1
@@ -32,7 +32,7 @@ target_hit = { offense = "slash", max = 60 }
 [air_wizard]
 defend_anim = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [air_wizard.strike]
 range = 5
@@ -46,7 +46,7 @@ impact_sound = "wind_strike_impact"
 [water_wizard]
 defend_anim = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [water_wizard.strike]
 range = 5
@@ -59,7 +59,7 @@ impact_sound = "water_strike_impact"
 [earth_wizard]
 defend_anim = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [earth_wizard.strike]
 range = 5
@@ -72,7 +72,7 @@ impact_sound = "earth_strike_impact"
 [fire_wizard]
 defend_anim = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [fire_wizard.strike]
 range = 5
@@ -85,7 +85,7 @@ impact_sound = "fire_strike_impact"
 [highwayman]
 defend_anim = "sword_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [highwayman.melee]
 range = 1
@@ -95,7 +95,7 @@ target_hit = { offense = "stab", max = 10 }
 [pirate_sword]
 defend_anim = "human_defend"
 death_anim = "human_death"
-death_sound = "human_death"
+death_sound = "man_death"
 
 [pirate_sword.melee]
 range = 1

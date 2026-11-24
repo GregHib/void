@@ -160,8 +160,9 @@ object NPCLoader : Loader<DefinitionsState<NPCDefinition>> {
             if (definition.blocksPlayers == NPCDefinition.EMPTY.blocksPlayers) {
                 definition.blocksPlayers = clone.blocksPlayers
             }
-            val params = definition.params as? MutableMap<Int, Any> ?: continue
-            for (param in clone.params ?: continue) {
+            val cloneParams = clone.params ?: continue
+            val params = definition.params as? MutableMap<Int, Any> ?: Int2ObjectOpenHashMap<Any>(cloneParams.size, Hash.VERY_FAST_LOAD_FACTOR).also { definition.params = it }
+            for (param in cloneParams) {
                 if (param.key == Params.AKA) {
                     continue
                 }

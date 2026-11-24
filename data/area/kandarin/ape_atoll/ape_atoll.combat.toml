@@ -61,3 +61,15 @@ range = 6
 target_hit = { offense = "range", max = 200 }
 anim = "monkey_archer_attack"
 sound = "monkey_archer_attack"
+
+[monkey_guard]
+defend_anim = "monkey_guard_defend"
+death_anim = "monkey_guard_death"
+death_sound = "jungle_horror_death"
+defend_sound = "fenris_wolf_attack"
+
+[monkey_guard.melee]
+range = 1
+anim = "monkey_guard_attack"
+target_sound = "monkey_guard_ape_atoll_attack"
+target_hit = { offense = "crush", max = 140 }

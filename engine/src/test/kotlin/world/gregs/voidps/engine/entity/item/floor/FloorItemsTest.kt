@@ -331,5 +331,6 @@ class FloorItemsTest {
     @AfterEach
     fun teardown() {
         unmockkObject(ZoneBatchUpdates)
+        Players.clear()
     }
 }

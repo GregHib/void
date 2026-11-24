@@ -88,7 +88,11 @@ private fun ChoiceOption.claimReward(chuck: Boolean = false) {
 internal suspend fun Player.larryReward(chuck: Boolean = false) {
     val points = get("penguin_points", 0)
     if (points <= 0) {
-        npc<Neutral>("You've found a lot of spies. But, you have no penguin points saved up. Keep looking!")
+        if (chuck) {
+            npc<Neutral>("Oh, really? You only get a reward when you have something new to report and, from what I can tell, you have nothing new to report.")
+        } else {
+            npc<Neutral>("You've found a lot of spies. But, you have no penguin points saved up. Keep looking!")
+        }
         return
     }
     if (chuck) {
@@ -106,7 +110,11 @@ internal suspend fun Player.larryReward(chuck: Boolean = false) {
                 return@option
             }
             set("penguin_points", 0)
-            statement("You have been awarded ${amount.toDigitGroupString()} coins!")
+            if (chuck) {
+                npc<Happy>("There you are! A hefty reward of ${amount.toDigitGroupString()} coins.")
+            } else {
+                statement("You have been awarded ${amount.toDigitGroupString()} coins!")
+            }
             npc<Happy>("Well done finding those penguins. Keep up the hard work, they'll keep moving around.")
         }
         option("Experience, all the way!") {
@@ -123,17 +131,21 @@ internal suspend fun Player.larryReward(chuck: Boolean = false) {
 
 private fun ChoiceOption.havingTrouble() {
     option<Neutral>("I'm having trouble finding the penguins; can I have a hint?") {
-        for (i in 0 until 10) {
-            if (!containsVarbit("penguins_found", "penguin_$i")) {
-                val penguin = NPCs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
-                val area = Areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
-                val hint: String = area.getOrNull("hint") ?: continue
-                npc<Shifty>("I've heard there's a penguin located $hint")
-                return@option
-            }
-        }
-        npc<Shifty>("I haven't heard of any penguins sightings recently, come back and ask me another time.") // TODO proper message
+        penguinHint()
     }
+}
+
+internal suspend fun Player.penguinHint() {
+    for (i in 0 until 10) {
+        if (!containsVarbit("penguins_found", "penguin_$i")) {
+            val penguin = NPCs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
+            val area = Areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
+            val hint: String = area.getOrNull("hint") ?: continue
+            npc<Shifty>("I've heard there's a penguin located $hint")
+            return
+        }
+    }
+    npc<Shifty>("I haven't heard of any penguins sightings recently, come back and ask me another time.") // TODO proper message
 }
 
 private suspend fun Player.explain() {

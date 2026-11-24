@@ -1,0 +1,17 @@
+[scarab_mage_attack]
+id = 7615
+
+[scarab_mage_defend]
+id = 7617
+
+[scarab_mage_death]
+id = 7616
+
+[locust_rider_attack]
+id = 7584
+
+[locust_rider_defend]
+id = 7585
+
+[locust_rider_death]
+id = 7581

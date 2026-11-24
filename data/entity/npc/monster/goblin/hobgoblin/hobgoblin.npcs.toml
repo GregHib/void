@@ -68,7 +68,7 @@ hunt_mode = "anti_zamorak_aggressive"
 slayer_xp = 52.0
 respawn_delay = 30
 drop_table = "hobgoblin"
-categories = ["hobgoblin"]
+categories = ["hobgoblin", "hobgoblins"]
 god = "bandos"
 examine = "An ugly, smelly creature."
 
@@ -79,3 +79,4 @@ att = 22
 str = 24
 def = 24
 examine = "An ugly, smelly creature."
+categories = ["hobgoblins"]

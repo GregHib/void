@@ -1,0 +1,9 @@
+[digsite_winch_west]
+option = "Operate"
+tile = { x = 3352, y = 3417 }
+to = { x = 3177, y = 5731 }
+
+[senntisten_temple_rope]
+option = "Climb-up"
+tile = { x = 3177, y = 5730 }
+to = { x = 3353, y = 3416 }

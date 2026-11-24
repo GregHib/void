@@ -108,6 +108,10 @@ examine = "This tree has been cut down."
 id = 1306
 examine = "The tree shimmers with a magical force."
 
+[magic_tree_stump]
+id = 7401
+examine = "This is what is left of a magic tree."
+
 [maple_tree]
 id = 1307
 examine = "I bet this makes good syrup!"

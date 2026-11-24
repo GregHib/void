@@ -56,7 +56,7 @@ spawns = [
     { id = "gerrant", x = 3013, y = 3225, members = true },
     { id = "brian_port_sarim", x = 3025, y = 3249 },
     { id = "betty_port_sarim", x = 3012, y = 3259 },
-    { id = "ned_port_sarim", x = 3050, y = 3208, members = true },
+    { id = "ned_port_sarim", x = 3048, y = 3207, level = 1, members = true },
     { id = "seagull_port_sarim", x = 3027, y = 3204 },
     { id = "seagull_port_sarim", x = 3028, y = 3202 },
     { id = "seagull_port_sarim", x = 3028, y = 3232 },

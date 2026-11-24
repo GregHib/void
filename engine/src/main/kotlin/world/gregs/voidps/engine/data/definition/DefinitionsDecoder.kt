@@ -56,22 +56,23 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
             return definition
         }
         val transforms = definition.transforms ?: return definition
-        if (definition.varbit != -1) {
-            val index = index(player, definition.varbit, true)
-            return get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
+        val index = when {
+            definition.varbit != -1 -> index(player, definition.varbit, true)
+            definition.varp != -1 -> index(player, definition.varp, false)
+            else -> return definition
         }
-        if (definition.varp != -1) {
-            val index = index(player, definition.varp, false)
-            return get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
+        var transform = transforms.getOrNull(index) ?: -1
+        if (transform == -1) {
+            transform = transforms.last()
         }
-        return definition
+        return get(transform)
     }
 
     private fun index(player: Player, id: Int, varbit: Boolean): Int {
         val key = (if (varbit) VariableDefinitions.getVarbit(id) else VariableDefinitions.getVarp(id)) ?: return 0
-        val definition = VariableDefinitions.get(key)
-        val value = player.variables.get<Any>(key) ?: return 0
-        return definition?.values?.toInt(value) ?: 0
+        val definition = VariableDefinitions.get(key) ?: return 0
+        val value = player.variables.get<Any>(key) ?: definition.defaultValue ?: return 0
+        return definition.values.toInt(value)
     }
 
     companion object {

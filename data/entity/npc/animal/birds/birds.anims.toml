@@ -9,3 +9,6 @@ id = 750
 
 [duck_death_swim]
 id = 3468
+
+[duck_swim_attack]
+id = 3467

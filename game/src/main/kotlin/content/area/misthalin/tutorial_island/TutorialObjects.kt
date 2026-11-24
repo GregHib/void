@@ -1,7 +1,7 @@
 package content.area.misthalin.tutorial_island
 
 import content.entity.obj.ObjectTeleports
-import content.entity.obj.door.openDoor
+import content.entity.obj.door.enterDoor
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -58,10 +58,8 @@ class TutorialObjects(val teleports: ObjectTeleports) : Script {
             if (!allowed(stage, target)) {
                 return@objectOperate
             }
-            // Advance first: opening a double door replaces both halves, and despawning the
-            // object being interacted with cancels this coroutine before it could resume.
             advanceTutorial(stage)
-            openDoor(target)
+            enterDoor(target)
         }
     }
 

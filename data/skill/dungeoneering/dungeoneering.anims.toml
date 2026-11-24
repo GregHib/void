@@ -27,3 +27,9 @@ id = 13323
 
 [expression_rand_seeker_happy]
 id = 13324
+
+[luminescent_icefiend_defend]
+id = 13335
+
+[luminescent_icefiend_death]
+id = 13336

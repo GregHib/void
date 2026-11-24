@@ -2,8 +2,8 @@ package content.quest.member.fairy_tale_part_2.fairy_ring
 
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
-import content.quest.quest
 import content.quest.questCompleted
+import content.quest.questStarted
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -89,7 +89,7 @@ class FairyRing : Script {
     }
 
     fun Player.canUseFairyRing(): Boolean {
-        if (quest("fairy_tale_ii") == "unstarted") {
+        if (!questStarted("fairy_tale_ii")) {
             message("You don't have permission to use that fairy ring.")
             return false
         }

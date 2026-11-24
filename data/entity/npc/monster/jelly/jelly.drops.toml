@@ -1,7 +1,7 @@
 [jelly_drop_table]
 type = "all"
 drops = [
-    { id = "soul_fragment" },
+    { id = "soul_fragment", variable = "in_soul_wars", equals = "true", default = "false" },
     { table = "jelly_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
     { table = "jelly_tertiary" },

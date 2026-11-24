@@ -2,11 +2,13 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -105,6 +107,90 @@ class BushPatchTest : WorldTest() {
 
             assertTrue(player.experience.get(Skill.Farming) > 0)
             assertEquals("${id}_life1", player["farming_bush_patch_varrock", "empty"])
+        }
+    }
+
+    @Test
+    fun `Inspect every bush growth state`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val crops = mapOf(
+            "redberry" to 5,
+            "cadavaberry" to 6,
+            "dwellberry" to 7,
+            "jangerberry" to 8,
+            "whiteberry" to 8,
+            "poison_ivy" to 8,
+        )
+        val diseaseStages = mapOf(
+            "redberry" to 5,
+            "cadavaberry" to 6,
+            "dwellberry" to 6,
+            "jangerberry" to 8,
+            "whiteberry" to 8,
+            "poison_ivy" to 8,
+        )
+        val variable = "farming_bush_patch_varrock"
+        val patch = GameObjects.find(Tile(3181, 3357), variable)
+
+        for ((crop, maximumStage) in crops) {
+            for (stage in 0..maximumStage) {
+                val player = createPlayer(Tile(3181, 3356))
+                player[variable] = "${crop}_$stage"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                if (stage == maximumStage) {
+                    assertTrue(
+                        player.containsMessage("fully grown"),
+                        "$crop stage $stage was not reported as fully grown",
+                    )
+                    assertTrue(patch.def(player).stringId.contains("_fullygrown"))
+                } else {
+                    assertTrue(
+                        player.containsMessage("at state ${stage + 1}/${maximumStage + 1}"),
+                        "$crop stage $stage reported the wrong growth state",
+                    )
+                    assertTrue(!patch.def(player).stringId.contains("_fullygrown"))
+                }
+            }
+
+            for (state in listOf("claim", "life1", "life4")) {
+                val player = createPlayer(Tile(3181, 3356))
+                player[variable] = "${crop}_$state"
+                player.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    player.containsMessage("fully grown"),
+                    "$crop $state was not reported as fully grown",
+                )
+            }
+
+            for (stage in 1..diseaseStages.getValue(crop)) {
+                val diseasedPlayer = createPlayer(Tile(3181, 3356))
+                diseasedPlayer[variable] = "${crop}_diseased_$stage"
+                diseasedPlayer.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    diseasedPlayer.containsMessage("infected by disease"),
+                    "${crop}_diseased_$stage was not reported as diseased",
+                )
+            }
+
+            for (stage in 1..maximumStage) {
+                val deadPlayer = createPlayer(Tile(3181, 3356))
+                deadPlayer[variable] = "${crop}_dead_$stage"
+                deadPlayer.objectOption(patch, "Inspect")
+                tick()
+
+                assertTrue(
+                    deadPlayer.containsMessage("infected by disease and has died"),
+                    "${crop}_dead_$stage was not reported as dead",
+                )
+            }
         }
     }
 

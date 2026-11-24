@@ -29,6 +29,7 @@ att = 40
 str = 40
 def = 30
 examine = "An initiate juvenile vampyre."
+categories = ["vampyres"]
 
 [vampyre_juvinate_daeyalt_mine_2]
 id = 4777
@@ -37,3 +38,4 @@ att = 40
 str = 40
 def = 30
 examine = "An initiate juvenile vampyre."
+categories = ["vampyres"]

@@ -10,11 +10,25 @@ import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class QuestCommandsTest : WorldTest() {
+
+    @Test
+    fun `Unlocking all quests awards every implemented quest point`() {
+        val admin = createPlayer(name = "unlock admin")
+        admin.rights = PlayerRights.Admin
+
+        runTest { Commands.call(admin, "unlock quests") }
+        tick()
+
+        val total = questPointsTotal(get())
+        assertTrue(total > 1)
+        assertEquals(total, admin["quest_points", 0])
+    }
 
     @Test
     fun `Quest prep meets a quest's skill, quest and item requirements`() {

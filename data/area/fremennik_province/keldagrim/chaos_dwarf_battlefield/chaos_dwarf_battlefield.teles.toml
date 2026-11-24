@@ -1,0 +1,9 @@
+[chaos_dwarf_battlefield_tunnel]
+option = "Enter"
+tile = { x = 2816, y = 10155 }
+to = { x = 1520, y = 4704 }
+
+[chaos_dwarf_battlefield_doorway]
+option = "Enter"
+tile = { x = 1521, y = 4704 }
+to = { x = 2817, y = 10155 }

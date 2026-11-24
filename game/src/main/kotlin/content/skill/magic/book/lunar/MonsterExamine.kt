@@ -1,5 +1,6 @@
 package content.skill.magic.book.lunar
 
+import content.entity.combat.hit.Damage
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
@@ -50,7 +51,7 @@ class MonsterExamine(val combatDefinitions: CombatDefinitions) : Script {
     private fun maxHit(npc: NPC): Int {
         val definition = combatDefinitions.getOrNull(npc.transformDef["combat_def", npc.id])
         if (definition != null) {
-            val max = definition.attacks.values.flatMap { it.targetHits }.maxOfOrNull { npc.def["max_hit_${it.offense}", it.max] } ?: 0
+            val max = definition.attacks.values.flatMap { it.targetHits }.maxOfOrNull { Damage.npcMaximum(npc, it.offense, it.max) } ?: 0
             if (max > 0) {
                 return max
             }

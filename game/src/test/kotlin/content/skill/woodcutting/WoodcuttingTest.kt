@@ -33,6 +33,20 @@ internal class WoodcuttingTest : WorldTest() {
     }
 
     @Test
+    fun `Magic tree depletes to a stump`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Woodcutting, 100)
+        val tile = emptyTile.addY(1)
+        val tree = createObject("magic_tree", tile)
+        player.inventory.add("bronze_hatchet")
+
+        player.objectOption(tree, "Chop down")
+        tickIf { !player.inventory.contains("magic_logs") }
+
+        assertEquals("magic_tree_stump", GameObjects.getLayer(tile, ObjectLayer.GROUND)?.id)
+    }
+
+    @Test
     fun `Evil tree magic escorts logs to the bank when the inventory is full`() {
         val player = createPlayer(emptyTile)
         player.levels.set(Skill.Woodcutting, 100)

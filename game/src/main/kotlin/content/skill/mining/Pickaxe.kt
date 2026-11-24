@@ -1,5 +1,7 @@
 package content.skill.mining
 
+import content.area.misthalin.tutorial_island.inTutorial
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -23,10 +25,13 @@ object Pickaxe {
 
     fun best(player: Player): Item? = pickaxes.firstOrNull { pickaxe -> player.hasRequirementsToUse(pickaxe, skills = setOf(Skill.Mining, Skill.Firemaking)) && player.carriesItem(pickaxe.id) }
 
-    fun bestRequirements(player: Player, message: Boolean = false): Item? {
+    suspend fun bestRequirements(player: Player, message: Boolean = false): Item? {
         val pickaxe = best(player)
         if (pickaxe == null) {
             if (message) {
+                if (player.inTutorial) {
+                    player.statement("You need a pickaxe to mine this rock.")
+                }
                 player.message("You need a pickaxe to mine this rock.")
                 player.message("You do not have a pickaxe which you have the mining level to use.")
             }

@@ -2,7 +2,7 @@
 [basic_ladder_up]
 option = "Climb-up"
 tile = { x = 3117, y = 9754 }
-delta = { x = -25, y = -6392 }
+to = { x = 3092, y = 3361 }
 
 # 12442 edgeville_dungeon
 [29355]

@@ -127,6 +127,7 @@ att = 40
 str = 90
 def = 25
 examine = "He's guarding the cells."
+categories = ["trolls"]
 
 [berry_troll_sleeping]
 id = 1129
@@ -244,3 +245,4 @@ att = 40
 str = 90
 def = 25
 examine = "He's guarding the cells."
+categories = ["trolls"]

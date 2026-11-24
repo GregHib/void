@@ -69,7 +69,7 @@ spawns = [
   { id = "razvan", x = 3492, y = 3235, members = true },
   { id = "luminata", x = 3504, y = 3235, members = true },
   { id = "cornelius", x = 3496, y = 3212, members = true },
-  { id = "cornelius_2", x = 3493, y = 3211, members = true },
+  { id = "cornelius_2", x = 3493, y = 3211, direction = "EAST", members = true },
   { id = "fishing_spot_burgh_de_rott", x = 3471, y = 3199, members = true },
   { id = "fishing_spot_burgh_de_rott", x = 3472, y = 3196, members = true },
   { id = "fishing_spot_burgh_de_rott", x = 3474, y = 3193, members = true },

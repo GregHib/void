@@ -9,3 +9,9 @@ examine = "Soil. Dug up!"
 [digdugupsoil3]
 id = 2378
 examine = "Soil. Dug up!"
+
+[digsite_winch_west]
+id = 2350
+
+[senntisten_temple_rope]
+id = 2353

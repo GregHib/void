@@ -1,4 +1,5 @@
 [oomlie_bird]
+defend_anim = "oomlie_bird_defend"
 death_anim = "oomlie_bird_death"
 
 [oomlie_bird.melee]
@@ -7,6 +8,7 @@ target_hit = { offense = "stab", max = 50 }
 anim = "oomlie_bird_attack"
 
 [jungle_wolf]
+defend_anim = "jungle_wolf_defend"
 death_anim = "jungle_wolf_death"
 
 [jungle_wolf.melee]

@@ -1,4 +1,5 @@
 [elf_unarmed]
+clone = "human"
 
 [elf_unarmed.melee]
 range = 1

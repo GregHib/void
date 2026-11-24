@@ -1,0 +1,56 @@
+# Burgh de Rott repairs made during In Aid of the Myreque, packed into varp 704.
+[burgh_de_rott_roof]
+id = 1974
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }
+
+[burgh_de_rott_general_store_wall]
+id = 1975
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }
+
+[burgh_de_rott_bank_booth]
+id = 1977
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }
+
+[burgh_de_rott_bank_wall]
+id = 1978
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }
+
+[burgh_de_rott_cornelius]
+id = 1979
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }
+
+[burgh_de_rott_furnace]
+id = 1980
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 3 }
+
+[burgh_de_rott_ambush]
+id = 1981
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 3 }
+
+[burgh_de_rott_rebuilt]
+id = 1984
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }

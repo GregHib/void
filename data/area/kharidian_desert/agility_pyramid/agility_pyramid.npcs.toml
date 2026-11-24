@@ -27,6 +27,7 @@ str = 40
 def = 10
 max_hit_crush = 50
 combat_def = "vulture"
+categories = ["birds"]
 
 [mummy_agility_pyramid]
 id = 6753
@@ -38,6 +39,7 @@ str = 46
 def = 250
 max_hit_crush = 60
 hunt_mode = "cowardly"
+categories = ["zombies"]
 
 [mummy_agility_pyramid_2]
 id = 6754
@@ -49,6 +51,7 @@ str = 46
 def = 250
 max_hit_crush = 60
 hunt_mode = "cowardly"
+categories = ["zombies"]
 
 [mummy_agility_pyramid_3]
 id = 6755
@@ -60,6 +63,7 @@ str = 46
 def = 250
 max_hit_crush = 60
 hunt_mode = "cowardly"
+categories = ["zombies"]
 
 [mummy_agility_pyramid_4]
 id = 6756
@@ -71,6 +75,7 @@ str = 46
 def = 250
 max_hit_crush = 60
 hunt_mode = "cowardly"
+categories = ["zombies"]
 
 [agility_pyramid_block]
 id = 3124

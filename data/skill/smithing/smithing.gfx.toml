@@ -1,3 +1,6 @@
 [superheat_item]
 id = 148
 height = 60
+
+[anvil_sparks]
+id = 2123

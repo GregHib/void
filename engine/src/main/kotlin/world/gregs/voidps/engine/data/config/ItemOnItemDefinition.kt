@@ -25,6 +25,8 @@ import world.gregs.voidps.engine.entity.item.Item
  * @param question override for make-x question
  * @param maximum the maximum number of make-x allowed
  * @param members only can be made on members worlds
+ * @param variable player variable which must be set to make
+ * @param variableMessage message when [variable] isn't set
  */
 data class ItemOnItemDefinition(
     val skill: Skill? = null,
@@ -48,6 +50,8 @@ data class ItemOnItemDefinition(
     val question: String = "How many would you like to $type?",
     val maximum: Int = -1,
     val members: Boolean = false,
+    val variable: String = "",
+    val variableMessage: String = "",
 ) {
 
     companion object {

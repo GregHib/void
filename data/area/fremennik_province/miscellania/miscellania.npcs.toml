@@ -10,7 +10,7 @@ categories = ["birds"]
 respawn_delay = 30
 examine = "An inhabitant of icy regions."
 drop_table = "bones"
-combat_def = "chicken"
+combat_def = "penguin_miscellania"
 
 [gull_miscellania]
 id = 1325
@@ -290,6 +290,7 @@ id = 1402
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+categories = ["birds", "chickens"]
 
 [rooster_miscellania]
 id = 1403

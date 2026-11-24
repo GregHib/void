@@ -55,7 +55,7 @@ hitpoints = 50
 att = 2
 str = 3
 def = 2
-combat_def = "giant_rat"
+combat_def = "zombie_rat_rimmington"
 slayer_xp = 2.0
 categories = ["rats", "zombies"]
 respawn_delay = 30
@@ -82,6 +82,7 @@ str = 18
 def = 17
 max_hit_crush = 30
 hunt_mode = "cowardly"
+categories = ["skeletons", "undead"]
 
 [skeleton_rimmington_2]
 id = 6092
@@ -112,12 +113,13 @@ hunt_mode = "cowardly"
 [ghost_rimmington]
 id = 6094
 drop_table = "empty"
-combat_def = "ghost"
+combat_def = "ghost_rimmington"
 hitpoints = 250
 att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [ghost_rimmington_2]
 id = 6095
@@ -128,6 +130,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [ghost_rimmington_3]
 id = 6096
@@ -138,6 +141,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [ghost_rimmington_4]
 id = 6097
@@ -160,6 +164,7 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
+categories = ["ghosts", "undead"]
 
 [tool_leprechaun_rimmington]
 id = 7559

@@ -112,6 +112,7 @@ respawn_delay = 50
 drop_table = "terror_dog"
 examine = "A terrifying dog beast."
 max_hit_crush = 150
+slayer_level = 40
 
 [terror_dog_2]
 id = 5418
@@ -129,6 +130,7 @@ drop_table = "terror_dog_2"
 examine = "A terrifying dog beast."
 max_hit_crush = 110
 combat_def = "terror_dog"
+slayer_level = 40
 
 [mutant_tarn]
 id = 5421
@@ -157,6 +159,7 @@ att = 75
 str = 61
 def = 45
 examine = "An angry skeleton."
+categories = ["skeletons", "undead"]
 
 [skeleton_level_87]
 id = 5412
@@ -165,6 +168,7 @@ att = 75
 str = 80
 def = 55
 examine = "Cross bones."
+categories = ["skeletons", "undead"]
 
 [tarn]
 id = 5420
@@ -181,3 +185,4 @@ att = 50
 str = 50
 def = 47
 examine = "A dead woman walking."
+categories = ["undead", "zombies"]

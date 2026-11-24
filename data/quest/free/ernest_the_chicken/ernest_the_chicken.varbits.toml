@@ -1,0 +1,76 @@
+# Cache selectors for the six levers and nine personal doors.
+
+[ernest_lever_a_raised]
+id = 1788
+persist = true
+default = 0
+
+[ernest_lever_b_raised]
+id = 1789
+persist = true
+default = 0
+
+[ernest_lever_c_raised]
+id = 1790
+persist = true
+default = 0
+
+[ernest_lever_d_raised]
+id = 1791
+persist = true
+default = 0
+
+[ernest_lever_e_raised]
+id = 1792
+persist = true
+default = 0
+
+[ernest_lever_f_raised]
+id = 1793
+persist = true
+default = 0
+
+[ernest_door_1_unlocked]
+id = 1794
+persist = true
+default = 0
+
+[ernest_door_2_unlocked]
+id = 1795
+persist = true
+default = 0
+
+[ernest_door_3_unlocked]
+id = 1796
+persist = true
+default = 0
+
+[ernest_door_4_unlocked]
+id = 1797
+persist = true
+default = 0
+
+[ernest_door_5_unlocked]
+id = 1798
+persist = true
+default = 0
+
+[ernest_door_6_unlocked]
+id = 1799
+persist = true
+default = 0
+
+[ernest_door_7_unlocked]
+id = 1800
+persist = true
+default = 0
+
+[ernest_door_8_unlocked]
+id = 1801
+persist = true
+default = 0
+
+[ernest_door_9_unlocked]
+id = 1802
+persist = true
+default = 0
