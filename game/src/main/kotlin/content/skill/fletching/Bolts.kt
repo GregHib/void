@@ -14,8 +14,14 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class Bolts : Script {
 
     init {
-        itemOnItem("feather", "*_bolts_unf") { _, toItem ->
+        itemOnItem("feather", "*_bolts_unf,unfinished_broad_bolts") { _, toItem ->
             val bolt = Rows.getOrNull("fletching_bolts.${toItem.id}") ?: return@itemOnItem
+
+            val variable = bolt.stringOrNull("variable")
+            if (variable != null && !contains(variable)) {
+                message(bolt.string("variable_message"))
+                return@itemOnItem
+            }
 
             if (!has(Skill.Fletching, bolt.int("level"), true)) {
                 return@itemOnItem
@@ -31,7 +37,7 @@ class Bolts : Script {
                 return@itemOnItem
             }
 
-            val createdBolt: String = toItem.id.replace("_unf", "")
+            val createdBolt: String = bolt.itemOrNull("product") ?: toItem.id.replace("_unf", "")
             val success = inventory.transaction {
                 remove(toItem.id, actualAmount)
                 remove("feather", actualAmount)

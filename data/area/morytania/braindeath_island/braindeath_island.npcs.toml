@@ -135,6 +135,7 @@ categories = ["fever_spiders"]
 respawn_delay = 5
 drop_table = "fever_spider"
 examine = "A bunch of legs, eyes and teeth."
+slayer_level = 42
 
 [brewer]
 id = 2851

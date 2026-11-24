@@ -119,6 +119,7 @@ att = 28
 str = 28
 def = 28
 examine = "A nasty, poisonous arachnid."
+categories = ["spiders"]
 
 [jungle_spider]
 id = 2491
@@ -127,6 +128,7 @@ att = 35
 str = 37
 def = 35
 examine = "A very dangerous looking spider, with its fangs unsheathed."
+categories = ["spiders"]
 
 [jungle_spider_2]
 id = 2492
@@ -135,3 +137,4 @@ att = 35
 str = 37
 def = 35
 examine = "A very dangerous looking spider, with its fangs unsheathed."
+categories = ["spiders"]

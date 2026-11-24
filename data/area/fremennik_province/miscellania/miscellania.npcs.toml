@@ -290,6 +290,7 @@ id = 1402
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+categories = ["birds", "chickens"]
 
 [rooster_miscellania]
 id = 1403

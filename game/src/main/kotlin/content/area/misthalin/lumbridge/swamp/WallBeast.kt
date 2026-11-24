@@ -5,6 +5,7 @@ import content.entity.combat.target
 import content.entity.combat.underAttack
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
+import content.entity.player.equip.Equipment
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
@@ -70,7 +71,7 @@ class WallBeast : Script {
             player.tele(tile)
             player.face(Direction.NORTH)
             beast["movement_delay"] = Int.MAX_VALUE
-            if (player.equipped(EquipSlot.Hat).id == "spiny_helmet") {
+            if (Equipment.isSpinyHelmet(player.equipped(EquipSlot.Hat).id)) {
                 player.message("Your helmet repels the wall beast!")
                 beast.anim("wall_beast_repelled_attack")
                 player.sound("wall_beast_foiled")

@@ -76,6 +76,7 @@ style = "melee"
 style = "crush"
 max_hit_melee = 10
 examine = "Highly flammable!"
+categories = ["zombies"]
 
 [mummy_level_98]
 id = 1959
@@ -87,3 +88,4 @@ style = "melee"
 style = "crush"
 max_hit_melee = 10
 examine = "Highly flammable!"
+categories = ["zombies"]

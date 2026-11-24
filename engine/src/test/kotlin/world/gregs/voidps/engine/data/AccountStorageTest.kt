@@ -106,7 +106,7 @@ internal class AccountStorageTest : KoinMock() {
 
     @AfterEach
     fun teardown() {
-        online?.let { Players.remove(it) }
+        Players.clear()
         online = null
     }
 

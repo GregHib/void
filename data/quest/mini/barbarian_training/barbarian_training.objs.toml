@@ -1,0 +1,29 @@
+[barbarian_bed]
+id = 25268
+examine = "A barbarian bed."
+
+[pyre_site]
+id = 25286
+examine = "A patch of ash-strewn ground."
+
+# Pyre ship stages (3x2) replace the boat station in order, each site has one under its ash
+[pyre_boat_station]
+id = 25287
+
+[pyre_carved_log]
+id = 25288
+
+[pyre_carved_log_2]
+id = 25289
+
+[pyre_boat]
+id = 25290
+
+[pyre_boat_bones]
+id = 25291
+
+[pyre_boat_lit]
+id = 25292
+
+[pyre_boat_burning]
+id = 25294

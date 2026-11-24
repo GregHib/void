@@ -19,6 +19,7 @@ att = 49
 str = 50
 def = 50
 examine = "Aaaarg, me hearty!"
+categories = ["zombies"]
 
 [zombie_pirate_8]
 id = 5645
@@ -27,6 +28,7 @@ att = 49
 str = 50
 def = 50
 examine = "Aaaarg, me hearty!"
+categories = ["zombies"]
 
 [zombie_pirate_9]
 id = 5648
@@ -35,6 +37,7 @@ att = 49
 str = 50
 def = 50
 examine = "Aaaarg, me hearty!"
+categories = ["zombies"]
 
 [zombie_pirate_10]
 id = 5652
@@ -43,6 +46,7 @@ att = 49
 str = 50
 def = 50
 examine = "Aaaarg, me hearty!"
+categories = ["zombies"]
 
 [zombie_pirate_11]
 id = 5654
@@ -51,6 +55,7 @@ att = 49
 str = 50
 def = 50
 examine = "Aaaarg, me hearty!"
+categories = ["zombies"]
 
 [zombie_pirate_12]
 id = 5663
@@ -59,3 +64,4 @@ att = 49
 str = 50
 def = 50
 examine = "Aaaarg, me hearty!"
+categories = ["zombies"]

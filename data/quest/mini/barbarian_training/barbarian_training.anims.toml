@@ -1,0 +1,87 @@
+# Each lighting animation holds its bow, recoloured for the wood (items 11306-11312 match each bow's colours, 11319 seercull, 14535 sacred clay)
+[light_fire_training_bow]
+id = 6713
+
+[light_fire_shortbow]
+id = 6714
+
+[light_fire_oak_bow]
+id = 6715
+
+[light_fire_willow_bow]
+id = 6716
+
+[light_fire_maple_bow]
+id = 6717
+
+[light_fire_yew_bow]
+id = 6718
+
+[light_fire_magic_bow]
+id = 6719
+
+[light_fire_seercull]
+id = 6720
+
+[light_fire_sacred_clay_bow]
+id = 10990
+
+# TODO confirm anim
+[smith_barbarian_anvil]
+id = 6712
+
+[barehand_fishing]
+id = 9980
+
+[barehand_miss]
+id = 14723
+
+[gut_fish]
+id = 6702
+
+# Each carving animation holds the matching hatchet
+[carve_pyre_bronze]
+id = 6744
+
+[carve_pyre_iron]
+id = 6743
+
+[carve_pyre_steel]
+id = 6742
+
+[carve_pyre_black]
+id = 6741
+
+[carve_pyre_mithril]
+id = 6740
+
+[carve_pyre_adamant]
+id = 6739
+
+[carve_pyre_rune]
+id = 6738
+
+[carve_pyre_dragon]
+id = 6745
+
+[carve_pyre_inferno_adze]
+id = 10249
+
+[carve_pyre_sacred_clay]
+id = 11060
+
+[carve_pyre_volatile_clay]
+id = 11061
+
+# Played on the lit and burning pyre ship stages (25292, 25294)
+[pyre_boat_launch]
+id = 6734
+
+[pyre_boat_sink]
+id = 6736
+
+[peaceful_barbarian_spirit_ascend]
+id = 6724
+
+[ferocious_barbarian_spirit_appear]
+id = 6725

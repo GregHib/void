@@ -68,7 +68,7 @@ class BookPages(val books: Books) : Script {
     fun refreshBook(player: Player, book: String) {
         val name: String = player["book"] ?: return
         val page: Int = player["book_page"] ?: return
-        val pages = books.get(name)
+        val pages = books.get(player, name)
         player.interfaces.display(book, books.title(name), page, pages)
     }
 

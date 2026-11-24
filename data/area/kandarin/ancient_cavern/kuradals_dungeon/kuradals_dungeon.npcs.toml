@@ -13,3 +13,4 @@ categories = ["dark_beasts"]
 respawn_delay = 50
 drop_table = "dark_beast"
 examine = "From a darker dimension."
+slayer_level = 90

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.update
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -28,6 +29,11 @@ internal class CharacterUpdateTaskTest : KoinMock() {
         npcTask = mockk(relaxed = true)
         ZoneBatchUpdates.clear()
         task = spyk(CharacterUpdateTask(SequentialIterator(), playerTask, npcTask))
+    }
+
+    @AfterEach
+    fun teardown() {
+        Players.clear()
     }
 
     @Test

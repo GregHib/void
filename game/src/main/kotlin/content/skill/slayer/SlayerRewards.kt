@@ -36,6 +36,7 @@ class SlayerRewards : Script {
                 slayerPoints -= 400
                 exp(Skill.Slayer, 10_000.0)
                 message("You now have more knowledge of the Slayer skill. Congratulations.")
+                refreshText(this, "slayer_rewards")
             }
         }
 
@@ -90,6 +91,7 @@ class SlayerRewards : Script {
         if (player.inventory.transaction(transaction)) {
             player.slayerPoints -= points
             player.message(message)
+            refreshText(player, "slayer_rewards")
         } else {
             player.inventoryFull()
         }

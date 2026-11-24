@@ -39,6 +39,7 @@ att = 65
 str = 65
 def = 65
 examine = "A very large elemental adversary."
+categories = ["fire_giants"]
 
 [fire_giant_3]
 id = 7004
@@ -47,3 +48,4 @@ att = 65
 str = 65
 def = 65
 examine = "A very large elemental adversary."
+categories = ["fire_giants"]
