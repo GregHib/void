@@ -135,10 +135,12 @@ examine = "Rocky!"
 
 [copper_rocks_tutorial_island_1]
 id = 3042
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [tin_rocks_tutorial_island_1]
 id = 3043
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [depleted_rocks_dirt_1]
