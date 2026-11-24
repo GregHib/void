@@ -1,5 +1,6 @@
 package content.skill.firemaking
 
+import content.area.misthalin.tutorial_island.inTutorial
 import content.entity.obj.door.Door.isDoor
 import content.entity.player.dialogue.type.statement
 import content.quest.miniquest.barbarian_training.BarbarianTraining
@@ -151,9 +152,9 @@ class Firemaking : Script {
         player.clearAnim()
     }
 
-    fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean, bow: String? = null): Boolean = canLight(log, level, item.tile, bow) && (skipFloorCheck || FloorItems.at(item.tile).contains(item))
+    suspend fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean, bow: String? = null): Boolean = canLight(log, level, item.tile, bow) && (skipFloorCheck || FloorItems.at(item.tile).contains(item))
 
-    private fun Player.canLight(log: String, level: Int, tile: Tile, bow: String? = null): Boolean {
+    private suspend fun Player.canLight(log: String, level: Int, tile: Tile, bow: String? = null): Boolean {
         if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
             message("You don't have the required items to light this.")
             return false
@@ -172,7 +173,7 @@ class Firemaking : Script {
         return canLightOn(tile)
     }
 
-    private fun Player.canLightOn(tile: Tile): Boolean {
+    private suspend fun Player.canLightOn(tile: Tile): Boolean {
         val steps: StepValidator = get()
         if (
             GameObjects.getLayer(tile, ObjectLayer.GROUND) != null ||
@@ -180,6 +181,9 @@ class Firemaking : Script {
             Areas.get(tile.zone).any { it.tags.contains("bank") } ||
             !steps.canFit(tile, collision, size, blockMove)
         ) {
+            if (inTutorial) {
+                statement("You can't light a fire here.")
+            }
             message("You can't light a fire here.")
             return false
         }

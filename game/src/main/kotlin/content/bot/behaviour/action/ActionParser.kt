@@ -2,6 +2,7 @@ package content.bot.behaviour.action
 
 import content.bot.behaviour.condition.Condition
 import net.pearx.kasechange.toPascalCase
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 sealed class ActionParser {
@@ -34,6 +35,7 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
+            radiusCheck(radius)
             return if (option == "Attack") {
                 val lootOverValue = map["loot_over_value"] as? Int ?: 0
                 BotFightNpc(id, delay, success, radius, lootOverValue)
@@ -53,6 +55,7 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
+            radiusCheck(radius)
             val lootOverValue = map["loot_over_value"] as? Int ?: 0
             val lootStrategy = BotLootStrategy.of(map["loot_strategy"] as? String)
             val area = map["area"] as? String
@@ -119,6 +122,7 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
+            radiusCheck(radius)
             val family = map["family"] as? String ?: "ice"
             val kite = map["kite"] as? Boolean ?: true
             val area = map["area"] as? String
@@ -257,6 +261,7 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
+            radiusCheck(radius)
             val x = map["x"] as? Int
             val y = map["y"] as? Int
             val condition = requirement(map, "if").singleOrNull()
@@ -274,6 +279,7 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
+            radiusCheck(radius)
             val x = map["x"] as? Int
             val y = map["y"] as? Int
             return BotInteractFloorItem(option, id, delay, success, radius, x, y)
@@ -292,7 +298,11 @@ sealed class ActionParser {
     object WalkToParser : ActionParser() {
         override val required = setOf("x", "y")
         override val optional = setOf("radius")
-        override fun parse(map: Map<String, Any>) = BotWalkTo(map["x"] as Int, map["y"] as Int, map["radius"] as? Int ?: 4)
+        override fun parse(map: Map<String, Any>): BotWalkTo {
+            val radius = map["radius"] as? Int ?: 4
+            radiusCheck(radius)
+            return BotWalkTo(map["x"] as Int, map["y"] as Int, radius)
+        }
     }
 
     object WaitParser : ActionParser() {
@@ -399,4 +409,8 @@ sealed class ActionParser {
             "fletch_logs" to FletchLogsParser,
         )
     }
+}
+
+private fun radiusCheck(radius: Int) {
+    require(radius <= Viewport.VIEW_RADIUS) { "Radius cannot exceed ${Viewport.VIEW_RADIUS} tiles." }
 }

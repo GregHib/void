@@ -1,7 +1,9 @@
 package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.misthalin.tutorial_island.inTutorial
 import content.entity.player.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.statement
 import content.skill.magic.jewellery.RingOfForging
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -100,6 +102,9 @@ class Furnace : Script {
         softTimers.start("smelting")
         if (available.isEmpty()) {
             softTimers.stop("smelting")
+            if (inTutorial) {
+                statement("You don't have any ores to smelt.")
+            }
             message("You don't have any ores to smelt.")
             return
         }

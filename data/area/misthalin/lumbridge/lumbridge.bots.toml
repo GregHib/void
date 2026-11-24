@@ -414,6 +414,6 @@ setup = [
     { area = { id = "lumbridge_sheep_pen" } },
 ]
 actions = [
-    { npc = { option = "Shear", id = "sheep,sheep_2,sheep_light_2,sheep_light_5,sheep_light_6", radius = 20, delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { npc = { option = "Shear", id = "sheep,sheep_2,sheep_light_2,sheep_light_5,sheep_light_6", radius = 15, delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [{ item = "wool" }]
