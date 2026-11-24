@@ -1,7 +1,9 @@
 package content.skill.cooking
 
+import content.area.misthalin.tutorial_island.inTutorial
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.statement
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
@@ -70,6 +72,9 @@ class Cooking : Script {
         objectOperate("Use", "fire_*,cooking_range*") { (target) ->
             val cookable = inventory.items.map { it.id }.distinct().filter { Rows.getOrNull("cooking.$it") != null }
             if (cookable.isEmpty()) {
+                if (inTutorial) {
+                    statement("You have nothing to cook.")
+                }
                 message("You have nothing to cook.")
                 return@objectOperate
             }
@@ -132,7 +137,7 @@ class Cooking : Script {
         }
     }
 
-    fun Player.failedToReplace(row: RowDefinition, item: Item, cooked: Boolean): Boolean {
+    suspend fun Player.failedToReplace(row: RowDefinition, item: Item, cooked: Boolean): Boolean {
         val id = row.item(if (cooked) "cooked" else "burnt")
         val itemId = id.ifEmpty { item.id.replace("raw", if (cooked) "cooked" else "burnt") }
         if (!inventory.replace(item.id, itemId)) {
@@ -143,6 +148,9 @@ class Cooking : Script {
         exp(Skill.Cooking, if (cooked) xp else 0.0)
         val message = row.string(if (cooked) "cooked_message" else "burnt_message")
         if (message.isNotEmpty()) {
+            if (inTutorial) {
+                statement(message)
+            }
             message(message, ChatType.Filter)
         }
         return false

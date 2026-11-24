@@ -1,6 +1,8 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.misthalin.tutorial_island.inTutorial
+import content.entity.player.dialogue.type.statement
 import content.quest.miniquest.barbarian_training.barbarianTaskDone
 import content.quest.miniquest.barbarian_training.barbarianTrainingStarted
 import content.skill.constitution.drink.JUJU_SHARK_PERCENT
@@ -88,6 +90,9 @@ class Fishing : Script {
             val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) || (tackle == "harpoon" && player.familiarActsAsHarpoon()) }
                 ?: if (option == "Harpoon" && player.barbarianTrainingStarted("barehand")) BAREHAND else null
             if (tackle == null) {
+                if (player.inTutorial) {
+                    player.statement("You need a ${tackles.first().toTitleCase()} to catch these fish.")
+                }
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
                 break@fishing
             }
