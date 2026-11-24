@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.transact.TransactionError
 
@@ -90,8 +91,16 @@ object AddItem {
                 return -1
             }
             // Add one item to the empty slot
-            set(emptySlot, Item(id, 1))
+            set(emptySlot, newItem(id))
         }
         return emptySlot
+    }
+
+    private fun newItem(id: String): Item {
+        val definition = ItemDefinitions.get(id)
+        if (definition.contains("charge")) {
+            return Item(id)
+        }
+        return Item(id, definition.getOrNull<Int>("charges")?.takeIf { it > 0 } ?: 1)
     }
 }

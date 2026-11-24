@@ -1,5 +1,6 @@
 package content.area.asgarnia.burthorpe
 
+import content.entity.obj.ObjectTeleports
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -13,9 +14,15 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-class HeroesGuild : Script {
+class HeroesGuild(val teleports: ObjectTeleports) : Script {
 
     init {
+        objectOperate("Climb-up", "tithe_roof_g") { (target) ->
+            if (target.tile.x == 2892 && target.tile.y == 9907) {
+                teleports.teleport(this, target, "Climb-up")
+            }
+        }
+
         itemOnObjectOperate("amulet_of_glory*", "fountain_of_heroes") {
             var found = false
             for (index in inventory.items.indices) {

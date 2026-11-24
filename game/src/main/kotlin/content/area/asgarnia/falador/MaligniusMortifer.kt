@@ -97,7 +97,7 @@ class MaligniusMortifer : Script {
             option<Quiz>("Can I have some more bone seeds?") {
                 boneSeeds()
             }
-            option<Neutral>("... MORE ...") {
+            option("... MORE ...") {
                 swanSongMoreMenu(target)
             }
         }

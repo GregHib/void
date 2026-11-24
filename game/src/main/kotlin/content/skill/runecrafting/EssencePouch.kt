@@ -50,6 +50,9 @@ class EssencePouch : Script {
                     return@itemOption
                 }
                 set("${id}_essence", essence + removed)
+                if (removed > 0) {
+                    degradePouch(slot)
+                }
                 return@itemOption
             }
             val success = inventory.transaction {
@@ -65,9 +68,10 @@ class EssencePouch : Script {
             }
             set("${id}_essence", removed)
             set("${id}_pure", pure)
+            degradePouch(slot)
         }
 
-        itemOption("Empty", pouches.joinToString(",")) { (item, slot) ->
+        itemOption("Empty", pouches.joinToString(",")) { (item) ->
             val id = item.id.removeSuffix("_damaged")
             val essence = get("${id}_essence", 0)
             val pure = get("${id}_pure", false)
@@ -83,9 +87,6 @@ class EssencePouch : Script {
             if (!success || added == 0) {
                 inventoryFull()
                 return@itemOption
-            }
-            if (Settings["runecrafting.pouch.degrade", true]) {
-                inventory.discharge(this, slot)
             }
             set("${id}_essence", essence - added)
         }
@@ -105,7 +106,9 @@ class EssencePouch : Script {
 
     fun pouchDropped(player: Player, item: Item) {
         val id = item.id.removeSuffix("_damaged")
-        if (player.clear("${id}_essence") != null) {
+        val hadEssence = player.clear("${id}_essence") != null
+        player.clear("${id}_pure")
+        if (hadEssence) {
             player.message("The contents of the pouch fell out as you dropped it!")
         }
     }
@@ -118,14 +121,14 @@ class EssencePouch : Script {
     ) {
         val id = toItem.id.removeSuffix("_damaged")
         val desired = fromItem.id.startsWith("pure")
+        val essence = get("${id}_essence", 0)
         val pure = get("${id}_pure", false)
-        if (pure != desired) {
+        if (essence != 0 && pure != desired) {
             val name = if (pure) "pure" else "normal"
             message("This pouch contains $name essence, so you can only fill it with more $name essence.")
             return
         }
         val maximum = capacity(toItem.id, inventory.charges(this, toSlot))
-        val essence = get("${id}_essence", 0)
         if (essence >= maximum) {
             message("You cannot add any more essence to the pouch.")
             return
@@ -140,6 +143,7 @@ class EssencePouch : Script {
             set("${id}_pure", desired)
         }
         set("${id}_essence", essence + 1)
+        degradePouch(toSlot)
     }
 
     private fun capacity(id: String, charges: Int) = when (id) {
@@ -167,6 +171,17 @@ class EssencePouch : Script {
             else -> 9
         }
         else -> 3
+    }
+
+    private fun Player.degradePouch(slot: Int) {
+        if (Settings["runecrafting.pouch.degrade", true]) {
+            val id = inventory.getOrNull(slot)?.id?.removeSuffix("_damaged") ?: return
+            inventory.discharge(this, slot)
+            if (inventory.getOrNull(slot)?.isEmpty() == true) {
+                clear("${id}_essence")
+                clear("${id}_pure")
+            }
+        }
     }
 
     private fun numberString(essence: Int) = when (essence) {

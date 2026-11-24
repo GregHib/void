@@ -43,7 +43,6 @@ drops = [
     { id = "steel_full_helm", chance = 4 },
     { id = "steel_platebody", chance = 4 },
     { id = "spirit_weed_seed", chance = 39, members = true },
-    { id = "consecration_seed", chance = 19, members = true },
     { id = "fire_talisman", chance = 4 },
     { id = "court_summons", members = true },
     { table = "rare_drop_table", chance = 10 },

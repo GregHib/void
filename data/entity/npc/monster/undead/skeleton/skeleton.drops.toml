@@ -109,7 +109,6 @@ drops = [
 [skeleton_catacombs_drop_table]
 type = "all"
 drops = [
-    { id = "big_bones" },
     { id = "bones" },
     { table = "skeleton_catacombs_secondary" },
     { table = "mask_part_2_drop", roll = 3 },

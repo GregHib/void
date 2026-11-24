@@ -117,7 +117,7 @@ drops = [
 [warped_bat_drop_table]
 type = "all"
 drops = [
-  { id = "bones"},
+  { id = "bat_bones"},
   { table = "warped_bat_secondary" },
   { table = "mask_part_3_drop", roll = 3 },
 ]
