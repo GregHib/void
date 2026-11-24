@@ -10,13 +10,12 @@ import world.gregs.voidps.engine.get
 
 class Books {
 
-    private val types: MutableMap<String, String> = Object2ObjectOpenHashMap()
+    private lateinit var types: Map<String, String>
     private lateinit var books: Map<String, List<List<String>>>
-    private var titles: MutableMap<String, String> = Object2ObjectOpenHashMap()
+    internal lateinit var titles: Map<String, String>
+    private val generators = Object2ObjectOpenHashMap<String, (Player) -> List<List<String>>>()
 
     fun type(name: String) = types[name] ?: "normal"
-
-    private val generators = Object2ObjectOpenHashMap<String, (Player) -> List<List<String>>>()
 
     fun get(name: String) = books.getOrDefault(name, emptyList())
 
@@ -26,10 +25,9 @@ class Books {
     fun get(player: Player, name: String) = generators[name]?.invoke(player) ?: get(name)
 
     /**
-     * Generate the pages of book [name] per player
+     * Generate the pages of book [name] per player, the title and type still come from its config
      */
-    fun generate(name: String, title: String, type: String = "normal", pages: (Player) -> List<List<String>>) {
-        titles[name] = title
+    fun generate(name: String, pages: (Player) -> List<List<String>>) {
         generators[name] = pages
     }
 
@@ -64,8 +62,8 @@ class Books {
                 }
             }
         }
-        this.types.putAll(types)
-        this.titles.putAll(titles)
+        this.types = types
+        this.titles = titles
         this.books = books
         return this
     }
