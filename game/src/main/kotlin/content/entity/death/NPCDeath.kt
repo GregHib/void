@@ -10,6 +10,7 @@ import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
 import content.entity.player.logEvent
 import content.skill.slayer.*
+import content.skill.slayer.SlayerChallenge.Companion.isChallengeTarget
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearHinted

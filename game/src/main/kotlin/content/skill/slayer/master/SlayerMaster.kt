@@ -7,10 +7,12 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.slayer.*
+import content.skill.slayer.SlayerChallenge.Companion.challengeDialogue
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -20,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 
 class SlayerMaster : Script {
 
@@ -154,7 +157,7 @@ private fun Player.qualifies(rank: SlayerMasterRank): Boolean {
     return rank.quest == null || questCompleted(rank.quest)
 }
 
-internal suspend fun Player.assignTaskDialogue(master: String) {
+private suspend fun Player.assignTaskDialogue(master: String) {
     if (slayerChallenge != "") {
         challengeDialogue(master)
         return
@@ -176,6 +179,48 @@ internal suspend fun Player.assignTaskDialogue(master: String) {
         return
     }
     roll(master)
+}
+
+/**
+ * Offer [master]'s challenge instead of a regular assignment.
+ * @return true if a challenge was accepted
+ */
+private suspend fun Player.offerChallenge(master: String): Boolean {
+    val challenge = Tables.stringOrNull("slayer_challenges.$master.challenge") ?: return false
+    if (random.nextInt(100) >= Settings["slayer.challengeChance", 10]) {
+        return false
+    }
+    npc<Quiz>("I have a special challenge for you, if you think you're up to it?")
+    var accepted = false
+    choice {
+        option<Happy>("Yes, I'll take the challenge.") {
+            accepted = true
+        }
+        option<Neutral>("No thanks, I'd rather have a normal assignment.")
+    }
+    if (!accepted) {
+        return false
+    }
+    slayerMaster = master
+    slayerChallenge = challenge
+    when (challenge) {
+        "ravenous_creatures" -> {
+            if (!inventory.contains("enchanted_gem")) {
+                inventory.add("enchanted_gem")
+            }
+            npc<Neutral>("Investigate the fairy rings west of Canifis, in the Haunted Woods and in Mort Myre Swamp. Contact me with your enchanted gem when you're near each of them.")
+        }
+        "dragon_scales" -> npc<Neutral>("Bring me a perfect scale from a green, blue, red and black dragon.")
+        "zygomites" -> {
+            inventory.add("experimental_spray")
+            npc<Neutral>("Test my new experimental fungicide spray on ten mutated zygomites, then come back and tell me the results.")
+        }
+        "kalphite_queen" -> npc<Neutral>("Travel to the Kalphite Hive and slay the Kalphite Queen. You may bring a partner, but you must do the majority of the damage.")
+        "slayer_tower" -> npc<Neutral>("Go to the Slayer Tower and, without leaving, kill 21 crawling hands, 8 banshees, 9 infernal mages, 7 bloodvelds, 7 aberrant spectres, 5 gargoyles, 6 nechryael and 6 abyssal demons.")
+        "fight_cave" -> npc<Neutral>("Complete the TzHaar Fight Cave and slay TzTok-Jad.")
+        "turaels_dungeon" -> npc<Neutral>("I've constructed a basement and filled it with monsters. Enter it through the ladder in my house and kill all of the monsters inside in one visit.")
+    }
+    return true
 }
 
 /**
