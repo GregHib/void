@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -258,9 +259,11 @@ class SlayerChallenge : Script {
             1 -> {
                 target.levels.restore(Skill.Constitution, target.levels.getMax(Skill.Constitution) / 4)
                 player.message("The experimental spray has sent the zygomite into a furious rage!", type = ChatType.Filter)
+                target.interactPlayer(player, "Attack")
             }
             else -> {
                 target.levels.clear(Skill.Constitution)
+                target.mode = EmptyMode
                 player.message("The experimental spray has healed the zygomite!", type = ChatType.Filter)
             }
         }
