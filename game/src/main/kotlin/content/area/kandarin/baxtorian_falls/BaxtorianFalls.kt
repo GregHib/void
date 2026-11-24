@@ -32,7 +32,9 @@ class BaxtorianFalls : Script {
         }
 
         objectApproach("Swim", "waterfall_river") { (target) ->
-            if (target.tile.x in 2511..2513 && target.tile.y in 3475..3476) swimDownstream()
+            if (target.tile.x in 2511..2513 && target.tile.y in 3475..3476) {
+                swimDownstream()
+            }
         }
 
         itemOnObjectApproach("rope", "waterfall_rock*") { (target) ->

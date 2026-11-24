@@ -1,7 +1,7 @@
 package content.area.kandarin.tree_gnome_village
 
-import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz

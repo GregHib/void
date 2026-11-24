@@ -54,7 +54,7 @@ class GlarialsTomb : Script {
 
         objectOperate("Search", "crate_11") {
             message("You search the crate")
-            delay(2)
+            delay(3)
             if (inventory.contains("a_key_waterfall_dungeon")) {
                 // TODO message
                 return@objectOperate
@@ -85,11 +85,12 @@ class GlarialsTomb : Script {
             if (inventory.contains("glarials_urn")) {
                 return@objectOperate // TODO check
             }
+            message("Inside you find an urn full of ashes.")
+            delay(2)
             addOrDrop("glarials_urn")
             if (quest("waterfall_quest") == "found_amulet") {
                 set("waterfall_quest", "found_urn")
             }
-            message("Inside you find an urn full of ashes.")
             message("You take the urn and close the coffin.")
         }
 
