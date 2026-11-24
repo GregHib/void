@@ -199,7 +199,7 @@ spawns = [
   { id = "flynn", x = 2951, y = 3386 },
   { id = "wayne", x = 2973, y = 3312 },
   { id = "herquin", x = 2944, y = 3334 },
-  { id = "sylas_falador", x = 2912, y = 3379, members = true },
+  { id = "sylas_falador", x = 2891, y = 3454, members = true },
   { id = "sir_amik_varze_falador", x = 2960, y = 3336, level = 2 },
   { id = "ducklings", x = 2975, y = 3359 },
   { id = "town_crier_falador", x = 2952, y = 3380, members = true },

@@ -10,6 +10,9 @@ id = 7299
 [human_death]
 id = 836
 
+[human_fall_back]
+id = 837
+
 [eat_drink]
 id = 829
 
