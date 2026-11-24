@@ -4,7 +4,6 @@ import content.bot.behaviour.condition.Condition
 import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.map.Spiral
 
 sealed class ActionParser {
     open val required = emptySet<String>()
