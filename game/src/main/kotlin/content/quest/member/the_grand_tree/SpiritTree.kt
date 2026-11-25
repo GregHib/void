@@ -24,9 +24,12 @@ import java.util.concurrent.TimeUnit
 class SpiritTree : Script {
 
     init {
-        objectOperate("Talk-to", "spirit_tree,spirit_tree_fullygrown,spirit_tree_gnome,spirit_tree_stronghold") {
-            if (!questCompleted("the_grand_tree")) {
+        objectOperate("Talk-to", "spirit_tree,spirit_tree_fullygrown,spirit_tree_gnome,spirit_tree_stronghold") { (target) ->
+            if (!canTravel(this, target.id)) {
                 statement("The tree doesn't feel like talking.")
+                if (target.id == "spirit_tree_fullygrown") {
+                    statement("The tree won't transport you until you've completed the Tree Gnome Village quest.")
+                }
                 return@objectOperate
             }
             npc<Neutral>(
@@ -74,8 +77,9 @@ class SpiritTree : Script {
             }
         }
 
-        objectOperate("Teleport", "spirit_tree*") {
-            if (!questCompleted("the_grand_tree")) {
+        objectOperate("Teleport", "spirit_tree*") { (target) ->
+            if (!canTravel(this, target.id)) {
+                statement(if (target.id == "spirit_tree_fullygrown") "The tree won't transport you until you've completed the Tree Gnome Village quest." else "The tree doesn't feel like talking.")
                 return@objectOperate
             }
             updatePosition(this)
@@ -87,6 +91,9 @@ class SpiritTree : Script {
         }
 
         interfaceOption(id = "spirit_tree:text") { (_, itemSlot) ->
+            if (!questCompleted("tree_gnome_village") || !questCompleted(get("spirit_tree_required_quest", "tree_gnome_village"))) {
+                return@interfaceOption
+            }
             val enum = EnumDefinitions.get("spirit_tree_destination_tiles")
             val map = enum.map ?: return@interfaceOption
             var count = 0
@@ -114,6 +121,12 @@ class SpiritTree : Script {
             Teleport.teleport(this, Tile(map[index] as Int), "spirit_tree", sound = false)
             message("You feel at one with the spirit tree.")
         }
+    }
+
+    private fun canTravel(player: Player, tree: String): Boolean {
+        val requiredQuest = if (tree == "spirit_tree_stronghold") "the_grand_tree" else "tree_gnome_village"
+        player["spirit_tree_required_quest"] = requiredQuest
+        return player.questCompleted("tree_gnome_village") && player.questCompleted(requiredQuest)
     }
 
     /**

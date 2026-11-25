@@ -131,6 +131,7 @@ combat_def = "guard"
 
 [khazard_warlord_underground_pass]
 id = 477
+respawn_delay = 50
 hitpoints = 1700
 att = 75
 str = 78
@@ -141,7 +142,7 @@ examine = "He looks real nasty, smells bad too."
 drop_table = "khazard_warlord"
 max_hit_crush = 100
 combat_def = "khazard_warlord"
-hunt_mode = "cowardly"
+hunt_mode = "tree_gnome_village_warlord"
 
 [child_underground_pass_3]
 id = 6334
