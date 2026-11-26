@@ -87,6 +87,7 @@ tasks {
             }
             exclude("world/gregs/voidps/engine/log/**")
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
+            exclude(dependency("io.ktor:ktor-serialization-kotlinx-json.*:.*"))
         }
         if (db) {
             archiveBaseName.set("void-server-db-$version")

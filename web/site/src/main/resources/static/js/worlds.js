@@ -67,9 +67,13 @@ window.voidFormatRate = voidFormatRate;
 window.voidFormatUptime = voidFormatUptime;
 
 // A web server's base URL without trailing slashes, assuming http:// when no scheme was given;
-// null when it isn't a usable URL.
+// "/" means the server these pages came from; null when it isn't a usable URL.
 function voidWebBase(address) {
-  var value = String(address || '').trim().replace(/\/+$/, '');
+  var value = String(address || '').trim();
+  if (value === '/') {
+    return window.location.origin;
+  }
+  value = value.replace(/\/+$/, '');
   if (!value) {
     return null;
   }
