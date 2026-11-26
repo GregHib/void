@@ -1,0 +1,7 @@
+[catapult_x]
+id = 156
+format = "int"
+
+[catapult_y]
+id = 157
+format = "int"

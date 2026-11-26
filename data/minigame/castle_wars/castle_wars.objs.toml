@@ -73,6 +73,12 @@ id = 36481
 [castle_wars_catapult_saradomin]
 id = 4382
 
+[castle_wars_catapult_saradomin_broken]
+id = 4386
+
+[castle_wars_catapult_saradomin_burning]
+id = 4905
+
 [castle_wars_ladder_up_blue]
 id = 36347
 
@@ -197,6 +203,12 @@ id = 36540
 [castle_wars_catapult_zamorak]
 id = 4381
 
+[castle_wars_catapult_zamorak_burning]
+id = 4904
+
+[castle_wars_catapult_zamorak_broken]
+id = 4385
+
 [castle_wars_saradomin_main_door_r_opened]
 id = 4425
 examine = "Big and sturdy to keep others out."
@@ -228,6 +240,18 @@ examine = "Big and sturdy to keep others out."
 [castle_wars_zamorak_main_door_l_opened]
 id = 4430
 examine = "Big and sturdy to keep others out."
+
+[castle_wars_saradomin_broken_door_l]
+id = 4431
+
+[castle_wars_saradomin_broken_door_r]
+id = 4432
+
+[castle_wars_zamorak_broken_door_l]
+id = 4433
+
+[castle_wars_zamorak_broken_door_r]
+id = 4434
 
 [castle_wars_saradomin_side_door_closed]
 id = 4465

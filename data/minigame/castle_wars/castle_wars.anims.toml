@@ -1,0 +1,41 @@
+[castle_wars_banner]
+id = 1430
+
+[castle_wars_portal_glow]
+id = 1433
+
+[castle_wars_catapult_ready]
+id = 1656
+
+[castle_wars_catapult_release]
+id = 2129
+
+[castle_wars_ballista_setup]
+id = 2130
+
+[castle_wars_ballista_fire]
+id = 4871
+
+[castle_wars_ballista_ready]
+id = 4872
+
+[castle_wars_player_place_ballista]
+id = 4873
+
+[castle_wars_player_place_flare]
+id = 4874
+
+[castle_wars_catapult_impact]
+id = 4891
+
+[castle_wars_flare_spotanim]
+id = 4910
+
+[castle_wars_catapult_projanim]
+id = 4911
+
+[castle_wars_ballista_death]
+id = 4968
+
+[castle_wars_attack_door]
+id = 9649

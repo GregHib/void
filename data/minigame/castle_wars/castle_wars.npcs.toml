@@ -1,4 +1,4 @@
-[lanthus_castle_wars]
+[lanthus]
 id = 1526
 examine = "He runs this place."
 
@@ -27,15 +27,21 @@ id = 5055
 [castle_wars_barricade_saradomin]
 id = 1532
 retaliates = false
+hitpoints = 500
+immune_poison = true
 
 [castle_wars_barricade_saradomin_burning]
 id = 1533
 retaliates = false
+immune_poison = true
 
 [castle_wars_barricade_zamorak]
 id = 1534
 retaliates = false
+hitpoints = 500
+immune_poison = true
 
 [castle_wars_barricade_zamorak_burning]
 id = 1535
 retaliates = false
+immune_poison = true

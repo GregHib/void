@@ -3466,7 +3466,7 @@ max_range = 20
 wander_range = 0
 max_range = 20
 
-[.lanthus_castle_wars]
+[.lanthus]
 wander_range = 0
 
 #[.1532]

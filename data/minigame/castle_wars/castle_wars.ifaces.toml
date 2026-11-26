@@ -4,6 +4,20 @@ type = "dialogue_box"
 
 [castle_wars_shopside]
 id = 56
+type = "overlay_tab"
+
+[castle_wars_catapult_controls]
+id = 54
+type = "overlay_tab"
+
+[.close]
+id = 3
+
+[.fire]
+id = 8
+
+[castle_wars_shop]
+id = 60
 
 [castle_wars_status_overlay]
 id = 57

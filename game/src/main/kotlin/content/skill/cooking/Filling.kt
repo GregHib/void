@@ -10,7 +10,7 @@ import world.gregs.voidps.type.Tile
 class Filling : Script {
 
     init {
-        itemOnObjectOperate(obj = "sink*,fountain*,well*,water_trough*,pump_and_drain*,pump_and_tub*,water_barrel_*,waterpump_*") { (target, item) ->
+        itemOnObjectOperate(obj = "sink*,fountain*,well*,water_trough*,pump_and_drain*,pump_and_tub*,water_barrel_*,waterpump_*,castle_wars_tap") { (target, item) ->
             // The manor fountain has quest-specific piranha/poison handling instead of drinkable water.
             if (target.id == "fountain" && target.tile == Tile(3087, 3334)) return@itemOnObjectOperate
             if (!item.def.contains("full")) {

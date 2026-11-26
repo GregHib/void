@@ -1,0 +1,16 @@
+[castle_wars_catapult_grid_refresh]
+id = 3430
+
+[castle_wars_catapult_grid_set_colour]
+id = 3431
+params = [
+    "x",
+    "y",
+    "colour"
+]
+
+[castle_wars_catapult_radio]
+id = 3434
+params = [
+    "view"
+]

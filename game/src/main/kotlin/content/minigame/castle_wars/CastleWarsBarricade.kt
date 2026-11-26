@@ -1,5 +1,6 @@
 package content.minigame.castle_wars
 
+import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -10,6 +11,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.stepAway
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class CastleWarsBarricade : Script {
@@ -43,11 +45,23 @@ class CastleWarsBarricade : Script {
         }
 
         itemOnNPCOperate("explosive_potion", "castle_wars_barricade_*") { (target) ->
+            if (target.id.endsWith("burning")) {
+                // TODO message?
+                return@itemOnNPCOperate
+            }
             // TODO what if own teams?
             // TODO gfx + message
             if (NPCs.remove(target)) {
                 inventory.remove("explosive_potion")
             }
+        }
+
+        itemOnNPCOperate("bucket_of_water", "castle_wars_barricade_*_burning") { (target) ->
+            if (inventory.replace("bucket_of_water", "bucket")) {
+                target.clearTransform()
+            }
+            // TODO gfx + message
+            // TODO what if enemies?
         }
     }
 }

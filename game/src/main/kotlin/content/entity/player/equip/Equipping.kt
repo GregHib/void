@@ -43,6 +43,22 @@ class Equipping : Script {
                 message("You should return the falcon to Matthias instead of just dropping it.")
                 return@itemOption
             }
+            if (item.id.startsWith("saradomin_team")) {
+                if (tile in Areas["castle_wars"]) {
+                    message("You can't unequip this during a game.") // TODO proper message/behaviour
+                } else {
+                    equipment.clear(slot)
+                }
+                return@itemOption
+            }
+            if (item.id.startsWith("zamorak_team")) {
+                if (tile in Areas["castle_wars"]) {
+                    message("You can't unequip this during a game.") // TODO proper message/behaviour
+                } else {
+                    equipment.clear(slot)
+                }
+                return@itemOption
+            }
             if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
                 options.remove("Whack")
             }
@@ -68,22 +84,6 @@ class Equipping : Script {
         if (item.id.contains("_hasta") && player.barbarianTraining("hasta") < BarbarianTraining.DONE) {
             // TODO proper message
             player.message("You need to have learned Barbarian spearmaking to wield this.")
-            return
-        }
-        if (item.id.startsWith("saradomin_team")) {
-            if (player.tile in Areas["castle_wars"]) {
-                player.message("You can't unequip this during a game.") // TODO proper message/behaviour
-            } else {
-                player.equipment.clear(slot)
-            }
-            return
-        }
-        if (item.id.startsWith("zamorak_team")) {
-            if (player.tile in Areas["castle_wars"]) {
-                player.message("You can't unequip this during a game.") // TODO proper message/behaviour
-            } else {
-                player.equipment.clear(slot)
-            }
             return
         }
         val blocked: Set<EquipSlot>? = player["blocked_equip_slots"]

@@ -1,3 +1,10 @@
 spawns = [
+    # Saradomin
     { id = "tinderbox", x = 2423, y = 3080, level = 1 },
+    { id = "bucket", x = 2428, y = 3080 },
+    { id = "bucket", x = 2428, y = 3079 },
+    # Zamorak
+    { id = "tinderbox", x = 2376, y = 3127, level = 1 },
+    { id = "bucket", x = 2371, y = 3128 },
+    { id = "bucket", x = 2371, y = 3127 },
 ]
