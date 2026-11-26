@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
@@ -129,7 +129,7 @@ class Maze : Script {
     }
 
     private suspend fun Player.leaveMaze() {
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
         jingle("maze_complete")
     }
 

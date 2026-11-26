@@ -5,7 +5,7 @@ import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.poof
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
@@ -337,7 +337,7 @@ class EvilTwin : Script {
         clearState()
         openTabs()
         clearMinimap()
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
     }
 
     private suspend fun Player.houseDialogue() {

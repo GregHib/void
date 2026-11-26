@@ -88,7 +88,7 @@ fun Player.onExitInterrupt(block: suspend Player.() -> Unit) {
  * interrupt during take-off can't repeat the caller's one-time effects, then cleared
  * once the trip home is inevitable.
  */
-suspend fun Player.returnHome(vararg rewards: String) {
+suspend fun Player.randEventTeleHome(vararg rewards: String) {
     anim("teleport_modern")
     sound("teleport")
     gfx("teleport_modern")

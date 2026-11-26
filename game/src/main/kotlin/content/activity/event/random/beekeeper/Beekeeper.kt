@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -164,7 +164,7 @@ class Beekeeper : Script {
 
     private suspend fun Player.leaveApiary() {
         clearState()
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
     }
 
     private suspend fun Player.fail() {

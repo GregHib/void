@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -190,9 +190,9 @@ class CapnArnav : Script {
         val owed = get("arnav_gift_owed", false)
         clearState()
         if (owed) {
-            returnHome("random_event_gift")
+            randEventTeleHome("random_event_gift")
         } else {
-            returnHome()
+            randEventTeleHome()
         }
     }
 

@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Hysterics
@@ -164,7 +164,7 @@ class QuizMaster : Script {
         clearAnim() // stand up out of the contestant's seat
         clear("quiz_answer")
         clear("quiz_correct")
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
         message("Welcome back.")
     }
 

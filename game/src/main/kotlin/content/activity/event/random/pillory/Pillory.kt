@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -105,7 +105,7 @@ class Pillory : Script {
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
     }
 
     companion object {

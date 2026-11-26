@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -268,7 +268,7 @@ class Gravedigger : Script {
         clear("gravedigger_started")
         openTabs()
         clearMinimap()
-        returnHome(*rewards)
+        randEventTeleHome(*rewards)
     }
 
     private fun coffinName(index: Int) = if (index == 0) "coffin" else "coffin_${index + 1}"

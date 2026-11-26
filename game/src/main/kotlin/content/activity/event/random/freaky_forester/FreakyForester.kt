@@ -3,7 +3,7 @@ package content.activity.event.random.freaky_forester
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.combat.killer
 import content.entity.player.dialogue.Happy
@@ -69,7 +69,7 @@ class FreakyForester : Script {
                 // TODO proper message
                 option("Yes I'm sure.") {
                     clearState()
-                    returnHome()
+                    randEventTeleHome()
                 }
                 option("No, I'll stick around.")
             }
@@ -115,7 +115,7 @@ class FreakyForester : Script {
     private suspend fun Player.leaveForest() {
         rewardCostumePoint("lederhosen")
         clearState()
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
     }
 
     private fun Player.clearState() {

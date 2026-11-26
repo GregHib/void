@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.skillLamp
@@ -141,7 +141,7 @@ class SurpriseExam : Script {
         clear("surprise_exam_answer")
         clear("surprise_exam_correct")
         clear("surprise_exam_door")
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
         jingle("surprise_exam_passed")
     }
 

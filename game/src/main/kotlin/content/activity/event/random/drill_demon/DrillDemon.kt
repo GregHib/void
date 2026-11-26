@@ -4,7 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
 import content.activity.event.random.onExitInterrupt
-import content.activity.event.random.returnHome
+import content.activity.event.random.randEventTeleHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
@@ -127,7 +127,7 @@ class DrillDemon : Script {
         clear("drill_demon_ready")
         clear("drill_demon_task")
         clear("drill_demon_correct")
-        returnHome("random_event_gift")
+        randEventTeleHome("random_event_gift")
     }
 
     private data class Exercise(val anim: String, val sound: String, val order: String, val sign: String, val action: String)
