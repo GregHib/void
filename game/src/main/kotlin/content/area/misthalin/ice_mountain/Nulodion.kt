@@ -12,8 +12,7 @@ import content.entity.player.dialogue.type.items
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
-import content.skill.ranged.weapon.CANNON_PARTS
-import content.skill.ranged.weapon.returnCannon
+import content.skill.ranged.weapon.DwarfMulticannon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -130,7 +129,7 @@ class Nulodion : Script {
             player<Neutral>("...")
             return
         }
-        if (inventory.spaces < CANNON_PARTS.size) {
+        if (inventory.spaces < DwarfMulticannon.CANNON_PARTS.size) {
             npc<Neutral>("That's unfortunate! But don't worry, I can sort you out if you free up some inventory space...")
             return
         }
@@ -144,7 +143,7 @@ class Nulodion : Script {
         clear("cannon_lost_parts")
         clear("cannon_lost_balls")
 
-        returnCannon(parts, balls)
+        DwarfMulticannon.giveBackCannon(this, parts, balls)
         items("cannon_barrels", "cannon_furnace", "The dwarf gives you a new cannon.")
         npc<Neutral>("Keep that quiet or I'll be in real trouble!")
         player<Happy>("Thanks a lot.")
@@ -154,6 +153,6 @@ class Nulodion : Script {
         /**
          * A cannon bought whole comes with the mould and manual, hence the six free slots asked for.
          */
-        private val PURCHASE = CANNON_PARTS + listOf("ammo_mould", "instruction_manual")
+        private val PURCHASE = DwarfMulticannon.CANNON_PARTS + listOf("ammo_mould", "instruction_manual")
     }
 }

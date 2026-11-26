@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.Transaction
@@ -41,32 +40,6 @@ import world.gregs.voidps.type.random
 import kotlin.math.abs
 import kotlin.math.atan2
 
-/**
- * The four pieces a dwarf multicannon is carried and assembled in, in build order.
- */
-internal val CANNON_PARTS = listOf("cannon_base", "cannon_stand", "cannon_barrels", "cannon_furnace")
-
-/**
- * Hands a dismantled cannon back - the first [parts] pieces plus any loaded cannonballs. It all
- * goes to the inventory in one transaction, or all to the bank when it won't fit, rather than
- * splitting a cannon across the two.
- */
-internal fun Player.returnCannon(parts: Int, balls: Int) {
-    if (inventory.transaction { addCannon(parts, balls) }) {
-        return
-    }
-    bank.transaction { addCannon(parts, balls) }
-    message("Your cannon was sent to your bank.")
-}
-
-private fun Transaction.addCannon(parts: Int, balls: Int) {
-    for (part in CANNON_PARTS.take(parts)) {
-        add(part)
-    }
-    if (balls > 0) {
-        add("cannonball", balls)
-    }
-}
 
 /**
  * The dwarf multicannon assembles from four parts, then rotates one octant per tick, firing a
@@ -316,7 +289,7 @@ class DwarfMulticannon(private val lineValidator: LineValidator) : Script {
             return
         }
 
-        returnCannon(built, balls)
+        giveBackCannon(this, built, balls)
     }
 
     private fun Player.owns(target: GameObject) = get("cannon_tile", -1) == target.tile.id
@@ -356,7 +329,7 @@ class DwarfMulticannon(private val lineValidator: LineValidator) : Script {
         return difference <= Settings["world.objs.cannon.arcDegrees", 30.0]
     }
 
-    private companion object {
+    companion object {
         private val OCTANTS = Direction.clockwise
 
         private val ROTATION_ANIMS = arrayOf(
@@ -399,5 +372,33 @@ class DwarfMulticannon(private val lineValidator: LineValidator) : Script {
             CollisionFlag.OBJECT or
             CollisionFlag.BLOCK_PLAYERS or
             CollisionFlag.BLOCK_NPCS
+
+
+        /**
+         * The four pieces a dwarf multicannon is carried and assembled in, in build order.
+         */
+        val CANNON_PARTS = listOf("cannon_base", "cannon_stand", "cannon_barrels", "cannon_furnace")
+
+        /**
+         * Hands a dismantled cannon back - the first [parts] pieces plus any loaded cannonballs. It all
+         * goes to the inventory in one transaction, or all to the bank when it won't fit, rather than
+         * splitting a cannon across the two.
+         */
+        fun giveBackCannon(player: Player, parts: Int, balls: Int) {
+            if (player.inventory.transaction { addCannon(parts, balls) }) {
+                return
+            }
+            player.bank.transaction { addCannon(parts, balls) }
+            player.message("Your cannon was sent to your bank.")
+        }
+
+        private fun Transaction.addCannon(parts: Int, balls: Int) {
+            for (part in CANNON_PARTS.take(parts)) {
+                add(part)
+            }
+            if (balls > 0) {
+                add("cannonball", balls)
+            }
+        }
     }
 }
