@@ -844,32 +844,6 @@ examine = "I'm sure the animal is glad its fur was put to good use."
 id = 4250
 examine = "I'm sure the animal is glad its fur was put to good use."
 
-[large_door_22_opened]
-id = 4425
-examine = "Big and sturdy to keep others out."
-
-[large_door_22_closed]
-id = 4423
-examine = "Big and sturdy to keep others out."
-
-[large_door_23_opened]
-id = 4426
-examine = "Big and sturdy to keep others out."
-
-[large_door_23_closed]
-id = 4424
-examine = "Big and sturdy to keep others out."
-
-[large_door_26_closed]
-id = 4427
-opened = "large_door_22_opened"
-examine = "Big and sturdy to keep others out."
-
-[large_door_27_closed]
-id = 4428
-opened = "large_door_23_opened"
-examine = "Big and sturdy to keep others out."
-
 [throne_room_door_opened]
 id = 4673
 

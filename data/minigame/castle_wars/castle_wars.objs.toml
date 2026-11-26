@@ -45,3 +45,210 @@ examine = "A portal to join the Zamorak team."
 [rock_castle_wars]
 id = 19131
 examine = "A big rock."
+
+[castle_wars_saradomin_quit]
+id = 4406
+
+[castle_wars_saradomin_spawn_ladder]
+id = 6280
+
+[castle_wars_counter_bandages_blue]
+id = 36579
+
+[castle_wars_saradomin_spawn_door]
+id = 4469
+
+[castle_wars_ladder_down_blue]
+id = 36349
+
+[castle_wars_top_stair]
+id = 4415
+
+[castle_wars_stairs_05_bottom_blue]
+id = 36495
+
+[castle_wars_stairs_03_bottom_blue_mirror_lower]
+id = 36481
+
+[castle_wars_catapult_saradomin]
+id = 4382
+
+[castle_wars_ladder_up_blue]
+id = 36347
+
+[castle_wars_stairs_03_bottom_blue_mirror]
+id = 36480
+
+[castle_wars_saradomin_spawn_trapdoor]
+id = 4471
+
+[castle_wars_stairs_04_bottom_blue_mirror]
+id = 36484
+
+[castle_wars_saradomin_banner_stand]
+id = 4902
+
+[castle_wars_counter_pickaxes_blue]
+id = 36578
+
+[castle_wars_counter_rocks_blue]
+id = 36574
+
+[castle_wars_counter_flare_blue]
+id = 2203
+
+[castle_wars_counter_rope_blue]
+id = 36576
+
+[castle_wars_counter_potions_blue]
+id = 36577
+
+[castle_wars_counter_toolbox_blue]
+id = 36573
+
+[castle_wars_counter_barricades_blue]
+id = 36575
+
+[castle_wars_tap]
+id = 4482
+
+[castle_wars_ladder_to_cellar_directional_saradomin]
+id = 36693
+
+[castle_wars_steping_stone]
+id = 4411
+
+[castle_wars_ballista_dummy]
+id = 5463
+
+[castle_wars_trapdoor]
+id = 36691
+
+[castle_wars_ladder_from_cellar_directional_saradomin]
+id = 36645
+
+[castle_wars_ladder_from_cellar_directional_neutral]
+id = 36644
+
+[castle_wars_ladder_from_cellar_directional_zamorak]
+id = 36646
+
+# Zamorak
+[castle_wars_ladder_to_cellar_directional_zamorak]
+id = 36694
+
+[castle_wars_counter_pickaxes_red]
+id = 36585
+
+[castle_wars_counter_rocks_red]
+id = 36581
+
+[castle_wars_counter_flare_red]
+id = 2207
+
+[castle_wars_counter_rope_red]
+id = 36583
+
+[castle_wars_counter_potions_red]
+id = 36584
+
+[castle_wars_counter_barricades_red]
+id = 36582
+
+[castle_wars_counter_toolbox_red]
+id = 36580
+
+[castle_wars_ladder_up_red]
+id = 36363
+
+[castle_wars_ladder_down_red]
+id = 36365
+
+[castle_wars_stairs_05_bottom_red]
+id = 36532
+
+[castle_wars_stairs_03_bottom_red_mirror]
+id = 36521
+
+[castle_wars_stairs_04_bottom_red_mirror]
+id = 36523
+
+[castle_wars_zamorak_banner_stand]
+id = 4903
+
+[castle_wars_zamorak_spawn_trapdoor]
+id = 4472
+
+[castle_wars_zamorak_spawn_ladder]
+id = 6281
+
+[castle_wars_zamorak_quit]
+id = 4407
+
+[castle_wars_counter_bandages_red]
+id = 36586
+
+[castle_wars_zamorak_spawn_door]
+id = 4470
+
+[castle_wars_stairs_03_bottom_red_mirror_lower]
+id = 36540
+
+[castle_wars_catapult_zamorak]
+id = 4381
+
+[castle_wars_saradomin_main_door_r_opened]
+id = 4425
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_saradomin_main_door_r_closed]
+id = 4423
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_saradomin_main_door_l_opened]
+id = 4426
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_saradomin_main_door_l_closed]
+id = 4424
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_zamorak_main_door_r_closed]
+id = 4427
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_zamorak_main_door_r_opened]
+id = 4429
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_zamorak_main_door_l_closed]
+id = 4428
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_zamorak_main_door_l_opened]
+id = 4430
+examine = "Big and sturdy to keep others out."
+
+[castle_wars_saradomin_side_door_closed]
+id = 4465
+
+[castle_wars_saradomin_side_door_opened]
+id = 4466
+
+[castle_wars_zamorak_side_door_closed]
+id = 4467
+
+[castle_wars_zamorak_side_door_opened]
+id = 4468
+
+[castle_wars_blocked_tunnel_1]
+id = 4437
+
+[castle_wars_blocked_tunnel_2]
+id = 4438
+
+[castle_wars_blocked_tunnel_3]
+id = 4439
+
+[castle_wars_cave_wall_rockslide]
+id = 4448

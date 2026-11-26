@@ -1,0 +1,3 @@
+spawns = [
+    { id = "tinderbox", x = 2423, y = 3080, level = 1 },
+]

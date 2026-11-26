@@ -5,9 +5,11 @@ import content.entity.player.dialogue.type.statement
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.fightStyle
+import content.skill.summoning.isFamiliar
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement

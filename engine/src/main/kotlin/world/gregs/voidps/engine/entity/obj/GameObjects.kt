@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Despawn
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -478,7 +479,7 @@ fun GameObject.remove(ticks: Int = -1, collision: Boolean = true) {
     GameObjects.remove(this, ticks, collision)
 }
 
-fun Player.stepAway(obj: GameObject, tile: Tile = this.tile) {
+fun Player.stepAway(entity: Entity, tile: Tile = this.tile) {
     val steps: StepValidator = get()
     for (dir in Direction.stepAway) {
         if (steps.canTravel(this, dir.delta.x, dir.delta.y)) {
@@ -486,5 +487,5 @@ fun Player.stepAway(obj: GameObject, tile: Tile = this.tile) {
             break
         }
     }
-    set("face_entity", obj)
+    set("face_entity", entity)
 }

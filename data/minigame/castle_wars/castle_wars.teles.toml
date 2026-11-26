@@ -1,0 +1,163 @@
+# Saradomin base
+[castle_wars_stairs_03_bottom_blue_mirror]
+option = "Climb-up"
+tile = { x = 2428, y = 3081, level = 1 }
+to = { x = 2430, y = 3080, level = 2 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2430, y = 3081, level = 2 }
+to = { x = 2427, y = 3081, level = 1 }
+
+[castle_wars_stairs_04_bottom_blue_mirror]
+option = "Climb-up"
+tile = { x = 2425, y = 3076, level = 2 }
+to = { x = 2426, y = 3074, level = 3 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2425, y = 3074, level = 3 }
+to = { x = 2425, y = 3077, level = 2 }
+
+[castle_wars_saradomin_spawn_trapdoor]
+option = "Climb-down"
+tile = { x = 2429, y = 3074, level = 2 }
+to = { x = 2429, y = 3075, level = 1 }
+
+[castle_wars_saradomin_spawn_ladder]
+option = "Climb-up"
+tile = { x = 2429, y = 3074, level = 1 }
+to = { x = 2429, y = 3075, level = 2 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2419, y = 3080, level = 1 }
+to = { x = 2419, y = 3077 }
+
+[castle_wars_stairs_05_bottom_blue]
+option = "Climb-up"
+tile = { x = 2419, y = 3078 }
+to = { x = 2420, y = 3080, level = 1 }
+
+[castle_wars_stairs_03_bottom_blue_mirror_lower]
+option = "Climb-up"
+tile = { x = 2417, y = 3077 }
+to = { x = 2416, y = 3075 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2417, y = 3075 }
+to = { x = 2417, y = 3078 }
+
+[castle_wars_ladder_down_blue]
+option = "Climb-down"
+tile = { x = 2421, y = 3073, level = 1 }
+to = { x = 2421, y = 3074 }
+
+[castle_wars_ladder_up_blue]
+option = "Climb-up"
+tile = { x = 2421, y = 3073 }
+to = { x = 2421, y = 3074, level = 1 }
+
+# Cellar
+[castle_wars_ladder_to_cellar_directional_saradomin]
+option = "Climb-down"
+tile = { x = 2430, y = 3082 }
+to = { x = 2430, y = 9483 }
+
+[castle_wars_trapdoor]
+option = "Climb-down"
+tile = { x = 2399, y = 3099 }
+to = { x = 2399, y = 9498 }
+
+[castle_wars_trapdoor]
+option = "Climb-down"
+tile = { x = 2400, y = 3108 }
+to = { x = 2400, y = 9507 }
+
+[castle_wars_ladder_from_cellar_directional_saradomin]
+option = "Climb-up"
+tile = { x = 2430, y = 9482 }
+to = { x = 2430, y = 3081 }
+
+[castle_wars_ladder_from_cellar_directional_nutral]
+option = "Climb-up"
+tile = { x = 2399, y = 9499 }
+to = { x = 2399, y = 3100 }
+
+[castle_wars_ladder_from_cellar_directional_neutral]
+option = "Climb-up"
+tile = { x = 2400, y = 9508 }
+to = { x = 2400, y = 3107 }
+
+[castle_wars_ladder_from_cellar_directional_zamorak]
+option = "Climb-up"
+tile = { x = 2369, y = 9525 }
+to = { x = 2369, y = 3126 }
+
+# Zamorak base
+[castle_wars_ladder_to_cellar_directional_zamorak]
+option = "Climb-down"
+tile = { x = 2369, y = 3125 }
+to = { x = 2369, y = 9524 }
+
+[castle_wars_ladder_up_red]
+option = "Climb-up"
+tile = { x = 2378, y = 3134 }
+to = { x = 2378, y = 3133, level = 1 }
+
+[castle_wars_ladder_down_red]
+option = "Climb-down"
+tile = { x = 2378, y = 3134, level = 1 }
+to = { x = 2378, y = 3133 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2380, y = 3127, level = 1 }
+to = { x = 2380, y = 3130 }
+
+[castle_wars_stairs_05_bottom_red]
+option = "Climb-up"
+tile = { x = 2380, y = 3129 }
+to = { x = 2379, y = 3127, level = 1 }
+
+[castle_wars_stairs_03_bottom_red_mirror]
+option = "Climb-up"
+tile = { x = 2371, y = 3126, level = 1 }
+to = { x = 2369, y = 3127, level = 2 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2369, y = 3126, level = 2 }
+to = { x = 2372, y = 3126, level = 1 }
+
+[castle_wars_stairs_04_bottom_red_mirror]
+option = "Climb-up"
+tile = { x = 2374, y = 3131, level = 2 }
+to = { x = 2373, y = 3133, level = 3 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2374, y = 3133, level = 3 }
+to = { x = 2374, y = 3130, level = 2 }
+
+[castle_wars_zamorak_spawn_trapdoor]
+option = "Climb-down"
+tile = { x = 2370, y = 3133, level = 2 }
+to = { x = 2370, y = 3132, level = 1 }
+to = { x = 2370, y = 3132, level = 1 }
+
+[castle_wars_zamorak_spawn_ladder]
+option = "Climb-up"
+tile = { x = 2370, y = 3133, level = 1 }
+to = { x = 2370, y = 3132, level = 2 }
+
+[castle_wars_stairs_03_bottom_red_mirror_lower]
+option = "Climb-up"
+tile = { x = 2382, y = 3130 }
+to = { x = 2383, y = 3132 }
+
+[castle_wars_top_stair]
+option = "Climb-down"
+tile = { x = 2382, y = 3132 }
+to = { x = 2382, y = 3129 }

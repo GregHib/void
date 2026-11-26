@@ -70,6 +70,22 @@ class Equipping : Script {
             player.message("You need to have learned Barbarian spearmaking to wield this.")
             return
         }
+        if (item.id.startsWith("saradomin_team")) {
+            if (player.tile in Areas["castle_wars"]) {
+                player.message("You can't unequip this during a game.") // TODO proper message/behaviour
+            } else {
+                player.equipment.clear(slot)
+            }
+            return
+        }
+        if (item.id.startsWith("zamorak_team")) {
+            if (player.tile in Areas["castle_wars"]) {
+                player.message("You can't unequip this during a game.") // TODO proper message/behaviour
+            } else {
+                player.equipment.clear(slot)
+            }
+            return
+        }
         val blocked: Set<EquipSlot>? = player["blocked_equip_slots"]
         if (blocked != null && (blocked.contains(item.slot) || (blocked.contains(EquipSlot.Shield) && item.type == EquipType.TwoHanded))) {
             player.message(player["blocked_equip_message", "You can't equip that here."])

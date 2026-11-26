@@ -15,11 +15,13 @@ import content.skill.magic.spell.spell
 import content.skill.melee.weapon.combatStyle
 import content.skill.ranged.ammo
 import content.skill.slayer.categories
+import content.skill.summoning.isFamiliar
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -56,6 +58,12 @@ object Target {
                     return false
                 }
             }
+            if (source is Player && source.tile in Areas["castle_wars"] && target.isFamiliar && target.owner?.equipped(EquipSlot.Cape) == source.equipped(EquipSlot.Cape)) {
+                // https://youtu.be/yWkyD0WOJK8?t=254
+                val team = source.equipped(EquipSlot.Cape).id.removeSuffix("_team_cape")
+                source.message("${team.replaceFirstChar { char -> char.uppercase() }} wants you to kill your enemies' familiars instead!")
+                return false
+            }
             if ((source.spell == "bind" || source.spell == "snare" || source.spell == "entangle") && target.id.endsWith("_impling")) {
                 return true
             }
@@ -89,6 +97,16 @@ object Target {
             return duelAttackable(duel, source, target, message)
         }
         if (source is Player && target is Player) {
+            if (source.tile in Areas["castle_wars"]) {
+                if (target.equipped(EquipSlot.Cape) == source.equipped(EquipSlot.Cape)) {
+                    // https://youtu.be/UUiSohxhRuw?t=94
+                    val team = source.equipped(EquipSlot.Cape).id.removeSuffix("_team_cape")
+                    source.message("${team.replaceFirstChar { char -> char.uppercase() }} wants you to kill your enemies!")
+                    return false
+                } else {
+                    return true
+                }
+            }
             if (!Settings["combat.pvp", true]) {
                 if (message) source.message("Player-vs-player has been disabled in this world.")
                 return false

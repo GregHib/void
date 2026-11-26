@@ -2,10 +2,17 @@
 id = 55
 type = "dialogue_box"
 
-[castlewars_shopside]
+[castle_wars_shopside]
 id = 56
 
-[castlewars_status_overlay]
+[castle_wars_status_overlay]
 id = 57
 type = "dialogue_box"
 
+[castle_wars_status_overlay_saradomin]
+id = 58
+type = "game_screen_overlay"
+
+[castle_wars_status_overlay_zamorak]
+id = 59
+type = "game_screen_overlay"

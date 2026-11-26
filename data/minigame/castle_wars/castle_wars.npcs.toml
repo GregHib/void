@@ -23,3 +23,19 @@ examine = "An ogre hunting chompies."
 
 [assistant_marrow_castle_wars_2]
 id = 5055
+
+[castle_wars_barricade_saradomin]
+id = 1532
+retaliates = false
+
+[castle_wars_barricade_saradomin_burning]
+id = 1533
+retaliates = false
+
+[castle_wars_barricade_zamorak]
+id = 1534
+retaliates = false
+
+[castle_wars_barricade_zamorak_burning]
+id = 1535
+retaliates = false
