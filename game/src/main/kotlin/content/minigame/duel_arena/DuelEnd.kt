@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.attackers
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
-import content.minigame.duel_arena.DuelArena.Companion.returnItems
+import content.minigame.duel_arena.DuelArena.Companion.duelReturnItems
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.summoning.dismissFamiliar
 import world.gregs.voidps.engine.Script
@@ -72,7 +72,7 @@ class DuelEnd : Script {
         }
 
         interfaceClosed("stake_victory") {
-            returnItems(winnings)
+            duelReturnItems(winnings)
             DuelArena.save(this)
         }
     }
@@ -131,7 +131,7 @@ class DuelEnd : Script {
                 it.interfaces.close("duel2_side")
                 it.interfaces.open("inventory")
                 it.otherStake.clear()
-                it.returnItems(it.stake)
+                it.duelReturnItems(it.stake)
             }
             if (duel.staked) {
                 DuelArena.save(player, opponent)
@@ -181,7 +181,7 @@ class DuelEnd : Script {
                     continue
                 }
                 logger.warn { "Duel stake transfer failed ${winner.name} ${loser.name} ${stake.items.toList()}" }
-                winner.returnItems(stake)
+                winner.duelReturnItems(stake)
             }
             for (player in listOf(winner, loser)) {
                 player.otherStake.clear()

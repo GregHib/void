@@ -41,11 +41,11 @@ class DuelArena : Script {
                 returned = true
             }
             if (inventories.contains("dueloffer") && !stake.isEmpty()) {
-                returnItems(stake)
+                duelReturnItems(stake)
                 returned = true
             }
             if (inventories.contains("duelwinnings") && !winnings.isEmpty()) {
-                returnItems(winnings)
+                duelReturnItems(winnings)
                 returned = true
             }
             if (returned) {
@@ -61,7 +61,7 @@ class DuelArena : Script {
         /**
          * Moves everything in [inventory] to the player's inventory, falling back to their bank
          */
-        fun Player.returnItems(inventory: Inventory) {
+        fun Player.duelReturnItems(inventory: Inventory) {
             var banked = false
             for (index in inventory.indices) {
                 val item = inventory[index]
