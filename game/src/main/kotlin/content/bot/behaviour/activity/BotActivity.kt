@@ -9,6 +9,7 @@ import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotLoadout
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadout.Loadout
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
@@ -25,9 +26,15 @@ data class BotActivity(
     override val actions: List<BotAction> = emptyList(),
     override val reactive: List<BotAction> = emptyList(),
     override val produces: Set<String> = emptySet(),
+    val prefer: List<Condition> = emptyList(),
     val boundArea: String? = null,
     val boundLoadout: String? = null,
 ) : Behaviour {
+
+    /**
+     * Likelihood of this activity being picked, increased by [bonus] for each [prefer] condition [player] meets.
+     */
+    fun weight(player: Player, bonus: Int): Int = 1 + prefer.count { it.check(player) } * bonus
 
     /**
      * The loadout setup requirement which is replaced with concrete items when bound to a bot.

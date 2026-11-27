@@ -62,10 +62,10 @@ internal fun loadNavigationShortcuts(templatePaths: List<String>, shortcutPaths:
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot activity") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, _, timeout, requires, setup, actions, reactive, produces ->
+        load(paths) { id, template, fields, _, timeout, requires, prefer, setup, actions, reactive, produces ->
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, 1, timeout, requires, setup, actions, reactive, produces))
+                fragments.add(Fragment(id, template, fields, 1, timeout, requires, prefer, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 activities[id] = BotActivity(
@@ -76,6 +76,7 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     actions = ActionParser.parse(actions, debug),
                     reactive = ActionParser.parse(reactive, debug),
                     produces = produces,
+                    prefer = Condition.parse(prefer, debug),
                 ).withLoadoutRequirement()
             }
         }
@@ -104,10 +105,11 @@ private fun <T : Behaviour> T.noLoadouts(): T {
 private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot setup") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, reactive, produces ->
+        load(paths) { id, template, fields, weight, timeout, requires, prefer, setup, actions, reactive, produces ->
+            require(prefer.isEmpty()) { "Prefer is only supported in activities, found in '$id' ${exception()}." }
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, reactive, produces))
+                fragments.add(Fragment(id, template, fields, weight, timeout, requires, prefer, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 val resolver = Resolver(
@@ -139,10 +141,11 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
 private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot shortcut") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, reactive, produces ->
+        load(paths) { id, template, fields, weight, timeout, requires, prefer, setup, actions, reactive, produces ->
+            require(prefer.isEmpty()) { "Prefer is only supported in activities, found in '$id' ${exception()}." }
             if (template != null) {
                 requireNotNull(fields) { "No fields found for $id ${exception()}" }
-                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, reactive, produces))
+                fragments.add(Fragment(id, template, fields, weight, timeout, requires, prefer, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 shortcuts.add(
@@ -167,7 +170,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
     }
 }
 
-private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
+private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
     for (path in paths) {
         Config.fileReader(path) {
             while (nextSection()) {
@@ -177,6 +180,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 var value = 1
                 var timeout = TimeUnit.MINUTES.toTicks(1)
                 val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                val prefer = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                 val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
@@ -185,6 +189,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                     when (val key = key()) {
                         "template" -> template = string()
                         "requires" -> requirements(requires)
+                        "prefer" -> requirements(prefer)
                         "setup" -> requirements(setup)
                         "actions" -> actions(actions)
                         "reactive" -> actions(reactive)
@@ -200,7 +205,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 if (fields != null && template == null) {
                     error("Found fields but no template for $id in ${exception()}")
                 }
-                block.invoke(this, id, template, fields, value, timeout, requires, setup, actions, reactive, produces)
+                block.invoke(this, id, template, fields, value, timeout, requires, prefer, setup, actions, reactive, produces)
             }
         }
     }
@@ -214,6 +219,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                 while (nextSection()) {
                     val id = section()
                     val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                    val prefer = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                     val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
@@ -221,6 +227,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
+                            "prefer" -> requirements(prefer)
                             "setup" -> requirements(setup)
                             "actions" -> actions(actions)
                             "reactive" -> actions(reactive)
@@ -228,7 +235,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, reactive, produces)
+                    templates[id] = Template(requires, prefer, setup, actions, reactive, produces)
                 }
             }
         }
@@ -281,6 +288,7 @@ private data class Fragment(
     val int: Int,
     val timeout: Int,
     val requires: List<Pair<String, List<Map<String, Any>>>>,
+    val prefer: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
     val reactive: List<Pair<String, Map<String, Any>>>,
@@ -294,6 +302,7 @@ private data class Fragment(
         actions = resolveActions(template.actions, actions),
         reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
+        prefer = resolveRequirements(template.prefer, prefer),
     )
 
     private fun resolve(set: Set<String>) = set.map { value ->
@@ -396,6 +405,7 @@ private data class Fragment(
 
 private data class Template(
     val requires: List<Pair<String, List<Map<String, Any>>>>,
+    val prefer: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
     val reactive: List<Pair<String, Map<String, Any>>>,
