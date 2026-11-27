@@ -180,7 +180,7 @@ combat_style = "slash"
 
 Role activities use templates from `data/bot/minigame_combat.templates.toml`. Their kit is a PvP loadout (e.g. `pvp_zerker`) from `data/bot/pvp.loadouts.toml`. Slots with several options, such as torva or bandos for `ags_main`, use gear lists from `data/bot/pvp.gear.toml`.
 
-Minigame rules such as respawn tile, item drops and re-provisioning on area entry are set by `AllocationHooks`. Clan Wars uses `ClanWarsHooks`, see [bot-architecture](bot-architecture).
+Bots follow the same death rules as players, so respawn tiles and item drops come from the minigame's own content (e.g. `ClanWarsFreeForAll`). `restock_areas` lists areas which re-provision a role bot when it enters them. `clan_wars_ffa_dangerous` sets `restock_areas = ["clan_wars_teleport"]` so bots that retreat are restocked before walking back in.
 
 ## Spawning
 

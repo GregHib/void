@@ -217,16 +217,4 @@ class WeightedAllocatorTest {
         assertEquals("a", allocator.allocate(emptyList())!!.id)
         assertEquals("b", allocator.allocate(members("a", "a", "a"))!!.id)
     }
-
-    @Test
-    fun `Default hooks do nothing`() {
-        val allocator = CapacityAllocator(AllocationConfig("test"))
-        val bot = member(null)
-
-        assertSame(AllocationHooks.Default, allocator.hooks)
-        assertTrue(allocator.hooks.shouldDropItems(bot.player))
-        assertNull(allocator.hooks.respawnTile(bot))
-        assertFalse(allocator.hooks.shouldRefreshOnAreaEntered(bot, "area"))
-        assertTrue(allocator.hooks.subscribedAreas.isEmpty())
-    }
 }

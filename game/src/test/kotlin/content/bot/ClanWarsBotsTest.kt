@@ -3,15 +3,12 @@ package content.bot
 import WorldTest
 import content.bot.allocation.BotAllocations
 import content.bot.allocation.BotProvisioner
-import content.bot.allocation.ClanWarsHooks
 import content.bot.allocation.WeightedAllocator
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInventorySetup
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -116,7 +113,7 @@ class ClanWarsBotsTest : WorldTest() {
         val manager = scripts.filterIsInstance<BotCommands>().single().manager
         val provisioner = BotProvisioner(manager::activity)
         val seen = mutableSetOf<String>()
-        for (id in listOf(ClanWarsHooks.SAFE, ClanWarsHooks.DANGEROUS)) {
+        for (id in listOf("clan_wars_ffa_safe", "clan_wars_ffa_dangerous")) {
             val allocation = BotAllocations.get(id) as WeightedAllocator
             for (role in allocation.roles) {
                 val player = createPlayer(name = role.id.takeLast(12))
@@ -146,21 +143,8 @@ class ClanWarsBotsTest : WorldTest() {
     }
 
     @Test
-    fun `Dangerous bots drop items, respawn at the portals and restock on retreat`() {
-        val hooks = BotAllocations.get(ClanWarsHooks.DANGEROUS).hooks
-        val bot = Bot(createPlayer())
-        assertTrue(hooks.shouldDropItems(bot.player))
-        assertTrue(hooks.respawnTile(bot)!! in Areas["clan_wars_teleport"])
-        assertTrue(hooks.shouldRefreshOnAreaEntered(bot, "clan_wars_teleport"))
-        assertTrue("clan_wars_teleport" in hooks.subscribedAreas)
-    }
-
-    @Test
-    fun `Safe bots keep items and do not restock on teleport`() {
-        val hooks = BotAllocations.get(ClanWarsHooks.SAFE).hooks
-        val bot = Bot(createPlayer(Areas["clan_wars_ffa_safe_arena"].random()))
-        assertFalse(hooks.shouldDropItems(bot.player))
-        assertTrue(hooks.respawnTile(bot)!! in Areas["clan_wars_teleport"])
-        assertFalse(hooks.shouldRefreshOnAreaEntered(bot, "clan_wars_teleport"))
+    fun `Only dangerous bots restock on teleporting out`() {
+        assertEquals(setOf("clan_wars_teleport"), BotAllocations.get("clan_wars_ffa_dangerous").config.restockAreas)
+        assertTrue(BotAllocations.get("clan_wars_ffa_safe").config.restockAreas.isEmpty())
     }
 }

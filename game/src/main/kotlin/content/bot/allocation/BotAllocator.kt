@@ -16,8 +16,6 @@ sealed class BotAllocator(val config: AllocationConfig) {
     val spawnSeconds: Int
         get() = config.spawnSecondsSetting?.let { Settings[it, config.spawnSeconds] } ?: config.spawnSeconds
 
-    var hooks: AllocationHooks = AllocationHooks.Default
-
     /**
      * The role a newly spawned bot should be given considering the current [members], or null to let it pick activities freely.
      */

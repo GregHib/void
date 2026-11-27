@@ -2,12 +2,10 @@
 
 package content.bot
 
-import content.bot.allocation.AllocationHooks
 import content.bot.allocation.BotAllocations
 import content.bot.allocation.BotAllocator
 import content.bot.allocation.BotProvisioner
 import content.bot.allocation.BotRole
-import content.bot.allocation.ClanWarsHooks
 import content.entity.combat.killer
 import content.quest.questJournal
 import kotlinx.coroutines.*
@@ -81,9 +79,6 @@ class BotCommands(
     private val pending = mutableListOf<Bot>()
 
     init {
-        BotAllocations.register(ClanWarsHooks.SAFE, ClanWarsHooks(dangerous = false))
-        BotAllocations.register(ClanWarsHooks.DANGEROUS, ClanWarsHooks(dangerous = true))
-
         worldTimerStart("bot_allocations") { TimeUnit.SECONDS.toTicks(1) }
 
         worldTimerTick("bot_allocations") {
@@ -101,13 +96,6 @@ class BotCommands(
             val bot = bot
             val allocation = BotAllocations.getOrNull(bot.allocation ?: return@playerDeath) ?: return@playerDeath
             val role = allocation.role(bot.role ?: return@playerDeath) ?: return@playerDeath
-            if (!allocation.hooks.shouldDropItems(this)) {
-                it.dropItems = false
-            }
-            val respawn = allocation.hooks.respawnTile(bot)
-            if (respawn != null) {
-                it.teleport = respawn
-            }
             val account = accountName
             World.queue("respawn_role_$account", initialDelay = 10) {
                 val target = Players.find(account) ?: return@queue
@@ -116,17 +104,13 @@ class BotCommands(
             }
         }
 
-        for (areaId in BotAllocations.subscribedAreas) {
-            entered(areaId) {
-                if (!isBot || dead) return@entered
-                val bot = bot
-                val allocation = BotAllocations.getOrNull(bot.allocation ?: return@entered) ?: return@entered
-                allocation.hooks.onAreaEntered(bot, areaId)
-                val role = allocation.role(bot.role ?: return@entered) ?: return@entered
-                if (allocation.hooks.shouldRefreshOnAreaEntered(bot, areaId)) {
-                    refresh(bot, allocation, role)
-                }
-            }
+        entered("*") { area ->
+            if (!isBot || dead) return@entered
+            val bot = bot
+            val allocation = BotAllocations.getOrNull(bot.allocation ?: return@entered) ?: return@entered
+            if (area.name !in allocation.config.restockAreas) return@entered
+            val role = allocation.role(bot.role ?: return@entered) ?: return@entered
+            refresh(bot, allocation, role)
         }
 
         playerDeath {
@@ -374,7 +358,7 @@ class BotCommands(
     }
 
     /**
-     * Restock a role [bot] after death or a [AllocationHooks.shouldRefreshOnAreaEntered] and restart its role.
+     * Restock a role [bot] after death or on entering one of its allocation's restock areas and restart its role.
      */
     private fun refresh(bot: Bot, allocation: BotAllocator, role: BotRole) {
         provisioner.restore(bot, role, allocation.config.starterItems)

@@ -90,9 +90,9 @@ Allocations decide how many bots spawn and which role each one gets. Rows come f
   - `CapacityAllocator` gives no role, so the bot picks any activity.
   - `WeightedAllocator` holds the `BotRole`s and picks each new bot's role by weight, minimums and maximums.
 - `BotProvisioner` gives a role bot its build levels, loadout and kit. It runs on spawn, and `restore` reapplies the same levels and kit after death or a refresh. It also resets `brew_doses_since_restore` and stops the `just_ate_food` clock.
-- `AllocationHooks` are the per-allocation lifecycle rules for minigames: `shouldDropItems`, `respawnTile`, `subscribedAreas`, `onAreaEntered` and `shouldRefreshOnAreaEntered`. Register them in Kotlin by allocation id with `BotAllocations.register`. Allocations without hooks use `AllocationHooks.Default`.
-  - `ClanWarsHooks` is the example. It respawns bots at `clan_wars_teleport`, only drops items for dangerous bots, and re-provisions dangerous bots on entering `clan_wars_teleport` (games necklace retreat). It is registered in the `BotCommands` init.
-- `BotCommands` handles spawning, death and area entry. It calls the hooks and refreshes role bots.
+- Death rules (item drops, respawn tile) come from the minigame's own content scripts, the same as for players, e.g. `ClanWarsFreeForAll`.
+- `restock_areas` lists areas which re-provision a role bot on entry. `clan_wars_ffa_dangerous` uses `clan_wars_teleport` so bots which retreat with a games necklace are restocked before walking back in.
+- `BotCommands` handles spawning, death and area entry. It refreshes role bots after death and on entering a restock area.
 - Spawning is driven by a single `bot_allocations` world timer. It checks every second and spawns into each allocation that is due and below its target. It stops once no allocation needs spawning.
 
 # Navigation Graph

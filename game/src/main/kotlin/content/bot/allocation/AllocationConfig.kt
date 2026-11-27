@@ -7,6 +7,7 @@ package content.bot.allocation
  * @param refill keep topping up to [count] as bots leave, otherwise stop once [count] have been spawned
  * @param saved whether previously saved bot accounts may be reused (see `bots.spawnSavedChance`)
  * @param starterItems items given to brand-new accounts (and to role bots each time they're provisioned)
+ * @param restockAreas areas which re-provision a role bot on entry (e.g. restocking after teleporting out)
  */
 data class AllocationConfig(
     val id: String,
@@ -18,4 +19,5 @@ data class AllocationConfig(
     val refill: Boolean = false,
     val saved: Boolean = false,
     val starterItems: List<Pair<String, Int>> = emptyList(),
+    val restockAreas: Set<String> = emptySet(),
 )

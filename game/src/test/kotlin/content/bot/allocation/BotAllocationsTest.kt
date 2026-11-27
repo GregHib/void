@@ -38,6 +38,7 @@ class BotAllocationsTest {
         saved = "boolean"
         saved_default = false
         starter_items = "list<pair<string, int>>"
+        restock_areas = "list<string>"
         roles = "list<row>"
 
         [bot_roles]
@@ -340,102 +341,33 @@ class BotAllocationsTest {
     }
 
     @Test
-    fun `Registered hooks are applied to loaded allocators`() {
-        val hooks = object : AllocationHooks {
-            override val subscribedAreas = setOf("lumbridge")
-        }
-        BotAllocations.register("world", hooks)
+    fun `Parse restock areas`() {
         load(
             """
             [bot_allocations.world]
             spawn_areas = ["lumbridge"]
+            restock_areas = ["varrock"]
 
             [bot_allocations.other]
-            spawn_areas = ["varrock"]
-            """,
-        )
-
-        assertSame(hooks, BotAllocations.get("world").hooks)
-        assertSame(AllocationHooks.Default, BotAllocations.get("other").hooks)
-    }
-
-    @Test
-    fun `Registering hooks after loading updates the loaded allocator`() {
-        load(
-            """
-            [bot_allocations.world]
             spawn_areas = ["lumbridge"]
             """,
         )
-        assertSame(AllocationHooks.Default, BotAllocations.get("world").hooks)
 
-        val hooks = object : AllocationHooks {}
-        BotAllocations.register("world", hooks)
-
-        assertSame(hooks, BotAllocations.get("world").hooks)
+        assertEquals(setOf("varrock"), BotAllocations.get("world").config.restockAreas)
+        assertTrue(BotAllocations.get("other").config.restockAreas.isEmpty())
     }
 
     @Test
-    fun `Registered hooks are applied to set allocators`() {
-        val hooks = object : AllocationHooks {}
-        BotAllocations.register("custom", hooks)
-        val custom = CapacityAllocator(AllocationConfig("custom"))
-        val plain = CapacityAllocator(AllocationConfig("plain"))
-
-        BotAllocations.set(listOf(custom, plain))
-
-        assertSame(hooks, custom.hooks)
-        assertSame(AllocationHooks.Default, plain.hooks)
-        assertSame(custom, BotAllocations.get("custom"))
-    }
-
-    @Test
-    fun `Hooks of a proportional allocator are available`() {
-        val hooks = object : AllocationHooks {
-            override fun shouldDropItems(player: world.gregs.voidps.engine.entity.character.player.Player) = false
+    fun `Unknown restock area is an error`() {
+        val exception = assertThrows(IllegalArgumentException::class.java) {
+            load(
+                """
+                [bot_allocations.bad]
+                spawn_areas = ["lumbridge"]
+                restock_areas = ["nowhere"]
+                """,
+            )
         }
-        BotAllocations.register("arena", hooks)
-        val allocator = WeightedAllocator(AllocationConfig("arena"), listOf(BotRole("a", "fight")))
-        BotAllocations.set(listOf(allocator))
-
-        assertFalse(allocator.hooks.shouldDropItems(member(null).player))
-    }
-
-    @Test
-    fun `Subscribed areas combine all registered hooks`() {
-        BotAllocations.register(
-            "a",
-            object : AllocationHooks {
-                override val subscribedAreas = setOf("one", "two")
-            },
-        )
-        BotAllocations.register(
-            "b",
-            object : AllocationHooks {
-                override val subscribedAreas = setOf("two", "three")
-            },
-        )
-        BotAllocations.register("c", AllocationHooks.Default)
-
-        assertEquals(setOf("one", "two", "three"), BotAllocations.subscribedAreas)
-    }
-
-    @Test
-    fun `Clear removes allocations and hooks`() {
-        BotAllocations.register(
-            "a",
-            object : AllocationHooks {
-                override val subscribedAreas = setOf("one")
-            },
-        )
-        BotAllocations.set(listOf(CapacityAllocator(AllocationConfig("a"))))
-
-        BotAllocations.clear()
-
-        assertTrue(BotAllocations.all.isEmpty())
-        assertTrue(BotAllocations.subscribedAreas.isEmpty())
-        val again = CapacityAllocator(AllocationConfig("a"))
-        BotAllocations.set(listOf(again))
-        assertSame(AllocationHooks.Default, again.hooks)
+        assertTrue(exception.message!!.contains("nowhere"))
     }
 }

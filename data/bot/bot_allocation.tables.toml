@@ -13,7 +13,8 @@ refill = "boolean" # Keep topping up to count, false = stop once reached.
 refill_default = false
 saved = "boolean" # May reuse saved bot accounts, see bots.spawnSavedChance.
 saved_default = false
-starter_items = "list<pair<string, int>>" # Items given to brand-new accounts only.
+starter_items = "list<pair<string, int>>" # Items given to brand-new accounts, and to role bots each time they're provisioned.
+restock_areas = "list<string>" # Areas which re-provision a role bot on entry, e.g. after teleporting out.
 roles = "list<row>" # bot_roles rows, weighted mode only.
 
 [.world]
@@ -50,6 +51,7 @@ spawn_seconds_setting = "bots.combat.clan_wars_ffa_dangerous.spawnSeconds"
 spawn_areas = ["clan_wars_teleport"]
 refill = true
 starter_items = [["coins", 10000]]
+restock_areas = ["clan_wars_teleport"]
 roles = [
     "bot_roles.clan_wars_dangerous_melee",
     "bot_roles.clan_wars_dangerous_ranged",

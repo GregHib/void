@@ -8,12 +8,11 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 /**
- * [BotAllocator]s loaded from the `bot_allocations` table, along with any Kotlin [AllocationHooks] registered for them.
+ * [BotAllocator]s loaded from the `bot_allocations` table.
  */
 object BotAllocations {
     private val logger = InlineLogger("BotAllocations")
     private var allocations: Map<String, BotAllocator> = emptyMap()
-    private val hooks = mutableMapOf<String, AllocationHooks>()
 
     val all: Collection<BotAllocator>
         get() = allocations.values
@@ -24,20 +23,6 @@ object BotAllocations {
     fun getOrNull(id: String): BotAllocator? = allocations[id]
 
     fun get(id: String): BotAllocator = allocations[id] ?: error("Unknown bot allocation '$id'.")
-
-    /**
-     * Register lifecycle [hooks] for allocation [id], must be called before allocations are loaded.
-     */
-    fun register(id: String, hooks: AllocationHooks) {
-        this.hooks[id] = hooks
-        allocations[id]?.hooks = hooks
-    }
-
-    /**
-     * Areas any registered hooks want `entered` events for
-     */
-    val subscribedAreas: Set<String>
-        get() = hooks.values.flatMapTo(mutableSetOf()) { it.subscribedAreas }
 
     /**
      * Load allocations from the `bot_allocations` table, [activityExists] validates role activities.
@@ -60,6 +45,10 @@ object BotAllocations {
         for (area in areas) {
             require(Areas.getOrNull(area) != null) { "Unknown spawn area '$area' in bot allocation '$id'." }
         }
+        val restock = row.stringListOrNull("restock_areas").orEmpty().toSet()
+        for (area in restock) {
+            require(Areas.getOrNull(area) != null) { "Unknown restock area '$area' in bot allocation '$id'." }
+        }
         val config = AllocationConfig(
             id = id,
             count = row.intOrNull("count") ?: 0,
@@ -70,6 +59,7 @@ object BotAllocations {
             refill = row.boolOrNull("refill") ?: false,
             saved = row.boolOrNull("saved") ?: false,
             starterItems = Tables.strIntListOrNull("${row.stringId}.starter_items") ?: emptyList(),
+            restockAreas = restock,
         )
         return when (val mode = row.stringOrNull("mode") ?: "capacity") {
             "capacity" -> CapacityAllocator(config)
@@ -111,14 +101,10 @@ object BotAllocations {
     }
 
     fun set(allocators: List<BotAllocator>) {
-        for (allocator in allocators) {
-            allocator.hooks = hooks[allocator.id] ?: AllocationHooks.Default
-        }
         allocations = allocators.associateBy { it.id }
     }
 
     fun clear() {
         allocations = emptyMap()
-        hooks.clear()
     }
 }
