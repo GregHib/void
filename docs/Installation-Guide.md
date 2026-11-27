@@ -13,6 +13,9 @@ Requirements:
 
 [Client Release Page Link](https://github.com/GregHib/void-client/releases)
 
+> [!NOTE]
+> You can also use [2011scape's edited client](https://github.com/2011Scape/634-client) which has quality improvements like higher fps, UI scaling and runelite. 
+
 <img width="600" height="450" alt="image" src="https://github.com/user-attachments/assets/50ac051a-60a2-4005-8b35-a0f0ccb34100" />
 
 # Step 3: Download the latest cache .7zip
