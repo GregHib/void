@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.Settings
 /**
  * Strategy for how many bots spawn into a part of the world and which role each is given.
  */
-sealed class BotAllocator(val config: AllocationConfig) {
+sealed class BotSpawnStrategy(val config: BotSpawnConfig) {
     val id: String
         get() = config.id
 

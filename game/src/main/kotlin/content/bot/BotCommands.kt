@@ -2,10 +2,10 @@
 
 package content.bot
 
-import content.bot.allocation.BotAllocations
-import content.bot.allocation.BotAllocator
 import content.bot.allocation.BotProvisioner
 import content.bot.allocation.BotRole
+import content.bot.allocation.BotSpawnStrategy
+import content.bot.allocation.BotSpawns
 import content.entity.combat.killer
 import content.quest.questJournal
 import kotlinx.coroutines.*
@@ -94,7 +94,7 @@ class BotCommands(
         playerDeath {
             if (!isBot) return@playerDeath
             val bot = bot
-            val allocation = BotAllocations.getOrNull(bot.allocation ?: return@playerDeath) ?: return@playerDeath
+            val allocation = BotSpawns.getOrNull(bot.allocation ?: return@playerDeath) ?: return@playerDeath
             val role = allocation.role(bot.role ?: return@playerDeath) ?: return@playerDeath
             val account = accountName
             World.queue("respawn_role_$account", initialDelay = 10) {
@@ -107,7 +107,7 @@ class BotCommands(
         entered("*") { area ->
             if (!isBot || dead) return@entered
             val bot = bot
-            val allocation = BotAllocations.getOrNull(bot.allocation ?: return@entered) ?: return@entered
+            val allocation = BotSpawns.getOrNull(bot.allocation ?: return@entered) ?: return@entered
             if (area.name !in allocation.config.restockAreas) return@entered
             val role = allocation.role(bot.role ?: return@entered) ?: return@entered
             refresh(bot, allocation, role)
@@ -129,7 +129,7 @@ class BotCommands(
             loadSettings()
         }
 
-        adminCommand("bots", intArg("count", optional = true), stringArg("allocation", optional = true, autofill = { BotAllocations.ids }), desc = "Spawn (count) number of bots into an allocation (default world)", handler = ::spawn)
+        adminCommand("bots", intArg("count", optional = true), stringArg("allocation", optional = true, autofill = { BotSpawns.ids }), desc = "Spawn (count) number of bots into an allocation (default world)", handler = ::spawn)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
@@ -169,9 +169,9 @@ class BotCommands(
     }
 
     private fun loadSettings() {
-        BotAllocations.load { manager.activity(it) != null }
+        BotSpawns.load { manager.activity(it) != null }
         var start = false
-        for (allocation in BotAllocations.all) {
+        for (allocation in BotSpawns.all) {
             if (allocation.count <= 0) {
                 continue
             }
@@ -193,9 +193,9 @@ class BotCommands(
     fun spawn(player: Player, args: List<String>) {
         val count = args.getOrNull(0)?.toIntOrNull() ?: 1
         val id = args.getOrNull(1)?.takeIf { it.isNotBlank() } ?: "world"
-        val allocation = BotAllocations.getOrNull(id)
+        val allocation = BotSpawns.getOrNull(id)
         if (allocation == null) {
-            player.message("Unknown bot allocation '$id'. Options: ${BotAllocations.ids.joinToString()}.", ChatType.Console)
+            player.message("Unknown bot allocation '$id'. Options: ${BotSpawns.ids.joinToString()}.", ChatType.Console)
             return
         }
         GlobalScope.launch {
@@ -275,12 +275,12 @@ class BotCommands(
     }
 
     /**
-     * Spawn all [BotAllocations] which are due and below their target count.
+     * Spawn all [BotSpawns] which are due and below their target count.
      * @return whether any allocation still needs spawning
      */
     private fun spawnAllocations(): Boolean {
         var active = false
-        for (allocation in BotAllocations.all) {
+        for (allocation in BotSpawns.all) {
             val count = allocation.count
             if (count <= 0) {
                 continue
@@ -309,7 +309,7 @@ class BotCommands(
     /**
      * Spawn a bot into [allocation], giving it a role and the levels and items it needs if the allocation assigns one.
      */
-    fun spawnBot(allocation: BotAllocator) {
+    fun spawnBot(allocation: BotSpawnStrategy) {
         spawned[allocation.id] = (spawned[allocation.id] ?: 0) + 1
         GlobalScope.launch(Contexts.Game) {
             counter++
@@ -360,7 +360,7 @@ class BotCommands(
     /**
      * Restock a role [bot] after death or on entering one of its allocation's restock areas and restart its role.
      */
-    private fun refresh(bot: Bot, allocation: BotAllocator, role: BotRole) {
+    private fun refresh(bot: Bot, allocation: BotSpawnStrategy, role: BotRole) {
         provisioner.restore(bot, role, allocation.config.starterItems)
         manager.stop(bot)
         bot.blocked.remove(role.activity)

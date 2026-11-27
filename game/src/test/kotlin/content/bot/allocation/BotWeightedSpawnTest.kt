@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class WeightedAllocatorTest {
+class BotWeightedSpawnTest {
 
     @AfterEach
     fun teardown() {
@@ -16,7 +16,7 @@ class WeightedAllocatorTest {
 
     private fun role(id: String, weight: Int = 1, min: Int = 0, max: Int? = null) = BotRole(id, "activity_$id", weight, min, max)
 
-    private fun allocator(vararg roles: BotRole, count: Int = 0) = WeightedAllocator(AllocationConfig("test", count = count), roles.toList())
+    private fun allocator(vararg roles: BotRole, count: Int = 0) = BotWeightedSpawn(BotSpawnConfig("test", count = count), roles.toList())
 
     private fun member(role: String?) = Bot(Player()).also { it.role = role }
 
@@ -25,13 +25,13 @@ class WeightedAllocatorTest {
     /**
      * Spawn [size] bots one after another, returning the role id each one was given ("-" for none).
      */
-    private fun WeightedAllocator.sequence(size: Int): List<String> {
+    private fun BotWeightedSpawn.sequence(size: Int): List<String> {
         val members = mutableListOf<Bot>()
         repeat(size) { members.add(member(allocate(members)?.id)) }
         return members.map { it.role ?: "-" }
     }
 
-    private fun WeightedAllocator.counts(size: Int): List<Int> {
+    private fun BotWeightedSpawn.counts(size: Int): List<Int> {
         val sequence = sequence(size)
         return roles.map { role -> sequence.count { it == role.id } }
     }
@@ -149,7 +149,7 @@ class WeightedAllocatorTest {
 
     @Test
     fun `Capacity allocator allocates no role`() {
-        val allocator = CapacityAllocator(AllocationConfig("capacity", count = 10))
+        val allocator = BotCapacitySpawn(BotSpawnConfig("capacity", count = 10))
 
         assertNull(allocator.allocate(emptyList()))
         assertNull(allocator.allocate(members("a")))
@@ -158,7 +158,7 @@ class WeightedAllocatorTest {
 
     @Test
     fun `Count uses the config value without a setting`() {
-        val allocator = CapacityAllocator(AllocationConfig("test", count = 7, spawnSeconds = 30))
+        val allocator = BotCapacitySpawn(BotSpawnConfig("test", count = 7, spawnSeconds = 30))
 
         assertEquals(7, allocator.count)
         assertEquals(30, allocator.spawnSeconds)
@@ -168,7 +168,7 @@ class WeightedAllocatorTest {
     @Test
     fun `Count and spawn seconds are overridden by settings`() {
         Settings.load(mapOf("bots.count" to "25", "bots.spawnSeconds" to "5"))
-        val allocator = CapacityAllocator(AllocationConfig("test", count = 7, countSetting = "bots.count", spawnSeconds = 30, spawnSecondsSetting = "bots.spawnSeconds"))
+        val allocator = BotCapacitySpawn(BotSpawnConfig("test", count = 7, countSetting = "bots.count", spawnSeconds = 30, spawnSecondsSetting = "bots.spawnSeconds"))
 
         assertEquals(25, allocator.count)
         assertEquals(5, allocator.spawnSeconds)
@@ -177,7 +177,7 @@ class WeightedAllocatorTest {
     @Test
     fun `Count and spawn seconds fall back to config when the setting is missing`() {
         Settings.load(mapOf("other" to "1"))
-        val allocator = CapacityAllocator(AllocationConfig("test", count = 7, countSetting = "bots.count", spawnSeconds = 30, spawnSecondsSetting = "bots.spawnSeconds"))
+        val allocator = BotCapacitySpawn(BotSpawnConfig("test", count = 7, countSetting = "bots.count", spawnSeconds = 30, spawnSecondsSetting = "bots.spawnSeconds"))
 
         assertEquals(7, allocator.count)
         assertEquals(30, allocator.spawnSeconds)

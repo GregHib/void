@@ -42,7 +42,7 @@ data class Bot(val player: Player) : Character by player {
     var pinned: String? = null
 
     /**
-     * Id of the [content.bot.allocation.BotAllocator] this bot was spawned by
+     * Id of the [content.bot.allocation.BotSpawnStrategy] this bot was spawned by
      */
     var allocation: String? = null
 

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.area.Rectangle
 import java.io.File
 
-class BotAllocationsTest {
+class BotSpawnsTest {
 
     @TempDir
     lateinit var dir: File
@@ -68,17 +68,17 @@ class BotAllocationsTest {
 
     @AfterEach
     fun teardown() {
-        BotAllocations.clear()
+        BotSpawns.clear()
         Tables.clear()
         Rows.clear()
         Areas.clear()
     }
 
-    private fun load(body: String, exists: (String) -> Boolean = { it in activities }): BotAllocations {
+    private fun load(body: String, exists: (String) -> Boolean = { it in activities }): BotSpawns {
         val file = File(dir, "test.tables.toml")
         file.writeText(header + "\n\n" + body.trimIndent())
         Tables.load(listOf(file.path))
-        return BotAllocations.load(exists)
+        return BotSpawns.load(exists)
     }
 
     private fun member(role: String?) = Bot(world.gregs.voidps.engine.entity.character.player.Player()).also { it.role = role }
@@ -99,8 +99,8 @@ class BotAllocationsTest {
             """,
         )
 
-        val allocator = BotAllocations.get("world")
-        assertTrue(allocator is CapacityAllocator)
+        val allocator = BotSpawns.get("world")
+        assertTrue(allocator is BotCapacitySpawn)
         val config = allocator.config
         assertEquals("world", config.id)
         assertEquals(50, config.count)
@@ -122,8 +122,8 @@ class BotAllocationsTest {
             """,
         )
 
-        val config = BotAllocations.get("minimal").config
-        assertTrue(BotAllocations.get("minimal") is CapacityAllocator)
+        val config = BotSpawns.get("minimal").config
+        assertTrue(BotSpawns.get("minimal") is BotCapacitySpawn)
         assertEquals(0, config.count)
         assertEquals(60, config.spawnSeconds)
         assertFalse(config.refill)
@@ -164,7 +164,7 @@ class BotAllocationsTest {
             """,
         )
 
-        val allocator = BotAllocations.get("arena") as WeightedAllocator
+        val allocator = BotSpawns.get("arena") as BotWeightedSpawn
         assertEquals(20, allocator.count)
         assertEquals(2, allocator.roles.size)
 
@@ -206,7 +206,7 @@ class BotAllocationsTest {
             """,
         )
 
-        assertEquals(listOf("b", "a"), (BotAllocations.get("arena") as WeightedAllocator).roles.map { it.id })
+        assertEquals(listOf("b", "a"), (BotSpawns.get("arena") as BotWeightedSpawn).roles.map { it.id })
     }
 
     @Test
@@ -221,32 +221,32 @@ class BotAllocationsTest {
             """,
         )
 
-        assertEquals(setOf("one", "two"), BotAllocations.ids)
-        assertEquals(2, BotAllocations.all.size)
-        assertNotNull(BotAllocations.getOrNull("one"))
-        assertNull(BotAllocations.getOrNull("three"))
+        assertEquals(setOf("one", "two"), BotSpawns.ids)
+        assertEquals(2, BotSpawns.all.size)
+        assertNotNull(BotSpawns.getOrNull("one"))
+        assertNull(BotSpawns.getOrNull("three"))
     }
 
     @Test
     fun `Get an unknown allocation throws`() {
-        assertThrows(IllegalStateException::class.java) { BotAllocations.get("missing") }
+        assertThrows(IllegalStateException::class.java) { BotSpawns.get("missing") }
     }
 
     @Test
     fun `Missing table loads nothing`() {
         Tables.set(emptyMap())
-        BotAllocations.load { true }
+        BotSpawns.load { true }
 
-        assertTrue(BotAllocations.all.isEmpty())
+        assertTrue(BotSpawns.all.isEmpty())
     }
 
     @Test
     fun `Loading again replaces previous allocations`() {
-        BotAllocations.set(listOf(CapacityAllocator(AllocationConfig("old"))))
+        BotSpawns.set(listOf(BotCapacitySpawn(BotSpawnConfig("old"))))
         Tables.set(emptyMap())
-        BotAllocations.load { true }
+        BotSpawns.load { true }
 
-        assertTrue(BotAllocations.ids.isEmpty())
+        assertTrue(BotSpawns.ids.isEmpty())
     }
 
     @Test
@@ -353,8 +353,8 @@ class BotAllocationsTest {
             """,
         )
 
-        assertEquals(setOf("varrock"), BotAllocations.get("world").config.restockAreas)
-        assertTrue(BotAllocations.get("other").config.restockAreas.isEmpty())
+        assertEquals(setOf("varrock"), BotSpawns.get("world").config.restockAreas)
+        assertTrue(BotSpawns.get("other").config.restockAreas.isEmpty())
     }
 
     @Test

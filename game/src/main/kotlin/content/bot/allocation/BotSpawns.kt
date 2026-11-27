@@ -8,26 +8,26 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 /**
- * [BotAllocator]s loaded from the `bot_allocations` table.
+ * [BotSpawnStrategy]s loaded from the `bot_allocations` table.
  */
-object BotAllocations {
-    private val logger = InlineLogger("BotAllocations")
-    private var allocations: Map<String, BotAllocator> = emptyMap()
+object BotSpawns {
+    private val logger = InlineLogger("BotSpawns")
+    private var allocations: Map<String, BotSpawnStrategy> = emptyMap()
 
-    val all: Collection<BotAllocator>
+    val all: Collection<BotSpawnStrategy>
         get() = allocations.values
 
     val ids: Set<String>
         get() = allocations.keys
 
-    fun getOrNull(id: String): BotAllocator? = allocations[id]
+    fun getOrNull(id: String): BotSpawnStrategy? = allocations[id]
 
-    fun get(id: String): BotAllocator = allocations[id] ?: error("Unknown bot allocation '$id'.")
+    fun get(id: String): BotSpawnStrategy = allocations[id] ?: error("Unknown bot allocation '$id'.")
 
     /**
      * Load allocations from the `bot_allocations` table, [activityExists] validates role activities.
      */
-    fun load(activityExists: (String) -> Boolean): BotAllocations {
+    fun load(activityExists: (String) -> Boolean): BotSpawns {
         val table = Tables.getOrNull("bot_allocations")
         if (table == null) {
             logger.warn { "No bot_allocations table found." }
@@ -38,7 +38,7 @@ object BotAllocations {
         return this
     }
 
-    internal fun parse(row: RowDefinition, activityExists: (String) -> Boolean): BotAllocator {
+    internal fun parse(row: RowDefinition, activityExists: (String) -> Boolean): BotSpawnStrategy {
         val id = row.rowId
         val areas = row.stringListOrNull("spawn_areas") ?: emptyList()
         require(areas.isNotEmpty()) { "Bot allocation '$id' has no spawn areas." }
@@ -49,7 +49,7 @@ object BotAllocations {
         for (area in restock) {
             require(Areas.getOrNull(area) != null) { "Unknown restock area '$area' in bot allocation '$id'." }
         }
-        val config = AllocationConfig(
+        val config = BotSpawnConfig(
             id = id,
             count = row.intOrNull("count") ?: 0,
             countSetting = row.stringOrNull("count_setting"),
@@ -62,13 +62,13 @@ object BotAllocations {
             restockAreas = restock,
         )
         return when (val mode = row.stringOrNull("mode") ?: "capacity") {
-            "capacity" -> CapacityAllocator(config)
+            "capacity" -> BotCapacitySpawn(config)
             "weighted" -> {
                 val roles = row.stringListOrNull("roles").orEmpty().map { ref ->
                     role(Rows.getOrNull(ref) ?: error("Unknown role '$ref' in bot allocation '$id'."), activityExists)
                 }
                 require(roles.isNotEmpty()) { "Weighted bot allocation '$id' has no roles." }
-                WeightedAllocator(config, roles)
+                BotWeightedSpawn(config, roles)
             }
             else -> error("Unknown mode '$mode' in bot allocation '$id', expected capacity or weighted.")
         }
@@ -100,7 +100,7 @@ object BotAllocations {
         return Build(row.rowId, levels)
     }
 
-    fun set(allocators: List<BotAllocator>) {
+    fun set(allocators: List<BotSpawnStrategy>) {
         allocations = allocators.associateBy { it.id }
     }
 

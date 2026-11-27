@@ -1,7 +1,7 @@
 package content.bot.allocation
 
 /**
- * Shared spawn settings for a [BotAllocator]
+ * Shared spawn settings for a [BotSpawnStrategy]
  * @param count target number of bots, overridden by the [countSetting] setting when set
  * @param spawnSeconds seconds between spawns, overridden by the [spawnSecondsSetting] setting when set
  * @param refill keep topping up to [count] as bots leave, otherwise stop once [count] have been spawned
@@ -9,7 +9,7 @@ package content.bot.allocation
  * @param starterItems items given to brand-new accounts (and to role bots each time they're provisioned)
  * @param restockAreas areas which re-provision a role bot on entry (e.g. restocking after teleporting out)
  */
-data class AllocationConfig(
+data class BotSpawnConfig(
     val id: String,
     val count: Int = 0,
     val countSetting: String? = null,

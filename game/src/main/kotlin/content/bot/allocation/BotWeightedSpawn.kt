@@ -7,7 +7,7 @@ import content.bot.Bot
  * Roles below their minimum are filled first in role order, then each bot goes to the role with the
  * fewest bots per weight that is still under its maximum (ties go to the higher weight, then role order).
  */
-class WeightedAllocator(config: AllocationConfig, val roles: List<BotRole>) : BotAllocator(config) {
+class BotWeightedSpawn(config: BotSpawnConfig, val roles: List<BotRole>) : BotSpawnStrategy(config) {
 
     override fun role(id: String): BotRole? = roles.firstOrNull { it.id == id }
 

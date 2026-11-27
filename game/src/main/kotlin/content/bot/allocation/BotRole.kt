@@ -3,7 +3,7 @@ package content.bot.allocation
 import content.bot.weightedRandom
 
 /**
- * A fixed job a bot is given by a [WeightedAllocator], doing [activity] for its whole life.
+ * A fixed job a bot is given by a [BotWeightedSpawn], doing [activity] for its whole life.
  * [weight], [min] and [max] decide what share of an allocation's bots get this role.
  */
 data class BotRole(
