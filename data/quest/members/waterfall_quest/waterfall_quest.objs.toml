@@ -1,0 +1,75 @@
+[waterfall_raft]
+id = 1987
+examine = "A small log raft."
+
+[glarials_tombstone]
+id = 1992
+examine = "An ancient elven tombstone."
+
+[waterfall_rock]
+id = 1996
+examine = "A rock in the river."
+
+[waterfall_rock_rope]
+id = 1997
+examine = "A rock with a rope around it."
+
+[waterfall_crossing_rope]
+id = 1998
+examine = "A rope stretched across the river."
+
+[waterfall_glarial_statue]
+id = 2006
+examine = "A statue of Glarial."
+
+[waterfall_chalice]
+id = 2014
+examine = "The Chalice of Eternity."
+
+[waterfall_barrel]
+id = 2022
+examine = "A barrel floating at the edge of the falls."
+
+[glarials_chest_closed]
+id = 33046
+examine = "An ancient chest."
+
+[glarials_chest_opened]
+id = 33047
+examine = "An ancient chest."
+
+[glarials_tomb]
+id = 33066
+examine = "Glarial's resting place."
+
+[waterfall_entrance_west]
+id = 37245
+door = false
+examine = "An entrance behind the falls."
+
+[waterfall_entrance_east]
+id = 37246
+door = false
+examine = "An entrance behind the falls."
+
+[waterfall_entrance]
+id = 37247
+door = false
+examine = "An entrance behind the falls."
+
+[waterfall_exit]
+id = 32711
+door = false
+examine = "The way out of the waterfall."
+
+[waterfall_bookcase]
+id = 380
+examine = "A collection of books."
+
+[waterfall_bookcase_2]
+id = 381
+examine = "A collection of books."
+
+[waterfall_river]
+id = 10283
+examine = "A fast-flowing river."

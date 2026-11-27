@@ -27,3 +27,8 @@ delta = { level = 1 }
 option = "Climb-down"
 tile = { x = 2521, y = 3493, level = 1 }
 delta = { level = -1 }
+
+[ladder_from_cellar_directional]
+option = "Climb-up"
+tile = { x = 2556, y = 9844}
+to = { x = 2559, y = 3444 }
