@@ -4,7 +4,7 @@ import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.Condition
 
 /**
- * An equipment slot in a [Loadout], either a set of explicit [ids] or a [gear] list to pick from.
+ * An equipment slot or inventory entry in a [Loadout], either a set of explicit [ids] or a [gear] list to pick from.
  * [optional] slots are filled when possible but never stop an activity from starting.
  */
 data class LoadoutSlot(

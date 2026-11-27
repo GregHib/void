@@ -40,7 +40,7 @@ class LoadoutBindTest {
         ItemDefinitions.clear()
     }
 
-    private fun loadout(vararg slots: Pair<EquipSlot, LoadoutSlot>, inventory: List<BotItem> = emptyList()) = Loadout("test", linkedMapOf(*slots), inventory)
+    private fun loadout(vararg slots: Pair<EquipSlot, LoadoutSlot>, inventory: List<LoadoutSlot> = emptyList()) = Loadout("test", linkedMapOf(*slots), inventory)
 
     private fun Map<EquipSlot, BotItem>.ids(slot: EquipSlot) = getValue(slot).ids
 
@@ -267,7 +267,7 @@ class LoadoutBindTest {
         val loadout = loadout(
             EquipSlot.Weapon to LoadoutSlot(gear = weapons),
             EquipSlot.Shield to LoadoutSlot(gear = shields, optional = true),
-            inventory = listOf(BotItem(setOf("shark"), min = 3)),
+            inventory = listOf(LoadoutSlot(setOf("shark"), min = 3)),
         )
         level(player, Skill.Attack, 5)
         loadout.grant(player)
@@ -279,8 +279,8 @@ class LoadoutBindTest {
 
     @Test
     fun `Equipment and extra inventory expose every candidate`() {
-        val loadout = loadout(EquipSlot.Weapon to LoadoutSlot(gear = weapons), inventory = listOf(BotItem(setOf("shark"), min = 3)))
+        val loadout = loadout(EquipSlot.Weapon to LoadoutSlot(gear = weapons), inventory = listOf(LoadoutSlot(setOf("shark"), min = 3)))
         assertEquals(setOf("rune_scimitar", "steel_scimitar", "bronze_sword"), loadout.equipment.items.getValue(EquipSlot.Weapon).ids)
-        assertEquals(listOf(BotItem(setOf("shark"), min = 3)), loadout.inventory)
+        assertEquals(listOf(LoadoutSlot(setOf("shark"), min = 3)), loadout.inventory)
     }
 }

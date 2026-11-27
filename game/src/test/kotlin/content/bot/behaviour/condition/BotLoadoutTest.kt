@@ -139,7 +139,7 @@ class BotLoadoutTest {
 
     @Test
     fun `Unbound check includes loadout inventory`() {
-        val loadout = Loadout("l", mapOf(EquipSlot.Weapon to LoadoutSlot(gear = weapons)), inventory = listOf(BotItem(setOf("shark"), min = 1)))
+        val loadout = Loadout("l", mapOf(EquipSlot.Weapon to LoadoutSlot(gear = weapons)), inventory = listOf(LoadoutSlot(setOf("shark"), min = 1)))
         val condition = BotLoadout(listOf(loadout to 1))
         player.equipment.set(EquipSlot.Weapon.index, "steel_scimitar")
         assertFalse(condition.check(player))
@@ -180,7 +180,7 @@ class BotLoadoutTest {
 
     @Test
     fun `Grant for loadout condition banks the loadout`() {
-        val loadout = Loadout("l", mapOf(EquipSlot.Weapon to LoadoutSlot(gear = weapons)), inventory = listOf(BotItem(setOf("shark"), min = 2)))
+        val loadout = Loadout("l", mapOf(EquipSlot.Weapon to LoadoutSlot(gear = weapons)), inventory = listOf(LoadoutSlot(setOf("shark"), min = 2)))
         level(player, Skill.Attack, 5)
         Condition.grant(player, BotLoadout(listOf(loadout to 1)))
         assertEquals(1, player.bank.count("steel_scimitar"))

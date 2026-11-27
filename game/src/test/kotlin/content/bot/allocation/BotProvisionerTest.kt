@@ -40,7 +40,7 @@ class BotProvisionerTest {
             EquipSlot.Weapon to LoadoutSlot(gear = gear("weapons", "rune_scimitar", "steel_scimitar", "bronze_sword")),
             EquipSlot.Shield to LoadoutSlot(gear = gear("shields", "rune_kiteshield", "wooden_shield"), optional = true),
         ),
-        inventory = listOf(BotItem(setOf("shark"), min = 5)),
+        inventory = listOf(LoadoutSlot(setOf("shark"), min = 5)),
     )
 
     private val basic = Loadout(

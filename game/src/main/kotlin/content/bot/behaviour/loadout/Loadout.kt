@@ -1,9 +1,7 @@
 package content.bot.behaviour.loadout
 
 import content.bot.behaviour.condition.BotEquipmentSetup
-import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.BotItem
-import content.bot.behaviour.condition.Condition
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -20,16 +18,15 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 /**
  * A set of equipment (and the inventory items it depends on) a bot uses for an activity.
  * Slots either list explicit item [LoadoutSlot.ids] or reference a [Gear] list to pick the best usable item from.
- * [inventoryGear] are [Gear] lists of tools carried in the inventory (e.g. pickaxes), picked by the levels needed to use them.
+ * [inventory] entries work the same way, except [Gear] entries (e.g. pickaxes) are picked by the levels needed to use them rather than equip them.
  * Defined in `*.loadouts.toml` or inline in a template's `switch_loadouts` (hybrid bots).
  */
 data class Loadout(
     val id: String,
     val slots: Map<EquipSlot, LoadoutSlot>,
-    val inventory: List<BotItem> = emptyList(),
+    val inventory: List<LoadoutSlot> = emptyList(),
     val autocast: String? = null,
     val weight: Int = 1,
-    val inventoryGear: List<LoadoutSlot> = emptyList(),
 ) {
 
     /**
@@ -45,7 +42,7 @@ data class Loadout(
      */
     private val requirements: List<List<List<Pair<Skill, Int>>>> by lazy {
         slots.values.mapNotNull { slot -> options(slot) { it.requirements } } +
-            inventoryGear.mapNotNull { slot -> options(slot) { it.useRequirements } }
+            inventory.mapNotNull { slot -> options(slot) { it.useRequirements } }
     }
 
     private inline fun options(slot: LoadoutSlot, requirements: (GearItem) -> List<Pair<Skill, Int>>): List<List<Pair<Skill, Int>>>? {
@@ -109,19 +106,19 @@ data class Loadout(
     )
 
     /**
-     * The items [player] should carry: the explicit [inventory] plus the best [inventoryGear] tools, picked like [bind]
+     * The items [player] should carry from the [inventory], picked like [bind]
      */
-    fun bindInventory(player: Player, obtain: (id: String, amount: Int) -> Boolean): List<BotItem> = inventory + selectInventory(
+    fun bindInventory(player: Player, obtain: (id: String, amount: Int) -> Boolean): List<BotItem> = selectInventory(
         player,
         owned = { id, amount -> player.ownsItem(id, amount) },
         obtain = obtain,
     )
 
     /**
-     * Every item which could be carried, with all candidates for each [inventoryGear] tool
+     * Every item which could be carried, with all candidates for each [inventory] entry
      */
     val inventoryCandidates: List<BotItem>
-        get() = inventory + inventoryGear.map { it.item(it.candidates.toSet()) }
+        get() = inventory.map { it.item(it.candidates.toSet()) }
 
     /**
      * Give [player] the best item they can equip for every slot (including optional ones) plus the loadout's inventory, all in the bank.
@@ -184,9 +181,9 @@ data class Loadout(
     private fun best(player: Player) = select(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
 
     /**
-     * The explicit [inventory] plus the best usable [inventoryGear] tools, regardless of ownership
+     * The [inventory] items with the best usable tools, regardless of ownership
      */
-    private fun bestInventory(player: Player) = inventory + selectInventory(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
+    private fun bestInventory(player: Player) = selectInventory(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
 
     private inline fun select(
         player: Player,
@@ -227,7 +224,7 @@ data class Loadout(
     }
 
     /**
-     * Pick a concrete item for each [inventoryGear] tool by the levels needed to use it rather than equip it
+     * Pick a concrete item for each [inventory] gear entry by the levels needed to use it rather than equip it, explicit entries are kept as is
      */
     private inline fun selectInventory(
         player: Player,
@@ -235,9 +232,13 @@ data class Loadout(
         owned: (String, Int) -> Boolean,
         obtain: (String, Int) -> Boolean,
     ): List<BotItem> {
-        val selected = ArrayList<BotItem>(inventoryGear.size)
-        for (spec in inventoryGear) {
-            val gear = spec.gear ?: continue
+        val selected = ArrayList<BotItem>(inventory.size)
+        for (spec in inventory) {
+            val gear = spec.gear
+            if (gear == null) {
+                selected.add(spec.item(spec.ids))
+                continue
+            }
             val chosen = choose(spec, gear, fillOptional, owned, obtain) { item ->
                 item.canUse(player) && (!spec.equippable || item.canEquip(player))
             }
@@ -308,8 +309,7 @@ data class Loadout(
         @Suppress("UNCHECKED_CAST")
         fun parse(id: String, map: Map<String, Any>, gear: (String) -> Gear?): Loadout {
             val slots = LinkedHashMap<EquipSlot, LoadoutSlot>()
-            var inventory: List<BotItem> = emptyList()
-            var inventoryGear: List<LoadoutSlot> = emptyList()
+            var inventory: List<LoadoutSlot> = emptyList()
             var autocast: String? = null
             var weight = 1
             fun slot(key: String, value: Any?) {
@@ -326,11 +326,7 @@ data class Loadout(
                             is List<*> -> value as List<Map<String, Any>>
                             else -> error("Loadout '$id' inventory expecting list, found: $value")
                         }
-                        val (tools, items) = list.partition { it.containsKey("gear") }
-                        inventoryGear = tools.map { LoadoutSlot.parse(it, gear) { "loadout '$id' inventory" } }
-                        if (items.isNotEmpty()) {
-                            inventory = (Condition.parse(listOf("inventory" to items), "loadout $id").single() as BotInventorySetup).items
-                        }
+                        inventory = list.map { LoadoutSlot.parse(it, gear) { "loadout '$id' inventory" } }
                     }
                     "autocast" -> autocast = value as String
                     "weight" -> weight = value as Int
@@ -340,7 +336,7 @@ data class Loadout(
                     else -> slot(key, value)
                 }
             }
-            return Loadout(id, slots, inventory, autocast, weight, inventoryGear)
+            return Loadout(id, slots, inventory, autocast, weight)
         }
     }
 }

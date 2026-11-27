@@ -37,7 +37,7 @@ class BotManagerLoadoutTest {
             EquipSlot.Weapon to LoadoutSlot(gear = gear("weapons", "rune_scimitar", "steel_scimitar", "bronze_sword")),
             EquipSlot.Shield to LoadoutSlot(gear = gear("shields", "rune_kiteshield", "wooden_shield"), optional = true),
         ),
-        inventory = listOf(BotItem(setOf("shark"), min = 5)),
+        inventory = listOf(LoadoutSlot(setOf("shark"), min = 5)),
     )
 
     @BeforeEach
@@ -81,13 +81,13 @@ class BotManagerLoadoutTest {
         val bound = manager.bindLoadout(bot, activity(BotLoadout(listOf(loadout to 1)), existing))
 
         val inventory = bound.setup.filterIsInstance<BotInventorySetup>().single()
-        assertEquals(existing.items + loadout.inventory, inventory.items)
+        assertEquals(existing.items + BotItem(setOf("shark"), min = 5), inventory.items)
     }
 
     @Test
     fun `Loadout inventory creates an inventory row when there is none`() {
         val bound = manager.bindLoadout(bot, activity(BotLoadout(listOf(loadout to 1))))
-        assertEquals(loadout.inventory, bound.setup.filterIsInstance<BotInventorySetup>().single().items)
+        assertEquals(listOf(BotItem(setOf("shark"), min = 5)), bound.setup.filterIsInstance<BotInventorySetup>().single().items)
     }
 
     @Test

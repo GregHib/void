@@ -30,7 +30,7 @@ class LoadoutInventoryGearTest {
     private lateinit var player: Player
 
     private val pickaxes = gear("pickaxes", "rune_pickaxe", "iron_pickaxe", "bronze_pickaxe")
-    private val mining = Loadout("mining", emptyMap(), inventoryGear = listOf(LoadoutSlot(gear = pickaxes, min = 1, usable = true)))
+    private val mining = Loadout("mining", emptyMap(), inventory = listOf(LoadoutSlot(gear = pickaxes, min = 1, usable = true)))
     private val never = { _: String, _: Int -> false }
 
     @BeforeEach
@@ -79,7 +79,7 @@ class LoadoutInventoryGearTest {
 
     @Test
     fun `Bound tools keep the usable flag and come after explicit items`() {
-        val loadout = mining.copy(inventory = listOf(BotItem(setOf("shark"), min = 2)))
+        val loadout = mining.copy(inventory = listOf(LoadoutSlot(setOf("shark"), min = 2)) + mining.inventory)
         val bound = loadout.bindInventory(player, never)
         assertEquals(listOf(setOf("shark"), setOf("iron_pickaxe")), ids(bound))
         assertTrue(bound.last().usable)
@@ -87,7 +87,7 @@ class LoadoutInventoryGearTest {
 
     @Test
     fun `Use requirements decide qualifying and granted levels`() {
-        val rune = Loadout("rune", emptyMap(), inventoryGear = listOf(LoadoutSlot(gear = gear("rune", "rune_pickaxe"), usable = true)))
+        val rune = Loadout("rune", emptyMap(), inventory = listOf(LoadoutSlot(gear = gear("rune", "rune_pickaxe"), usable = true)))
         assertFalse(rune.qualifies(player))
         assertEquals(setOf(Skill.Mining), rune.skills)
         rune.grantLevels(player)
@@ -120,14 +120,16 @@ class LoadoutInventoryGearTest {
     }
 
     @Test
-    fun `Parse splits gear entries out of the inventory`() {
+    fun `Parse keeps gear and item inventory entries in order`() {
         val loadout = Loadout.parse(
             "mining",
             mapOf("inventory" to listOf(mapOf("gear" to "pickaxes", "usable" to true), mapOf("id" to "shark", "min" to 2))),
         ) { if (it == "pickaxes") pickaxes else null }
-        assertEquals(listOf(setOf("shark")), ids(loadout.inventory))
-        assertEquals(pickaxes, loadout.inventoryGear.single().gear)
-        assertTrue(loadout.inventoryGear.single().usable)
+        val (tool, food) = loadout.inventory
+        assertEquals(pickaxes, tool.gear)
+        assertTrue(tool.usable)
+        assertEquals(setOf("shark"), food.ids)
+        assertEquals(2, food.min)
     }
 
     @Test

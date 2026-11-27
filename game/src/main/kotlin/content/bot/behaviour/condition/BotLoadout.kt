@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.inventory
  * [check] is only a fallback for unbound use.
  */
 data class BotLoadout(val options: List<Pair<Loadout, Int>>) : Condition(90) {
-    override fun keys() = options.flatMapTo(mutableSetOf()) { (loadout, _) -> (loadout.slots.values + loadout.inventoryGear).flatMap { slot -> slot.candidates.map { "item:$it" } } }
+    override fun keys() = options.flatMapTo(mutableSetOf()) { (loadout, _) -> (loadout.slots.values + loadout.inventory).flatMap { slot -> slot.candidates.map { "item:$it" } } }
     override fun events() = setOf("inv:worn_equipment")
 
     override fun check(player: Player): Boolean = options.any { (loadout, _) -> wearing(player, loadout) }
