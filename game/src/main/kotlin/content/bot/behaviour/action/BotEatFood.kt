@@ -6,6 +6,7 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
@@ -26,7 +27,7 @@ data class BotEatFood(
         if (bot.levels.get(Skill.Constitution) > (bot.levels.getMax(Skill.Constitution) * healPercentage) / 100) {
             return BehaviourState.Success
         }
-        if (player.contains("just_ate_food")) {
+        if (player.hasClock("just_ate_food") || player.hasClock("food_delay")) {
             return BehaviourState.Success
         }
         if (condition != null && !condition.check(player)) {
