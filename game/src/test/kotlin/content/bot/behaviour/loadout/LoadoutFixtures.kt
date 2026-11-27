@@ -18,7 +18,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  */
 object LoadoutFixtures {
 
-    data class Spec(val id: String, val slot: EquipSlot, val skill: Skill? = null, val level: Int = 0, val twoHanded: Boolean = false)
+    data class Spec(val id: String, val slot: EquipSlot, val skill: Skill? = null, val level: Int = 0, val twoHanded: Boolean = false, val useSkill: Skill? = null, val useLevel: Int = 0)
 
     val specs = listOf(
         Spec("rune_scimitar", EquipSlot.Weapon, Skill.Attack, 40),
@@ -31,6 +31,9 @@ object LoadoutFixtures {
         Spec("rune_full_helm", EquipSlot.Hat, Skill.Defence, 40),
         Spec("iron_full_helm", EquipSlot.Hat, Skill.Defence, 10),
         Spec("shark", EquipSlot.None),
+        Spec("rune_pickaxe", EquipSlot.Weapon, Skill.Attack, 40, useSkill = Skill.Mining, useLevel = 41),
+        Spec("iron_pickaxe", EquipSlot.Weapon, useSkill = Skill.Mining, useLevel = 1),
+        Spec("bronze_pickaxe", EquipSlot.Weapon),
     )
 
     fun define(extra: List<Spec> = emptyList()) {
@@ -46,6 +49,10 @@ object LoadoutFixtures {
             if (spec.skill != null) {
                 params[Params.id("equip_skill_1")] = spec.skill.ordinal
                 params[Params.id("equip_level_1")] = spec.level
+            }
+            if (spec.useSkill != null) {
+                params[Params.id("use_skill_1")] = spec.useSkill.ordinal
+                params[Params.id("use_level_1")] = spec.useLevel
             }
             ItemDefinition(id = index, stringId = spec.id, params = params.ifEmpty { null })
         }

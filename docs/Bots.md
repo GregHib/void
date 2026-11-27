@@ -61,6 +61,14 @@ Each slot takes either `gear = "<gear id>"` or `id = "<item ids>"`. Slots also t
 
 A loadout can also have `inventory = [...]`, `autocast` and `weight`.
 
+Inventory entries can reference gear too, for tools carried rather than worn. These pick the best item the bot has the level to *use* (e.g. mining level for a pickaxe), not the level to wield it.
+
+```toml
+# tools.loadouts.toml
+[mining]
+inventory = [{ gear = "pickaxes", usable = true }]
+```
+
 ```toml
 # melee.loadouts.toml
 [melee]
@@ -105,7 +113,7 @@ A bot picks its gear once, when the activity is assigned.
 4. Optional slots only use items the bot already owns.
 5. A two-handed weapon removes the shield. A required shield rules out two-handed weapons.
 6. Explicit `id` slots are used as written.
-7. The loadout's `inventory` is merged into the activity's inventory requirement. Set `empty` counts so they leave room for it.
+7. The loadout's `inventory` is merged into the activity's inventory requirement. Set `empty` counts so they leave room for it. Inventory gear entries are picked like gear slots, using the level to use the item.
 8. Ammo compatibility is not checked. Use explicit `id` slots for ammo.
 
 ## Requirements

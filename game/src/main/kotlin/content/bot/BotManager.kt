@@ -288,7 +288,8 @@ class BotManager(
         if (bot.player["debug", false]) {
             logger.debug { "Bound loadout '${loadout.id}' for ${activity.id} to bot '${bot.player.accountName}': ${equipment.mapValues { it.value.ids }}." }
         }
-        return activity.bind(loadout, equipment, loadout.inventory)
+        val inventory = loadout.bindInventory(bot.player) { id, amount -> DynamicResolvers.obtainable(bot.player, id, amount, resolvers) }
+        return activity.bind(loadout, equipment, inventory)
     }
 
     private fun bindArea(bot: Bot, activity: BotActivity): BotActivity {

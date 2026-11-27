@@ -1,0 +1,21 @@
+[pickaxes]
+items = [
+    "dragon_pickaxe",
+    "rune_pickaxe",
+    "adamant_pickaxe",
+    "mithril_pickaxe",
+    "steel_pickaxe",
+    "iron_pickaxe",
+    "bronze_pickaxe",
+]
+
+[hatchets]
+items = [
+    "dragon_hatchet",
+    "rune_hatchet",
+    "adamant_hatchet",
+    "mithril_hatchet",
+    "steel_hatchet",
+    "iron_hatchet",
+    "bronze_hatchet",
+]

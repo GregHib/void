@@ -1,5 +1,6 @@
 package content.bot.behaviour.loadout
 
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
@@ -16,8 +17,16 @@ data class GearItem(
     val slot: EquipSlot,
     val twoHanded: Boolean,
     val requirements: List<Pair<Skill, Int>>,
+    val useRequirements: List<Pair<Skill, Int>> = emptyList(),
 ) {
-    fun canEquip(player: Player): Boolean {
+    fun canEquip(player: Player): Boolean = meets(player, requirements)
+
+    /**
+     * Whether [player] has the levels to use this item as a tool (e.g. mining level for a pickaxe)
+     */
+    fun canUse(player: Player): Boolean = meets(player, useRequirements)
+
+    private fun meets(player: Player, requirements: List<Pair<Skill, Int>>): Boolean {
         for ((skill, level) in requirements) {
             if (player.levels.getMax(skill) < level) {
                 return false
@@ -29,13 +38,17 @@ data class GearItem(
     companion object {
         fun of(id: String): GearItem? {
             val def = ItemDefinitions.getOrNull(id) ?: return null
+            return GearItem(id, def.slot, def.type == EquipType.TwoHanded, requirements(def, "equip"), requirements(def, "use"))
+        }
+
+        private fun requirements(def: ItemDefinition, type: String): List<Pair<Skill, Int>> {
             val requirements = mutableListOf<Pair<Skill, Int>>()
             for (i in 1..6) {
-                val index: Int = def.getOrNull("equip_skill_$i") ?: break
-                val level: Int = def.getOrNull("equip_level_$i") ?: break
+                val index: Int = def.getOrNull("${type}_skill_$i") ?: break
+                val level: Int = def.getOrNull("${type}_level_$i") ?: break
                 requirements.add(Skill.all[index] to level)
             }
-            return GearItem(id, def.slot, def.type == EquipType.TwoHanded, requirements)
+            return requirements
         }
     }
 }
