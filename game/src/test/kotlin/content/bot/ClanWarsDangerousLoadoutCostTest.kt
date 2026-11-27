@@ -28,16 +28,28 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
                 gear[id] = items
             }
         }
-        val loadoutItems = mutableMapOf<String, Set<String>>()
+        val loadoutItems = mutableMapOf<String, MutableSet<String>>()
+        val swaps = mutableMapOf<String, List<String>>()
         Config.fileReader(LOADOUTS_PATH) {
             while (nextSection()) {
                 val id = section()
                 val items = mutableSetOf<String>()
                 while (nextPair()) {
                     val key = key()
-                    collectItems(key, value(), gear, items)
+                    val value = value()
+                    if (key == "swaps") {
+                        swaps[id] = (value as List<*>).map { it as String }
+                    } else {
+                        collectItems(key, value, gear, items)
+                    }
                 }
                 loadoutItems[id] = items
+            }
+        }
+        // Kits of swap loadouts are carried too
+        for ((id, ids) in swaps) {
+            for (swap in ids) {
+                loadoutItems.getValue(id).addAll(loadoutItems[swap] ?: error("Unknown swap loadout '$swap'"))
             }
         }
         val templateItems = mutableMapOf<String, Set<String>>()
@@ -48,7 +60,6 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
                 while (nextPair()) {
                     when (key()) {
                         "setup" -> collectSetup(value(), loadoutItems, items)
-                        "switch_loadouts" -> collectHybridLoadouts(value(), gear, items)
                         else -> value()
                     }
                 }
@@ -115,15 +126,6 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
             val loadout = entry["loadout"] as? Map<String, Any> ?: continue
             val id = loadout["id"] as String
             items.addAll(loadouts[id] ?: error("Unknown loadout '$id'"))
-        }
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun collectHybridLoadouts(loadouts: Any?, gear: Map<String, List<String>>, items: MutableSet<String>) {
-        for ((_, raw) in loadouts as? Map<String, Any> ?: return) {
-            for ((key, value) in raw as? Map<String, Any> ?: continue) {
-                collectItems(key, value, gear, items)
-            }
         }
     }
 

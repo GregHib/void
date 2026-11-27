@@ -19,7 +19,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * A set of equipment (and the inventory items it depends on) a bot uses for an activity.
  * Slots either list explicit item [LoadoutSlot.ids] or reference a [Gear] list to pick the best usable item from.
  * [inventory] entries work the same way, except [Gear] entries (e.g. pickaxes) are picked by the levels needed to use them rather than equip them.
- * Defined in `*.loadouts.toml` or inline in a template's `switch_loadouts` (hybrid bots).
+ * Hybrid loadouts list the other loadouts they [swaps] to mid-fight by [style], whose kits are carried in the inventory.
+ * Defined in `*.loadouts.toml`.
  */
 data class Loadout(
     val id: String,
@@ -27,6 +28,8 @@ data class Loadout(
     val inventory: List<LoadoutSlot> = emptyList(),
     val autocast: String? = null,
     val weight: Int = 1,
+    val style: String? = null,
+    val swaps: List<String> = emptyList(),
 ) {
 
     /**
@@ -303,7 +306,7 @@ data class Loadout(
 
     companion object {
         /**
-         * Parse a loadout from a map of equipment slot names to items, optionally nested inside an `equipment` map.
+         * Parse a loadout from a map of equipment slot names to items, optionally nested inside an `equipment` map, along with `inventory`, `autocast`, `weight`, `style` and `swaps`.
          * Slot values accept `id` or `gear` along with `min`, `max`, `optional`, `usable` and `equippable`.
          */
         @Suppress("UNCHECKED_CAST")
@@ -312,6 +315,8 @@ data class Loadout(
             var inventory: List<LoadoutSlot> = emptyList()
             var autocast: String? = null
             var weight = 1
+            var style: String? = null
+            var swaps: List<String> = emptyList()
             fun slot(key: String, value: Any?) {
                 val slot = EquipSlot.by(key)
                 require(slot != EquipSlot.None) { "Invalid equipment slot '$key' in loadout '$id'." }
@@ -330,13 +335,15 @@ data class Loadout(
                     }
                     "autocast" -> autocast = value as String
                     "weight" -> weight = value as Int
+                    "style" -> style = value as String
+                    "swaps" -> swaps = (value as List<*>).map { it as String }
                     "equipment" -> for ((slotKey, slotValue) in value as Map<String, Any>) {
                         slot(slotKey, slotValue)
                     }
                     else -> slot(key, value)
                 }
             }
-            return Loadout(id, slots, inventory, autocast, weight)
+            return Loadout(id, slots, inventory, autocast, weight, style, swaps)
         }
     }
 }

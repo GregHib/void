@@ -5,6 +5,8 @@ import content.bot.Bot
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
+import content.bot.behaviour.loadout.Loadout
+import content.bot.behaviour.loadout.LoadoutDefinitions
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.combat.special.specialAttackEnergy
@@ -21,7 +23,7 @@ import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 /**
  * Gives spawned role bots the levels and items needed for their [BotRole] so they can start straight away.
  * - Levels come from a [Build] rolled once and kept so re-provisioning (e.g. after death) gives the same levels.
- * - Gear comes from the role activity's loadout (worn), explicit equipment/inventory setup and hybrid loadout extras.
+ * - Gear comes from the role activity's loadout (worn), explicit equipment/inventory setup and the kits of any loadouts it swaps to (carried).
  */
 class BotProvisioner(private val activity: (String) -> BotActivity?) {
     private val logger = InlineLogger("BotProvisioner")
@@ -72,10 +74,13 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
         if (activity != null) {
             equipSetup(player, activity)
         }
+        if (loadout != null) {
+            carrySwaps(player, loadout)
+        }
     }
 
     /**
-     * Explicit equipment and inventory setup requirements along with the items for any switch loadouts not being worn
+     * Explicit equipment and inventory setup requirements
      */
     private fun equipSetup(player: Player, activity: BotActivity) {
         for (condition in activity.setup) {
@@ -95,17 +100,20 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
                 else -> continue
             }
         }
-        val starting = activity.startingLoadout
-        if (starting != null) {
-            player["current_loadout"] = starting
-            player["last_loadout_swap_tick"] = -10_000
+    }
+
+    /**
+     * Carry the kits of the loadouts [loadout] swaps to, starting in [loadout]
+     */
+    private fun carrySwaps(player: Player, loadout: Loadout) {
+        if (loadout.swaps.isEmpty()) {
+            return
         }
-        for ((name, loadout) in activity.switchLoadouts) {
-            if (name == starting) {
-                continue
-            }
-            if (!loadout.carry(player)) {
-                logger.warn { "Loadout '$name' didn't fit for ${player.accountName}." }
+        player["current_loadout"] = loadout.id
+        player["last_loadout_swap_tick"] = -10_000
+        for (id in loadout.swaps) {
+            if (!LoadoutDefinitions.get(id).carry(player)) {
+                logger.warn { "Loadout '$id' didn't fit for ${player.accountName}." }
             }
         }
     }

@@ -23,6 +23,9 @@ object LoadoutDefinitions {
             }
             for (loadout in map.values) {
                 loadout.validate()
+                for (swap in loadout.swaps) {
+                    require(swap != loadout.id && map.containsKey(swap)) { "Unknown swap loadout '$swap' in loadout '${loadout.id}'." }
+                }
             }
             definitions = map
             map.size

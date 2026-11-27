@@ -59,7 +59,7 @@ A loadout is a multi-slot gear setup.
 
 Each slot takes either `gear = "<gear id>"` or `id = "<item ids>"`. Slots also take `min`, `max` and `optional`. An `optional` slot never blocks an activity.
 
-A loadout can also have `inventory = [...]`, `autocast` and `weight`.
+A loadout can also have `inventory = [...]`, `autocast`, `weight`, `style` and `swaps`.
 
 Inventory entries can reference gear too, for tools carried rather than worn. These pick the best item the bot has the level to *use* (e.g. mining level for a pickaxe), not the level to wield it.
 
@@ -77,6 +77,21 @@ hat = { gear = "melee_helms", optional = true }
 chest = { gear = "melee_bodies", optional = true }
 legs = { gear = "melee_legs", optional = true }
 shield = { gear = "melee_shields", optional = true }
+```
+
+Hybrid bots swap kits mid-fight. A loadout lists the other loadouts it `swaps` to, and each kit has a combat `style`. The bot wears the loadout it was given and carries the kits of its swaps in the inventory. A `switch_loadout` reactive with `counter_attacker = true` changes to the kit whose style counters the attacker, falling back to the melee kit. `to = "<loadout id>"` always changes to that loadout.
+
+```toml
+# pvp.loadouts.toml
+[pvp_dangerous_hybrid]
+style = "melee"
+swaps = ["pvp_dangerous_hybrid_magic"]
+weapon = { id = "abyssal_whip" }
+
+[pvp_dangerous_hybrid_magic]
+style = "magic"
+autocast = "ice_barrage"
+weapon = { id = "ancient_staff" }
 ```
 
 ## Using a loadout in an activity

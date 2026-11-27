@@ -191,7 +191,10 @@ inventory = [
     { id = "games_necklace_6", min = 1, equippable = true },
 ]
 
+# Worn on spawn, swaps to the magic kit carried in the inventory to counter melee attackers
 [pvp_dangerous_hybrid]
+style = "melee"
+swaps = ["pvp_dangerous_hybrid_magic"]
 weapon = { id = "abyssal_whip" }
 chest = { id = "fighter_torso" }
 legs = { id = "rune_platelegs" }
@@ -204,6 +207,20 @@ inventory = [
     { id = "super_restore_4", min = 2 },
     { id = "saradomin_brew_4", min = 2 },
     { id = "games_necklace_6", min = 1, equippable = true },
+]
+
+[pvp_dangerous_hybrid_magic]
+style = "magic"
+autocast = "ice_barrage"
+weapon = { id = "ancient_staff" }
+chest = { id = "mystic_robe_top_blue" }
+legs = { id = "mystic_robe_bottom_blue" }
+hat = { id = "mystic_hat_blue" }
+feet = { id = "mystic_boots_blue" }
+inventory = [
+    { id = "blood_rune", min = 2000 },
+    { id = "death_rune", min = 2000 },
+    { id = "water_rune", min = 5000 },
 ]
 
 [pvp_dangerous_magic]

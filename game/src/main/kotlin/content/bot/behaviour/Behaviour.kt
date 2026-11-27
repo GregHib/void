@@ -7,7 +7,6 @@ import content.bot.behaviour.condition.BotLoadout
 import content.bot.behaviour.condition.BotLoadoutQualified
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadout.GearDefinitions
-import content.bot.behaviour.loadout.Loadout
 import content.bot.behaviour.loadout.LoadoutDefinitions
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
@@ -219,8 +218,6 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                     val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableSetOf<String>()
-                    var switchLoadouts: Map<String, Any> = emptyMap()
-                    var startingLoadout: String? = null
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
@@ -228,12 +225,10 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                             "actions" -> actions(actions)
                             "reactive" -> actions(reactive)
                             "produces" -> produces(produces)
-                            "switch_loadouts" -> switchLoadouts = map()
-                            "starting_loadout" -> startingLoadout = string()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, reactive, produces, switchLoadouts, startingLoadout)
+                    templates[id] = Template(requires, setup, actions, reactive, produces)
                 }
             }
         }
@@ -299,29 +294,7 @@ private data class Fragment(
         actions = resolveActions(template.actions, actions),
         reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
-        switchLoadouts = resolveSwitchLoadouts(template),
-        startingLoadout = template.startingLoadout,
     )
-
-    @Suppress("UNCHECKED_CAST")
-    private fun resolveSwitchLoadouts(template: Template): Map<String, Loadout> {
-        val out = LinkedHashMap<String, Loadout>(template.switchLoadouts.size)
-        val debug = "$id template ${this.template} switch_loadouts"
-        for ((name, raw) in template.switchLoadouts) {
-            out[name] = when (raw) {
-                is String -> LoadoutDefinitions.getOrNull(raw) ?: error("Unknown loadout '$raw' for '$name' in $debug.")
-                is Map<*, *> -> {
-                    val resolved = resolve(raw as Map<String, Any>, "switch_loadouts.$name")
-                    require(resolved["equipment"] is Map<*, *>) { "Loadout '$name' missing 'equipment' map in $debug." }
-                    Loadout.parse(name, resolved, GearDefinitions::getOrNull).also { it.validate() }
-                }
-                else -> error("Loadout '$name' must be a map or loadout id in $debug, got $raw.")
-            }
-        }
-        val starting = template.startingLoadout
-        require(starting == null || out.containsKey(starting)) { "Starting loadout '$starting' isn't one of the switch_loadouts in $debug." }
-        return out
-    }
 
     private fun resolve(set: Set<String>) = set.map { value ->
         if (value.contains('$')) {
@@ -427,6 +400,4 @@ private data class Template(
     val actions: List<Pair<String, Map<String, Any>>>,
     val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
-    val switchLoadouts: Map<String, Any> = emptyMap(),
-    val startingLoadout: String? = null,
 )

@@ -104,7 +104,7 @@ class ClanWarsBotsTest : WorldTest() {
             levels = "Attack=75, Defence=60, Strength=80, Constitution=800, Ranged=75, Prayer=95, Magic=94",
             style = "slash",
             equipment = "0:helm_of_neitiznotx1, 1:obsidian_capex1, 2:amulet_of_glory_4x1, 3:abyssal_whipx1, 4:fighter_torsox1, 7:rune_platelegsx1, 10:dragon_bootsx1",
-            inventory = "coinsx10000, sharkx1, sharkx1, sharkx1, sharkx1, sharkx1, super_restore_4x1, super_restore_4x1, saradomin_brew_4x1, saradomin_brew_4x1, games_necklace_6x1, ancient_staffx1, mystic_hat_bluex1, mystic_boots_bluex1, mystic_robe_bottom_bluex1, mystic_robe_top_bluex1, blood_runex2000, death_runex2000, water_runex5000",
+            inventory = "coinsx10000, sharkx1, sharkx1, sharkx1, sharkx1, sharkx1, super_restore_4x1, super_restore_4x1, saradomin_brew_4x1, saradomin_brew_4x1, games_necklace_6x1, ancient_staffx1, mystic_robe_top_bluex1, mystic_robe_bottom_bluex1, mystic_hat_bluex1, mystic_boots_bluex1, blood_runex2000, death_runex2000, water_runex5000",
         ),
     ).associateBy { it.role }
 
@@ -127,7 +127,7 @@ class ClanWarsBotsTest : WorldTest() {
                 assertEquals(exp.equipment, player.equipment.items.withIndex().filter { it.value.isNotEmpty() }.joinToString { "${it.index}:${it.value.id}x${it.value.amount}" }, role.id)
                 assertEquals(exp.inventory, player.inventory.items.filter { it.isNotEmpty() }.joinToString { "${it.id}x${it.amount}" }, role.id)
                 if (role.activity == "clan_wars_ffa_dangerous_hybrid") {
-                    assertEquals("melee", player["current_loadout", ""])
+                    assertEquals("pvp_dangerous_hybrid", player["current_loadout", ""])
                 }
                 // Pinned bots must not need to bank: every setup row except the arena should already pass
                 val activity = manager.bind(bot, manager.activity(role.activity)!!)
