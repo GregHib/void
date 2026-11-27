@@ -36,7 +36,7 @@
 #   produces  array  Tags ({ skill = "..." } etc.) the activity emits, used
 #                    by BotManager.updateAvailable to recompute eligibility
 #                    after the bot's state changes.
-#   loadouts  map    Hybrid templates only — named gear/inventory variants
+#   switch_loadouts  map  Hybrid templates only — named gear/inventory variants
 #                    swapped between by a `switch_loadout` reactive, which
 #                    takes `starting_loadout`, `cooldown` (default 3 ticks
 #                    between swaps) and `swaps_per_tick` (default 1 slot).
@@ -548,11 +548,11 @@ setup = [
     { loadout = { id = "pvp_dangerous_hybrid" } },
     { area = { id = "$area" } },
 ]
-loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" } } },
-             magic  = { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" } },
-                        inventory = [ { id = "blood_rune", min = 2000 }, { id = "death_rune", min = 2000 }, { id = "water_rune", min = 5000 }],
-                        autocast = "ice_barrage" },
-            }
+switch_loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" } } },
+                    magic  = { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" } },
+                               inventory = [ { id = "blood_rune", min = 2000 }, { id = "death_rune", min = 2000 }, { id = "water_rune", min = 5000 }],
+                               autocast = "ice_barrage" },
+                   }
 
 actions = [
     { player = { option = "Attack", radius = 10, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },

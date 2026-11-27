@@ -43,12 +43,12 @@ data class BotSwitchLoadout(
         val resolved = if (counterAttacker) {
             val style = bot.combatContext?.incomingAttackStyle ?: return BehaviourState.Success
             val counter = COUNTERS[style] ?: return BehaviourState.Success
-            if (activity.loadouts.containsKey(counter)) counter else COUNTER_FALLBACK
+            if (activity.switchLoadouts.containsKey(counter)) counter else COUNTER_FALLBACK
         } else {
             to ?: return BehaviourState.Success
         }
 
-        val target = activity.loadouts[resolved] ?: return BehaviourState.Success
+        val target = activity.switchLoadouts[resolved] ?: return BehaviourState.Success
 
         val current = player["current_loadout", startingLoadout ?: "" ]
         if (current == resolved) {

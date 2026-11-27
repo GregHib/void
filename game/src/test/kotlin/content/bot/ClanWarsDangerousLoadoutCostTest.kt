@@ -48,7 +48,7 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
                 while (nextPair()) {
                     when (key()) {
                         "setup" -> collectSetup(value(), loadoutItems, items)
-                        "loadouts" -> collectHybridLoadouts(value(), gear, items)
+                        "switch_loadouts" -> collectHybridLoadouts(value(), gear, items)
                         else -> value()
                     }
                 }

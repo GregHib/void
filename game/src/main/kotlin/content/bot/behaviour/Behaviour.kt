@@ -219,7 +219,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                     val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableSetOf<String>()
-                    var loadouts: Map<String, Any> = emptyMap()
+                    var switchLoadouts: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
@@ -227,11 +227,11 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                             "actions" -> actions(actions)
                             "reactive" -> actions(reactive)
                             "produces" -> produces(produces)
-                            "loadouts" -> loadouts = map()
+                            "switch_loadouts" -> switchLoadouts = map()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, reactive, produces, loadouts)
+                    templates[id] = Template(requires, setup, actions, reactive, produces, switchLoadouts)
                 }
             }
         }
@@ -297,19 +297,19 @@ private data class Fragment(
         actions = resolveActions(template.actions, actions),
         reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
-        loadouts = resolveLoadouts(template),
+        switchLoadouts = resolveSwitchLoadouts(template),
     )
 
     @Suppress("UNCHECKED_CAST")
-    private fun resolveLoadouts(template: Template): Map<String, Loadout> {
-        if (template.loadouts.isEmpty()) return emptyMap()
-        val out = LinkedHashMap<String, Loadout>(template.loadouts.size)
-        val debug = "$id template ${this.template} loadouts"
-        for ((name, raw) in template.loadouts) {
+    private fun resolveSwitchLoadouts(template: Template): Map<String, Loadout> {
+        if (template.switchLoadouts.isEmpty()) return emptyMap()
+        val out = LinkedHashMap<String, Loadout>(template.switchLoadouts.size)
+        val debug = "$id template ${this.template} switch_loadouts"
+        for ((name, raw) in template.switchLoadouts) {
             out[name] = when (raw) {
                 is String -> LoadoutDefinitions.getOrNull(raw) ?: error("Unknown loadout '$raw' for '$name' in $debug.")
                 is Map<*, *> -> {
-                    val resolved = resolve(raw as Map<String, Any>, "loadouts.$name")
+                    val resolved = resolve(raw as Map<String, Any>, "switch_loadouts.$name")
                     require(resolved["equipment"] is Map<*, *>) { "Loadout '$name' missing 'equipment' map in $debug." }
                     Loadout.parse(name, resolved, GearDefinitions::getOrNull).also { it.validate() }
                 }
@@ -423,5 +423,5 @@ private data class Template(
     val actions: List<Pair<String, Map<String, Any>>>,
     val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
-    val loadouts: Map<String, Any> = emptyMap(),
+    val switchLoadouts: Map<String, Any> = emptyMap(),
 )

@@ -25,7 +25,10 @@ data class BotActivity(
     override val actions: List<BotAction> = emptyList(),
     override val reactive: List<BotAction> = emptyList(),
     override val produces: Set<String> = emptySet(),
-    val loadouts: Map<String, Loadout> = emptyMap(),
+    /**
+     * Named kits a hybrid bot swaps between with [content.bot.behaviour.action.BotSwitchLoadout], unrelated to the [loadout] setup
+     */
+    val switchLoadouts: Map<String, Loadout> = emptyMap(),
     val boundArea: String? = null,
     val boundLoadout: String? = null,
 ) : Behaviour {

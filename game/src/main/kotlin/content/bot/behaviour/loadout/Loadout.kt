@@ -21,7 +21,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
  * A set of equipment (and the inventory items it depends on) a bot uses for an activity.
  * Slots either list explicit item [LoadoutSlot.ids] or reference a [Gear] list to pick the best usable item from.
  * [inventoryGear] are [Gear] lists of tools carried in the inventory (e.g. pickaxes), picked by the levels needed to use them.
- * Defined in `*.loadouts.toml` or inline in a template's `loadouts` (hybrid bots).
+ * Defined in `*.loadouts.toml` or inline in a template's `switch_loadouts` (hybrid bots).
  */
 data class Loadout(
     val id: String,
@@ -157,7 +157,7 @@ data class Loadout(
 
     /**
      * Add the best item [player] can equip for every slot and the loadout's inventory to their inventory,
-     * skipping equipment they're already wearing or carrying (e.g. the kits of hybrid loadouts not being worn).
+     * skipping equipment they're already wearing or carrying (e.g. the kits of switch loadouts not being worn).
      * @return false if the items didn't fit
      */
     fun carry(player: Player): Boolean {

@@ -76,7 +76,7 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
     }
 
     /**
-     * Explicit equipment and inventory setup requirements along with the items for any hybrid loadouts not being worn
+     * Explicit equipment and inventory setup requirements along with the items for any switch loadouts not being worn
      */
     private fun equipSetup(player: Player, activity: BotActivity) {
         for (condition in activity.setup) {
@@ -101,7 +101,7 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
             player["current_loadout"] = starting
             player["last_loadout_swap_tick"] = -10_000
         }
-        for ((name, loadout) in activity.loadouts) {
+        for ((name, loadout) in activity.switchLoadouts) {
             if (name == starting) {
                 continue
             }
