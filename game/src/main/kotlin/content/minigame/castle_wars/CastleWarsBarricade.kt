@@ -2,9 +2,11 @@ package content.minigame.castle_wars
 
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
+import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
@@ -30,6 +32,7 @@ class CastleWarsBarricade : Script {
             if (!inventory.remove("barricade_castle_wars")) {
                 return@itemOption
             }
+//            message("Your team has already set up 10 defensive barricades.") TODO
             val team = equipped(EquipSlot.Cape).id.removeSuffix("_team_cape")
             val npc = NPCs.add("castle_wars_barricade_$team", tile) // TODO what if both queued on same tick?
             stepAway(npc, tile)
@@ -37,31 +40,28 @@ class CastleWarsBarricade : Script {
 
         itemOnNPCOperate("tinderbox", "castle_wars_barricade_*") { (target) ->
             if (target.id.endsWith("burning")) {
-                message("That barricade is already on fire")// TODO message
-            } else {
-                target.transform("${target.id}_burning")
-                // TODO message + anim + timer
+                noInterest()
+                return@itemOnNPCOperate
             }
+            target.transform("${target.id}_burning")
         }
 
         itemOnNPCOperate("explosive_potion", "castle_wars_barricade_*") { (target) ->
             if (target.id.endsWith("burning")) {
-                // TODO message?
+                noInterest()
                 return@itemOnNPCOperate
             }
-            // TODO what if own teams?
-            // TODO gfx + message
             if (NPCs.remove(target)) {
                 inventory.remove("explosive_potion")
+                areaGfx("fire_wave_impact", tile)
             }
         }
 
         itemOnNPCOperate("bucket_of_water", "castle_wars_barricade_*_burning") { (target) ->
             if (inventory.replace("bucket_of_water", "bucket")) {
                 target.clearTransform()
+                message("You put out the fire!")
             }
-            // TODO gfx + message
-            // TODO what if enemies?
         }
     }
 }

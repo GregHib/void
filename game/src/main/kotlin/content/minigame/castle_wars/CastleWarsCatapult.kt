@@ -16,21 +16,41 @@ import world.gregs.voidps.type.Tile
 class CastleWarsCatapult : Script {
     init {
         objectOperate("Operate", "castle_wars_catapult_saradomin") {
-            if (equipped(EquipSlot.Cape).id != "saradomin_team_cape") {
-                message("This is not your teams catapult")// TODO proper message
+            if (inventory.contains("castle_wars_rock")) {
+                message("You need a rock to launch from the catapult!")
                 return@objectOperate
             }
-            // TODO one person at a time?
+            if (equipped(EquipSlot.Cape).id != "saradomin_team_cape") {
+                message("You can't use the other team's catapult!")
+                return@objectOperate
+            }
             open("castle_wars_catapult_controls")
         }
 
         objectOperate("Operate", "castle_wars_catapult_zamorak") {
-            if (equipped(EquipSlot.Cape).id != "zamorak_team_cape") {
-                message("This is not your teams catapult")// TODO proper message
+            if (inventory.contains("castle_wars_rock")) {
+                message("You need a rock to launch from the catapult!")
                 return@objectOperate
             }
-            // TODO one person at a time?
+            if (equipped(EquipSlot.Cape).id != "zamorak_team_cape") {
+                message("You can't use the other team's catapult!")
+                return@objectOperate
+            }
             open("castle_wars_catapult_controls")
+        }
+
+        objectOperate("Repair", "castle_wars_catapult_zamorak_broken") {
+            if (equipped(EquipSlot.Cape).id == "saradomin_team_cape") {
+                message("You don't want to repair your opponents' catapult.")
+                return@objectOperate
+            }
+        }
+
+        objectOperate("Repair", "castle_wars_catapult_saradomin_broken") {
+            if (equipped(EquipSlot.Cape).id == "zamorak_team_cape") {
+                message("You don't want to repair your opponents' catapult.")
+                return@objectOperate
+            }
         }
 
         interfaceOpened("castle_wars_catapult_controls") {
@@ -47,10 +67,8 @@ class CastleWarsCatapult : Script {
         interfaceOption("Fire", "castle_wars_catapult_controls:fire") {
             val catapult = GameObjects.getLayer(Tile(2384, 3117), ObjectLayer.GROUND) ?: return@interfaceOption
             catapult.anim("castle_wars_catapult_release")
-        }
-
-        itemOnObjectOperate("rock_castle_wars", "castle_wars_catapult_zamorak") { (target) ->
-            target.anim("castle_wars_catapult_ready")
+            delay(4)
+            catapult.anim("castle_wars_catapult_ready")
         }
 
         itemOption("Ignite", "flare") {
@@ -58,6 +76,14 @@ class CastleWarsCatapult : Script {
                 anim("castle_wars_player_place_flare")
                 areaGfx("${equipped(EquipSlot.Cape).id.removeSuffix("_team_cape")}_flare", tile, delay = 30)
             }
+        }
+
+        itemOnObjectOperate("tinderbox", "castle_wars_catapult_zamorak") {
+            if (equipped(EquipSlot.Cape).id == "zamorak_team_cape") {
+                message("You don't want to damage your own catapult!")
+                return@itemOnObjectOperate
+            }
+            // TODO
         }
         // https://youtu.be/gvDzJzAOnH8?t=270
         // message("The catapult fires and...")

@@ -12,7 +12,11 @@ class CastleWarsBarriers : Script {
     init {
         objectOperate("Pass", "castle_wars_zamorak_spawn_door") { (target) ->
             if (equipped(EquipSlot.Cape).id != "zamorak_team_cape") {
-                message("Only those who follow zamorak can pass through this barrier.")// TODO proper message
+                message("You're not allowed into the other team's starting room.")
+                return@objectOperate
+            }
+            if (equipped(EquipSlot.Weapon).id == "saradomin_flag") {
+                message("You can't take a flag into the starting room.")
                 return@objectOperate
             }
             pass(target)
@@ -20,7 +24,11 @@ class CastleWarsBarriers : Script {
 
         objectOperate("Pass", "castle_wars_saradomin_spawn_door") { (target) ->
             if (equipped(EquipSlot.Cape).id != "saradomin_team_cape") {
-                message("Only those who follow saradomin can pass through this barrier.")// TODO proper message
+                message("You're not allowed into the other team's starting room.")
+                return@objectOperate
+            }
+            if (equipped(EquipSlot.Weapon).id == "zamorak_flag") {
+                message("You can't take a flag into the starting room.")
                 return@objectOperate
             }
             pass(target)

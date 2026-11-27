@@ -45,7 +45,7 @@ class Equipping : Script {
             }
             if (item.id.startsWith("saradomin_team")) {
                 if (tile in Areas["castle_wars"]) {
-                    message("You can't unequip this during a game.") // TODO proper message/behaviour
+                    message("You can't remove your team's colours.")
                 } else {
                     equipment.clear(slot)
                 }
@@ -53,7 +53,7 @@ class Equipping : Script {
             }
             if (item.id.startsWith("zamorak_team")) {
                 if (tile in Areas["castle_wars"]) {
-                    message("You can't unequip this during a game.") // TODO proper message/behaviour
+                    message("You can't remove your team's colours.")
                 } else {
                     equipment.clear(slot)
                 }

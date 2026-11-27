@@ -1,6 +1,8 @@
 package content.minigame.castle_wars
 
 import content.entity.combat.hit.directHit
+import content.entity.gfx.areaGfx
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,32 +16,38 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 class CastleWarsRocks : Script {
     init {
-        // TODO collapse timer?
         objectOperate("Mine", "castle_wars_blocked_tunnel_*") { (target) ->
             if (!inventory.contains("bronze_pickaxe")) {
-                message("You need a pickaxe to mine this rock.") // TODO proper message
+                statement("You need a pickaxe to mine this rock. You do not have a pickaxe which you have the Mining level to use.")
                 return@objectOperate
             }
             // https://youtu.be/izRAfNAXS9s?t=286
             message("You swing your pick at the rock.", ChatType.Filter)
-            delay(2)
-            // TODO animation and success rate
-            decrease(target)
+            for (i in 0 until 10) {
+                anim("bronze_pickaxe_swing_low")
+                delay(8)
+                if (random.nextInt(1) == 0) { // TODO success rate
+                    if (decrease(target)) {
+                        break
+                    }
+                }
+            }
         }
 
         itemOnObjectOperate("explosive_potion", "castle_wars_blocked_tunnel_*") { (target) ->
             if (inventory.remove("explosive_potion")) {
                 decrease(target)
-                // TODO gfx
+                areaGfx("fire_wave_impact", tile.add(1, 1))
             }
         }
 
         objectOperate("Collapse", "castle_wars_cave_wall_rockslide") { (target) ->
             if (!inventory.contains("bronze_pickaxe")) {
-                message("You need a pickaxe to mine this rock.") // TODO proper message
+                statement("You need a pickaxe to mine this rock. You do not have a pickaxe which you have the Mining level to use.")
                 return@objectOperate
             }
             // https://youtu.be/izRAfNAXS9s?t=286
@@ -51,6 +59,7 @@ class CastleWarsRocks : Script {
         itemOnObjectOperate("explosive_potion", "castle_wars_cave_wall_rockslide") { (target) ->
             if (inventory.remove("explosive_potion")) {
                 collapse(target)
+                areaGfx("fire_wave_impact", tile)
             }
         }
     }
@@ -78,15 +87,20 @@ class CastleWarsRocks : Script {
         }
     }
 
-    private fun Player.decrease(target: GameObject) {
+    private fun Player.decrease(target: GameObject): Boolean {
         // TODO success rate
         val id = target.id.substringAfterLast("_").toInt()
         // https://youtu.be/fMI0QS8HX24?t=823
         when (id) {
             1 -> message("You manage to remove some of the rocks.")
             2 -> message("You manage to clear the rest of the rocks.")
-            else -> return
+            3 -> {
+                message("The tunnel has already collapsed.")
+                return true
+            }
+            else -> return false
         }
         target.replace(target.id.replace("_${id}", "_${id + 1}"))
+        return id == 2
     }
 }
