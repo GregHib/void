@@ -1,7 +1,7 @@
 # Gear lists: each section is a list of interchangeable items for ONE equipment slot,
 # ordered best -> worst. A bot takes the best item it can equip and owns (or can buy).
 
-[melee_weapons]
+[low_level_melee_weapons]
 items = [
     "rune_scimitar",
     "rune_longsword",
@@ -25,7 +25,7 @@ items = [
     "bronze_sword",
 ]
 
-[melee_helms]
+[low_level_melee_helms]
 items = [
     "rune_full_helm",
     "adamant_full_helm",
@@ -36,7 +36,7 @@ items = [
     "bronze_full_helm",
 ]
 
-[melee_bodies]
+[low_level_melee_bodies]
 items = [
     "rune_platebody",
     "adamant_platebody",
@@ -47,7 +47,7 @@ items = [
     "bronze_platebody",
 ]
 
-[melee_legs]
+[low_level_melee_legs]
 items = [
     "rune_platelegs",
     "adamant_platelegs",
@@ -58,7 +58,7 @@ items = [
     "bronze_platelegs",
 ]
 
-[melee_shields]
+[low_level_melee_shields]
 items = [
     "rune_kiteshield",
     "adamant_kiteshield",
