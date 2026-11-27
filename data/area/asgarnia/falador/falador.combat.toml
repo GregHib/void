@@ -19,6 +19,17 @@ target_sound = "crossbow_shoot"
 projectile = "crossbow_bolt"
 target_hit = { offense = "range", max = 40 }
 
+[guard_longbow]
+defend_anim = "human_defend"
+death_anim = "human_death"
+death_sound = "man_death"
+
+[guard_longbow.range]
+range = 7
+anim = "bow_accurate"
+projectile = "bronze_arrow"
+target_hit = { offense = "range", max = 30 }
+
 [white_knight]
 defend_anim = "2h_defend"
 death_anim = "human_death"

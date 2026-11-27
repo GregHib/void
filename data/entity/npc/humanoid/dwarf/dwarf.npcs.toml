@@ -1,6 +1,7 @@
 [doric]
 id = 284
 categories = ["dwarf"]
+collision = "indoors"
 examine = "A dwarf smith. Quite handy with a hammer."
 
 [thurgo]

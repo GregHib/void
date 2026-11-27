@@ -212,13 +212,13 @@ The `camulet_charges` variable persists across logins. The script sets it direct
 ### Essence Pouch - inline charges used as a durability counter
 
 ```kotlin
-// On empty, discharge once to track degradation uses
+// On fill, discharge once to track degradation uses
 if (Settings["runecrafting.pouch.degrade", true]) {
     inventory.discharge(this, slot)
 }
 ```
 
-The pouch's `charges` field counts how many more times it can be emptied before degrading to a damaged variant. The damaged variant has its own `charges` value and degrades to `"destroy"`.
+The pouch's `charges` field counts how many more times it can be filled before degrading to a damaged variant. The damaged variant has its own `charges` value and degrades to `"destroy"`.
 
 ## Adding a New Chargeable Item
 
@@ -227,4 +227,3 @@ The pouch's `charges` field counts how many more times it can be emptied before 
 3. **If the item degrades automatically** (worn equipment), set `deplete` to the appropriate mode. No script changes are needed - `Degradation.kt` handles it.
 4. **If the item depletes through script actions** (teleports, special attacks, etc.), call `inventory.discharge(player, slot)` at the appropriate point in your script.
 5. **Define degrade targets** as separate item entries. Use `clone = "base_item_id"` to inherit fields and only override what changes between stages.
-

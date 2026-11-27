@@ -92,7 +92,7 @@ internal class EssencePouchTest : WorldTest() {
 
         player.itemOption("Empty", "medium_pouch")
 
-        assertEquals(9, player.inventory.charges(player, 0))
+        assertEquals(10, player.inventory.charges(player, 0))
         assertEquals(5, player.inventory.count("rune_essence"))
         assertEquals(0, player["small_pouch_essence", 0])
     }
@@ -106,7 +106,7 @@ internal class EssencePouchTest : WorldTest() {
 
         player.itemOption("Empty", "large_pouch")
 
-        assertEquals(9, player.inventory.charges(player, 0))
+        assertEquals(10, player.inventory.charges(player, 0))
         assertEquals(9, player.inventory.count("pure_essence"))
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(0, player["large_pouch_essence", 0])
@@ -122,27 +122,120 @@ internal class EssencePouchTest : WorldTest() {
 
         player.itemOption("Empty", "giant_pouch")
 
-        assertEquals(9, player.inventory.charges(player, 0))
+        assertEquals(10, player.inventory.charges(player, 0))
         assertEquals(5, player.inventory.count("pure_essence"))
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(7, player["giant_pouch_essence", 0])
     }
 
     @Test
-    fun `Empty essence damages pouch`() {
+    fun `Fill essence damages pouch`() {
         val player = createPlayer()
         player.inventory.set(0, "medium_pouch", 1)
-        player["medium_pouch_essence"] = 6
-        player["medium_pouch_pure"] = false
+        player.inventory.add("rune_essence", 6)
 
-        player.itemOption("Empty", "medium_pouch")
+        player.itemOption("Fill", "medium_pouch")
 
         assertFalse(player.inventory.contains("medium_pouch"))
         assertTrue(player.inventory.contains("medium_pouch_damaged"))
         assertEquals(20, player.inventory.charges(player, 0))
         assertEquals(0, player.inventory.count("pure_essence"))
+        assertEquals(0, player.inventory.count("rune_essence"))
+        assertEquals(6, player["medium_pouch_essence", 0])
+    }
+
+    @Test
+    fun `New medium pouch does not degrade on first fill`() {
+        val player = createPlayer()
+        player.inventory.add("medium_pouch")
+        player.inventory.add("rune_essence", 6)
+
+        player.itemOption("Fill", "medium_pouch")
+
+        assertTrue(player.inventory.contains("medium_pouch"))
+        assertFalse(player.inventory.contains("medium_pouch_damaged"))
+        assertEquals(44, player.inventory.charges(player, 0))
+        assertEquals(6, player["medium_pouch_essence", 0])
+    }
+
+    @Test
+    fun `Medium pouch degrades on its forty fifth fill`() {
+        val player = createPlayer()
+        player.inventory.add("medium_pouch")
+        player.inventory.add("rune_essence")
+
+        repeat(44) {
+            player.itemOption("Fill", "medium_pouch")
+            player.itemOption("Empty", "medium_pouch")
+        }
+
+        assertTrue(player.inventory.contains("medium_pouch"))
+        assertEquals(1, player.inventory.charges(player, 0))
+
+        player.itemOption("Fill", "medium_pouch")
+
+        assertFalse(player.inventory.contains("medium_pouch"))
+        assertTrue(player.inventory.contains("medium_pouch_damaged"))
+    }
+
+    @Test
+    fun `Adding essence damages pouch`() {
+        val player = createPlayer()
+        player.inventory.set(0, "medium_pouch", 1)
+        player.inventory.add("rune_essence")
+
+        player.itemOnItem(1, 0)
+        tick(1)
+
+        assertFalse(player.inventory.contains("medium_pouch"))
+        assertTrue(player.inventory.contains("medium_pouch_damaged"))
+        assertEquals(20, player.inventory.charges(player, 0))
+        assertEquals(1, player["medium_pouch_essence", 0])
+    }
+
+    @Test
+    fun `Empty essence does not damage pouch`() {
+        val player = createPlayer()
+        player.inventory.set(0, "medium_pouch", 1)
+        player["medium_pouch_essence"] = 6
+
+        player.itemOption("Empty", "medium_pouch")
+
+        assertTrue(player.inventory.contains("medium_pouch"))
+        assertFalse(player.inventory.contains("medium_pouch_damaged"))
+        assertEquals(1, player.inventory.charges(player, 0))
         assertEquals(6, player.inventory.count("rune_essence"))
         assertEquals(0, player["medium_pouch_essence", 0])
+    }
+
+    @Test
+    fun `Emptying pure pouch allows rune essence to be added`() {
+        val player = createPlayer()
+        player.inventory.set(0, "medium_pouch", 10)
+        player["medium_pouch_essence"] = 1
+        player["medium_pouch_pure"] = true
+        player.inventory.add("rune_essence")
+
+        player.itemOption("Empty", "medium_pouch")
+        player.itemOnItem(1, 0)
+        tick(1)
+
+        assertEquals(0, player.inventory.count("rune_essence"))
+        assertEquals(1, player["medium_pouch_essence", 0])
+        assertFalse(player["medium_pouch_pure", false])
+    }
+
+    @Test
+    fun `Destroying pouch clears stored contents`() {
+        val player = createPlayer()
+        player.inventory.set(0, "medium_pouch_damaged", 1)
+        player.inventory.add("rune_essence")
+
+        player.itemOption("Fill", "medium_pouch_damaged")
+
+        assertFalse(player.inventory.contains("medium_pouch_damaged"))
+        assertEquals(0, player["medium_pouch_essence", 0])
+        assertFalse(player["medium_pouch_pure", false])
     }
 
     @Test
@@ -165,8 +258,8 @@ internal class EssencePouchTest : WorldTest() {
     fun `Can't add pure essence to partially filled rune essence pouch`() {
         val player = createPlayer()
         player.inventory.add("small_pouch")
-        player["medium_pouch_pure"] = false
-        player["medium_pouch_essence"] = 2
+        player["small_pouch_pure"] = false
+        player["small_pouch_essence"] = 2
         player.inventory.add("rune_essence", 2)
         player.inventory.add("pure_essence", 2)
 
@@ -175,7 +268,7 @@ internal class EssencePouchTest : WorldTest() {
 
         assertEquals(2, player.inventory.count("rune_essence"))
         assertEquals(2, player.inventory.count("pure_essence"))
-        assertEquals(2, player["medium_pouch_essence", 0])
+        assertEquals(2, player["small_pouch_essence", 0])
         assertFalse(player["small_pouch_pure", false])
     }
 
@@ -183,18 +276,18 @@ internal class EssencePouchTest : WorldTest() {
     fun `Can't add rune essence to partially filled pure essence pouch`() {
         val player = createPlayer()
         player.inventory.add("small_pouch")
-        player["medium_pouch_pure"] = true
-        player["medium_pouch_essence"] = 2
+        player["small_pouch_pure"] = true
+        player["small_pouch_essence"] = 2
         player.inventory.add("rune_essence", 2)
         player.inventory.add("pure_essence", 2)
 
-        player.itemOnItem(3, 0)
+        player.itemOnItem(1, 0)
         tick(1)
 
         assertEquals(2, player.inventory.count("rune_essence"))
         assertEquals(2, player.inventory.count("pure_essence"))
-        assertEquals(2, player["medium_pouch_essence", 0])
-        assertTrue(player["medium_pouch_pure", false])
+        assertEquals(2, player["small_pouch_essence", 0])
+        assertTrue(player["small_pouch_pure", false])
     }
 
     @Test
@@ -202,6 +295,7 @@ internal class EssencePouchTest : WorldTest() {
         val player = createPlayer()
         player.inventory.set(0, "medium_pouch", 10)
         player["medium_pouch_essence"] = 2
+        player["medium_pouch_pure"] = true
 
         player.itemOption("Drop", "medium_pouch")
 
@@ -209,5 +303,6 @@ internal class EssencePouchTest : WorldTest() {
         assertEquals(0, player.inventory.count("pure_essence"))
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(0, player["medium_pouch_essence", 0])
+        assertFalse(player["medium_pouch_pure", false])
     }
 }
