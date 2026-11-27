@@ -1,6 +1,8 @@
 package content.bot.behaviour.activity
 
 import content.bot.Bot
+import content.bot.weightedRandom
+import world.gregs.voidps.engine.data.Settings
 
 /**
  * Chooses which [BotActivity] an idle [Bot] should do next.
@@ -17,5 +19,12 @@ interface ActivityPicker {
 
     companion object {
         val DEFAULT_PICKERS: List<ActivityPicker> = listOf(PinnedPicker, RepeatPreviousPicker, SameSkillPicker, RandomPicker)
+
+        private val preferWeight: Int by Settings.int("bots.preferWeight", 4)
+
+        /**
+         * Random pick weighted towards activities with more of their [BotActivity.prefer] conditions met by [bot].
+         */
+        fun weightedPick(bot: Bot, activities: List<BotActivity>): BotActivity? = activities.map { it to it.weight(bot.player, preferWeight) }.weightedRandom()
     }
 }

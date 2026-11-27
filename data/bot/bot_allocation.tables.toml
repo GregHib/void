@@ -1,0 +1,59 @@
+[bot_allocations]
+row_id = "string"
+mode = "string" # Allocation mode: capacity or weighted.
+mode_default = "capacity"
+count = "int"
+count_default = 0
+count_setting = "string" # Optional settings key that overrides count.
+spawn_seconds = "int"
+spawn_seconds_default = 60
+spawn_seconds_setting = "string" # Optional settings key that overrides spawn_seconds.
+spawn_areas = "list<string>"
+refill = "boolean" # Keep topping up to count, false = stop once reached.
+refill_default = false
+saved = "boolean" # May reuse saved bot accounts, see bots.spawnSavedChance.
+saved_default = false
+starter_items = "list<pair<string, int>>" # Items given to brand-new accounts, and to role bots each time they're provisioned.
+restock_areas = "list<string>" # Areas which re-provision a role bot on entry, e.g. after teleporting out.
+roles = "list<row>" # bot_roles rows, weighted mode only.
+
+[.world]
+count_setting = "bots.count"
+spawn_seconds_setting = "bots.spawnSeconds"
+spawn_areas = ["lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport"]
+saved = true
+starter_items = [["coins", 10000]]
+
+[.clan_wars_ffa_safe]
+mode = "weighted"
+count_setting = "bots.combat.clan_wars_ffa_safe.count"
+spawn_seconds = 10
+spawn_seconds_setting = "bots.combat.clan_wars_ffa_safe.spawnSeconds"
+spawn_areas = ["clan_wars_teleport"]
+refill = true
+restock_areas = ["clan_wars_teleport"]
+roles = [
+    "bot_roles.clan_wars_safe_zerker",
+    "bot_roles.clan_wars_safe_dharoker",
+    "bot_roles.clan_wars_safe_ags_main",
+    "bot_roles.clan_wars_safe_obby_pure",
+    "bot_roles.clan_wars_safe_msb_pure",
+    "bot_roles.clan_wars_safe_karils_tank",
+    "bot_roles.clan_wars_safe_ancient_tank",
+    "bot_roles.clan_wars_safe_ancient_hybrid",
+]
+
+[.clan_wars_ffa_dangerous]
+mode = "weighted"
+count_setting = "bots.combat.clan_wars_ffa_dangerous.count"
+spawn_seconds = 10
+spawn_seconds_setting = "bots.combat.clan_wars_ffa_dangerous.spawnSeconds"
+spawn_areas = ["clan_wars_teleport"]
+refill = true
+restock_areas = ["clan_wars_teleport"]
+roles = [
+    "bot_roles.clan_wars_dangerous_melee",
+    "bot_roles.clan_wars_dangerous_ranged",
+    "bot_roles.clan_wars_dangerous_magic",
+    "bot_roles.clan_wars_dangerous_hybrid",
+]

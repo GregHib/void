@@ -3,7 +3,8 @@ requires = [
     { skill = { id = "woodcutting", min = 1, max = 15 } },
 ]
 setup = [
-    { inventory = [{ id = "steel_hatchet,iron_hatchet,bronze_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -19,7 +20,8 @@ requires = [
     { skill = { id = "woodcutting", min = 15, max = 30 } },
 ]
 setup = [
-    { inventory = [{ id = "mithril_hatchet,steel_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -35,7 +37,8 @@ requires = [
     { skill = { id = "woodcutting", min = 30, max = 60 } },
 ]
 setup = [
-    { inventory = [{ id = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -52,7 +55,8 @@ requires = [
     { skill = { id = "woodcutting", min = 45 } },
 ]
 setup = [
-    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -68,7 +72,8 @@ requires = [
     { skill = { id = "woodcutting", min = 60, max = 75 } },
 ]
 setup = [
-    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -85,7 +90,8 @@ requires = [
     { skill = { id = "woodcutting", min = 75 } },
 ]
 setup = [
-    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -103,7 +109,8 @@ requires = [
     { skill = { id = "fletching", min = "$fletching_level" } },
 ]
 setup = [
-    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "knife" }, { id = "empty", min = 1 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -123,7 +130,8 @@ requires = [
     { skill = { id = "fletching", min = "$fletching_level" } },
 ]
 setup = [
-    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "knife" }, { id = "empty", min = 1 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -148,7 +156,8 @@ requires = [
     { skill = { id = "fletching", min = "$fletching_level" } },
 ]
 setup = [
-    { inventory = [{ id = "$hatchets", usable = true }, { id = "knife" }, { id = "empty", min = 1 }] },
+    { loadout = { id = "woodcutting" } },
+    { inventory = [{ id = "knife" }, { id = "empty", min = 1 }] },
     { area = { id = "$location" } },
 ]
 actions = [

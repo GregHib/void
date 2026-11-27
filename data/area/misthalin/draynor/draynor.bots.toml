@@ -13,20 +13,20 @@ fields = { location = "draynor_willow_trees" }
 # Combined woodcutting and fletching
 [draynor_north_trees_fletch_arrow_shaft]
 template = "woodcutting_fletching_template"
-fields = { location = "draynor_north_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
+fields = { location = "draynor_north_trees", wood = "logs", product = "arrow_shaft", tree = "tree*", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 1 }
 
 [draynor_north_trees_fletch_shortbow_u]
 template = "woodcutting_fletching_bank_template"
-fields = { bank_area = "draynor_bank", location = "draynor_north_trees", wood = "logs", product = "shortbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
+fields = { bank_area = "draynor_bank", location = "draynor_north_trees", wood = "logs", product = "shortbow_u", tree = "tree*", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 5 }
 
 [draynor_north_trees_fletch_longbow_u]
 template = "woodcutting_fletching_bank_template"
-fields = { bank_area = "draynor_bank", location = "draynor_north_trees", wood = "logs", product = "longbow_u", tree = "tree*", hatchets = "steel_hatchet,iron_hatchet,bronze_hatchet", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
+fields = { bank_area = "draynor_bank", location = "draynor_north_trees", wood = "logs", product = "longbow_u", tree = "tree*", woodcutting_level = 1, woodcutting_max = 15, fletching_level = 10 }
 
 [draynor_west_oak_trees_fletch_oak_shortbow_u]
 template = "woodcutting_fletching_bank_template"
-fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_shortbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 20 }
+fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_shortbow_u", tree = "oak*", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 20 }
 
 [draynor_west_oak_trees_fletch_oak_longbow_u]
 template = "woodcutting_fletching_bank_template"
-fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", hatchets = "mithril_hatchet,steel_hatchet", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }
+fields = { bank_area = "draynor_bank", location = "draynor_west_oak_trees", wood = "oak_logs", product = "oak_longbow_u", tree = "oak*", woodcutting_level = 15, woodcutting_max = 30, fletching_level = 25 }

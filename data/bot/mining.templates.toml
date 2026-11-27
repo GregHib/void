@@ -3,7 +3,8 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -19,7 +20,8 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -35,7 +37,8 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -51,7 +54,8 @@ requires = [
     { skill = { id = "mining", min = 15, max = 40 } },
 ]
 setup = [
-    { inventory = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -67,7 +71,8 @@ requires = [
     { skill = { id = "mining", min = 20, max = 40 } },
 ]
 setup = [
-    { inventory = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -83,7 +88,8 @@ requires = [
     { skill = { id = "mining", min = 30, max = 55 } },
 ]
 setup = [
-    { inventory = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -99,7 +105,8 @@ requires = [
     { skill = { id = "mining", min = 40, max = 60 } },
 ]
 setup = [
-    { inventory = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -115,7 +122,8 @@ requires = [
     { skill = { id = "mining", min = 55, max = 70 } },
 ]
 setup = [
-    { inventory = [{ id = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { loadout = { id = "mining" } },
+    { inventory = [{ id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [

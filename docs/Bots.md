@@ -34,6 +34,203 @@ produces = [
 ]
 ```
 
+# Gear & Loadouts
+
+Gear and loadouts decide what a bot wears and wields. Gear lives in `*.gear.toml` and loadouts live in `*.loadouts.toml`.
+
+## Gear
+
+A gear list is a list of interchangeable items for one equipment slot. Items are ordered best to worst. A bot takes the best item it can equip and owns.
+
+```toml
+# melee.gear.toml
+[melee_weapons]
+items = [
+    "rune_scimitar",
+    "rune_longsword",
+    "adamant_scimitar",
+    "bronze_sword",
+]
+```
+
+## Loadouts
+
+A loadout is a multi-slot gear setup.
+
+Each slot takes either `gear = "<gear id>"` or `id = "<item ids>"`. Slots also take `min`, `max` and `optional`. An `optional` slot never blocks an activity.
+
+A loadout can also have `inventory = [...]`, `autocast`, `weight`, `style` and `swaps`.
+
+Inventory entries can reference gear too, for tools carried rather than worn. These pick the best item the bot has the level to *use* (e.g. mining level for a pickaxe), not the level to wield it.
+
+```toml
+# tools.loadouts.toml
+[mining]
+inventory = [{ gear = "pickaxes", usable = true }]
+```
+
+```toml
+# melee.loadouts.toml
+[melee]
+weapon = { gear = "melee_weapons" }
+hat = { gear = "melee_helms", optional = true }
+chest = { gear = "melee_bodies", optional = true }
+legs = { gear = "melee_legs", optional = true }
+shield = { gear = "melee_shields", optional = true }
+```
+
+Hybrid bots swap kits mid-fight. A loadout lists the other loadouts it `swaps` to, and each kit has a combat `style`. The bot wears the loadout it was given and carries the kits of its swaps in the inventory. A `switch_loadout` reactive with `counter_attacker = true` changes to the kit whose style counters the attacker, falling back to the melee kit. `to = "<loadout id>"` always changes to that loadout.
+
+```toml
+# pvp.loadouts.toml
+[pvp_dangerous_hybrid]
+style = "melee"
+swaps = ["pvp_dangerous_hybrid_magic"]
+weapon = { id = "abyssal_whip" }
+
+[pvp_dangerous_hybrid_magic]
+style = "magic"
+autocast = "ice_barrage"
+weapon = { id = "ancient_staff" }
+```
+
+## Using a loadout in an activity
+
+Add a loadout row to the activity's `setup`.
+
+```toml
+[kill_cows]
+setup = [
+    { loadout = { id = "melee" } },
+    { area = { id = "$location" } },
+    { inventory = { id = "empty", min = 27 } },
+]
+```
+
+To pick between loadouts, give a list. Each entry's `weight` is its chance. If an entry has no weight, it uses the loadout's own `weight`, which defaults to 1.
+
+```toml
+setup = [
+    { loadout = [{ id = "a", weight = 3 }, { id = "b" }] },
+]
+```
+
+- Loadouts only work in activity `setup`. They can't be used in resolvers or shortcuts.
+- An activity can have only one loadout row.
+
+## How a bot picks its gear
+
+A bot picks its gear once, when the activity is assigned.
+
+1. Pick a qualifying loadout by weight.
+2. For each gear slot, use the best item the bot can equip and already owns.
+3. If it owns none, a required slot uses the best item it can get from a shop or setup resolver. Otherwise, it uses the best item it can equip.
+4. Optional slots only use items the bot already owns.
+5. A two-handed weapon removes the shield. A required shield rules out two-handed weapons.
+6. Explicit `id` slots are used as written.
+7. The loadout's `inventory` is merged into the activity's inventory requirement. Set `empty` counts so they leave room for it. Inventory gear entries are picked like gear slots, using the level to use the item.
+8. Ammo compatibility is not checked. Use explicit `id` slots for ammo.
+
+## Requirements
+
+An activity with a loadout is only available to bots with the levels to equip at least one item in each required gear slot. This requirement is added automatically.
+
+## Spawned bots
+
+With `bots.spawnRequirements`, a bot gets the levels for the loadout. It also gets the best item it can equip for every slot, including optional ones.
+
+# Allocations
+
+An allocation decides how many bots spawn into a part of the world, and which role each one gets. Allocations are rows in the `bot_allocations` table, in `data/bot/bot_allocation.tables.toml`.
+
+```toml
+[bot_allocations]
+[.world]
+count_setting = "bots.count"
+spawn_seconds_setting = "bots.spawnSeconds"
+spawn_areas = ["lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport"]
+saved = true
+starter_items = [["coins", 10000]]
+```
+
+- `row_id`: unique id, used by `::bots`.
+- `mode`: `capacity` (default) or `weighted`. The `world` row leaves it out.
+- `count` / `count_setting`: how many bots the allocation wants. The setting overrides `count` when set.
+- `spawn_seconds` / `spawn_seconds_setting`: seconds between spawns, default 60. The setting overrides it when set.
+- `spawn_areas`: areas bots spawn in, picked at random.
+- `refill`, `saved`, `starter_items`: see Spawning below.
+- `roles`: `bot_roles` rows, weighted mode only.
+
+## Modes
+
+- `capacity` is how world bots work. Bots pick any available activity, limited by each area's `bot_capacity`.
+- `weighted` gives each bot a fixed role from `roles`, by weight. Role minimums are filled first. The rest is split by weight (largest remainder) and capped at each role's `max`. Roles are fixed for the bot's whole life.
+
+The Clan Wars free-for-all rows, `clan_wars_ffa_safe` and `clan_wars_ffa_dangerous`, are the real weighted allocations. Trimmed excerpt:
+
+```toml
+[bot_allocations]
+[.clan_wars_ffa_safe]
+mode = "weighted"
+count_setting = "bots.combat.clan_wars_ffa_safe.count"
+spawn_seconds = 10
+spawn_seconds_setting = "bots.combat.clan_wars_ffa_safe.spawnSeconds"
+spawn_areas = ["clan_wars_teleport"]
+refill = true
+starter_items = [["coins", 10000]]
+roles = [
+    "bot_roles.clan_wars_safe_zerker",
+    "bot_roles.clan_wars_safe_dharoker",
+    # ...8 roles in total
+]
+
+[bot_roles]
+[.clan_wars_safe_zerker]
+activity = "clan_wars_ffa_safe_zerker"
+builds = [["bot_builds.clan_wars_safe_zerker", 1]]
+combat_style = "slash"
+```
+
+`clan_wars_ffa_dangerous` has 4 roles. Each role has one fixed-level build. With only `weight` set, roles are split evenly. Using `min` and `max` on a role changes the split.
+
+Role activities use templates from `data/bot/minigame_combat.templates.toml`. Their kit is a PvP loadout (e.g. `pvp_zerker`) from `data/bot/pvp.loadouts.toml`. Slots with several options, such as torva or bandos for `ags_main`, use gear lists from `data/bot/pvp.gear.toml`.
+
+Bots follow the same death rules as players, so respawn tiles and item drops come from the minigame's own content (e.g. `ClanWarsFreeForAll`). `restock_areas` lists areas which re-provision a role bot when it enters them. `clan_wars_ffa_dangerous` sets `restock_areas = ["clan_wars_teleport"]` so bots that retreat are restocked before walking back in.
+
+## Spawning
+
+Each allocation has its own spawn timer. While it is below its target, it spawns one bot every `spawn_seconds`.
+
+- `refill = false` (default): stop once `count` bots have been spawned. Bots that leave are not replaced, so `::clear_bots` stays clear.
+- `refill = true`: keep topping up to `count` as bots leave.
+- `saved = true`: may reuse saved bot accounts, with the chance set by `bots.spawnSavedChance`.
+- `starter_items`: given to brand-new capacity bots. Role bots get them every time they are provisioned.
+
+## Roles and builds
+
+A role (`bot_roles`) has:
+- `activity`: what its bots do.
+- `weight` (default 1), `min` (default 0) and an optional `max`.
+- `builds`: weighted `bot_builds` rows. A role with no builds keeps its existing levels.
+- `combat_style`: optional.
+
+A build (`bot_builds`) has a level range `[min, max]` for each skill. Each skill is rolled within its range. Skills not listed are left alone. Constitution is given in levels, not x10.
+
+## Provisioning
+
+A role bot is provisioned when it spawns.
+
+1. A build is picked by weight. Its levels are rolled once and kept.
+2. The role activity's loadout is picked, raising levels if it needs to. It is remembered as the bot's loadout, so binding later picks the same one.
+3. Items are cleared, the starter items are added and the loadout is worn.
+4. Explicit equipment and inventory setup rows are applied. Hybrid loadout extras not being worn are added to the inventory.
+
+On death, a role bot respawns with the same levels and kit.
+
+## Command
+
+`::bots [count] [allocation]` spawns `count` bots (default 1) into `world` by default. Allocation ids are autofilled. For example `::bots 14 clan_wars_ffa_safe` spawns 14 safe Clan Wars bots, or use `clan_wars_ffa_dangerous` for the dangerous arena.
+
 # Resolvers
 
 Resolvers are activities bots can complete to get stuff which is needed for another activity.

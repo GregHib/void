@@ -5,6 +5,7 @@ import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.activity.RandomPicker
 import content.bot.behaviour.activity.RepeatPreviousPicker
 import content.bot.behaviour.activity.SameSkillPicker
+import content.bot.behaviour.condition.BotVariable
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
@@ -93,5 +94,29 @@ class ActivityPickerTest {
         unavailable = setOf("mining", "copper")
 
         assertEquals(fishing, RandomPicker.pick(bot(), all, idle, ::eligible))
+    }
+
+    @Test
+    fun `Random picker favours activities with preferences met`() {
+        roll = 5
+        val preferred = all + ("copper" to copper.copy(prefer = listOf(BotVariable("preferred", false, false))))
+
+        assertEquals(copper.id, RandomPicker.pick(bot(), preferred, idle, ::eligible)?.id)
+    }
+
+    @Test
+    fun `Random picker ignores preferences not met`() {
+        roll = 5
+        val preferred = all + ("copper" to copper.copy(prefer = listOf(BotVariable("preferred", true, false))))
+
+        assertEquals(fishing, RandomPicker.pick(bot(), preferred, idle, ::eligible))
+    }
+
+    @Test
+    fun `Same skill picker favours activities with preferences met`() {
+        roll = 3
+        val preferred = all + ("mining" to mining.copy(prefer = listOf(BotVariable("preferred", false, false))))
+
+        assertEquals(mining.id, SameSkillPicker.pick(bot(last = copper), preferred, idle, ::eligible)?.id)
     }
 }

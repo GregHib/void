@@ -272,7 +272,27 @@ class BotManager(
      * Limit an activity to one of its areas, picking randomly from those with free slots weighted towards the closest.
      * Activities already bound (i.e. repeating the previous activity) keep their area.
      */
-    internal fun bind(bot: Bot, activity: BotActivity): BotActivity {
+    internal fun bind(bot: Bot, activity: BotActivity): BotActivity = bindLoadout(bot, bindArea(bot, activity))
+
+    /**
+     * Replace an activity's loadout with the concrete equipment and inventory picked for [bot], chosen at random
+     * from the loadouts it qualifies for (weighted). Activities already bound keep their loadout.
+     */
+    internal fun bindLoadout(bot: Bot, activity: BotActivity): BotActivity {
+        if (activity.boundLoadout != null) {
+            return activity
+        }
+        val requirement = activity.loadout ?: return activity
+        val loadout = requirement.pick(bot.player, any = true, preferred = bot.loadout) ?: return activity
+        val equipment = loadout.bind(bot.player) { id, amount -> DynamicResolvers.obtainable(bot.player, id, amount, resolvers) }
+        if (bot.player["debug", false]) {
+            logger.debug { "Bound loadout '${loadout.id}' for ${activity.id} to bot '${bot.player.accountName}': ${equipment.mapValues { it.value.ids }}." }
+        }
+        val inventory = loadout.bindInventory(bot.player) { id, amount -> DynamicResolvers.obtainable(bot.player, id, amount, resolvers) }
+        return activity.bind(loadout, equipment, inventory)
+    }
+
+    private fun bindArea(bot: Bot, activity: BotActivity): BotActivity {
         if (activity.boundArea != null) {
             return activity
         }

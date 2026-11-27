@@ -1,5 +1,8 @@
 package content.bot.behaviour.condition
 
+import content.bot.behaviour.loadout.Loadout
+import content.bot.behaviour.loadout.LoadoutDefinitions
+import content.bot.weightedRandom
 import content.entity.player.bank.bank
 import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -90,6 +93,7 @@ sealed class Condition(val priority: Int) {
         private fun parse(type: String, list: List<Map<String, Any>>): Condition? = when (type) {
             "inventory" -> parseInventory(list)
             "equipment" -> parseEquipment(list)
+            "loadout" -> parseLoadout(list)
             "bank" -> parseBank(list)
             "owns" -> parseOwns(list)
             "variable" -> parseVariable(list)
@@ -174,7 +178,7 @@ sealed class Condition(val priority: Int) {
             return items
         }
 
-        private fun toIds(id: String): Set<String> = id.split(",").flatMap { if (it.any { char -> char == '*' || char == '#' }) Wildcards.get(it, Wildcard.Item) else setOf(it) }.toSet()
+        internal fun toIds(id: String): Set<String> = id.split(",").flatMap { if (it.any { char -> char == '*' || char == '#' }) Wildcards.get(it, Wildcard.Item) else setOf(it) }.toSet()
 
         @Suppress("UNCHECKED_CAST")
         private fun parseEquipment(list: List<Map<String, Any>>): BotEquipmentSetup {
@@ -200,6 +204,23 @@ sealed class Condition(val priority: Int) {
                 }
             }
             return BotEquipmentSetup(items)
+        }
+
+        /**
+         * `{ loadout = { id = "a,b" } }` or weighted `{ loadout = [{ id = "a", weight = 3 }, { id = "b" }] }`
+         */
+        private fun parseLoadout(list: List<Map<String, Any>>): BotLoadout {
+            val options = mutableListOf<Pair<Loadout, Int>>()
+            for (map in list) {
+                val ids = map["id"] as? String ?: error("Missing loadout id in $list")
+                val weight = map["weight"] as? Int
+                for (id in ids.split(",").map { it.trim() }.filter { it.isNotEmpty() }) {
+                    val loadout = LoadoutDefinitions.getOrNull(id) ?: error("Unknown loadout '$id' in $list")
+                    options.add(loadout to (weight ?: loadout.weight))
+                }
+            }
+            require(options.isNotEmpty()) { "No loadouts found in $list" }
+            return BotLoadout(options)
         }
 
         private fun parseBank(list: List<Map<String, Any>>): BotBankSetup = BotBankSetup(parseItems(list))
@@ -401,6 +422,8 @@ sealed class Condition(val priority: Int) {
                 is BotInventorySetup -> for (item in condition.items) {
                     player.bank.add(item.ids.random(random), item.min ?: 1)
                 }
+                is BotLoadoutQualified -> condition.loadouts.map { it to it.weight }.weightedRandom()?.grantLevels(player)
+                is BotLoadout -> condition.pick(player, any = true)?.grant(player)
                 is BotOwnsItem -> player.bank.add(condition.id, condition.min ?: 1)
                 is BotSkillLevel -> player.levels.set(condition.skill, condition.min ?: 1)
                 is BotVariable -> player[condition.id] = condition.equals

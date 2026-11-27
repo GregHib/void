@@ -7,7 +7,7 @@ import world.gregs.voidps.type.random
 
 /**
  * Makes bots more likely to stay in the same skill than bounce between unrelated activities,
- * by picking from the available activities which train the same skill as the [Bot.lastSuccessful] activity.
+ * by picking (weighted by [BotActivity.prefer]) from the available activities which train the same skill as the [Bot.lastSuccessful] activity.
  * Percentage (0 - 100) chance of favouring the same skill is `bots.sameSkillChance`, otherwise defers to the next picker.
  */
 object SameSkillPicker : ActivityPicker {
@@ -18,9 +18,6 @@ object SameSkillPicker : ActivityPicker {
         if (random.nextInt(100) >= sameSkillChance) {
             return null
         }
-        return bot.available
-            .mapNotNull { activities[it] }
-            .filter { it.skill == skill && eligible(it) }
-            .randomOrNull(random)
+        return ActivityPicker.weightedPick(bot, bot.available.mapNotNull { activities[it] }.filter { it.skill == skill && eligible(it) })
     }
 }

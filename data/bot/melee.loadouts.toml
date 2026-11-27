@@ -1,0 +1,6 @@
+[low_level_melee]
+weapon = { gear = "low_level_melee_weapons" }
+hat = { gear = "low_level_melee_helms", optional = true }
+chest = { gear = "low_level_melee_bodies", optional = true }
+legs = { gear = "low_level_melee_legs", optional = true }
+shield = { gear = "low_level_melee_shields", optional = true }

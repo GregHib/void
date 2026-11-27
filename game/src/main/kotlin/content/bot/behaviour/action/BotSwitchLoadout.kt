@@ -6,21 +6,22 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.Condition
+import content.bot.behaviour.loadout.Loadout
+import content.bot.behaviour.loadout.LoadoutDefinitions
 import world.gregs.voidps.engine.GameLoop
 
 /**
- * Reactive action for hybrid PvP bots: swap the entire worn kit to a named loadout declared on
- * the bot's current [BotActivity]. Two safety rails:
+ * Reactive action for hybrid PvP bots: swap the worn kit between the activity's bound [Loadout]
+ * and the loadouts it lists in [Loadout.swaps]. Two safety rails:
  * 1. Change-trigger — short-circuits when the bot is already on (or transitioning into) the target.
  * 2. Cooldown — stamps `last_loadout_swap_tick` and gates new swaps for [cooldown] ticks.
  *
  * Target resolution:
- * - Explicit: `to = "magic"` always picks the named loadout.
- * - Auto-counter: `counter_attacker = true` reads `incomingAttackStyle` and picks the counter from
- *   the OSRS combat triangle (melee→magic, ranged→melee, magic→ranged). Loadout names must be
- *   "melee" / "ranged" / "magic" for this to resolve. If the counter loadout isn't declared on
- *   this activity (e.g. a melee/magic-only hybrid hit by magic looks up "ranged"), falls back
- *   to the "magic" loadout so the bot still moves to a defensive kit.
+ * - Explicit: `to = "pvp_dangerous_hybrid_magic"` always picks the loadout with that id.
+ * - Auto-counter: `counter_attacker = true` reads `incomingAttackStyle` and picks the loadout whose
+ *   [Loadout.style] counters it from the OSRS combat triangle (melee→magic, ranged→melee, magic→ranged).
+ *   If there's no loadout for the counter style (e.g. a melee/magic-only hybrid hit by magic looks
+ *   for "ranged"), falls back to the "melee" loadout so the bot still moves to a defensive kit.
  *
  * Once the rails clear, delegates to [BotSwitchSetup] for the per-slot equip (up to
  * [swapsPerTick] slots committed per tick). When the target loadout declares an
@@ -30,7 +31,6 @@ data class BotSwitchLoadout(
     val to: String? = null,
     val counterAttacker: Boolean = false,
     val condition: Condition? = null,
-    val startingLoadout: String? = null,
     val cooldown: Int = 3,
     val swapsPerTick: Int = 1,
 ) : BotAction {
@@ -39,21 +39,20 @@ data class BotSwitchLoadout(
         if (condition != null && !condition.check(player)) return BehaviourState.Success
 
         val activity = frame.behaviour as? BotActivity ?: return BehaviourState.Success
+        val bound = LoadoutDefinitions.getOrNull(activity.boundLoadout ?: return BehaviourState.Success) ?: return BehaviourState.Success
+        if (bound.swaps.isEmpty()) return BehaviourState.Success
+        val options = listOf(bound) + bound.swaps.map(LoadoutDefinitions::get)
 
-        val resolved = if (counterAttacker) {
+        val target = if (counterAttacker) {
             val style = bot.combatContext?.incomingAttackStyle ?: return BehaviourState.Success
             val counter = COUNTERS[style] ?: return BehaviourState.Success
-            // If the counter loadout isn't declared on this activity, fall back to "magic"
-            // (better defensive coverage than staying in the wrong kit). Explicit `to` lookups
-            // are not subject to this fallback — they should fail loudly if misconfigured.
-            if (activity.loadouts.containsKey(counter)) counter else COUNTER_FALLBACK
+            options.firstOrNull { it.style == counter } ?: options.firstOrNull { it.style == COUNTER_FALLBACK } ?: return BehaviourState.Success
         } else {
-            to ?: return BehaviourState.Success
+            options.firstOrNull { it.id == to } ?: return BehaviourState.Success
         }
+        val resolved = target.id
 
-        val target = activity.loadouts[resolved] ?: return BehaviourState.Success
-
-        val current = player["current_loadout", startingLoadout ?: "" ]
+        val current = player["current_loadout", bound.id]
         if (current == resolved) {
             ensureAutocast(player, target.autocast)
             return BotSwitchSetup(target.equipment.items, condition = null, maxPerTick = swapsPerTick).update(bot, world, frame)

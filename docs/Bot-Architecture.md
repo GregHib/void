@@ -82,6 +82,19 @@ The lowest-level event for player entities used by player clients and bots to co
 
 Coordinates all bot behaviour, handling allocation of activities and resolvers and checks and updates the state of the top behaviour for every bot each tick.
 
+# Bot Spawning
+
+Allocations decide how many bots spawn and which role each one gets. Rows come from the `bot_allocations` table and are loaded into `BotSpawns` (`content/bot/allocation`).
+
+- `BotSpawnStrategy` is a sealed strategy for one allocation. It holds a `BotSpawnConfig` (count, spawn timing, areas, refill, saved, starter items).
+  - `BotCapacitySpawn` gives no role, so the bot picks any activity.
+  - `BotWeightedSpawn` holds the `BotRole`s and picks each new bot's role by weight, minimums and maximums.
+- `BotProvisioner` gives a role bot its build levels, loadout and kit. It runs on spawn, and `restore` reapplies the same levels and kit after death or a refresh. It also resets `brew_doses_since_restore` and stops the `just_ate_food` clock.
+- Death rules (item drops, respawn tile) come from the minigame's own content scripts, the same as for players, e.g. `ClanWarsFreeForAll`.
+- `restock_areas` lists areas which re-provision a role bot on entry. `clan_wars_ffa_safe` and `clan_wars_ffa_dangerous` use `clan_wars_teleport` so bots which retreat with a games necklace are restocked before walking back in.
+- `BotCommands` handles spawning, death and area entry. It refreshes role bots after death and on entering a restock area.
+- Spawning is driven by a single `bot_allocations` world timer. It checks every second and spawns into each allocation that is due and below its target. It stops once no allocation needs spawning.
+
 # Navigation Graph
 
 Simplified representation of the game world used for efficient path planning between distant locations (e.g. cities).

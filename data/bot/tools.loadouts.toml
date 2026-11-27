@@ -1,0 +1,8 @@
+# Skilling tool loadouts. Inventory `gear` entries pick the best tool the bot
+# has the level to use (e.g. mining level for pickaxes), not the level to wield it.
+
+[mining]
+inventory = [{ gear = "pickaxes", usable = true }]
+
+[woodcutting]
+inventory = [{ gear = "hatchets", usable = true }]
