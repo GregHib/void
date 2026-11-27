@@ -127,7 +127,7 @@ class GearLoaderTest {
         assertEquals(1, loadout.weight)
         assertNull(loadout.autocast)
         assertTrue(loadout.inventory.isEmpty())
-        assertNull(loadout.extraInventory)
+        assertTrue(loadout.inventory.isEmpty())
     }
 
     @Test

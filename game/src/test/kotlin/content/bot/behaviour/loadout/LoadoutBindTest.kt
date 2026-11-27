@@ -281,6 +281,6 @@ class LoadoutBindTest {
     fun `Equipment and extra inventory expose every candidate`() {
         val loadout = loadout(EquipSlot.Weapon to LoadoutSlot(gear = weapons), inventory = listOf(BotItem(setOf("shark"), min = 3)))
         assertEquals(setOf("rune_scimitar", "steel_scimitar", "bronze_sword"), loadout.equipment.items.getValue(EquipSlot.Weapon).ids)
-        assertEquals(listOf(BotItem(setOf("shark"), min = 3)), loadout.extraInventory!!.items)
+        assertEquals(listOf(BotItem(setOf("shark"), min = 3)), loadout.inventory)
     }
 }

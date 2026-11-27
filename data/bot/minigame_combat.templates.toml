@@ -36,10 +36,11 @@
 #   produces  array  Tags ({ skill = "..." } etc.) the activity emits, used
 #                    by BotManager.updateAvailable to recompute eligibility
 #                    after the bot's state changes.
-#   loadouts                map  Hybrid templates only — named gear/inventory
-#   hybrid_starting_loadout str  variants (see pvp_dangerous_hybrid).
-#   hybrid_swap_cooldown    int  Default 3 ticks between loadout swaps.
-#   hybrid_swap_per_tick    int  Default 1 equipment slot changed per tick.
+#   loadouts  map    Hybrid templates only — named gear/inventory variants
+#                    swapped between by a `switch_loadout` reactive, which
+#                    takes `starting_loadout`, `cooldown` (default 3 ticks
+#                    between swaps) and `swaps_per_tick` (default 1 slot).
+#                    See pvp_dangerous_hybrid.
 #
 # Lifecycle of one tick (BotManager.tick):
 #   1. If no active frame, assignRandom() picks an activity (honouring

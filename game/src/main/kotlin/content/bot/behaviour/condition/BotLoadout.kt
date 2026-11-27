@@ -1,10 +1,10 @@
 package content.bot.behaviour.condition
 
 import content.bot.behaviour.loadout.Loadout
+import content.bot.weightedRandom
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.type.random
 
 /**
  * Setup requirement to be wearing one of a weighted choice of [Loadout]s.
@@ -43,27 +43,7 @@ data class BotLoadout(val options: List<Pair<Loadout, Int>>) : Condition(90) {
             }
         }
         val qualifying = options.filter { (loadout, _) -> loadout.qualifies(player) }.ifEmpty { if (any) options else return null }
-        return weighted(qualifying)
-    }
-
-    companion object {
-        internal fun weighted(options: List<Pair<Loadout, Int>>): Loadout? {
-            if (options.size <= 1) {
-                return options.firstOrNull()?.first
-            }
-            val total = options.sumOf { it.second.coerceAtLeast(0) }
-            if (total <= 0) {
-                return options.first().first
-            }
-            var roll = random.nextInt(total)
-            for ((loadout, weight) in options) {
-                roll -= weight.coerceAtLeast(0)
-                if (roll < 0) {
-                    return loadout
-                }
-            }
-            return options.last().first
-        }
+        return qualifying.weightedRandom()
     }
 }
 

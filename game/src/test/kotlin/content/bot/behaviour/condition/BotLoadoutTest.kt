@@ -6,6 +6,7 @@ import content.bot.behaviour.loadout.LoadoutFixtures
 import content.bot.behaviour.loadout.LoadoutFixtures.gear
 import content.bot.behaviour.loadout.LoadoutFixtures.level
 import content.bot.behaviour.loadout.LoadoutSlot
+import content.bot.weightedRandom
 import content.entity.player.bank.bank
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
@@ -48,34 +49,34 @@ class BotLoadoutTest {
 
     @Test
     fun `Weighted with a single option returns it`() {
-        assertEquals(loadoutA, BotLoadout.weighted(listOf(loadoutA to 5)))
+        assertEquals(loadoutA, listOf(loadoutA to 5).weightedRandom())
     }
 
     @Test
     fun `Weighted with no options returns null`() {
-        assertNull(BotLoadout.weighted(emptyList()))
+        assertNull(emptyList<Pair<Loadout, Int>>().weightedRandom())
     }
 
     @Test
     fun `Weighted picks by roll`() {
         val options = listOf(loadoutA to 1, loadoutB to 3)
         roll = 0
-        assertEquals(loadoutA, BotLoadout.weighted(options))
+        assertEquals(loadoutA, options.weightedRandom())
         roll = 1
-        assertEquals(loadoutB, BotLoadout.weighted(options))
+        assertEquals(loadoutB, options.weightedRandom())
         roll = 3
-        assertEquals(loadoutB, BotLoadout.weighted(options))
+        assertEquals(loadoutB, options.weightedRandom())
     }
 
     @Test
     fun `Weighted ignores zero weight options`() {
         roll = 0
-        assertEquals(loadoutB, BotLoadout.weighted(listOf(loadoutA to 0, loadoutB to 2)))
+        assertEquals(loadoutB, listOf(loadoutA to 0, loadoutB to 2).weightedRandom())
     }
 
     @Test
     fun `Weighted with no positive weights returns the first`() {
-        assertEquals(loadoutA, BotLoadout.weighted(listOf(loadoutA to 0, loadoutB to 0)))
+        assertEquals(loadoutA, listOf(loadoutA to 0, loadoutB to 0).weightedRandom())
     }
 
     @Test

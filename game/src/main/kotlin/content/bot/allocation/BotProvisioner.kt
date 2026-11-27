@@ -83,13 +83,13 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
             when (condition) {
                 is BotEquipmentSetup -> player.equipment.transaction {
                     for ((slot, item) in condition.items) {
-                        val id = usable(item.ids) ?: continue
+                        val id = item.primaryId ?: continue
                         set(slot.index, Item(id, item.min ?: 1))
                     }
                 }
                 is BotInventorySetup -> player.inventory.transaction {
                     for (item in condition.items) {
-                        val id = item.ids.firstOrNull { it != "empty" } ?: continue
+                        val id = item.primaryId ?: continue
                         add(id, item.min ?: 1)
                     }
                 }
@@ -105,23 +105,11 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
             if (name == starting) {
                 continue
             }
-            player.inventory.transaction {
-                for ((_, item) in loadout.equipment.items) {
-                    val id = usable(item.ids) ?: continue
-                    if (player.equipment.contains(id) || player.inventory.contains(id)) {
-                        continue
-                    }
-                    add(id, item.min ?: 1)
-                }
-                for (item in loadout.inventory) {
-                    val id = item.ids.firstOrNull { it != "empty" } ?: continue
-                    add(id, item.min ?: 1)
-                }
+            if (!loadout.carry(player)) {
+                logger.warn { "Loadout '$name' didn't fit for ${player.accountName}." }
             }
         }
     }
-
-    private fun usable(ids: Set<String>): String? = ids.firstOrNull { it != "empty" && !it.endsWith("_noted") && !it.endsWith("_broken") } ?: ids.firstOrNull { it != "empty" }
 
     private fun setLevel(player: Player, skill: Skill, level: Int) {
         val stored = if (skill == Skill.Constitution) level * 10 else level

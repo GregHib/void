@@ -2,6 +2,7 @@ package content.bot.behaviour.condition
 
 import content.bot.behaviour.loadout.Loadout
 import content.bot.behaviour.loadout.LoadoutDefinitions
+import content.bot.weightedRandom
 import content.entity.player.bank.bank
 import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -421,7 +422,7 @@ sealed class Condition(val priority: Int) {
                 is BotInventorySetup -> for (item in condition.items) {
                     player.bank.add(item.ids.random(random), item.min ?: 1)
                 }
-                is BotLoadoutQualified -> BotLoadout.weighted(condition.loadouts.map { it to it.weight })?.grantLevels(player)
+                is BotLoadoutQualified -> condition.loadouts.map { it to it.weight }.weightedRandom()?.grantLevels(player)
                 is BotLoadout -> condition.pick(player, any = true)?.grant(player)
                 is BotOwnsItem -> player.bank.add(condition.id, condition.min ?: 1)
                 is BotSkillLevel -> player.levels.set(condition.skill, condition.min ?: 1)

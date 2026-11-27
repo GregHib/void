@@ -19,21 +19,12 @@ data class GearItem(
     val requirements: List<Pair<Skill, Int>>,
     val useRequirements: List<Pair<Skill, Int>> = emptyList(),
 ) {
-    fun canEquip(player: Player): Boolean = meets(player, requirements)
+    fun canEquip(player: Player): Boolean = player.meets(requirements)
 
     /**
      * Whether [player] has the levels to use this item as a tool (e.g. mining level for a pickaxe)
      */
-    fun canUse(player: Player): Boolean = meets(player, useRequirements)
-
-    private fun meets(player: Player, requirements: List<Pair<Skill, Int>>): Boolean {
-        for ((skill, level) in requirements) {
-            if (player.levels.getMax(skill) < level) {
-                return false
-            }
-        }
-        return true
-    }
+    fun canUse(player: Player): Boolean = player.meets(useRequirements)
 
     companion object {
         fun of(id: String): GearItem? {
@@ -51,4 +42,16 @@ data class GearItem(
             return requirements
         }
     }
+}
+
+/**
+ * Whether [this] player's max levels meet all [requirements]
+ */
+internal fun Player.meets(requirements: List<Pair<Skill, Int>>): Boolean {
+    for ((skill, level) in requirements) {
+        if (levels.getMax(skill) < level) {
+            return false
+        }
+    }
+    return true
 }

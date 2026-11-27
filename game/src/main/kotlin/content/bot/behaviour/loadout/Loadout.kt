@@ -39,9 +39,6 @@ data class Loadout(
         BotEquipmentSetup(slots.mapValues { (_, slot) -> slot.item(slot.candidates.toSet()) })
     }
 
-    val extraInventory: BotInventorySetup?
-        get() = if (inventory.isEmpty()) null else BotInventorySetup(inventory)
-
     /**
      * For each required gear slot, the distinct requirements of its items (any one of which needs meeting).
      * Slots containing an item without requirements can always be met so are left out.
@@ -73,7 +70,7 @@ data class Loadout(
      */
     fun qualifies(player: Player): Boolean {
         for (options in requirements) {
-            if (options.none { reqs -> meets(player, reqs) }) {
+            if (options.none { player.meets(it) }) {
                 return false
             }
         }
@@ -85,7 +82,7 @@ data class Loadout(
      */
     fun grantLevels(player: Player) {
         for (options in requirements) {
-            if (options.any { meets(player, it) }) {
+            if (options.any { player.meets(it) }) {
                 continue
             }
             val easiest = options.minBy { reqs -> reqs.sumOf { (skill, level) -> (level - player.levels.getMax(skill)).coerceAtLeast(0) } }
@@ -130,13 +127,9 @@ data class Loadout(
      * Give [player] the best item they can equip for every slot (including optional ones) plus the loadout's inventory, all in the bank.
      */
     fun grant(player: Player) {
-        for ((_, item) in select(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })) {
-            val id = item.ids.firstOrNull { it != "empty" } ?: continue
+        for (item in best(player).values + bestInventory(player)) {
+            val id = item.primaryId ?: continue
             player.bank.add(id, item.min ?: 1)
-        }
-        for ((ids, min) in inventory + selectInventory(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })) {
-            val id = ids.firstOrNull { it != "empty" } ?: continue
-            player.bank.add(id, min ?: 1)
         }
     }
 
@@ -145,22 +138,55 @@ data class Loadout(
      * @return false if the items didn't fit
      */
     fun equip(player: Player): Boolean {
-        val selected = select(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
+        val selected = best(player)
         val worn = player.equipment.transaction {
             for ((slot, item) in selected) {
-                val id = item.ids.firstOrNull { it != "empty" } ?: continue
+                val id = item.primaryId ?: continue
                 set(slot.index, Item(id, item.min ?: 1))
             }
         }
-        val items = inventory + selectInventory(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
+        val items = bestInventory(player)
         val carried = player.inventory.transaction {
-            for ((ids, min) in items) {
-                val id = ids.firstOrNull { it != "empty" } ?: continue
-                add(id, min ?: 1)
+            for (item in items) {
+                val id = item.primaryId ?: continue
+                add(id, item.min ?: 1)
             }
         }
         return worn && carried
     }
+
+    /**
+     * Add the best item [player] can equip for every slot and the loadout's inventory to their inventory,
+     * skipping equipment they're already wearing or carrying (e.g. the kits of hybrid loadouts not being worn).
+     * @return false if the items didn't fit
+     */
+    fun carry(player: Player): Boolean {
+        val selected = best(player)
+        val items = bestInventory(player)
+        return player.inventory.transaction {
+            for (item in selected.values) {
+                val id = item.primaryId ?: continue
+                if (player.equipment.contains(id) || player.inventory.contains(id)) {
+                    continue
+                }
+                add(id, item.min ?: 1)
+            }
+            for (item in items) {
+                val id = item.primaryId ?: continue
+                add(id, item.min ?: 1)
+            }
+        }
+    }
+
+    /**
+     * The best item [player] can equip for every slot, including optional ones, regardless of ownership
+     */
+    private fun best(player: Player) = select(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
+
+    /**
+     * The explicit [inventory] plus the best usable [inventoryGear] tools, regardless of ownership
+     */
+    private fun bestInventory(player: Player) = inventory + selectInventory(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
 
     private inline fun select(
         player: Player,
@@ -255,15 +281,6 @@ data class Loadout(
             }
         }
         return obtainable ?: if (spec.optional && !fillOptional) null else best
-    }
-
-    private fun meets(player: Player, requirements: List<Pair<Skill, Int>>): Boolean {
-        for ((skill, level) in requirements) {
-            if (player.levels.getMax(skill) < level) {
-                return false
-            }
-        }
-        return true
     }
 
     /**
