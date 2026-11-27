@@ -120,6 +120,12 @@ fun starterKit(player: Player) {
         return
     }
     player.bank.add("coins", 25)
+    starterItems(player)
+    player["had_starter"] = true
+}
+
+/** The items a new player starts with (not the coins): a newly hired owned bot gets the same. */
+fun starterItems(player: Player) {
     player.inventory.apply {
         add("bronze_hatchet")
         add("tinderbox")
@@ -140,5 +146,4 @@ fun starterKit(player: Player) {
         add("earth_rune", 4)
         add("body_rune", 2)
     }
-    player["had_starter"] = true
 }

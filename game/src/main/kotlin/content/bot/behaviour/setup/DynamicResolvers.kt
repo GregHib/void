@@ -16,6 +16,7 @@ import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotVariable
 import content.bot.behaviour.condition.Condition
+import content.bot.owned.OwnedResolvers
 import content.entity.npc.shop.stock.Price
 import content.entity.player.bank.bank
 import content.entity.player.bank.isNote
@@ -32,17 +33,23 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object DynamicResolvers {
 
-    fun ids() = setOf("withdraw_from_bank", "equip_from_bank", "go_to_area", "buy_from_shop")
+    fun ids() = setOf("withdraw_from_bank", "equip_from_bank", "go_to_area", "buy_from_shop") + OwnedResolvers.ids
 
     // location, npc
     val shopItems = mutableMapOf<String, MutableList<Pair<String, String>>>()
     val sampleItems = mutableMapOf<String, MutableList<Pair<String, String>>>()
 
-    fun resolver(player: Player, condition: Condition): Resolver? = when (condition) {
-        is BotInArea -> Resolver("go_to_area", -1, actions = listOf(BotGoTo(condition.id)))
-        is BotEquipmentSetup -> if (player.inPvp) null else resolveEquipment(player, condition.items)
-        is BotInventorySetup -> if (player.inPvp) null else resolveInventory(player, condition.items)
-        else -> null
+    fun resolver(player: Player, condition: Condition): Resolver? {
+        // Player-owned bots use their owner's bank by transaction and never shop
+        if (player.contains("owner")) {
+            return OwnedResolvers.resolver(player, condition)
+        }
+        return when (condition) {
+            is BotInArea -> Resolver("go_to_area", -1, actions = listOf(BotGoTo(condition.id)))
+            is BotEquipmentSetup -> if (player.inPvp) null else resolveEquipment(player, condition.items)
+            is BotInventorySetup -> if (player.inPvp) null else resolveInventory(player, condition.items)
+            else -> null
+        }
     }
 
     private fun resolveInventory(player: Player, items: List<BotItem>): Resolver? {

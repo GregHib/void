@@ -21,6 +21,12 @@ interface Reason {
     object NoTarget : SoftReason {
         override fun toString() = "NoTarget"
     }
+
+    /** A player-owned bot escaped a fight it was losing; the owner decides what it does next. */
+    object Escaped : HardReason {
+        override fun toString() = "Escaped"
+    }
+
     data class Requirement(val condition: Condition) : HardReason {
         override fun toString() = "Requirement($condition)"
     }

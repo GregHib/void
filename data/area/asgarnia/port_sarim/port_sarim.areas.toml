@@ -25,3 +25,9 @@ y = [3256, 3261]
 x = [3026, 3028]
 y = [3216, 3219]
 level = 0
+
+# The church, with its altar: where a recovering companion recharges its prayer
+[port_sarim_church]
+x = [2990, 3000]
+y = [3172, 3182]
+tags = ["altar"]

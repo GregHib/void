@@ -20,7 +20,7 @@ class RandomEventTrigger : Script {
 
     init {
         experience { _, from, to ->
-            if (to <= from || timerTriggered()) {
+            if (to <= from || timerTriggered() || contains("owner")) {
                 return@experience
             }
             RandomEvents.roll(this, chance = Settings["events.randomEvents.chance", 300])
@@ -28,6 +28,10 @@ class RandomEventTrigger : Script {
 
         playerSpawn {
             if (!Settings["events.randomEvents.active", true] || !timerTriggered()) {
+                return@playerSpawn
+            }
+            // Player-owned bots are their owner's hands, never a random event's target
+            if (contains("owner")) {
                 return@playerSpawn
             }
             if (RandomEvents.optedOut(this)) {

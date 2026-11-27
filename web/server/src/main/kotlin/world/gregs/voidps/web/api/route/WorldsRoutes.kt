@@ -61,7 +61,7 @@ private fun RoutingCall.allowAnyOrigin() {
 }
 
 private fun info(): ServerInfo {
-    val players = Players.size
+    val players = Players.size - ownedBots()
     val capacity = Settings["world.players.max", MAX_PLAYERS]
     val status = when {
         World.containsQueue("system_update") -> "Restarting"
@@ -110,6 +110,20 @@ internal object PlayerSnapshot {
 }
 
 /**
+ * Player-owned bots are not players: left out of the online count and the map. Read by index, off the game thread.
+ */
+private fun ownedBots(): Int {
+    var count = 0
+    for (index in 1 until MAX_PLAYERS) {
+        val player = Players.indexed(index) ?: continue
+        if (player.contains("owner")) {
+            count++
+        }
+    }
+    return count
+}
+
+/**
  * Reads [Players] by index rather than iterating its list, since this runs off the game thread
  * and the list can be modified mid-iteration by logins and logouts.
  */
@@ -118,7 +132,7 @@ private fun playerLocations(): List<PlayerLocation> {
     for (index in 1 until MAX_PLAYERS) {
         val player = Players.indexed(index) ?: continue
         val tile = player.tile
-        if (tile == Tile.EMPTY || player["in_wilderness", false] || player["world_map_hidden", false]) {
+        if (tile == Tile.EMPTY || player["in_wilderness", false] || player["world_map_hidden", false] || player.contains("owner")) {
             continue
         }
         locations.add(PlayerLocation(player.name, tile.x, tile.y, tile.level))

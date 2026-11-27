@@ -9,11 +9,22 @@ object Spiral {
 
     private val STEPS: Array<Array<Delta>>
 
+    /** Rings past the view radius, built on first use (a search wider than the view, e.g. a field of npcs). */
+    private val wider = HashMap<Int, Array<Delta>>()
+
     init {
         STEPS = (0..VIEW_RADIUS).map(::outwards).toTypedArray()
     }
 
-    fun spiral(tile: Tile, radius: Int): Iterator<Tile> = TileIterator(tile, STEPS[radius])
+    private fun steps(radius: Int): Array<Delta> {
+        require(radius >= 0) { "Spiral radius must not be negative: $radius" }
+        if (radius <= VIEW_RADIUS) {
+            return STEPS[radius]
+        }
+        return synchronized(wider) { wider.getOrPut(radius) { outwards(radius) } }
+    }
+
+    fun spiral(tile: Tile, radius: Int): Iterator<Tile> = TileIterator(tile, steps(radius))
 
     internal class TileIterator(
         private val tile: Tile,
@@ -26,7 +37,7 @@ object Spiral {
         override fun next(): Tile = tile.add(steps[index++])
     }
 
-    fun spiral(zone: Zone, radius: Int): Iterator<Zone> = ZoneIterator(zone, STEPS[radius])
+    fun spiral(zone: Zone, radius: Int): Iterator<Zone> = ZoneIterator(zone, steps(radius))
 
     internal class ZoneIterator(
         private val zone: Zone,

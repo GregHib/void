@@ -102,3 +102,14 @@ level = 0
 x = [2616, 2619]
 y = [3224, 3227]
 level = 0
+
+# The church and the monastery, with their altars: where a recovering companion recharges its prayer
+[ardougne_church]
+x = [2608, 2620]
+y = [3301, 3313]
+tags = ["altar"]
+
+[ardougne_monastery]
+x = [2598, 2613]
+y = [3202, 3214]
+tags = ["altar"]

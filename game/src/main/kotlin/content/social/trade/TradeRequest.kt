@@ -24,6 +24,10 @@ class TradeRequest : Script {
 
     init {
         playerOperate("Trade with") { (target) ->
+            if (target.contains("owner")) {
+                message("That's ${target.name}, a bot. It only answers to ${if (target["owner", ""] == accountName) "your" else "its owner's"} ::bot commands.", ChatType.Trade)
+                return@playerOperate
+            }
             if (duel != null) {
                 message("You can't trade during a duel.", ChatType.Trade)
                 return@playerOperate

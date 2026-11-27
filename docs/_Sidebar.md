@@ -87,6 +87,7 @@
   - Movement Modes
   - [Bot Architecture](bot-architecture)
     - [Bot Chat](bot-chat)
+    - [Owned Bots](owned-bots)
   - [Database Storage](storage)
   - Delta's
   - [Drops and variables](drop-tables)

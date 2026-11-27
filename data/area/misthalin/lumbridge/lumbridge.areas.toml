@@ -104,6 +104,12 @@ bot_capacity = 3
 x = [3211, 3218]
 y = [3239, 3243]
 
+# The church, with its altar: where a recovering companion recharges its prayer
+[lumbridge_church]
+x = [3240, 3248]
+y = [3204, 3213]
+tags = ["altar"]
+
 [lumbridge_swamp_fishing_area]
 x = [3240, 3247]
 y = [3142, 3157]
