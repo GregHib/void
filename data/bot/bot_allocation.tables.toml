@@ -14,7 +14,7 @@ refill_default = false
 saved = "boolean" # May reuse saved bot accounts, see bots.spawnSavedChance.
 saved_default = false
 starter_items = "list<pair<string, int>>" # Items given to brand-new accounts only.
-roles = "list<row>" # bot_roles rows, proportional mode only.
+roles = "list<row>" # bot_roles rows, weighted mode only.
 
 [.world]
 count_setting = "bots.count"
@@ -23,11 +23,45 @@ spawn_areas = ["lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelo
 saved = true
 starter_items = [["coins", 10000]]
 
+[.clan_wars_ffa_safe]
+mode = "weighted"
+count_setting = "bots.combat.clan_wars_ffa_safe.count"
+spawn_seconds = 10
+spawn_seconds_setting = "bots.combat.clan_wars_ffa_safe.spawnSeconds"
+spawn_areas = ["clan_wars_teleport"]
+refill = true
+starter_items = [["coins", 10000]]
+roles = [
+    "bot_roles.clan_wars_safe_zerker",
+    "bot_roles.clan_wars_safe_dharoker",
+    "bot_roles.clan_wars_safe_ags_main",
+    "bot_roles.clan_wars_safe_obby_pure",
+    "bot_roles.clan_wars_safe_msb_pure",
+    "bot_roles.clan_wars_safe_karils_tank",
+    "bot_roles.clan_wars_safe_ancient_tank",
+    "bot_roles.clan_wars_safe_ancient_hybrid",
+]
+
+[.clan_wars_ffa_dangerous]
+mode = "weighted"
+count_setting = "bots.combat.clan_wars_ffa_dangerous.count"
+spawn_seconds = 10
+spawn_seconds_setting = "bots.combat.clan_wars_ffa_dangerous.spawnSeconds"
+spawn_areas = ["clan_wars_teleport"]
+refill = true
+starter_items = [["coins", 10000]]
+roles = [
+    "bot_roles.clan_wars_dangerous_melee",
+    "bot_roles.clan_wars_dangerous_ranged",
+    "bot_roles.clan_wars_dangerous_magic",
+    "bot_roles.clan_wars_dangerous_hybrid",
+]
+
 [bot_roles]
 row_id = "string"
 activity = "string" # Activity the role's bots perform.
 
-weight = "int" # Relative weight of this role in proportional mode.
+weight = "int" # Relative weight of this role in weighted mode.
 weight_default = 1
 min = "int" # Minimum number of bots assigned to this role.
 min_default = 0
@@ -35,9 +69,65 @@ max = "int" # Optional maximum number of bots assigned to this role.
 builds = "list<pair<string, int>>" # Weighted bot_builds rows, e.g. [["bot_builds.example", 1]].
 combat_style = "string"
 
-# [.example]
-# activity = "..."
-# builds = [["bot_builds.example", 1]]
+[.clan_wars_safe_zerker]
+activity = "clan_wars_ffa_safe_zerker"
+builds = [["bot_builds.clan_wars_safe_zerker", 1]]
+combat_style = "slash"
+
+[.clan_wars_safe_dharoker]
+activity = "clan_wars_ffa_safe_dharoker"
+builds = [["bot_builds.clan_wars_safe_dharoker", 1]]
+combat_style = "slash"
+
+[.clan_wars_safe_ags_main]
+activity = "clan_wars_ffa_safe_ags_main"
+builds = [["bot_builds.clan_wars_safe_ags_main", 1]]
+combat_style = "slash"
+
+[.clan_wars_safe_obby_pure]
+activity = "clan_wars_ffa_safe_obby_pure"
+builds = [["bot_builds.clan_wars_safe_obby_pure", 1]]
+combat_style = "crush"
+
+[.clan_wars_safe_msb_pure]
+activity = "clan_wars_ffa_safe_msb_pure"
+builds = [["bot_builds.clan_wars_safe_msb_pure", 1]]
+combat_style = "rapid"
+
+[.clan_wars_safe_karils_tank]
+activity = "clan_wars_ffa_safe_karils_tank"
+builds = [["bot_builds.clan_wars_safe_karils_tank", 1]]
+combat_style = "rapid"
+
+[.clan_wars_safe_ancient_tank]
+activity = "clan_wars_ffa_safe_ancient_tank"
+builds = [["bot_builds.clan_wars_safe_ancient_tank", 1]]
+combat_style = "accurate"
+
+[.clan_wars_safe_ancient_hybrid]
+activity = "clan_wars_ffa_safe_ancient_hybrid"
+builds = [["bot_builds.clan_wars_safe_ancient_hybrid", 1]]
+combat_style = "accurate"
+
+[.clan_wars_dangerous_melee]
+activity = "clan_wars_ffa_dangerous_melee"
+builds = [["bot_builds.clan_wars_dangerous_melee", 1]]
+combat_style = "slash"
+
+[.clan_wars_dangerous_ranged]
+activity = "clan_wars_ffa_dangerous_ranged"
+builds = [["bot_builds.clan_wars_dangerous_ranged", 1]]
+combat_style = "rapid"
+
+[.clan_wars_dangerous_magic]
+activity = "clan_wars_ffa_dangerous_magic"
+builds = [["bot_builds.clan_wars_dangerous_magic", 1]]
+combat_style = "accurate"
+
+[.clan_wars_dangerous_hybrid]
+activity = "clan_wars_ffa_dangerous_hybrid"
+builds = [["bot_builds.clan_wars_dangerous_hybrid", 1]]
+combat_style = "slash"
 
 [bot_builds]
 # Unique id of the build row.
@@ -69,5 +159,89 @@ construction = "range"
 summoning = "range"
 dungeoneering = "range"
 
-# [.example]
-# attack = [60, 70]
+[.clan_wars_safe_zerker]
+attack = [60, 60]
+strength = [80, 80]
+defence = [45, 45]
+constitution = [75, 75]
+prayer = [95, 95]
+
+[.clan_wars_safe_dharoker]
+attack = [70, 70]
+strength = [70, 70]
+defence = [70, 70]
+constitution = [70, 70]
+prayer = [95, 95]
+
+[.clan_wars_safe_ags_main]
+attack = [75, 75]
+strength = [85, 85]
+defence = [75, 75]
+constitution = [85, 85]
+prayer = [95, 95]
+
+[.clan_wars_safe_obby_pure]
+attack = [1, 1]
+strength = [80, 80]
+defence = [1, 1]
+constitution = [70, 70]
+
+[.clan_wars_safe_msb_pure]
+attack = [1, 1]
+strength = [1, 1]
+defence = [1, 1]
+constitution = [70, 70]
+ranged = [70, 70]
+prayer = [95, 95]
+
+[.clan_wars_safe_karils_tank]
+attack = [1, 1]
+strength = [1, 1]
+defence = [70, 70]
+constitution = [75, 75]
+ranged = [75, 75]
+prayer = [95, 95]
+
+[.clan_wars_safe_ancient_tank]
+magic = [94, 94]
+defence = [70, 70]
+constitution = [80, 80]
+prayer = [95, 95]
+
+[.clan_wars_safe_ancient_hybrid]
+magic = [94, 94]
+attack = [75, 75]
+strength = [80, 80]
+ranged = [75, 75]
+defence = [70, 70]
+constitution = [85, 85]
+prayer = [95, 95]
+
+[.clan_wars_dangerous_melee]
+attack = [60, 60]
+strength = [70, 70]
+defence = [40, 40]
+constitution = [70, 70]
+prayer = [95, 95]
+magic = [94, 94]
+
+[.clan_wars_dangerous_ranged]
+ranged = [70, 70]
+defence = [40, 40]
+constitution = [70, 70]
+prayer = [95, 95]
+
+[.clan_wars_dangerous_magic]
+magic = [94, 94]
+defence = [40, 40]
+constitution = [70, 70]
+prayer = [95, 95]
+
+[.clan_wars_dangerous_hybrid]
+attack = [75, 75]
+strength = [80, 80]
+ranged = [75, 75]
+magic = [94, 94]
+defence = [60, 60]
+constitution = [80, 80]
+prayer = [95, 95]

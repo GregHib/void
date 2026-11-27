@@ -77,10 +77,10 @@ object BotAllocations {
                 val roles = row.stringListOrNull("roles").orEmpty().map { ref ->
                     role(Rows.getOrNull(ref) ?: error("Unknown role '$ref' in bot allocation '$id'."), activityExists)
                 }
-                require(roles.isNotEmpty()) { "Proportional bot allocation '$id' has no roles." }
+                require(roles.isNotEmpty()) { "Weighted bot allocation '$id' has no roles." }
                 WeightedAllocator(config, roles)
             }
-            else -> error("Unknown mode '$mode' in bot allocation '$id', expected capacity or proportional.")
+            else -> error("Unknown mode '$mode' in bot allocation '$id', expected capacity or weighted.")
         }
     }
 

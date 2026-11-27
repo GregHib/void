@@ -9,6 +9,7 @@ import content.bot.behaviour.condition.BotInventorySetup
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.combat.special.specialAttackEnergy
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -53,6 +54,8 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
         player.levels.clear(Skill.Prayer)
         player.specialAttackEnergy = MAX_SPECIAL_ATTACK
         player.specialAttack = false
+        player["brew_doses_since_restore"] = 0
+        player.stop("just_ate_food")
         if (role.combatStyle != null) {
             player["combat_style"] = role.combatStyle
         }

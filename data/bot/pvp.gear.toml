@@ -1,0 +1,38 @@
+# PvP gear lists for slots with more than one option, ordered best -> worst.
+# A bot wears the best item it can equip.
+
+[pvp_ags_helms]
+items = [
+    "torva_full_helm",
+    "helm_of_neitiznot",
+]
+
+[pvp_ags_bodies]
+items = [
+    "torva_platebody",
+    "bandos_chestplate",
+]
+
+[pvp_ags_legs]
+items = [
+    "torva_platelegs",
+    "bandos_tassets",
+]
+
+[pvp_hybrid_hoods]
+items = [
+    "virtus_mask",
+    "ahrims_hood",
+]
+
+[pvp_hybrid_tops]
+items = [
+    "virtus_robe_top",
+    "ahrims_robe_top",
+]
+
+[pvp_hybrid_legs]
+items = [
+    "virtus_robe_legs",
+    "ahrims_robe_skirt",
+]

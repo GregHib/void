@@ -131,49 +131,48 @@ starter_items = [["coins", 10000]]
 ```
 
 - `row_id`: unique id, used by `::bots`.
-- `mode`: `capacity` (default) or `proportional`. The `world` row leaves it out.
+- `mode`: `capacity` (default) or `weighted`. The `world` row leaves it out.
 - `count` / `count_setting`: how many bots the allocation wants. The setting overrides `count` when set.
 - `spawn_seconds` / `spawn_seconds_setting`: seconds between spawns, default 60. The setting overrides it when set.
 - `spawn_areas`: areas bots spawn in, picked at random.
 - `refill`, `saved`, `starter_items`: see Spawning below.
-- `roles`: `bot_roles` rows, proportional mode only.
+- `roles`: `bot_roles` rows, weighted mode only.
 
 ## Modes
 
 - `capacity` is how world bots work. Bots pick any available activity, limited by each area's `bot_capacity`.
-- `proportional` gives each bot a fixed role from `roles`, by weight. Role minimums are filled first. The rest is split by weight (largest remainder) and capped at each role's `max`. Roles are fixed for the bot's whole life.
+- `weighted` gives each bot a fixed role from `roles`, by weight. Role minimums are filled first. The rest is split by weight (largest remainder) and capped at each role's `max`. Roles are fixed for the bot's whole life.
 
-Example, not a real allocation as there are no proportional rows yet:
+The Clan Wars free-for-all rows, `clan_wars_ffa_safe` and `clan_wars_ffa_dangerous`, are the real weighted allocations. Trimmed excerpt:
 
 ```toml
 [bot_allocations]
-[.example_pvm]
+[.clan_wars_ffa_safe]
 mode = "weighted"
-count = 10
+count_setting = "bots.combat.clan_wars_ffa_safe.count"
+spawn_seconds = 10
+spawn_seconds_setting = "bots.combat.clan_wars_ffa_safe.spawnSeconds"
+spawn_areas = ["clan_wars_teleport"]
 refill = true
-spawn_areas = ["lumbridge_teleport"]
-roles = ["bot_roles.example_attacker", "bot_roles.example_miner"]
+starter_items = [["coins", 10000]]
+roles = [
+    "bot_roles.clan_wars_safe_zerker",
+    "bot_roles.clan_wars_safe_dharoker",
+    # ...8 roles in total
+]
 
 [bot_roles]
-[.example_attacker]
-activity = "kill_cows"
-weight = 3
-min = 2
-max = 6
-builds = [["bot_builds.example_zerker", 1]]
-combat_style = "accurate"
-
-[.example_miner]
-activity = "mine_copper"
-
-[bot_builds]
-[.example_zerker]
-attack = [60, 70]
-strength = [70, 80]
-constitution = [60, 70]
+[.clan_wars_safe_zerker]
+activity = "clan_wars_ffa_safe_zerker"
+builds = [["bot_builds.clan_wars_safe_zerker", 1]]
+combat_style = "slash"
 ```
 
-With `count = 10`, the attacker role gets 6 bots and the miner role gets 4.
+`clan_wars_ffa_dangerous` has 4 roles. Each role has one fixed-level build. With only `weight` set, roles are split evenly. Using `min` and `max` on a role changes the split.
+
+Role activities use templates from `data/bot/minigame_combat.templates.toml`. Their kit is a PvP loadout (e.g. `pvp_zerker`) from `data/bot/pvp.loadouts.toml`. Slots with several options, such as torva or bandos for `ags_main`, use gear lists from `data/bot/pvp.gear.toml`.
+
+Minigame rules such as respawn tile, item drops and re-provisioning on area entry are set by `AllocationHooks`. Clan Wars uses `ClanWarsHooks`, see [bot-architecture](bot-architecture).
 
 ## Spawning
 
@@ -207,7 +206,7 @@ On death, a role bot respawns with the same levels and kit.
 
 ## Command
 
-`::bots [count] [allocation]` spawns `count` bots (default 1) into `world` by default. Allocation ids are autofilled.
+`::bots [count] [allocation]` spawns `count` bots (default 1) into `world` by default. Allocation ids are autofilled. For example `::bots 14 clan_wars_ffa_safe` spawns 14 safe Clan Wars bots, or use `clan_wars_ffa_dangerous` for the dangerous arena.
 
 # Resolvers
 

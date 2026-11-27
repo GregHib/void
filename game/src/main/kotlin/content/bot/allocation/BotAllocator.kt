@@ -2,8 +2,6 @@ package content.bot.allocation
 
 import content.bot.Bot
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.type.Tile
 
 /**
  * Strategy for how many bots spawn into a part of the world and which role each is given.

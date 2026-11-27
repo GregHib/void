@@ -47,7 +47,7 @@ data class Bot(val player: Player) : Character by player {
     var allocation: String? = null
 
     /**
-     * Id of the fixed [content.bot.allocation.BotRole] given by a proportional allocation
+     * Id of the fixed [content.bot.allocation.BotRole] given by a weighted allocation
      */
     var role: String? = null
 
