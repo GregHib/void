@@ -59,5 +59,11 @@ class CastleWarsCatapult : Script {
                 areaGfx("${equipped(EquipSlot.Cape).id.removeSuffix("_team_cape")}_flare", tile, delay = 30)
             }
         }
+        // https://youtu.be/gvDzJzAOnH8?t=270
+        // message("The catapult fires and...")
+        // message("It hit some enemy defences!.")
+        // message("It didn't hit anyone.")
+        // message("It hit <name> for <dmg> damage!")
+        // message("It missed <name> - their decorative armour protected them.)
     }
 }
