@@ -1,10 +1,13 @@
 [firemaking]
 requires = [
-    { owns = { id = "$logs", min = 54 }}
+    { owns = { id = "$logs", min = 10 }}
+]
+prefer = [
+    { owns = { id = "$logs", min = 27 }}
 ]
 setup = [
     { area = { id = "$location" } },
-    { inventory = [{ id = "$logs", min = 27 }, { id = "tinderbox", min = 1 }] },
+    { inventory = [{ id = "$logs", min = 10 }, { id = "tinderbox", min = 1 }] },
 ]
 actions = [
     { firemaking = { id = "$logs", area = "$location" } },

@@ -31,7 +31,7 @@ spawn_seconds = 10
 spawn_seconds_setting = "bots.combat.clan_wars_ffa_safe.spawnSeconds"
 spawn_areas = ["clan_wars_teleport"]
 refill = true
-starter_items = [["coins", 10000]]
+restock_areas = ["clan_wars_teleport"]
 roles = [
     "bot_roles.clan_wars_safe_zerker",
     "bot_roles.clan_wars_safe_dharoker",
@@ -50,7 +50,6 @@ spawn_seconds = 10
 spawn_seconds_setting = "bots.combat.clan_wars_ffa_dangerous.spawnSeconds"
 spawn_areas = ["clan_wars_teleport"]
 refill = true
-starter_items = [["coins", 10000]]
 restock_areas = ["clan_wars_teleport"]
 roles = [
     "bot_roles.clan_wars_dangerous_melee",
