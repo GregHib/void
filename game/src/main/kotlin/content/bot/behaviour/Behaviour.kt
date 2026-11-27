@@ -311,7 +311,7 @@ private data class Fragment(
                 is Map<*, *> -> {
                     val resolved = resolve(raw as Map<String, Any>, "loadouts.$name")
                     require(resolved["equipment"] is Map<*, *>) { "Loadout '$name' missing 'equipment' map in $debug." }
-                    Loadout.parse(name, resolved, GearDefinitions::getOrNull)
+                    Loadout.parse(name, resolved, GearDefinitions::getOrNull).also { it.validate() }
                 }
                 else -> error("Loadout '$name' must be a map or loadout id in $debug, got $raw.")
             }
