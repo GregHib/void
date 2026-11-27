@@ -131,6 +131,16 @@ object DynamicResolvers {
         return null
     }
 
+    /**
+     * Whether [player] could get [amount] of item [id] from a shop sample, an affordable shop or a configured resolver
+     */
+    fun obtainable(player: Player, id: String, amount: Int, resolvers: Map<String, List<Resolver>>): Boolean {
+        if (sampleItems.containsKey(id) || resolvers.containsKey("item:$id")) {
+            return true
+        }
+        return shopItems.containsKey(id) && player.ownsItem("coins", Price.of(id) * amount)
+    }
+
     internal fun valid(player: Player, item: Item, entry: BotItem): Boolean {
         if (item.isEmpty()) {
             return false

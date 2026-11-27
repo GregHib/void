@@ -34,6 +34,88 @@ produces = [
 ]
 ```
 
+# Gear & Loadouts
+
+Gear and loadouts decide what a bot wears and wields. Gear lives in `*.gear.toml` and loadouts live in `*.loadouts.toml`.
+
+## Gear
+
+A gear list is a list of interchangeable items for one equipment slot. Items are ordered best to worst. A bot takes the best item it can equip and owns.
+
+```toml
+# melee.gear.toml
+[melee_weapons]
+items = [
+    "rune_scimitar",
+    "rune_longsword",
+    "adamant_scimitar",
+    "bronze_sword",
+]
+```
+
+## Loadouts
+
+A loadout is a multi-slot gear setup.
+
+Each slot takes either `gear = "<gear id>"` or `id = "<item ids>"`. Slots also take `min`, `max` and `optional`. An `optional` slot never blocks an activity.
+
+A loadout can also have `inventory = [...]`, `autocast` and `weight`.
+
+```toml
+# melee.loadouts.toml
+[melee]
+weapon = { gear = "melee_weapons" }
+hat = { gear = "melee_helms", optional = true }
+chest = { gear = "melee_bodies", optional = true }
+legs = { gear = "melee_legs", optional = true }
+shield = { gear = "melee_shields", optional = true }
+```
+
+## Using a loadout in an activity
+
+Add a loadout row to the activity's `setup`.
+
+```toml
+[kill_cows]
+setup = [
+    { loadout = { id = "melee" } },
+    { area = { id = "$location" } },
+    { inventory = { id = "empty", min = 27 } },
+]
+```
+
+To pick between loadouts, give a list. Each entry's `weight` is its chance. If an entry has no weight, it uses the loadout's own `weight`, which defaults to 1.
+
+```toml
+setup = [
+    { loadout = [{ id = "a", weight = 3 }, { id = "b" }] },
+]
+```
+
+- Loadouts only work in activity `setup`. They can't be used in resolvers or shortcuts.
+- An activity can have only one loadout row.
+
+## How a bot picks its gear
+
+A bot picks its gear once, when the activity is assigned.
+
+1. Pick a qualifying loadout by weight.
+2. For each gear slot, use the best item the bot can equip and already owns.
+3. If it owns none, a required slot uses the best item it can get from a shop or setup resolver. Otherwise, it uses the best item it can equip.
+4. Optional slots only use items the bot already owns.
+5. A two-handed weapon removes the shield. A required shield rules out two-handed weapons.
+6. Explicit `id` slots are used as written.
+7. The loadout's `inventory` is merged into the activity's inventory requirement. Set `empty` counts so they leave room for it.
+8. Ammo compatibility is not checked. Use explicit `id` slots for ammo.
+
+## Requirements
+
+An activity with a loadout is only available to bots with the levels to equip at least one item in each required gear slot. This requirement is added automatically.
+
+## Spawned bots
+
+With `bots.spawnRequirements`, a bot gets the levels for the loadout. It also gets the best item it can equip for every slot, including optional ones.
+
 # Resolvers
 
 Resolvers are activities bots can complete to get stuff which is needed for another activity.

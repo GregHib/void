@@ -1,0 +1,70 @@
+# Gear lists: each section is a list of interchangeable items for ONE equipment slot,
+# ordered best -> worst. A bot takes the best item it can equip and owns (or can buy).
+
+[melee_weapons]
+items = [
+    "rune_scimitar",
+    "rune_longsword",
+    "adamant_scimitar",
+    "adamant_longsword",
+    "adamant_sword",
+    "mithril_scimitar",
+    "mithril_longsword",
+    "mithril_sword",
+    "black_scimitar",
+    "black_longsword",
+    "black_sword",
+    "steel_scimitar",
+    "steel_longsword",
+    "steel_sword",
+    "iron_scimitar",
+    "iron_longsword",
+    "iron_sword",
+    "bronze_scimitar",
+    "bronze_longsword",
+    "bronze_sword",
+]
+
+[melee_helms]
+items = [
+    "rune_full_helm",
+    "adamant_full_helm",
+    "mithril_full_helm",
+    "black_full_helm",
+    "steel_full_helm",
+    "iron_full_helm",
+    "bronze_full_helm",
+]
+
+[melee_bodies]
+items = [
+    "rune_platebody",
+    "adamant_platebody",
+    "mithril_platebody",
+    "black_platebody",
+    "steel_platebody",
+    "iron_platebody",
+    "bronze_platebody",
+]
+
+[melee_legs]
+items = [
+    "rune_platelegs",
+    "adamant_platelegs",
+    "mithril_platelegs",
+    "black_platelegs",
+    "steel_platelegs",
+    "iron_platelegs",
+    "bronze_platelegs",
+]
+
+[melee_shields]
+items = [
+    "rune_kiteshield",
+    "adamant_kiteshield",
+    "mithril_kiteshield",
+    "black_kiteshield",
+    "steel_kiteshield",
+    "iron_kiteshield",
+    "bronze_kiteshield",
+]

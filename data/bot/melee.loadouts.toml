@@ -1,0 +1,10 @@
+# Loadouts: named multi-slot setups. Slot keys match equipment slots;
+# `gear` references a list in *.gear.toml, `id` gives an explicit item,
+# and `optional` slots never block an activity.
+
+[melee]
+weapon = { gear = "melee_weapons" }
+hat = { gear = "melee_helms", optional = true }
+chest = { gear = "melee_bodies", optional = true }
+legs = { gear = "melee_legs", optional = true }
+shield = { gear = "melee_shields", optional = true }

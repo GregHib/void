@@ -3,7 +3,7 @@ requires = [
     { skill = { id = "$skill", min = 1, max = 5 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "bronze_sword,bronze_dagger,bronze_scimitar" } } },
+    { loadout = { id = "melee" } },
     { area = { id = "$location" } },
     { inventory = { id = "empty", min = 27 } },
 ]
@@ -25,7 +25,7 @@ requires = [
     { skill = { id = "$skill", min = 1, max = 5 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "bronze_sword,bronze_dagger,bronze_scimitar" } } },
+    { loadout = { id = "melee" } },
     { area = { id = "$location" } },
     { inventory = { id = "empty", min = 27 } },
 ]
@@ -45,7 +45,7 @@ requires = [
     { skill = { id = "$skill", min = 1, max = 5 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "bronze_sword,bronze_dagger,bronze_scimitar" } } },
+    { loadout = { id = "melee" } },
     { area = { id = "$location" } },
     { inventory = { id = "empty", min = 27 } },
 ]
@@ -69,7 +69,7 @@ requires = [
     { skill = { id = "$skill", min = 5, max = 10 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "iron_sword,iron_dagger,iron_scimitar" } } },
+    { loadout = { id = "melee" } },
     { area = { id = "$location" } },
     { inventory = { id = "empty", min = 27 } },
 ]
@@ -94,7 +94,7 @@ requires = [
     { skill = { id = "$skill", min = 10, max = 39 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "steel_sword,steel_scimitar" } } },
+    { loadout = { id = "melee" } },
     { area = { id = "barbarian_village_longhall" } },
     { inventory = { id = "empty", min = 26 } },
 ]

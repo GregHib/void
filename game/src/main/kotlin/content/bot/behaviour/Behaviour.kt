@@ -3,10 +3,12 @@ package content.bot.behaviour
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.BotActivity
-import content.bot.behaviour.activity.Loadout
-import content.bot.behaviour.condition.BotEquipmentSetup
-import content.bot.behaviour.condition.BotInventorySetup
+import content.bot.behaviour.condition.BotLoadout
+import content.bot.behaviour.condition.BotLoadoutQualified
 import content.bot.behaviour.condition.Condition
+import content.bot.behaviour.loadout.GearDefinitions
+import content.bot.behaviour.loadout.Loadout
+import content.bot.behaviour.loadout.LoadoutDefinitions
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -45,6 +47,8 @@ fun loadBehaviours(
     activities: MutableMap<String, BotActivity>,
     resolvers: MutableMap<String, MutableList<Resolver>>,
 ) {
+    GearDefinitions.load(files.list(Settings["bots.gear", "gear.toml"]))
+    LoadoutDefinitions.load(files.list(Settings["bots.loadouts", "loadouts.toml"]))
     val templates = loadTemplates(files.list(Settings["bots.templates"]))
     loadActivities(activities, templates, files.list(Settings["bots.definitions"]))
     loadSetups(resolvers, templates, files.list(Settings["bots.setups"]))
@@ -73,15 +77,29 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     actions = ActionParser.parse(actions, debug),
                     reactive = ActionParser.parse(reactive, debug),
                     produces = produces,
-                )
+                ).withLoadoutRequirement()
             }
         }
         for (fragment in fragments) {
             val template = templates[fragment.template] ?: error("Unable to find template '${fragment.template}' for ${fragment.id}.")
-            activities[fragment.id] = fragment.activity(template)
+            activities[fragment.id] = fragment.activity(template).withLoadoutRequirement()
         }
         activities.size
     }
+}
+
+/**
+ * Activities with a loadout setup require the levels to use one of its loadouts to be available.
+ */
+internal fun BotActivity.withLoadoutRequirement(): BotActivity {
+    val loadout = loadout ?: return this
+    require(setup.count { it is BotLoadout } == 1) { "Activity '$id' can only have one loadout setup." }
+    return copy(requires = (requires + BotLoadoutQualified(loadout.options.map { it.first })).sortedBy { it.priority })
+}
+
+private fun <T : Behaviour> T.noLoadouts(): T {
+    require(setup.none { it is BotLoadout } && requires.none { it is BotLoadout }) { "Loadouts are only supported in activity setups, found in '$id'." }
+    return this
 }
 
 private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, templates: Map<String, Template>, paths: List<String>) {
@@ -102,7 +120,7 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                     actions = ActionParser.parse(actions, debug),
                     reactive = ActionParser.parse(reactive, debug),
                     produces = produces,
-                )
+                ).noLoadouts()
                 for (key in produces) {
                     resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
                 }
@@ -110,7 +128,7 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
         }
         for (fragment in fragments) {
             val template = templates[fragment.template] ?: error("Unable to find template '${fragment.template}' for ${fragment.id}.")
-            val resolver = fragment.resolver(template)
+            val resolver = fragment.resolver(template).noLoadouts()
             for (key in resolver.produces) {
                 resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
             }
@@ -138,13 +156,13 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                         actions = ActionParser.parse(actions, debug),
                         reactive = ActionParser.parse(reactive, debug),
                         produces = produces,
-                    ),
+                    ).noLoadouts(),
                 )
             }
         }
         for (fragment in fragments) {
             val template = templates[fragment.template] ?: error("Unable to find template '${fragment.template}' for ${fragment.id}.")
-            shortcuts.add(fragment.shortcut(template))
+            shortcuts.add(fragment.shortcut(template).noLoadouts())
         }
         shortcuts.size
     }
@@ -288,15 +306,15 @@ private data class Fragment(
         val out = LinkedHashMap<String, Loadout>(template.loadouts.size)
         val debug = "$id template ${this.template} loadouts"
         for ((name, raw) in template.loadouts) {
-            val map = raw as? Map<String, Any> ?: error("Loadout '$name' must be a map in $debug, got $raw.")
-            val resolved = resolve(map, "loadouts.$name")
-            val eqRaw = resolved["equipment"] as? Map<String, Any>
-                ?: error("Loadout '$name' missing 'equipment' map in $debug.")
-            val equipment = Condition.parse(listOf("equipment" to listOf(eqRaw)), debug).single() as BotEquipmentSetup
-            val invRaw = resolved["inventory"] as? List<Map<String, Any>>
-            val inventory = if (invRaw.isNullOrEmpty()) null else Condition.parse(listOf("inventory" to invRaw), debug).single() as BotInventorySetup
-            val autocast = resolved["autocast"] as? String
-            out[name] = Loadout(name, equipment, inventory, autocast)
+            out[name] = when (raw) {
+                is String -> LoadoutDefinitions.getOrNull(raw) ?: error("Unknown loadout '$raw' for '$name' in $debug.")
+                is Map<*, *> -> {
+                    val resolved = resolve(raw as Map<String, Any>, "loadouts.$name")
+                    require(resolved["equipment"] is Map<*, *>) { "Loadout '$name' missing 'equipment' map in $debug." }
+                    Loadout.parse(name, resolved, GearDefinitions::getOrNull)
+                }
+                else -> error("Loadout '$name' must be a map or loadout id in $debug, got $raw.")
+            }
         }
         return out
     }
