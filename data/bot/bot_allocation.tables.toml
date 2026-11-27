@@ -1,0 +1,73 @@
+[bot_allocations]
+row_id = "string"
+mode = "string" # Allocation mode: capacity or weighted.
+mode_default = "capacity"
+count = "int"
+count_default = 0
+count_setting = "string" # Optional settings key that overrides count.
+spawn_seconds = "int"
+spawn_seconds_default = 60
+spawn_seconds_setting = "string" # Optional settings key that overrides spawn_seconds.
+spawn_areas = "list<string>"
+refill = "boolean" # Keep topping up to count, false = stop once reached.
+refill_default = false
+saved = "boolean" # May reuse saved bot accounts, see bots.spawnSavedChance.
+saved_default = false
+starter_items = "list<pair<string, int>>" # Items given to brand-new accounts only.
+roles = "list<row>" # bot_roles rows, proportional mode only.
+
+[.world]
+count_setting = "bots.count"
+spawn_seconds_setting = "bots.spawnSeconds"
+spawn_areas = ["lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport"]
+saved = true
+starter_items = [["coins", 10000]]
+
+[bot_roles]
+row_id = "string"
+activity = "string" # Activity the role's bots perform.
+
+weight = "int" # Relative weight of this role in proportional mode.
+weight_default = 1
+min = "int" # Minimum number of bots assigned to this role.
+min_default = 0
+max = "int" # Optional maximum number of bots assigned to this role.
+builds = "list<pair<string, int>>" # Weighted bot_builds rows, e.g. [["bot_builds.example", 1]].
+combat_style = "string"
+
+# [.example]
+# activity = "..."
+# builds = [["bot_builds.example", 1]]
+
+[bot_builds]
+# Unique id of the build row.
+row_id = "string"
+# Level range [min, max] rolled per skill; missing skills are left untouched. Constitution is in levels (not x10).
+attack = "range"
+defence = "range"
+strength = "range"
+constitution = "range"
+ranged = "range"
+prayer = "range"
+magic = "range"
+cooking = "range"
+woodcutting = "range"
+fletching = "range"
+fishing = "range"
+firemaking = "range"
+crafting = "range"
+smithing = "range"
+mining = "range"
+herblore = "range"
+agility = "range"
+thieving = "range"
+slayer = "range"
+farming = "range"
+runecrafting = "range"
+hunter = "range"
+construction = "range"
+summoning = "range"
+dungeoneering = "range"
+
+# [.example]
+# attack = [60, 70]

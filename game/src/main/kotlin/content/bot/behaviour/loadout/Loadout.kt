@@ -10,7 +10,11 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 /**
@@ -114,6 +118,28 @@ data class Loadout(
             val id = ids.firstOrNull { it != "empty" } ?: continue
             player.bank.add(id, min ?: 1)
         }
+    }
+
+    /**
+     * Wear the best item [player] can equip for every slot (including optional ones) and add the loadout's inventory.
+     * @return false if the items didn't fit
+     */
+    fun equip(player: Player): Boolean {
+        val selected = select(player, fillOptional = true, owned = { _, _ -> true }, obtain = { _, _ -> false })
+        val worn = player.equipment.transaction {
+            for ((slot, item) in selected) {
+                val id = item.ids.firstOrNull { it != "empty" } ?: continue
+                set(slot.index, Item(id, item.min ?: 1))
+            }
+        }
+        val items = inventory
+        val carried = player.inventory.transaction {
+            for ((ids, min) in items) {
+                val id = ids.firstOrNull { it != "empty" } ?: continue
+                add(id, min ?: 1)
+            }
+        }
+        return worn && carried
     }
 
     private inline fun select(

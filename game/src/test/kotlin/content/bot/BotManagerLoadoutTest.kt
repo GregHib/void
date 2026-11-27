@@ -159,4 +159,38 @@ class BotManagerLoadoutTest {
         val activity = activity(BotLoadout(listOf(loadout to 1)), BotLoadout(listOf(loadout to 1)))
         assertThrows(IllegalArgumentException::class.java) { activity.withLoadoutRequirement() }
     }
+
+    private val alternative = Loadout("alternative", mapOf(EquipSlot.Weapon to LoadoutSlot(ids = setOf("bronze_sword"))))
+    private val gated = Loadout("gated", mapOf(EquipSlot.Weapon to LoadoutSlot(gear = gear("gated_weapons", "dragon_2h_sword"))))
+
+    @Test
+    fun `Bind uses the bots loadout when it is an option and qualifies`() {
+        bot.loadout = "alternative"
+        val bound = manager.bindLoadout(bot, activity(BotLoadout(listOf(loadout to 1, alternative to 1))))
+
+        assertEquals("alternative", bound.boundLoadout)
+        assertEquals(setOf("bronze_sword"), bound.setup.filterIsInstance<BotEquipmentSetup>().single().items.getValue(EquipSlot.Weapon).ids)
+    }
+
+    @Test
+    fun `Bind falls back to the weighted pick when the bots loadout is not an option`() {
+        bot.loadout = "missing"
+        val bound = manager.bindLoadout(bot, activity(BotLoadout(listOf(loadout to 1, alternative to 1))))
+
+        assertEquals("melee", bound.boundLoadout)
+    }
+
+    @Test
+    fun `Bind falls back to the weighted pick when the bots loadout does not qualify`() {
+        bot.loadout = "gated"
+        val bound = manager.bindLoadout(bot, activity(BotLoadout(listOf(gated to 1, alternative to 1))))
+
+        assertEquals("alternative", bound.boundLoadout)
+    }
+
+    @Test
+    fun `Bind without a preferred loadout uses the weighted pick`() {
+        val bound = manager.bindLoadout(bot, activity(BotLoadout(listOf(alternative to 1, loadout to 1))))
+        assertEquals("alternative", bound.boundLoadout)
+    }
 }

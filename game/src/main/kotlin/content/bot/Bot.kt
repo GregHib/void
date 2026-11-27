@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import java.util.Stack
 
 data class Bot(val player: Player) : Character by player {
@@ -39,6 +40,26 @@ data class Bot(val player: Player) : Character by player {
      * - [content.bot.BotManager.handleFail]: soft-fail on the pinned activity does not blacklist it.
      */
     var pinned: String? = null
+
+    /**
+     * Id of the [content.bot.allocation.BotAllocator] this bot was spawned by
+     */
+    var allocation: String? = null
+
+    /**
+     * Id of the fixed [content.bot.allocation.BotRole] given by a proportional allocation
+     */
+    var role: String? = null
+
+    /**
+     * Id of the loadout this bot was provisioned with, preferred whenever an activity offers it
+     */
+    var loadout: String? = null
+
+    /**
+     * Skill levels rolled from the bot's build, re-applied when the bot is re-provisioned
+     */
+    var buildLevels: Map<Skill, Int> = emptyMap()
 
     fun noTask() = frames.isEmpty()
 

@@ -3,6 +3,11 @@
 package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.allocation.AllocationHooks
+import content.bot.allocation.BotAllocations
+import content.bot.allocation.BotAllocator
+import content.bot.allocation.BotProvisioner
+import content.bot.allocation.BotRole
 import content.bot.behaviour.action.BotSwitchLoadout
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
@@ -16,6 +21,7 @@ import content.entity.player.combat.special.specialAttackEnergy
 import content.quest.questJournal
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -76,6 +82,22 @@ class BotCommands(
 
     var counter = 0
     val contexts = mutableListOf<CombatBotContext>()
+    private val provisioner = BotProvisioner(manager::activity)
+
+    /**
+     * Number of bots spawned per allocation, for allocations which don't refill
+     */
+    private val spawned = mutableMapOf<String, Int>()
+
+    /**
+     * Game tick each allocation can next spawn a bot
+     */
+    private val nextSpawn = mutableMapOf<String, Int>()
+
+    /**
+     * Bots which have been allocated but are still logging in
+     */
+    private val pending = mutableListOf<Bot>()
 
     init {
         // Combat-bot contexts. New minigames register a CombatBotContext here so the generic
@@ -83,14 +105,10 @@ class BotCommands(
         // without touching this file.
         contexts.add(ClanWarsBotContext())
 
-        worldTimerStart("bot_spawn") { TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60]) }
+        worldTimerStart("bot_allocations") { TimeUnit.SECONDS.toTicks(1) }
 
-        worldTimerTick("bot_spawn") {
-            if (counter > Settings["bots.count", 0]) {
-                return@worldTimerTick Timer.CANCEL
-            }
-            spawn()
-            return@worldTimerTick Timer.CONTINUE
+        worldTimerTick("bot_allocations") {
+            if (spawnAllocations()) Timer.CONTINUE else Timer.CANCEL
         }
 
         // Per-context auto-spawn timers — every arena that any registered context lists in
@@ -144,6 +162,39 @@ class BotCommands(
         }
 
         playerDeath {
+            if (!isBot) return@playerDeath
+            val bot = bot
+            val allocation = BotAllocations.getOrNull(bot.allocation ?: return@playerDeath) ?: return@playerDeath
+            val role = allocation.role(bot.role ?: return@playerDeath) ?: return@playerDeath
+            if (!allocation.hooks.shouldDropItems(this)) {
+                it.dropItems = false
+            }
+            val respawn = allocation.hooks.respawnTile(bot)
+            if (respawn != null) {
+                it.teleport = respawn
+            }
+            val account = accountName
+            World.queue("respawn_role_$account", initialDelay = 10) {
+                val target = Players.find(account) ?: return@queue
+                if (!target.isBot) return@queue
+                refresh(target.bot, allocation, role)
+            }
+        }
+
+        for (areaId in BotAllocations.subscribedAreas) {
+            entered(areaId) {
+                if (!isBot || dead) return@entered
+                val bot = bot
+                val allocation = BotAllocations.getOrNull(bot.allocation ?: return@entered) ?: return@entered
+                allocation.hooks.onAreaEntered(bot, areaId)
+                val role = allocation.role(bot.role ?: return@entered) ?: return@entered
+                if (allocation.hooks.shouldRefreshOnAreaEntered(bot, areaId)) {
+                    refresh(bot, allocation, role)
+                }
+            }
+        }
+
+        playerDeath {
             // PvP bots have dropItems=false in the prior handler, so no loot to scan for.
             if (isBot) return@playerDeath
             val slayer = killer as? Player ?: return@playerDeath
@@ -184,7 +235,7 @@ class BotCommands(
             loadSettings()
         }
 
-        adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
+        adminCommand("bots", intArg("count", optional = true), stringArg("allocation", optional = true, autofill = { BotAllocations.ids }), desc = "Spawn (count) number of bots into an allocation (default world)", handler = ::spawn)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
@@ -225,8 +276,18 @@ class BotCommands(
     }
 
     private fun loadSettings() {
-        if (Settings["bots.count", 0] > 0) {
-            World.timers.start("bot_spawn")
+        BotAllocations.load { manager.activity(it) != null }
+        var start = false
+        for (allocation in BotAllocations.all) {
+            if (allocation.count <= 0) {
+                continue
+            }
+            // First spawn after one interval, as with a regular timer
+            nextSpawn.putIfAbsent(allocation.id, GameLoop.tick + TimeUnit.SECONDS.toTicks(allocation.spawnSeconds))
+            start = true
+        }
+        if (start) {
+            World.timers.start("bot_allocations")
         }
         if (!Settings["bots.numberedNames", false]) {
             names.clear()
@@ -254,9 +315,14 @@ class BotCommands(
         spawnCombatBot(context, arenaKey)
     }
 
-    @Suppress("UNUSED_PARAMETER")
     fun spawn(player: Player, args: List<String>) {
-        val count = args[0].toIntOrNull() ?: 1
+        val count = args.getOrNull(0)?.toIntOrNull() ?: 1
+        val id = args.getOrNull(1)?.takeIf { it.isNotBlank() } ?: "world"
+        val allocation = BotAllocations.getOrNull(id)
+        if (allocation == null) {
+            player.message("Unknown bot allocation '$id'. Options: ${BotAllocations.ids.joinToString()}.", ChatType.Console)
+            return
+        }
         GlobalScope.launch {
             repeat(count) {
                 if (it % Settings["network.maxLoginsPerTick", 25] == 0) {
@@ -266,7 +332,7 @@ class BotCommands(
                         }
                     }
                 }
-                spawn()
+                spawnBot(allocation)
             }
         }
     }
@@ -333,38 +399,98 @@ class BotCommands(
         }
     }
 
-    fun spawn() {
+    /**
+     * Spawn all [BotAllocations] which are due and below their target count.
+     * @return whether any allocation still needs spawning
+     */
+    private fun spawnAllocations(): Boolean {
+        var active = false
+        for (allocation in BotAllocations.all) {
+            val count = allocation.count
+            if (count <= 0) {
+                continue
+            }
+            if (allocation.config.refill) {
+                active = true
+                if (members(allocation.id).size >= count) {
+                    continue
+                }
+            } else if ((spawned[allocation.id] ?: 0) >= count) {
+                continue
+            } else {
+                active = true
+            }
+            if (GameLoop.tick < (nextSpawn[allocation.id] ?: 0)) {
+                continue
+            }
+            nextSpawn[allocation.id] = GameLoop.tick + TimeUnit.SECONDS.toTicks(allocation.spawnSeconds)
+            spawnBot(allocation)
+        }
+        return active
+    }
+
+    private fun members(allocation: String): List<Bot> = manager.bots.filter { it.allocation == allocation } + pending.filter { it.allocation == allocation }
+
+    /**
+     * Spawn a bot into [allocation], giving it a role and the levels and items it needs if the allocation assigns one.
+     */
+    fun spawnBot(allocation: BotAllocator) {
+        spawned[allocation.id] = (spawned[allocation.id] ?: 0) + 1
         GlobalScope.launch(Contexts.Game) {
             counter++
-            val name = pickSavedBot() ?: if (Settings["bots.numberedNames", false]) {
-                "Bot $counter"
-            } else {
-                val prefix = Settings["bots.namePrefix", ""].trim('"')
-                val length = 12 - prefix.length
-                val short = names.filter { it.length < length }
-                var selected = short.randomOrNull(random)
-                if (selected == null) {
-                    selected = names.removeAt(random.nextInt(names.size))
-                } else {
-                    names.remove(selected)
-                }
-                "${prefix}$selected"
-            }
-            val areas = setOf("lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport")
+            val name = (if (allocation.config.saved) pickSavedBot() else null) ?: pickBotName()
+            val tile = Areas[allocation.config.spawnAreas.random(random)].random()
             val saved = saveQueue.loadBot(name)?.toPlayer()
-            val player = saved ?: Player(tile = Areas[areas.random()].random(), accountName = name)
+            val player = saved ?: Player(tile = tile, accountName = name)
             val bot = player.initBot()
-            loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
-            if (saved == null) {
-                setAppearance(player)
-                player.inventory.add("coins", 10000)
+            bot.allocation = allocation.id
+            // Allocate before suspending so bots spawned together are counted
+            val role = allocation.allocate(members(allocation.id))
+            bot.role = role?.id
+            if (role != null) {
+                player.tile = tile
             }
-            player.viewport?.loaded = true
-            delay(3.milliseconds)
-            manager.add(bot)
-            player.running = true
-            loading.remove(name)
+            pending.add(bot)
+            try {
+                loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
+                if (saved == null) {
+                    setAppearance(player)
+                    if (role == null) {
+                        for ((id, amount) in allocation.config.starterItems) {
+                            player.inventory.add(id, amount)
+                        }
+                    }
+                }
+                player.viewport?.loaded = true
+                delay(3.milliseconds)
+                if (role != null) {
+                    provisioner.provision(bot, role, allocation.config.starterItems)
+                }
+                manager.add(bot)
+                if (role != null) {
+                    bot.pinned = role.activity
+                    bot.available.clear()
+                    bot.available.add(role.activity)
+                    bot.blocked.remove(role.activity)
+                    manager.assign(bot, role.activity)
+                }
+                player.running = true
+            } finally {
+                pending.remove(bot)
+                loading.remove(name)
+            }
         }
+    }
+
+    /**
+     * Restock a role [bot] after death or a [AllocationHooks.shouldRefreshOnAreaEntered] and restart its role.
+     */
+    private fun refresh(bot: Bot, allocation: BotAllocator, role: BotRole) {
+        provisioner.restore(bot, role, allocation.config.starterItems)
+        manager.stop(bot)
+        bot.blocked.remove(role.activity)
+        bot.evaluate.clear()
+        bot.previous = null
     }
 
     /**

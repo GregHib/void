@@ -283,7 +283,7 @@ class BotManager(
             return activity
         }
         val requirement = activity.loadout ?: return activity
-        val loadout = requirement.pick(bot.player, any = true) ?: return activity
+        val loadout = requirement.pick(bot.player, any = true, preferred = bot.loadout) ?: return activity
         val equipment = loadout.bind(bot.player) { id, amount -> DynamicResolvers.obtainable(bot.player, id, amount, resolvers) }
         if (bot.player["debug", false]) {
             logger.debug { "Bound loadout '${loadout.id}' for ${activity.id} to bot '${bot.player.accountName}': ${equipment.mapValues { it.value.ids }}." }

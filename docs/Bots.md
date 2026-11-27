@@ -116,6 +116,99 @@ An activity with a loadout is only available to bots with the levels to equip at
 
 With `bots.spawnRequirements`, a bot gets the levels for the loadout. It also gets the best item it can equip for every slot, including optional ones.
 
+# Allocations
+
+An allocation decides how many bots spawn into a part of the world, and which role each one gets. Allocations are rows in the `bot_allocations` table, in `data/bot/bot_allocation.tables.toml`.
+
+```toml
+[bot_allocations]
+[.world]
+count_setting = "bots.count"
+spawn_seconds_setting = "bots.spawnSeconds"
+spawn_areas = ["lumbridge_teleport", "varrock_teleport", "draynor_bank", "camelot_teleport"]
+saved = true
+starter_items = [["coins", 10000]]
+```
+
+- `row_id`: unique id, used by `::bots`.
+- `mode`: `capacity` (default) or `proportional`. The `world` row leaves it out.
+- `count` / `count_setting`: how many bots the allocation wants. The setting overrides `count` when set.
+- `spawn_seconds` / `spawn_seconds_setting`: seconds between spawns, default 60. The setting overrides it when set.
+- `spawn_areas`: areas bots spawn in, picked at random.
+- `refill`, `saved`, `starter_items`: see Spawning below.
+- `roles`: `bot_roles` rows, proportional mode only.
+
+## Modes
+
+- `capacity` is how world bots work. Bots pick any available activity, limited by each area's `bot_capacity`.
+- `proportional` gives each bot a fixed role from `roles`, by weight. Role minimums are filled first. The rest is split by weight (largest remainder) and capped at each role's `max`. Roles are fixed for the bot's whole life.
+
+Example, not a real allocation as there are no proportional rows yet:
+
+```toml
+[bot_allocations]
+[.example_pvm]
+mode = "weighted"
+count = 10
+refill = true
+spawn_areas = ["lumbridge_teleport"]
+roles = ["bot_roles.example_attacker", "bot_roles.example_miner"]
+
+[bot_roles]
+[.example_attacker]
+activity = "kill_cows"
+weight = 3
+min = 2
+max = 6
+builds = [["bot_builds.example_zerker", 1]]
+combat_style = "accurate"
+
+[.example_miner]
+activity = "mine_copper"
+
+[bot_builds]
+[.example_zerker]
+attack = [60, 70]
+strength = [70, 80]
+constitution = [60, 70]
+```
+
+With `count = 10`, the attacker role gets 6 bots and the miner role gets 4.
+
+## Spawning
+
+Each allocation has its own spawn timer. While it is below its target, it spawns one bot every `spawn_seconds`.
+
+- `refill = false` (default): stop once `count` bots have been spawned. Bots that leave are not replaced, so `::clear_bots` stays clear.
+- `refill = true`: keep topping up to `count` as bots leave.
+- `saved = true`: may reuse saved bot accounts, with the chance set by `bots.spawnSavedChance`.
+- `starter_items`: given to brand-new capacity bots. Role bots get them every time they are provisioned.
+
+## Roles and builds
+
+A role (`bot_roles`) has:
+- `activity`: what its bots do.
+- `weight` (default 1), `min` (default 0) and an optional `max`.
+- `builds`: weighted `bot_builds` rows. A role with no builds keeps its existing levels.
+- `combat_style`: optional.
+
+A build (`bot_builds`) has a level range `[min, max]` for each skill. Each skill is rolled within its range. Skills not listed are left alone. Constitution is given in levels, not x10.
+
+## Provisioning
+
+A role bot is provisioned when it spawns.
+
+1. A build is picked by weight. Its levels are rolled once and kept.
+2. The role activity's loadout is picked, raising levels if it needs to. It is remembered as the bot's loadout, so binding later picks the same one.
+3. Items are cleared, the starter items are added and the loadout is worn.
+4. Explicit equipment and inventory setup rows are applied. Hybrid loadout extras not being worn are added to the inventory.
+
+On death, a role bot respawns with the same levels and kit.
+
+## Command
+
+`::bots [count] [allocation]` spawns `count` bots (default 1) into `world` by default. Allocation ids are autofilled.
+
 # Resolvers
 
 Resolvers are activities bots can complete to get stuff which is needed for another activity.

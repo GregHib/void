@@ -32,9 +32,16 @@ data class BotLoadout(val options: List<Pair<Loadout, Int>>) : Condition(90) {
     }
 
     /**
-     * Weighted random pick of the loadouts [player] qualifies for, or of all loadouts when [any] and none qualify
+     * The [preferred] loadout if it's an option [player] qualifies for, otherwise a weighted random pick of the loadouts
+     * [player] qualifies for, or of all loadouts when [any] and none qualify
      */
-    fun pick(player: Player, any: Boolean = false): Loadout? {
+    fun pick(player: Player, any: Boolean = false, preferred: String? = null): Loadout? {
+        if (preferred != null) {
+            val loadout = options.firstOrNull { it.first.id == preferred }?.first
+            if (loadout != null && loadout.qualifies(player)) {
+                return loadout
+            }
+        }
         val qualifying = options.filter { (loadout, _) -> loadout.qualifies(player) }.ifEmpty { if (any) options else return null }
         return weighted(qualifying)
     }
