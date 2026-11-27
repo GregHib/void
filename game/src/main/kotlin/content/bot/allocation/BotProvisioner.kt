@@ -2,7 +2,6 @@ package content.bot.allocation
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.Bot
-import content.bot.behaviour.action.BotSwitchLoadout
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
@@ -96,7 +95,7 @@ class BotProvisioner(private val activity: (String) -> BotActivity?) {
                 else -> continue
             }
         }
-        val starting = activity.reactive.firstNotNullOfOrNull { (it as? BotSwitchLoadout)?.startingLoadout }
+        val starting = activity.startingLoadout
         if (starting != null) {
             player["current_loadout"] = starting
             player["last_loadout_swap_tick"] = -10_000

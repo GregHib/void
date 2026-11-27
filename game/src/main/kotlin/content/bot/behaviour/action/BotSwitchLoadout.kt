@@ -30,7 +30,6 @@ data class BotSwitchLoadout(
     val to: String? = null,
     val counterAttacker: Boolean = false,
     val condition: Condition? = null,
-    val startingLoadout: String? = null,
     val cooldown: Int = 3,
     val swapsPerTick: Int = 1,
 ) : BotAction {
@@ -50,7 +49,7 @@ data class BotSwitchLoadout(
 
         val target = activity.switchLoadouts[resolved] ?: return BehaviourState.Success
 
-        val current = player["current_loadout", startingLoadout ?: "" ]
+        val current = player["current_loadout", activity.startingLoadout ?: ""]
         if (current == resolved) {
             ensureAutocast(player, target.autocast)
             return BotSwitchSetup(target.equipment.items, condition = null, maxPerTick = swapsPerTick).update(bot, world, frame)

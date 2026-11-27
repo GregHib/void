@@ -38,9 +38,9 @@
 #                    after the bot's state changes.
 #   switch_loadouts  map  Hybrid templates only — named gear/inventory variants
 #                    swapped between by a `switch_loadout` reactive, which
-#                    takes `starting_loadout`, `cooldown` (default 3 ticks
-#                    between swaps) and `swaps_per_tick` (default 1 slot).
-#                    See pvp_dangerous_hybrid.
+#                    takes `cooldown` (default 3 ticks between swaps) and
+#                    `swaps_per_tick` (default 1 slot). See pvp_dangerous_hybrid.
+#   starting_loadout str  The switch_loadouts kit worn when the activity starts.
 #
 # Lifecycle of one tick (BotManager.tick):
 #   1. If no active frame, assignRandom() picks an activity (honouring
@@ -548,6 +548,7 @@ setup = [
     { loadout = { id = "pvp_dangerous_hybrid" } },
     { area = { id = "$area" } },
 ]
+starting_loadout = "melee"
 switch_loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" } } },
                     magic  = { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" } },
                                inventory = [ { id = "blood_rune", min = 2000 }, { id = "death_rune", min = 2000 }, { id = "water_rune", min = 5000 }],
@@ -560,7 +561,7 @@ actions = [
 ]
 reactive = [
     { eat = { heal_percent = 40 } },
-    { switch_loadout = { counter_attacker = true, starting_loadout = "melee", cooldown = 3, swaps_per_tick = 4 } },
+    { switch_loadout = { counter_attacker = true, cooldown = 3, swaps_per_tick = 4 } },
     { pray = { id = "deflect_melee",    if = { attacker_style = { equals = "melee"  } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic",    if = { attacker_style = { equals = "magic"  } } } },

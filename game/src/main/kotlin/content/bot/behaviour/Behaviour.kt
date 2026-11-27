@@ -220,6 +220,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableSetOf<String>()
                     var switchLoadouts: Map<String, Any> = emptyMap()
+                    var startingLoadout: String? = null
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
@@ -228,10 +229,11 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                             "reactive" -> actions(reactive)
                             "produces" -> produces(produces)
                             "switch_loadouts" -> switchLoadouts = map()
+                            "starting_loadout" -> startingLoadout = string()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, reactive, produces, switchLoadouts)
+                    templates[id] = Template(requires, setup, actions, reactive, produces, switchLoadouts, startingLoadout)
                 }
             }
         }
@@ -298,11 +300,11 @@ private data class Fragment(
         reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
         switchLoadouts = resolveSwitchLoadouts(template),
+        startingLoadout = template.startingLoadout,
     )
 
     @Suppress("UNCHECKED_CAST")
     private fun resolveSwitchLoadouts(template: Template): Map<String, Loadout> {
-        if (template.switchLoadouts.isEmpty()) return emptyMap()
         val out = LinkedHashMap<String, Loadout>(template.switchLoadouts.size)
         val debug = "$id template ${this.template} switch_loadouts"
         for ((name, raw) in template.switchLoadouts) {
@@ -316,6 +318,8 @@ private data class Fragment(
                 else -> error("Loadout '$name' must be a map or loadout id in $debug, got $raw.")
             }
         }
+        val starting = template.startingLoadout
+        require(starting == null || out.containsKey(starting)) { "Starting loadout '$starting' isn't one of the switch_loadouts in $debug." }
         return out
     }
 
@@ -424,4 +428,5 @@ private data class Template(
     val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
     val switchLoadouts: Map<String, Any> = emptyMap(),
+    val startingLoadout: String? = null,
 )

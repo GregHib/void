@@ -29,6 +29,10 @@ data class BotActivity(
      * Named kits a hybrid bot swaps between with [content.bot.behaviour.action.BotSwitchLoadout], unrelated to the [loadout] setup
      */
     val switchLoadouts: Map<String, Loadout> = emptyMap(),
+    /**
+     * The [switchLoadouts] kit a bot wears when it starts this activity
+     */
+    val startingLoadout: String? = null,
     val boundArea: String? = null,
     val boundLoadout: String? = null,
 ) : Behaviour {
